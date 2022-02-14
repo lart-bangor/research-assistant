@@ -2,6 +2,7 @@
 {% block title %}LART Survey Client - LSBQ-RML{% endblock %}
 {% block headline %}LSBQ-RML{% endblock %}
 {% block head_scripts %}
+<script type="text/javascript" src="/js/lart-forms.js"></script>
 <script type="text/javascript">
     function loadSurveyVersions() {
         availableVersions = eel.lsbq_rml_get_versions()(populateSurveyVersions);
@@ -85,37 +86,13 @@
 {% endblock %}
 {% block tail_scripts %}
 <script type="text/javascript">
-    form = document.getElementById('surveyDataForm');
-    if(form) {
-        form.addEventListener('submit', submitSurveyDataForm, false);
-    }
-
-    function getFormData(form) {
-        data = {};
-        parent = "#" + form.id;
-        selector = parent + " input, " + parent + " textarea, " + parent + " select";
-        fields = Array.from(document.querySelectorAll(selector));
-        for(i in fields) {
-            data[fields[i].id] = fields[i].value;
+    requireFormValidation();
+    registerFormPipeline(
+        'surveyDataForm',
+        async function(data) {
+            let success = await eel.lsbq_rml_init(data)();
+            console.log(success);
         }
-        return data;
-    }
-
-    function submitSurveyDataForm(event) {
-        form = event.currentTarget;
-        // Check client-side form validity first
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-        }
-
-        data = getFormData(form);
-        eel.lsbq_rml_init(data);
-        
-        event.preventDefault();
-        event.stopPropagation();
-        console.log("Ring ring...")
-    }
+    );
 </script>
 {% endblock %}

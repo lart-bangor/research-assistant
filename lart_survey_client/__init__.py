@@ -22,7 +22,7 @@ def lsbq_rml_init(data):
     for (key, value) in data.items():
         print(f"{key}: {value}")
     print("That's it...")
-    return "Something went wrong..."
+    return True
 
 @eel.expose
 def navigate_to(target):
