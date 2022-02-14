@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block title %}LART Survey Client - LSBQ-RML{% endblock %}
+{% block headline %}LSBQ-RML{% endblock %}
+{% block head_scripts %}
+<script type="text/javascript">
+    function loadSurveyVersions() {
+        availableVersions = eel.lsbq_rml_get_versions()(populateSurveyVersions);
+    }
+
+    function populateSurveyVersions(versions) {
+        select = document.getElementById('selectSurveyVersion');
+        for(version in versions) {
+            option = document.createElement('option');
+            option.setAttribute('value', version);
+            option.appendChild(document.createTextNode(versions[version]))
+            select.appendChild(option);
+        }
+    }
+</script>
+{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="p-2">
+        <div class="container-fluid p-2 text-center">
+            <h2>Language and Social Background Questionnaire (RML)</h2>
+        </div>
+        <form id="surveyDataForm" class="p-2 needs-validation">
+            <div class="mb-3">
+                <label for="selectSurveyVersion" class="form-label">Select LSBQ-RML version:</label>
+                <select id="selectSurveyVersion" class="form-select" required>
+                </select>
+                <script type="text/javascript">
+                    loadSurveyVersions();
+                </script>
+                <div class="invalid-feedback">
+                    <p>Please select one of the available versions of the LSBQ-RML.</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="researcherId" class="form-label">Researcher ID:</label>
+                <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
+                <div id="researcherIdHelp" class="form-text">Enter the researcher’s name or ID.</div>
+                <div class="invalid-feedback">
+                    <p>Please provide a valid Researcher ID or name. The ID can only contain letters and numbers (no spaces, hyphens, etc.) and must be between 3 and 10 characters in length.</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="researchLocation" class="form-label">Location:</label>
+                <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="[A-Za-z0-9 ,\(\)]{1,50}" required />
+                <div id="researchLocationHelp" class="form-text">Enter the location (e.g. town name) where the research is undertaken.</div>
+                <div class="invalid-feedback">
+                    <p>Please enter a location name, for example <i>Bangor, Gwynedd</i>. Location names can contain letters, numbers, spaces, commas and parentheses and they can be up to 50 characters in length.</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="participantId" class="form-label">Participant ID:</label>
+                <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
+                <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
+                <div class="invalid-feedback">
+                    <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <p class="form-label" style="margin-left:0">Confirm consent:</p>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="confirmConsent" required />
+                    <label class="form-check-label" for="confirmConsent">I confirm that the participant has given informed consent.</label>
+                    <div class="invalid-feedback">
+                        <p>Please confirm that you have obtained informed consent from the participant before starting this questionnaire.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 text-center p-3">
+                <button type="submit" class="btn btn-primary btn-lg btn-action">Start</button>
+            </div>
+        </form>
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+<script type="text/javascript">
+    form = document.getElementById('surveyDataForm');
+    if(form) {
+        form.addEventListener('submit', submitSurveyDataForm, false);
+    }
+
+    function getFormData(form) {
+        data = {};
+        parent = "#" + form.id;
+        selector = parent + " input, " + parent + " textarea, " + parent + " select";
+        fields = Array.from(document.querySelectorAll(selector));
+        for(i in fields) {
+            data[fields[i].id] = fields[i].value;
+        }
+        return data;
+    }
+
+    function submitSurveyDataForm(event) {
+        form = event.currentTarget;
+        // Check client-side form validity first
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        }
+
+        data = getFormData(form);
+        eel.lsbq_rml_init(data);
+        
+        event.preventDefault();
+        event.stopPropagation();
+        console.log("Ring ring...")
+    }
+</script>
+{% endblock %}

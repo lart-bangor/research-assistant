@@ -4,16 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <title>LART Survey Client</title>
+    
+    
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap-icons.css">
+    <link rel="stylesheet" href="./css/lart-custom.css">
+
+    <script type="text/javascript" src="./eel.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <script type="text/javascript" src="/eel.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
 
     <header>
         <div class="container-fluid bg-primary text-light text-center p-2">
+            <button id="nav-drawer-toggle" class="navbar-toggler text-light" data-bs-toggle="collapse" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
             <h1>LART Survey App</h1>
+        </div>
+        <div id="nav-drawer" class="collapse">
+            <div id="nav-header" class="container-fluid bg-primary text-light p-3" data-bs-toggle="collapse" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="true" aria-label="Toggle navigation">
+                <p class="fs-4">Drawer Title</p>
+                <p>Drawer information text...</p>
+            </div>
+            <nav class="navbar sticky-top navbar-light bg-light">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-x-circle"></i>  Discard</a>
+                    </li>
+                    <li><hr class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#"><i class="bi bi-arrow-repeat"></i> Synch now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main>
@@ -22,10 +48,10 @@
                 <p class="h3">Choose a task:</p>
             </div>
             <div class="container-fluid text-center p-2">
-                <a class="btn btn-primary fs-5 p-2" style="min-width:50%" href="/lsbq-rml.html">LSBQ-RML</a>
+                <a class="btn btn-primary fs-5 p-2" style="min-width:50%" href="./lsbq-rml.html">LSBQ-RML</a>
             </div>
             <div class="container-fluid text-center p-2">
-                <a class="btn btn-primary fs-5 p-2" style="min-width:50%" href="/atol-c.html">AToL-C</a>
+                <a class="btn btn-primary fs-5 p-2" style="min-width:50%" href="./atol-c.html">AToL-C</a>
             </div>
         </article>
     </main>

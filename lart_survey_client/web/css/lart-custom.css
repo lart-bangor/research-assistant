@@ -1,3 +1,42 @@
-body {
-    background: black;
+#nav-drawer {
+    width: 20rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background:white;
+    box-shadow: 0px 0px 3px 1px #cccccc99;
+}
+#nav-header {
+    min-height: 10rem;
+}
+.nav.flex-column {
+    width:100%;
+}
+.nav-divider {
+    margin:0.2rem;
+    margin-left:1rem;
+    margin-right:1rem;
+    opacity:0.15;
+}
+#nav-drawer a.nav-link {
+    color: black;
+}
+#nav-drawer a.nav-link:hover,  #nav-drawer a.nav-link:focus {
+    background: #f3f3f3;
+    color: #111;
+}
+#nav-drawer a.nav-link.disabled {
+    color: lightgray;
+}
+#nav-drawer-toggle {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size:150%;
+}
+
+.btn-action {
+    border-radius: 1rem;
+    text-transform: uppercase;
 }
