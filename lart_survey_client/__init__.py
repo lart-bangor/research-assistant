@@ -5,23 +5,31 @@ An app to collect survey-type data for research on regional and minority languag
 import eel
 import os
 from pathlib import Path
+from typing import Any
+from lsbqrml import LsbqRml
 
 ROOT_DIR = Path(__file__).parent
 
 @eel.expose
 def lsbq_rml_get_versions():
     return {
-        'CymEng_Eng_GB': 'Welsh – English (United Kingdom)',
-        'CymEng_Cym_GB': 'Cymraeg – Saesneg (Deyrnas Unedig)',
-        'LmoIta_Ita_IT': 'Lombard – Italiano (Italia)',
-        'LtzGer_Ger_BE': 'Moselfränkisch – Deutsch (Belgien)',
+        "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
+        "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
+        "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
+        "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
     }
 
 @eel.expose
-def lsbq_rml_init(data):
-    for (key, value) in data.items():
-        print(f"{key}: {value}")
-    print("That's it...")
+def lsbq_rml_init(data: dict[Any, Any]):
+    instance = LsbqRml(
+        data["selectSurveyVersion"],
+        data["researcherId"],
+        data["researchLocation"],
+        data["participantId"],
+        data["confirmConsent"]
+    )
+    print("That's it: ", instance)
+    print("Data: ", instance.data)
     return True
 
 @eel.expose
