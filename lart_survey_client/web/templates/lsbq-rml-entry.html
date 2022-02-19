@@ -86,7 +86,7 @@
 {% endblock %}
 {% block tail_scripts %}
 <script type="text/javascript">
-    requireFormValidation();
+    requireFormValidation(true);
     registerFormPipeline(
         'surveyDataForm',
         async function(data) {

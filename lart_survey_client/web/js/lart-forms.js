@@ -1,3 +1,5 @@
+booteel.logger.debug("lart-forms.js loaded.");
+
 /**
  * Require all forms marked .needs-validation to pass client-side validation before submitting.
  * 
@@ -13,20 +15,26 @@
 function requireFormValidation(novalidate = false) {
     // Fetch all the forms that need validation
     const forms = document.querySelectorAll('.needs-validation');
+    booteel.logger.debug(`Setting up form validation listener on ${forms.length} forms:`, forms);
 
     // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
         .forEach(
             function (form) {
                 if (novalidate) {
+                    console.debug(`Setting form ${form.id} to novalidate.`);
                     form.setAttribute('novalidate', true);
                 }
+                console.debug(`Adding 'submit' event listener to ${form.id}.`);
                 form.addEventListener(
                     'submit',
                     function (event) {
                         if (!form.checkValidity()) {
+                            console.debug(`Form ${form.id} has failed validation.`);
                             event.preventDefault();
                             event.stopPropagation();
+                        } else {
+                            console.debug(`Form ${form.id} has passed validation.`);
                         }
                         form.classList.add('was-validated');
                     },
@@ -68,6 +76,9 @@ function registerFormPipeline(form_id, receiver) {
             },
             false
         )
+        booteel.logger.debug(`Registered form pipeline from form '${form_id}' to callback:`, receiver)
+    } else {
+        booteel.logger.debug(`Failed to register form pipeline. No form with id '${form_id}'.`)
     }
 }
 

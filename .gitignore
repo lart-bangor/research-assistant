@@ -12,6 +12,9 @@ __pycache__/*
 # Tox environment
 /.tox/
 
+# Custom typings for Pylance
+/typings/
+
 # Pytest
 /.pytest_cache/
 
