@@ -73,10 +73,13 @@ def main():
     booteel.setloglevel(loglevel)
 
     # Run app using eel
-    eel.init(Path(__file__).parent/ "web")  # type: ignore
+    eel.init(  # type: ignore
+        Path(__file__).parent / "web",
+        allowed_extensions=[".html", ".js", ".css", ".woff"]
+    )
     eel.start(  # type: ignore
-        "templates/main-entry.html",
-        jinja_templates="templates",
+        "app/main-entry.html",
+        jinja_templates="app",
         close_callback=close,
         block=False
     )  # type: ignore
