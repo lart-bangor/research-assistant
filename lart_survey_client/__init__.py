@@ -17,9 +17,6 @@ from lsbqrml import LsbqRml
 # Set up logger for main runtime
 logger = logging.getLogger(__name__)
 logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
-# Set global root dir for resource reference
-ROOT_DIR = Path(__file__).parent
-logger.debug(f"ROOT_DIR set to `{ROOT_DIR}`")
 
 
 @eel.expose  # type: ignore
@@ -76,10 +73,9 @@ def main():
     booteel.setloglevel(loglevel)
 
     # Run app using eel
-    eel.init(ROOT_DIR / "web")  # type: ignore
+    eel.init(Path(__file__).parent/ "web")  # type: ignore
     eel.start(  # type: ignore
         "templates/main-entry.html",
-        #size=(800, 600),
         jinja_templates="templates",
         close_callback=close,
         block=False
