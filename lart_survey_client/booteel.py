@@ -7,6 +7,16 @@ from typing import Any, Callable, Optional
 pylogger = logging.getLogger(__name__ + ".py")
 jslogger = logging.getLogger(__name__ + ".js")
 
+def setloglevel(level: int):
+    """Set the log level for the booteel module in both Python and JavaScript."""
+    global pylogger, jslogger
+    pylogger.setLevel(level)
+    jslogger.setLevel(level)
+
+@eel.expose  # type: ignore
+def _booteel_logger_getlevel():
+    """Grant access to the module's loglevel to booteel.js."""
+    return jslogger.level
 
 @eel.expose  # type: ignore
 def _booteel_log(level: int, message: str, args: list[Any]):

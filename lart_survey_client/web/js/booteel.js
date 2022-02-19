@@ -16,43 +16,148 @@ booteel.logger = {
         INFO: 20,
         DEBUG: 10,
         NOTSET: 0,
-    }
+    },
+    currentLevel: 10,  // Default: 20 (INFO)
 }
 
 booteel.logger.pylog = function (level, message, ...args) {
-    for (let i = 0; i < args.length; i++) {
-        args[i] = args[i].toString();
-    }
+    // for (let i = 0; i < args.length; i++) {
+    //     args[i] = args[i].toString();
+    // }
     eel._booteel_log(level, message, args)();
 }
 
 booteel.logger.debug = function (message, ...args) {
+    if (booteel.logger.currentLevel > booteel.logger.level.DEBUG) {
+        return;
+    }
     console.debug(message, ...args);
     booteel.logger.pylog(booteel.logger.level.DEBUG, message, ...args);
 }
 
 booteel.logger.info = function (message, ...args) {
+    if (booteel.logger.currentLevel > booteel.logger.level.INFO) {
+        return;
+    }
     console.info(message, ...args);
     booteel.logger.pylog(booteel.logger.level.INFO, message, ...args);
 }
 
 booteel.logger.warning = function (message, ...args) {
+    if (booteel.logger.currentLevel > booteel.logger.level.INFO) {
+        return;
+    }
     console.warn(message, ...args);
     booteel.logger.pylog(booteel.logger.level.WARNING, message, ...args);
 }
 
 booteel.logger.error = function (message, ...args) {
+    if (booteel.logger.currentLevel > booteel.logger.level.INFO) {
+        return;
+    }
     console.error(message, ...args);
     booteel.logger.pylog(booteel.logger.level.ERROR, message, ...args);
 }
 
 booteel.logger.critical = function (message, ...args) {
+    if (booteel.logger.currentLevel > booteel.logger.level.INFO) {
+        return;
+    }
     console.error(message, ...args);  // There is no more severe level in JS, so use error again.
     booteel.logger.pylog(booteel.logger.level.CRITICAL, message, ...args);
 }
 
-// Log booteel.js load - cannot be done earlier due to programatic definitions
-booteel.logger.debug("booteel.js loaded.")
+booteel.logger.setLevel = function (level) {
+    booteel.logger.debug(`Booteel.js log level set to ${booteel.logger.currentLevel}.`);
+    booteel.logger.currentLevel = parseInt(level);
+}
+eel.expose(booteel.logger.setLevel, "_booteel_logger_setlevel");
+eel._booteel_logger_getlevel()(booteel.logger.setLevel);
+
+// Log booteel.js load - cannot be done earlier due to programmatic definitions
+booteel.logger.debug("booteel.js loaded.");
+
+booteel._restoreWindowProperties = function () {
+    // Get window properties from local storage
+    const winProps = {
+        left: window.localStorage.getItem("_booteel_window_left"),
+        top: window.localStorage.getItem("_booteel_window_top"),
+        width: window.localStorage.getItem("_booteel_window_width"),
+        height: window.localStorage.getItem("_booteel_window_height"),
+    }
+    booteel.logger.debug("Restoring window properties:", {winProps});
+
+    // Check that there are no null values and restore window size
+    if (winProps.width !== null && winProps.height !== null) {
+        let width = parseInt(winProps.width);
+        let height = parseInt(winProps.height);
+        // Shrink window iff bigger than screen
+        if (width > window.screen.availWidth) {
+            width = window.screen.availWidth;
+        }
+        if (height > window.screen.availHeight) {
+            height = window.screen.availHeight;
+        }
+        booteel.logger.debug("Resizing window to:", { width, height });
+        window.resizeTo(width, height);
+    }
+
+    // Check that there are no null values and restore window position
+    if (winProps.left !== null && winProps.top !== null) {
+        let left = parseInt(winProps.left);
+        let top = parseInt(winProps.top);
+        // Make sure window is visible, and move it to reasonable position if not
+        if (left > window.screen.availWidth) {
+            left -= window.screen.availWidth * 0.05; // At least 5% from right margin
+        }
+        if (top > window.screen.availHeight) {
+            top -= window.screen.availHeight * 0.05; // At least 5% from bottom margin
+        }
+        booteel.logger.debug("Moving window to:", { left, top });
+        window.moveTo(left, top);
+    }
+}
+
+booteel.registerWindowHandlers = function () {
+    // Make sure we only do this when running chromeless
+    // if (!window.matchMedia('(display-mode: standalone)').matches) {
+    //     booteel.logger.debug(`App NOT running in standalone mode.`);
+    //     return;
+    // }
+    booteel.logger.debug(`App is running in standalone mode.`);
+    // Make sure we don't do this more than once
+    if (booteel.registerWindowHandlers.registered !== undefined) {
+        booteel.logger.debug("Booteel window handlers already registered.");
+        return;
+    }
+
+    booteel._restoreWindowProperties();
+
+    // Register unload handler
+    booteel.logger.debug("Registering window handlers...");
+    window.addEventListener(
+        "beforeunload",
+        function (event) {
+            const winProps = {
+                left: window.screenLeft.toString(),
+                top: window.screenTop.toString(),
+                width: window.outerWidth.toString(),
+                height: window.outerHeight.toString(),
+            }
+            booteel.logger.debug("Storing window properties: ", { winProps });
+            window.localStorage.setItem("_booteel_window_left", winProps.left);
+            window.localStorage.setItem("_booteel_window_top", winProps.top);
+            window.localStorage.setItem("_booteel_window_width", winProps.width);
+            window.localStorage.setItem("_booteel_window_height", winProps.height);
+            sleep(1);
+        },
+        {capture: true}
+    );
+    booteel.registerWindowHandlers.registered = true;
+    booteel.logger.debug("Window handlers registered.");
+}
+// Register window handlers directly on loading of booteel
+booteel.registerWindowHandlers();
 
 /**
  * Modal response callbacks.

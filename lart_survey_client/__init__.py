@@ -73,12 +73,13 @@ def main():
     except AttributeError:
         loglevel = logging.WARNING
     logging.basicConfig(level=loglevel)
+    booteel.setloglevel(loglevel)
 
     # Run app using eel
     eel.init(ROOT_DIR / "web")  # type: ignore
     eel.start(  # type: ignore
         "templates/main-entry.html",
-        size=(800, 600),
+        #size=(800, 600),
         jinja_templates="templates",
         close_callback=close,
         block=False
