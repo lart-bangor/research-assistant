@@ -11,7 +11,7 @@ import argparse
 import booteel
 from pathlib import Path
 from typing import Any
-from lsbqrml import LsbqRml
+import lsbqrml
 
 
 # Set up logger for main runtime
@@ -37,7 +37,8 @@ def lsbq_rml_get_versions():
 def lsbq_rml_init(data: dict[Any, Any]):
     """Initialise new LsbqRml."""
     try:
-        instance = LsbqRml(
+        instance = lsbqrml.Response()
+        instance.setmetadata(
             data["selectSurveyVersion"],
             data["researcherId"],
             data["researchLocation"],
@@ -45,8 +46,7 @@ def lsbq_rml_init(data: dict[Any, Any]):
             data["confirmConsent"]
         )
         print("That's it: ", instance)
-        print("Data: ", instance.data)
-        booteel.setlocation("lsbq-rml-section2.html")
+        booteel.setlocation(f"part1.html?instance={instance.getid()}")
         return True
     except Exception as exc:
         booteel.displayexception(exc)
@@ -86,7 +86,7 @@ def main():
         allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png"]
     )
     eel.start(  # type: ignore
-        "app/main-entry.html",
+        "app/index.html",
         jinja_templates="app",
         close_callback=close,
         block=False
