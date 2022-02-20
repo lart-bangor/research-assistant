@@ -38,7 +38,7 @@ def lsbq_rml_init(data: dict[Any, Any]):
     """Initialise new LsbqRml."""
     try:
         instance = lsbqrml.Response()
-        instance.setmetadata(
+        instance.setmeta(
             data["selectSurveyVersion"],
             data["researcherId"],
             data["researchLocation"],

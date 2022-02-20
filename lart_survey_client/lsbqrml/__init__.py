@@ -36,13 +36,12 @@ class Response:
         """Instantiates a new LSBQ-RML response object."""
         global instances
         self.__instance_id = str(hash(self))  # Should always be unique (= memaddr + salt)
-        instances[self.__instance_id] = self
 
     def getid(self) -> str:
         """Returns the unique instance id of the Response object."""
         return self.__instance_id
 
-    def setmetadata(
+    def setmeta(
         self,
         version: str,
         researcher_id: str,
@@ -90,7 +89,7 @@ class Response:
         # Store the data internally
         self.__data.update(d)
 
-    def setlsbdata(
+    def setlsb(
         self,
         sex: str,
         sex_other: Optional[str],
@@ -193,6 +192,3 @@ class Response:
 
         # Store the data internally
         self.__data.update(d)
-
-
-instances: dict[str, Response] = {}
