@@ -46,6 +46,7 @@ def lsbq_rml_init(data: dict[Any, Any]):
         )
         print("That's it: ", instance)
         print("Data: ", instance.data)
+        booteel.setlocation("lsbq-rml-section2.html")
         return True
     except Exception as exc:
         booteel.displayexception(exc)

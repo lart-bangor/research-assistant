@@ -72,6 +72,9 @@ def displayexception(exc: Exception):
         icon="bug-fill text-danger"
     )
 
+def setlocation(location: str):
+    eel._booteel_setlocation(location)()  # type: ignore
+
 
 @eel.expose  # type: ignore
 def _booteel_handlemodal(modal_id: str, choice: str):

@@ -290,3 +290,9 @@ booteel.handleModal = async function (modal_id, choice, callback = null) {
     }
     return result;
 }
+
+booteel.setLocation = function (location) {
+    booteel.logger.debug(`Navigating to ${location}.`);
+    window.location = location;
+}
+eel.expose(booteel.setLocation, "_booteel_setlocation");
