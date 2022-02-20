@@ -26,7 +26,10 @@ def _handleexception(exc: Exception) -> None:
 def _expose(func: F) -> F:
     """Wraps, renames and exposes a function to eel."""
     @wraps(func)
-    def api_wrapper(*args: list[Any], **kwargs: dict[str, Any]) -> Optional[Union[F, bool]]:
+    def api_wrapper(
+        *args: list[Any],
+        **kwargs: dict[str, Any]
+    ) -> Optional[Union[F, bool]]:
         try:
             return func(*args, **kwargs)
         except Exception as exc:
@@ -50,6 +53,7 @@ def init(data: dict[Any, Any]) -> str:
     instid = instance.getid()
     instances[instid] = instance
     return instid
+
 
 @_expose
 def setlsb(instid: str, data: dict[Any, Any]) -> bool:
