@@ -62,7 +62,7 @@
             </div>
             <div class="mb-3">
                 <label for="participantId" class="form-label">Participant ID:</label>
-                <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
+                <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required autocomplete="off" />
                 <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
                 <div class="invalid-feedback">
                     <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
@@ -71,7 +71,7 @@
             <div class="mb-3">
                 <p class="form-label" style="margin-left:0">Confirm consent:</p>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="confirmConsent" required />
+                    <input type="checkbox" class="form-check-input" id="confirmConsent" required autocomplete="off" />
                     <label class="form-check-label" for="confirmConsent">I confirm that the participant has given informed consent.</label>
                     <div class="invalid-feedback">
                         <p>Please confirm that you have obtained informed consent from the participant before starting this questionnaire.</p>
