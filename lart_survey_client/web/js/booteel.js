@@ -198,7 +198,7 @@ booteel.registerWindowHandlers();
  *                                             will be passed the modal's ID and the label of
  *                                             the choice picked by the user.
  */
-booteel.modal = function (title, body, options = { ok: 'OK' }, primary = 'ok', dismissable = true, callback = null) {
+booteel.modal = function (title, body, options = { ok: 'OK' }, primary = 'ok', dismissable = true, callback = null, icon = null) {
     booteel.logger.debug("Creating new modal with parameters:", title, body, options);
 
     // Generate an id for the modal, avoiding collisions of existing IDs
@@ -235,12 +235,18 @@ booteel.modal = function (title, body, options = { ok: 'OK' }, primary = 'ok', d
         dismiss_button = `<button type="button" class="btn-close" onclick="booteel.handleModal('${modal_id}', 'dismiss', ${callback});" aria-label="Dismiss"></button>`;
     }
 
+    // Add an icon if appropriate
+    let modal_icon = '';
+    if (icon !== null) {
+        modal_icon = `<i class="bi bi-${icon}"></i>`;
+    }
+
     //Build the HTML for the modal
     const modal_html = `      <div class="modal fade" id="${modal_id}" tabindex="-1" aria-labelledby="${modal_id}-label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="${modal_id}-label">${modal_title}</h5>
+                    <h5 class="modal-title" id="${modal_id}-label">${modal_icon} ${modal_title}</h5>
                     ${dismiss_button}
                 </div>
                 <div class="modal-body">

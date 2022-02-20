@@ -1,6 +1,8 @@
 """Utilities to work with Python Eel and Bootstrap."""
 import eel
 import logging
+import traceback
+import html
 from typing import Any, Callable, Optional
 
 # Set up module loggers
@@ -39,9 +41,10 @@ def modal(
     options: Optional[dict[str, str]] = None,
     primary: str = "ok",
     dismissable: bool = True,
-    callback: Optional[Callable[[str, str], bool]] = None
+    callback: Optional[Callable[[str, str], bool]] = None,
+    icon: Optional[str] = None
 ) -> str:
-    """Foo."""
+    """Display a client-side modal via bootstrap."""
     if options is None:
         options = {"ok": "OK"}
     modal_id = eel._booteel_modal(  # type: ignore
@@ -49,11 +52,25 @@ def modal(
         body,
         options,
         primary,
-        dismissable
+        dismissable,
+        None,
+        icon
     )()
     if callback is not None:
         _modal_callbacks[modal_id] = callback  # type: ignore
     return modal_id  # type: ignore
+
+
+def displayexception(exc: Exception):
+    """Display an exception as a dismissable client-side bootstrap modal."""
+    exc_type = type(exc).__name__
+    exc_text = html.escape(traceback.format_exc(), True)
+    exc_text = exc_text.replace("\n", "<br />\n")
+    modal(
+        f"Error: {exc_type}",
+        f'<code class="text-danger">{exc_text}</code>',
+        icon="bug-fill text-danger"
+    )
 
 
 @eel.expose  # type: ignore

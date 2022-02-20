@@ -22,27 +22,34 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 @eel.expose  # type: ignore
 def lsbq_rml_get_versions():
     """Get versions for LsbqRml."""
-    return {
-        "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
-        "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
-        "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
-        "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
-    }
+    try:
+        return {
+            "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
+            "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
+            "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
+            "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
+        }
+    except Exception as exc:
+        booteel.displayexception(exc)
 
 
 @eel.expose  # type: ignore
 def lsbq_rml_init(data: dict[Any, Any]):
     """Initialise new LsbqRml."""
-    instance = LsbqRml(
-        data["selectSurveyVersion"],
-        data["researcherId"],
-        data["researchLocation"],
-        data["participantId"],
-        data["confirmConsent"]
-    )
-    print("That's it: ", instance)
-    print("Data: ", instance.data)
-    return True
+    try:
+        instance = LsbqRml(
+            data["selectSurveyVersion"],
+            data["researcherId"],
+            data["researchLocation"],
+            data["participantId"],
+            data["confirmConsent"]
+        )
+        print("That's it: ", instance)
+        print("Data: ", instance.data)
+        return True
+    except Exception as exc:
+        booteel.displayexception(exc)
+    return False
 
 
 def main():
@@ -75,7 +82,7 @@ def main():
     # Run app using eel
     eel.init(  # type: ignore
         Path(__file__).parent / "web",
-        allowed_extensions=[".html", ".js", ".css", ".woff"]
+        allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png"]
     )
     eel.start(  # type: ignore
         "app/main-entry.html",
