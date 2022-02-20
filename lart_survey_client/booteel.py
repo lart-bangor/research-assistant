@@ -72,7 +72,9 @@ def displayexception(exc: Exception):
         icon="bug-fill text-danger"
     )
 
+
 def setlocation(location: str):
+    """Direct the user to a new address."""
     eel._booteel_setlocation(location)()  # type: ignore
 
 
