@@ -8,6 +8,7 @@ class Pattern:
     """Class collating patterns/ranges that are required by different question types."""
     DATE: str = r"[0-9]{1,4}\-(0?[1-9]|1[0-2])\-(0?[1-9]|[12][0-9]|3[01])"  # YYYY-MM-DD
     MONTH_YEAR: str = r"[0-9]{1,4}\-(0?[1-9]|1[0-2])"  # YYYY-MM
+    MONTH: str = r"(0?[1-9]|1[0-2])"  # MM
     POLARITY: tuple[set[Any], set[Any]] = (
         {True,  "true",  "on",  "yes", 1, "1"},  # positive/true
         {False, "false", "off", "no",  0, "0"},  # negative/false
@@ -20,7 +21,7 @@ class Pattern:
     LONG_TEXT: str = r".*"
     HANDEDNESS: str = r"[lLrRaA]"  # left, right, ambidextrous
     EQF_LEVEL: tuple[int, int] = (1, 8)
-    EDUCATION_LEVEL: tuple[int, int] = (1, 5)  # EQF 1, 2-3, 4, 5-6, 7-8
+    EDUCATION_5_SCALE: tuple[int, int] = (1, 5)  # EQF 1, 2-3, 4, 5-6, 7-8
     ACQUISITION_SOURCE: str = r"[hHsScCoO]"  # home, school, community, other
     LANGUAGE_NAME: str = r"\w{3,50}"  # Are there any shorter than 3 (Ido)?
     CONTINUOUS_RANGE: tuple[float, float] = (0.0, 1.0)
@@ -184,7 +185,7 @@ class Response:
         else:
             d["places_of_significant_residence"] = []
         d["education_level"] = vr.validateint(
-            "education level", Pattern.EDUCATION_LEVEL, education_level
+            "education level", Pattern.EDUCATION_5_SCALE, education_level
         ).data
 
         # Raise exception if any of the data didn't validate
