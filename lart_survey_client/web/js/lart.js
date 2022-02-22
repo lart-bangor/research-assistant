@@ -1,4 +1,10 @@
-booteel.logger.debug("lart-forms.js loaded.");
+booteel.logger.debug("lart.js loaded.");
+
+let lart = {}
+
+lart.forms = {}
+
+lart.forms.searchParams = new URLSearchParams(window.location.search)
 
 /**
  * Require all forms marked .needs-validation to pass client-side validation before submitting.
@@ -12,7 +18,7 @@ booteel.logger.debug("lart-forms.js loaded.");
  * 
  * @param {bool} novalidate - Whether to mark affected forms 'novalidate' to suppress browsers' built-in feedback.
  */
-function requireFormValidation(novalidate = false) {
+lart.forms.requireValidation = function (novalidate = false) {
     // Fetch all the forms that need validation
     const forms = document.querySelectorAll('.needs-validation');
     booteel.logger.debug(`Setting up form validation listener on ${forms.length} forms:`, forms);
@@ -55,7 +61,7 @@ function requireFormValidation(novalidate = false) {
  * 
  * Data will only be piped to the receiver if the form passes client-side validation via the JavaScript
  * validation API. If you intend to also register a custom function to the submit event of the form to
- * validate (e.g. `requireFormValidation`), then you should register the validation function *before*
+ * validate (e.g. `requireValidation`), then you should register the validation function *before*
  * registering the pipeline, so that a failure to pipe an invalid form won't block the validation
  * function callback.
  * 
@@ -66,13 +72,13 @@ function requireFormValidation(novalidate = false) {
  * @param {string} form_id 
  * @param {CallableFunction} receiver 
  */
-function registerFormPipeline(form_id, receiver) {
+lart.forms.registerPipeline = function (form_id, receiver) {
     const form = document.getElementById(form_id);
     if (form) {
         form.addEventListener(
             'submit',
             function (event) {
-                pipeFormData(event, receiver);
+                lart.forms.pipeData(event, receiver);
             },
             false
         )
@@ -90,7 +96,7 @@ function registerFormPipeline(form_id, receiver) {
  * @returns {bool} - Returns `true` if the receiver function returns a truthy value, false if validation fails or the receiver
  *                   function returns a falsy value.
  */
-function pipeFormData(event, receiver) {
+lart.forms.pipeData = function (event, receiver) {
     // Retrieve form element
     const form = event.currentTarget;
 
@@ -104,7 +110,7 @@ function pipeFormData(event, receiver) {
     }
 
     // Get form data and pipe it to the receiver
-    const data = getFormData(form);
+    const data = lart.forms.getData(form);
     if (receiver(data)) {
         return true;
     }
@@ -118,7 +124,7 @@ function pipeFormData(event, receiver) {
  * @returns {object} - Returns a dictionary of key-value pairs, where key is the name (or id as fallback) and value the
  *                     value of each data field within the specified form.
  */
-function getFormData(form) {
+lart.forms.getData = function (form) {
     const data = {};
     const target_elements = ["input", "textarea", "select", "datalist"];
     const selector = "#" + form.id + " " + target_elements.join(", #" + form.id + " ");

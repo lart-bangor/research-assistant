@@ -1,22 +1,10 @@
 {% extends 'base.html' %}
 {% set eel_forms = true %}
-{% block title %}LART Survey Client - LSBQ-RML{% endblock %}
-{% block headline %}LSBQ-RML{% endblock %}
+{% block title %}LART Survey Client - LSBQ-RML - Language and Social Background{% endblock %}
+{% block headline %}Language and Social Background{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
-    function loadSurveyVersions() {
-        availableVersions = eel.lsbq_rml_get_versions()(populateSurveyVersions);
-    }
-
-    function populateSurveyVersions(versions) {
-        select = document.getElementById('selectSurveyVersion');
-        for(version in versions) {
-            option = document.createElement('option');
-            option.setAttribute('value', version);
-            option.appendChild(document.createTextNode(versions[version]))
-            select.appendChild(option);
-        }
-    }
+    lsbqRmlInstanceId = parseInt(lart.forms.searchParams.get('instance'));
 </script>
 {% endblock %}
 {% block head_styles %}{% endblock %}
@@ -32,16 +20,47 @@
         <div class="container-fluid p-2 text-center">
             <h2>Language and Social Background Questionnaire (RML)</h2>
         </div>
-        <form id="surveyDataForm" class="p-2 needs-validation">
-            <div class="mb-3">
-                <label for="selectSurveyVersion" class="form-label">Select LSBQ-RML version:</label>
-                <select id="selectSurveyVersion" class="form-select" required>
-                </select>
-                <script type="text/javascript">
-                    loadSurveyVersions();
-                </script>
-                <div class="invalid-feedback">
-                    <p>Please select one of the available versions of the LSBQ-RML.</p>
+        <form id="surveyLSBForm" class="p-2 needs-validation">
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-1 pt-0">Sex:</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sex" id="sexFemale" value="F" />
+                        <label class="form-check-label" for="sexFemale">Female</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sex" id="sexMale" value="M" />
+                        <label class="form-check-label" for="sexMale">Male</label>
+                    </div>
+                    <div class="form-check col-auto">
+                        <input class="form-check-input" type="radio" name="sex" id="sexOther" value="O" />
+                        <label class="form-check-label" for="sexOther">Other:</label> <input class="form-control form-control-sm d-inline" style="min-width:5rem;max-width:15rem" type="text" placeholder="Specify..." aria-label="Specify sex, if other." />
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row mb-3">
+                <label for="occupation" class="col-form-label col-sm-1">Occupation:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="occupation" />
+                </div>
+            </div>
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-1 pt-0">Handedness:</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="handedness" id="handednessLeft" value="L" />
+                        <label class="form-check-label" for="handednessLeft">Left</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="handedness" id="handednessRight" value="R" />
+                        <label class="form-check-label" for="handednessRight">Right</label>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row mb-3">
+                <label for="dateOfBirth" class="col-form-label col-sm-1">Occupation:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="dateOfBirth" />
                 </div>
             </div>
             <div class="mb-3">
@@ -84,15 +103,4 @@
         </form>
     </article>
 {% endblock %}
-{% block tail_scripts %}
-<script type="text/javascript">
-    requireFormValidation(true);
-    registerFormPipeline(
-        'surveyDataForm',
-        async function(data) {
-            let success = await eel.lsbq_rml_init(data)();
-            console.log(success);
-        }
-    );
-</script>
-{% endblock %}
+{% block tail_scripts %}{% endblock %}

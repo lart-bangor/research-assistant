@@ -10,13 +10,18 @@
     <link rel="icon" type="image/png" href="/img/appicon.png" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/bootstrap-icons.css" />
-    <link rel="stylesheet" href="/css/datavalidator.css" />
     <link rel="stylesheet" href="/css/lart-custom.css" />
+    {% if eel_forms %}
+        <link rel="stylesheet" href="/css/datavalidator.css" />
+    {% endif %}
     {% block head_styles %}{% endblock %}
 
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript" src="/js/booteel.js"></script>
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    {% if eel_forms %}
+        <script type="text/javascript" src="/js/lart.js"></script>
+    {% endif %}
     {% block head_scripts %}{% endblock %}
 </head>
 <body>
@@ -69,6 +74,18 @@
           </div>
     </footer>
 
+    {% if eel_forms %}
+        <script type="text/javascript">
+            lart.forms.requireValidation(true);
+            lart.forms.registerPipeline(
+                'surveyDataForm',
+                async function(data) {
+                    let success = await eel.lsbq_rml_init(data)();
+                    console.log(success);
+                }
+            );
+        </script>
+    {% endif %}
     {% block tail_scripts %}{% endblock %}
 </body>
 </html>
