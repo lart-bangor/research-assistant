@@ -1,30 +1,8 @@
 """Data structures for the Language and Social Background Questionnaire (RML)."""
 from typing import Any, Optional
 import datetime
-from datavalidator import DataValidator
-
-
-class Pattern:
-    """Class collating patterns/ranges that are required by different question types."""
-    DATE: str = r"[0-9]{1,4}\-(0?[1-9]|1[0-2])\-(0?[1-9]|[12][0-9]|3[01])"  # YYYY-MM-DD
-    MONTH_YEAR: str = r"[0-9]{1,4}\-(0?[1-9]|1[0-2])"  # YYYY-MM
-    MONTH: str = r"(0?[1-9]|1[0-2])"  # MM
-    POLARITY: tuple[set[Any], set[Any]] = (
-        {True,  "true",  "on",  "yes", 1, "1"},  # positive/true
-        {False, "false", "off", "no",  0, "0"},  # negative/false
-    )
-    IDENTIFIER: str = r"[A-Za-z0-9]{3,10}"
-    LOCATION_NAME: str = r"[A-Za-z0-9, \(\)]{1,50}"
-    VERSION_LABEL: str = r"\w{13, 17}"
-    SEX: str = r"[mMfFoO]"  # male, female, other
-    SHORT_TEXT: str = r".{3,255}"
-    LONG_TEXT: str = r".*"
-    HANDEDNESS: str = r"[lLrRaA]"  # left, right, ambidextrous
-    EQF_LEVEL: tuple[int, int] = (1, 8)
-    EDUCATION_5_SCALE: tuple[int, int] = (1, 5)  # EQF 1, 2-3, 4, 5-6, 7-8
-    ACQUISITION_SOURCE: str = r"[hHsScCoO]"  # home, school, community, other
-    LANGUAGE_NAME: str = r"\w{3,50}"  # Are there any shorter than 3 (Ido)?
-    CONTINUOUS_RANGE: tuple[float, float] = (0.0, 1.0)
+from datavalidator import Validator
+from . import patterns
 
 
 class Response:
@@ -35,7 +13,6 @@ class Response:
 
     def __init__(self):
         """Instantiates a new LSBQ-RML response object."""
-        global instances
         self.__instance_id = str(hash(self))  # Should always be unique (= memaddr + salt)
 
     def getid(self) -> str:
@@ -58,30 +35,26 @@ class Response:
 
         # Set up a data buffer and a validator
         d: dict[str, Any] = {}
-        vr = DataValidator(forcecast=True)
+        vr = Validator(forcecast=True, ignorecase=True)
 
         # Validate each initialisation field
-        d["version"] = vr.validatestring(
-            "LSBQ-RML version identifier", Pattern.VERSION_LABEL, version
+        d["version"] = vr.vstr(
+            "LSBQ-RML version identifier", patterns.VERSION_LABEL, version
         ).data
-        d["researcher_id"] = vr.validatestring(
-            "Researcher ID", Pattern.IDENTIFIER, researcher_id
+        d["researcher_id"] = vr.vstr(
+            "Researcher ID", patterns.SHORT_ID, researcher_id
         ).data
-        d["research_location"] = vr.validatestring(
-            "location name", Pattern.LOCATION_NAME, research_location
+        d["research_location"] = vr.vstr(
+            "location name", patterns.LOCATION_NAME, research_location
         ).data
-        d["participant_id"] = vr.validatestring(
-            "Participant ID", Pattern.IDENTIFIER, participant_id
+        d["participant_id"] = vr.vstr(
+            "Participant ID", patterns.SHORT_ID, participant_id
         ).data
-        d["consent"] = vr.validatebool(
-            "consent confirmation",
-            Pattern.POLARITY,
-            consent, softcast=True, forcecast=False
+        d["consent"] = vr.vpolar(
+            "consent confirmation", patterns.BOOLEAN, consent
         ).data
-        d["date"] = vr.validatestring(
-            "current date",
-            Pattern.DATE,
-            date
+        d["date"] = vr.vstr(
+            "current date", patterns.ISO_YEAR_MONTH_DAY, date
         )
 
         # Raise exception if any of the data didn't validate
@@ -109,83 +82,73 @@ class Response:
         """Sets the data from the Language and Social Background section."""
         # Set up a data buffer and a validator
         d: dict[str, Any] = {}
-        vr = DataValidator(forcecast=True)
+        vr = Validator(forcecast=True, ignorecase=True)
 
         # Validate each initialisation field
-        d["sex"] = vr.validatestring(
-            "sex", Pattern.SEX, sex
-        ).data.lower()
+        d["sex"] = vr.venum(
+            "sex", patterns.SEX_TERNARY, sex
+        ).data
         if d["sex"] == "o":
-            d["sex_other"] = vr.validatestring(
-                "description of other sex", Pattern.SHORT_TEXT, sex_other
+            d["sex_other"] = vr.vstr(
+                "description of other sex", patterns.SHORT_TEXT, sex_other
             ).data
         else:
             d["sex_other"] = None
-        d["occupation"] = vr.validatestring(
-            "occupation", Pattern.SHORT_TEXT, occupation
+        d["occupation"] = vr.vstr(
+            "occupation", patterns.SHORT_TEXT, occupation
         ).data
-        d["handedness"] = vr.validatestring(
-            "handedness", Pattern.HANDEDNESS, handedness
-        ).data.lower()
-        d["date_of_birth"] = vr.validatestring(
-            "date of birth", Pattern.DATE, date_of_birth
+        d["handedness"] = vr.venum(
+            "handedness", patterns.HANDEDNESS, handedness
         ).data
-        d["hearing_impairment"] = vr.validatebool(
-            "indication of hearing impairment",
-            Pattern.POLARITY,
-            hearing_impairment, softcast=True, forcecast=False
+        d["date_of_birth"] = vr.vstr(
+            "date of birth", patterns.ISO_YEAR_MONTH_DAY, date_of_birth
+        ).data
+        d["hearing_impairment"] = vr.vpolar(
+            "indication of hearing impairment", patterns.BOOLEAN, hearing_impairment
         ).data
         if d["hearing_impairment"]:
-            d["hearing_aid"] = vr.validatebool(
-                "indication of hearing aid use",
-                Pattern.POLARITY,
-                hearing_aid, softcast=True, forcecast=False
+            d["hearing_aid"] = vr.vpolar(
+                "indication of hearing aid use", patterns.BOOLEAN, hearing_aid
             ).data
         else:
             d["hearing_aid"] = None
-        d["vision_impairment"] = vr.validatebool(
-            "indication of vision impairment",
-            Pattern.POLARITY,
-            vision_impairment, softcast=True, forcecast=False
+        d["vision_impairment"] = vr.vpolar(
+            "indication of vision impairment", patterns.BOOLEAN, vision_impairment
         ).data
         if d["vision_impairment"]:
-            d["vision_aid"] = vr.validatebool(
-                "indication of vision aid use",
-                Pattern.POLARITY,
-                vision_aid, softcast=True, forcecast=False
+            d["vision_aid"] = vr.vpolar(
+                "indication of vision aid use", patterns.BOOLEAN, vision_aid
             ).data
-            d["vision_fully_corrected"] = vr.validatebool(
+            d["vision_fully_corrected"] = vr.vpolar(
                 "indication of whether vision is fully corrected",
-                Pattern.POLARITY,
-                vision_fully_corrected, softcast=True, forcecast=False
+                patterns.BOOLEAN, vision_fully_corrected
             ).data
         else:
             d["vision_aid"] = None
             d["vision_fully_corrected"] = None
-        d["place_of_birth"] = vr.validatestring(
-            "place of birth", Pattern.LOCATION_NAME, place_of_birth
+        d["place_of_birth"] = vr.vstr(
+            "place of birth", patterns.LOCATION_NAME, place_of_birth
         ).data
         if places_of_significant_residence is not None:
             tmp: list[tuple[str, str, str]] = []
             for place_osr in places_of_significant_residence:
                 tmp.append((
-                    vr.validatestring(
+                    vr.vstr(
                         "place of significant residence",
-                        Pattern.LOCATION_NAME,
-                        place_osr[0]
+                        patterns.LOCATION_NAME, place_osr[0]
                     ).data,
-                    vr.validatestring(
-                        "month and year", Pattern.MONTH_YEAR, place_osr[1]
+                    vr.vstr(
+                        "start month and year", patterns.ISO_YEAR_MONTH, place_osr[1]
                     ).data,
-                    vr.validatestring(
-                        "month and year", Pattern.MONTH_YEAR, place_osr[2]
+                    vr.vstr(
+                        "end month and year", patterns.ISO_YEAR_MONTH, place_osr[2]
                     ).data,
                 ))
             d["places_of_significant_residence"] = tmp
         else:
             d["places_of_significant_residence"] = []
-        d["education_level"] = vr.validateint(
-            "education level", Pattern.EDUCATION_5_SCALE, education_level
+        d["education_level"] = vr.vint(
+            "education level", patterns.LIKERT_5, education_level
         ).data
 
         # Raise exception if any of the data didn't validate

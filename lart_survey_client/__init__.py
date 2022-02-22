@@ -11,6 +11,7 @@ import argparse
 import booteel
 from pathlib import Path
 from typing import Any
+from datavalidator import DataValidationError
 import lsbqrml
 
 
@@ -48,6 +49,11 @@ def lsbq_rml_init(data: dict[Any, Any]):
         print("That's it: ", instance)
         booteel.setlocation(f"part1.html?instance={instance.getid()}")
         return True
+    except DataValidationError as exc:
+        booteel.modal(
+            "Data Validation Error",
+            exc.validator.tohtml(errorsonly=True)
+        )
     except Exception as exc:
         booteel.displayexception(exc)
     return False

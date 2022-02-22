@@ -1,0 +1,22 @@
+.dv-result {
+    display: block;
+    padding: 0.2rem;
+    border: 1px solid gray;
+}
+
+.dv-data, .dv-type {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.dv-typedesc {
+    font-style: italic;
+}
+
+.dv-failed {
+    color: darkred;
+    font-weight: bold;
+}
+
+.dv-type {
+    text-decoration: underline;
+}
