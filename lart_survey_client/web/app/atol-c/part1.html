@@ -5,6 +5,24 @@
 {% block head_scripts %}
 <script type="text/javascript">
     lsbqRmlInstanceId = parseInt(lart.forms.searchParams.get('instance'));
+
+function loadAtolItems() {
+   availableItems = eel.atol_c_items()(populateAtolItems);
+    }
+
+    function populateAtolItems(atolLabels) {
+//      select = document.getElementById('selectSurveyVersion');
+        for(atolLabel in atolLabels) {
+            document.write(atolLabel);
+//          option = document.createElement('option');
+//            option.setAttribute('value', version);
+//            option.appendChild(document.createTextNode(versions[version]))
+//            select.appendChild(option);
+
+        }
+    }
+</script>
+
 </script>
 {% endblock %}
 {% block head_styles %}{% endblock %}
@@ -30,19 +48,22 @@
         </div>
         <form id="surveyAtolForm" class="p-2 needs-validation">
             <fieldset class="row mb-3">
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                     <div class="form-check">
                      <!-- 1. English logical-illogical -->
                      <label for="English_logical" class="form-label"> </label>
                         <div class="container">
                             <div class="row justify-content-center">
-                                <div class="col-sm-3">logical</div>
+                                <div class="col-sm-3">
+                                    <script type="text/javascript">test
+                                    populateAtolItems();
+                                    </script>
+                                </div>
                                 <div class="col-sm-6"></div>
                                 <div class="col-sm-3">illogical</div>
                               </div>  
                         </div>
-                        
-                       <input type="range" class="form-range" id="English_logical">   
+                        <input type="range" class="form-range" id="English_logical"> 
                     </div>
                 </div>
             </fieldset>                    
