@@ -5,7 +5,7 @@
 {% block head_scripts %}
 <script type="text/javascript">
     function loadSurveyVersions() {
-        availableVersions = eel.lsbq_rml_get_versions()(populateSurveyVersions);
+        availableVersions = eel.lsbq_rml_get_versions()(populateSurveyVersions); //this will probably need to be changed to a more generic "survey_rml_get_versions", or hard-coded for each questionnaire.
     }
 
     function populateSurveyVersions(versions) {
@@ -79,20 +79,9 @@
                 </div>
             </div>
             <div class="mb-3 text-center p-3">
-                <button type="submit" class="btn btn-primary btn-lg btn-action">Start</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Start</button>
             </div>
         </form>
     </article>
 {% endblock %}
-{% block tail_scripts %}
-<script type="text/javascript">
-    requireFormValidation(true);
-    registerFormPipeline(
-        'surveyDataForm',
-        async function(data) {
-            let success = await eel.lsbq_rml_init(data)();
-            console.log(success);
-        }
-    );
-</script>
-{% endblock %}
+{% block tail_scripts %}{% endblock %}

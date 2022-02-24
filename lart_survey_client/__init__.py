@@ -34,6 +34,15 @@ def lsbq_rml_get_versions():
         booteel.displayexception(exc)
 
 
+@eel.expose
+def atol_c_items():
+    """get label pairs for each AToL item"""
+    return {
+         "logic":    ("logical", "illogical"),
+         "elegance": ("inelegant", "elegant"),
+     }
+
+
 @eel.expose  # type: ignore
 def lsbq_rml_init(data: dict[Any, Any]):
     """Initialise new LsbqRml."""
