@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% set eel_forms = true %}
 {% block title %}LART Survey Client - AToL-RML - Language Questionnaire {% endblock %}
-{% block headline %}Language QUestionnaire{% endblock %}
+{% block headline %}Language Qeestionnaire{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
     lsbqRmlInstanceId = parseInt(lart.forms.searchParams.get('instance'));
@@ -20,88 +20,45 @@
         <div class="container-fluid p-2 text-center">
             <h2>AToL: Language Questionnaire (RML)</h2>
         </div>
+
+        <div class="h-25 d-inline-block" style="width: 120px;"><!--place holder--></div>
+        
+        <div class="container-fluid p-2 text-center"><h5>Please use the sliders to record your choices</h5></div>
+        <div class="h-25 d-inline-block" style="width: 120px;"><!--place holder--></div>
+        <div class="container-fluid p-2 text-center">
+            <h4>The English language is...</h4>
+        </div>
         <form id="surveyAtolForm" class="p-2 needs-validation">
             <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-1 pt-0">Sex:</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
                      <!-- 1. English logical-illogical -->
-                      <label for="English-logical" class="form-label">The English Language is</label>
-                       <input type="range" class="form-range" id="customRange1">   
+                     <label for="English_logical" class="form-label"> </label>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-3">logical</div>
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-3">illogical</div>
+                              </div>  
+                        </div>
+                        
+                       <input type="range" class="form-range" id="English_logical">   
                     </div>
                 </div>
-            </fieldset>                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="sexMale" value="M" />
-                        <label class="form-check-label" for="sexMale">Male</label>
-                    </div>
-                    <div class="form-check col-auto">
-                        <input class="form-check-input" type="radio" name="sex" id="sexOther" value="O" />
-                        <label class="form-check-label" for="sexOther">Other:</label> <input class="form-control form-control-sm d-inline" style="min-width:5rem;max-width:15rem" type="text" placeholder="Specify..." aria-label="Specify sex, if other." />
-                    </div>
-                </div>
-            </fieldset>
-            <div class="row mb-3">
-                <label for="occupation" class="col-form-label col-sm-1">Occupation:</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="occupation" />
-                </div>
-            </div>
-            <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-1 pt-0">Handedness:</legend>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="handedness" id="handednessLeft" value="L" />
-                        <label class="form-check-label" for="handednessLeft">Left</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="handedness" id="handednessRight" value="R" />
-                        <label class="form-check-label" for="handednessRight">Right</label>
-                    </div>
-                </div>
-            </fieldset>
-            <div class="row mb-3">
-                <label for="dateOfBirth" class="col-form-label col-sm-1">Occupation:</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="dateOfBirth" />
-                </div>
-            </div>
+            </fieldset>                    
+                  
+            
             <div class="mb-3">
-                <label for="researcherId" class="form-label">Researcher ID:</label>
-                <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
-                <div id="researcherIdHelp" class="form-text">Enter the researcher’s name or ID.</div>
-                <div class="invalid-feedback">
-                    <p>Please provide a valid Researcher ID or name. The ID can only contain letters and numbers (no spaces, hyphens, etc.) and must be between 3 and 10 characters in length.</p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="researchLocation" class="form-label">Location:</label>
-                <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="[A-Za-z0-9 ,\(\)]{1,50}" required />
-                <div id="researchLocationHelp" class="form-text">Enter the location (e.g. town name) where the research is undertaken.</div>
-                <div class="invalid-feedback">
-                    <p>Please enter a location name, for example <i>Bangor, Gwynedd</i>. Location names can contain letters, numbers, spaces, commas and parentheses and they can be up to 50 characters in length.</p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="participantId" class="form-label">Participant ID:</label>
-                <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required autocomplete="off" />
-                <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
-                <div class="invalid-feedback">
-                    <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <p class="form-label" style="margin-left:0">Confirm consent:</p>
+                
+                
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="confirmConsent" required autocomplete="off" />
-                    <label class="form-check-label" for="confirmConsent">I confirm that the participant has given informed consent.</label>
                     <div class="invalid-feedback">
-                        <p>Please confirm that you have obtained informed consent from the participant before starting this questionnaire.</p>
+                
                     </div>
                 </div>
             </div>
             <div class="mb-3 text-center p-3">
-                <button type="submit" class="btn btn-primary btn-lg btn-action">Start</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-action">Next</button>
             </div>
         </form>
     </article>
