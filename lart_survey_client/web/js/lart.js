@@ -6,6 +6,13 @@ lart.forms = {}
 
 lart.forms.searchParams = new URLSearchParams(window.location.search)
 
+lart.forms.conditionalRequire = function (conditionerId, targetId) {
+    return;
+}
+lart.forms.conditionalDisplay = function (conditionerId, targetId) {
+    return;
+}
+
 /**
  * Require all forms marked .needs-validation to pass client-side validation before submitting.
  * 

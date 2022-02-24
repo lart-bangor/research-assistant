@@ -8,6 +8,37 @@
 // Define booteel as static namespace
 let booteel = {}
 
+booteel.util = {}
+
+booteel.util.lpad = function(x, pad, len) {
+    return pad.repeat((len / pad.length) - x.length) + x;
+}
+
+booteel.util.rpad = function(x, pad, len) {
+    return x + pad.repeat((len / pad.length) - x.length);
+}
+
+
+booteel.DOM = {}
+
+booteel.DOM.setAttribute = function (elementId, qualifiedName, value) {
+    return document.getElementById(elementId).setAttribute(qualifiedName, value);
+}
+
+booteel.DOM.getAttribute = function (elementId, qualifiedName) {
+    return document.getElementById(elementId).getAttribute(qualifiedName);
+}
+
+booteel.today = {}
+
+booteel.today.date = new Date();
+booteel.today.iso = {}
+booteel.today.iso.YEAR = booteel.util.lpad(booteel.today.date.getFullYear().toString(), "0", 4);
+booteel.today.iso.MONTH = booteel.util.lpad(booteel.today.date.getMonth().toString(), "0", 2);
+booteel.today.iso.DAY = booteel.util.lpad(booteel.today.date.getDay().toString(), "0", 2);
+booteel.today.iso.YEAR_MONTH = `${booteel.today.iso.YEAR}-${booteel.today.iso.MONTH}`;
+booteel.today.iso.YEAR_MONTH_DAY = `${booteel.today.iso.YEAR_MONTH}-${booteel.today.iso.DAY}`;
+
 booteel.logger = {
     level: {
         CRITICAL: 50,
