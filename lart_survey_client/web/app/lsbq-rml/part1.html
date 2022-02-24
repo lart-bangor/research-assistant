@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% set eel_forms = true %}
 {% block title %}LART Survey Client - LSBQ-RML - Language and Social Background{% endblock %}
-{% block headline %}Language and Social Background{% endblock %}
+{% block headline %}Language and Social Background Questionnaire (RML){% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
     lsbqRmlInstanceId = parseInt(lart.forms.searchParams.get('instance'));
@@ -16,16 +16,19 @@
     <li><hr class="nav-divider"></li>
 {% endblock %}
 {% block content %}
-    <article class="p-2">
-        <div class="container-fluid p-2 text-center">
-            <h2>Language and Social Background Questionnaire (RML)</h2>
+    <article class="container-fluid p-2">
+        <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+          </div>
+        <div class="row m-2 text-center">
+            <h2>Language and Social Background</h2>
         </div>
-        <form id="surveyLSBForm" class="p-2 needs-validation" autocomplete="off">
+        <form id="surveyLSBForm" class="m-2 needs-validation" autocomplete="off">
 
             <!-- 1. Sex -->
-            <fieldset class="row mb-3" required>
+            <fieldset class="row mb-3" id="sex" required>
                 <legend class="col-form-label col-auto pt-0">Sex:</legend>
-                <div class="col-sm-10">
+                <div class="col-sm">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="sex" id="sexFemale" value="F" />
                         <label class="form-check-label" for="sexFemale">Female</label>
@@ -34,11 +37,16 @@
                         <input class="form-check-input" type="radio" name="sex" id="sexMale" value="M" />
                         <label class="form-check-label" for="sexMale">Male</label>
                     </div>
-                    <div class="form-check col-auto">
+                    <div class="form-check">
                         <input class="form-check-input" type="radio" name="sex" id="sexOther" value="O" />
-                        <label class="form-check-label" for="sexOther">Other:</label>
-                        <input id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" placeholder="Specify..." aria-label="Specify sex, if other." />
-                        <script type="text/javascript">lart.forms.conditionalRequire('sexOther', 'sexOtherSpecify');</script>
+                        <label class="form-check-label" for="sexOther">Other</label>
+                        <div id="sexOtherSpecifyCollapse" class="d-inline collapse">
+                            <input id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" placeholder="Specify..." aria-label="Specify sex, if other." />
+                        </div>
+                        <script type="text/javascript">
+                            lart.forms.conditionalRequire('sex', 'sexOtherSpecify', 'O');
+                            lart.forms.conditionalDisplay('sex', 'sexOtherSpecify', 'O');
+                        </script>
                     </div>
                 </div>
             </fieldset>
@@ -46,7 +54,7 @@
             <!-- 2. Occupation -->
             <div class="row mb-3">
                 <label for="occupation" class="col-form-label col-auto">Occupation:</label>
-                <div class="col-sm-10">
+                <div class="col-sm">
                   <input type="text" class="form-control" id="occupation" required />
                 </div>
             </div>
@@ -71,7 +79,9 @@
                 <label for="dateOfBirth" class="col-form-label col-sm-auto">Date of birth:</label>
                 <div class="col-sm-auto">
                   <input type="date" class="form-control" id="dateOfBirth" min="1922-01-01" required />
-                  <script type="text/javascript">booteel.DOM.setAttribute('dateOfBirth', 'max', booteel.today.iso.YEAR_MONTH_DAY);</script>
+                  <script type="text/javascript">
+                    booteel.DOM.setAttribute('dateOfBirth', 'max', booteel.today.iso.YEAR_MONTH_DAY);
+                </script>
                 </div>
             </div>
 
@@ -103,8 +113,8 @@
                 </div>
             </fieldset>
             <script type="text/javascript">
-                lart.forms.conditionalRequire('hearingProblemYes', 'hearingAid');
-                lart.forms.conditionalDisplay('hearingProblemYes', 'hearingAid');
+                lart.forms.conditionalRequire('hearingProblemYN', 'hearingAid', 'yes');
+                lart.forms.conditionalDisplay('hearingProblemYN', 'hearingAid', 'yes');
             </script>
 
             <!-- 6. Vision problems -->
@@ -121,7 +131,7 @@
                     </div>
                 </div>
             </fieldset>
-            <fieldset class="row mb-3 ms-5" id="visionProblemGlasses">
+            <fieldset class="row mb-3 ms-5" id="visionGlasses">
                 <legend class="col-form-label col-sm-auto pt-0">If <strong>yes</strong>, do you wear glasses/contacts?</legend>
                 <div class="col-sm-auto">
                     <div class="form-check">
@@ -135,10 +145,10 @@
                 </div>
             </fieldset>
             <script type="text/javascript">
-                lart.forms.conditionalRequire('visionProblemYes', 'hearingProblemFurtherDetail');
-                lart.forms.conditionalDisplay('visionProblemYes', 'hearingProblemFurtherDetail');
+                lart.forms.conditionalRequire('visionProblemYN', 'visionGlasses', 'yes');
+                lart.forms.conditionalDisplay('visionProblemYN', 'visionGlasses', 'yes');
             </script>
-            <fieldset class="row mb-3 ms-5" id="visionProblemCorrected">
+            <fieldset class="row mb-3 ms-5" id="visionCorrected">
                 <legend class="col-form-label col-sm-auto pt-0">Do they correct your vision to normal?</legend>
                 <div class="col-sm-auto">
                     <div class="form-check">
@@ -152,21 +162,84 @@
                 </div>
             </fieldset>
             <script type="text/javascript">
-                lart.forms.conditionalRequire('visionGlassesYes', 'visionProblemCorrected');
-                lart.forms.conditionalDisplay('visionGlassesYes', 'visionProblemCorrected');
+                lart.forms.conditionalRequire('visionGlassesYN', 'visionCorrected', 'yes');
+                lart.forms.conditionalDisplay('visionGlassesYN', 'visionCorrected', 'yes');
             </script>
 
             <!-- 7. Place of birth -->
             <div class="row mb-3">
                 <label for="placeOfBirth" class="col-form-label col-auto">Place of birth:</label>
-                <div class="col-sm-10">
+                <div class="col-sm">
                   <input type="text" class="form-control" id="placeOfBirth" required />
+                  <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
                 </div>
             </div>
 
+            <!-- 8. Where else have you lived -->
+            <div class="row mb-1">
+                <p class="col-form-label col-auto">Where else have you lived for any significant period of time (&gt; 6 months)?</p>
+            </div>
+            <div id="otherPlacesRepeat">
+                <div class="row mb-1 ms-5" id="otherPlaces-0">
+                    <div class="col form-floating">
+                        <input type="text" class="form-control" id="otherPlacesName-0" />
+                        <label for="otherPlacesName-0">Place name</label>
+                    </div>
+                    <div class="col form-floating">
+                        <input type="month" class="form-control" id="otherPlacesFrom-0" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
+                        <label for="otherPlacesFrom-0">From</label>
+                    </div>
+                    <div class="col form-floating">
+                        <input type="month" class="form-control" id="otherPlacesTo-0" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
+                        <label for="otherPlacesTo-0">Until</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-1 mb-3 ms-1">
+                <div class="col">
+                    <p class="help-block p-2 text-muted ms-5"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
+                </div>
+                <div class="col text-end">
+                    <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="lart.forms.repeatBlock('otherPlacesRepeat', /(otherPlaces[A-Z]?[a-z]*)-(0)/gm)"><i class="bi-plus-circle-dotted"></i> Add line</a>
+                </div>
+            </div>
+
+            <!-- 9. Level of education -->
+            <fieldset required>
+                <div class="row">
+                    <legend class="col-form-label col-auto pt-0">Please indicate the highest level of education you have achieved:</legend>
+                </div>
+                <div class="row-mb-3">
+                    <div class="col ms-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation1" value="1" />
+                            <label class="form-check-label" for="levelOfEducation1">EQF Level 1</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation2" value="2" />
+                            <label class="form-check-label" for="levelOfEducation2">EQF Level 2-3</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation2" value="3" />
+                            <label class="form-check-label" for="levelOfEducation2">EQF Level 4</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation2" value="4" />
+                            <label class="form-check-label" for="levelOfEducation2">EQF Level 5-6</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation2" value="5" />
+                            <label class="form-check-label" for="levelOfEducation2">EQF Level 7-8</label>
+                        </div>
+                    </div> 
+                </div>
+            </fieldset>
+
             <!-- Form submission -->
-            <div class="container-fluid text-end p-3">
-                <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Next</button>
+            <div class="row text-end p-3">
+                <div clas="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Next</button>
+                </div>
             </div>
 
         </form>

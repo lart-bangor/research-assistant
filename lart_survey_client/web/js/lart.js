@@ -6,11 +6,162 @@ lart.forms = {}
 
 lart.forms.searchParams = new URLSearchParams(window.location.search)
 
-lart.forms.conditionalRequire = function (conditionerId, targetId) {
-    return;
+lart.forms.util = {}
+
+lart.forms.util.getSelectValues = function (selectNode) {
+    values = []
+    for(const option of selectNode.selectedOptions) {
+        values.push(option.value);
+    }
+    return values;
 }
-lart.forms.conditionalDisplay = function (conditionerId, targetId) {
-    return;
+
+lart.forms.util.getFormFieldValue = function(fieldNode) {
+    if ( fieldNode instanceof HTMLInputElement ) {
+        if(['radio', 'checkbox'].includes(fieldNode.type) ) {
+            if( fieldNode.checked ) {
+                return fieldNode.value;
+            }
+        } else {
+            return fieldNode.value;
+        }
+    } else if( fieldNode instanceof HTMLSelectElement ) {
+        values = lart.forms.util.getSelectValues(fieldNode);
+        switch(values.length) {
+            case 0:
+                return null;
+            case 1:
+                return values[0];
+            default:
+                return values;
+        }
+    } else if ( 'value' in fieldNode ) {
+        return fieldNode.value;
+    }
+    return null;
+}
+
+
+
+lart.forms.util.inputConditionMatcher = function (nodes, comparisonValue, condition) {
+    if( nodes instanceof NodeList && nodes.length > 1 ) {
+        return function () {
+            const testValues = [];
+            for(const node of nodes) {
+                testValues.concat(lart.forms.util.getFormFieldValue(node));
+            }
+            switch(condition) {
+                case 'equal':
+                    return (testValues.includes(comparisonValue));
+                case 'not-equal':
+                    return (!testValues.includes(comparisonValue));
+                case 'smaller':
+                    for(const testValue of testValues) {
+                        if( parseInt(testValue) < parseInt(comparisonValue) ) {
+                            return true;
+                        }
+                    }
+                    return false;
+                case 'greater':
+                    for(const testValue of testValues) {
+                        if( parseInt(testValue) > parseInt(comparisonValue) ) {
+                            return true;
+                        }
+                    }
+                    return false;
+                case 'match':
+                    for(const testValue of testValues) {
+                        if( testValue.match(comparisonValue) ) {
+                            return true;
+                        }
+                    }
+                    return false;
+            }
+            return null;
+        }
+    }
+    if ( nodes instanceof NodeList && nodes.length == 1 ) {
+        nodes = nodes[0];
+    }
+    if( nodes instanceof HTMLElement ) {
+        return function () {
+            const testValue = lart.forms.util.getFormFieldValue(nodes);
+            switch(condition) {
+                case 'equal':
+                    return (testValue == comparisonValue);
+                case 'not-equal':
+                    return (testValue != comparisonValue);
+                case 'smaller':
+                    return parseInt(testValue) < parseInt(comparisonValue);
+                case 'greater':
+                    return parseInt(testValue) > parseInt(comparisonValue);
+                case 'match':
+                    if( testValue.match(comparisonValue) ) {
+                            return true;
+                    }
+                    return false;
+            }
+            return null;
+        }
+    }
+    return null;
+}
+
+lart.forms.conditionalRequire = function (fieldName, targetId, value, condition = 'equal') {
+    const collection = document.getElementsByName(fieldName);
+    const target = document.getElementById(targetId);
+    // Multiselect elements (radio, checkbox, select(?))
+    for(const node of collection) {
+        const matchesCondition = lart.forms.util.inputConditionMatcher(node, value, condition);
+        node.addEventListener('input',
+            function (event) {
+                if(matchesCondition()) {
+                    target.required = true;
+                } else {
+                    target.required = false;
+                }
+            }
+        );
+    }
+}
+lart.forms.conditionalDisplay = function (fieldName, targetId, value, condition = 'equal') {
+    const collection = document.getElementsByName(fieldName);
+    const target = document.getElementById(targetId);
+    // Multiselect elements (radio, checkbox, select(?))
+    for(const node of collection) {
+        const matchesCondition = lart.forms.util.inputConditionMatcher(node, value, condition);
+        target.classList.add("invisible")
+        target.classList.add("collapse");
+        node.addEventListener('input',
+            function (event) {
+                if(matchesCondition()) {
+                    target.classList.remove("invisible");
+                    target.classList.add("show");
+                } else {
+                    setTimeout(function () { target.classList.add("invisible") }, 100);
+                    target.classList.remove("show");
+                }
+            }
+        );
+    }
+}
+
+lart.forms.repeatBlocks = {}
+
+lart.forms.repeatBlock = function(containerId, pattern) {
+    const root = document.getElementById(containerId);
+    let code = root.firstElementChild.outerHTML;
+    if (containerId in lart.forms.repeatBlocks) {
+        lart.forms.repeatBlocks[containerId]++;
+    } else {
+        lart.forms.repeatBlocks[containerId] = parseInt(code.matchAll(pattern).next().value[2]);
+        if(typeof(lart.forms.repeatBlocks[containerId]) != 'number') {
+            lart.forms.repeatBlocks[containerId] = 0;
+        }
+    }
+    n = lart.forms.repeatBlocks[containerId];
+    code = code.replaceAll(pattern, `$1-${n}`);
+    root.insertAdjacentHTML('beforeend', code);    
 }
 
 /**

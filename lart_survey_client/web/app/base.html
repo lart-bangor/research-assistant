@@ -26,10 +26,14 @@
 </head>
 <body>
 
-    <header>
-        <div class="container-fluid bg-primary text-light text-center p-2">
-            <button id="nav-drawer-toggle" class="navbar-toggler text-light" data-bs-toggle="collapse" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
-            <h1>{% block headline %}{% endblock %}</h1>
+    <header class="container-fluid mb-2">
+        <div class="row bg-primary text-light text-center p-2">
+            <div class="col-1">
+                <button id="nav-drawer-toggle" class="navbar-toggler text-light" data-bs-toggle="collapse" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
+            </div>
+            <div class="col">
+                <h1>{% block headline %}{% endblock %}</h1>
+            </div>
         </div>
         <div id="nav-drawer" class="collapse">
             <div id="nav-header" class="container-fluid bg-primary text-light p-3" data-bs-toggle="collapse" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="true" aria-label="Toggle navigation">
