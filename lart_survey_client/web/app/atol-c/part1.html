@@ -7,9 +7,10 @@
     atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
 
     populateAtolItems = function (atolItems) {
-        element = document.getElementById('printAtolItems');
-        for(key in atolItems) {
-            code = '<p>';
+        const element = document.getElementById('printAtolItems');
+        for(let key in atolItems) {
+            let code = '';
+            code += '<p>';
             code += `${key}: ${atolItems[key][0]} or ${atolItems[key][1]}\n`;
             code += '</p>';
             element.insertAdjacentHTML('beforeend', code);
@@ -28,47 +29,83 @@
     <li><hr class="nav-divider"></li>
 {% endblock %}
 {% block content %}
-    <article class="p-2">
-        <div class="container-fluid p-2 text-center">
+    <article class="container-fluid p-2">
+        <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+        </div>
+        <div class="row m-2 text-center">
             <h2>AToL: Language Questionnaire (RML)</h2>
         </div>
 
-        <div class="h-25 d-inline-block" style="width: 120px;"><!--place holder--></div>
-        
-        <div class="container-fluid p-2 text-center"><h5>Please use the sliders to record your choices</h5></div>
-        <div class="h-25 d-inline-block" style="width: 120px;"><!--place holder--></div>
-        <div class="container-fluid p-2 text-center">
-            <h4>The English language is...</h4>
-        </div>
-        <form id="surveyAtolForm" class="p-2 needs-validation">
-            <fieldset class="row mb-3">
-                <div class="col-sm-12">
-                    <div class="form-check">
-                     <!-- 1. English logical-illogical -->
-                     <label for="English_logical" class="form-label"> </label>
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-sm-3">
-                                    <div id="printAtolItems"></div>
-                                </div>
-                                <div class="col-sm-6"></div>
-                                <div class="col-sm-3">illogical</div>
-                              </div>  
+        <form id="surveyAtolForm">
+
+            <!-- Name language statement to agree with... -->
+            <div class="row mt-5 mb-0">
+                <div class="col">
+                    <h4>The English language is...</h4>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="row mt-0 mb-0">
+                <div class="col">
+                    <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> Please use the sliders to record your choices</p>
+                </div>
+            </div>
+
+            <!-- Slider example -->
+            <fieldset id="fieldsetEnglishLogical">
+                <label class="row mb-0" for="ratingEnglishLogical">
+                    <div class="col text-start ps-5">
+                        examplar
+                    </div>
+                    <div class="col text-end pe-5">
+                        non-exemplar
+                    </div>
+                </label>
+                <div class="row mb-5">
+                    <div class="col ps-4 pe-4">
+                        <input type="range" class="form-range" id="ratingEnglishLogical" />     
+                        <div class="form-check ps-5">
+                            <div class="invalid-feedback">
+                                Please move the slider to record your choice.
+                            </div>
                         </div>
-                        <input type="range" class="form-range" id="English_logical"> 
                     </div>
                 </div>
             </fieldset>
-            
-            <div class="mb-3">
-                <div class="form-check">
-                    <div class="invalid-feedback">
-                
-                    </div>
+
+            <div id="ratingScales">
+                <!-- Placeholder where JavaScript will insert sliders -->
+            </div>
+
+<fieldset id="fieldset{LANGUAGE}{LABEL}">
+    <label class="row mb-0" for="rating{LANGUAGE}{LABEL}">
+        <div class="col text-start ps-5">
+            {VALUE_0}
+        </div>
+        <div class="col text-end pe-5">
+            {VALUE_1}
+        </div>
+    </label>
+    <div class="row mb-5">
+        <div class="col ps-4 pe-4">
+            <input type="range" class="form-range" id="rating{LANGUAGE}{LABEL}" />     
+            <div class="form-check ps-5">
+                <div class="invalid-feedback">
+                    Please move the slider to record your choice.
                 </div>
             </div>
-            <div class="mb-3 text-center p-3">
-                <button type="submit" class="btn btn-primary btn-lg btn-action">Next</button>
+        </div>
+    </div>
+</fieldset>
+
+        
+            <!-- Form submission -->
+            <div class="row text-end p-3">
+                <div clas="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Next</button>
+                </div>
             </div>
         </form>
     </article>

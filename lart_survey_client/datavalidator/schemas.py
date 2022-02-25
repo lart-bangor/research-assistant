@@ -81,10 +81,12 @@ class DataGroup:
 
     def __init__(
         self,
+        name: str,
         fields: DataGroupDescT
     ):
         """Instantiates a new DataGroup."""
-        pass
+        self.name = name
+        self.fields = fields
 
 
 class DataSchema(ABC):
@@ -98,7 +100,13 @@ class DataSchema(ABC):
         self.__constructschema(cls.__schema)
         return self
 
-    @staticmethod
-    def __constructschema(schema: DataGroupDescT) -> dict[str, Any]:
-        data = {}
+    @classmethod
+    def __constructschema(cls, schema: DataGroupDescT) -> dict[str, Any]:
+        if isinstance(schema, DataGroup):
+            return cls.__constructschema(schema.fields)
+        if isinstance(schema, dict):
+            data = {}
+            for name, definition in schema.items():
+                if isinstance(definition, (dict, DataField, DataGroup)):
+                    pass
         return data
