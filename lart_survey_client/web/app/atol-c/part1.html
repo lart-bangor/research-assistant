@@ -6,41 +6,17 @@
 <script type="text/javascript">
     atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
 
-<<<<<<< HEAD
-//function loadAtolItems() {
-   availableItems = eel.atol_c_items(); //(populateAtolItems);
-  //  }
-
-   // function populateAtolItems(atolLabels) {
-//      select = document.getElementById('selectSurveyVersion');
-        //for(atolLabel in atolLabels) {
-     //       document.write(atolLabel);
-=======
-    function loadAtolItems() {
-        eel.atol_c_get_items()(populateAtolItems);
-    }
-
-    function populateAtolItems(atolItems) {
+    populateAtolItems = function (atolItems) {
         element = document.getElementById('printAtolItems');
         for(key in atolItems) {
-            element.insertAdjacentHTML('beforeend', `${key}: ${atolItems[key][0]} or ${atolItems[key][1]}.<br />\n`);
->>>>>>> d6500a185de43b5d945900b70daa9d1a2f35ba4b
-//          option = document.createElement('option');
-//            option.setAttribute('value', version);
-//            option.appendChild(document.createTextNode(versions[version]))
-//            select.appendChild(option);
-
-<<<<<<< HEAD
-    //    }
-   // }
-=======
+            code = '<p>';
+            code += `${key}: ${atolItems[key][0]} or ${atolItems[key][1]}\n`;
+            code += '</p>';
+            element.insertAdjacentHTML('beforeend', code);
         }
     }
 
-    loadAtolItems();
-</script>
->>>>>>> d6500a185de43b5d945900b70daa9d1a2f35ba4b
-
+    eel.atol_c_get_items()(populateAtolItems);
 </script>
 {% endblock %}
 {% block head_styles %}{% endblock %}
@@ -73,15 +49,7 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-sm-3">
-<<<<<<< HEAD
-                                    <script type="text/javascript">
-                                   // document.write(availableItems);
-                                   document.write("hello");
-                                    //populateAtolItems();
-                                    </script>
-=======
                                     <div id="printAtolItems"></div>
->>>>>>> d6500a185de43b5d945900b70daa9d1a2f35ba4b
                                 </div>
                                 <div class="col-sm-6"></div>
                                 <div class="col-sm-3">illogical</div>
@@ -90,12 +58,9 @@
                         <input type="range" class="form-range" id="English_logical"> 
                     </div>
                 </div>
-            </fieldset>                    
-                  
+            </fieldset>
             
             <div class="mb-3">
-                
-                
                 <div class="form-check">
                     <div class="invalid-feedback">
                 

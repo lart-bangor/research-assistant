@@ -4,10 +4,7 @@
 {% block headline %}Language Questionnaire{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
-    atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
-
-//function loadAtolItems() {
-   availableItems = await eel.atol_c_items()(); //(populateAtolItems);
+     //(populateAtolItems);
 
   //  }
 
@@ -56,9 +53,12 @@
                             <div class="row justify-content-center">
                                 <div class="col-sm-3">
                                     <script type="text/javascript">
-                                   document.write(availableItems);
-                                   //document.write("testing");
-                                    //populateAtolItems();
+                                        async function doStuff() {
+                                            atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
+                                            availableItems = await eel.atol_c_items()();
+                                            document.write(availableItems);
+                                        };
+                                        doStuff();
                                     </script>
                                 </div>
                                 <div class="col-sm-6"></div>
