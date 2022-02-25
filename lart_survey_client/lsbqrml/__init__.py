@@ -1,6 +1,7 @@
 """Data structures for the Language and Social Background Questionnaire (RML)."""
 from typing import Any, Optional
 import datetime
+import json
 from datavalidator import Validator
 from . import patterns
 
@@ -8,12 +9,32 @@ from . import patterns
 class Response:
     """Class for representing the data of an LSBQ-RML questionnaire response."""
 
-    __data: dict[str, Any] = {}
+    __data: dict[str, dict[str, Any]]
     __instance_id: str
 
     def __init__(self):
         """Instantiates a new LSBQ-RML response object."""
+        self.__data = {
+            "meta": {   # Meta data
+                "version": "",
+                "researcher_id": ""
+            },
+            "lsb": {},  # Language and Social Background
+            "ldb": {},  # Language and Dialect Background
+            "club": {},  # Community Language Use Behaviour
+            "notes": {}, # Notes
+        }
         self.__instance_id = str(hash(self))  # Should always be unique (= memaddr + salt)
+
+    def tojson(self) -> str:
+        """Returns a JSON representation of the response."""
+        return json.dumps(self.__data)
+
+    @classmethod
+    def fromjson(cls, jsonstring: str) -> "Response":
+        """Returns a new Response instance constructed from JSON data."""
+        data = json.loads(jsonstring)
+        instance = cls()
 
     def getid(self) -> str:
         """Returns the unique instance id of the Response object."""
