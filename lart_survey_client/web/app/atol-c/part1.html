@@ -4,16 +4,16 @@
 {% block headline %}Language Qeestionnaire{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
-    lsbqRmlInstanceId = parseInt(lart.forms.searchParams.get('instance'));
+    atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
 
-function loadAtolItems() {
-   availableItems = eel.atol_c_items()(populateAtolItems);
+    function loadAtolItems() {
+        eel.atol_c_get_items()(populateAtolItems);
     }
 
-    function populateAtolItems(atolLabels) {
-//      select = document.getElementById('selectSurveyVersion');
-        for(atolLabel in atolLabels) {
-            document.write(atolLabel);
+    function populateAtolItems(atolItems) {
+        element = document.getElementById('printAtolItems');
+        for(key in atolItems) {
+            element.insertAdjacentHTML('beforeend', `${key}: ${atolItems[key][0]} or ${atolItems[key][1]}.<br />\n`);
 //          option = document.createElement('option');
 //            option.setAttribute('value', version);
 //            option.appendChild(document.createTextNode(versions[version]))
@@ -21,6 +21,8 @@ function loadAtolItems() {
 
         }
     }
+
+    loadAtolItems();
 </script>
 
 </script>
@@ -55,9 +57,7 @@ function loadAtolItems() {
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-sm-3">
-                                    <script type="text/javascript">test
-                                    populateAtolItems();
-                                    </script>
+                                    <div id="printAtolItems"></div>
                                 </div>
                                 <div class="col-sm-6"></div>
                                 <div class="col-sm-3">illogical</div>
