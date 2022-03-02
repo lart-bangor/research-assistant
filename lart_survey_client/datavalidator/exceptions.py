@@ -31,8 +31,8 @@ class DataValidationError(Exception):
 
     def __str__(self) -> str:
         """Returns a string representation of the exception."""
-        return f"{__class__}('{self.message}')"
+        return f"{__class__.__name__}('{self.message}')"
 
     def __repr__(self) -> str:
         """Returns a python-stye representation of the exception."""
-        return f"{__class__}({repr(self.message)}, {repr(self.errors)})"
+        return f"{__class__.__name__}({repr(self.message)}, {repr(self.errors)})"

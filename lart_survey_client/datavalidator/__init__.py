@@ -93,8 +93,9 @@ class ValidationResult:
     def tostring(self) -> str:
         """Returns string explanation of the data validation result."""
         polarity = "is" if self.success else "is not"
+        data = self.data if self.success else self.rawdata
         string = (
-            f"`{self.data}` {polarity} a valid {self.typedesc} of type {self.type_}."
+            f"`{repr(data)}` {polarity} a valid {self.typedesc} of type {self.type_}."
         )
         if not self.success:
             string += f" Must match constraint: `{repr(self.constraint)}`."
@@ -104,7 +105,8 @@ class ValidationResult:
         """Returns HTML formatted explanation of the data validation result."""
         output: list[str] = []
         output.append('<p class="dv-result">')
-        data = html.escape(repr(self.data), True)
+        data = self.data if self.success else self.rawdata
+        data = html.escape(repr(data), True)
         output.append(f'<code class="dv-data">{data}</code>')
         if self.success:
             output.append('<span class="dv-success dv-successful">is</span>')
@@ -156,7 +158,7 @@ class ValidationResult:
     def __repr__(self) -> str:
         """Returns a python-style representation of the data validation result object."""
         indent = "    "
-        string = f"{__class__}(\n{indent}{repr(self.success)},\n{indent}"
+        string = f"{__class__.__name__}(\n{indent}{repr(self.success)},\n{indent}"
         string += f"{repr(self.type_)},\n{indent}{repr(self.typedesc)},\n"
         string += f"{indent}{repr(self.constraint)},"
         return string + f"\n{indent}{repr(self.data)}\n)"
@@ -322,7 +324,7 @@ class Validator:
             if not isinstance(data, int):
                 cdata = int(data)
             cmp = min(constraint) <= cdata <= max(constraint)
-        except TypeError:
+        except (TypeError, ValueError):
             cmp = False
         validation = ValidationResult(
             cmp,
@@ -397,7 +399,9 @@ class Validator:
         try:
             if not isinstance(data, bool):
                 cdata = bool(data)
-            cmp = cdata == constraint
+            cmp = True
+            if constraint is not None:
+                cmp = (cdata == constraint)
         except TypeError:
             cmp = False
         validation = ValidationResult(
@@ -516,7 +520,7 @@ class Validator:
     def raiseif(self):
         """Raises a DataValidationError iff at least one validation has failed."""
         if bool(self.failed):
-            raise DataValidationError(str(self), self)
+            raise DataValidationError(self.tostring(errorsonly=True), self)
 
     def tohtml(self, errorsonly: bool = False):
         """Returns a paragraph-by-paragraph HTML representation of validation attempts.
