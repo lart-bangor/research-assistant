@@ -529,7 +529,9 @@ class Validator:
             errorsonly: Whether to include only the errors or all validation attempts.
         """
         if errorsonly:
-            return "\n".join([f'<div class="dv-list">{e.tohtml()}</div>' for e in self.failed])
+            return "\n".join(
+                [f'<div class="dv-list">{e.tohtml()}</div>' for e in self.failed]
+            )
         return "\n".join([f'<p class="dv-list">{e.tohtml()}</p>' for e in self.results])
 
     def tostring(self, errorsonly: bool = False):
