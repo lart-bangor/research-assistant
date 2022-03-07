@@ -9,10 +9,13 @@ __pycache__/*
 /build/
 /dist/
 
+# Virtual environment
+/.venv/
+
 # Tox environment
 /.tox/
 
-# Custom typings for Pylance
+# Custom typings for Pyright/Pylance
 /typings/
 
 # Pytest

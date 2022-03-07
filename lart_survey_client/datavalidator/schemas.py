@@ -292,7 +292,6 @@ class DataSchema:
             for key in cls.__schema:
                 cls.__schema[key] = cls.__schematize(cls.__schema[key], key)
             cls.__keys = cls.__index()
-            print(cls.__keys)
             cls.__functionalize()
             cls.__schematized = True
         self = super().__new__(cls)
@@ -702,7 +701,7 @@ class DataSchema:
                 fieldspec["typedesc"], fieldspec["constraint"], value, forcecast
             )
         if fieldspec["type_"] == dvtypes.PolarT:
-            return vr.venum(
+            return vr.vpolar(
                 fieldspec["typedesc"],
                 fieldspec["constraint"],
                 value,

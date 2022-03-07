@@ -9,10 +9,12 @@ import sys
 import logging
 import argparse
 import booteel
+import datetime
 from pathlib import Path
 from typing import Any
 from datavalidator import DataValidationError
 import lsbqrml
+import atolc
 
 
 # Set up logger for main runtime
@@ -52,13 +54,16 @@ def lsbq_rml_init(data: dict[Any, Any]):
     try:
         instance = lsbqrml.Response()
         instance.setmeta(
-            data["selectSurveyVersion"],
-            data["researcherId"],
-            data["researchLocation"],
-            data["participantId"],
-            data["confirmConsent"]
+            {
+                "version": data["selectSurveyVersion"],
+                "researcher_id": data["researcherId"],
+                "participant_id": data["participantId"],
+                "research_location": data["researchLocation"],
+                "consent": data["confirmConsent"],
+                "date": datetime.date.today().isoformat(),
+            }
         )
-        print("That's it: ", instance)
+        print("That's it: ", instance.data(includemissing=True))
         booteel.setlocation(f"part1.html?instance={instance.getid()}")
         return True
     except DataValidationError as exc:
