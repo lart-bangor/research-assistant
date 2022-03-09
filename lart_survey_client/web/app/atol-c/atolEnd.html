@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}LART Survey Client - AToL-RML{% endblock %}
+{% block headline %}AToL-RML{% endblock %}
+
+{% extends 'base.html' %}
+{% set eel_forms = true %}
+{% block title %}LART Survey Client - AToL-RML - Language Questionnaire {% endblock %}
+{% block headline %}Language Questionnaire{% endblock %}
+{% block head_scripts %}
+{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+
+{% block content %}
+<article class="container-fluid p-2">
+<div class="container-fluid p-2 text-center">
+    <h2>Thank you for your participation</h2>
+</div>
+</article>
+{% endblock %}
+{% block tail_scripts %}{% endblock %}
