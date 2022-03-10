@@ -6,12 +6,22 @@ from datavalidator.schemas import DataSchema
 from datavalidator.types import PolarT
 from . import patterns
 
-_rarting_adjectives = (
+rating_adjectives = (
     "logical",
     "elegant",
     "fluent",
     "ambiguous",
-    # Marco add all the other adjectives
+    "appealing",
+    "structured",
+    "precise",
+    "soft",
+    "flowing",
+    "beautiful",
+    "systematic",
+    "pleasant",
+    "smooth",
+    "graceful",
+    "round"    
 )
 
 class Response(DataSchema):
