@@ -4,12 +4,15 @@
 {% block headline %}Language Questionnaire{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
-    atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
+
+atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
+chosenVersion = sessionStorage.getItem("atolVersion");
+
 
     populateAtolItems = function (atolItems) {
         const element = document.getElementById('AtolRatingScales');
         for(key in atolItems) {
-          //code = `Items: First ${atolItems[key][0]}, second ${atolItems[key][1]}.<br />`;
+        
 
          let code = '<fieldset id="fieldsetEnglish' + key + '">' +
                     '<label class="row mb-0" for="ratingEnglish' + key + '">' +
@@ -19,26 +22,26 @@
                     '<div class="row mb-5"><div class="col ps-4 pe-4"><input type="range" class="form-range" id="ratingEnglish' + key + '"/>' +
                     '<div class="form-check ps-5"><div class="invalid-feedback">Please move the slider to record your choice.</div></div></div></div></fieldset>';
             element.insertAdjacentHTML('beforeend', code);
-        }
+            }
     }
 
-    eel.atol_c_get_items()(populateAtolItems);
+    eel.atol_c_get_items(chosenVersion)(populateAtolItems);
 
-    function outputData() {
-    var selectSurveyVersion = sessionStorage.getItem("atolVersion");
-    var researcherId = sessionStorage.getItem("atolResId");
-    var researchLocation = sessionStorage.getItem("atolLocation");
-    var partId = sessionStorage.getItem("atolPartId");
 
-    document.getElementById("atolVersion").innerHTML = "Survey version is: " + selectSurveyVersion +
-                                                       "<br>Researcher is: " + researcherId +
-                                                       "<br>Location is: " + researcherId +
-                                                       "<br>Participant is: " + researcherId;                                           
-                                                       
+function outputData() {
+        const selectSurveyVersion = sessionStorage.getItem("atolVersion");
+        const researcherId = sessionStorage.getItem("atolResId");
+        const researchLocation = sessionStorage.getItem("atolLocation");
+        const partId = sessionStorage.getItem("atolPartId");
     
-    }
+        document.getElementById("atolVersion").innerHTML = "Survey version is: " + selectSurveyVersion +
+                                                           "<br>Researcher is: " + researcherId +
+                                                           "<br>Location is: " + researchLocation +
+                                                           "<br>Participant is: " + partId;   
+        }
 
 </script>
+
 {% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}

@@ -4,12 +4,11 @@
 {% block headline %}AToL-RML{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
-
     function loadSurveyVersions() {
         availableVersions = eel.lsbq_rml_get_versions()(populateSurveyVersions); //this will probably need to be changed to a more generic "survey_rml_get_versions", 
                                                                                 //or hard-coded for each questionnaire.
     }
-
+    
     function populateSurveyVersions(versions) {
         select = document.getElementById('selectSurveyVersion');
         for(version in versions) {
@@ -19,22 +18,20 @@
             select.appendChild(option);
         }
     }
-
-function recordData() {
-    var atolVersion = document.getElementById("selectSurveyVersion").value;
-    var atolResId = document.getElementById("researcherId").value;
-    var atolLocation = document.getElementById("researchLocation").value;
-    var atolPartId = document.getElementById("participantId").value;
-
+    
+    function recordData() {                     //can probably do it as a loop?
+    const atolVersion = document.getElementById("selectSurveyVersion").value;
+    const atolResId = document.getElementById("researcherId").value;
+    const atolLocation = document.getElementById("researchLocation").value;
+    const atolPartId = document.getElementById("participantId").value;
+    
     sessionStorage.setItem("atolVersion", atolVersion);
     sessionStorage.setItem("atolResId", atolResId);
     sessionStorage.setItem("atolLocation", atolLocation);
     sessionStorage.setItem("atolPartId", atolPartId);
-}
-    
-    
-
-</script>
+    }
+                         
+    </script>
 {% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
