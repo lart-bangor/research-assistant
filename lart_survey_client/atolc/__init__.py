@@ -1,12 +1,15 @@
-"""Data structures for the Language and Social Background Questionnaire (RML)."""
+"""Data structures for the AToL Questionnaire (RML)."""
 from typing import Any, Optional
 import datetime
 import sys
-from datavalidator.schemas import DataSchema
+from datavalidator.schemas import DataSchema  # ModuleNotFoundError: No module named 'datavalidator'
 from datavalidator.types import PolarT
+import booteel  # ModuleNotFoundError: No module named 'lart_survey_client'
+import eel
 from . import patterns
+import json
 
-rating_adjectives = (
+_rating_adjectives = (
     "logical",
     "elegant",
     "fluent",
@@ -23,6 +26,72 @@ rating_adjectives = (
     "graceful",
     "round"    
 )
+
+@eel.expose  # type: ignore
+def atol_c_get_items(version):
+    """Get label pairs for each AToL item depending on language selection."""
+    EngVersion = {       
+        "logic":    ("logical", "illogical"),
+        "elegance": ("inelegant", "elegant"),
+        "fluency": ("choppy", "fluent"),
+        "ambiguity": ("unambiguous", "ambiguous"),
+        "appeal": ("appealing", "abhorrent"),
+        "structure": ("unstructured", "structured"),
+        "precision": ("precise", "vague"),
+        "harshness": ("harsh", "soft"),
+        "flow": ("flowing", "abrupt"),
+        "beauty": ("beautiful", "ugly"),
+        "sistem": ("systematic", "unsystematic"),
+        "pleasure": ("pleasant", "unpleasant"),
+        "smoothness": ("smooth", "raspy"),
+        "grace": ("clumsy", "graceful"),
+        "angularity": ("angular", "round"),
+              }
+    ItVersion = {       
+        "logic":    ("logica", "illogica"),
+        "elegance": ("non elegante", "elegante"),
+        "fluency": ("frammentata", "scorrevole"),
+        "ambiguity": ("chiara", "ambigua"),
+        "appeal": ("attraente", "ripugnante"),
+        "structure": ("non strutturata", "strutturata"),
+        "precision": ("precisa", "vaga"),
+        "harshness": ("dura", "morbida"),
+        "flow": ("fluida", "brusca"),
+        "beauty": ("bella", "brutta"),
+        "sistem": ("sistematica", "non sistematica"),
+        "pleasure": ("piacevole", "spiacevole"),
+        "smoothness": ("liscia", "ruvida"),
+        "grace": ("goffa", "aggraziata"),
+        "angularity": ("spigolosa", "arrotondata"),
+              }
+    BeVersion = {
+         "logic": ("logisch", "unlogisch"),
+        "elegance": ("stillos", "stilvoll"),
+        "fluency": ("stockend", "fließend"),
+        "ambiguity": ("eindeutig" "missverständlich"),
+        "appeal": ("anziehend", "abstoßend"),
+        "structure": ("stukturlos", "sturkturiert"),
+        "precision": ("genau", "ungenau"),
+        "harshness": ("hart", "weich"),
+        "flow": ("flüssig", "abgehackt"),
+        "beauty": ("schön", "hässlich"),
+        "sistem": ("systematisch", "unsystematisch"),
+        "pleasure": ("angenehm", "unangenehm"),
+        "smoothness": ("geschmeidig", "rau"),
+        "grace": ("plump", "anmutig"),
+        "angularity": ("eckig", "rund"),
+    }
+ 
+    #print("Tetsing if I can pass version: " + version)
+    if version == 'CymEng_Eng_GB':
+        return EngVersion
+    elif version == 'LtzGer_Ger_BE':
+        return BeVersion
+    elif version == 'LmoIta_Ita_IT':
+        return ItVersion
+#except Exception as exc:
+ #   booteel.displayexception(exc)
+ 
 
 class Response(DataSchema):
     """Class for representing the data of an LSBQ-RML questionnaire response."""
@@ -70,14 +139,14 @@ class Response(DataSchema):
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in _rarting_adjectives
+            } for label in _rating_adjectives
         },
         "language2": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in _rarting_adjectives
+            } for label in _rating_adjectives
         }
     }
 
