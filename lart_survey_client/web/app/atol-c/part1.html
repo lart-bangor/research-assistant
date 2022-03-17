@@ -1,27 +1,59 @@
 {% extends 'base.html' %}
 {% set eel_forms = true %}
-{% block title %}LART Survey Client - AToL-RML - Language Questionnaire {% endblock %}
-{% block headline %}Language Questionnaire{% endblock %}
+{% block title %}AToL-RML {% endblock %}
+{% block headline %}<script type="text/javascript">document.write(title)</script>{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
-
 atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
 chosenVersion = sessionStorage.getItem("atolVersion");
+//document.getElementById("rmlName").value = "My value";
 
+// instructions to be outputed depending on language selection
+if (chosenVersion == "CymEng_Eng_GB") {
+    title = "Language Questionnaire";
+    language = "English";
+    rml = "Welsh";
+    instruction = "Please move the slider to record your choice.";
+    language_header = "The English language is...";
+    atol_header = "AToL Questionnaire (RML)";
+    btn_text = "Next";
+              
+} else if (chosenVersion == "LmoIta_Ita_IT") {
+    title = "Questionario Linguistico";
+    language = "Italiano";
+    rml = "lombardo";
+    instruction = "Si prega di spostare il cursore per registrare la propria scelta.";
+    language_header = "La lingua italiana è...";
+    atol_header = "Questionario AToL (RML)";
+    btn_text = "Avanti";
 
-    populateAtolItems = function (atolItems) {
-        const element = document.getElementById('AtolRatingScales');
-        for(key in atolItems) {
+} else if (chosenVersion == "LtzGer_Ger_BE") {
+    title = "Sprachlicher Fragebogen";
+    language = "Deutch";
+    rml = "Moselfränkisch";
+    instruction = "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??.";
+    language_header = "Die deutsche Sprache ist...";
+    atol_header = "AToL Fragebogen (RML)";
+    btn_text = "Weiter";
+
+}
+
+function set_rml() {
+    document.getElementById("rmlName").value = rml;
+}
+
+populateAtolItems = function (atolItems) {
+    const element = document.getElementById('AtolRatingScales');
+    for(key in atolItems) {
         
-
-         let code = '<fieldset id="fieldsetEnglish' + key + '">' +
-                    '<label class="row mb-0" for="ratingEnglish' + key + '">' +
-                    '<div class="col text-start ps-5">' + atolItems[key][0] + '</div>' +
-                    //next
-                    '<div class="col text-end pe-5">' + atolItems[key][1] + '</div></label>' +
-                    '<div class="row mb-5"><div class="col ps-4 pe-4"><input type="range" class="form-range" id="ratingEnglish' + key + '"/>' +
-                    '<div class="form-check ps-5"><div class="invalid-feedback">Please move the slider to record your choice.</div></div></div></div></fieldset>';
-            element.insertAdjacentHTML('beforeend', code);
+        let code = '<fieldset id="fieldsetEnglish' + key + '">' +
+            '<label class="row mb-0" for="ratingEnglish' + key + '">' +
+            '<div class="col text-start ps-5">' + atolItems[key][0] + '</div>' +
+             //next
+            '<div class="col text-end pe-5">' + atolItems[key][1] + '</div></label>' +
+            '<div class="row mb-5"><div class="col ps-4 pe-4"><input type="range" class="form-range" id="ratingEnglish' + key + '"/>' +
+            '<div class="form-check ps-5"><div class="invalid-feedback">' + instruction + '</div></div></div></div></fieldset>';
+        element.insertAdjacentHTML('beforeend', code);
             }
     }
 
@@ -33,12 +65,15 @@ function outputData() {
         const researcherId = sessionStorage.getItem("atolResId");
         const researchLocation = sessionStorage.getItem("atolLocation");
         const partId = sessionStorage.getItem("atolPartId");
-    
+        
         document.getElementById("atolVersion").innerHTML = "Survey version is: " + selectSurveyVersion +
                                                            "<br>Researcher is: " + researcherId +
                                                            "<br>Location is: " + researchLocation +
-                                                           "<br>Participant is: " + partId;   
+                                                           "<br>Participant is: " + partId;
+                                                           
         }
+
+        
 
 </script>
 
@@ -57,7 +92,7 @@ function outputData() {
             <div class="progress-bar bg-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
         </div>
         <div class="row m-2 text-center">
-            <h2>AToL: Language Questionnaire (RML)</h2>
+            <h2><script type = "text/javascript">document.write(atol_header);</script></h2>
         </div>
 
         <!-- tetsing whether we can pick up language choice-->
@@ -67,30 +102,38 @@ function outputData() {
             </script>
         </div>
 
-        <form id="surveyAtolForm" action="../memory-game/dist/index.html">
+        <form id="surveyAtolForm" action="part2.html">
 
             <!-- Name language statement to agree with... -->
             <div class="row mt-5 mb-0">
-                <div class="col">
-                    <h4>The English language is...</h4>
+                <div class="col"><p id="language_header"><h4>
+                    <script type="text/javascript">document.write(language_header);</script></h4>
+                </p>
+                    
                 </div>
             </div>
 
             <!-- Instructions -->
             <div class="row mt-0 mb-0">
                 <div class="col">
-                    <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> Please use the sliders to record your choices</p>
+                    <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> 
+                        <script type="text/javascript">document.write(instruction)</script></p>
                 </div>
             </div>
 
             <div id="AtolRatingScales">
                 <!-- Placeholder where JavaScript will insert sliders -->
             </div>
+            <div id="rml">
+                <!-- box to pass rml onto part2.html -->
+                <input type="hidden" class="form-control" id="rmlName"><script>set_rml()</script>
+
+            </div>
         
             <!-- Form submission -->
             <div class="row text-end p-3">
                 <div clas="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Next</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow"><script type="text/javascript">document.write(btn_text)</script></button>
                 </div>
             </div>
         </form>
