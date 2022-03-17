@@ -7,7 +7,6 @@ from datavalidator.types import PolarT
 import booteel  # ModuleNotFoundError: No module named 'lart_survey_client'
 import eel
 from . import patterns
-import json
 
 _rating_adjectives = (
     "logical",
@@ -68,7 +67,7 @@ def atol_c_get_items(version):
          "logic": ("logisch", "unlogisch"),
         "elegance": ("stillos", "stilvoll"),
         "fluency": ("stockend", "fließend"),
-        "ambiguity": ("eindeutig" "missverständlich"),
+        "ambiguity": ("eindeutig" "missverständlich"),  #something goes wrong here, and only "e" adn "i" appear in html output
         "appeal": ("anziehend", "abstoßend"),
         "structure": ("stukturlos", "sturkturiert"),
         "precision": ("genau", "ungenau"),
@@ -82,16 +81,13 @@ def atol_c_get_items(version):
         "angularity": ("eckig", "rund"),
     }
  
-    #print("Tetsing if I can pass version: " + version)
+   
     if version == 'CymEng_Eng_GB':
         return EngVersion
     elif version == 'LtzGer_Ger_BE':
         return BeVersion
     elif version == 'LmoIta_Ita_IT':
         return ItVersion
-#except Exception as exc:
- #   booteel.displayexception(exc)
- 
 
 class Response(DataSchema):
     """Class for representing the data of an LSBQ-RML questionnaire response."""
