@@ -3,6 +3,7 @@
 An app to collect survey-type data for research on regional and minority languages,
 developed by the Language Attitudes Research Team at Bangor University.
 """
+from winreg import HKEY_LOCAL_MACHINE
 import eel
 import gevent
 import sys
@@ -20,6 +21,12 @@ import atolc
 # Set up logger for main runtime
 logger = logging.getLogger(__name__)
 logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
+
+
+@eel.expose
+def atol_init(data: dict[Any, Any]):
+    print("HERE'S WHAT I'VE GOT:")
+    print(data)
 
 
 @eel.expose  # type: ignore

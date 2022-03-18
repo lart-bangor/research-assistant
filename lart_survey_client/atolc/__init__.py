@@ -64,14 +64,14 @@ def atol_c_get_items(version):
         "angularity": ("spigolosa", "arrotondata"),
               }
     BeVersion = {
-         "logic": ("logisch", "unlogisch"),
-        "elegance": ("stillos", "stilvoll"),
-        "fluency": ("stockend", "fließend"),
-        "ambiguity": ("eindeutig" "missverständlich"),  #something goes wrong here, and only "e" adn "i" appear in html output
-        "appeal": ("anziehend", "abstoßend"),
-        "structure": ("stukturlos", "sturkturiert"),
-        "precision": ("genau", "ungenau"),
-        "harshness": ("hart", "weich"),
+         "logic":       ("logisch",     "unlogisch"),
+        "elegance":     ("stillos",     "stilvoll"),
+        "fluency":      ("stockend",    "fließend"),
+        "ambiguity":    ("eindeutig",    "missverständlich"),  #something goes wrong here, and only "e" adn "i" appear in html output
+        "appeal":       ("anziehend",   "abstoßend"),
+        "structure":    ("stukturlos",  "sturkturiert"),
+        "precision":    ("genau",       "ungenau"),
+        "harshness":    ("hart",        "weich"),
         "flow": ("flüssig", "abgehackt"),
         "beauty": ("schön", "hässlich"),
         "sistem": ("systematisch", "unsystematisch"),

@@ -139,4 +139,16 @@ function outputData() {
         </form>
     </article>
 {% endblock %}
-{% block tail_scripts %}{% endblock %}
+{% block tail_scripts %}
+<script type="text/javascript">
+    lart.forms.requireValidation(true);
+    lart.forms.registerPipeline(
+        'surveyAtolForm',
+        async function(data) {
+
+            let success = await eel.atol_init(data)();
+            console.log(success);
+        }
+    );
+</script>
+{% endblock %}
