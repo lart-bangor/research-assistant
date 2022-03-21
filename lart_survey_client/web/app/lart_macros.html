@@ -2,9 +2,14 @@
 {% macro lart_form_pipeline(name, target) -%}
     <script type="text/javascript">
         lart.forms.registerPipeline(
-            '{{ name }}', //'surveyDataForm',
+            '{{ name }}',
             async function(data) {
-                let success = await eel.{{ target }}(data)(); //let success = await eel.lsbq_rml_init(data)();
+                let InstanceId = parseInt(lart.forms.searchParams.get('instance'));
+                if ( isNaN(InstanceId) ) {
+                    let success = await eel.{{ target }}(data)();
+                } else {
+                    let success = await eel.{{ target }}(InstanceId, data)();
+                }
                 console.debug(success);
             }
         );

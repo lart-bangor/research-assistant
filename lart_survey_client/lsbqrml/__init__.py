@@ -1,6 +1,5 @@
 """Data structures for the Language and Social Background Questionnaire (RML)."""
 from typing import Any, Optional, TYPE_CHECKING
-import datetime
 import sys
 from datavalidator.schemas import DataSchema
 from datavalidator.types import EnumT, PolarT
@@ -207,11 +206,3 @@ class Response(DataSchema):
 
         def getnotes(self) -> dict[str, Any]:
             ...
-
-    # def setmeta(self, data: dict[str, Any]) -> None:
-    #     """Sets the metadata for the response."""
-    #     # Fill in today's date if not supplied
-    #     if "date" not in data or data["date"] is None:
-    #         data["date"] = datetime.date.today().isoformat()
-    #     print("Setting metadata:", data)
-    #     super().setmeta(data)

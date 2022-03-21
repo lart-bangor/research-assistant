@@ -4,6 +4,7 @@ from typing import Optional, Union, Callable, Any, TypeVar, cast
 from functools import wraps
 from lsbqrml import Response, logger
 import datetime
+from copy import copy
 from datavalidator.exceptions import DataValidationError
 import booteel
 
@@ -49,18 +50,23 @@ def _expose(func: F) -> F:
                     "Data Validation Error",
                     exc.validator.tohtml(errorsonly=True)
                 )
+                _handleexception(exc)
             else:
                 booteel.displayexception(exc)
-            _handleexception(exc)
+                _handleexception(exc)
             return False
     eel._expose("_lsbqrml_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
 
+@_expose
 def init(data: dict[str, Any]) -> int:
     """Initialises a new LSBQ-RML Response."""
-    logger.debug("Creating new LSBQ-RML instance..")
+    logger.info("Creating new LSBQ-RML instance..")
+    logger.debug(f"... received data: {data!r}")
     instance = Response()
+    instid = instance.getid()
+    logger.debug(f"... 'id' of instance is {instid}")
     instance.setmeta(
         {
             "version": data["selectSurveyVersion"],
@@ -71,35 +77,52 @@ def init(data: dict[str, Any]) -> int:
             "date": datetime.date.today().isoformat(),
         }
     )
-    instid = instance.getid()
     instances[instid] = instance
-    logger.debug(f"LSBQ-RML instance id = {instid}")
-    logger.debug(f"... set 'meta' data to {instance.getmeta()}")
+    logger.info(f"... set 'meta' data to {instance.getmeta()}")
     booteel.setlocation(f"lsb.html?instance={instance.getid()}")
     return instid
 
 
 @_expose
-def setlsb(instid: int, data: dict[str, Any]) -> int:
+def setlsb(instid: int, data: dict[str, str]) -> int:
     """Adds Language and Social Background Data to a Response."""
+    logger.info(f"Setting LSB data on LSBQ-RML instance {instid}..")
+    logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
-    instance.setlsb(
-        data["sex"],
-        data["sexOther"],
-        data["occupation"],
-        data["handedness"],
-        data["dateOfBirth"],
-        data["hearingImpairment"],
-        data["hearingAid"],
-        data["visionImpairment"],
-        data["visionAid"],
-        data["visionFullyCorrected"],
-        data["placeOfBirth"],
-        data["placesOfSignificantResidence"],
-        data["educationLevel"]
-    )
-    logger.debug(f"LSBQ-RML instance id = {instid}")
-    logger.debug(f"... set 'lsb' data to {instance.getlsb()}")
+    processed: dict[str, Union[str, list[str]]] = {}
+    processed["residencies_location"] = []
+    processed["residencies_start"] = []
+    processed["residencies_end"] = []
+    datacopy = copy(data)
+    for key in datacopy:
+        if "otherPlacesName-" in key:
+            index = key[16:]
+            location_key = f"otherPlacesName-{index}"
+            start_key = f"otherPlacesFrom-{index}"
+            end_key = f"otherPlacesTo-{index}"
+            if location_key in data:
+                location = data[location_key]
+                del data[location_key]
+            else:
+                location = ""
+            if start_key in data:
+                start = data[start_key]
+                del data[start_key]
+            else:
+                start = ""
+            if end_key in data:
+                end = data[end_key]
+                del data[end_key]
+            else:
+                end = ""
+            if location + start + end != "":
+                processed["residencies_location"].append(location)
+                processed["residencies_start"].append(start)
+                processed["residencies_end"].append(end)
+    processed.update(data)
+    logger.debug(f"... preprocessed data: {processed!r}")
+    instance.setlsb(processed)
+    logger.info(f"... set 'lsb' data to {instance.getlsb()}")
     booteel.setlocation(f"ldb.html?instance={instance.getid()}")
     return instid
 

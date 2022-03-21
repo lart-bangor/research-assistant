@@ -586,10 +586,10 @@ class DataSchema:
                     cls, f"set{field}", DataSchema.__setfieldfactory(field, fieldspec)
                 )
                 setattr(
-                    cls, f"del{field}", DataSchema.__getfieldfactory(field, fieldspec)
+                    cls, f"del{field}", DataSchema.__delfieldfactory(field, fieldspec)
                 )
                 setattr(
-                    cls, f"get{field}", DataSchema.__delfieldfactory(field, fieldspec)
+                    cls, f"get{field}", DataSchema.__getfieldfactory(field, fieldspec)
                 )
             elif fieldspec["fieldtype"] in (VFieldList, CFieldList, DataFieldList):
                 setattr(

@@ -107,18 +107,22 @@ lart.forms.util.inputConditionMatcher = function (nodes, comparisonValue, condit
     return null;
 }
 
-lart.forms.conditionalRequire = function (fieldName, targetId, value, condition = 'equal') {
+lart.forms.conditionalRequire = function (fieldName, targetName, value, condition = 'equal') {
     const collection = document.getElementsByName(fieldName);
-    const target = document.getElementById(targetId);
+    const targets = document.getElementsByName(targetName);
     // Multiselect elements (radio, checkbox, select(?))
     for(const node of collection) {
         const matchesCondition = lart.forms.util.inputConditionMatcher(node, value, condition);
         node.addEventListener('input',
             function (event) {
                 if(matchesCondition()) {
-                    target.required = true;
+                    for(const target of targets) {
+                        target.required = true;
+                    }
                 } else {
-                    target.required = false;
+                    for(const target of targets) {
+                        target.required = false;
+                    }
                 }
             }
         );
@@ -155,8 +159,10 @@ lart.forms.repeatBlock = function(containerId, pattern) {
         lart.forms.repeatBlocks[containerId]++;
     } else {
         lart.forms.repeatBlocks[containerId] = parseInt(code.matchAll(pattern).next().value[2]);
-        if(typeof(lart.forms.repeatBlocks[containerId]) != 'number') {
-            lart.forms.repeatBlocks[containerId] = 0;
+        if(typeof(lart.forms.repeatBlocks[containerId]) == 'number') {
+            lart.forms.repeatBlocks[containerId]++;
+        } else {
+            lart.forms.repeatBlocks[containerId] = 1;
         }
     }
     n = lart.forms.repeatBlocks[containerId];
@@ -294,12 +300,18 @@ lart.forms.getData = function (form) {
         } else {
             ref = field.id;
         }
-        // Convert checkboxes to booleans
+        console.log("Field type: ", field.getAttribute("type"))
         if (field.getAttribute("type") === "checkbox") {
+            // Convert checkboxes to booleans
             if (field.value === "on") {
                 data[ref] = true;
             } else {
                 data[ref] = false;
+            }
+        } else if (field.getAttribute("type") === "radio") {
+            // Only use checked value for radioboxes
+            if (field.checked) {
+                data[ref] = field.value
             }
         } else {
             data[ref] = field.value;
