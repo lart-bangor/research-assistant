@@ -24,8 +24,8 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 
 
 @eel.expose
-def atol_init(data: dict[Any, Any]):
-    print("HERE'S WHAT I'VE GOT:")
+def atol_rating(data: dict[Any, Any]):
+    print("ATOL DATA FROM INDEX.HTML:")
     print(data)
 
 @eel.expose
