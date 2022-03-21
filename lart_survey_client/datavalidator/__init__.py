@@ -219,7 +219,7 @@ class Validator:
 
     def __casefoldifstr(self, x: XT) -> XT:
         if isinstance(x, str):
-            return x.upper()
+            return x.casefold()
         return x
 
     def __trycall(
@@ -459,6 +459,7 @@ class Validator:
                 cval = True
             elif cdata in constraint[0]:
                 cval = False
+            print("  Determined value:", cval)
         cmp = cval is not None
         validation = ValidationResult(
             cmp,

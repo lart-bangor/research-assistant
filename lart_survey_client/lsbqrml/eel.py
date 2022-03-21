@@ -100,18 +100,18 @@ def setlsb(instid: int, data: dict[str, str]) -> int:
             location_key = f"otherPlacesName-{index}"
             start_key = f"otherPlacesFrom-{index}"
             end_key = f"otherPlacesTo-{index}"
-            if location_key in data:
-                location = data[location_key]
+            if location_key in datacopy:
+                location = datacopy[location_key]
                 del data[location_key]
             else:
                 location = ""
-            if start_key in data:
-                start = data[start_key]
+            if start_key in datacopy:
+                start = datacopy[start_key]
                 del data[start_key]
             else:
                 start = ""
-            if end_key in data:
-                end = data[end_key]
+            if end_key in datacopy:
+                end = datacopy[end_key]
                 del data[end_key]
             else:
                 end = ""
@@ -119,6 +119,9 @@ def setlsb(instid: int, data: dict[str, str]) -> int:
                 processed["residencies_location"].append(location)
                 processed["residencies_start"].append(start)
                 processed["residencies_end"].append(end)
+        if datacopy[key] is None:
+            print("!!!\nFIELD WITH KEY", key, "IS None\n!!!")
+            del data[key]
     processed.update(data)
     logger.debug(f"... preprocessed data: {processed!r}")
     instance.setlsb(processed)
