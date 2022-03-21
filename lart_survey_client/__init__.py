@@ -8,13 +8,11 @@ import gevent
 import sys
 import logging
 import argparse
-import datetime
 from pathlib import Path
 from typing import Any
-from datavalidator import DataValidationError
 import booteel
 import lsbqrml.eel  # type: ignore  # noqa: F401
-import atolc
+import atolc        # type: ignore  # noqa: F401
 
 
 # Set up logger for main runtime
@@ -26,6 +24,7 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 def atol_rating(data: dict[Any, Any]):
     print("ATOL DATA FROM INDEX.HTML:")
     print(data)
+
 
 def main():
     """App main function called on app launch."""

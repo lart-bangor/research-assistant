@@ -191,6 +191,6 @@ def store(instid: int) -> bool:
     instance = _getinstance(instid)
     logger.debug(f"LSBQ-RML instance id = {instid}")
     logger.debug(f"... asking to store instance {instance}")
-    logger.debug(f"... ERROR: storage not implemented yet!")
+    logger.debug("... ERROR: storage not implemented yet!")
     raise NotImplementedError()
     return True
