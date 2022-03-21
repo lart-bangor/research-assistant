@@ -2,8 +2,10 @@
 import eel
 from typing import Optional, Union, Callable, Any, TypeVar, cast
 from functools import wraps
-from lsbqrml import Response
-
+from lsbqrml import Response, logger
+import datetime
+from datavalidator.exceptions import DataValidationError
+import booteel
 
 # TypeVar for function wrappers
 F = TypeVar("F", bound=Callable[..., Any])
@@ -12,11 +14,20 @@ F = TypeVar("F", bound=Callable[..., Any])
 exceptionhandler: Optional[Callable[..., None]] = None
 
 # Keeps track of current Response instances
-instances: dict[str, Response] = {}
+instances: dict[int, Response] = {}
+
+
+def _getinstance(instid: Union[int, str]) -> Response:
+    if not isinstance(instid, int):
+        instid = int(instid)
+    if instid not in instances:
+        raise AttributeError(f"No current response instance with instid `{instid}`.")
+    return instances[instid]
 
 
 def _handleexception(exc: Exception) -> None:
     """Passes exception to exceptionhandler if defined, otherwise continues raising."""
+    logger.exception(exc)
     if exceptionhandler is not None:
         exceptionhandler(exc)
     else:
@@ -33,34 +44,45 @@ def _expose(func: F) -> F:
         try:
             return func(*args, **kwargs)
         except Exception as exc:
+            if isinstance(exc, DataValidationError):
+                booteel.modal(
+                    "Data Validation Error",
+                    exc.validator.tohtml(errorsonly=True)
+                )
+            else:
+                booteel.displayexception(exc)
             _handleexception(exc)
             return False
     eel._expose("_lsbqrml_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
-
 @_expose
-def init(data: dict[Any, Any]) -> str:
+def init(data: dict[str, Any]) -> int:
     """Initialises a new LSBQ-RML Response."""
+    logger.debug("Creating new LSBQ-RML instance..")
     instance = Response()
     instance.setmeta(
-        data["selectSurveyVersion"],
-        data["researcherId"],
-        data["researchLocation"],
-        data["participantId"],
-        data["confirmConsent"]
+        {
+            "version": data["selectSurveyVersion"],
+            "researcher_id": data["researcherId"],
+            "participant_id": data["participantId"],
+            "research_location": data["researchLocation"],
+            "consent": data["confirmConsent"],
+            "date": datetime.date.today().isoformat(),
+        }
     )
     instid = instance.getid()
     instances[instid] = instance
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... set 'meta' data to {instance.getmeta()}")
+    booteel.setlocation(f"lsb.html?instance={instance.getid()}")
     return instid
 
 
 @_expose
-def setlsb(instid: str, data: dict[Any, Any]) -> bool:
+def setlsb(instid: int, data: dict[str, Any]) -> int:
     """Adds Language and Social Background Data to a Response."""
-    if instid not in instances:
-        raise AttributeError(f"No current response instance with instid `{instid}`.")
-    instance = instances[instid]
+    instance = _getinstance(instid)
     instance.setlsb(
         data["sex"],
         data["sexOther"],
@@ -76,60 +98,99 @@ def setlsb(instid: str, data: dict[Any, Any]) -> bool:
         data["placesOfSignificantResidence"],
         data["educationLevel"]
     )
-    return True
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... set 'lsb' data to {instance.getlsb()}")
+    booteel.setlocation(f"ldb.html?instance={instance.getid()}")
+    return instid
 
 
 @_expose
-def setldb(instid: str, data: dict[Any, Any]) -> bool:
+def setldb(instid: int, data: dict[str, Any]) -> int:
     """Adds Language and Dialect Background Data to a Response."""
-    raise NotImplementedError()
-    return False
+    instance = _getinstance(instid)
+    instance.setldb(
+
+    )
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... set 'ldb' data to {instance.getldb()}")
+    booteel.setlocation(f"club.html?instance={instance.getid()}")
+    return instid
 
 
 @_expose
-def setclub(instid: str, data: dict[Any, Any]) -> bool:
+def setclub(instid: int, data: dict[Any, Any]) -> int:
     """Adds Community Language Use Behaviour Data to a Response."""
-    raise NotImplementedError()
-    return False
+    instance = _getinstance(instid)
+    instance.setclub(
+
+    )
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... set 'club' data to {instance.getclub()}")
+    booteel.setlocation(f"notes.html?instance={instance.getid()}")
+    return instid
 
 
 @_expose
-def setcomments(instid: str, data: dict[Any, Any]) -> bool:
+def setnotes(instid: int, data: dict[Any, Any]) -> int:
     """Adds Participant and Experimenter Comments Data to a Response."""
-    raise NotImplementedError()
-    return False
+    instance = _getinstance(instid)
+    instance.setnotes(
+
+    )
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... set 'notes' data to {instance.getnotes()}")
+    booteel.setlocation(f"finish.html?instance={instance.getid()}")
+    return instid
 
 
 @_expose
 def getversions() -> dict[str, str]:
     """Retrieves the available versions of the LSBQ RML."""
-    raise NotImplementedError()
-    return {}
+    return {
+        "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
+        "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
+        "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
+        "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
+    }
 
 
 @_expose
-def iscomplete() -> bool:
+def iscomplete(instid: int) -> bool:
     """Checks whether a Response is complete."""
-    raise NotImplementedError()
-    return False
+    instance = _getinstance(instid)
+    completeness = instance.iscomplete()
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... checking complete: {completeness}")
+    return completeness
 
 
 @_expose
-def getmissing() -> list[str]:
+def getmissing(instid: int) -> list[str]:
     """Gets a list of missing fields."""
-    raise NotImplementedError()
-    return False
+    instance = _getinstance(instid)
+    missing = instance.missing()
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... checking missing fields: {missing}")
+    return missing
 
 
 @_expose
-def discard() -> bool:
+def discard(instid: int) -> bool:
     """Discards a Response."""
-    raise NotImplementedError()
-    return False
+    if instid not in instances:
+        raise AttributeError(f"No current response instance with instid `{instid}`.")
+    del instances[instid]
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... discarded instance with id {instid}")
+    return True
 
 
 @_expose
-def store() -> bool:
+def store(instid: int) -> bool:
     """Submits a (complete) Response for long-term storage."""
+    instance = _getinstance(instid)
+    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"... asking to store instance {instance}")
+    logger.debug(f"... ERROR: storage not implemented yet!")
     raise NotImplementedError()
-    return False
+    return True

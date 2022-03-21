@@ -3,18 +3,18 @@
 An app to collect survey-type data for research on regional and minority languages,
 developed by the Language Attitudes Research Team at Bangor University.
 """
-from winreg import HKEY_LOCAL_MACHINE
 import eel
 import gevent
 import sys
 import logging
 import argparse
-import booteel
 import datetime
 from pathlib import Path
 from typing import Any
 from datavalidator import DataValidationError
+import booteel
 import lsbqrml
+import lsbqrml.eel
 import atolc
 
 
@@ -28,21 +28,7 @@ def atol_init(data: dict[Any, Any]):
     print("HERE'S WHAT I'VE GOT:")
     print(data)
 
-
-@eel.expose  # type: ignore
-def lsbq_rml_get_versions():
-    """Get versions for LsbqRml."""
-    try:
-        return {
-            "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
-            "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
-            "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
-            "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
-        }
-    except Exception as exc:
-        booteel.displayexception(exc)
-
-@eel.expose  # type: ignore
+@eel.expose
 def lsbq_rml_init(data: dict[Any, Any]):
     """Initialise new LsbqRml."""
     try:
@@ -68,8 +54,6 @@ def lsbq_rml_init(data: dict[Any, Any]):
     except Exception as exc:
         booteel.displayexception(exc)
     return False
-
-
 
 
 def main():
@@ -101,7 +85,7 @@ def main():
 
     # Run app using eel
     eel.init(  # type: ignore
-        Path(__file__).parent / "web",
+        str(Path(__file__).parent / "web"),
         allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png"]
     )
     eel.start(  # type: ignore
