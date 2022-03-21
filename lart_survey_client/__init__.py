@@ -13,8 +13,7 @@ from pathlib import Path
 from typing import Any
 from datavalidator import DataValidationError
 import booteel
-import lsbqrml
-import lsbqrml.eel
+import lsbqrml.eel  # type: ignore  # noqa: F401
 import atolc
 
 
@@ -27,34 +26,6 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 def atol_rating(data: dict[Any, Any]):
     print("ATOL DATA FROM INDEX.HTML:")
     print(data)
-
-@eel.expose
-def lsbq_rml_init(data: dict[Any, Any]):
-    """Initialise new LsbqRml."""
-    try:
-        instance = lsbqrml.Response()
-        instance.setmeta(
-            {
-                "version": data["selectSurveyVersion"],
-                "researcher_id": data["researcherId"],
-                "participant_id": data["participantId"],
-                "research_location": data["researchLocation"],
-                "consent": data["confirmConsent"],
-                "date": datetime.date.today().isoformat(),
-            }
-        )
-        print("That's it: ", instance.data(includemissing=True))
-        booteel.setlocation(f"part1.html?instance={instance.getid()}")
-        return True
-    except DataValidationError as exc:
-        booteel.modal(
-            "Data Validation Error",
-            exc.validator.tohtml(errorsonly=True)
-        )
-    except Exception as exc:
-        booteel.displayexception(exc)
-    return False
-
 
 def main():
     """App main function called on app launch."""

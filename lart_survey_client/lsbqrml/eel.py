@@ -56,7 +56,7 @@ def _expose(func: F) -> F:
     eel._expose("_lsbqrml_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
-@_expose
+
 def init(data: dict[str, Any]) -> int:
     """Initialises a new LSBQ-RML Response."""
     logger.debug("Creating new LSBQ-RML instance..")

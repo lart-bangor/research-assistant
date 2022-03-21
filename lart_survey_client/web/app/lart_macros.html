@@ -1,7 +1,6 @@
 {# Use with {% from 'lart_macros.html' import lart_form_pipeline %} #}
 {% macro lart_form_pipeline(name, target) -%}
     <script type="text/javascript">
-        lart.forms.requireValidation(true);
         lart.forms.registerPipeline(
             '{{ name }}', //'surveyDataForm',
             async function(data) {

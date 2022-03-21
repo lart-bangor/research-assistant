@@ -1,11 +1,12 @@
-{% extends 'base.html' %}
-{% set eel_forms = true %}
+{%- set lart_forms = true %}
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
 {% block title %}LART Survey Client - LSBQ-RML - Language and Social Background{% endblock %}
 {% block headline %}Language and Social Background Questionnaire (RML){% endblock %}
 {% block head_scripts %}
-<script type="text/javascript">
-    lsbqRmlInstanceId = parseInt(lart.forms.searchParams.get('instance'));
-</script>
+    <script type="text/javascript">
+        lsbqRmlInstanceId = parseInt(lart.forms.searchParams.get('instance'));
+    </script>
 {% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
@@ -23,7 +24,7 @@
         <div class="row m-2 text-center">
             <h2>Language and Social Background</h2>
         </div>
-        <form id="surveyLSBForm" class="m-2 needs-validation" autocomplete="off" action="part2.html">
+        <form id="surveyLSBForm" class="m-2 needs-validation" autocomplete="off">
 
             <!-- 1. Sex -->
             <fieldset class="row mb-3" id="sex" required>
@@ -245,4 +246,6 @@
         </form>
     </article>
 {% endblock %}
-{% block tail_scripts %}{% endblock %}
+{% block tail_scripts %}
+    {{ lart_form_pipeline('surveyLSBForm', '_lsbqrml_lsb') }}
+{% endblock %}
