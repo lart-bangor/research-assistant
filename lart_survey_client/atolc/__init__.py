@@ -16,7 +16,7 @@ def init_atol(data: dict[Any, Any]):
     print("Basic info from index.html: ")
     print(data)
     
-#does teh same as init_atol, but for part1.html
+#does the same as init_atol, but for part1.html
 @eel.expose
 def grab_atol_ratings(data: dict[Any, Any]):
     #global version
