@@ -8,6 +8,72 @@ import booteel  # ModuleNotFoundError: No module named 'lart_survey_client'
 import eel
 from . import patterns
 
+#retrieve initial info from index.html
+@eel.expose
+def init_atol(data: dict[Any, Any]):
+    global version
+    version = data.get("selectSurveyVersion")
+    print("Basic info from index.html: ")
+    print(data)
+    
+#does teh same as init_atol, but for part1.html
+@eel.expose
+def grab_atol_ratings(data: dict[Any, Any]):
+    #global version
+    #version = data.get("selectSurveyVersion")
+    print("AToL ratings from part1.html: ")
+    print(data)
+
+
+#UNUSED set version based on values passed on from the JS in index.html
+@eel.expose
+def set_atol_version(data: dict[Any, Any]):
+    print("full dict is ")
+    print(data)
+    global version
+    version = data.get("selectSurveyVersion")
+             
+@eel.expose
+def get_atol_version():
+    test_version = version
+    print("test version is: " + test_version)
+    return test_version
+
+
+    if  version == "CymEng_Eng_GB":
+        title = "Language Questionnaire"
+        language = "English"
+        rml = "Welsh"
+        instruction = "Please move the slider to record your choice."
+        language_header = "The English language is..."
+        rml_header = "The Welsh language is..."
+        atol_header = "AToL Questionnaire (RML)"
+        btn_text = "Next"
+    elif version == "LmoIta_Ita_IT":
+        title = "Questionario Linguistico"
+        language = "Italiano"
+        rml = "lombardo"
+        instruction = "Si prega di spostare il cursore per registrare la propria scelta."
+        language_header = "La lingua italiana è..."
+        rml_header = "il lombardo è..."
+        atol_header = "Questionario AToL (RML)"
+        btn_text = "Avanti"
+
+    elif version == "LtzGer_Ger_BE":
+        title = "Sprachlicher Fragebogen"
+        language = "Deutch"
+        rml = "Moselfränkisch"
+        instruction = "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??."
+        rml_header = "Moselfränkisch ist..."
+        language_header = "Die deutsche Sprache ist..."
+        atol_header = "AToL Fragebogen (RML)"
+        btn_text = "Weiter"
+
+    
+
+
+
+
 _rating_adjectives = (
     "logical",
     "elegant",
@@ -67,7 +133,7 @@ def atol_c_get_items(version):
          "logic":       ("logisch",     "unlogisch"),
         "elegance":     ("stillos",     "stilvoll"),
         "fluency":      ("stockend",    "fließend"),
-        "ambiguity":    ("eindeutig",    "missverständlich"),  #something goes wrong here, and only "e" adn "i" appear in html output
+        "ambiguity":    ("eindeutig",    "missverständlich"),  
         "appeal":       ("anziehend",   "abstoßend"),
         "structure":    ("stukturlos",  "sturkturiert"),
         "precision":    ("genau",       "ungenau"),
