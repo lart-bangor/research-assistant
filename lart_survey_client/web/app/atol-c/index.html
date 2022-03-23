@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% set lart_forms = true %}
+{%- from 'lart_macros.html' import lart_form_pipeline %}
 {% block title %}LART Survey Client - AToL-RML{% endblock %}
 {% block headline %}AToL-RML{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
     function loadSurveyVersions() {
-        availableVersions = eel.lsbq_rml_get_versions()(populateSurveyVersions); //this will probably need to be changed to a more generic "survey_rml_get_versions", 
+        availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions); //this will probably need to be changed to a more generic "survey_rml_get_versions", 
                                                                                 //or hard-coded for each questionnaire.
     }
     
@@ -46,7 +47,7 @@
         <div class="container-fluid p-2 text-center">
             <h2>AToL: Language Questionnaire (RML)</h2>
         </div>
-        <form id="surveyDataForm" class="p-2 needs-validation" onsubmit="recordData()">
+        <form id="surveyAtolDataForm" class="p-2 needs-validation" action="part1.html" onsubmit="recordData();">
             <div class="mb-3">
                 <label for="selectSurveyVersion" class="form-label">Select AToL-RML version:</label>
                 <select id="selectSurveyVersion" class="form-select" required>
@@ -102,7 +103,7 @@
 <script type="text/javascript">
     lart.forms.requireValidation(true);
     lart.forms.registerPipeline(
-        'surveyDataForm',
+        'surveyAtolDataForm',
         async function(data) {
 
             let success = await eel.init_atol(data)();
@@ -111,4 +112,6 @@
         }
     );
 </script>
+
+
 {% endblock %}
