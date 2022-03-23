@@ -1,0 +1,17 @@
+{# Use with {% from 'lart_macros.html' import lart_form_pipeline %} #}
+{% macro lart_form_pipeline(name, target) -%}
+    <script type="text/javascript">
+        lart.forms.registerPipeline(
+            '{{ name }}',
+            async function(data) {
+                let InstanceId = parseInt(lart.forms.searchParams.get('instance'));
+                if ( isNaN(InstanceId) ) {
+                    let success = await eel.{{ target }}(data)();
+                } else {
+                    let success = await eel.{{ target }}(InstanceId, data)();
+                }
+                console.debug(success);
+            }
+        );
+    </script>
+{%- endmacro %}

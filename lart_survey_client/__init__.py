@@ -3,19 +3,16 @@
 An app to collect survey-type data for research on regional and minority languages,
 developed by the Language Attitudes Research Team at Bangor University.
 """
-from winreg import HKEY_LOCAL_MACHINE
 import eel
 import gevent
 import sys
 import logging
 import argparse
-import booteel
-import datetime
 from pathlib import Path
 from typing import Any
-from datavalidator import DataValidationError
-import lsbqrml
-import atolc
+import booteel
+import lsbqrml.eel  # type: ignore  # noqa: F401
+import atolc        # type: ignore  # noqa: F401
 
 
 # Set up logger for main runtime
@@ -27,49 +24,6 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 def atol_rating(data: dict[Any, Any]):
     print("ATOL DATA FROM INDEX.HTML:")
     print(data)
-
-
-@eel.expose  # type: ignore
-def lsbq_rml_get_versions():
-    """Get versions for LsbqRml."""
-    try:
-        return {
-            "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
-            "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
-            "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
-            "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
-        }
-    except Exception as exc:
-        booteel.displayexception(exc)
-
-@eel.expose  # type: ignore
-def lsbq_rml_init(data: dict[Any, Any]):
-    """Initialise new LsbqRml."""
-    try:
-        instance = lsbqrml.Response()
-        instance.setmeta(
-            {
-                "version": data["selectSurveyVersion"],
-                "researcher_id": data["researcherId"],
-                "participant_id": data["participantId"],
-                "research_location": data["researchLocation"],
-                "consent": data["confirmConsent"],
-                "date": datetime.date.today().isoformat(),
-            }
-        )
-        print("That's it: ", instance.data(includemissing=True))
-        booteel.setlocation(f"part1.html?instance={instance.getid()}")
-        return True
-    except DataValidationError as exc:
-        booteel.modal(
-            "Data Validation Error",
-            exc.validator.tohtml(errorsonly=True)
-        )
-    except Exception as exc:
-        booteel.displayexception(exc)
-    return False
-
-
 
 
 def main():
@@ -101,7 +55,7 @@ def main():
 
     # Run app using eel
     eel.init(  # type: ignore
-        Path(__file__).parent / "web",
+        str(Path(__file__).parent / "web"),
         allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png"]
     )
     eel.start(  # type: ignore

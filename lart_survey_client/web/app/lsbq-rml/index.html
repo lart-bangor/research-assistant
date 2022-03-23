@@ -1,23 +1,24 @@
-{% extends 'base.html' %}
-{% set eel_forms = true %}
+{%- set lart_forms = true %}
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
 {% block title %}LART Survey Client - LSBQ-RML{% endblock %}
 {% block headline %}LSBQ-RML{% endblock %}
 {% block head_scripts %}
-<script type="text/javascript">
-    function loadSurveyVersions() {
-        availableVersions = eel.lsbq_rml_get_versions()(populateSurveyVersions);
-    }
-
-    function populateSurveyVersions(versions) {
-        select = document.getElementById('selectSurveyVersion');
-        for(version in versions) {
-            option = document.createElement('option');
-            option.setAttribute('value', version);
-            option.appendChild(document.createTextNode(versions[version]))
-            select.appendChild(option);
+    <script type="text/javascript">
+        function loadSurveyVersions() {
+            availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions);
         }
-    }
-</script>
+
+        function populateSurveyVersions(versions) {
+            select = document.getElementById('selectSurveyVersion');
+            for(version in versions) {
+                option = document.createElement('option');
+                option.setAttribute('value', version);
+                option.appendChild(document.createTextNode(versions[version]))
+                select.appendChild(option);
+            }
+        }
+    </script>
 {% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
@@ -84,4 +85,6 @@
         </form>
     </article>
 {% endblock %}
-{% block tail_scripts %}{% endblock %}
+{% block tail_scripts %}
+    {{ lart_form_pipeline('surveyDataForm', '_lsbqrml_init') }}
+{% endblock %}

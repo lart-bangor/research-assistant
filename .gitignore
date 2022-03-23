@@ -17,6 +17,7 @@ __pycache__/*
 
 # Custom typings for Pyright/Pylance
 /typings/
+/.typings/
 
 # Pytest
 /.pytest_cache/
@@ -35,7 +36,12 @@ pylint-report.txt
 *.local.*
 
 # VSCode configuration
-/.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
 
 # Don't include docs for now (remove later)
 docs/*

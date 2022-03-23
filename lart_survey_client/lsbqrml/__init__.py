@@ -1,10 +1,13 @@
 """Data structures for the Language and Social Background Questionnaire (RML)."""
-from typing import Any, Optional
-import datetime
+from typing import Any, Optional, TYPE_CHECKING
 import sys
 from datavalidator.schemas import DataSchema
 from datavalidator.types import EnumT, PolarT
+import logging
 from . import patterns
+
+logger = logging.getLogger(__name__)
+
 
 class Response(DataSchema):
     """Class for representing the data of an LSBQ-RML questionnaire response."""
@@ -166,10 +169,40 @@ class Response(DataSchema):
             id_ = hash(self)
         self.setid(id_)
 
-    # def setmeta(self, data: dict[str, Any]) -> None:
-    #     """Sets the metadata for the response."""
-    #     # Fill in today's date if not supplied
-    #     if "date" not in data or data["date"] is None:
-    #         data["date"] = datetime.date.today().isoformat()
-    #     print("Setting metadata:", data)
-    #     super().setmeta(data)
+    if TYPE_CHECKING:  # noqa: C901
+
+        def setid(self, id: int) -> None:
+            ...
+
+        def getid(self) -> int:
+            ...
+
+        def setmeta(self, *args: Any) -> None:
+            ...
+
+        def getmeta(self) -> dict[str, Any]:
+            ...
+
+        def setlsb(self, *args: Any) -> None:
+            ...
+
+        def getlsb(self) -> dict[str, Any]:
+            ...
+
+        def setldb(self, *args: Any) -> None:
+            ...
+
+        def getldb(self) -> dict[str, Any]:
+            ...
+
+        def setclub(self, *args: Any) -> None:
+            ...
+
+        def getclub(self) -> dict[str, Any]:
+            ...
+
+        def setnotes(self, *args: Any) -> None:
+            ...
+
+        def getnotes(self) -> dict[str, Any]:
+            ...

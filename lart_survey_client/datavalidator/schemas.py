@@ -405,8 +405,8 @@ class DataSchema:
             vr = Validator(forcecast=self.forcecast, ignorecase=self.ignorecase)
             missingfields: list[str] = []
             for key in fieldspecs:
-                if key not in data:
-                    data[key] = None
+                if key not in data and fieldspecs[key]["required"]:
+                    missingfields.append(key)
             if missingfields:
                 raise ValueError(
                     f"Data parameter is missing required field(s): {missingfields}."
@@ -420,27 +420,28 @@ class DataSchema:
                         f"The field `{key}` is required but the passed value is "
                         "None, an empty list, or missing."
                     )
-                fieldtype = fieldspec["fieldtype"]
-                if fieldtype == VField:
-                    filtered[key] = self._autovalidate(vr, fieldspec, value).data
-                elif fieldtype == VFieldList:
-                    filtered[key] = [
-                        self._autovalidate(vr, fieldspec, v).data for v in value
-                    ]
-                elif fieldtype == CField:
-                    filtered[key] = self._customvalidate(vr, fieldspec, value).data
-                elif fieldtype == CFieldList:
-                    filtered[key] = [
-                        self._customvalidate(vr, fieldspec, v).data for v in value
-                    ]
-                elif fieldtype == DataField:
-                    filtered[key] = value
-                elif fieldtype == DataFieldList:
-                    filtered[key] = list(value)
                 else:
-                    raise AttributeError(
-                        f"The field `{key}` has unexpected fieldtype `{fieldtype}`."
-                    )
+                    fieldtype = fieldspec["fieldtype"]
+                    if fieldtype == VField:
+                        filtered[key] = self._autovalidate(vr, fieldspec, value).data
+                    elif fieldtype == VFieldList:
+                        filtered[key] = [
+                            self._autovalidate(vr, fieldspec, v).data for v in value
+                        ]
+                    elif fieldtype == CField:
+                        filtered[key] = self._customvalidate(vr, fieldspec, value).data
+                    elif fieldtype == CFieldList:
+                        filtered[key] = [
+                            self._customvalidate(vr, fieldspec, v).data for v in value
+                        ]
+                    elif fieldtype == DataField:
+                        filtered[key] = value
+                    elif fieldtype == DataFieldList:
+                        filtered[key] = list(value)
+                    else:
+                        raise AttributeError(
+                            f"The field `{key}` has unexpected fieldtype `{fieldtype}`."
+                        )
             vr.raiseif()
             for key, value in filtered.items():
                 self.__data[gname][key] = value
@@ -586,10 +587,10 @@ class DataSchema:
                     cls, f"set{field}", DataSchema.__setfieldfactory(field, fieldspec)
                 )
                 setattr(
-                    cls, f"del{field}", DataSchema.__getfieldfactory(field, fieldspec)
+                    cls, f"del{field}", DataSchema.__delfieldfactory(field, fieldspec)
                 )
                 setattr(
-                    cls, f"get{field}", DataSchema.__delfieldfactory(field, fieldspec)
+                    cls, f"get{field}", DataSchema.__getfieldfactory(field, fieldspec)
                 )
             elif fieldspec["fieldtype"] in (VFieldList, CFieldList, DataFieldList):
                 setattr(

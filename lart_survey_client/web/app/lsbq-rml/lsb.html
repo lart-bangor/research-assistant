@@ -1,12 +1,9 @@
-{% extends 'base.html' %}
-{% set eel_forms = true %}
+{%- set lart_forms = true %}
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
 {% block title %}LART Survey Client - LSBQ-RML - Language and Social Background{% endblock %}
 {% block headline %}Language and Social Background Questionnaire (RML){% endblock %}
-{% block head_scripts %}
-<script type="text/javascript">
-    lsbqRmlInstanceId = parseInt(lart.forms.searchParams.get('instance'));
-</script>
-{% endblock %}
+{% block head_scripts %}{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
@@ -23,28 +20,30 @@
         <div class="row m-2 text-center">
             <h2>Language and Social Background</h2>
         </div>
-        <form id="surveyLSBForm" class="m-2 needs-validation" autocomplete="off" action="part2.html">
+        <form id="surveyLSBForm" class="m-2 needs-validation" autocomplete="off">
 
             <!-- 1. Sex -->
-            <fieldset class="row mb-3" id="sex" required>
+            <fieldset class="row mb-3">
                 <legend class="col-form-label col-auto pt-0">Sex:</legend>
                 <div class="col-sm">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="sexFemale" value="F" />
+                        <input class="form-check-input" type="radio" name="sex" id="sexFemale" value="F" required />
                         <label class="form-check-label" for="sexFemale">Female</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="sexMale" value="M" />
+                        <input class="form-check-input" type="radio" name="sex" id="sexMale" value="M" required />
                         <label class="form-check-label" for="sexMale">Male</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="sexOther" value="O" />
-                        <label class="form-check-label" for="sexOther">Other</label>
-                        <div id="sexOtherSpecifyCollapse" class="d-inline collapse">
-                            <input id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" placeholder="Specify..." aria-label="Specify sex, if other." />
+                        <input class="form-check-input" type="radio" name="sex" id="sexOther" value="O" required />
+                        <label class="form-check-label align-text-top" for="sexOther">Other</label>
+                        <div id="sexOtherSpecifyCollapse" class="d-inline-block align-text-top collapse">
+                            <input name="sex_other" id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" placeholder="Specify..." aria-label="Specify sex, if other." />
+                            <div class="invalid-feedback">Please briefly specify what other sex you identify with.</div>
                         </div>
+                        <div class="invalid-feedback invalid-radio">Please select an option for <i>Sex</i>.</div>
                         <script type="text/javascript">
-                            lart.forms.conditionalRequire('sex', 'sexOtherSpecify', 'O');
+                            lart.forms.conditionalRequire('sex', 'sex_other', 'O');
                             lart.forms.conditionalDisplay('sex', 'sexOtherSpecify', 'O');
                         </script>
                     </div>
@@ -56,20 +55,22 @@
                 <label for="occupation" class="col-form-label col-auto">Occupation:</label>
                 <div class="col-sm">
                   <input type="text" class="form-control" id="occupation" required />
+                  <div class="invalid-feedback">Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, &mldr;</div>
                 </div>
             </div>
 
             <!-- 3. Handedness -->
-            <fieldset class="row mb-3" required>
+            <fieldset class="row mb-3">
                 <legend class="col-form-label col-auto pt-0">Handedness:</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="handedness" id="handednessLeft" value="L" />
+                        <input class="form-check-input" type="radio" name="handedness" id="handednessLeft" value="L" required />
                         <label class="form-check-label" for="handednessLeft">Left</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="handedness" id="handednessRight" value="R" />
+                        <input class="form-check-input" type="radio" name="handedness" id="handednessRight" value="R" required />
                         <label class="form-check-label" for="handednessRight">Right</label>
+                        <div class="invalid-feedback invalid-radio">Please indicate whether you are <i>left-</i> or <i>righthanded</i>.</div>
                     </div>
                 </div>
             </fieldset>
@@ -78,24 +79,26 @@
             <div class="row mb-3">
                 <label for="dateOfBirth" class="col-form-label col-sm-auto">Date of birth:</label>
                 <div class="col-sm-auto">
-                  <input type="date" class="form-control" id="dateOfBirth" min="1922-01-01" required />
-                  <script type="text/javascript">
-                    booteel.DOM.setAttribute('dateOfBirth', 'max', booteel.today.iso.YEAR_MONTH_DAY);
-                </script>
+                    <input type="date" class="form-control" name="date_of_birth" id="dateOfBirth" min="1922-01-01" required />
+                    <script type="text/javascript">
+                        booteel.DOM.setAttribute('dateOfBirth', 'max', booteel.today.iso.YEAR_MONTH_DAY);
+                    </script>
+                    <div class="invalid-feedback">Please give your <i>date of birth</i> (must be in the past).</div>
                 </div>
             </div>
 
             <!-- 5. Hearing problems -->
-            <fieldset class="row mb-3" required>
-                <legend class="col-form-label col-sm-auto pt-0">Do you have hearing problems?</legend>
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-auto pt-0">Do you have impaired hearing?</legend>
                 <div class="col-sm-auto">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hearingProblemYN" id="hearingProblemYes" value="yes" />
+                        <input class="form-check-input" type="radio" name="hearing_impairment" id="hearingProblemYes" value="yes" required />
                         <label class="form-check-label" for="hearingProblemYes">Yes</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hearingProblemYN" id="hearingProblemNo" value="no" />
+                        <input class="form-check-input" type="radio" name="hearing_impairment" id="hearingProblemNo" value="no" required />
                         <label class="form-check-label" for="hearingProblemNo">No</label>
+                    <div class="invalid-feedback invalid-radio">Please indicate whether you have any difficulties with your hearing.</div>
                     </div>
                 </div>
             </fieldset>
@@ -103,31 +106,33 @@
                 <legend class="col-form-label col-sm-auto pt-0">If <strong>yes</strong>, do you wear a hearing aid?</legend>
                 <div class="col-sm-auto">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hearingYN" id="hearingAidYes" value="yes" />
+                        <input class="form-check-input" type="radio" name="hearing_aid" id="hearingAidYes" value="yes" />
                         <label class="form-check-label" for="hearingYes">Yes</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hearingAidYN" id="hearingAidNo" value="no" />
+                        <input class="form-check-input" type="radio" name="hearing_aid" id="hearingAidNo" value="no" />
                         <label class="form-check-label" for="hearingAidNo">No</label>
+                        <div class="invalid-feedback invalid-radio">Please indicate whether you use a hearing aid or not.</div>
                     </div>
                 </div>
             </fieldset>
             <script type="text/javascript">
-                lart.forms.conditionalRequire('hearingProblemYN', 'hearingAid', 'yes');
-                lart.forms.conditionalDisplay('hearingProblemYN', 'hearingAid', 'yes');
+                lart.forms.conditionalRequire('hearing_impairment', 'hearing_aid', 'yes');
+                lart.forms.conditionalDisplay('hearing_impairment', 'hearingAid', 'yes');
             </script>
 
             <!-- 6. Vision problems -->
-            <fieldset class="row mb-3" required>
-                <legend class="col-form-label col-sm-auto pt-0">Do you have vision problems?</legend>
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-auto pt-0">Do you have impaired vision?</legend>
                 <div class="col-sm-auto">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visionProblemYN" id="visionProblemYes" value="yes" />
+                        <input class="form-check-input" type="radio" name="vision_impairment" id="visionProblemYes" value="yes" required />
                         <label class="form-check-label" for="visionProblemYes">Yes</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visionProblemYN" id="visionProblemNo" value="no" />
+                        <input class="form-check-input" type="radio" name="vision_impairment" id="visionProblemNo" value="no" required />
                         <label class="form-check-label" for="visionProblemNo">No</label>
+                        <div class="invalid-feedback invalid-radio">Please indicate whether you have a vision impairment or not.</div>
                     </div>
                 </div>
             </fieldset>
@@ -135,42 +140,45 @@
                 <legend class="col-form-label col-sm-auto pt-0">If <strong>yes</strong>, do you wear glasses/contacts?</legend>
                 <div class="col-sm-auto">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visionGlassesYN" id="visionGlassesYes" value="yes" />
+                        <input class="form-check-input" type="radio" name="vision_aid" id="visionGlassesYes" value="yes" />
                         <label class="form-check-label" for="visionGlassesYes">Yes</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visionGlassesYN" id="visionGlassesNo" value="no" />
+                        <input class="form-check-input" type="radio" name="vision_aid" id="visionGlassesNo" value="no" />
                         <label class="form-check-label" for="visionGlassesNo">No</label>
+                        <div class="invalid-feedback invalid-radio">Please indicate whether you use a vision aid such as glasses or contact lenses.</div>
                     </div>
                 </div>
             </fieldset>
             <script type="text/javascript">
-                lart.forms.conditionalRequire('visionProblemYN', 'visionGlasses', 'yes');
-                lart.forms.conditionalDisplay('visionProblemYN', 'visionGlasses', 'yes');
+                lart.forms.conditionalRequire('vision_impairment', 'vision_aid', 'yes');
+                lart.forms.conditionalDisplay('vision_impairment', 'visionGlasses', 'yes');
             </script>
             <fieldset class="row mb-3 ms-5" id="visionCorrected">
                 <legend class="col-form-label col-sm-auto pt-0">Do they correct your vision to normal?</legend>
                 <div class="col-sm-auto">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visionCorrectedYN" id="visionCorrectedYes" value="yes" />
+                        <input class="form-check-input" type="radio" name="vision_fully_corrected" id="visionCorrectedYes" value="yes" />
                         <label class="form-check-label" for="visionGlassesYes">Yes</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visionCorrectedYN" id="visionCorrectedNo" value="no" />
+                        <input class="form-check-input" type="radio" name="vision_fully_corrected" id="visionCorrectedNo" value="no" />
                         <label class="form-check-label" for="visionCorrectedNo">No</label>
+                        <div class="invalid-feedback invalid-radio">Please indicate whether, using your vision aid, your vision is fully corrected to normal.</div>
                     </div>
                 </div>
             </fieldset>
             <script type="text/javascript">
-                lart.forms.conditionalRequire('visionGlassesYN', 'visionCorrected', 'yes');
-                lart.forms.conditionalDisplay('visionGlassesYN', 'visionCorrected', 'yes');
+                lart.forms.conditionalRequire('vision_aid', 'vision_fully_corrected', 'yes');
+                lart.forms.conditionalDisplay('vision_aid', 'visionCorrected', 'yes');
             </script>
 
             <!-- 7. Place of birth -->
             <div class="row mb-3">
                 <label for="placeOfBirth" class="col-form-label col-auto">Place of birth:</label>
                 <div class="col-sm">
-                  <input type="text" class="form-control" id="placeOfBirth" required />
+                  <input type="text" class="form-control" name="place_of_birth" id="placeOfBirth" required />
+                  <div class="invalid-feedback">Please give your (approximate) <i>place of birth</i>, e.g. <i>Madrid, Spain</i>.</div>
                   <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
                 </div>
             </div>
@@ -205,31 +213,32 @@
             </div>
 
             <!-- 9. Level of education -->
-            <fieldset required>
+            <fieldset id="levelOfEducation">
                 <div class="row">
                     <legend class="col-form-label col-auto pt-0">Please indicate the highest level of education you have achieved:</legend>
                 </div>
                 <div class="row-mb-3">
                     <div class="col ms-5">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation1" value="1" />
+                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation1" value="1" required />
                             <label class="form-check-label" for="levelOfEducation1">EQF Level 1</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation2" value="2" />
+                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation2" value="2" required />
                             <label class="form-check-label" for="levelOfEducation2">EQF Level 2-3</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation2" value="3" />
-                            <label class="form-check-label" for="levelOfEducation2">EQF Level 4</label>
+                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation3" value="3" required />
+                            <label class="form-check-label" for="levelOfEducation3">EQF Level 4</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation2" value="4" />
-                            <label class="form-check-label" for="levelOfEducation2">EQF Level 5-6</label>
+                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation4" value="4" required />
+                            <label class="form-check-label" for="levelOfEducation4">EQF Level 5-6</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducation2" value="5" />
-                            <label class="form-check-label" for="levelOfEducation2">EQF Level 7-8</label>
+                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation5" value="5" required />
+                            <label class="form-check-label" for="levelOfEducation5">EQF Level 7-8</label>
+                            <div class="invalid-feedback invalid-radio">Please indicate the highest level of education from the list that you have achieved (or the approximate equivalent).</div>
                         </div>
                     </div> 
                 </div>
@@ -245,4 +254,6 @@
         </form>
     </article>
 {% endblock %}
-{% block tail_scripts %}{% endblock %}
+{% block tail_scripts %}
+    {{ lart_form_pipeline('surveyLSBForm', '_lsbqrml_setlsb') }}
+{% endblock %}
