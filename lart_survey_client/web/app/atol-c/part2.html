@@ -1,75 +1,30 @@
 {% extends 'base.html' %}
 {% set eel_forms = true %}
 {% block title %}AToL-RML {% endblock %}
+{% block headline %}<script type="text/javascript">document.write(title)</script>{% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
 atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
-chosenVersion = sessionStorage.getItem("atolVersion");
+const chosenVersion = sessionStorage.getItem("version");
+const title = sessionStorage.getItem("title");
+const language = sessionStorage.getItem("language");
+const rml = sessionStorage.getItem("rml");
+const instruction = sessionStorage.getItem("instruction");
+const rml_header = sessionStorage.getItem("rml_header");
+const atol_header = sessionStorage.getItem("atol_header");
+const btn_text = sessionStorage.getItem("btn_text");
 
-async function get_data_from_python() {
-    let version = await eel.get_atol_version()();
-    console.log(version);
-    }
-
-console.log("Promise [eyeroll] or data [smile]? " + get_data_from_python());
-
-
-//eel.get_atol_version()(function(data_from_index){myversion = data_from_index});
-
-
-//const version = get_atol_js_version();
-
-
-// instructions to be outputed depending on language selection
-if (chosenVersion == "CymEng_Eng_GB") {
-    sessionStorage.setItem("version", "CymEng_Eng_GB");
-    sessionStorage.setItem("title", "Language Questionnaire");
-    sessionStorage.setItem("language", "English");
-    sessionStorage.setItem("rml", "Welsh"),
-    sessionStorage.setItem("instruction", "Please move the slider to record your choice.");
-    sessionStorage.setItem("language_header", "The English language is...");
-    sessionStorage.setItem("rml_header", "The Welsh language is...");
-    sessionStorage.setItem("atol_header", "AToL Questionnaire (RML)");
-    sessionStorage.setItem("btn_text", "Next");
-    title = sessionStorage.getItem("title");
-    language = sessionStorage.getItem("language");
-    rml = sessionStorage.getItem("rml");
-    instruction = sessionStorage.getItem("instruction");
-    language_header = sessionStorage.getItem("language_header");
-    rml_header = sessionStorage.getItem("rml_header");
-    atol_header = sessionStorage.getItem("atol_header");
-    btn_text = sessionStorage.getItem("btn_text");
-              
-} else if (chosenVersion == "LmoIta_Ita_IT") {
-    title = "Questionario Linguistico";
-    language = "Italiano";
-    rml = "lombardo";
-    instruction = "Si prega di spostare il cursore per registrare la propria scelta.";
-    language_header = "La lingua italiana è...";
-    atol_header = "Questionario AToL (RML)";
-    btn_text = "Avanti";
-
-} else if (chosenVersion == "LtzGer_Ger_BE") {
-    title = "Sprachlicher Fragebogen";
-    language = "Deutch";
-    rml = "Moselfränkisch";
-    instruction = "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??.";
-    language_header = "Die deutsche Sprache ist...";
-    atol_header = "AToL Fragebogen (RML)";
-    btn_text = "Weiter";
-
-}
 
 populateAtolItems = function (atolItems) {
     const element = document.getElementById('AtolRatingScales');
     for(key in atolItems) {
-        let language = sessionStorage.getItem("language");
-        let code = '<fieldset id="fieldset' + language + key + '">' +
-            '<label class="row mb-0" for="rating' + language + '_' + key + '">' +
+        
+        let code = '<fieldset id="fieldset' + rml + key + '">' +
+            '<label class="row mb-0" for="rating' + rml + '_' + key + '">' +
             '<div class="col text-start ps-5">' + atolItems[key][0] + '</div>' +
              //next
             '<div class="col text-end pe-5">' + atolItems[key][1] + '</div></label>' +
-            '<div class="row mb-5"><div class="col ps-4 pe-4"><input type="range" class="form-range" id="rating_' + language + '_' + key + '"/>' +
+            '<div class="row mb-5"><div class="col ps-4 pe-4"><input type="range" class="form-range" id="rating_' + rml + '_' + key + '"/>' +
             '<div class="form-check ps-5"><div class="invalid-feedback">' + instruction + '</div></div></div></div></fieldset>';
         element.insertAdjacentHTML('beforeend', code);
             }
@@ -84,8 +39,7 @@ function outputData() {
         const researchLocation = sessionStorage.getItem("atolLocation");
         const partId = sessionStorage.getItem("atolPartId");
         
-        document.getElementById("atolVersion").innerHTML = "DATA from PYTHON is: " + get_data_from_python() +
-                                                            "<br>Survey version is: " + selectSurveyVersion +
+        document.getElementById("atolVersion").innerHTML = "Survey version is: " + selectSurveyVersion +
                                                            "<br>Researcher is: " + researcherId +
                                                            "<br>Location is: " + researchLocation +
                                                            "<br>Participant is: " + partId;
@@ -97,8 +51,6 @@ function outputData() {
 </script>
 
 {% endblock %}
-{% block headline %}<script type="text/javascript">document.write(title);</script>{% endblock %}
-
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
@@ -123,12 +75,12 @@ function outputData() {
             </script>
         </div>
 
-        <form id="surveyAtolForm_majLang"> <!-- action="part2.html">-->
+        <form id="surveyAtolForm_rml" action="memory-game/dist/index.html">
 
             <!-- Name language statement to agree with... -->
             <div class="row mt-5 mb-0">
                 <div class="col"><p id="language_header"><h4>
-                    <script type="text/javascript">document.write(language_header);</script></h4>
+                    <script type="text/javascript">document.write(rml_header);</script></h4>
                 </p>
                     
                 </div>
@@ -160,12 +112,11 @@ function outputData() {
 <script type="text/javascript">
     lart.forms.requireValidation(true);
     lart.forms.registerPipeline(
-        'surveyAtolForm_majLang',
+        'surveyAtolForm_rml',
         async function(data) {
 
-            let success = await eel.grab_atol_ratings(data)();
-            console.log("tail script: " + success);
-           
+            let success = await eel.atol_init(data)();
+            console.log(success);
         }
     );
 </script>

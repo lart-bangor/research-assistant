@@ -98,4 +98,17 @@
         </form>
     </article>
 {% endblock %}
-{% block tail_scripts %}{% endblock %}
+{% block tail_scripts %}
+<script type="text/javascript">
+    lart.forms.requireValidation(true);
+    lart.forms.registerPipeline(
+        'surveyDataForm',
+        async function(data) {
+
+            let success = await eel.init_atol(data)();
+            console.log("tail script: " + success);
+           
+        }
+    );
+</script>
+{% endblock %}
