@@ -7,13 +7,16 @@ from datavalidator.types import PolarT
 import booteel  # ModuleNotFoundError: No module named 'lart_survey_client'
 import eel
 from . import patterns
+from pathlib import Path 
+
+
 
 #retrieve initial info from index.html and print to file + to console
 @eel.expose
 def init_atol(data: dict[Any, Any]):
     global version
     version = data.get("selectSurveyVersion")
-    file = open("./test.txt", "w")
+    file = open(Path("dataLog.txt"), "w")
     file.write(fetch_atol_initial_data(data))
     file.close()
     print("Basic info from index.html: ")
@@ -28,10 +31,10 @@ def grab_atol_ratings(data: dict[Any, Any]):
     print(data)
 
 def fetch_atol_initial_data(dict):
-    for value in dict:
-        print("\n" + value)
-        return dict[value]
-    
+    for key in dict:
+        value = dict[key]
+        print(value)
+        return value
 
 #open and read the file after the appending:
 #f = open("demofile2.txt", "r")
