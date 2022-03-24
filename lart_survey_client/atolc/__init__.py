@@ -1,4 +1,5 @@
 """Data structures for the AToL Questionnaire (RML)."""
+from time import time
 from typing import Any, Optional
 import datetime
 import sys
@@ -7,8 +8,8 @@ from datavalidator.types import PolarT
 import booteel  # ModuleNotFoundError: No module named 'lart_survey_client'
 import eel
 from . import patterns
-from pathlib import Path 
-
+from datetime import datetime
+import time
 
 
 #retrieve initial info from index.html and print to file + to console
@@ -16,27 +17,45 @@ from pathlib import Path
 def init_atol(data: dict[Any, Any]):
     global version
     version = data.get("selectSurveyVersion")
-    file = open(Path("dataLog.txt"), "w")
-    file.write(fetch_atol_initial_data(data))
-    file.close()
+    presentime = datetime.now()
+    dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
+    try:
+        with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
+            file.write("\n\nDate & Time: " + dt_string + "\n")
+            for key in data:
+                value = data[key]
+                file.write(key + ": " + str(value) + "\n")
+    except FileNotFoundError:
+        print("The 'data' directory does not exist")
     print("Basic info from index.html: ")
     print(data)
-    booteel.setlocation("atolPart1.html")
+    booteel.setlocation("atolRatingsMaj.html")
 
 #does the same as init_atol, but for part1.html
 @eel.expose
-def grab_atol_ratings(data: dict[Any, Any]):
-    #global version
-    #version = data.get("selectSurveyVersion")
-    print("AToL ratings from part1.html: ")
+def grab_atol_ratings(data: dict[Any, Any], source):
+    location = fetch_location(source)
+    try:
+        with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
+            file.write("\n################ RATINGS####################\n")
+            for key in data:
+                value = data[key]
+                file.write(key + ": " + str(value) + "\n")
+            file.write("\n")
+    except FileNotFoundError:
+        print("The 'data' directory does not exist")
+    print("AToL ratings from " + source + ".html: ")
     print(data)
+    booteel.setlocation(location)
 
-def fetch_atol_initial_data(dict):
-    for key in dict:
-        value = dict[key]
-        print(value)
-        return value
-
+def fetch_location(source_file):
+    if 'Maj' in source_file:
+        return "atolRatingsRml.html"
+    elif 'Rml' in source_file:
+        return "../memory-game/dist/index.html"
+    else:
+        print("ERROR: no such file")
+  
 #open and read the file after the appending:
 #f = open("demofile2.txt", "r")
 #print(f.read())
