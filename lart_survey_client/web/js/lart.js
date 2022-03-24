@@ -300,7 +300,6 @@ lart.forms.getData = function (form) {
         } else {
             ref = field.id;
         }
-        console.log("Field type: ", field.getAttribute("type"))
         if (field.getAttribute("type") === "checkbox") {
             // Convert checkboxes to booleans
             if (field.value === "on") {

@@ -1,41 +1,28 @@
-# Compiled python modules
-*.pyc
-__pycache__
-__pycache__/*
-*/__pycache__
-*/__pycache__/*
+# Python compilation cache etc.
+__pycache__/
+*.py[cod]
+*$py.class
+.so
+__pypackages__/
 
-# Build and distribution folders
-/build/
-/dist/
+# Testing
+.pytest_cache
+.coverage
+.tox/
 
-# Virtual environment
-/.venv/
+# Distribution and packaging
+dist/
+build/
+.whl
 
-# Tox environment
-/.tox/
+# Documentation
+docs/build/
+docs/source/generated/
 
-# Custom typings for Pyright/Pylance
-/typings/
-/.typings/
+# Pipenv
+Pipfile.lock
 
-# Pytest
-/.pytest_cache/
-
-# Python egg metadata, generated from source files by setuptools
-/*.egg-info
-
-# Temporary backup copies of files
-bak
-*.bak
-
-# Pylint reports
-pylint-report.txt
-
-# Additional local files
-*.local.*
-
-# VSCode configuration
+# Visual Studio Code
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -43,5 +30,19 @@ pylint-report.txt
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 
-# Don't include docs for now (remove later)
-docs/*
+# Virtual environments
+.env
+.venv
+
+# Type checking
+.typings/
+typings/
+.pyre/
+.pytype/
+
+# Temporary backup copies of files
+bak
+*.bak
+
+# Additional local files
+*.local.*
