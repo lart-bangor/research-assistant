@@ -21,7 +21,8 @@ def init_atol(data: dict[Any, Any]):
     file.close()
     print("Basic info from index.html: ")
     print(data)
-    
+    booteel.setlocation("atolPart1.html")
+
 #does the same as init_atol, but for part1.html
 @eel.expose
 def grab_atol_ratings(data: dict[Any, Any]):
