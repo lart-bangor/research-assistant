@@ -1,5 +1,6 @@
+{% set lart_forms = true %}
+{%- from 'lart_macros.html' import lart_form_pipeline %}
 {% extends 'base.html' %}
-{% set eel_forms = true %}
 {% block title %}AToL-RML {% endblock %}
 {% block headline %}<script type="text/javascript">document.write(title)</script>{% endblock %}
 {% block head_scripts %}
@@ -115,7 +116,7 @@ function outputData() {
         'surveyAtolForm_rml',
         async function(data) {
 
-            let success = await eel.atol_init(data)();
+            let success = await eel.grab_atol_ratings(data, 'atolRatingsRml')();
             console.log(success);
         }
     );

@@ -9,9 +9,6 @@ chosenVersion = sessionStorage.getItem("atolVersion");
 //eel.get_atol_version()(function(data_from_index){myversion = data_from_index});
 
 
-//const version = get_atol_js_version();
-
-
 // instructions to be outputed depending on language selection
 if (chosenVersion == "CymEng_Eng_GB") {
     sessionStorage.setItem("version", "CymEng_Eng_GB");
@@ -23,34 +20,39 @@ if (chosenVersion == "CymEng_Eng_GB") {
     sessionStorage.setItem("rml_header", "The Welsh language is...");
     sessionStorage.setItem("atol_header", "AToL Questionnaire (RML)");
     sessionStorage.setItem("btn_text", "Next");
-    title = sessionStorage.getItem("title");
-    language = sessionStorage.getItem("language");
-    rml = sessionStorage.getItem("rml");
-    instruction = sessionStorage.getItem("instruction");
-    language_header = sessionStorage.getItem("language_header");
-    rml_header = sessionStorage.getItem("rml_header");
-    atol_header = sessionStorage.getItem("atol_header");
-    btn_text = sessionStorage.getItem("btn_text");
-              
+                  
 } else if (chosenVersion == "LmoIta_Ita_IT") {
-    title = "Questionario Linguistico";
-    language = "Italiano";
-    rml = "lombardo";
-    instruction = "Si prega di spostare il cursore per registrare la propria scelta.";
-    language_header = "La lingua italiana è...";
-    atol_header = "Questionario AToL (RML)";
-    btn_text = "Avanti";
+    sessionStorage.setItem("version", "LmoIta_Ita_IT");
+    sessionStorage.setItem("title", "Questionario Linguistico");
+    sessionStorage.setItem("language", "Italiano");
+    sessionStorage.setItem("rml", "lombardo");
+    sessionStorage.setItem("instruction", "Si prega di spostare il cursore per registrare la propria scelta.");
+    sessionStorage.setItem("language_header", "La lingua italiana è...");
+    sessionStorage.setItem("rml_header", "Il lombardo è...");
+    sessionStorage.setItem("atol_header", "Questionario AToL (RML)");
+    sessionStorage.setItem("btn_text", "Avanti");
 
 } else if (chosenVersion == "LtzGer_Ger_BE") {
-    title = "Sprachlicher Fragebogen";
-    language = "Deutch";
-    rml = "Moselfränkisch";
-    instruction = "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??.";
-    language_header = "Die deutsche Sprache ist...";
-    atol_header = "AToL Fragebogen (RML)";
-    btn_text = "Weiter";
+    sessionStorage.setItem("version", "LtzGer_Ger_BE");
+    sessionStorage.setItem("title", "Sprachlicher Fragebogen");
+    sessionStorage.setItem("language", "Deutch");
+    sessionStorage.setItem("rml", "Moselfränkisch");
+    sessionStorage.setItem("instruction", "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??.");
+    sessionStorage.setItem("language_header", "Die deutsche Sprache ist...");
+    sessionStorage.setItem("rml_header", "Moselfränkisch ist...");
+    sessionStorage.setItem("atol_header", "AToL Fragebogen (RML)");
+    sessionStorage.setItem("btn_text", "Weiter");
 
 }
+
+const title = sessionStorage.getItem("title");
+const language = sessionStorage.getItem("language");
+const rml = sessionStorage.getItem("rml");
+const instruction = sessionStorage.getItem("instruction");
+const language_header = sessionStorage.getItem("language_header");
+const rml_header = sessionStorage.getItem("rml_header");
+const atol_header = sessionStorage.getItem("atol_header");
+const btn_text = sessionStorage.getItem("btn_text");
 
 populateAtolItems = function (atolItems) {
     const element = document.getElementById('AtolRatingScales');
@@ -157,7 +159,7 @@ function outputData() {
         'surveyAtolForm_majLang',
         async function(data) {
 
-            let success = await eel.grab_atol_ratings(data)();
+            let success = await eel.grab_atol_ratings(data, 'atolRatingsMaj')();
             console.log("tail script: " + success);
            
         }
