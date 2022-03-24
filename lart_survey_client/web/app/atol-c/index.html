@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
 {% set lart_forms = true %}
 {%- from 'lart_macros.html' import lart_form_pipeline %}
+{% extends 'base.html' %}
 {% block title %}LART Survey Client - AToL-RML{% endblock %}
 {% block headline %}AToL-RML{% endblock %}
 {% block head_scripts %}
@@ -47,7 +47,7 @@
         <div class="container-fluid p-2 text-center">
             <h2>AToL: Language Questionnaire (RML)</h2>
         </div>
-        <form id="surveyAtolDataForm" class="p-2 needs-validation" action="part1.html" onsubmit="recordData();">
+        <form id="surveyAtolDataForm" class="p-2 needs-validation" action="atolPart1.html" onsubmit="recordData();">
             <div class="mb-3">
                 <label for="selectSurveyVersion" class="form-label">Select AToL-RML version:</label>
                 <select id="selectSurveyVersion" class="form-select" required>
@@ -112,6 +112,4 @@
         }
     );
 </script>
-
-
 {% endblock %}

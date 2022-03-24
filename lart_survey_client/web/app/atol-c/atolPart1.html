@@ -1,18 +1,10 @@
-{% extends 'base.html' %}
 {% set lart_forms = true %}
-{% block title %}AToL-RML {% endblock %}
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{% extends 'base.html' %}{% block title %}AToL-RML {% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
 atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
 chosenVersion = sessionStorage.getItem("atolVersion");
-
-async function get_data_from_python() {
-    let version = await eel.get_atol_version()();
-    console.log(version);
-    }
-
-console.log("Promise [eyeroll] or data [smile]? " + get_data_from_python());
-
 
 //eel.get_atol_version()(function(data_from_index){myversion = data_from_index});
 
