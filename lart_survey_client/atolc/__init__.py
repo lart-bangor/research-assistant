@@ -8,11 +8,14 @@ import booteel  # ModuleNotFoundError: No module named 'lart_survey_client'
 import eel
 from . import patterns
 
-#retrieve initial info from index.html
+#retrieve initial info from index.html and print to file + to console
 @eel.expose
 def init_atol(data: dict[Any, Any]):
     global version
     version = data.get("selectSurveyVersion")
+    file = open("./test.txt", "w")
+    file.write(fetch_atol_initial_data(data))
+    file.close()
     print("Basic info from index.html: ")
     print(data)
     
@@ -24,6 +27,15 @@ def grab_atol_ratings(data: dict[Any, Any]):
     print("AToL ratings from part1.html: ")
     print(data)
 
+def fetch_atol_initial_data(dict):
+    for value in dict:
+        print("\n" + value)
+        return dict[value]
+    
+
+#open and read the file after the appending:
+#f = open("demofile2.txt", "r")
+#print(f.read())
 
 #UNUSED set version based on values passed on from the JS in index.html
 @eel.expose
