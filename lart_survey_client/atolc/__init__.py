@@ -26,7 +26,10 @@ def init_atol(data: dict[Any, Any]):
                 value = data[key]
                 file.write(key + ": " + str(value) + "\n")
     except FileNotFoundError:
-        print("The 'data' directory does not exist")
+        print("\n")
+        print("#########################################\n")
+        print("#   The 'data' directory does not exist #\n")
+        print("#########################################\n")
     print("Basic info from index.html: ")
     print(data)
     booteel.setlocation("atolRatingsMaj.html")
@@ -37,7 +40,7 @@ def grab_atol_ratings(data: dict[Any, Any], source):
     location = fetch_location(source)
     try:
         with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
-            file.write("\n################ RATINGS####################\n")
+            file.write("\n")
             for key in data:
                 value = data[key]
                 file.write(key + ": " + str(value) + "\n")
@@ -52,22 +55,11 @@ def fetch_location(source_file):
     if 'Maj' in source_file:
         return "atolRatingsRml.html"
     elif 'Rml' in source_file:
-        return "../memory-game/dist/index.html"
+        return "atolEnd.html"
     else:
         print("ERROR: no such file")
-  
-#open and read the file after the appending:
-#f = open("demofile2.txt", "r")
-#print(f.read())
-
-#UNUSED set version based on values passed on from the JS in index.html
-@eel.expose
-def set_atol_version(data: dict[Any, Any]):
-    print("full dict is ")
-    print(data)
-    global version
-    version = data.get("selectSurveyVersion")
-             
+ 
+         
 @eel.expose
 def get_atol_version():
     test_version = version
