@@ -1,27 +1,23 @@
-{% extends 'base.html' %}
-{% block title %}LART Survey Client - AToL-RML{% endblock %}
-{% block headline %}AToL-RML{% endblock %}
 
-{% extends 'base.html' %}
-{% set lart_forms = true %}
-{% block title %}LART Survey Client - AToL-RML - Language Questionnaire {% endblock %}
-{% block headline %}Language Questionnaire{% endblock %}
-{% block head_scripts %}
-{% endblock %}
+{%- extends 'base.html' %}
+{% block title %}LART Survey Client{% endblock %}
+{% block headline %}LART Survey Client{% endblock %}
+{% block head_scripts %}{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
-{% block drawer_nav_options %}
-    <li class="nav-item">
-        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
-    </li>
-    <li><hr class="nav-divider"></li>
-{% endblock %}
-
 {% block content %}
-<article class="container-fluid p-2">
-<div class="container-fluid p-2 text-center">
-    <h2>Thank you for your participation</h2>
-</div>
-</article>
+    <article class="p-2">
+        <div class="container-fluid text-center p-2">
+            <h2>Thank you for completing the questionnaire!</h2>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <h4>Please begin the memory task when you're ready</h4>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <p></p>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <a class="btn btn-primary fs-5 p-2" style="min-width:50%" href="../memory-game/dist/index.html">Begin memory task>></a>
+        </div>
+         </article>
 {% endblock %}
-{% block tail_scripts %}{% endblock %}
