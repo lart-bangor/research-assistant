@@ -1,7 +1,7 @@
 {%- set lart_forms = true %}
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
-{% block title %}LART Survey Client - LSBQ-RML - Language and Social Background{% endblock %}
+{% block title %}LART Survey Client - LSBQ-RML - Language and Dialect Background{% endblock %}
 {% block headline %}Language and Social Background Questionnaire (RML){% endblock %}
 {% block head_scripts %}{% endblock %}
 {% block head_styles %}{% endblock %}
@@ -18,9 +18,83 @@
             <div class="progress-bar bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
         </div>
         <div class="row m-2 text-center">
-            <h2>Language and Social Background</h2>
+            <h2>Language and Dialect Background</h2>
         </div>
-        <form id="surveyLSBForm" class="m-2 needs-validation" autocomplete="off">
+        <form id="surveyLDBForm" class="m-2 needs-validation" autocomplete="off">
+
+            <!-- 10. Languages and dialects you can speak -->
+            <div class="row mb-1">
+                <div class="col-auto">
+                    <p>List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:</p>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-auto" style="width:2.5rem">
+                    <!-- Align with numbers -->
+                </div>
+                <div class="col-2 small">
+                    Language or dialect
+                </div>
+                <div class="col-2 small">
+                    Where did you learn it?
+                </div>
+                <div class="col-2 small">
+                    At what age did you learn it?<br />
+                    <small class="text-muted">(If learned from birth enter &ldquo;0&rdquo;.)</small>
+                </div>
+                <div class="col-3 small">
+                    Were there any significant periods in your life when you did not use this language?<br />
+                    <small class="text-muted">Indicate duration in months/years.</small>
+                </div>
+            </div>
+            <div id="languagesSpokenRepeat">
+                <div class="row mb-2" id="languagesSpoken-0">
+                    <div class="col-auto text-end align-middle" style="width:2.5rem">
+                        1.
+                    </div>
+                    <div class="col-2 form-floating">
+                        <input type="text" class="form-control" id="languagesSpokenLanguage-0" />
+                        <label for="languagesSpokenLanguage-0" class="col-form-label col-auto">Language name</label>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-floating">
+                            <select class="form-select" id="languagesSpokenSource-0" name="languagesSpokenSource-0">
+                                <option value="h">At home</option>
+                                <option value="s">At school</option>
+                                <option value="c">In the community</option>
+                                <option value="o">Other</option>
+                            </select>
+                            <label for="languagesSpokenSource-0" class="col-form-label col-auto">Learned where</label>
+                        </div>
+                        <div class="form-floating mt-1" id="languagesSpokenSourceSpecifyBlock-0">
+                            <input type="text" class="form-control" id="languagesSpokenSourceSpecify-0" name="languagesSpokenSourceSpecify-0" placeholder="Please specify" />
+                            <label for="languageSpokenSourceSpecify-0"><i>Please specify...</i></label>
+                        </div>
+                        <script type="text/javascript">
+                            lart.forms.conditionalRequire('languagesSpokenSource-0', 'languagesSpokenSourceSpecify-0', 'o');
+                            lart.forms.conditionalDisplay('languagesSpokenSource-0', 'languagesSpokenSourceSpecifyBlock-0', 'o');
+                        </script>
+                    </div>
+                    <div class="col-2 form-floating">
+                        <input type="number" class="form-control" id="languagesSpokenLanguage-0" min="0" max="100" />
+                        <label for="languagesSpokenLanguage-0" class="col-form-label col-auto">Learned from age</label>
+                    </div>
+                    <div class="col-3 form-floating">
+                        <input type="text" id="languagesSpokenBreak-0" class="form-control" pattern="([0-9moyrs, ]|months|years|and)*"/>
+                        <label for="languagesSpokenBreak-0">Significant breaks (months/years)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-1 mb-3 ms-1">
+                <!-- <div class="col">
+                    <p class="help-block p-2 text-muted ms-5"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
+                </div> -->
+                <div class="col-auto" style="width:2.5rem"></div>
+                <div class="col-9 text-end">
+                    <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="lart.forms.repeatBlock('languagesSpokenRepeat', /(languagesSpoken[A-Za-z]*)-(0)/gm)"><i class="bi-plus-circle-dotted"></i> Add line</a>
+                </div>
+            </div>
+
 
             <!-- 1. Sex -->
             <fieldset class="row mb-3">
