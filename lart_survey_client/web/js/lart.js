@@ -116,7 +116,6 @@ lart.forms.conditionalRequire = function (fieldName, targetName, value, conditio
         node.addEventListener('input',
             function (event) {
                 if(matchesCondition()) {
-                    console.log("Targets:", targets)
                     for(const target of targets) {
                         target.required = true;
                     }
@@ -238,8 +237,8 @@ lart.forms.requireValidation = function (novalidate = false) {
 }
 
 lart.forms.monitorRangeInputs = function (targetZoneId) {
-    const inputFields = document.querySelectorAll(`#${targetZoneId} input[type="range"]`);
     const targetZone = document.getElementById(targetZoneId);
+    const inputFields = targetZone.querySelectorAll('input[type="range"]');
     const dataAttributeSetter = function(field) {
         if( !field.hasAttribute('data-lart-range-moved') ) {
             field.setAttribute('data-lart-range-moved', 'false');
@@ -247,22 +246,35 @@ lart.forms.monitorRangeInputs = function (targetZoneId) {
                 'input',
                 function (event) {
                     event.target.setAttribute('data-lart-range-moved', 'true');
+                    event.target.setCustomValidity('');
                 },
                 { once: true }
-            )
+            );
+            if (field.hasAttribute('required') && field.required ) {
+                field.setCustomValidity('You must move the slider at least once.');
+            }
+            // Add monitor for "required attribute" (don't flag up non-required sliders...)
+            function rangeRequiredMonitor(mutationList, observer) {
+                for (const mutation of mutationList) {
+                    if ( mutation.type == 'attributes' && mutation.attributeName == 'required' ) {
+                        const moved = mutation.target.getAttribute('data-lart-range-moved');
+                        if ( mutation.target.required && moved == 'false' ) {
+                            field.setCustomValidity('You must move the slider at least once.');
+                        } else {
+                            field.setCustomValidity('');
+                        }
+                    }
+                }
+            }
+            const rangeRequiredObserver = new MutationObserver(rangeRequiredMonitor);
+            rangeRequiredObserver.observe(field, {attributeFilter: ['required']});
+            // Should be taken care of by just setting it with the "once" eventListener above
             // field.addEventListener(
-            //     'invalid',
+            //     'input',
             //     function (event) {
-            //         event.target.setCustomValidity('You must move the slider at least once.');
+            //         event.target.setCustomValidity('');
             //     }
             // );
-            field.setCustomValidity('You must move the slider at least once.');
-            field.addEventListener(
-                'input',
-                function (event) {
-                    event.target.setCustomValidity('');
-                }
-            );
         }
     }
     // Set data attribute on existing range inputs
@@ -271,11 +283,19 @@ lart.forms.monitorRangeInputs = function (targetZoneId) {
     }
     // Monitor for new range inputs
     const observerCallback = function(mutationList, observer) {
+        function recursiveDataAttributeSetter(node) {
+            if (node instanceof HTMLInputElement && node.type == 'range') {
+                dataAttributeSetter(node);
+            }
+            if ( node.hasChildNodes() ) {
+                for (const child of node.childNodes) {
+                    recursiveDataAttributeSetter(child);
+                }
+            }
+        }
         for (const mutation of mutationList) {
             for (const node of mutation.addedNodes) {
-                if (node instanceof HTMLInputElement && node.type == 'range') {
-                    dataAttributeSetter(node);
-                }
+                recursiveDataAttributeSetter(node);
             }
         }
     }

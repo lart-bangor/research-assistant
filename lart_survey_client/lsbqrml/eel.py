@@ -135,8 +135,12 @@ def setldb(instid: int, data: dict[str, Any]) -> int:
     """Adds Language and Dialect Background Data to a Response."""
     logger.info(f"Setting LDB data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
+    from pprint import pp
+    print(f"Setting LDB data on LSBQ-RML instance {instid}..")
+    print("... received data:")
+    pp(data)
     instance = _getinstance(instid)
-    processed: dict[str, Union[str, list[str]]] = {
+    processed: dict[str, Union[str, int, list[Union[str, int]]]] = {
         "languages_spoken_name": [],
         "languages_spoken_source": [],
         "languages_spoken_source_other": [],
@@ -147,8 +151,50 @@ def setldb(instid: int, data: dict[str, Any]) -> int:
         "languages_usage_speaking": [],
         "languages_usage_listening": [],
     }
-    print(f"SETLDB has received data: {data!r}")
-    # @TODO: prepare actual data to be stored...
+    datacopy = copy(data)
+    strip_keys = [
+        "languageListOptions",
+        "motherNotApplicable",
+        "fatherNotApplicable",
+    ]
+    for key in datacopy:
+        if key in strip_keys:
+            del data[key]
+        if "languagesSpokenLanguage-" in key:
+            index = key[24:]
+            key_map = {
+                f"languagesSpokenLanguage-{index}": "languages_spoken_name",
+                f"languagesSpokenSource-{index}": "languages_spoken_source",
+                f"languagesSpokenSourceSpecify-{index}": "languages_spoken_source_other",
+                f"languagesSpokenAge-{index}": "languages_spoken_age",
+                f"languagesSpokenBreakMonths-{index}": "languages_spoken_breaks",
+                f"proficiencySpeakingLanguage-{index}": "languages_proficiency_speaking",
+                f"proficiencyUnderstandingLanguage-{index}": "languages_proficiency_understanding",  # noqa: E501
+                f"usageSpeakingLanguage-{index}": "languages_usage_speaking",
+                f"usageListeningLanguage-{index}": "languages_usage_listening",
+            }
+            break_year_key = f"languagesSpokenBreakYears-{index}"
+            for needle in key_map:
+                fieldname = key_map[needle]
+                if needle not in datacopy:
+                    raise ValueError(
+                        f"Data for {key!r} ({datacopy[key]!r}) "
+                        f"is missing corresponding field {needle!r}"
+                    )
+                if "BreakMonths" in needle and break_year_key in datacopy:
+                    datacopy[needle] = int(datacopy[needle])
+                    datacopy[needle] += int(datacopy[break_year_key])*12
+                    del data[break_year_key]
+                if fieldname in processed and isinstance(processed[fieldname], list):
+                    processed[fieldname].append(datacopy[needle])  # type: ignore
+                    del data[needle]
+                else:
+                    raise RuntimeError(
+                        f"Could not map {needle} to field {fieldname} (report as bug)"
+                    )
+    processed.update(data)
+    print("... preprocessed data:")
+    pp(processed)
     logger.debug(f"... preprocessed data: {processed!r}")
     instance.setldb(processed)
     logger.debug(f"LSBQ-RML instance id = {instid}")

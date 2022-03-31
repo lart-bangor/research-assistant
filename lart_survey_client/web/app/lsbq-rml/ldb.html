@@ -14,392 +14,461 @@
 {% endblock %}
 {% block content %}
     <article class="container-fluid p-2">
-        <div class="progress">
+
+        <div class="progress m-4">
             <div class="progress-bar bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
         </div>
-        <div class="row m-2 text-center">
+
+        <div class="row m-4 text-center">
             <h2>Language and Dialect Background</h2>
         </div>
-        <form id="surveyLDBForm" class="m-2 needs-validation" autocomplete="off">
+
+        <form id="surveyLDBForm" class="needs-validation" autocomplete="off">
 
             <!-- 10. Languages and dialects you can speak -->
-            <div class="row mb-1">
-                <div class="col-auto">
-                    <p>List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:</p>
-                </div>
-            </div>
-            <div class="row mb-1 align-items-end">
-                <div class="col-3 small">
-                    Language or dialect
-                </div>
-                <div class="col-3 small">
-                    Where did you learn it?
-                </div>
-                <div class="col-3 small">
-                    At what age did you learn it?
-                </div>
-                <div class="col-3 small" >
-                    Were there any significant periods in your life when you did not use this language?
-                </div>
-            </div>
-            <div class="row mb-1">
-                <div class="col-6 small">
-                </div>
-                <div class="col-3 small">
-                    <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> If learned from birth enter &ldquo;0&rdquo;.</small>
-                </div>
-                <div class="col-3 small">
-                    <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> Indicate duration in months/years.</small>
-                </div>
-            </div>
-            <datalist id="languageListOptions">
-                <option value="English" />
-                <option value="Welsh" />
-                <option value="British Sign Language" />
-                <option value="Scottish Gaelic" />
-                <option value="Scots" />
-                <option value="Irish" />
-                <option value="Spanish" />
-                <option value="French" />
-                <option value="German" />
-                <option value="Japanese" />
-                <option value="Italian" />
-                <option value="Chinese" />
-                <option value="Arabic" />
-                <option value="Russian" />
-                <option value="Korean" />
-                <option value="Greek (modern)" />
-                <option value="Portuguese" />
-                <option value="Hebrew (modern)" />
-              </datalist>
-            <div id="languagesSpokenRepeat">
-                <div class="row mb-2" id="languagesSpoken-0">
-                    <!-- field: languagesSpokenLanguage-0 -->
-                    <div class="col-3 form-floating">
-                        <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-0" name="languagesSpokenLanguage-0" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
-                        <label for="languagesSpokenLanguage-0" class="col-form-label col-auto">Language name</label>
-                        <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters). You <i>must</i> list at least <i>two</i> languages/dialects.</div>
+            <section class="m-4">
+                <div class="row mb-1 mt-3">
+                    <div class="col-auto">
+                        <p>List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:</p>
                     </div>
-                    <!-- fields: languagesSpokenSource-0 and languagesSpokenSourceSpecifyBlock-0 -->
-                    <div class="col-3">
-                        <div class="form-floating">
-                            <select class="form-select" id="languagesSpokenSource-0" name="languagesSpokenSource-0">
-                                <option value=""></option>
-                                <option value="h">At home</option>
-                                <option value="s">At school</option>
-                                <option value="c">In the community</option>
-                                <option value="o">Other</option>
-                            </select>
-                            <label for="languagesSpokenSource-0" class="col-form-label col-auto">Learned where</label>
-                            <div class="invalid-feedback">Please select an option.</div>
+                </div>
+                <div class="row mb-1 align-items-end">
+                    <div class="col-3 small">
+                        Language or dialect
+                    </div>
+                    <div class="col-3 small">
+                        Where did you learn it?
+                    </div>
+                    <div class="col-3 small">
+                        At what age did you learn it?
+                    </div>
+                    <div class="col-3 small" >
+                        Were there any significant periods in your life when you did not use this language?
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-6 small">
+                    </div>
+                    <div class="col-3 small">
+                        <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> If learned from birth enter &ldquo;0&rdquo;.</small>
+                    </div>
+                    <div class="col-3 small">
+                        <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> Indicate duration in months/years.</small>
+                    </div>
+                </div>
+                <datalist id="languageListOptions">
+                    <option value="English" />
+                    <option value="Welsh" />
+                    <option value="British Sign Language" />
+                    <option value="Scottish Gaelic" />
+                    <option value="Scots" />
+                    <option value="Irish" />
+                    <option value="Spanish" />
+                    <option value="French" />
+                    <option value="German" />
+                    <option value="Japanese" />
+                    <option value="Italian" />
+                    <option value="Chinese" />
+                    <option value="Arabic" />
+                    <option value="Russian" />
+                    <option value="Korean" />
+                    <option value="Greek (modern)" />
+                    <option value="Portuguese" />
+                    <option value="Hebrew (modern)" />
+                </datalist>
+                <div id="languagesSpokenRepeat">
+                    <div class="row mb-2" id="languagesSpoken-0">
+                        <!-- field: languagesSpokenLanguage-0 -->
+                        <div class="col-3 form-floating">
+                            <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-0" name="languagesSpokenLanguage-0" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                            <label for="languagesSpokenLanguage-0" class="col-form-label col-auto">Language name</label>
+                            <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters). You <i>must</i> list at least <i>two</i> languages/dialects.</div>
                         </div>
-                        <div class="form-floating mt-1" id="languagesSpokenSourceSpecifyBlock-0">
-                            <input type="text" class="form-control" id="languagesSpokenSourceSpecify-0" name="languagesSpokenSourceSpecify-0" placeholder="Please specify" />
-                            <label for="languagesSpokenSourceSpecify-0"><i>Please specify...</i></label>
-                            <div class="invalid-feedback">Please give a brief indication of where you learned the language or dialect.</div>
-                        </div>
-                    </div>
-                    <!-- field: languagesSpokenAge-0 -->
-                    <div class="col-3 form-floating">
-                        <input type="number" class="form-control" id="languagesSpokenAge-0" name="languagesSpokenAge-0" min="0" max="100" />
-                        <label for="languagesSpokenAge-0" class="col-form-label col-auto">Learned from age</label>
-                        <div class="invalid-feedback">Please indicate how old you were (in years) when you started to learn this language.</div>
-                    </div>
-                    <!-- fields: languagesSpokenBreakYears-0 and languagesSpokenBreakMonths-0 -->
-                    <div class="col-3">
-                        <div class="row">
-                            <div class="col-6 form-floating d-inline-block">
-                                <input type="number" class="form-control" id="languagesSpokenBreakYears-0" min="0" max="100" value="0" />
-                                <label for="languagesSpokenBreakYears-0">years</label>
-                                <div class="invalid-feedback">Value must be between 0-100.</div>
+                        <!-- fields: languagesSpokenSource-0 and languagesSpokenSourceSpecifyBlock-0 -->
+                        <div class="col-3">
+                            <div class="form-floating">
+                                <select class="form-select" id="languagesSpokenSource-0" name="languagesSpokenSource-0">
+                                    <option value=""></option>
+                                    <option value="h">At home</option>
+                                    <option value="s">At school</option>
+                                    <option value="c">In the community</option>
+                                    <option value="o">Other</option>
+                                </select>
+                                <label for="languagesSpokenSource-0" class="col-form-label col-auto">Learned where</label>
+                                <div class="invalid-feedback">Please select an option.</div>
                             </div>
-                            <div class="col-6 form-floating d-inline-block">
-                                <input type="number" class="form-control" id="languagesSpokenBreakMonths-0" min="0" max="12" value="0" />
-                                <label for="languagesSpokenBreakMonths-0">months</label>
-                                <div class="invalid-feedback">Value must be between 0-12.</div>
+                            <div class="form-floating mt-1" id="languagesSpokenSourceSpecifyBlock-0">
+                                <input type="text" class="form-control" id="languagesSpokenSourceSpecify-0" name="languagesSpokenSourceSpecify-0" placeholder="Please specify" />
+                                <label for="languagesSpokenSourceSpecify-0"><i>Please specify...</i></label>
+                                <div class="invalid-feedback">Please give a brief indication of where you learned the language or dialect.</div>
                             </div>
                         </div>
+                        <!-- field: languagesSpokenAge-0 -->
+                        <div class="col-3 form-floating">
+                            <input type="number" class="form-control" id="languagesSpokenAge-0" name="languagesSpokenAge-0" min="0" max="100" />
+                            <label for="languagesSpokenAge-0" class="col-form-label col-auto">Learned from age</label>
+                            <div class="invalid-feedback">Please indicate how old you were (in years) when you started to learn this language.</div>
+                        </div>
+                        <!-- fields: languagesSpokenBreakYears-0 and languagesSpokenBreakMonths-0 -->
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-6 form-floating d-inline-block">
+                                    <input type="number" class="form-control" id="languagesSpokenBreakYears-0" min="0" max="100" value="0" />
+                                    <label for="languagesSpokenBreakYears-0">years</label>
+                                    <div class="invalid-feedback">Value must be between 0-100.</div>
+                                </div>
+                                <div class="col-6 form-floating d-inline-block">
+                                    <input type="number" class="form-control" id="languagesSpokenBreakMonths-0" min="0" max="12" value="0" />
+                                    <label for="languagesSpokenBreakMonths-0">months</label>
+                                    <div class="invalid-feedback">Value must be between 0-12.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-1 mb-3 ms-1">
-                <!-- <div class="col">
-                    <p class="help-block p-2 text-muted ms-5"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
-                </div> -->
-                <div class="col-12 text-end">
-                    <script type="text/javascript">
-                        function insertProficiencyRating() {
-                            return true;
-                        }
-                        lart.forms.conditionalRequire('languagesSpokenSource-0', 'languagesSpokenSourceSpecify-0', 'o');
-                        lart.forms.conditionalDisplay('languagesSpokenSource-0', 'languagesSpokenSourceSpecifyBlock-0', 'o');
-                            lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenSource-0`, '', 'not-equal');
-                            lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenAge-0`, '', 'not-equal');
-                        let repeatLanguagesSpokenCounter = 0;
-                        function repeatLanguagesSpoken(required = false) {
-                            repeatLanguagesSpokenCounter++;
-                            lart.forms.repeatBlock('languagesSpokenRepeat', /(languagesSpoken[A-Za-z]*)-(0)/gm);
-                            // Require the other fields if they enter a language name
-                            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenSource-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
-                            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenAge-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
-                            // Require the "specify" field if they select "other" on source
-                            lart.forms.conditionalRequire(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecify-${repeatLanguagesSpokenCounter}`, 'o');
-                            lart.forms.conditionalDisplay(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecifyBlock-${repeatLanguagesSpokenCounter}`, 'o');
-                            document.getElementById(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`).required = required;
-                        }
-                        // We want to be at least two languages to be displayed and required -> repeat once, make required
-                        repeatLanguagesSpoken(true);
-                    </script>
-                    <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="repeatLanguagesSpoken()"><i class="bi-plus-circle-dotted"></i> Add line</a>
+                <div class="row mt-1 mb-3 ms-1">
+                    <!-- <div class="col">
+                        <p class="help-block p-2 text-muted ms-5"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
+                    </div> -->
+                    <div class="col-12 text-end">
+                        <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="repeatLanguagesSpoken()"><i class="bi-plus-circle-dotted"></i> Add line</a>
+                    </div>
                 </div>
-            </div>
+            </section>
 
             <!-- 11. Parental education -->
-            <div class="row mb-1">
-                <div class="col-auto">
-                    <p>Please indicate the highest level of education, the occupation, and the languages or dialects spoken by each of your parents:</p>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <!-- Mother -->
-                <div class="col-md-6 mb-3">
-                    <div class="row mb-1">
-                        <div class="col-auto">
-                            <p class="h6 d-inline-block">Mother</p>
-                            <p id="motherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your mother (e.g. because you don't know them).">
-                                (<input class="form-check-input align-text-top" type="checkbox" id="motherNotApplicable" name="motherNotApplicable" value="not-applicable"> <label class="form-check-label" for="motherNotApplicable">not applicable</label>)
-                            </p>
-                        </div>
+            <section class="m-4">
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p>Please indicate the highest level of education, the occupation, and the languages or dialects spoken by each of your parents:</p>
                     </div>
-                    <fieldset id="motherDetails">
-                        <legend class="visually-hidden">Mother</legend>
-                        <!-- field: motherLevelOfEducation -->
-                        <fieldset id="motherLevelOfEducation" class="row mb-2">
-                            <legend for="motherLevelOfEducation" class="fs-6">Level of education:</legend>
-                            <div class="col-auto ms-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation1" value="1" required />
-                                    <label class="form-check-label" for="motherLevelOfEducation1">EQF Level 1</label>
+                </div>
+                <div class="row mb-3">
+                    <!-- Mother -->
+                    <div class="col-md-6 mb-3">
+                        <div class="row mb-1">
+                            <div class="col-auto">
+                                <p class="h6 d-inline-block">Mother</p>
+                                <p id="motherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your mother (e.g. because you don't know them).">
+                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="motherNotApplicable" name="motherNotApplicable" value="not-applicable"> <label class="form-check-label" for="motherNotApplicable">not applicable</label>&thinsp;)
+                                </p>
+                            </div>
+                        </div>
+                        <fieldset id="motherDetails">
+                            <legend class="visually-hidden">Mother</legend>
+                            <!-- field: motherLevelOfEducation -->
+                            <fieldset id="motherLevelOfEducation" class="row mb-2">
+                                <legend for="motherLevelOfEducation" class="fs-6">Level of education:</legend>
+                                <div class="col-auto ms-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation1" value="1" required />
+                                        <label class="form-check-label" for="motherLevelOfEducation1">EQF Level 1</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation2" value="2" required />
+                                        <label class="form-check-label" for="motherLevelOfEducation2">EQF Level 2-3</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation3" value="3" required />
+                                        <label class="form-check-label" for="motherLevelOfEducation3">EQF Level 4</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation5" value="4" required />
+                                        <label class="form-check-label" for="motherLevelOfEducation5">EQF Level 5-6</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation5" value="5" required />
+                                        <label class="form-check-label" for="motherLevelOfEducation5">EQF Level 7-8</label>
+                                        <div class="invalid-feedback invalid-radio">Please indicate the highest level of education from the list that your <i>mother</i> has achieved (or the approximate equivalent).</div>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation2" value="2" required />
-                                    <label class="form-check-label" for="motherLevelOfEducation2">EQF Level 2-3</label>
+                            </fieldset>
+                            <!-- field: motherOccupation -->
+                            <div class="row mb-1">
+                                <label for="motherOccupation" class="col-3 col-form-label">Occupation:</label>
+                                <div class="col-auto">
+                                    <input type="text" class="form-control" name="mother_occupation" id="motherOccupation" required />
+                                    <div class="invalid-feedback">Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i></div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation3" value="3" required />
-                                    <label class="form-check-label" for="motherLevelOfEducation3">EQF Level 4</label>
+                            </div>
+                            <!-- field: motherLanguage1 -->
+                            <div class="row mb-1">
+                                <label for="motherLanguage1" class="col-3 col-form-label">First language:</label>
+                                <div class="col-auto">
+                                    <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                    <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation5" value="4" required />
-                                    <label class="form-check-label" for="motherLevelOfEducation5">EQF Level 5-6</label>
+                            </div>
+                            <!-- field: motherLanguage2 -->
+                            <div class="row mb-1">
+                                <label for="motherLanguage2" class="col-3 col-form-label">Second language:</label>
+                                <div class="col-auto">
+                                    <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                    <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation5" value="5" required />
-                                    <label class="form-check-label" for="motherLevelOfEducation5">EQF Level 7-8</label>
-                                    <div class="invalid-feedback invalid-radio">Please indicate the highest level of education from the list that your <i>mother</i> has achieved (or the approximate equivalent).</div>
+                            </div>
+                            <!-- field: motherLanguageN -->
+                            <div class="row mb-1">
+                                <label for="motherLanguageN" class="col-3 col-form-label">Other language(s):</label>
+                                <div class="col-auto">
+                                    <textarea class="form-control" name="mother_other_languages" id="motherLanguageN"></textarea>
+                                    <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> List additional languages separated by commas.</small>
                                 </div>
                             </div>
                         </fieldset>
-                        <!-- field: motherOccupation -->
-                        <div class="row mb-1">
-                            <label for="motherOccupation" class="col-3 col-form-label">Occupation:</label>
-                            <div class="col-auto">
-                                <input type="text" class="form-control" name="mother_occupation" id="motherOccupation" required />
-                                <div class="invalid-feedback">Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i></div>
-                            </div>
-                        </div>
-                        <!-- field: motherLanguage1 -->
-                        <div class="row mb-1">
-                            <label for="motherLanguage1" class="col-3 col-form-label">First language:</label>
-                            <div class="col-auto">
-                                <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
-                                <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
-                            </div>
-                        </div>
-                        <!-- field: motherLanguage2 -->
-                        <div class="row mb-1">
-                            <label for="motherLanguage2" class="col-3 col-form-label">Second language:</label>
-                            <div class="col-auto">
-                                <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
-                                <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
-                            </div>
-                        </div>
-                        <!-- field: motherLanguageN -->
-                        <div class="row mb-1">
-                            <label for="motherLanguageN" class="col-3 col-form-label">Other language(s):</label>
-                            <div class="col-auto">
-                                <textarea class="form-control" name="mother_additional_languages" id="motherLanguageN"></textarea>
-                                <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> List additional languages separated by commas.</small>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                <script type="text/javascript">
-                    var tt = new bootstrap.Tooltip(document.getElementById('motherNotApplicableOption'));
-                    lart.forms.conditionalDisable('motherNotApplicable', 'motherDetails', 'not-applicable', 'equal');
-                </script>
-                <!-- Father -->
-                <div class="col-md-6 mb-3">
-                    <div class="row mb-1">
-                        <div class="col-auto">
-                            <p class="h6 d-inline-block">Father</p>
-                            <p id="fatherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your father (e.g. because you don't know them).">
-                                (<input class="form-check-input align-text-top" type="checkbox" id="fatherNotApplicable" name="fatherNotApplicable" value="not-applicable"> <label class="form-check-label" for="fatherNotApplicable">not applicable</label>)
-                            </p>
-                        </div>
                     </div>
-                    <fieldset id="fatherDetails">
-                        <legend class="visually-hidden">Father</legend>
-                        <!-- field: fatherLevelOfEducation -->
-                        <fieldset id="fatherLevelOfEducation" class="row mb-2">
-                            <legend for="fatherLevelOfEducation" class="fs-6">Level of education:</legend>
-                            <div class="col-auto ms-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation1" value="1" required />
-                                    <label class="form-check-label" for="fatherLevelOfEducation1">EQF Level 1</label>
+                    <script type="text/javascript">
+                        var tt = new bootstrap.Tooltip(document.getElementById('motherNotApplicableOption'));
+                        lart.forms.conditionalDisable('motherNotApplicable', 'motherDetails', 'not-applicable', 'equal');
+                    </script>
+                    <!-- Father -->
+                    <div class="col-md-6 mb-3">
+                        <div class="row mb-1">
+                            <div class="col-auto">
+                                <p class="h6 d-inline-block">Father</p>
+                                <p id="fatherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your father (e.g. because you don't know them).">
+                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="fatherNotApplicable" name="fatherNotApplicable" value="not-applicable"> <label class="form-check-label" for="fatherNotApplicable">not applicable</label>&thinsp;)
+                                </p>
+                            </div>
+                        </div>
+                        <fieldset id="fatherDetails">
+                            <legend class="visually-hidden">Father</legend>
+                            <!-- field: fatherLevelOfEducation -->
+                            <fieldset id="fatherLevelOfEducation" class="row mb-2">
+                                <legend for="fatherLevelOfEducation" class="fs-6">Level of education:</legend>
+                                <div class="col-auto ms-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation1" value="1" required />
+                                        <label class="form-check-label" for="fatherLevelOfEducation1">EQF Level 1</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation2" value="2" required />
+                                        <label class="form-check-label" for="fatherLevelOfEducation2">EQF Level 2-3</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation3" value="3" required />
+                                        <label class="form-check-label" for="fatherLevelOfEducation3">EQF Level 4</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation5" value="4" required />
+                                        <label class="form-check-label" for="fatherLevelOfEducation5">EQF Level 5-6</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation5" value="5" required />
+                                        <label class="form-check-label" for="fatherLevelOfEducation5">EQF Level 7-8</label>
+                                        <div class="invalid-feedback invalid-radio">Please indicate the highest level of education from the list that your <i>father</i> has achieved (or the approximate equivalent).</div>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation2" value="2" required />
-                                    <label class="form-check-label" for="fatherLevelOfEducation2">EQF Level 2-3</label>
+                            </fieldset>
+                            <!-- field: fatherOccupation -->
+                            <div class="row mb-1">
+                                <label for="fatherOccupation" class="col-3 col-form-label">Occupation:</label>
+                                <div class="col-auto">
+                                    <input type="text" class="form-control" name="father_occupation" id="fatherOccupation" required />
+                                    <div class="invalid-feedback">Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i></div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation3" value="3" required />
-                                    <label class="form-check-label" for="fatherLevelOfEducation3">EQF Level 4</label>
+                            </div>
+                            <!-- field: fatherLanguage1 -->
+                            <div class="row mb-1">
+                                <label for="fatherLanguage1" class="col-3 col-form-label">First language:</label>
+                                <div class="col-auto">
+                                    <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                    <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation5" value="4" required />
-                                    <label class="form-check-label" for="fatherLevelOfEducation5">EQF Level 5-6</label>
+                            </div>
+                            <!-- field: fatherLanguage2 -->
+                            <div class="row mb-1">
+                                <label for="fatherLanguage2" class="col-3 col-form-label">Second language:</label>
+                                <div class="col-auto">
+                                    <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                    <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation5" value="5" required />
-                                    <label class="form-check-label" for="fatherLevelOfEducation5">EQF Level 7-8</label>
-                                    <div class="invalid-feedback invalid-radio">Please indicate the highest level of education from the list that your <i>father</i> has achieved (or the approximate equivalent).</div>
+                            </div>
+                            <!-- field: fatherLanguageN -->
+                            <div class="row mb-1">
+                                <label for="fatherLanguageN" class="col-3 col-form-label">Other language(s):</label>
+                                <div class="col-auto">
+                                    <textarea class="form-control" name="father_other_languages" id="fatherLanguageN"></textarea>
+                                    <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> List additional languages separated by commas.</small>
                                 </div>
                             </div>
                         </fieldset>
-                        <!-- field: fatherOccupation -->
-                        <div class="row mb-1">
-                            <label for="fatherOccupation" class="col-3 col-form-label">Occupation:</label>
-                            <div class="col-auto">
-                                <input type="text" class="form-control" name="father_occupation" id="fatherOccupation" required />
-                                <div class="invalid-feedback">Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i></div>
-                            </div>
-                        </div>
-                        <!-- field: fatherLanguage1 -->
-                        <div class="row mb-1">
-                            <label for="fatherLanguage1" class="col-3 col-form-label">First language:</label>
-                            <div class="col-auto">
-                                <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
-                                <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
-                            </div>
-                        </div>
-                        <!-- field: fatherLanguage2 -->
-                        <div class="row mb-1">
-                            <label for="fatherLanguage2" class="col-3 col-form-label">Second language:</label>
-                            <div class="col-auto">
-                                <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
-                                <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
-                            </div>
-                        </div>
-                        <!-- field: fatherLanguageN -->
-                        <div class="row mb-1">
-                            <label for="fatherLanguageN" class="col-3 col-form-label">Other language(s):</label>
-                            <div class="col-auto">
-                                <textarea class="form-control" name="father_additional_languages" id="fatherLanguageN"></textarea>
-                                <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> List additional languages separated by commas.</small>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
+                    <script type="text/javascript">
+                        var tt = new bootstrap.Tooltip(document.getElementById('fatherNotApplicableOption'));
+                        lart.forms.conditionalDisable('fatherNotApplicable', 'fatherDetails', 'not-applicable', 'equal');
+                    </script>
                 </div>
-                <script type="text/javascript">
-                    var tt = new bootstrap.Tooltip(document.getElementById('fatherNotApplicableOption'));
-                    lart.forms.conditionalDisable('fatherNotApplicable', 'fatherDetails', 'not-applicable', 'equal');
-                </script>
-            </div>
+            </section>
 
-            <!-- 12. Language proficiency information -->
-            <div id="languageProficiencyTemplate">
-                <div class="row mb-1">
-                    <div class="col-auto">
-                        <p class="h6">[LanguageName]</p>
+            <!-- 12. Language proficiency and usage information -->
+            <section class="m-4">
+                <template id="languageRatingTemplate">
+                    <div id="languageRatingInstance-[LanguageNumber]">
+                        <div class="row mb-1">
+                            <div class="col-auto">
+                                <p class="h6">About <span class="fst-italic languageNameSlot">[LanguageName]</span></p>
+                            </div>
+                        </div>
+                        <!-- Proficiency -->
+                        <div class="row mb-1">
+                            <div class="col-auto">
+                                <p>
+                                    Relative to the performance of a highly proficient speaker of <span class="languageNameSlot">[LanguageName]</span>,
+                                    rate your proficiency level for the following activities conducted in <span class="languageNameSlot">[LanguageName]</span>.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mb-0">
+                            <div class="col-2"></div>
+                            <div class="col-5 text-start">
+                                No Proficiency
+                            </div>
+                            <div class="col-5 text-end">
+                                High Proficiency
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <label for="proficiencySpeakingLanguage-[LanguageNumber]" class="col-2 col-form-label text-end">Speaking</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="proficiencySpeakingLanguage-[LanguageNumber]" required />
+                                <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="proficiencyUnderstandingLanguage-[LanguageNumber]" class="col-2 col-form-label text-end">Understanding</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyUnderstandingLanguage-[LanguageNumber]" required />
+                                <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                        <!-- Usage -->
+                        <div class="row mb-1">
+                            <div class="col-auto">
+                                <p>
+                                    Of the time you spend engaged in each of the following activities,
+                                    how much of that time is carried out in <span class="languageNameSlot">[LanguageName]</span>?
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mb-0">
+                            <div class="col-2"></div>
+                            <div class="col-5 text-start">
+                                None of the time
+                            </div>
+                            <div class="col-5 text-end">
+                                All of the time
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <label for="usageSpeakingLanguage-[LanguageNumber]" class="col-2 col-form-label text-end">Speaking</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageSpeakingLanguage-[LanguageNumber]" required />
+                                <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="usageListeningLanguage-[LanguageNumber]" class="col-2 col-form-label text-end">Listening</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
+                                <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                            </div>
+                        </div>
                     </div>
+                </template>
+                <div id="languageRatingSlot">
+                    <!-- Placeholder dynamically filled with copies of languageProficiencyTemplate -->
                 </div>
-                <!-- Proficiency -->
-                <div class="row mb-1">
-                    <div class="col-auto">
-                        <p>Relative to the performance of a highly proficient speaker of [LanguageName], rate your proficiency level for the following activities conducted in [LanguageName].</p>
-                    </div>
-                </div>
-                <div class="row mb-0">
-                    <div class="col-1"></div>
-                    <div class="col-5 text-start">
-                        No Proficiency
-                    </div>
-                    <div class="col-5 text-end">
-                        High Proficiency
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <label for="proficiencySpeakingLanguage-[LanguageNumber]" class="col-1 col-form-label text-end">Speaking</label>
-                    <div class="col-10 mt-2">
-                        <input type="range" class="form-range d-block" min="0" max="100" step="any" id="proficiencySpeakingLanguage-[LanguageNumber]" required />
-                        <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="proficiencyUnderstandingLanguage-[LanguageNumber]" class="col-1 col-form-label text-end">Understanding</label>
-                    <div class="col-10 mt-2">
-                        <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyUnderstandingLanguage-[LanguageNumber]" required />
-                        <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
-                    </div>
-                </div>
-                <!-- Usage -->
-                <div class="row mb-1">
-                    <div class="col-auto">
-                        <p>Of the time you spend engaged in each of the following activities, how much of that time is carried out in [LanguageName]?</p>
-                    </div>
-                </div>
-                <div class="row mb-0">
-                    <div class="col-1"></div>
-                    <div class="col-5 text-start">
-                        None of the time
-                    </div>
-                    <div class="col-5 text-end">
-                        All of the time
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <label for="usageSpeakingLanguage-[LanguageNumber]" class="col-1 col-form-label text-end">Speaking</label>
-                    <div class="col-10 mt-2">
-                        <input type="range" class="form-range" min="0" max="100" step="any" id="usageSpeakingLanguage-[LanguageNumber]" required />
-                        <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="usageListeningLanguage-[LanguageNumber]" class="col-1 col-form-label text-end">Listening</label>
-                    <div class="col-10 mt-2">
-                        <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
-                        <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
-                    </div>
-                </div>
-            </div>
-            <script>
-                lart.forms.monitorRangeInputs('languageProficiencyTemplate');
-            </script>
-            <div id="languageProficiencySlot">
-                <!-- Placeholder dynamically filled with copies of languageProficiencyTemplate -->
-            </div>
+                <script>
+                    lart.forms.monitorRangeInputs('languageRatingSlot');
+                </script>
+            </section>
 
             <!-- Form submission -->
-            <div class="row text-end p-3">
+            <div class="row text-end p-3 m-4">
                 <div clas="col">
                     <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Next</button>
                 </div>
             </div>
 
         </form>
+
     </article>
 {% endblock %}
 {% block tail_scripts %}
+    <script type="text/javascript">
+        function insertLanguageRating(languageNumber) {
+            const template = document.getElementById('languageRatingTemplate');
+            const slot = document.getElementById('languageRatingSlot');
+            const clone = template.content.cloneNode(true);
+            // Replaces [LanguageNumber] in 'id', 'for', and 'name' attrs
+            function numberReplacer(node) {
+                if (node instanceof HTMLElement) {
+                    if (node.hasAttribute('id')) node.setAttribute('id', node.getAttribute('id').replace('[LanguageNumber]', languageNumber));
+                    if (node.hasAttribute('for')) node.setAttribute('for', node.getAttribute('for').replace('[LanguageNumber]', languageNumber));
+                    if (node.hasAttribute('name')) node.setAttribute('name', node.getAttribute('name').replace('[LanguageNumber]', languageNumber));
+                }
+                if ( node.hasChildNodes() ) {
+                    for (const child of node.childNodes) {
+                        numberReplacer(child);
+                    }
+                }
+            }
+            numberReplacer(clone);
+            // Keep languageNameSlot (default value [LanguageName]) synched
+            const nameSource = document.getElementById(`languagesSpokenLanguage-${languageNumber}`);
+            const languageNameSlots = clone.querySelectorAll('.languageNameSlot');
+            for (const languageNameSlot of languageNameSlots) {
+                nameSource.addEventListener(
+                    'input',
+                    function (event) {
+                        languageNameSlot.textContent = event.target.value
+                    }
+                );
+            }
+            // Make input required dependent on languageName presence
+            const inputs = clone.querySelectorAll('input');
+            for (const input of inputs) {
+                input.required = false;
+                nameSource.addEventListener(
+                    'input',
+                    function (event) {
+                        input.required = !!event.target.value;
+                    }
+                );
+            }
+            // Toggle visibility dependent on languageName presence
+            const wrapperElement = clone.firstElementChild;
+            wrapperElement.hidden = true;
+            nameSource.addEventListener(
+                'input',
+                function (event) {
+                    wrapperElement.hidden = !event.target.value;
+                }
+            );
+            // Append to slot
+            slot.appendChild(clone);
+        }
+        lart.forms.conditionalRequire('languagesSpokenSource-0', 'languagesSpokenSourceSpecify-0', 'o');
+        lart.forms.conditionalDisplay('languagesSpokenSource-0', 'languagesSpokenSourceSpecifyBlock-0', 'o');
+        lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenSource-0`, '', 'not-equal');
+        lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenAge-0`, '', 'not-equal');
+        insertLanguageRating(0);
+        let repeatLanguagesSpokenCounter = 0;
+        function repeatLanguagesSpoken(required = false) {
+            repeatLanguagesSpokenCounter++;
+            lart.forms.repeatBlock('languagesSpokenRepeat', /(languagesSpoken[A-Za-z]*)-(0)/gm);
+            // Require the other fields if they enter a language name
+            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenSource-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
+            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenAge-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
+            // Require the "specify" field if they select "other" on source
+            lart.forms.conditionalRequire(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecify-${repeatLanguagesSpokenCounter}`, 'o');
+            lart.forms.conditionalDisplay(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecifyBlock-${repeatLanguagesSpokenCounter}`, 'o');
+            document.getElementById(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`).required = required;
+            insertLanguageRating(repeatLanguagesSpokenCounter);
+        }
+        // We want to be at least two languages to be displayed and required -> repeat once, make required
+        repeatLanguagesSpoken(true);
+    </script>
     {{ lart_form_pipeline('surveyLDBForm', '_lsbqrml_setldb') }}
 {% endblock %}
