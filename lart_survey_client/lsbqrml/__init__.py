@@ -137,13 +137,118 @@ class Response(DataSchema):
             },
         },
         "ldb": {  # Language and Dialect Background
-            "languages_spoken": {
+            "languages_spoken_name": {
                 "type_": str,
-                "typedesc": "language",
-                "constraint": patterns.SHORT_TEXT,
+                "typedesc": "language or dialect name",
+                "constraint": patterns.LANGUAGE_NAME,
                 "multiple": True,
                 "required": True,
-            }
+            },
+            "languages_spoken_source": {
+                "type_": EnumT,
+                "typedesc": "source of language acquisition",
+                "constraint": patterns.ACQUISITION_SOURCE,
+                "multiple": True,
+                "required": True,
+            },
+            "languages_spoken_source_other": {
+                "type_": str,
+                "typedesc": "source of language acquisition",
+                "constraint": patterns.SHORT_TEXT,
+                "multiple": True,
+            },
+            "languages_spoken_age": {
+                "type_": int,
+                "typedesc": "age of acquisition",
+                "constraint": patterns.ACQUISITION_AGE,
+                "multiple": True,
+                "required": True,
+            },
+            "languages_spoken_breaks": {
+                "type_": int,
+                "typedesc": "age of acquisition",
+                "constraint": patterns.POSITIVE_NUMBER_ZERO,
+                "multiple": True,
+                "required": True,
+            },
+            "languages_proficiency_speaking": {
+                "type_": float,
+                "typedesc": "indication of proficiency",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+                "required": True,
+            },
+            "languages_proficiency_understanding": {
+                "type_": float,
+                "typedesc": "indication of proficiency",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+                "required": True,
+            },
+            "languages_usage_speaking": {
+                "type_": float,
+                "typedesc": "proportion of language use",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+                "required": True,
+            },
+            "languages_usage_listening": {
+                "type_": float,
+                "typedesc": "proportion of language use",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+                "required": True,
+            },
+            "mother_education_level": {
+                "type_": int,
+                "typedesc": "education level",
+                "constraint": patterns.LIKERT_5,
+            },
+            "mother_occupation": {
+                "type_": str,
+                "typedesc": "occupation",
+                "constraint": patterns.SHORT_TEXT,
+            },
+            "mother_first_language": {
+                "type_": str,
+                "typedesc": "language or dialect name",
+                "constraint": patterns.LANGUAGE_NAME,
+            },
+            "mother_second_language": {
+                "type_": str,
+                "typedesc": "language or dialect name",
+                "constraint": patterns.LANGUAGE_NAME,
+            },
+            "mother_other_languages": {
+                "type_": str,
+                "typedesc": "list of language or dialect names",
+                "constraint": patterns.LONG_TEXT,
+            },
+            "father_education_level": {
+                "type_": int,
+                "typedesc": "education level",
+                "constraint": patterns.LIKERT_5,
+            },
+            "father_occupation": {
+                "type_": str,
+                "typedesc": "occupation",
+                "constraint": patterns.SHORT_TEXT,
+            },
+            "father_first_language": {
+                "type_": str,
+                "typedesc": "language or dialect name",
+                "constraint": patterns.LANGUAGE_NAME,
+            },
+            "father_second_language": {
+                "type_": str,
+                "typedesc": "language or dialect name",
+                "constraint": patterns.LANGUAGE_NAME,
+            },
+            "father_other_languages": {
+                "type_": str,
+                "typedesc": "list of language or dialect names",
+                "constraint": patterns.LONG_TEXT,
+            },
         },
         "club": {  # Community Language Use Behaviour
 

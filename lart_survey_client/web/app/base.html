@@ -25,29 +25,36 @@
     <header class="container-fluid mb-2">
         <div class="row bg-primary text-light text-center p-2">
             <div class="col-1">
-                <button id="nav-drawer-toggle" class="navbar-toggler text-light" data-bs-toggle="collapse" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
+                <button id="nav-drawer-toggle" class="navbar-toggler text-light" data-bs-toggle="offcanvas" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
             </div>
             <div class="col">
                 <h1>{% block headline %}{% endblock %}</h1>
             </div>
         </div>
-        <div id="nav-drawer" class="collapse">
-            <div id="nav-header" class="container-fluid bg-primary text-light p-3" data-bs-toggle="collapse" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="true" aria-label="Toggle navigation">
-                <p class="fs-4">LART Survey Client</p>
+        <div id="nav-drawer" class="offcanvas offcanvas-start">
+            <div id="nav-header" class="container-fluid bg-primary text-light p-3" aria-controls="nav-drawer" aria-expanded="true">
+                <div class="offcanvas-header align-items-start p-0 m-0 mb-2">
+                    <p class="offcanvas-title fs-4">LART Survey Client</p>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <script type="text/javascript">
+                    if (!isNaN(parseInt(lart.forms.searchParams.get('instance')))) {
+                        document.write('<p>Survey instance ID: ' + lart.forms.searchParams.get('instance'));
+                    }
+                </script>
                 {% block drawer_info %}{% endblock %}
             </div>
             <nav class="navbar sticky-top navbar-light bg-light">
                 <ul class="nav flex-column">
                     {% block drawer_nav_options %}{% endblock %}
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#"><i class="bi bi-arrow-repeat"></i> Synch now</a>
+                        <a class="nav-link" href="#"><i class="bi bi-arrow-repeat"></i> Synch now</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="modal" data-bs-target="#aboutModal"><i class="bi bi-info-circle"></i> About</a>
                     </li>
                 </ul>
             </nav>
-            <div id="nav-drawer-shadow" data-bs-toggle="collapse" data-bs-target="#nav-drawer"></div>
         </div>
     </header>
 

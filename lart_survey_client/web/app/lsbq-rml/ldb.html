@@ -28,60 +28,97 @@
                     <p>List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:</p>
                 </div>
             </div>
-            <div class="row mb-1">
-                <div class="col-auto" style="width:2.5rem">
-                    <!-- Align with numbers -->
-                </div>
-                <div class="col-2 small">
+            <div class="row mb-1 align-items-end">
+                <div class="col-3 small">
                     Language or dialect
                 </div>
-                <div class="col-2 small">
+                <div class="col-3 small">
                     Where did you learn it?
                 </div>
-                <div class="col-2 small">
-                    At what age did you learn it?<br />
-                    <small class="text-muted">(If learned from birth enter &ldquo;0&rdquo;.)</small>
-                </div>
                 <div class="col-3 small">
-                    Were there any significant periods in your life when you did not use this language?<br />
-                    <small class="text-muted">Indicate duration in months/years.</small>
+                    At what age did you learn it?
+                </div>
+                <div class="col-3 small" >
+                    Were there any significant periods in your life when you did not use this language?
                 </div>
             </div>
+            <div class="row mb-1">
+                <div class="col-6 small">
+                </div>
+                <div class="col-3 small">
+                    <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> If learned from birth enter &ldquo;0&rdquo;.</small>
+                </div>
+                <div class="col-3 small">
+                    <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> Indicate duration in months/years.</small>
+                </div>
+            </div>
+            <datalist id="languageListOptions">
+                <option value="English" />
+                <option value="Welsh" />
+                <option value="British Sign Language" />
+                <option value="Scottish Gaelic" />
+                <option value="Scots" />
+                <option value="Irish" />
+                <option value="Spanish" />
+                <option value="French" />
+                <option value="German" />
+                <option value="Japanese" />
+                <option value="Italian" />
+                <option value="Chinese" />
+                <option value="Arabic" />
+                <option value="Russian" />
+                <option value="Korean" />
+                <option value="Greek (modern)" />
+                <option value="Portuguese" />
+                <option value="Hebrew (modern)" />
+              </datalist>
             <div id="languagesSpokenRepeat">
                 <div class="row mb-2" id="languagesSpoken-0">
-                    <div class="col-auto text-end align-middle" style="width:2.5rem">
-                        1.
-                    </div>
-                    <div class="col-2 form-floating">
-                        <input type="text" class="form-control" id="languagesSpokenLanguage-0" />
+                    <!-- field: languagesSpokenLanguage-0 -->
+                    <div class="col-3 form-floating">
+                        <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-0" name="languagesSpokenLanguage-0" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
                         <label for="languagesSpokenLanguage-0" class="col-form-label col-auto">Language name</label>
+                        <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters). You <i>must</i> list at least <i>two</i> languages/dialects.</div>
                     </div>
-                    <div class="col-2">
+                    <!-- fields: languagesSpokenSource-0 and languagesSpokenSourceSpecifyBlock-0 -->
+                    <div class="col-3">
                         <div class="form-floating">
                             <select class="form-select" id="languagesSpokenSource-0" name="languagesSpokenSource-0">
+                                <option value=""></option>
                                 <option value="h">At home</option>
                                 <option value="s">At school</option>
                                 <option value="c">In the community</option>
                                 <option value="o">Other</option>
                             </select>
                             <label for="languagesSpokenSource-0" class="col-form-label col-auto">Learned where</label>
+                            <div class="invalid-feedback">Please select an option.</div>
                         </div>
                         <div class="form-floating mt-1" id="languagesSpokenSourceSpecifyBlock-0">
                             <input type="text" class="form-control" id="languagesSpokenSourceSpecify-0" name="languagesSpokenSourceSpecify-0" placeholder="Please specify" />
-                            <label for="languageSpokenSourceSpecify-0"><i>Please specify...</i></label>
+                            <label for="languagesSpokenSourceSpecify-0"><i>Please specify...</i></label>
+                            <div class="invalid-feedback">Please give a brief indication of where you learned the language or dialect.</div>
                         </div>
-                        <script type="text/javascript">
-                            lart.forms.conditionalRequire('languagesSpokenSource-0', 'languagesSpokenSourceSpecify-0', 'o');
-                            lart.forms.conditionalDisplay('languagesSpokenSource-0', 'languagesSpokenSourceSpecifyBlock-0', 'o');
-                        </script>
                     </div>
-                    <div class="col-2 form-floating">
-                        <input type="number" class="form-control" id="languagesSpokenLanguage-0" min="0" max="100" />
-                        <label for="languagesSpokenLanguage-0" class="col-form-label col-auto">Learned from age</label>
-                    </div>
+                    <!-- field: languagesSpokenAge-0 -->
                     <div class="col-3 form-floating">
-                        <input type="text" id="languagesSpokenBreak-0" class="form-control" pattern="([0-9moyrs, ]|months|years|and)*"/>
-                        <label for="languagesSpokenBreak-0">Significant breaks (months/years)</label>
+                        <input type="number" class="form-control" id="languagesSpokenAge-0" name="languagesSpokenAge-0" min="0" max="100" />
+                        <label for="languagesSpokenAge-0" class="col-form-label col-auto">Learned from age</label>
+                        <div class="invalid-feedback">Please indicate how old you were (in years) when you started to learn this language.</div>
+                    </div>
+                    <!-- fields: languagesSpokenBreakYears-0 and languagesSpokenBreakMonths-0 -->
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col-6 form-floating d-inline-block">
+                                <input type="number" class="form-control" id="languagesSpokenBreakYears-0" min="0" max="100" value="0" />
+                                <label for="languagesSpokenBreakYears-0">years</label>
+                                <div class="invalid-feedback">Value must be between 0-100.</div>
+                            </div>
+                            <div class="col-6 form-floating d-inline-block">
+                                <input type="number" class="form-control" id="languagesSpokenBreakMonths-0" min="0" max="12" value="0" />
+                                <label for="languagesSpokenBreakMonths-0">months</label>
+                                <div class="invalid-feedback">Value must be between 0-12.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,234 +126,269 @@
                 <!-- <div class="col">
                     <p class="help-block p-2 text-muted ms-5"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
                 </div> -->
-                <div class="col-auto" style="width:2.5rem"></div>
-                <div class="col-9 text-end">
-                    <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="lart.forms.repeatBlock('languagesSpokenRepeat', /(languagesSpoken[A-Za-z]*)-(0)/gm)"><i class="bi-plus-circle-dotted"></i> Add line</a>
-                </div>
-            </div>
-
-
-            <!-- 1. Sex -->
-            <fieldset class="row mb-3">
-                <legend class="col-form-label col-auto pt-0">Sex:</legend>
-                <div class="col-sm">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="sexFemale" value="F" required />
-                        <label class="form-check-label" for="sexFemale">Female</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="sexMale" value="M" required />
-                        <label class="form-check-label" for="sexMale">Male</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="sexOther" value="O" required />
-                        <label class="form-check-label align-text-top" for="sexOther">Other</label>
-                        <div id="sexOtherSpecifyCollapse" class="d-inline-block align-text-top collapse">
-                            <input name="sex_other" id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" placeholder="Specify..." aria-label="Specify sex, if other." />
-                            <div class="invalid-feedback">Please briefly specify what other sex you identify with.</div>
-                        </div>
-                        <div class="invalid-feedback invalid-radio">Please select an option for <i>Sex</i>.</div>
-                        <script type="text/javascript">
-                            lart.forms.conditionalRequire('sex', 'sex_other', 'O');
-                            lart.forms.conditionalDisplay('sex', 'sexOtherSpecify', 'O');
-                        </script>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- 2. Occupation -->
-            <div class="row mb-3">
-                <label for="occupation" class="col-form-label col-auto">Occupation:</label>
-                <div class="col-sm">
-                  <input type="text" class="form-control" id="occupation" required />
-                  <div class="invalid-feedback">Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, &mldr;</div>
-                </div>
-            </div>
-
-            <!-- 3. Handedness -->
-            <fieldset class="row mb-3">
-                <legend class="col-form-label col-auto pt-0">Handedness:</legend>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="handedness" id="handednessLeft" value="L" required />
-                        <label class="form-check-label" for="handednessLeft">Left</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="handedness" id="handednessRight" value="R" required />
-                        <label class="form-check-label" for="handednessRight">Right</label>
-                        <div class="invalid-feedback invalid-radio">Please indicate whether you are <i>left-</i> or <i>righthanded</i>.</div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- 4. Date of birth -->
-            <div class="row mb-3">
-                <label for="dateOfBirth" class="col-form-label col-sm-auto">Date of birth:</label>
-                <div class="col-sm-auto">
-                    <input type="date" class="form-control" name="date_of_birth" id="dateOfBirth" min="1922-01-01" required />
+                <div class="col-12 text-end">
                     <script type="text/javascript">
-                        booteel.DOM.setAttribute('dateOfBirth', 'max', booteel.today.iso.YEAR_MONTH_DAY);
+                        function insertProficiencyRating() {
+                            return true;
+                        }
+                        lart.forms.conditionalRequire('languagesSpokenSource-0', 'languagesSpokenSourceSpecify-0', 'o');
+                        lart.forms.conditionalDisplay('languagesSpokenSource-0', 'languagesSpokenSourceSpecifyBlock-0', 'o');
+                            lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenSource-0`, '', 'not-equal');
+                            lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenAge-0`, '', 'not-equal');
+                        let repeatLanguagesSpokenCounter = 0;
+                        function repeatLanguagesSpoken(required = false) {
+                            repeatLanguagesSpokenCounter++;
+                            lart.forms.repeatBlock('languagesSpokenRepeat', /(languagesSpoken[A-Za-z]*)-(0)/gm);
+                            // Require the other fields if they enter a language name
+                            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenSource-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
+                            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenAge-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
+                            // Require the "specify" field if they select "other" on source
+                            lart.forms.conditionalRequire(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecify-${repeatLanguagesSpokenCounter}`, 'o');
+                            lart.forms.conditionalDisplay(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecifyBlock-${repeatLanguagesSpokenCounter}`, 'o');
+                            document.getElementById(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`).required = required;
+                        }
+                        // We want to be at least two languages to be displayed and required -> repeat once, make required
+                        repeatLanguagesSpoken(true);
                     </script>
-                    <div class="invalid-feedback">Please give your <i>date of birth</i> (must be in the past).</div>
+                    <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="repeatLanguagesSpoken()"><i class="bi-plus-circle-dotted"></i> Add line</a>
                 </div>
             </div>
 
-            <!-- 5. Hearing problems -->
-            <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-auto pt-0">Do you have impaired hearing?</legend>
-                <div class="col-sm-auto">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hearing_impairment" id="hearingProblemYes" value="yes" required />
-                        <label class="form-check-label" for="hearingProblemYes">Yes</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hearing_impairment" id="hearingProblemNo" value="no" required />
-                        <label class="form-check-label" for="hearingProblemNo">No</label>
-                    <div class="invalid-feedback invalid-radio">Please indicate whether you have any difficulties with your hearing.</div>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="row mb-3 ms-5" id="hearingAid">
-                <legend class="col-form-label col-sm-auto pt-0">If <strong>yes</strong>, do you wear a hearing aid?</legend>
-                <div class="col-sm-auto">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hearing_aid" id="hearingAidYes" value="yes" />
-                        <label class="form-check-label" for="hearingYes">Yes</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hearing_aid" id="hearingAidNo" value="no" />
-                        <label class="form-check-label" for="hearingAidNo">No</label>
-                        <div class="invalid-feedback invalid-radio">Please indicate whether you use a hearing aid or not.</div>
-                    </div>
-                </div>
-            </fieldset>
-            <script type="text/javascript">
-                lart.forms.conditionalRequire('hearing_impairment', 'hearing_aid', 'yes');
-                lart.forms.conditionalDisplay('hearing_impairment', 'hearingAid', 'yes');
-            </script>
-
-            <!-- 6. Vision problems -->
-            <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-auto pt-0">Do you have impaired vision?</legend>
-                <div class="col-sm-auto">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="vision_impairment" id="visionProblemYes" value="yes" required />
-                        <label class="form-check-label" for="visionProblemYes">Yes</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="vision_impairment" id="visionProblemNo" value="no" required />
-                        <label class="form-check-label" for="visionProblemNo">No</label>
-                        <div class="invalid-feedback invalid-radio">Please indicate whether you have a vision impairment or not.</div>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="row mb-3 ms-5" id="visionGlasses">
-                <legend class="col-form-label col-sm-auto pt-0">If <strong>yes</strong>, do you wear glasses/contacts?</legend>
-                <div class="col-sm-auto">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="vision_aid" id="visionGlassesYes" value="yes" />
-                        <label class="form-check-label" for="visionGlassesYes">Yes</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="vision_aid" id="visionGlassesNo" value="no" />
-                        <label class="form-check-label" for="visionGlassesNo">No</label>
-                        <div class="invalid-feedback invalid-radio">Please indicate whether you use a vision aid such as glasses or contact lenses.</div>
-                    </div>
-                </div>
-            </fieldset>
-            <script type="text/javascript">
-                lart.forms.conditionalRequire('vision_impairment', 'vision_aid', 'yes');
-                lart.forms.conditionalDisplay('vision_impairment', 'visionGlasses', 'yes');
-            </script>
-            <fieldset class="row mb-3 ms-5" id="visionCorrected">
-                <legend class="col-form-label col-sm-auto pt-0">Do they correct your vision to normal?</legend>
-                <div class="col-sm-auto">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="vision_fully_corrected" id="visionCorrectedYes" value="yes" />
-                        <label class="form-check-label" for="visionGlassesYes">Yes</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="vision_fully_corrected" id="visionCorrectedNo" value="no" />
-                        <label class="form-check-label" for="visionCorrectedNo">No</label>
-                        <div class="invalid-feedback invalid-radio">Please indicate whether, using your vision aid, your vision is fully corrected to normal.</div>
-                    </div>
-                </div>
-            </fieldset>
-            <script type="text/javascript">
-                lart.forms.conditionalRequire('vision_aid', 'vision_fully_corrected', 'yes');
-                lart.forms.conditionalDisplay('vision_aid', 'visionCorrected', 'yes');
-            </script>
-
-            <!-- 7. Place of birth -->
-            <div class="row mb-3">
-                <label for="placeOfBirth" class="col-form-label col-auto">Place of birth:</label>
-                <div class="col-sm">
-                  <input type="text" class="form-control" name="place_of_birth" id="placeOfBirth" required />
-                  <div class="invalid-feedback">Please give your (approximate) <i>place of birth</i>, e.g. <i>Madrid, Spain</i>.</div>
-                  <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
-                </div>
-            </div>
-
-            <!-- 8. Where else have you lived -->
+            <!-- 11. Parental education -->
             <div class="row mb-1">
-                <p class="col-form-label col-auto">Where else have you lived for any significant period of time (&gt; 6 months)?</p>
-            </div>
-            <div id="otherPlacesRepeat">
-                <div class="row mb-1 ms-5" id="otherPlaces-0">
-                    <div class="col form-floating">
-                        <input type="text" class="form-control" id="otherPlacesName-0" />
-                        <label for="otherPlacesName-0">Place name</label>
-                    </div>
-                    <div class="col form-floating">
-                        <input type="month" class="form-control" id="otherPlacesFrom-0" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
-                        <label for="otherPlacesFrom-0">From</label>
-                    </div>
-                    <div class="col form-floating">
-                        <input type="month" class="form-control" id="otherPlacesTo-0" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
-                        <label for="otherPlacesTo-0">Until</label>
-                    </div>
+                <div class="col-auto">
+                    <p>Please indicate the highest level of education, the occupation, and the languages or dialects spoken by each of your parents:</p>
                 </div>
             </div>
-            <div class="row mt-1 mb-3 ms-1">
-                <div class="col">
-                    <p class="help-block p-2 text-muted ms-5"><i class="bi-info-circle text-info"></i> Approximate area is sufficient.</p>
+            <div class="row mb-3">
+                <!-- Mother -->
+                <div class="col-md-6 mb-3">
+                    <div class="row mb-1">
+                        <div class="col-auto">
+                            <p class="h6 d-inline-block">Mother</p>
+                            <p id="motherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your mother (e.g. because you don't know them).">
+                                (<input class="form-check-input align-text-top" type="checkbox" id="motherNotApplicable" name="motherNotApplicable" value="not-applicable"> <label class="form-check-label" for="motherNotApplicable">not applicable</label>)
+                            </p>
+                        </div>
+                    </div>
+                    <fieldset id="motherDetails">
+                        <legend class="visually-hidden">Mother</legend>
+                        <!-- field: motherLevelOfEducation -->
+                        <fieldset id="motherLevelOfEducation" class="row mb-2">
+                            <legend for="motherLevelOfEducation" class="fs-6">Level of education:</legend>
+                            <div class="col-auto ms-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation1" value="1" required />
+                                    <label class="form-check-label" for="motherLevelOfEducation1">EQF Level 1</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation2" value="2" required />
+                                    <label class="form-check-label" for="motherLevelOfEducation2">EQF Level 2-3</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation3" value="3" required />
+                                    <label class="form-check-label" for="motherLevelOfEducation3">EQF Level 4</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation5" value="4" required />
+                                    <label class="form-check-label" for="motherLevelOfEducation5">EQF Level 5-6</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mother_education_level" id="motherLevelOfEducation5" value="5" required />
+                                    <label class="form-check-label" for="motherLevelOfEducation5">EQF Level 7-8</label>
+                                    <div class="invalid-feedback invalid-radio">Please indicate the highest level of education from the list that your <i>mother</i> has achieved (or the approximate equivalent).</div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- field: motherOccupation -->
+                        <div class="row mb-1">
+                            <label for="motherOccupation" class="col-3 col-form-label">Occupation:</label>
+                            <div class="col-auto">
+                                <input type="text" class="form-control" name="mother_occupation" id="motherOccupation" required />
+                                <div class="invalid-feedback">Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i></div>
+                            </div>
+                        </div>
+                        <!-- field: motherLanguage1 -->
+                        <div class="row mb-1">
+                            <label for="motherLanguage1" class="col-3 col-form-label">First language:</label>
+                            <div class="col-auto">
+                                <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
+                            </div>
+                        </div>
+                        <!-- field: motherLanguage2 -->
+                        <div class="row mb-1">
+                            <label for="motherLanguage2" class="col-3 col-form-label">Second language:</label>
+                            <div class="col-auto">
+                                <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
+                            </div>
+                        </div>
+                        <!-- field: motherLanguageN -->
+                        <div class="row mb-1">
+                            <label for="motherLanguageN" class="col-3 col-form-label">Other language(s):</label>
+                            <div class="col-auto">
+                                <textarea class="form-control" name="mother_additional_languages" id="motherLanguageN"></textarea>
+                                <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> List additional languages separated by commas.</small>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-                <div class="col text-end">
-                    <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="lart.forms.repeatBlock('otherPlacesRepeat', /(otherPlaces[A-Z]?[a-z]*)-(0)/gm)"><i class="bi-plus-circle-dotted"></i> Add line</a>
+                <script type="text/javascript">
+                    var tt = new bootstrap.Tooltip(document.getElementById('motherNotApplicableOption'));
+                    lart.forms.conditionalDisable('motherNotApplicable', 'motherDetails', 'not-applicable', 'equal');
+                </script>
+                <!-- Father -->
+                <div class="col-md-6 mb-3">
+                    <div class="row mb-1">
+                        <div class="col-auto">
+                            <p class="h6 d-inline-block">Father</p>
+                            <p id="fatherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your father (e.g. because you don't know them).">
+                                (<input class="form-check-input align-text-top" type="checkbox" id="fatherNotApplicable" name="fatherNotApplicable" value="not-applicable"> <label class="form-check-label" for="fatherNotApplicable">not applicable</label>)
+                            </p>
+                        </div>
+                    </div>
+                    <fieldset id="fatherDetails">
+                        <legend class="visually-hidden">Father</legend>
+                        <!-- field: fatherLevelOfEducation -->
+                        <fieldset id="fatherLevelOfEducation" class="row mb-2">
+                            <legend for="fatherLevelOfEducation" class="fs-6">Level of education:</legend>
+                            <div class="col-auto ms-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation1" value="1" required />
+                                    <label class="form-check-label" for="fatherLevelOfEducation1">EQF Level 1</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation2" value="2" required />
+                                    <label class="form-check-label" for="fatherLevelOfEducation2">EQF Level 2-3</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation3" value="3" required />
+                                    <label class="form-check-label" for="fatherLevelOfEducation3">EQF Level 4</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation5" value="4" required />
+                                    <label class="form-check-label" for="fatherLevelOfEducation5">EQF Level 5-6</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="father_education_level" id="fatherLevelOfEducation5" value="5" required />
+                                    <label class="form-check-label" for="fatherLevelOfEducation5">EQF Level 7-8</label>
+                                    <div class="invalid-feedback invalid-radio">Please indicate the highest level of education from the list that your <i>father</i> has achieved (or the approximate equivalent).</div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- field: fatherOccupation -->
+                        <div class="row mb-1">
+                            <label for="fatherOccupation" class="col-3 col-form-label">Occupation:</label>
+                            <div class="col-auto">
+                                <input type="text" class="form-control" name="father_occupation" id="fatherOccupation" required />
+                                <div class="invalid-feedback">Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i></div>
+                            </div>
+                        </div>
+                        <!-- field: fatherLanguage1 -->
+                        <div class="row mb-1">
+                            <label for="fatherLanguage1" class="col-3 col-form-label">First language:</label>
+                            <div class="col-auto">
+                                <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
+                            </div>
+                        </div>
+                        <!-- field: fatherLanguage2 -->
+                        <div class="row mb-1">
+                            <label for="fatherLanguage2" class="col-3 col-form-label">Second language:</label>
+                            <div class="col-auto">
+                                <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                <div class="invalid-feedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
+                            </div>
+                        </div>
+                        <!-- field: fatherLanguageN -->
+                        <div class="row mb-1">
+                            <label for="fatherLanguageN" class="col-3 col-form-label">Other language(s):</label>
+                            <div class="col-auto">
+                                <textarea class="form-control" name="father_additional_languages" id="fatherLanguageN"></textarea>
+                                <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> List additional languages separated by commas.</small>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
+                <script type="text/javascript">
+                    var tt = new bootstrap.Tooltip(document.getElementById('fatherNotApplicableOption'));
+                    lart.forms.conditionalDisable('fatherNotApplicable', 'fatherDetails', 'not-applicable', 'equal');
+                </script>
             </div>
 
-            <!-- 9. Level of education -->
-            <fieldset id="levelOfEducation">
-                <div class="row">
-                    <legend class="col-form-label col-auto pt-0">Please indicate the highest level of education you have achieved:</legend>
+            <!-- 12. Language proficiency information -->
+            <div id="languageProficiencyTemplate">
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p class="h6">[LanguageName]</p>
+                    </div>
                 </div>
-                <div class="row-mb-3">
-                    <div class="col ms-5">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation1" value="1" required />
-                            <label class="form-check-label" for="levelOfEducation1">EQF Level 1</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation2" value="2" required />
-                            <label class="form-check-label" for="levelOfEducation2">EQF Level 2-3</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation3" value="3" required />
-                            <label class="form-check-label" for="levelOfEducation3">EQF Level 4</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation4" value="4" required />
-                            <label class="form-check-label" for="levelOfEducation4">EQF Level 5-6</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation5" value="5" required />
-                            <label class="form-check-label" for="levelOfEducation5">EQF Level 7-8</label>
-                            <div class="invalid-feedback invalid-radio">Please indicate the highest level of education from the list that you have achieved (or the approximate equivalent).</div>
-                        </div>
-                    </div> 
+                <!-- Proficiency -->
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p>Relative to the performance of a highly proficient speaker of [LanguageName], rate your proficiency level for the following activities conducted in [LanguageName].</p>
+                    </div>
                 </div>
-            </fieldset>
+                <div class="row mb-0">
+                    <div class="col-1"></div>
+                    <div class="col-5 text-start">
+                        No Proficiency
+                    </div>
+                    <div class="col-5 text-end">
+                        High Proficiency
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <label for="proficiencySpeakingLanguage-[LanguageNumber]" class="col-1 col-form-label text-end">Speaking</label>
+                    <div class="col-10 mt-2">
+                        <input type="range" class="form-range d-block" min="0" max="100" step="any" id="proficiencySpeakingLanguage-[LanguageNumber]" required />
+                        <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="proficiencyUnderstandingLanguage-[LanguageNumber]" class="col-1 col-form-label text-end">Understanding</label>
+                    <div class="col-10 mt-2">
+                        <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyUnderstandingLanguage-[LanguageNumber]" required />
+                        <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                    </div>
+                </div>
+                <!-- Usage -->
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p>Of the time you spend engaged in each of the following activities, how much of that time is carried out in [LanguageName]?</p>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-1"></div>
+                    <div class="col-5 text-start">
+                        None of the time
+                    </div>
+                    <div class="col-5 text-end">
+                        All of the time
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <label for="usageSpeakingLanguage-[LanguageNumber]" class="col-1 col-form-label text-end">Speaking</label>
+                    <div class="col-10 mt-2">
+                        <input type="range" class="form-range" min="0" max="100" step="any" id="usageSpeakingLanguage-[LanguageNumber]" required />
+                        <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="usageListeningLanguage-[LanguageNumber]" class="col-1 col-form-label text-end">Listening</label>
+                    <div class="col-10 mt-2">
+                        <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
+                        <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                lart.forms.monitorRangeInputs('languageProficiencyTemplate');
+            </script>
+            <div id="languageProficiencySlot">
+                <!-- Placeholder dynamically filled with copies of languageProficiencyTemplate -->
+            </div>
 
             <!-- Form submission -->
             <div class="row text-end p-3">
@@ -329,5 +401,5 @@
     </article>
 {% endblock %}
 {% block tail_scripts %}
-    {{ lart_form_pipeline('surveyLSBForm', '_lsbqrml_setlsb') }}
+    {{ lart_form_pipeline('surveyLDBForm', '_lsbqrml_setldb') }}
 {% endblock %}

@@ -179,9 +179,9 @@ class Validator:
     the successive building of datasets with late repairs, this may be desirable).
     """
 
-    results: list[ValidationResult] = []
-    failed: list[ValidationResult] = []
-    successful: list[ValidationResult] = []
+    results: list[ValidationResult]
+    failed: list[ValidationResult]
+    successful: list[ValidationResult]
     forcecast: bool
     ignorecase: bool
 
@@ -201,6 +201,9 @@ class Validator:
                 be passed the IGNORECASE flag. Can be overwritten on each validation call
                 by passing ignorecase=True/False. Default value: False.
         """
+        self.results = []
+        self.failed = []
+        self.successful = []
         self.forcecast = forcecast
         self.ignorecase = ignorecase
 
@@ -459,7 +462,6 @@ class Validator:
                 cval = True
             elif cdata in constraint[0]:
                 cval = False
-            print("  Determined value:", cval)
         cmp = cval is not None
         validation = ValidationResult(
             cmp,

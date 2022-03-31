@@ -116,6 +116,7 @@ lart.forms.conditionalRequire = function (fieldName, targetName, value, conditio
         node.addEventListener('input',
             function (event) {
                 if(matchesCondition()) {
+                    console.log("Targets:", targets)
                     for(const target of targets) {
                         target.required = true;
                     }
@@ -126,8 +127,12 @@ lart.forms.conditionalRequire = function (fieldName, targetName, value, conditio
                 }
             }
         );
+        // Trigger the input event now to get the setting consistent for default values
+        const event = new Event('input');
+        node.dispatchEvent(event);
     }
 }
+
 lart.forms.conditionalDisplay = function (fieldName, targetId, value, condition = 'equal') {
     const collection = document.getElementsByName(fieldName);
     const target = document.getElementById(targetId);
@@ -144,6 +149,24 @@ lart.forms.conditionalDisplay = function (fieldName, targetId, value, condition 
                 } else {
                     setTimeout(function () { target.classList.add("invisible") }, 100);
                     target.classList.remove("show");
+                }
+            }
+        );
+    }
+}
+
+lart.forms.conditionalDisable = function (fieldName, targetId, value, condition = 'equal') {
+    const collection = document.getElementsByName(fieldName);
+    const target = document.getElementById(targetId);
+    // Multiselect elements (radio, checkbox, select(?))
+    for(const node of collection) {
+        const matchesCondition = lart.forms.util.inputConditionMatcher(node, value, condition);
+        node.addEventListener('input',
+            function (event) {
+                if(matchesCondition()) {
+                    target.disabled = true;
+                } else {
+                    target.disabled = false;
                 }
             }
         );
@@ -212,6 +235,52 @@ lart.forms.requireValidation = function (novalidate = false) {
                 )
             }
         )
+}
+
+lart.forms.monitorRangeInputs = function (targetZoneId) {
+    const inputFields = document.querySelectorAll(`#${targetZoneId} input[type="range"]`);
+    const targetZone = document.getElementById(targetZoneId);
+    const dataAttributeSetter = function(field) {
+        if( !field.hasAttribute('data-lart-range-moved') ) {
+            field.setAttribute('data-lart-range-moved', 'false');
+            field.addEventListener(
+                'input',
+                function (event) {
+                    event.target.setAttribute('data-lart-range-moved', 'true');
+                },
+                { once: true }
+            )
+            // field.addEventListener(
+            //     'invalid',
+            //     function (event) {
+            //         event.target.setCustomValidity('You must move the slider at least once.');
+            //     }
+            // );
+            field.setCustomValidity('You must move the slider at least once.');
+            field.addEventListener(
+                'input',
+                function (event) {
+                    event.target.setCustomValidity('');
+                }
+            );
+        }
+    }
+    // Set data attribute on existing range inputs
+    for (const field of inputFields) {
+        dataAttributeSetter(field);
+    }
+    // Monitor for new range inputs
+    const observerCallback = function(mutationList, observer) {
+        for (const mutation of mutationList) {
+            for (const node of mutation.addedNodes) {
+                if (node instanceof HTMLInputElement && node.type == 'range') {
+                    dataAttributeSetter(node);
+                }
+            }
+        }
+    }
+    const observer = new MutationObserver(observerCallback);
+    observer.observe(targetZone, {childList: true, subtree: true});
 }
 
 /**

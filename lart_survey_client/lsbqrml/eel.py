@@ -133,10 +133,24 @@ def setlsb(instid: int, data: dict[str, str]) -> int:
 @_expose
 def setldb(instid: int, data: dict[str, Any]) -> int:
     """Adds Language and Dialect Background Data to a Response."""
+    logger.info(f"Setting LDB data on LSBQ-RML instance {instid}..")
+    logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
-    instance.setldb(
-
-    )
+    processed: dict[str, Union[str, list[str]]] = {
+        "languages_spoken_name": [],
+        "languages_spoken_source": [],
+        "languages_spoken_source_other": [],
+        "languages_spoken_age": [],
+        "languages_spoken_breaks": [],
+        "languages_proficiency_speaking": [],
+        "languages_proficiency_understanding": [],
+        "languages_usage_speaking": [],
+        "languages_usage_listening": [],
+    }
+    print(f"SETLDB has received data: {data!r}")
+    # @TODO: prepare actual data to be stored...
+    logger.debug(f"... preprocessed data: {processed!r}")
+    instance.setldb(processed)
     logger.debug(f"LSBQ-RML instance id = {instid}")
     logger.debug(f"... set 'ldb' data to {instance.getldb()}")
     booteel.setlocation(f"club.html?instance={instance.getid()}")
