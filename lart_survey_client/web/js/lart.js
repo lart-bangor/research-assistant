@@ -126,8 +126,12 @@ lart.forms.conditionalRequire = function (fieldName, targetName, value, conditio
                 }
             }
         );
+        // Trigger the input event now to get the setting consistent for default values
+        const event = new Event('input');
+        node.dispatchEvent(event);
     }
 }
+
 lart.forms.conditionalDisplay = function (fieldName, targetId, value, condition = 'equal') {
     const collection = document.getElementsByName(fieldName);
     const target = document.getElementById(targetId);
@@ -144,6 +148,24 @@ lart.forms.conditionalDisplay = function (fieldName, targetId, value, condition 
                 } else {
                     setTimeout(function () { target.classList.add("invisible") }, 100);
                     target.classList.remove("show");
+                }
+            }
+        );
+    }
+}
+
+lart.forms.conditionalDisable = function (fieldName, targetId, value, condition = 'equal') {
+    const collection = document.getElementsByName(fieldName);
+    const target = document.getElementById(targetId);
+    // Multiselect elements (radio, checkbox, select(?))
+    for(const node of collection) {
+        const matchesCondition = lart.forms.util.inputConditionMatcher(node, value, condition);
+        node.addEventListener('input',
+            function (event) {
+                if(matchesCondition()) {
+                    target.disabled = true;
+                } else {
+                    target.disabled = false;
                 }
             }
         );
@@ -212,6 +234,73 @@ lart.forms.requireValidation = function (novalidate = false) {
                 )
             }
         )
+}
+
+lart.forms.monitorRangeInputs = function (targetZoneId) {
+    const targetZone = document.getElementById(targetZoneId);
+    const inputFields = targetZone.querySelectorAll('input[type="range"]');
+    const dataAttributeSetter = function(field) {
+        if( !field.hasAttribute('data-lart-range-moved') ) {
+            field.setAttribute('data-lart-range-moved', 'false');
+            field.addEventListener(
+                'input',
+                function (event) {
+                    event.target.setAttribute('data-lart-range-moved', 'true');
+                    event.target.setCustomValidity('');
+                },
+                { once: true }
+            );
+            if (field.hasAttribute('required') && field.required ) {
+                field.setCustomValidity('You must move the slider at least once.');
+            }
+            // Add monitor for "required attribute" (don't flag up non-required sliders...)
+            function rangeRequiredMonitor(mutationList, observer) {
+                for (const mutation of mutationList) {
+                    if ( mutation.type == 'attributes' && mutation.attributeName == 'required' ) {
+                        const moved = mutation.target.getAttribute('data-lart-range-moved');
+                        if ( mutation.target.required && moved == 'false' ) {
+                            field.setCustomValidity('You must move the slider at least once.');
+                        } else {
+                            field.setCustomValidity('');
+                        }
+                    }
+                }
+            }
+            const rangeRequiredObserver = new MutationObserver(rangeRequiredMonitor);
+            rangeRequiredObserver.observe(field, {attributeFilter: ['required']});
+            // Should be taken care of by just setting it with the "once" eventListener above
+            // field.addEventListener(
+            //     'input',
+            //     function (event) {
+            //         event.target.setCustomValidity('');
+            //     }
+            // );
+        }
+    }
+    // Set data attribute on existing range inputs
+    for (const field of inputFields) {
+        dataAttributeSetter(field);
+    }
+    // Monitor for new range inputs
+    const observerCallback = function(mutationList, observer) {
+        function recursiveDataAttributeSetter(node) {
+            if (node instanceof HTMLInputElement && node.type == 'range') {
+                dataAttributeSetter(node);
+            }
+            if ( node.hasChildNodes() ) {
+                for (const child of node.childNodes) {
+                    recursiveDataAttributeSetter(child);
+                }
+            }
+        }
+        for (const mutation of mutationList) {
+            for (const node of mutation.addedNodes) {
+                recursiveDataAttributeSetter(node);
+            }
+        }
+    }
+    const observer = new MutationObserver(observerCallback);
+    observer.observe(targetZone, {childList: true, subtree: true});
 }
 
 /**

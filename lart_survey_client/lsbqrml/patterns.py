@@ -1,5 +1,6 @@
 """Additional validation patterns for LSBQ-RML."""
-from datavalidator.patterns import *  # noqa: F403
+from datavalidator.types import EnumT, RangeT, PatternT
+from datavalidator.patterns import *  # noqa: F401, F403
 
 LOCATION_NAME: str = r"[A-Za-z0-9, \(\)]{1,50}"
 
@@ -18,4 +19,6 @@ ACQUISITION_SOURCE: EnumT = {  # noqa: F405
     "o":         "o",
 }
 
-LANGUAGE_NAME: PatternT = r"\w{3,50}"  # noqa: F405  # Are there any shorter than 3 (Ido)?
+ACQUISITION_AGE: RangeT = (0, 100)
+
+LANGUAGE_NAME: PatternT = r"[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}"  # noqa: F405  # Are there any shorter than 3 (Ido)?

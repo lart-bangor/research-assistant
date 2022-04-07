@@ -229,7 +229,7 @@ booteel.registerWindowHandlers();
  *                                             will be passed the modal's ID and the label of
  *                                             the choice picked by the user.
  */
-booteel.modal = function (title, body, options = { ok: 'OK' }, primary = 'ok', dismissable = true, callback = null, icon = null) {
+booteel.modal = async function (title, body, options = { ok: 'OK' }, primary = 'ok', dismissable = true, callback = null, icon = null) {
     booteel.logger.debug("Creating new modal with parameters:", title, body, options);
 
     // Generate an id for the modal, avoiding collisions of existing IDs
@@ -273,7 +273,8 @@ booteel.modal = function (title, body, options = { ok: 'OK' }, primary = 'ok', d
     }
 
     //Build the HTML for the modal
-    const modal_html = `      <div class="modal fade" id="${modal_id}" tabindex="-1" aria-labelledby="${modal_id}-label" aria-hidden="true">
+    const modal_html = `
+      <div class="modal fade" id="${modal_id}" tabindex="-1" aria-labelledby="${modal_id}-label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -286,9 +287,9 @@ booteel.modal = function (title, body, options = { ok: 'OK' }, primary = 'ok', d
                 <div class="modal-footer">
                     ${modal_buttons}
                 </div>
-                </div>
             </div>
-        </div>`;
+        </div>
+    </div>`;
 
     // Append the HTML to the bottom of the the document's body
     booteel.logger.debug("Injecting modal with HTML:", modal_html);
@@ -308,17 +309,20 @@ booteel.handleModal = async function (modal_id, choice, callback = null) {
     booteel.logger.debug(`Modal response for '${modal_id}' received: ${choice}`)
     const modal = bootstrap.Modal.getInstance(document.getElementById(modal_id));
     modal.hide()
-    if (callback === null) {
-        result = await eel._booteel_handlemodal(modal_id, choice)();
-        booteel.logger.debug(`Modal choice '${choice}' on '${modal_id}' handled in Python with result: ${result}.`)
-    } else {
-        result = await callback(modal_id, choice);
-        booteel.logger.debug(`Modal choice '${choice}' on '${modal_id}' handled in JavaScript with result: ${result}.`)
-    }
-    if (result) {
-        modal.dispose();
-        booteel.logger.debug(`Modal disposed: '${modal_id}'.`);
-    }
+    result = true;
+    // @TODO: Fix the callback logic here, this somehow ends up blocking...
+    // if (callback === null) {
+    //     result = eel._booteel_handlemodal(modal_id, choice);
+    //     booteel.logger.debug(`Modal choice '${choice}' on '${modal_id}' handled in Python with result: ${result}.`)
+    // } else {
+    //     result = callback(modal_id, choice);
+    //     booteel.logger.debug(`Modal choice '${choice}' on '${modal_id}' handled in JavaScript with result: ${result}.`)
+    // }
+    // if (result) {
+    //     modal.dispose();
+    //     console.log(`Modal disposed: '${modal_id}'.`);
+    //     booteel.logger.debug(`Modal disposed: '${modal_id}'.`);
+    // }
     return result;
 }
 

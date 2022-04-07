@@ -1,4 +1,5 @@
 """Patterns/ranges/enums/etc. for validating different common data input types."""
+import sys
 from .types import PatternT, EnumT, PolarT, RangeT
 
 
@@ -75,6 +76,8 @@ SHORT_TEXT: PatternT = r".{0,255}"
 
 LONG_TEXT: PatternT = r".*"
 
+ANY_STR: PatternT = LONG_TEXT
+
 HANDEDNESS: EnumT = {
     "lefthanded": "l",
     "left": "l",
@@ -117,3 +120,13 @@ LIKERT_9_NA: RangeT = (0, 9)
 LIKERT_10_NA: RangeT = (0, 10)
 
 ZERO_ONE_RANGE: RangeT = (0.0, 1.0)
+
+ANY_NUMBER: RangeT = (-sys.maxsize - 1, sys.maxsize)
+
+POSITIVE_NUMBER_ONE: RangeT = (1, sys.maxsize)
+
+POSITIVE_NUMBER_ZERO: RangeT = (0, sys.maxsize)
+
+NEGATIVE_NUMBER_ONE: RangeT = (-1, -sys.maxsize - 1)
+
+NEGATIVE_NUMBER_ZERO: RangeT = (0, -sys.maxsize - 1)
