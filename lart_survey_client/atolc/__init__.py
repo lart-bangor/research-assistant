@@ -21,6 +21,7 @@ def init_atol(data: dict[Any, Any]):
     dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
     try:
         with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
+            file.write(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>")
             file.write("\n\nDate & Time: " + dt_string + "\n")
             for key in data:
                 value = data[key]
