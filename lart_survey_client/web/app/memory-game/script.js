@@ -37,7 +37,8 @@ class MemoryGame {
         this.cardsContainer.classList.remove('no-event');
 
         if (allHaveMatches) {
-          this.rearrangeCards();
+          location.href = "../atol-c/atolEnd.html";
+          //this.rearrangeCards();
         }
       }, this.delay);
     } else
