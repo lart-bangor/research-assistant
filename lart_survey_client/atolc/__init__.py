@@ -37,8 +37,8 @@ def init_atol(data: dict[Any, Any]):
 
 #does the same as init_atol, but for part1.html
 @eel.expose
-def grab_atol_ratings(data: dict[Any, Any], source):
-    location = fetch_location(source)
+def grab_atol_ratings(data: dict[Any, Any], source, version):
+    location = fetch_location(source, version)
     try:
         with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
             file.write("\n")
@@ -46,26 +46,31 @@ def grab_atol_ratings(data: dict[Any, Any], source):
                 value = data[key]
                 file.write(key + ": " + str(value) + "\n")
             file.write("\n")
+
     except FileNotFoundError:
         print("The 'data' directory does not exist")
     print("AToL ratings from " + source + ".html: ")
     print(data)
     booteel.setlocation(location)
 
-def fetch_location(source_file):
+def fetch_location(source_file, version):
     if 'Maj' in source_file:
         return "atolRatingsRml.html"
     elif 'Rml' in source_file:
-        return "atolEnd.html"
+        length = len(version)
+        locationLabel = length - 2
+        suffix = version[locationLabel:]
+        return "atolEnd_" + suffix + ".html"
     else:
         print("ERROR: no such file")
  
-         
-@eel.expose
-def get_atol_version():
-    test_version = version
-    print("test version is: " + test_version)
-    return test_version
+
+ #
+#@eel.expose
+#def get_atol_version():
+    #test_version = version
+    #print("test version is: " + test_version)
+    #return test_version
 
 
     if  version == "CymEng_Eng_GB":
