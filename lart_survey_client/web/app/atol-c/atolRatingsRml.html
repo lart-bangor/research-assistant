@@ -33,7 +33,8 @@ populateAtolItems = function (atolItems) {
 
     eel.atol_c_get_items(chosenVersion)(populateAtolItems);
 
-
+/*
+#this was for testing whther we can access the inputed data from index.html
 function outputData() {
         const selectSurveyVersion = sessionStorage.getItem("atolVersion");
         const researcherId = sessionStorage.getItem("atolResId");
@@ -46,7 +47,7 @@ function outputData() {
                                                            "<br>Participant is: " + partId;
                                                            
         }
-
+*/
         
 
 </script>
@@ -69,12 +70,12 @@ function outputData() {
             <h2><script type = "text/javascript">document.write(atol_header);</script></h2>
         </div>
 
-        <!-- tetsing whether we can pick up language choice-->
+        <!-- tetsing whether we can pick up language choice
         <div id="atolVersion">
             <script type="text/javascript">        
             outputData();
             </script>
-        </div>
+        </div>-->
 
         <form id="surveyAtolForm_rml" action="memory-game/dist/index.html">
 
@@ -116,7 +117,7 @@ function outputData() {
         'surveyAtolForm_rml',
         async function(data) {
 
-            let success = await eel.grab_atol_ratings(data, 'atolRatingsRml')();
+            let success = await eel.grab_atol_ratings(data, 'atolRatingsRml', chosenVersion)();
             console.log(success);
         }
     );

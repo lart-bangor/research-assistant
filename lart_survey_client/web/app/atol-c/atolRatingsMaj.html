@@ -1,6 +1,7 @@
 {% set lart_forms = true %}
 {%- from 'lart_macros.html' import lart_form_pipeline %}
-{% extends 'base.html' %}{% block title %}AToL-RML {% endblock %}
+{% extends 'base.html' %}
+{% block title %}AToL-RML {% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
 atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
@@ -63,30 +64,33 @@ populateAtolItems = function (atolItems) {
             '<div class="col text-start ps-5">' + atolItems[key][0] + '</div>' +
              //next
             '<div class="col text-end pe-5">' + atolItems[key][1] + '</div></label>' +
-            '<div class="row mb-5"><div class="col ps-4 pe-4"><input type="range" class="form-range" id="rating_' + language + '_' + key + '"/>' +
-            '<div class="form-check ps-5"><div class="invalid-feedback">' + instruction + '</div></div></div></div></fieldset>';
-        element.insertAdjacentHTML('beforeend', code);
+            '<div class="row mb-5"><div class="col ps-4 pe-4">' +
+            '<input type="range" class="form-range" min="0" max="100" step="any" id="rating_' + 
+             language + '_' + key + '" required /><div class="form-check ps-5">' +
+            '<div class="invalid-feedback invalid range">' + instruction + '</div></div></div></div></fieldset>';
+        
+            element.insertAdjacentHTML('beforeend', code);
+            
             }
     }
 
     eel.atol_c_get_items(chosenVersion)(populateAtolItems);
 
-
+/*
 function outputData() {
         const selectSurveyVersion = sessionStorage.getItem("atolVersion");
         const researcherId = sessionStorage.getItem("atolResId");
         const researchLocation = sessionStorage.getItem("atolLocation");
         const partId = sessionStorage.getItem("atolPartId");
         
-        document.getElementById("atolVersion").innerHTML = "DATA from PYTHON is: " + get_data_from_python() +
-                                                            "<br>Survey version is: " + selectSurveyVersion +
+        document.getElementById("atolVersion").innerHTML = "<br>Survey version is: " + selectSurveyVersion +
                                                            "<br>Researcher is: " + researcherId +
                                                            "<br>Location is: " + researchLocation +
                                                            "<br>Participant is: " + partId;
                                                            
         }
 
-        
+        */
 
 </script>
 
@@ -110,14 +114,14 @@ function outputData() {
             <h2><script type = "text/javascript">document.write(atol_header);</script></h2>
         </div>
 
-        <!-- tetsing whether we can pick up language choice-->
+        <!-- tetsing whether we can pick up language choice
         <div id="atolVersion">
             <script type="text/javascript">        
             outputData();
             </script>
         </div>
-
-        <form id="surveyAtolForm_majLang"> <!-- action="part2.html">-->
+    -->
+        <form id="surveyAtolForm_majLang" class="needs-validation"> <!-- action="part2.html">-->
 
             <!-- Name language statement to agree with... -->
             <div class="row mt-5 mb-0">
@@ -159,7 +163,7 @@ function outputData() {
         'surveyAtolForm_majLang',
         async function(data) {
 
-            let success = await eel.grab_atol_ratings(data, 'atolRatingsMaj')();
+            let success = await eel.grab_atol_ratings(data, 'atolRatingsMaj', chosenVersion)();
             console.log("tail script: " + success);
            
         }
