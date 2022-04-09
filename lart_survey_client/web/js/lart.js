@@ -390,12 +390,8 @@ lart.forms.getData = function (form) {
             ref = field.id;
         }
         if (field.getAttribute("type") === "checkbox") {
-            // Convert checkboxes to booleans
-            if (field.value === "on") {
-                data[ref] = true;
-            } else {
-                data[ref] = false;
-            }
+            // Use value of 'checked' property (boolean)
+            data[ref] = field.checked
         } else if (field.getAttribute("type") === "radio") {
             // Only use checked value for radioboxes
             if (field.checked) {

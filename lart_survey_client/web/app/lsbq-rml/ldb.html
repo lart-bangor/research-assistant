@@ -150,7 +150,7 @@
                             <div class="col-auto">
                                 <p class="h6 d-inline-block">Mother</p>
                                 <p id="motherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your mother (e.g. because you don't know them).">
-                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="motherNotApplicable" name="motherNotApplicable" value="not-applicable"> <label class="form-check-label" for="motherNotApplicable">not applicable</label>&thinsp;)
+                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="motherNotApplicable" name="motherNotApplicable"> <label class="form-check-label" for="motherNotApplicable">not applicable</label>&thinsp;)
                                 </p>
                             </div>
                         </div>
@@ -219,7 +219,7 @@
                     </div>
                     <script type="text/javascript">
                         var tt = new bootstrap.Tooltip(document.getElementById('motherNotApplicableOption'));
-                        lart.forms.conditionalDisable('motherNotApplicable', 'motherDetails', 'not-applicable', 'equal');
+                        lart.forms.conditionalDisable('motherNotApplicable', 'motherDetails', 'on', 'equal');
                     </script>
                     <!-- Father -->
                     <div class="col-md-6 mb-3">
@@ -227,7 +227,7 @@
                             <div class="col-auto">
                                 <p class="h6 d-inline-block">Father</p>
                                 <p id="fatherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your father (e.g. because you don't know them).">
-                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="fatherNotApplicable" name="fatherNotApplicable" value="not-applicable"> <label class="form-check-label" for="fatherNotApplicable">not applicable</label>&thinsp;)
+                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="fatherNotApplicable" name="fatherNotApplicable"> <label class="form-check-label" for="fatherNotApplicable">not applicable</label>&thinsp;)
                                 </p>
                             </div>
                         </div>
@@ -296,7 +296,7 @@
                     </div>
                     <script type="text/javascript">
                         var tt = new bootstrap.Tooltip(document.getElementById('fatherNotApplicableOption'));
-                        lart.forms.conditionalDisable('fatherNotApplicable', 'fatherDetails', 'not-applicable', 'equal');
+                        lart.forms.conditionalDisable('fatherNotApplicable', 'fatherDetails', 'on', 'equal');
                     </script>
                 </div>
             </section>

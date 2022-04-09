@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 eel = {extras = ["jinja2"], version = "*"}
+appdirs = "*"
 
 [dev-packages]
 pytest = "*"
