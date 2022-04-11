@@ -1,0 +1,174 @@
+{%- set lart_forms = true %}
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Survey Client - LSBQ-RML - Community Language Use Behaviour{% endblock %}
+{% block headline %}<span id="lsbqRmlAppTitle" data-lsbq-tr="base.appTitle">Language and Social Background Questionnaire (RML)</span>{% endblock %}
+{% block head_scripts %}
+    <script type="text/javascript" src="/js/lsbq-rml.js"></script>
+{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="container-fluid p-2">
+
+        <div class="progress m-4">
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+        </div>
+
+        <div class="row m-4 text-center">
+            <h2 id="lsbqRmlSectionTitle" data-lsbq-tr="club.secTitle">Community Language Use Behaviour</h2>
+        </div>
+
+        <form id="surveyCLUBForm" class="needs-validation" autocomplete="off">
+
+            <!-- 13. Language use at various life stages -->
+            <section class="m-4">
+                <template id="languageUseAgePeriodTemplate">
+                    <div id="languageUseAgePeriodInstance-[FieldName]">
+                        <div class="row mb-1">
+                            <label for="languageUseAgePeriod-[FieldName]" class="col-2 col-form-label text-end">[FieldLabel]</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="languageUseAgePeriod-[FieldName]" required />
+                                <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p data-lsbq-tr="club.lifeStagesInstructions">
+                            Please indicate which language or dialect you most frequently heard or used
+                            in the following life stages, both inside and outside home.
+                        </p>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-2"></div>
+                    <div class="col-4 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                        Only [MajorityLanguage]
+                    </div>
+                    <div class="col-2" data-lsbq-tr="club.halfHalf">
+                        Half/Half
+                    </div>
+                    <div class="col-4 text-end" data-lsbq-tr="club.onlyRML">
+                        Only [RML]
+                    </div>
+                </div>
+                <div id="languageUseLifeStagesSlot">
+                    
+                    <div id="languageUseAgePeriodInstance-[FieldName]">
+                        <div class="row mb-1">
+                            <label for="languageUseAgePeriod-[FieldName]" class="col-2 col-form-label text-end">[FieldLabel]</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="languageUseAgePeriod-[FieldName]" required />
+                                <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Placeholder dynamically filled with copies of languageUseObligatoryTemplate -->
+                </div>
+                <script>
+                    lart.forms.monitorRangeInputs('languageUseLifeStagesSlot');
+                </script>
+            </section>
+
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div clas="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbq-tr="base.next">Next</button>
+                </div>
+            </div>
+
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        // Translate form for specific version
+        lsbqRml.tr.load(lsbqRml.instance.getId(), ['club']);
+        lsbqRml.tr.registerObserver('surveyCLUBForm');
+        lsbqRml.tr.registerObserver('lsbqRmlSectionTitle');
+        lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
+        // Dynamically insert language rating scales
+        function insertLanguageRating(languageNumber) {
+            const template = document.getElementById('languageRatingTemplate');
+            const slot = document.getElementById('languageRatingSlot');
+            const clone = template.content.cloneNode(true);
+            // Replaces [LanguageNumber] in 'id', 'for', and 'name' attrs
+            function numberReplacer(node) {
+                if (node instanceof HTMLElement) {
+                    if (node.hasAttribute('id')) node.setAttribute('id', node.getAttribute('id').replace('[LanguageNumber]', languageNumber));
+                    if (node.hasAttribute('for')) node.setAttribute('for', node.getAttribute('for').replace('[LanguageNumber]', languageNumber));
+                    if (node.hasAttribute('name')) node.setAttribute('name', node.getAttribute('name').replace('[LanguageNumber]', languageNumber));
+                }
+                if ( node.hasChildNodes() ) {
+                    for (const child of node.childNodes) {
+                        numberReplacer(child);
+                    }
+                }
+            }
+            numberReplacer(clone);
+            // Keep languageNameSlot (default value [LanguageName]) synched
+            const nameSource = document.getElementById(`languagesSpokenLanguage-${languageNumber}`);
+            const languageNameSlots = clone.querySelectorAll('.languageNameSlot');
+            for (const languageNameSlot of languageNameSlots) {
+                nameSource.addEventListener(
+                    'input',
+                    function (event) {
+                        languageNameSlot.textContent = event.target.value
+                    }
+                );
+            }
+            // Make input required dependent on languageName presence
+            const inputs = clone.querySelectorAll('input');
+            for (const input of inputs) {
+                input.required = false;
+                nameSource.addEventListener(
+                    'input',
+                    function (event) {
+                        input.required = !!event.target.value;
+                    }
+                );
+            }
+            // Toggle visibility dependent on languageName presence
+            const wrapperElement = clone.firstElementChild;
+            wrapperElement.hidden = true;
+            nameSource.addEventListener(
+                'input',
+                function (event) {
+                    wrapperElement.hidden = !event.target.value;
+                }
+            );
+            // Append to slot
+            slot.appendChild(clone);
+        }
+        lart.forms.conditionalRequire('languagesSpokenSource-0', 'languagesSpokenSourceSpecify-0', 'o');
+        lart.forms.conditionalDisplay('languagesSpokenSource-0', 'languagesSpokenSourceSpecifyBlock-0', 'o');
+        lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenSource-0`, '', 'not-equal');
+        lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenAge-0`, '', 'not-equal');
+        insertLanguageRating(0);
+        let repeatLanguagesSpokenCounter = 0;
+        function repeatLanguagesSpoken(required = false) {
+            repeatLanguagesSpokenCounter++;
+            lart.forms.repeatBlock('languagesSpokenRepeat', /(languagesSpoken[A-Za-z]*)-(0)/gm);
+            // Require the other fields if they enter a language name
+            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenSource-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
+            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenAge-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
+            // Require the "specify" field if they select "other" on source
+            lart.forms.conditionalRequire(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecify-${repeatLanguagesSpokenCounter}`, 'o');
+            lart.forms.conditionalDisplay(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecifyBlock-${repeatLanguagesSpokenCounter}`, 'o');
+            document.getElementById(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`).required = required;
+            insertLanguageRating(repeatLanguagesSpokenCounter);
+        }
+        // We want to be at least two languages to be displayed and required -> repeat once, make required
+        // repeatLanguagesSpoken(true);
+    </script>
+    {{ lart_form_pipeline('surveyCLUBForm', '_lsbqrml_setclub') }}
+{% endblock %}

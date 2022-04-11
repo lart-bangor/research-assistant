@@ -1,12 +1,12 @@
 booteel.logger.debug("lart.js loaded.");
 
-let lart = {}
+let lart = {};
 
-lart.forms = {}
+lart.forms = {};
 
-lart.forms.searchParams = new URLSearchParams(window.location.search)
+lart.forms.searchParams = new URLSearchParams(window.location.search);
 
-lart.forms.util = {}
+lart.forms.util = {};
 
 lart.forms.util.getSelectValues = function (selectNode) {
     values = []
@@ -390,12 +390,8 @@ lart.forms.getData = function (form) {
             ref = field.id;
         }
         if (field.getAttribute("type") === "checkbox") {
-            // Convert checkboxes to booleans
-            if (field.value === "on") {
-                data[ref] = true;
-            } else {
-                data[ref] = false;
-            }
+            // Use value of 'checked' property (boolean)
+            data[ref] = field.checked
         } else if (field.getAttribute("type") === "radio") {
             // Only use checked value for radioboxes
             if (field.checked) {

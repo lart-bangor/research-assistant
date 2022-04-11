@@ -151,9 +151,10 @@ class Response(DataSchema):
             },
             "languages_spoken_source_other": {
                 "type_": str,
-                "typedesc": "source of language acquisition",
+                "typedesc": "other source of language acquisition",
                 "constraint": patterns.SHORT_TEXT,
                 "multiple": True,
+                "required": False,
             },
             "languages_spoken_age": {
                 "type_": int,
@@ -163,7 +164,7 @@ class Response(DataSchema):
             },
             "languages_spoken_breaks": {
                 "type_": int,
-                "typedesc": "age of acquisition",
+                "typedesc": "breaks during acquisition",
                 "constraint": patterns.POSITIVE_NUMBER_ZERO,
                 "multiple": True,
             },
@@ -253,7 +254,165 @@ class Response(DataSchema):
             },
         },
         "club": {  # Community Language Use Behaviour
-
+            "infancy_age": {
+                "type_": float,
+                "typedesc": "proportion of language use in infancy age",
+                "constraint": patterns.ANY_NUMBER,
+            },
+            "nursery_age": {
+                "type_": float,
+                "typedesc": "proportion of language use in nursery age",
+                "constraint": patterns.ANY_NUMBER,
+            },
+            "primary_age": {
+                "type_": float,
+                "typedesc": "proportion of language use in primary age",
+                "constraint": patterns.ANY_NUMBER,
+            },
+            "secondary_age": {
+                "type_": float,
+                "typedesc": "proportion of language use in secondary age",
+                "constraint": patterns.ANY_NUMBER,
+            },
+            "parents": {
+                "type_": float,
+                "typedesc": "proportion of language use with parents",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "children": {
+                "type_": float,
+                "typedesc": "proportion of language use with children",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "siblings": {
+                "type_": float,
+                "typedesc": "proportion of language use with siblings",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "grandparents": {
+                "type_": float,
+                "typedesc": "proportion of language use with grandparents",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "other_relatives": {
+                "type_": float,
+                "typedesc": "proportion of language use with other relatives",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "partner": {
+                "type_": float,
+                "typedesc": "proportion of language use with partner",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "friends": {
+                "type_": float,
+                "typedesc": "proportion of language use with friends",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "flatmates": {
+                "type_": float,
+                "typedesc": "proportion of language use with flat/housemates",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "neighbours": {
+                "type_": float,
+                "typedesc": "proportion of language use with neighbours",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "childhood_parents": {
+                "type_": float,
+                "typedesc": "proportion of language use with parents in childhood",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "childhood_siblings": {
+                "type_": float,
+                "typedesc": "proportion of language use with siblings in childhood",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "childhood_grandparents": {
+                "type_": float,
+                "typedesc": "proportion of language use with grandparents in childhood",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "childhood_other_relatives": {
+                "type_": float,
+                "typedesc":
+                    "proportion of language use with other relatives in childhood",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "childhood_friends": {
+                "type_": float,
+                "typedesc": "proportion of language use with friends in childhood",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "childhood_neighbours": {
+                "type_": float,
+                "typedesc": "proportion of language use with neighbours in childhood",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "home": {
+                "type_": float,
+                "typedesc": "proportion of language use at home",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "school": {
+                "type_": float,
+                "typedesc": "proportion of language use at school",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "work": {
+                "type_": float,
+                "typedesc": "proportion of language use at work",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "socialising": {
+                "type_": float,
+                "typedesc": "proportion of language use when socialising",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "religion": {
+                "type_": float,
+                "typedesc": "proportion of language use for religion",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "leisure": {
+                "type_": float,
+                "typedesc": "proportion of language use for leisure activities",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "commercial": {
+                "type_": float,
+                "typedesc": "proportion of language use for commercial activities",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "public_affairs": {
+                "type_": float,
+                "typedesc": "proportion of language use for public affairs",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
         },
         "notes": {  # Notes
             "participant_note": {
@@ -279,37 +438,49 @@ class Response(DataSchema):
     if TYPE_CHECKING:  # noqa: C901
 
         def setid(self, id: int) -> None:
+            """Set the id of the LSBQ-RML instance."""
             ...
 
         def getid(self) -> int:
+            """Get the id of the LSBQ-RML instance."""
             ...
 
         def setmeta(self, *args: Any) -> None:
+            """Set the meta data of the LSBQ-RML instance."""
             ...
 
         def getmeta(self) -> dict[str, Any]:
+            """Get the meta data of the LSBQ-RML instance."""
             ...
 
         def setlsb(self, *args: Any) -> None:
+            """Set the landuage and social background data of the LSBQ-RML instance."""
             ...
 
         def getlsb(self) -> dict[str, Any]:
+            """Get the landuage and social background data of the LSBQ-RML instance."""
             ...
 
         def setldb(self, *args: Any) -> None:
+            """Set the landuage and dialect background data of the LSBQ-RML instance."""
             ...
 
         def getldb(self) -> dict[str, Any]:
+            """Get the landuage and dialect background data of the LSBQ-RML instance."""
             ...
 
         def setclub(self, *args: Any) -> None:
+            """Set the community language use behaviour data of the LSBQ-RML instance."""
             ...
 
         def getclub(self) -> dict[str, Any]:
+            """Get the community language use behaviour data of the LSBQ-RML instance."""
             ...
 
         def setnotes(self, *args: Any) -> None:
+            """Set the notes data of the LSBQ-RML instance."""
             ...
 
         def getnotes(self) -> dict[str, Any]:
+            """Get the notes data of the LSBQ-RML instance."""
             ...

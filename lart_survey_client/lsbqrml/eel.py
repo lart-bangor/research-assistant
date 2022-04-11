@@ -3,6 +3,7 @@ import eel
 from typing import Optional, Union, Callable, Any, TypeVar, cast
 from functools import wraps
 from lsbqrml import Response, logger
+from lsbqrml.versions import versions
 import datetime
 from copy import copy
 from datavalidator.exceptions import DataValidationError
@@ -58,6 +59,20 @@ def _expose(func: F) -> F:
     eel._expose("_lsbqrml_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
+@_expose
+def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
+    """Load specified sections of an LSBQ-RML version implementation."""
+    logger.info(f"Retrieving version data for LSBQ-RML instance {instid}..")
+    instance = _getinstance(instid)
+    version_id = instance.getmeta()["version"]
+    if version_id not in versions:
+        logger.error(f"Requested LSBQ-RML version '{version_id}' not found.")
+        return {}
+    buf: dict[str, dict[str, Any]] = {}
+    for section in sections:
+        if section in versions[version_id]:
+            buf[section] = versions[version_id][section]
+    return buf
 
 @_expose
 def init(data: dict[str, Any]) -> int:
@@ -157,6 +172,22 @@ def setldb(instid: int, data: dict[str, Any]) -> int:
         "motherNotApplicable",
         "fatherNotApplicable",
     ]
+    mother_keys = [
+        "mother_occupation",
+        "mother_first_language",
+        "mother_second_language",
+        "mother_other_languages",
+    ]
+    father_keys = [
+        "father_occupation",
+        "father_first_language",
+        "father_second_language",
+        "father_other_languages",
+    ]
+    if datacopy["motherNotApplicable"]:
+        strip_keys.extend(mother_keys)
+    if datacopy["fatherNotApplicable"]:
+        strip_keys.extend(father_keys)
     for key in datacopy:
         if key in strip_keys:
             del data[key]
@@ -174,6 +205,7 @@ def setldb(instid: int, data: dict[str, Any]) -> int:
                 f"usageListeningLanguage-{index}": "languages_usage_listening",
             }
             break_year_key = f"languagesSpokenBreakYears-{index}"
+            source_specify_key = f"languagesSpokenSourceSpecify-{index}"
             for needle in key_map:
                 fieldname = key_map[needle]
                 if needle not in datacopy:
@@ -185,6 +217,8 @@ def setldb(instid: int, data: dict[str, Any]) -> int:
                     datacopy[needle] = int(datacopy[needle])
                     datacopy[needle] += int(datacopy[break_year_key])*12
                     del data[break_year_key]
+                if "languagesSpokenSource-" in needle and datacopy[needle].lower() != "o":
+                    datacopy[source_specify_key] = 'n/a'
                 if fieldname in processed and isinstance(processed[fieldname], list):
                     processed[fieldname].append(datacopy[needle])  # type: ignore
                     del data[needle]
