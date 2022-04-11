@@ -10,6 +10,7 @@ import eel
 from . import patterns
 from datetime import datetime
 import time
+import random
 
 
 #retrieve initial info from index.html and print to file + to console
@@ -129,38 +130,38 @@ _rating_adjectives = (
 def atol_c_get_items(version):
     """Get label pairs for each AToL item depending on language selection."""
     EngVersion = {       
-        "logic":    ("logical", "illogical"),
-        "elegance": ("inelegant", "elegant"),
-        "fluency": ("choppy", "fluent"),
-        "ambiguity": ("unambiguous", "ambiguous"),
-        "appeal": ("appealing", "abhorrent"),
-        "structure": ("unstructured", "structured"),
-        "precision": ("precise", "vague"),
-        "harshness": ("harsh", "soft"),
-        "flow": ("flowing", "abrupt"),
-        "beauty": ("beautiful", "ugly"),
-        "sistem": ("systematic", "unsystematic"),
-        "pleasure": ("pleasant", "unpleasant"),
-        "smoothness": ("smooth", "raspy"),
-        "grace": ("clumsy", "graceful"),
-        "angularity": ("angular", "round"),
+        "logic":        ("logical", "illogical"),
+        "elegance":     ("inelegant", "elegant"),
+        "fluency":      ("choppy", "fluent"),
+        "ambiguity":    ("unambiguous", "ambiguous"),
+        "appeal":       ("appealing", "abhorrent"),
+        "structure":    ("unstructured", "structured"),
+        "precision":    ("precise", "vague"),
+        "harshness":    ("harsh", "soft"),
+        "flow":         ("flowing", "abrupt"),
+        "beauty":       ("beautiful", "ugly"),
+        "sistem":       ("systematic", "unsystematic"),
+        "pleasure":     ("pleasant", "unpleasant"),
+        "smoothness":   ("smooth", "raspy"),
+        "grace":        ("clumsy", "graceful"),
+        "angularity":   ("angular", "round"),
               }
     ItVersion = {       
-        "logic":    ("logica", "illogica"),
-        "elegance": ("non elegante", "elegante"),
-        "fluency": ("frammentata", "scorrevole"),
-        "ambiguity": ("chiara", "ambigua"),
-        "appeal": ("attraente", "ripugnante"),
-        "structure": ("non strutturata", "strutturata"),
-        "precision": ("precisa", "vaga"),
-        "harshness": ("dura", "morbida"),
-        "flow": ("fluida", "brusca"),
-        "beauty": ("bella", "brutta"),
-        "sistem": ("sistematica", "non sistematica"),
-        "pleasure": ("piacevole", "spiacevole"),
-        "smoothness": ("liscia", "ruvida"),
-        "grace": ("goffa", "aggraziata"),
-        "angularity": ("spigolosa", "arrotondata"),
+        "logic":        ("logica", "illogica"),
+        "elegance":     ("non elegante", "elegante"),
+        "fluency":      ("frammentata", "scorrevole"),
+        "ambiguity":    ("chiara", "ambigua"),
+        "appeal":       ("attraente", "ripugnante"),
+        "structure":    ("non strutturata", "strutturata"),
+        "precision":    ("precisa", "vaga"),
+        "harshness":    ("dura", "morbida"),
+        "flow":         ("fluida", "brusca"),
+        "beauty":       ("bella", "brutta"),
+        "sistem":       ("sistematica", "non sistematica"),
+        "pleasure":     ("piacevole", "spiacevole"),
+        "smoothness":   ("liscia", "ruvida"),
+        "grace":        ("goffa", "aggraziata"),
+        "angularity":   ("spigolosa", "arrotondata"),
               }
     BeVersion = {
          "logic":       ("logisch",     "unlogisch"),
@@ -171,22 +172,34 @@ def atol_c_get_items(version):
         "structure":    ("stukturlos",  "sturkturiert"),
         "precision":    ("genau",       "ungenau"),
         "harshness":    ("hart",        "weich"),
-        "flow": ("flüssig", "abgehackt"),
-        "beauty": ("schön", "hässlich"),
-        "sistem": ("systematisch", "unsystematisch"),
-        "pleasure": ("angenehm", "unangenehm"),
-        "smoothness": ("geschmeidig", "rau"),
-        "grace": ("plump", "anmutig"),
-        "angularity": ("eckig", "rund"),
+        "flow":         ("flüssig", "abgehackt"),
+        "beauty":       ("schön", "hässlich"),
+        "sistem":       ("systematisch", "unsystematisch"),
+        "pleasure":     ("angenehm", "unangenehm"),
+        "smoothness":   ("geschmeidig", "rau"),
+        "grace":        ("plump", "anmutig"),
+        "angularity":   ("eckig", "rund"),
     }
  
    
     if version == 'CymEng_Eng_GB':
-        return EngVersion
+        return randomize(EngVersion)
     elif version == 'LtzGer_Ger_BE':
-        return BeVersion
+        return randomize(BeVersion)
     elif version == 'LmoIta_Ita_IT':
-        return ItVersion
+        return randomize(ItVersion)
+
+def randomize(dictionary):
+    randomized_version = {}
+    items = list(dictionary.items())  # List of tuples of (key,values)
+    random.shuffle(items)
+    
+    for key, value in items:
+        randomized_version[key] = value
+        print(key, ":", value)
+    return randomized_version
+
+
 
 class Response(DataSchema):
     """Class for representing the data of an LSBQ-RML questionnaire response."""
