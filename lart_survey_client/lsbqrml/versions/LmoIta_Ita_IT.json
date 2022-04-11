@@ -1,0 +1,334 @@
+{
+    "meta": {
+        "versionId": "LmoIta_Ita_IT",
+        "versionName": "Italian – Lombard (Italy)",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>, Ianto Gruffydd <ianto.gruffydd@bangor.ac.uk>",
+        "date": "2022-04-11"
+    },
+    "base": {
+        "appTitle": [
+            "Questionario sulla lingua ed  estrazione sociale (RML)"
+        ],
+        "yes": [
+            "Sì"
+        ],
+        "no": [
+            "No"
+        ],
+        "next": [
+            "Avanti"
+        ],
+        "addLine": [
+            "Aggiungi una linea"
+        ],
+        "levelOfEducation1": [
+            "EQF Level 1",
+            "Licenza media."
+        ],
+        "levelOfEducation2": [
+            "EQF Level 2-3",
+            "Primi due anni delle scuole superiori, operatore professionale."
+        ],
+        "levelOfEducation3": [
+            "EQF Level 4",
+            "Diploma di istruzione professionale, tecnica, liceale, ecc."
+        ],
+        "levelOfEducation4": [
+            "EQF Level 5-6",
+            "Laurea triennale, diploma di tecnico superiore, accademia di belle arti, ecc."
+        ],
+        "levelOfEducation5": [
+            "EQF Level 7-8",
+            "Laurea magistrale, dottorato di ricerca, diploma di specializzazione o di perfezionamento, ecc."
+        ],
+        "notApplicableFull": [
+            "non applicabile"
+        ],
+        "notApplicableAbbr": [
+            "n/a"
+        ],
+        "sliderFeedback": [
+            "Si prega di spostare il cursore almeno una volta."
+        ]
+    },
+    "lsb": {
+        "secTitle": [
+            "Lingua e estratto sociale"
+        ],
+        "sex": [
+            "Sesso:"
+        ],
+        "sexFeedback": [
+            "Si prega di selezionare una opzione per <i>Sesso</i>."
+        ],
+        "female": [
+            "Femmina"
+        ],
+        "male": [
+            "Maschio"
+        ],
+        "other": [
+            "Altro"
+        ],
+        "otherFeedback": [
+            "Please briefly specify what other sex you identify with."
+        ],
+        "subkey": [
+            "Professione:"
+        ],
+        "occupation": [
+            "Professione:"
+        ],
+        "occupationFeedback": [
+            "Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, …"
+        ],
+        "handedness": [
+            "Mano più usata:"
+        ],
+        "left": [
+            "Sinistra"
+        ],
+        "right": [
+            "Destra"
+        ],
+        "handednessFeedback": [
+            "Si prega di indicare la mano più usata"
+        ],
+        "dateOfBirth": [
+            "Data di nascita:"
+        ],
+        "dateOfBirthFeedback": [
+            "Si prega di riportare la <i>data di nascita</i> (deve essere una data nel passato)."
+        ],
+        "impairedHearing": [
+            "Ha qualche problema uditivo?"
+        ],
+        "impairedHearingFeedback": [
+            "Si prega di rispondere alla domanda sui problemi uditivi."
+        ],
+        "hearingAid": [
+            "Se <strong>sì</strong>, usa un apparecchio acustico?"
+        ],
+        "hearingAidFeedback": [
+            "Si prega di indicare se usa un apparecchio acustico."
+        ],
+        "visionImpairment": [
+            "Ha qualche problema di vista?"
+        ],
+        "visionImpairmentFeedback": [
+            "Si prega di indicare se ha qualche problema di vista."
+        ],
+        "visionAid": [
+            "Se <strong>sì</strong>, usa occhiali o lenti a contatto?"
+        ],
+        "visionAidFeedback": [
+            "Si prega di indicare se usa occhiali o lenti a contatto."
+        ],
+        "visionCorrected": [
+            "Rendono la Sua vista normale?"
+        ],
+        "visionCorrectedFeedback": [
+            "Si prega di indicare se, usando occhiali o lenti, la Sua vista è normale."
+        ],
+        "placeOfBirth": [
+            "Luogo di nascita:"
+        ],
+        "placeOfBirthFeedback": [
+            "Si prega di indicare il proprio <i>luogo di nascita</i>."
+        ],
+        "approximateAreaSufficient": [
+            "È sufficiente indicare la zona."
+        ],
+        "otherPlaces": [
+            "In quale altra zona ha vissuto per un periodo superiore ai 6 mesi?"
+        ],
+        "placeName": [
+            "Dove ha vissuto?"
+        ],
+        "from": [
+            "Da (mese/anno)"
+        ],
+        "until": [
+            "Fino a (mese/anno)"
+        ],
+        "levelOfEducation": [
+            "Indichi il più alto titolo di studio da Lei conseguito:"
+        ],
+        "levelOfEducationFeedback": [
+            "Indichi il più alto titolo di studio da Lei conseguito."
+        ]
+    },
+    "ldb": {
+        "secTitle": [
+            "Abitudini linguistiche"
+        ],
+        "languagesInstructions": [
+            "List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:",
+            "Elenchi tutte le lingue o dialetti che sa parlare e comprendere, incluso l’italiano e il lombardo (bergamasco, comasco, ecc.), in ordine di padronanza:"
+        ],
+        "languageName": [
+            "Lingua/dialetto"
+        ],
+        "learnedWhere": [
+            "Dove l'ha imparato?"
+        ],
+        "learnedAge": [
+            "A che età l'ha imparato?"
+        ],
+        "learnedBreaks": [
+            "Ci sono stati lunghi periodi in cui non l'ha usato?"
+        ],
+        "learnedAgeInfo": [
+            "Se dalla nascita scriva “0”."
+        ],
+        "learnedBreaksInfo": [
+            "Indichi la durata in mesi/anni?."
+        ],
+        "languageNameLabel": [
+            "Nome della lingua/dialetto"
+        ],
+        "languageNameFeedback": [
+            "Si prega di indicare il nome della lingua o dialetto (tra 3 e 50 caratteri)."
+        ],
+        "atHome": [
+            "A casa"
+        ],
+        "atSchool": [
+            "A scuola"
+        ],
+        "inCommunity": [
+            "Nell'ambiente circostante"
+        ],
+        "other": [
+            "Altro"
+        ],
+        "learnedWhereLabel": [
+            "Dove l'ha imparato?"
+        ],
+        "learnedWhereFeedback": [
+            "Si prega di selezionare un'opzione."
+        ],
+        "learnedWhereOtherLabel": [
+            "<i>Specificare prego...</i>"
+        ],
+        "learnedWhereOtherFeedback": [
+            "Si prega di indicare dove ha imparato questa lingua o dialetto"
+        ],
+        "learnedAgeLabel": [
+            "Da che età"
+        ],
+        "learnedAgeFeedback": [
+            "Si prega di indicare a che età ha iniziato ad apprendere questa lingua."
+        ],
+        "learnedBreaksYearsLabel": [
+            "anni"
+        ],
+        "learnedBreaksYearsFeedback": [
+            "Il valore deve essere fra 0 e 100."
+        ],
+        "learnedBreaksMonthsLabel": [
+            "mesi"
+        ],
+        "learnedBreaksMonthsFeedback": [
+            "Il valore deve essere fra 0 e 12."
+        ],
+        "parentsInstructions": [
+            "Indichi il titolo di studio, la professione, e le lingue/dialetti parlate da ognuno dei Suoi genitori:"
+        ],
+        "mother": [
+            "Madre"
+        ],
+        "notApplicableFull": [
+            "non applicabile"
+        ],
+        "levelOfEducation": [
+            "Titolo di studio:"
+        ],
+        "levelOfEducationFeedbackMother": [
+            "Si prega di indicare il titolo di studio conseguito da Sua <i>madre</i>."
+        ],
+        "occupation": [
+            "Professione:"
+        ],
+        "occupationFeedbackMother": [
+            "Si prega di indicare la professione svolta da Sua madere."
+        ],
+        "firstLanguage": [
+            "Prima lingua/dialetto:"
+        ],
+        "secondLanguage": [
+            "Seconda lingua/dialetto:"
+        ],
+        "otherLanguages": [
+            "Altre lingue/dialetti:"
+        ],
+        "otherLanguagesInfo": [
+            "Indichi altre lingue/dialetti separandole con una virgola."
+        ],
+        "father": [
+            "Padre"
+        ],
+        "occupationFeedbackFather": [
+            "Si prega di indicare la professione svolta da Suo padre."
+        ],
+        "aboutLanguageX": [
+            "Per quanto riguarda <!-- ...[LanguageX] -->"
+        ],
+        "aboutLanguageXInstr1": [
+            "Rispetto a una persona che a Suo parere parla molto bene <!-- ... [LanguageX], -->, valuti la Sua personale padronanza del lombardo nelle seguenti attività."
+        ],
+        
+        "aboutLanguageXInstr2": [
+            "rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. -->"
+        ],
+        "noProficiency": [
+            "No Proficiency"
+        ],
+        "highProficiency": [
+            "High Proficiency"
+        ],
+        "speaking": [
+            "Parlare"
+        ],
+        "understanding": [
+            "Understanding"
+        ],
+        "timeOfActivity": [
+            "Del tempo che Lei passa compiendo le seguenti attività, quanto ne passa usando il <!-- ...[LanguageX]? -->"
+        ],
+        "noneOfTheTime": [
+            "Niente"
+        ],
+        "allOfTheTime": [
+            "Tutto il tempo"
+        ],
+        "listening": [
+            "Ascoltare"
+        ],
+        "motherNotApplicableInfo": [
+            "Si prega di selezionare questa opzione <i>solo</i> se non può rispondere alle domande riguardanti Sua madre (per es. perché non la conosce)."
+        ],
+        "fatherNotApplicableInfo": [
+            "Si prega di selezionare questa opzione <i>solo</i> se non può rispondere alle domande riguardanti Suo padre (per es. perché non lo conosce)."
+        ],
+        "languageListOptions": [
+            "Italiano",
+            "Lombardo",
+            "Occitano",
+            "Francese",
+            "Tedesco",
+            "Spagnolo",
+            "Lingua italiana dei segni",
+            "Sardo",
+            "Irlandese",
+            "Polacco",
+            "Arabo",
+            "Piemontese",
+            "Cinese",
+            "Albanese",
+            "Russo",
+            "Portoghese",
+            "Turco"
+                   ]
+    }
+}
