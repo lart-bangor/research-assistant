@@ -41,7 +41,7 @@ def init_atol(data: dict[Any, Any]):
 @eel.expose
 def grab_atol_ratings(data: dict[Any, Any], source, version):
     location = fetch_location(source, version)
-    presentation_order = key_list(data) #record order in whcih data was presenetd
+    presentation_order = key_list(data) #record order in which data was presented and output labels
     data = alphabetise(data)  #now reset data in alphabetical order ready for writing to file
        
     try:
