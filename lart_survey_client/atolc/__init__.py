@@ -11,6 +11,7 @@ from . import patterns
 from datetime import datetime
 import time
 import random
+import json
 
 
 #retrieve initial info from index.html and print to file + to console
@@ -40,8 +41,14 @@ def init_atol(data: dict[Any, Any]):
 @eel.expose
 def grab_atol_ratings(data: dict[Any, Any], source, version):
     location = fetch_location(source, version)
+    presentation_order = key_list(data) #record order in whcih data was presenetd
+    data = alphabetise(data)  #now reset data in alphabetical order ready for writing to file
+       
     try:
         with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
+            file.write("\n")
+            file.write("Presentation order: ")
+            file.write(json.dumps(presentation_order))
             file.write("\n")
             for key in data:
                 value = data[key]
@@ -65,6 +72,33 @@ def fetch_location(source_file, version):
     else:
         print("ERROR: no such file")
  
+def randomize(dictionary):
+    randomized_version = {}
+    items = list(dictionary.items())  # List of tuples of (key,values)
+    random.shuffle(items)
+    
+    for key, value in items:
+        randomized_version[key] = value
+        print(key, ":", value)
+    return randomized_version
+
+
+def alphabetise(dictionary):
+    alphabetised_dict = {}
+    
+    for key, value in sorted(dictionary.items()):
+        alphabetised_dict[key] = value
+    return alphabetised_dict
+
+def key_list(dic):
+    list_of_keys = []
+    for key in dic:
+        list = key.rsplit("_")  #split list at each underscore
+        clean = list[-1]        #find last item on split tlist
+        list_of_keys.append(clean)
+    return list_of_keys
+
+
 
  #
 #@eel.expose
@@ -104,10 +138,6 @@ def fetch_location(source_file, version):
         btn_text = "Weiter"
 
     
-
-
-
-
 _rating_adjectives = (
     "logical",
     "elegant",
@@ -183,21 +213,16 @@ def atol_c_get_items(version):
  
    
     if version == 'CymEng_Eng_GB':
-        return randomize(EngVersion)
+        output = EngVersion
     elif version == 'LtzGer_Ger_BE':
-        return randomize(BeVersion)
+        output = BeVersion
     elif version == 'LmoIta_Ita_IT':
-        return randomize(ItVersion)
-
-def randomize(dictionary):
-    randomized_version = {}
-    items = list(dictionary.items())  # List of tuples of (key,values)
-    random.shuffle(items)
+        output = ItVersion
     
-    for key, value in items:
-        randomized_version[key] = value
-        print(key, ":", value)
-    return randomized_version
+    return randomize(output)
+
+
+    
 
 
 
