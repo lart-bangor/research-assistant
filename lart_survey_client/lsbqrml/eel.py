@@ -234,7 +234,7 @@ def getversions() -> dict[str, str]:
     """Retrieves the available versions of the LSBQ RML."""
     return {
         "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
-        "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
+        #"CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
         "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
         "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
     }
