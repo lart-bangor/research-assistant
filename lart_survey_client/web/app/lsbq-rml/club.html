@@ -2,8 +2,10 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
 {% block title %}LART Survey Client - LSBQ-RML - Community Language Use Behaviour{% endblock %}
-{% block headline %}Language and Social Background Questionnaire (RML){% endblock %}
-{% block head_scripts %}{% endblock %}
+{% block headline %}<span id="lsbqRmlAppTitle" data-lsbq-tr="base.appTitle">Language and Social Background Questionnaire (RML)</span>{% endblock %}
+{% block head_scripts %}
+    <script type="text/javascript" src="/js/lsbq-rml.js"></script>
+{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
@@ -20,7 +22,7 @@
         </div>
 
         <div class="row m-4 text-center">
-            <h2>Community Language Use Behaviour</h2>
+            <h2 id="lsbqRmlSectionTitle" data-lsbq-tr="club.secTitle">Community Language Use Behaviour</h2>
         </div>
 
         <form id="surveyCLUBForm" class="needs-validation" autocomplete="off">
@@ -33,14 +35,14 @@
                             <label for="languageUseAgePeriod-[FieldName]" class="col-2 col-form-label text-end">[FieldLabel]</label>
                             <div class="col-10 mt-2">
                                 <input type="range" class="form-range d-block" min="0" max="100" step="any" id="languageUseAgePeriod-[FieldName]" required />
-                                <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
+                                <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
                     </div>
                 </template>
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p>
+                        <p data-lsbq-tr="club.lifeStagesInstructions">
                             Please indicate which language or dialect you most frequently heard or used
                             in the following life stages, both inside and outside home.
                         </p>
@@ -48,13 +50,13 @@
                 </div>
                 <div class="row mb-0">
                     <div class="col-2"></div>
-                    <div class="col-4 text-start">
+                    <div class="col-4 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
                         Only [MajorityLanguage]
                     </div>
-                    <div class="col-2">
+                    <div class="col-2" data-lsbq-tr="club.halfHalf">
                         Half/Half
                     </div>
-                    <div class="col-4 text-end">
+                    <div class="col-4 text-end" data-lsbq-tr="club.onlyRML">
                         Only [RML]
                     </div>
                 </div>
@@ -79,7 +81,7 @@
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div clas="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Next</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbq-tr="base.next">Next</button>
                 </div>
             </div>
 
@@ -89,6 +91,12 @@
 {% endblock %}
 {% block tail_scripts %}
     <script type="text/javascript">
+        // Translate form for specific version
+        lsbqRml.tr.load(lsbqRml.instance.getId(), ['club']);
+        lsbqRml.tr.registerObserver('surveyCLUBForm');
+        lsbqRml.tr.registerObserver('lsbqRmlSectionTitle');
+        lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
+        // Dynamically insert language rating scales
         function insertLanguageRating(languageNumber) {
             const template = document.getElementById('languageRatingTemplate');
             const slot = document.getElementById('languageRatingSlot');

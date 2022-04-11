@@ -75,7 +75,7 @@ booteel.logger.info = function (message, ...args) {
 }
 
 booteel.logger.warning = function (message, ...args) {
-    if (booteel.logger.currentLevel > booteel.logger.level.INFO) {
+    if (booteel.logger.currentLevel > booteel.logger.level.WARNING) {
         return;
     }
     console.warn(message, ...args);
@@ -83,7 +83,7 @@ booteel.logger.warning = function (message, ...args) {
 }
 
 booteel.logger.error = function (message, ...args) {
-    if (booteel.logger.currentLevel > booteel.logger.level.INFO) {
+    if (booteel.logger.currentLevel > booteel.logger.level.ERROR) {
         return;
     }
     console.error(message, ...args);
@@ -91,7 +91,7 @@ booteel.logger.error = function (message, ...args) {
 }
 
 booteel.logger.critical = function (message, ...args) {
-    if (booteel.logger.currentLevel > booteel.logger.level.INFO) {
+    if (booteel.logger.currentLevel > booteel.logger.level.CRITICAL) {
         return;
     }
     console.error(message, ...args);  // There is no more severe level in JS, so use error again.

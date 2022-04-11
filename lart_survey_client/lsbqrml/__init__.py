@@ -348,7 +348,8 @@ class Response(DataSchema):
             },
             "childhood_other_relatives": {
                 "type_": float,
-                "typedesc": "proportion of language use with other relatives in childhood",
+                "typedesc":
+                    "proportion of language use with other relatives in childhood",
                 "constraint": patterns.ANY_NUMBER,
                 "required": False,
             },
@@ -437,37 +438,49 @@ class Response(DataSchema):
     if TYPE_CHECKING:  # noqa: C901
 
         def setid(self, id: int) -> None:
+            """Set the id of the LSBQ-RML instance."""
             ...
 
         def getid(self) -> int:
+            """Get the id of the LSBQ-RML instance."""
             ...
 
         def setmeta(self, *args: Any) -> None:
+            """Set the meta data of the LSBQ-RML instance."""
             ...
 
         def getmeta(self) -> dict[str, Any]:
+            """Get the meta data of the LSBQ-RML instance."""
             ...
 
         def setlsb(self, *args: Any) -> None:
+            """Set the landuage and social background data of the LSBQ-RML instance."""
             ...
 
         def getlsb(self) -> dict[str, Any]:
+            """Get the landuage and social background data of the LSBQ-RML instance."""
             ...
 
         def setldb(self, *args: Any) -> None:
+            """Set the landuage and dialect background data of the LSBQ-RML instance."""
             ...
 
         def getldb(self) -> dict[str, Any]:
+            """Get the landuage and dialect background data of the LSBQ-RML instance."""
             ...
 
         def setclub(self, *args: Any) -> None:
+            """Set the community language use behaviour data of the LSBQ-RML instance."""
             ...
 
         def getclub(self) -> dict[str, Any]:
+            """Get the community language use behaviour data of the LSBQ-RML instance."""
             ...
 
         def setnotes(self, *args: Any) -> None:
+            """Set the notes data of the LSBQ-RML instance."""
             ...
 
         def getnotes(self) -> dict[str, Any]:
+            """Get the notes data of the LSBQ-RML instance."""
             ...

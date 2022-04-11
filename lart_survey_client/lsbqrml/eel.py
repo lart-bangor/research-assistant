@@ -3,6 +3,7 @@ import eel
 from typing import Optional, Union, Callable, Any, TypeVar, cast
 from functools import wraps
 from lsbqrml import Response, logger
+from lsbqrml.versions import versions
 import datetime
 from copy import copy
 from datavalidator.exceptions import DataValidationError
@@ -58,6 +59,20 @@ def _expose(func: F) -> F:
     eel._expose("_lsbqrml_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
+@_expose
+def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
+    """Load specified sections of an LSBQ-RML version implementation."""
+    logger.info(f"Retrieving version data for LSBQ-RML instance {instid}..")
+    instance = _getinstance(instid)
+    version_id = instance.getmeta()["version"]
+    if version_id not in versions:
+        logger.error(f"Requested LSBQ-RML version '{version_id}' not found.")
+        return {}
+    buf: dict[str, dict[str, Any]] = {}
+    for section in sections:
+        if section in versions[version_id]:
+            buf[section] = versions[version_id][section]
+    return buf
 
 @_expose
 def init(data: dict[str, Any]) -> int:

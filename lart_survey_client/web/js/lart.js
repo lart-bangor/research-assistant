@@ -1,12 +1,12 @@
 booteel.logger.debug("lart.js loaded.");
 
-let lart = {}
+let lart = {};
 
-lart.forms = {}
+lart.forms = {};
 
-lart.forms.searchParams = new URLSearchParams(window.location.search)
+lart.forms.searchParams = new URLSearchParams(window.location.search);
 
-lart.forms.util = {}
+lart.forms.util = {};
 
 lart.forms.util.getSelectValues = function (selectNode) {
     values = []
