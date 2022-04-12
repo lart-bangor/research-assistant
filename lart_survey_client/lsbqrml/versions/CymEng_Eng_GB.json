@@ -405,9 +405,9 @@
             "work":         ["Work"],
             "socialising":  ["Socialising"],
             "religion":     ["Religion"],
-            "leisure":      ["Leisure activities", "hobbies, sports, volunteering, gaming, …"],
-            "commercial":   ["Commercial", "shopping, restaurants, …"],
-            "public":       ["Public affairs", "healthcare services, banks, government, council, …"]
+            "leisure":      ["Leisure activities",  "(hobbies, sports, volunteering, gaming, …)"],
+            "commercial":   ["Commercial",          "(shopping, restaurants, …)"],
+            "public":       ["Public affairs",      "(healthcare services, banks, government, council, …)"]
         },
         "activityInstructions": [
             "Please indicate which language or dialect you generally use for the following activities."
@@ -417,7 +417,7 @@
             "emailing":         ["Emailing"],
             "texting":          ["Texting"],
             "socialMedia":      ["Social media"],
-            "notes":            ["Notes", "shopping list, memos, notes, …"],
+            "notes":            ["Notes",           "(shopping list, memos, notes, …)"],
             "traditionalMedia": ["TV, films, radio"],
             "internet":         ["Internet"],
             "praying":          ["Praying"]
