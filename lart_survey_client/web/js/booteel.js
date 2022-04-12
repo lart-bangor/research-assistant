@@ -19,6 +19,35 @@ booteel.util.rpad = function(x, pad, len) {
 }
 
 
+booteel.util.stringMultiReplace = function (stringObject, replacements) {
+    for (key in replacements) {
+        stringObject = stringObject.replace(key, replacements[key]);
+    }
+    return stringObject;
+}
+
+booteel.util.replaceInDOM = function (rootNode, replacements) {
+    // Replace placeholders on all attributes in Elements
+    if (rootNode instanceof Element) {
+        const attrNames = rootNode.getAttributeNames();
+        for (const attrName of attrNames) {
+            let attrValue = rootNode.getAttribute(attrName);
+            if ( typeof(attrValue) == 'string' ) {
+                rootNode.setAttribute(attrName, booteel.util.stringMultiReplace(attrValue, replacements));
+            }
+        }
+    }
+    // Replace placeholders inside CData nodes
+    if (rootNode instanceof CharacterData) {
+        let cData = rootNode.data;
+        rootNode.data = booteel.util.stringMultiReplace(cData, replacements);
+    }
+    for (const childNode of rootNode.childNodes) {
+        booteel.util.replaceInDOM(childNode, replacements)
+    }
+}
+
+
 booteel.DOM = {}
 
 booteel.DOM.setAttribute = function (elementId, qualifiedName, value) {
