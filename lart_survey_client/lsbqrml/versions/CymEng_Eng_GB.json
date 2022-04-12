@@ -343,5 +343,83 @@
             "Jèrriais",
             "Manx Gaelic"
         ]
+    },
+    "club": {
+        "onlyRML": [
+            "Only [RML]",
+            "Only Welsh"
+        ],
+        "onlyMajorityLanguage": [
+            "Only [MajorityLanguage]",
+            "Only English"
+        ],
+        "halfHalf": [
+            "Half/Half"
+        ],
+        "lifeStageInstructions": [
+            "Please indicate which language or dialect you most frequently heard or used in the following life stages, both inside and outside home."
+        ],
+        "lifeStageFields": {
+            "infancy":      ["Infancy"],
+            "nurseryAge":   ["Nursery age"],
+            "primaryAge":   ["Primary age"],
+            "secondaryAge": ["Secondary age"]
+        },
+        "withPeopleNowInstructions": [
+            "Please indicate which language or dialect you generally use when speaking to the following people."
+        ],
+        "withPeopleNowFields": {
+            "parents":          ["Parents"],
+            "children":         ["Children"],
+            "siblings":         ["Siblings"],
+            "grandparents":     ["Grandparents"],
+            "otherRelatives":   ["Other relatives"],
+            "partner":          ["Partner"],
+            "friends":          ["Friends"],
+            "flatmates":        ["Flat/housemates"],
+            "neighbours":       ["Neighbours"]
+        },
+        "withPeopleEarlyLifeInstrunctions": [
+            "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people."
+        ],
+        "withPeopleEarlyLifeFields": {
+            "parents":          ["Parents"],
+            "siblings":         ["Siblings"],
+            "grandparents":     ["Grandparents"],
+            "otherRelatives":   ["Other relatives"],
+            "friends":          ["Friends"],
+            "neighbours":       ["Neighbours"]
+        },
+        "situationInstructions": [
+            "Please indicate which language or dialect you generally use in the following situations."
+        ],
+        "situationFields": {
+            "home":         ["Home"],
+            "school":       ["School"],
+            "work":         ["Work"],
+            "socialising":  ["Socialising"],
+            "religion":     ["Religion"],
+            "leisure":      ["Leisure activities", "hobbies, sports, volunteering, gaming, …"],
+            "commercial":   ["Commercial", "shopping, restaurants, …"],
+            "public":       ["Public affairs", "healthcare services, banks, government, council, …"]
+        },
+        "activityInstructions": [
+            "Please indicate which language or dialect you generally use for the following activities."
+        ],
+        "activityFields": {
+            "reading":          ["Reading"],
+            "emailing":         ["Emailing"],
+            "texting":          ["Texting"],
+            "socialMedia":      ["Social media"],
+            "notes":            ["Notes", "shopping list, memos, notes, …"],
+            "traditionalMedia": ["TV, films, radio"],
+            "internet":         ["Internet"],
+            "praying":          ["Praying"]
+        }
+    },
+    "notes": {
+        "participantNotes": [
+            "Is there anything else that you think is important for us to know about you?"
+        ]
     }
 }

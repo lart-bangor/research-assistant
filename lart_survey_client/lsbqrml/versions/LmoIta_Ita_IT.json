@@ -2,12 +2,12 @@
     "meta": {
         "versionId": "LmoIta_Ita_IT",
         "versionName": "Italian – Lombard (Italy)",
-        "author": "Florian Breit <f.breit@bangor.ac.uk>, Ianto Gruffydd <ianto.gruffydd@bangor.ac.uk>",
+        "author": "Lissander Arioli <a.arioli@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2022-04-11"
     },
     "base": {
         "appTitle": [
-            "Questionario sulla lingua ed  estrazione sociale (RML)"
+            "Questionario sulla lingua ed estrazione sociale (RML)"
         ],
         "yes": [
             "Sì"
@@ -312,8 +312,8 @@
             "Si prega di selezionare questa opzione <i>solo</i> se non può rispondere alle domande riguardanti Suo padre (per es. perché non lo conosce)."
         ],
         "languageListOptions": [
-            "Italiano",
             "Lombardo",
+            "Italiano",
             "Occitano",
             "Francese",
             "Tedesco",
@@ -329,6 +329,6 @@
             "Russo",
             "Portoghese",
             "Turco"
-                   ]
+        ]
     }
 }
