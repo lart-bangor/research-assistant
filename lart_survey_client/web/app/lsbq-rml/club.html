@@ -326,19 +326,19 @@
             }
         }
         // Dynamically insert rating scales
-        function insertClubSliders(sliderTemplate, sliderSlot, sliderFields, fieldsRequired = "false") {
+        function insertClubSliders(sliderTemplate, sliderSlot, fieldPrefix, sliderFields, fieldsRequired = "false") {
             for (const fieldName in sliderFields) {
                 const clone = sliderTemplate.content.firstElementChild.cloneNode(true);
                 const fieldLabel = sliderFields[fieldName][0];
                 const fieldHint = sliderFields[fieldName].length > 1 ? sliderFields[fieldName][1] : "";
-                clone.dataset.templateFieldPrefix = "lifeStage";
+                clone.dataset.templateFieldPrefix = fieldPrefix;
                 clone.dataset.templateFieldName = fieldName;
                 clone.dataset.templateFieldLabel = fieldLabel;
                 clone.dataset.templateFieldHint = fieldHint;
                 clone.dataset.templateFieldRequired = fieldsRequired;
                 sliderSlot.appendChild(clone);
             }
-            lart.forms.monitorRangeInputs(sliderSlot.id);
+            //lart.forms.monitorRangeInputs(sliderSlot.id);
         }
         function fillClubSliders() {
             if ("meta" in lsbqRml.tr.strings) {
@@ -359,15 +359,15 @@
                 // Insert sliders for each question
                 const clubSliderTemplate = document.getElementById('clubSliderTemplate');
                 const lifeStageSlot = document.getElementById('lifeStageSlot');
-                insertClubSliders(clubSliderTemplate, lifeStageSlot, clubTranslations.lifeStageFields, "true");
+                insertClubSliders(clubSliderTemplate, lifeStageSlot, "lifeStage", clubTranslations.lifeStageFields, "true");
                 const withPeopleNowSlot = document.getElementById('withPeopleNowSlot');
-                insertClubSliders(clubSliderTemplate, withPeopleNowSlot, clubTranslations.withPeopleNowFields, "false");
+                insertClubSliders(clubSliderTemplate, withPeopleNowSlot, "withPeopleNow", clubTranslations.withPeopleNowFields, "false");
                 const withPeopleEarlyLifeSlot = document.getElementById('withPeopleEarlyLifeSlot');
-                insertClubSliders(clubSliderTemplate, withPeopleEarlyLifeSlot, clubTranslations.withPeopleEarlyLifeFields, "false");
+                insertClubSliders(clubSliderTemplate, withPeopleEarlyLifeSlot, "withPeopleEarlyLife", clubTranslations.withPeopleEarlyLifeFields, "false");
                 const situationSlot = document.getElementById('situationSlot');
-                insertClubSliders(clubSliderTemplate, situationSlot, clubTranslations.situationFields, "false");
+                insertClubSliders(clubSliderTemplate, situationSlot, "situation", clubTranslations.situationFields, "false");
                 const activitySlot = document.getElementById('activitySlot');
-                insertClubSliders(clubSliderTemplate, activitySlot, clubTranslations.activityFields, "false");
+                insertClubSliders(clubSliderTemplate, activitySlot, "activity", clubTranslations.activityFields, "false");
                 return;
             }
             setTimeout(fillClubSliders, 100);

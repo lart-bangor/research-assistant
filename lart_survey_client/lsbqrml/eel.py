@@ -59,6 +59,7 @@ def _expose(func: F) -> F:
     eel._expose("_lsbqrml_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
+
 @_expose
 def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
     """Load specified sections of an LSBQ-RML version implementation."""
@@ -73,6 +74,7 @@ def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
         if section in versions[version_id]:
             buf[section] = versions[version_id][section]
     return buf
+
 
 @_expose
 def init(data: dict[str, Any]) -> int:
@@ -99,7 +101,7 @@ def init(data: dict[str, Any]) -> int:
 
 
 @_expose
-def setlsb(instid: int, data: dict[str, str]) -> int:
+def setlsb(instid: int, data: dict[str, str]) -> int:  # noqa: C901
     """Adds Language and Social Background Data to a Response."""
     logger.info(f"Setting LSB data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
@@ -146,7 +148,7 @@ def setlsb(instid: int, data: dict[str, str]) -> int:
 
 
 @_expose
-def setldb(instid: int, data: dict[str, Any]) -> int:
+def setldb(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
     """Adds Language and Dialect Background Data to a Response."""
     logger.info(f"Setting LDB data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
@@ -241,9 +243,7 @@ def setldb(instid: int, data: dict[str, Any]) -> int:
 def setclub(instid: int, data: dict[Any, Any]) -> int:
     """Adds Community Language Use Behaviour Data to a Response."""
     instance = _getinstance(instid)
-    instance.setclub(
-
-    )
+    instance.setclub(data)
     logger.debug(f"LSBQ-RML instance id = {instid}")
     logger.debug(f"... set 'club' data to {instance.getclub()}")
     booteel.setlocation(f"notes.html?instance={instance.getid()}")
@@ -268,7 +268,7 @@ def getversions() -> dict[str, str]:
     """Retrieves the available versions of the LSBQ RML."""
     return {
         "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
-        #"CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
+        # "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
         "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
         "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
     }

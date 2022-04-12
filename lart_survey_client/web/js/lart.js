@@ -343,9 +343,9 @@ lart.forms.registerPipeline = function (form_id, receiver) {
             },
             false
         )
-        booteel.logger.debug(`Registered form pipeline from form '${form_id}' to callback:`, receiver)
+        booteel.logger.debug(`Registered form pipeline from form '${form_id}' to callback:`, receiver);
     } else {
-        booteel.logger.debug(`Failed to register form pipeline. No form with id '${form_id}'.`)
+        booteel.logger.debug(`Failed to register form pipeline. No form with id '${form_id}'.`);
     }
 }
 
