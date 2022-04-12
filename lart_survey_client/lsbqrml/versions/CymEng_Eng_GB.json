@@ -345,6 +345,9 @@
         ]
     },
     "club": {
+        "secTitle": [
+            "Community Language Use Behaviour"
+        ],
         "onlyRML": [
             "Only [RML]",
             "Only Welsh"
@@ -382,7 +385,7 @@
             "flatmates":        ["Flat/housemates"],
             "neighbours":       ["Neighbours"]
         },
-        "withPeopleEarlyLifeInstrunctions": [
+        "withPeopleEarlyLifeInstructions": [
             "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people."
         ],
         "withPeopleEarlyLifeFields": {

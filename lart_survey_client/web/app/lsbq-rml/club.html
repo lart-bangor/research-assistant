@@ -298,7 +298,13 @@
 {% endblock %}
 {% block tail_scripts %}
     <script type="text/javascript">
-        clubDefaults = {
+        // Translate form for specific version
+        lsbqRml.tr.load(lsbqRml.instance.getId(), ['club']);
+        lsbqRml.tr.registerObserver('surveyCLUBForm');
+        lsbqRml.tr.registerObserver('lsbqRmlSectionTitle');
+        lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
+        // Defaults for slider fields
+        const clubDefaults = {
             "lifeStageFields": {
                 "infancy":      ["Infancy"],
                 "nurseryAge":   ["Nursery age"],
@@ -345,11 +351,6 @@
                 "praying":          ["Praying"]
             }
         }
-        // Translate form for specific version
-        lsbqRml.tr.load(lsbqRml.instance.getId(), ['club']);
-        lsbqRml.tr.registerObserver('surveyCLUBForm');
-        lsbqRml.tr.registerObserver('lsbqRmlSectionTitle');
-        lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
         // Dynamically insert rating scales
         function insertClubSliders(sliderTemplate, sliderSlot, sliderFields, fieldsRequired = "false") {
             for (const fieldName in sliderFields) {
@@ -365,17 +366,39 @@
             }
             lart.forms.monitorRangeInputs(sliderSlot.id);
         }
-        const clubSliderTemplate = document.getElementById('clubSliderTemplate');
-        const lifeStageSlot = document.getElementById('lifeStageSlot');
-        insertClubSliders(clubSliderTemplate, lifeStageSlot, clubDefaults.lifeStageFields, "true");
-        const withPeopleNowSlot = document.getElementById('withPeopleNowSlot');
-        insertClubSliders(clubSliderTemplate, withPeopleNowSlot, clubDefaults.withPeopleNowFields, "false");
-        const withPeopleEarlyLifeSlot = document.getElementById('withPeopleEarlyLifeSlot');
-        insertClubSliders(clubSliderTemplate, withPeopleEarlyLifeSlot, clubDefaults.withPeopleEarlyLifeFields, "false");
-        const situationSlot = document.getElementById('situationSlot');
-        insertClubSliders(clubSliderTemplate, situationSlot, clubDefaults.situationFields, "false");
-        const activitySlot = document.getElementById('activitySlot');
-        insertClubSliders(clubSliderTemplate, activitySlot, clubDefaults.activityFields, "false");
+        function fillClubSliders() {
+            if ("meta" in lsbqRml.tr.strings) {
+                //Merge in translations
+                let clubTranslations = {};
+                for (const key in clubDefaults) {
+                    clubTranslations[key] = {};
+                    const trFields = lsbqRml.tr.get(`club.${key}`);
+                    for (const subkey in clubDefaults[key]) {
+                        if (trFields && subkey in trFields) {
+                            clubTranslations[key][subkey] = trFields[subkey];
+                        } else {
+                            clubTranslations[key][subkey] = clubDefaults[key][subkey];
+                            lsbqRml.tr.missing[`club.${key}.${subkey}`] = clubDefaults[key][subkey];
+                        }
+                    }
+                }
+                // Insert sliders for each question
+                const clubSliderTemplate = document.getElementById('clubSliderTemplate');
+                const lifeStageSlot = document.getElementById('lifeStageSlot');
+                insertClubSliders(clubSliderTemplate, lifeStageSlot, clubTranslations.lifeStageFields, "true");
+                const withPeopleNowSlot = document.getElementById('withPeopleNowSlot');
+                insertClubSliders(clubSliderTemplate, withPeopleNowSlot, clubTranslations.withPeopleNowFields, "false");
+                const withPeopleEarlyLifeSlot = document.getElementById('withPeopleEarlyLifeSlot');
+                insertClubSliders(clubSliderTemplate, withPeopleEarlyLifeSlot, clubTranslations.withPeopleEarlyLifeFields, "false");
+                const situationSlot = document.getElementById('situationSlot');
+                insertClubSliders(clubSliderTemplate, situationSlot, clubTranslations.situationFields, "false");
+                const activitySlot = document.getElementById('activitySlot');
+                insertClubSliders(clubSliderTemplate, activitySlot, clubTranslations.activityFields, "false");
+                return;
+            }
+            setTimeout(fillClubSliders, 100);
+        }
+        setTimeout(fillClubSliders, 250);
     </script>
     {{ lart_form_pipeline('surveyCLUBForm', '_lsbqrml_setclub') }}
 {% endblock %}
