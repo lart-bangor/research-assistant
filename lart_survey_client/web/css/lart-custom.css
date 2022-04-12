@@ -111,6 +111,10 @@
     box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
 }
 
-fieldset[disabled] {
+fieldset[disabled], *[data-lart-disabled] {
+    opacity: 0.6;
+}
+
+input[type="range"][disabled] {
     opacity: 0.6;
 }

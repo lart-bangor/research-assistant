@@ -163,9 +163,17 @@ lart.forms.conditionalDisable = function (fieldName, targetId, value, condition 
         node.addEventListener('input',
             function (event) {
                 if(matchesCondition()) {
-                    target.disabled = true;
+                    if( 'disabled' in target ) {
+                        target.disabled = true;
+                    } else {
+                        target.dataset.lartDisabled = true;
+                    }
                 } else {
-                    target.disabled = false;
+                    if( 'disabled' in target ) {
+                        target.disabled = false;
+                    } else {
+                        delete target.dataset.lartDisabled;
+                    }
                 }
             }
         );

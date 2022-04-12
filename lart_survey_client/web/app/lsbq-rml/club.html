@@ -18,7 +18,7 @@
     <article class="container-fluid p-2">
 
         <div class="progress m-4">
-            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%"></div>
         </div>
 
         <div class="row m-4 text-center">
@@ -27,22 +27,119 @@
 
         <form id="surveyCLUBForm" class="needs-validation" autocomplete="off">
 
-            <!-- 13. Language use at various life stages -->
-            <section class="m-4">
-                <template id="languageUseAgePeriodTemplate">
-                    <div id="languageUseAgePeriodInstance-[FieldName]">
+            <!-- Template for sliders -->
+            <template id="clubSliderTemplate">
+                <div data-template-field-prefix="[FieldPrefix]" data-template-field-name="[FieldName]" data-template-field-label="[FieldLabel]" data-template-field-hint="[FieldHint]" data-template-field-required="true">
+                    <div id="[FieldPrefix]Instance-[FieldName]">
                         <div class="row mb-1">
-                            <label for="languageUseAgePeriod-[FieldName]" class="col-2 col-form-label text-end">[FieldLabel]</label>
-                            <div class="col-10 mt-2">
-                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="languageUseAgePeriod-[FieldName]" required />
+                            <label id="[FieldPrefix]Label-[FieldName]" for="[FieldPrefix]-[FieldName]" class="col-2 col-form-label text-end">
+                                <span>[FieldLabel]</span><br />
+                                <span class="text-muted" id="[FieldPrefix]Hint-[FieldName]">[FieldHint]</span><br />
+                            </label>
+                            <div class="col-9 mt-2">
+                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="[FieldPrefix]-[FieldName]" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                            </div>
+                            <div class="col-1" id="[FieldPrefix]NotApplicableOption-[FieldName]">
+                                <p  class="text-muted d-inline-block ps-2"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="left"
+                                    data-bs-html="true"
+                                    title="Please mark this box <i>only</i> if you do not use either of these languages in the described context."
+                                >
+                                    <input  class="form-check-input align-text-top"
+                                            type="checkbox"
+                                            id="[FieldPrefix]NotApplicable-[FieldName]"
+                                            name="[FieldPrefix]NotApplicable-[FieldName]"
+                                    />
+                                    <label class="form-check-label" for="[FieldPrefix]NotApplicable-[FieldName]" data-lsbq-tr="base.notApplicableAbbr">N/A</label>
+                                </p>
                             </div>
                         </div>
                     </div>
-                </template>
+                    <script type="text/javascript">
+                        activateClubSliderTemplate(document.currentScript.parentElement);
+                    </script>
+                </div>
+            </template>
+            <script type="text/javascript">
+                booteel.util.stringMultiReplace = function (stringObject, replacements) {
+                    for (key in replacements) {
+                        stringObject = stringObject.replace(key, replacements[key]);
+                    }
+                    return stringObject;
+                }
+                booteel.util.replaceInDOM = function (rootNode, replacements) {
+                    // Replace placeholders on all attributes in Elements
+                    if (rootNode instanceof Element) {
+                        const attrNames = rootNode.getAttributeNames();
+                        for (const attrName of attrNames) {
+                            let attrValue = rootNode.getAttribute(attrName);
+                            if ( typeof(attrValue) == 'string' ) {
+                                rootNode.setAttribute(attrName, booteel.util.stringMultiReplace(attrValue, replacements));
+                            }
+                        }
+                    }
+                    // Replace placeholders inside CData nodes
+                    if (rootNode instanceof CharacterData) {
+                        let cData = rootNode.data;
+                        rootNode.data = booteel.util.stringMultiReplace(cData, replacements);
+                    }
+                    for (const childNode of rootNode.childNodes) {
+                        booteel.util.replaceInDOM(childNode, replacements)
+                    }
+                }
+                function activateClubSliderTemplate(templateElement) {
+                    // Get data for the slider
+                    if (!templateElement) {
+                        booteel.logger.error("Template instance could not retreive its container.");
+                    }
+                    const templateData = templateElement.dataset;
+                    const fieldPrefix = templateData.templateFieldPrefix;
+                    const fieldName = templateData.templateFieldName;
+                    const fieldLabel = templateData.templateFieldLabel;
+                    let fieldHint = templateData.templateFieldHint;
+                    let fieldRequired = templateData.templateFieldRequired;
+                    if ( fieldPrefix == "[FieldPrefix]" || fieldName == "[FieldName]" || fieldLabel == "[FieldLabel]" ) {
+                        booteel.logger.error(
+                            "Template instance is missing one or more required data attributes (templateFieldPrefix, templateFieldName, templateFieldLabel)."
+                        );
+                    }
+                    if ( !fieldHint || fieldHint == "[FieldHint]" ) {
+                        fieldHint = "";
+                    }
+                    if ( !fieldRequired || fieldRequired == "false" ) {
+                        fieldRequired = false;
+                    } else {
+                        fieldRequired = true;
+                    }
+                    // Replace placeholder strings in template
+                    booteel.util.replaceInDOM(
+                        templateElement,
+                        {
+                            "[FieldPrefix]": fieldPrefix,
+                            "[FieldName]": fieldName,
+                            "[FieldLabel]": fieldLabel,
+                            "[FieldHint]": fieldHint
+                        }
+                    );
+                    // Remove or activate NA option
+                    const notApplicableOption = document.getElementById(`${fieldPrefix}NotApplicableOption-${fieldName}`);
+                    if (fieldRequired) {
+                        notApplicableOption.parentNode.removeChild(notApplicableOption);
+                    } else {
+                        const tt = new bootstrap.Tooltip(notApplicableOption.firstElementChild);
+                        lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}-${fieldName}`, 'on', 'equal');
+                        lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}Label-${fieldName}`, 'on', 'equal');
+                    }                    
+                }
+            </script>
+
+            <!-- 13. Language use at various life stages -->
+            <section class="m-4">
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p data-lsbq-tr="club.lifeStagesInstructions">
+                        <p data-lsbq-tr="club.lifeStageInstructions">
                             Please indicate which language or dialect you most frequently heard or used
                             in the following life stages, both inside and outside home.
                         </p>
@@ -50,32 +147,19 @@
                 </div>
                 <div class="row mb-0">
                     <div class="col-2"></div>
-                    <div class="col-4 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
                         Only [MajorityLanguage]
                     </div>
-                    <div class="col-2" data-lsbq-tr="club.halfHalf">
+                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
                         Half/Half
                     </div>
-                    <div class="col-4 text-end" data-lsbq-tr="club.onlyRML">
+                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
                         Only [RML]
                     </div>
                 </div>
-                <div id="languageUseLifeStagesSlot">
-                    
-                    <div id="languageUseAgePeriodInstance-[FieldName]">
-                        <div class="row mb-1">
-                            <label for="languageUseAgePeriod-[FieldName]" class="col-2 col-form-label text-end">[FieldLabel]</label>
-                            <div class="col-10 mt-2">
-                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="languageUseAgePeriod-[FieldName]" required />
-                                <div class="invalid-feedback invalid-range">Please move the slider at least once.</div>
-                            </div>
-                        </div>
-                    </div>
+                <div id="lifeStageSlot">
                     <!-- Placeholder dynamically filled with copies of languageUseObligatoryTemplate -->
                 </div>
-                <script>
-                    lart.forms.monitorRangeInputs('languageUseLifeStagesSlot');
-                </script>
             </section>
 
             <!-- Form submission -->
@@ -91,84 +175,79 @@
 {% endblock %}
 {% block tail_scripts %}
     <script type="text/javascript">
+        clubDefaults = {
+            "lifeStageFields": {
+                "infancy":      ["Infancy"],
+                "nurseryAge":   ["Nursery age"],
+                "primaryAge":   ["Primary age"],
+                "secondaryAge": ["Secondary age"]
+            },
+            "withPeopleNowFields": {
+                "parents":          ["Parents"],
+                "children":         ["Children"],
+                "siblings":         ["Siblings"],
+                "grandparents":     ["Grandparents"],
+                "otherRelatives":   ["Other relatives"],
+                "partner":          ["Partner"],
+                "friends":          ["Friends"],
+                "flatmates":        ["Flat/housemates"],
+                "neighbours":       ["Neighbours"]
+            },
+            "withPeopleEarlyLifeFields": {
+                "parents":          ["Parents"],
+                "siblings":         ["Siblings"],
+                "grandparents":     ["Grandparents"],
+                "otherRelatives":   ["Other relatives"],
+                "friends":          ["Friends"],
+                "neighbours":       ["Neighbours"]
+            },
+            "situationFields": {
+                "home":         ["Home"],
+                "school":       ["School"],
+                "work":         ["Work"],
+                "socialising":  ["Socialising"],
+                "religion":     ["Religion"],
+                "leisure":      ["Leisure activities", "hobbies, sports, volunteering, gaming, …"],
+                "commercial":   ["Commercial", "shopping, restaurants, …"],
+                "public":       ["Public affairs", "healthcare services, banks, government, council, …"]
+            },
+            "activityFields": {
+                "reading":          ["Reading"],
+                "emailing":         ["Emailing"],
+                "texting":          ["Texting"],
+                "socialMedia":      ["Social media"],
+                "notes":            ["Notes", "shopping list, memos, notes, …"],
+                "traditionalMedia": ["TV, films, radio"],
+                "internet":         ["Internet"],
+                "praying":          ["Praying"]
+            }
+        }
         // Translate form for specific version
         lsbqRml.tr.load(lsbqRml.instance.getId(), ['club']);
         lsbqRml.tr.registerObserver('surveyCLUBForm');
         lsbqRml.tr.registerObserver('lsbqRmlSectionTitle');
         lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
-        // Dynamically insert language rating scales
-        function insertLanguageRating(languageNumber) {
-            const template = document.getElementById('languageRatingTemplate');
-            const slot = document.getElementById('languageRatingSlot');
-            const clone = template.content.cloneNode(true);
-            // Replaces [LanguageNumber] in 'id', 'for', and 'name' attrs
-            function numberReplacer(node) {
-                if (node instanceof HTMLElement) {
-                    if (node.hasAttribute('id')) node.setAttribute('id', node.getAttribute('id').replace('[LanguageNumber]', languageNumber));
-                    if (node.hasAttribute('for')) node.setAttribute('for', node.getAttribute('for').replace('[LanguageNumber]', languageNumber));
-                    if (node.hasAttribute('name')) node.setAttribute('name', node.getAttribute('name').replace('[LanguageNumber]', languageNumber));
-                }
-                if ( node.hasChildNodes() ) {
-                    for (const child of node.childNodes) {
-                        numberReplacer(child);
-                    }
-                }
-            }
-            numberReplacer(clone);
-            // Keep languageNameSlot (default value [LanguageName]) synched
-            const nameSource = document.getElementById(`languagesSpokenLanguage-${languageNumber}`);
-            const languageNameSlots = clone.querySelectorAll('.languageNameSlot');
-            for (const languageNameSlot of languageNameSlots) {
-                nameSource.addEventListener(
-                    'input',
-                    function (event) {
-                        languageNameSlot.textContent = event.target.value
-                    }
-                );
-            }
-            // Make input required dependent on languageName presence
-            const inputs = clone.querySelectorAll('input');
-            for (const input of inputs) {
-                input.required = false;
-                nameSource.addEventListener(
-                    'input',
-                    function (event) {
-                        input.required = !!event.target.value;
-                    }
-                );
-            }
-            // Toggle visibility dependent on languageName presence
-            const wrapperElement = clone.firstElementChild;
-            wrapperElement.hidden = true;
-            nameSource.addEventListener(
-                'input',
-                function (event) {
-                    wrapperElement.hidden = !event.target.value;
-                }
-            );
-            // Append to slot
-            slot.appendChild(clone);
+        // Dynamically insert rating scales
+        const clubSliderTemplate = document.getElementById('clubSliderTemplate');
+            // clubSliderTemplate.firstElementChild.dataset defaults:
+            // data-template-field-prefix="[FieldPrefix]"
+            // data-template-field-name="[FieldName]"
+            // data-template-field-label="[FieldLabel]"
+            // data-template-field-hint="[FieldHint]"
+            // data-template-field-required="true"
+        const lifeStageSlot = document.getElementById('lifeStageSlot');
+        for (const fieldName in clubDefaults.lifeStageFields) {
+            const clone = clubSliderTemplate.content.firstElementChild.cloneNode(true);
+            const fieldLabel = clubDefaults.lifeStageFields[fieldName][0];
+            const fieldHint = clubDefaults.lifeStageFields[fieldName].length > 1 ? clubDefaults.lifeStageFields[fieldName][1] : "";
+            clone.dataset.templateFieldPrefix = "lifeStage";
+            clone.dataset.templateFieldName = fieldName;
+            clone.dataset.templateFieldLabel = fieldLabel;
+            clone.dataset.templateFieldHint = fieldHint;
+            clone.dataset.templateFieldRequired = "true";
+            lifeStageSlot.appendChild(clone);
         }
-        lart.forms.conditionalRequire('languagesSpokenSource-0', 'languagesSpokenSourceSpecify-0', 'o');
-        lart.forms.conditionalDisplay('languagesSpokenSource-0', 'languagesSpokenSourceSpecifyBlock-0', 'o');
-        lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenSource-0`, '', 'not-equal');
-        lart.forms.conditionalRequire(`languagesSpokenLanguage-0`, `languagesSpokenAge-0`, '', 'not-equal');
-        insertLanguageRating(0);
-        let repeatLanguagesSpokenCounter = 0;
-        function repeatLanguagesSpoken(required = false) {
-            repeatLanguagesSpokenCounter++;
-            lart.forms.repeatBlock('languagesSpokenRepeat', /(languagesSpoken[A-Za-z]*)-(0)/gm);
-            // Require the other fields if they enter a language name
-            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenSource-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
-            lart.forms.conditionalRequire(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`, `languagesSpokenAge-${repeatLanguagesSpokenCounter}`, '', 'not-equal');
-            // Require the "specify" field if they select "other" on source
-            lart.forms.conditionalRequire(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecify-${repeatLanguagesSpokenCounter}`, 'o');
-            lart.forms.conditionalDisplay(`languagesSpokenSource-${repeatLanguagesSpokenCounter}`, `languagesSpokenSourceSpecifyBlock-${repeatLanguagesSpokenCounter}`, 'o');
-            document.getElementById(`languagesSpokenLanguage-${repeatLanguagesSpokenCounter}`).required = required;
-            insertLanguageRating(repeatLanguagesSpokenCounter);
-        }
-        // We want to be at least two languages to be displayed and required -> repeat once, make required
-        // repeatLanguagesSpoken(true);
+        lart.forms.monitorRangeInputs('lifeStageSlot');
     </script>
     {{ lart_form_pipeline('surveyCLUBForm', '_lsbqrml_setclub') }}
 {% endblock %}

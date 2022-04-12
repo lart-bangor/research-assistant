@@ -356,6 +356,9 @@
         "halfHalf": [
             "Half/Half"
         ],
+        "itemNotApplicableInfo": [
+            "Please mark this box <i>only</i> if you do not use either of these languages in the described context."
+        ],
         "lifeStageInstructions": [
             "Please indicate which language or dialect you most frequently heard or used in the following life stages, both inside and outside home."
         ],
