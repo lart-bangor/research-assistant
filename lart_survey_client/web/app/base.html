@@ -38,7 +38,7 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <script type="text/javascript">
-                    if (!isNaN(parseInt(lart.forms.searchParams.get('instance')))) {
+                    if (typeof lart !== 'undefined' && !isNaN(parseInt(lart.forms.searchParams.get('instance')))) {
                         document.write('<p>Survey instance ID: ' + lart.forms.searchParams.get('instance'));
                     }
                 </script>
