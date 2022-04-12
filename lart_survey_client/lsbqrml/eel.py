@@ -1,5 +1,6 @@
 """Exposes the LSBQ-RML to Python Eel."""
 import eel
+import re
 from typing import Optional, Union, Callable, Any, TypeVar, cast
 from functools import wraps
 from lsbqrml import Response, logger
@@ -152,10 +153,6 @@ def setldb(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
     """Adds Language and Dialect Background Data to a Response."""
     logger.info(f"Setting LDB data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
-    from pprint import pp
-    print(f"Setting LDB data on LSBQ-RML instance {instid}..")
-    print("... received data:")
-    pp(data)
     instance = _getinstance(instid)
     processed: dict[str, Union[str, int, list[Union[str, int]]]] = {
         "languages_spoken_name": [],
@@ -228,9 +225,11 @@ def setldb(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
                     raise RuntimeError(
                         f"Could not map {needle} to field {fieldname} (report as bug)"
                     )
+    if "mother_second_language" in data and not data["mother_second_language"]:
+        del data["mother_second_language"]
+    if "father_second_language" in data and not data["father_second_language"]:
+        del data["father_second_language"]
     processed.update(data)
-    print("... preprocessed data:")
-    pp(processed)
     logger.debug(f"... preprocessed data: {processed!r}")
     instance.setldb(processed)
     logger.debug(f"LSBQ-RML instance id = {instid}")
@@ -240,10 +239,52 @@ def setldb(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
 
 
 @_expose
-def setclub(instid: int, data: dict[Any, Any]) -> int:
+def setclub(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
     """Adds Community Language Use Behaviour Data to a Response."""
+    logger.info(f"Setting LDB data on LSBQ-RML instance {instid}..")
+    logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
-    instance.setclub(data)
+
+    camel_case_matcher = re.compile(r"([a-z])([A-Z])")
+
+    def camel_to_snake_case(x: str) -> str:
+        """Converts a string in camelCase."""
+        return camel_case_matcher.sub(r"\1_\2", x).lower()
+
+    data = {camel_to_snake_case(key): value for key, value in data.items()}
+
+    from pprint import pp
+    print("Received data:")
+    pp(data)
+
+    def field_applicable(group: str, field: str):
+        """Checks whether 'field' in 'group' is marked as not applicable."""
+        return not (
+            f"{group}_not_applicable-{field}" in data and
+            data[f"{group}_not_applicable-{field}"]
+        )
+
+    processed: dict[str, Any] = {}
+    for key, value in data.items():
+        (group, field) = key.split("-", 2)
+        if group == "life_stage":
+            if not field.endswith("_age"):
+                field += "_age"
+            processed[field] = value
+        elif group == "with_people_now" and field_applicable(group, field):
+            processed[field] = value
+        elif group == "with_people_early_life" and field_applicable(group, field):
+            processed[f"childhood_{field}"] = value
+        elif group == "situation" and field_applicable(group, field):
+            processed[field] = value
+        elif group == "activity" and field_applicable(group, field):
+            processed[field] = value
+
+    print("Pre-processed data:")
+    pp(processed)
+    logger.debug(f"... preprocessed data: {processed!r}")
+    instance.setclub(processed)
+
     logger.debug(f"LSBQ-RML instance id = {instid}")
     logger.debug(f"... set 'club' data to {instance.getclub()}")
     booteel.setlocation(f"notes.html?instance={instance.getid()}")

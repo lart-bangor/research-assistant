@@ -13,7 +13,7 @@ from typing import Any
 import booteel
 import lsbqrml.eel  # type: ignore  # noqa: F401
 import atolc        # type: ignore  # noqa: F401
-#import mgt
+# import mgt
 
 # Set up logger for main runtime
 logger = logging.getLogger(__name__)
@@ -22,6 +22,7 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 
 @eel.expose
 def atol_rating(data: dict[Any, Any]):
+    """Retrieve atol rating and print to screen."""
     print("ATOL DATA FROM INDEX.HTML:")
     print(data)
 

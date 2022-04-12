@@ -407,9 +407,57 @@ class Response(DataSchema):
                 "constraint": patterns.ANY_NUMBER,
                 "required": False,
             },
-            "public_affairs": {
+            "public": {
                 "type_": float,
                 "typedesc": "proportion of language use for public affairs",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "reading": {
+                "type_": float,
+                "typedesc": "proportion of language use for reading",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "emailing": {
+                "type_": float,
+                "typedesc": "proportion of language use for emailing",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "texting": {
+                "type_": float,
+                "typedesc": "proportion of language use for texting",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "social_media": {
+                "type_": float,
+                "typedesc": "proportion of language use for social media",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "notes": {
+                "type_": float,
+                "typedesc": "proportion of language use for notes",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "traditional_media": {
+                "type_": float,
+                "typedesc": "proportion of language use for traditional media",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "internet": {
+                "type_": float,
+                "typedesc": "proportion of language use for internet",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "praying": {
+                "type_": float,
+                "typedesc": "proportion of language use for praying",
                 "constraint": patterns.ANY_NUMBER,
                 "required": False,
             },
