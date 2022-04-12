@@ -241,7 +241,7 @@ def setldb(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
 @_expose
 def setclub(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
     """Adds Community Language Use Behaviour Data to a Response."""
-    logger.info(f"Setting LDB data on LSBQ-RML instance {instid}..")
+    logger.info(f"Setting CLUB data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
 
@@ -252,10 +252,6 @@ def setclub(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
         return camel_case_matcher.sub(r"\1_\2", x).lower()
 
     data = {camel_to_snake_case(key): value for key, value in data.items()}
-
-    from pprint import pp
-    print("Received data:")
-    pp(data)
 
     def field_applicable(group: str, field: str):
         """Checks whether 'field' in 'group' is marked as not applicable."""
@@ -280,8 +276,6 @@ def setclub(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
         elif group == "activity" and field_applicable(group, field):
             processed[field] = value
 
-    print("Pre-processed data:")
-    pp(processed)
     logger.debug(f"... preprocessed data: {processed!r}")
     instance.setclub(processed)
 
@@ -292,12 +286,12 @@ def setclub(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
 
 
 @_expose
-def setnotes(instid: int, data: dict[Any, Any]) -> int:
+def setnotes(instid: int, data: dict[str, Any]) -> int:
     """Adds Participant and Experimenter Comments Data to a Response."""
+    logger.info(f"Setting Notes data on LSBQ-RML instance {instid}..")
+    logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
-    instance.setnotes(
-
-    )
+    instance.setnotes({"participant_note": data["participantNote"]})
     logger.debug(f"LSBQ-RML instance id = {instid}")
     logger.debug(f"... set 'notes' data to {instance.getnotes()}")
     booteel.setlocation(f"finish.html?instance={instance.getid()}")
