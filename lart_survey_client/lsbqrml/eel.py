@@ -294,7 +294,8 @@ def setnotes(instid: int, data: dict[str, Any]) -> int:
     instance.setnotes({"participant_note": data["participantNote"]})
     logger.debug(f"LSBQ-RML instance id = {instid}")
     logger.debug(f"... set 'notes' data to {instance.getnotes()}")
-    booteel.setlocation(f"finish.html?instance={instance.getid()}")
+    store(instid)
+    booteel.setlocation(f"/app/atol-c/index.html?instance={instance.getid()}")
     return instid
 
 
