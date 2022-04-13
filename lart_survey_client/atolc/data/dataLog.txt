@@ -192,3 +192,73 @@ rating_Welsh_sistem: 50
 rating_Welsh_smoothness: 50
 rating_Welsh_structure: 50
 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/04/2022 00:30:21
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: florian
+researchLocation: Bangor, Gwynedd
+participantId: jkdskj
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/04/2022 00:42:38
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: florian
+researchLocation: Bangor, Gwynedd
+participantId: sdfs
+confirmConsent: True
+
+Presentation order: ["beauty", "pleasure", "smoothness", "appeal", "flow", "sistem", "angularity", "harshness", "structure", "elegance", "ambiguity", "precision", "grace", "fluency", "logic"]
+rating_English_ambiguity: 54.6848381601363
+rating_English_angularity: 52.129471890971
+rating_English_appeal: 57.5809199318569
+rating_English_beauty: 47.2742759795571
+rating_English_elegance: 56.7291311754685
+rating_English_flow: 43.3560477001704
+rating_English_fluency: 44.9744463373084
+rating_English_grace: 53.3219761499148
+rating_English_harshness: 42.1635434412266
+rating_English_logic: 56.6439522998297
+rating_English_pleasure: 55.4514480408859
+rating_English_precision: 46.8483816013629
+rating_English_sistem: 56.984667802385
+rating_English_smoothness: 40.6303236797274
+rating_English_structure: 55.2810902896082
+
+
+Presentation order: ["angularity", "appeal", "harshness", "smoothness", "pleasure", "elegance", "precision", "ambiguity", "structure", "flow", "logic", "grace", "beauty", "sistem", "fluency"]
+rating_rml_ambiguity: 43.015332197615
+rating_rml_angularity: 55.4514480408859
+rating_rml_appeal: 40.4599659284497
+rating_rml_beauty: 58.603066439523
+rating_rml_elegance: 42.5042589437819
+rating_rml_flow: 41.1413969335605
+rating_rml_fluency: 56.6439522998297
+rating_rml_grace: 44.633730834753
+rating_rml_harshness: 57.5809199318569
+rating_rml_logic: 57.7512776831346
+rating_rml_pleasure: 55.6218057921636
+rating_rml_precision: 57.7512776831346
+rating_rml_sistem: 43.6967632027257
+rating_rml_smoothness: 41.7376490630324
+rating_rml_structure: 55.4514480408859
+
+
+Presentation order: ["pleasure", "angularity", "sistem", "structure", "fluency", "smoothness", "beauty", "harshness", "appeal", "grace", "precision", "flow", "logic", "ambiguity", "elegance"]
+rating_rml_ambiguity: 57.4105621805792
+rating_rml_angularity: 60.732538330494
+rating_rml_appeal: 41.4821124361158
+rating_rml_beauty: 43.015332197615
+rating_rml_elegance: 40.5451448040886
+rating_rml_flow: 57.5809199318569
+rating_rml_fluency: 40.4599659284497
+rating_rml_grace: 61.3287904599659
+rating_rml_harshness: 60.221465076661
+rating_rml_logic: 37.3935264054515
+rating_rml_pleasure: 35.9454855195911
+rating_rml_precision: 43.1856899488927
+rating_rml_sistem: 36.3713798977854
+rating_rml_smoothness: 56.0477001703578
+rating_rml_structure: 56.5587734241908
+
