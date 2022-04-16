@@ -1,0 +1,308 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/04/2022 13:26:19
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+Presentation order: {"rating_English_beauty": "50", "rating_English_harshness": "50", "rating_English_elegance": "50", "rating_English_flow": "50", "rating_English_angularity": "50", "rating_English_fluency": "50", "rating_English_structure": "50", "rating_English_ambiguity": "50", "rating_English_smoothness": "50", "rating_English_precision": "50", "rating_English_grace": "50", "rating_English_pleasure": "50", "rating_English_appeal": "50", "rating_English_logic": "50", "rating_English_sistem": "50"}
+rating_English_ambiguity: 50
+rating_English_angularity: 50
+rating_English_appeal: 50
+rating_English_beauty: 50
+rating_English_elegance: 50
+rating_English_flow: 50
+rating_English_fluency: 50
+rating_English_grace: 50
+rating_English_harshness: 50
+rating_English_logic: 50
+rating_English_pleasure: 50
+rating_English_precision: 50
+rating_English_sistem: 50
+rating_English_smoothness: 50
+rating_English_structure: 50
+
+Presentation order: {"rating_Welsh_sistem": "50", "rating_Welsh_beauty": "50", "rating_Welsh_flow": "50", "rating_Welsh_fluency": "50", "rating_Welsh_angularity": "50", "rating_Welsh_grace": "50", "rating_Welsh_harshness": "50", "rating_Welsh_structure": "50", "rating_Welsh_smoothness": "50", "rating_Welsh_ambiguity": "50", "rating_Welsh_appeal": "50", "rating_Welsh_logic": "50", "rating_Welsh_precision": "50", "rating_Welsh_pleasure": "50", "rating_Welsh_elegance": "50"}
+rating_Welsh_ambiguity: 50
+rating_Welsh_angularity: 50
+rating_Welsh_appeal: 50
+rating_Welsh_beauty: 50
+rating_Welsh_elegance: 50
+rating_Welsh_flow: 50
+rating_Welsh_fluency: 50
+rating_Welsh_grace: 50
+rating_Welsh_harshness: 50
+rating_Welsh_logic: 50
+rating_Welsh_pleasure: 50
+rating_Welsh_precision: 50
+rating_Welsh_sistem: 50
+rating_Welsh_smoothness: 50
+rating_Welsh_structure: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/04/2022 13:34:14
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: {"rating_English_sistem": "50", "rating_English_precision": "50", "rating_English_smoothness": "50", "rating_English_angularity": "50", "rating_English_beauty": "50", "rating_English_appeal": "50", "rating_English_elegance": "50", "rating_English_ambiguity": "50", "rating_English_structure": "50", "rating_English_harshness": "50", "rating_English_logic": "50", "rating_English_flow": "50", "rating_English_pleasure": "50", "rating_English_fluency": "50", "rating_English_grace": "50"}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/04/2022 13:39:07
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: rating_English_precision, rating_English_structure, rating_English_grace, rating_English_flow, rating_English_harshness, rating_English_pleasure, rating_English_elegance, rating_English_logic, rating_English_ambiguity, rating_English_beauty, rating_English_appeal, rating_English_smoothness, rating_English_sistem, rating_English_fluency, rating_English_angularity
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/04/2022 13:41:42
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: {"rating_English_fluency": "50", "rating_English_flow": "50", "rating_English_precision": "50", "rating_English_elegance": "50", "rating_English_structure": "50", "rating_English_ambiguity": "50", "rating_English_beauty": "50", "rating_English_grace": "50", "rating_English_smoothness": "50", "rating_English_sistem": "50", "rating_English_pleasure": "50", "rating_English_angularity": "50", "rating_English_harshness": "50", "rating_English_appeal": "50", "rating_English_logic": "50"}
+rating_English_ambiguity: 50
+rating_English_angularity: 50
+rating_English_appeal: 50
+rating_English_beauty: 50
+rating_English_elegance: 50
+rating_English_flow: 50
+rating_English_fluency: 50
+rating_English_grace: 50
+rating_English_harshness: 50
+rating_English_logic: 50
+rating_English_pleasure: 50
+rating_English_precision: 50
+rating_English_sistem: 50
+rating_English_smoothness: 50
+rating_English_structure: 50
+
+
+Presentation order: {"rating_Welsh_flow": "50", "rating_Welsh_pleasure": "50", "rating_Welsh_smoothness": "50", "rating_Welsh_precision": "50", "rating_Welsh_harshness": "50", "rating_Welsh_appeal": "50", "rating_Welsh_grace": "50", "rating_Welsh_beauty": "50", "rating_Welsh_fluency": "50", "rating_Welsh_structure": "50", "rating_Welsh_elegance": "50", "rating_Welsh_sistem": "50", "rating_Welsh_ambiguity": "50", "rating_Welsh_angularity": "50", "rating_Welsh_logic": "50"}
+rating_Welsh_ambiguity: 50
+rating_Welsh_angularity: 50
+rating_Welsh_appeal: 50
+rating_Welsh_beauty: 50
+rating_Welsh_elegance: 50
+rating_Welsh_flow: 50
+rating_Welsh_fluency: 50
+rating_Welsh_grace: 50
+rating_Welsh_harshness: 50
+rating_Welsh_logic: 50
+rating_Welsh_pleasure: 50
+rating_Welsh_precision: 50
+rating_Welsh_sistem: 50
+rating_Welsh_smoothness: 50
+rating_Welsh_structure: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/04/2022 13:45:59
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: ["rating_English_ambiguity", "rating_English_appeal", "rating_English_grace", "rating_English_beauty", "rating_English_smoothness", "rating_English_harshness", "rating_English_pleasure", "rating_English_fluency", "rating_English_flow", "rating_English_elegance", "rating_English_angularity", "rating_English_precision", "rating_English_structure", "rating_English_logic", "rating_English_sistem"]
+rating_English_ambiguity: 50
+rating_English_angularity: 50
+rating_English_appeal: 50
+rating_English_beauty: 50
+rating_English_elegance: 50
+rating_English_flow: 50
+rating_English_fluency: 50
+rating_English_grace: 50
+rating_English_harshness: 50
+rating_English_logic: 50
+rating_English_pleasure: 50
+rating_English_precision: 50
+rating_English_sistem: 50
+rating_English_smoothness: 50
+rating_English_structure: 50
+
+
+Presentation order: ["rating_Welsh_logic", "rating_Welsh_precision", "rating_Welsh_sistem", "rating_Welsh_elegance", "rating_Welsh_angularity", "rating_Welsh_beauty", "rating_Welsh_pleasure", "rating_Welsh_fluency", "rating_Welsh_ambiguity", "rating_Welsh_harshness", "rating_Welsh_flow", "rating_Welsh_appeal", "rating_Welsh_structure", "rating_Welsh_smoothness", "rating_Welsh_grace"]
+rating_Welsh_ambiguity: 50
+rating_Welsh_angularity: 50
+rating_Welsh_appeal: 50
+rating_Welsh_beauty: 50
+rating_Welsh_elegance: 50
+rating_Welsh_flow: 50
+rating_Welsh_fluency: 50
+rating_Welsh_grace: 50
+rating_Welsh_harshness: 50
+rating_Welsh_logic: 50
+rating_Welsh_pleasure: 50
+rating_Welsh_precision: 50
+rating_Welsh_sistem: 50
+rating_Welsh_smoothness: 50
+rating_Welsh_structure: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/04/2022 13:56:42
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+
+Presentation order: ["smoothness", "sistem", "appeal", "structure", "logic", "harshness", "precision", "elegance", "ambiguity", "flow", "fluency", "angularity", "beauty", "pleasure", "grace"]
+rating_English_ambiguity: 50
+rating_English_angularity: 50
+rating_English_appeal: 50
+rating_English_beauty: 50
+rating_English_elegance: 50
+rating_English_flow: 50
+rating_English_fluency: 50
+rating_English_grace: 50
+rating_English_harshness: 50
+rating_English_logic: 50
+rating_English_pleasure: 50
+rating_English_precision: 50
+rating_English_sistem: 50
+rating_English_smoothness: 50
+rating_English_structure: 50
+
+
+Presentation order: ["smoothness", "angularity", "grace", "ambiguity", "elegance", "sistem", "harshness", "flow", "logic", "pleasure", "appeal", "structure", "beauty", "fluency", "precision"]
+rating_Welsh_ambiguity: 50
+rating_Welsh_angularity: 50
+rating_Welsh_appeal: 50
+rating_Welsh_beauty: 50
+rating_Welsh_elegance: 50
+rating_Welsh_flow: 50
+rating_Welsh_fluency: 50
+rating_Welsh_grace: 50
+rating_Welsh_harshness: 50
+rating_Welsh_logic: 50
+rating_Welsh_pleasure: 50
+rating_Welsh_precision: 50
+rating_Welsh_sistem: 50
+rating_Welsh_smoothness: 50
+rating_Welsh_structure: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/04/2022 00:30:21
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: florian
+researchLocation: Bangor, Gwynedd
+participantId: jkdskj
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/04/2022 00:42:38
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: florian
+researchLocation: Bangor, Gwynedd
+participantId: sdfs
+confirmConsent: True
+
+Presentation order: ["beauty", "pleasure", "smoothness", "appeal", "flow", "sistem", "angularity", "harshness", "structure", "elegance", "ambiguity", "precision", "grace", "fluency", "logic"]
+rating_English_ambiguity: 54.6848381601363
+rating_English_angularity: 52.129471890971
+rating_English_appeal: 57.5809199318569
+rating_English_beauty: 47.2742759795571
+rating_English_elegance: 56.7291311754685
+rating_English_flow: 43.3560477001704
+rating_English_fluency: 44.9744463373084
+rating_English_grace: 53.3219761499148
+rating_English_harshness: 42.1635434412266
+rating_English_logic: 56.6439522998297
+rating_English_pleasure: 55.4514480408859
+rating_English_precision: 46.8483816013629
+rating_English_sistem: 56.984667802385
+rating_English_smoothness: 40.6303236797274
+rating_English_structure: 55.2810902896082
+
+
+Presentation order: ["angularity", "appeal", "harshness", "smoothness", "pleasure", "elegance", "precision", "ambiguity", "structure", "flow", "logic", "grace", "beauty", "sistem", "fluency"]
+rating_rml_ambiguity: 43.015332197615
+rating_rml_angularity: 55.4514480408859
+rating_rml_appeal: 40.4599659284497
+rating_rml_beauty: 58.603066439523
+rating_rml_elegance: 42.5042589437819
+rating_rml_flow: 41.1413969335605
+rating_rml_fluency: 56.6439522998297
+rating_rml_grace: 44.633730834753
+rating_rml_harshness: 57.5809199318569
+rating_rml_logic: 57.7512776831346
+rating_rml_pleasure: 55.6218057921636
+rating_rml_precision: 57.7512776831346
+rating_rml_sistem: 43.6967632027257
+rating_rml_smoothness: 41.7376490630324
+rating_rml_structure: 55.4514480408859
+
+
+Presentation order: ["pleasure", "angularity", "sistem", "structure", "fluency", "smoothness", "beauty", "harshness", "appeal", "grace", "precision", "flow", "logic", "ambiguity", "elegance"]
+rating_rml_ambiguity: 57.4105621805792
+rating_rml_angularity: 60.732538330494
+rating_rml_appeal: 41.4821124361158
+rating_rml_beauty: 43.015332197615
+rating_rml_elegance: 40.5451448040886
+rating_rml_flow: 57.5809199318569
+rating_rml_fluency: 40.4599659284497
+rating_rml_grace: 61.3287904599659
+rating_rml_harshness: 60.221465076661
+rating_rml_logic: 37.3935264054515
+rating_rml_pleasure: 35.9454855195911
+rating_rml_precision: 43.1856899488927
+rating_rml_sistem: 36.3713798977854
+rating_rml_smoothness: 56.0477001703578
+rating_rml_structure: 56.5587734241908
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/04/2022 02:49:22
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: florian
+researchLocation: Bangor, Gwynedd
+participantId: jknhjh
+confirmConsent: True
+
+Presentation order: ["angularity", "pleasure", "beauty", "smoothness", "flow", "appeal", "structure", "ambiguity", "precision", "fluency", "harshness", "sistem", "elegance", "grace", "logic"]
+rating_English_ambiguity: 59.2844974446337
+rating_English_angularity: 62.9471890971039
+rating_English_appeal: 34.412265758092
+rating_English_beauty: 72.4872231686542
+rating_English_elegance: 55.366269165247
+rating_English_flow: 63.5434412265758
+rating_English_fluency: 58.2623509369676
+rating_English_grace: 70.1873935264055
+rating_English_harshness: 56.8143100511073
+rating_English_logic: 69.335604770017
+rating_English_pleasure: 33.9011925042589
+rating_English_precision: 59.2844974446337
+rating_English_sistem: 55.6218057921636
+rating_English_smoothness: 27.5979557069847
+rating_English_structure: 62.7768313458262
+
+
+Presentation order: ["structure", "fluency", "angularity", "elegance", "ambiguity", "beauty", "logic", "precision", "flow", "harshness", "appeal", "pleasure", "smoothness", "sistem", "grace"]
+rating_rml_ambiguity: 66.5247018739353
+rating_rml_angularity: 67.5468483816014
+rating_rml_appeal: 66.5247018739353
+rating_rml_beauty: 66.9505962521295
+rating_rml_elegance: 67.0357751277683
+rating_rml_flow: 66.0988074957411
+rating_rml_fluency: 67.206132879046
+rating_rml_grace: 67.206132879046
+rating_rml_harshness: 66.8654173764906
+rating_rml_logic: 68.7393526405452
+rating_rml_pleasure: 66.1839863713799
+rating_rml_precision: 66.7802385008518
+rating_rml_sistem: 67.6320272572402
+rating_rml_smoothness: 72.1465076660988
+rating_rml_structure: 68.7393526405452
+

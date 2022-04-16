@@ -1,0 +1,30 @@
+
+{%- extends 'base.html' %}
+{% block title %}LART Research Client{% endblock %}
+{% block headline %}LART Research Client{% endblock %}
+{% block head_scripts %}{% endblock %}
+{% block head_styles %}
+<style type="text/css">
+    main .btn-primary {
+        min-width: 50%;
+    }
+</style>
+{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}{% endblock %}
+{% block content %}
+    <article class="p-2">
+        <div class="container-fluid text-center p-2">
+            <h2>Choose a task:</h2>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <a class="btn btn-primary fs-5 p-2" href="lsbq-rml/index.html">LSBQ-RML</a>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <a class="btn btn-primary fs-5 p-2" href="atol-c/index.html">AToL-C</a>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <a class="btn btn-primary fs-5 p-2" href="memory-game/index.html">Memory Game</a>
+        </div>
+    </article>
+{% endblock %}

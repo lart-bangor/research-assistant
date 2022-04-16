@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="icon" type="image/png" href="/img/appicon.png" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/css/lart-custom.css" />
+    {% if lart_forms %}<link rel="stylesheet" href="/css/datavalidator.css" />{% endif -%}
+    {% block head_styles %}{% endblock %}
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="/js/booteel.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    {% if lart_forms %}<script type="text/javascript" src="/js/lart.js"></script>{% endif -%}
+    {% block head_scripts %}{% endblock -%}
+</head>
+<body>
+
+    <header class="container-fluid mb-2">
+        <div class="row bg-primary text-light text-center p-2">
+            <div class="col-1">
+                <button id="nav-drawer-toggle" class="navbar-toggler text-light" data-bs-toggle="offcanvas" data-bs-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
+            </div>
+            <div class="col">
+                <h1>{% block headline %}{% endblock %}</h1>
+            </div>
+        </div>
+        <div id="nav-drawer" class="offcanvas offcanvas-start">
+            <div id="nav-header" class="container-fluid bg-primary text-light p-3" aria-controls="nav-drawer" aria-expanded="true">
+                <div class="offcanvas-header align-items-start p-0 m-0 mb-2">
+                    <p class="offcanvas-title fs-4">LART Research Client</p>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <script type="text/javascript">
+                    if (typeof lart !== 'undefined' && !isNaN(parseInt(lart.forms.searchParams.get('instance')))) {
+                        document.write('<p>Survey instance ID: ' + lart.forms.searchParams.get('instance'));
+                    }
+                </script>
+                {% block drawer_info %}{% endblock %}
+            </div>
+            <nav class="navbar sticky-top navbar-light bg-light">
+                <ul class="nav flex-column">
+                    {% block drawer_nav_options %}{% endblock %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-arrow-repeat"></i> Synch now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#aboutModal"><i class="bi bi-info-circle"></i> About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container-xxl">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="aboutModalLabel"><i class="bi bi-info-circle text-primary"></i> About the LART Research Client App</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>This app is currently being developed by the Language Attitudes Research Team at Bangor University. They're hopeful that they'll have it working soon..</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </footer>
+
+    {%- if lart_forms %}
+    <script type="text/javascript">
+        lart.forms.requireValidation(true);
+    </script>
+    {% endif -%}
+    {% block tail_scripts -%}{%- endblock %}
+</body>
+</html>
