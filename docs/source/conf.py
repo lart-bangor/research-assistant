@@ -17,12 +17,12 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'transcriptionist'
-copyright = '2021, Florian Breit'
-author = 'Florian Breit'
+project = 'LART Research Client'
+copyright = '2022, Bangor University Language Attitudes Research Team'
+author = 'Florian Breit, Marco Tamburelli'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '0.1a'
 
 
 # -- General configuration ---------------------------------------------------
