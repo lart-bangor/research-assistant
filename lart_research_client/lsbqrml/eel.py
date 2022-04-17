@@ -2,13 +2,17 @@
 import eel
 import re
 from typing import Optional, Union, Callable, Any, TypeVar, cast
+from pathlib import Path
 from functools import wraps
 from lsbqrml import Response, logger
 from lsbqrml.versions import versions
 import datetime
 from copy import copy
 from datavalidator.exceptions import DataValidationError
+from config import config
 import booteel
+import json
+from urllib.parse import quote as urlquote
 
 # TypeVar for function wrappers
 F = TypeVar("F", bound=Callable[..., Any])
@@ -295,7 +299,16 @@ def setnotes(instid: int, data: dict[str, Any]) -> int:
     logger.debug(f"LSBQ-RML instance id = {instid}")
     logger.debug(f"... set 'notes' data to {instance.getnotes()}")
     store(instid)
-    booteel.setlocation(f"/app/atol-c/index.html?instance={instance.getid()}")
+    meta = instance.getmeta()
+    params = {
+        "version": meta["version"],
+        "researcher_id": meta["researcher_id"],
+        "research_location": meta["research_location"],
+        "participant_id": meta["participant_id"],
+        "consent": int(meta["consent"])
+    }
+    query = "&".join([f"{key}={urlquote(value, safe='', encoding='utf8')}" for key, value in params.items()])
+    booteel.setlocation(f"/app/atol-c/index.html?{query}")
     return instid
 
 
@@ -346,8 +359,15 @@ def store(instid: int) -> bool:
     """Submits a (complete) Response for long-term storage."""
     logger.info(f"Storing data of LSBQ-RML instance {instid}..")
     instance = _getinstance(instid)
-    logger.debug(f"LSBQ-RML instance id = {instid}")
-    logger.debug(f"... asking to store instance {instance}")
-    logger.debug("... ERROR: storage not implemented yet!")
-    raise NotImplementedError()
+    d = instance.data()
+    s = json.dumps(d, indent=4)
+    logger.info(f"... JSON serialization: {s}")
+    path: Path = config.paths.data / "LSBQ-RML" / d["meta"]["version"]
+    if not path.exists():
+        path.mkdir(parents=True, exist_ok=True)
+    filename = path / (str(instid) + ".json")
+    logger.info(f"... writing to filename: {filename}")
+    with filename.open("w") as fp:
+        fp.write(s)
+    logger.debug("... file saved successfully.")
     return True
