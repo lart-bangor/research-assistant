@@ -307,7 +307,9 @@ def setnotes(instid: str, data: dict[str, Any]) -> str:
         "participant_id": meta["participant_id"],
         "consent": int(meta["consent"])
     }
-    query = "&".join([f"{key}={urlquote(str(value), safe='')}" for key, value in params.items()])
+    query = "&".join(
+        [f"{key}={urlquote(str(value), safe='')}" for key, value in params.items()]
+    )
     booteel.setlocation(f"/app/atol-c/index.html?{query}")
     return instid
 

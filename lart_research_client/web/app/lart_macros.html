@@ -4,11 +4,11 @@
         lart.forms.registerPipeline(
             '{{ name }}',
             async function(data) {
-                let instanceId = parseInt(lart.forms.searchParams.get('instance'));
-                if ( isNaN(instanceId) ) {
-                    let success = await eel.{{ target }}(data)();
-                } else {
+                let instanceId = lart.forms.searchParams.get('instance');
+                if (lart.forms.util.isUUID(instanceId)) {
                     let success = await eel.{{ target }}(instanceId, data)();
+                } else {
+                    let success = await eel.{{ target }}(data)();
                 }
                 console.debug(success);
             }

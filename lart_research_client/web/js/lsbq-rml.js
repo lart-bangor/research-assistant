@@ -13,14 +13,14 @@ lsbqRml.instance = {};
 /**
  * Retrieve the instance id of the current LSBQ-RML instance (if specified via search parameter).
  * 
- * @returns {int} - The integer version id, or null of not specified.
+ * @returns {str} - The integer version id, or null of not specified.
  */
 lsbqRml.instance.getId = function() {
     if ("_instanceId" in lsbqRml.instance) {
         return lsbqRml.instance._instanceId;
     }
-    instanceId = parseInt(lart.forms.searchParams.get('instance'));
-    if (!isNaN(instanceId)) {
+    instanceId = lart.forms.searchParams.get('instance');
+    if (lart.forms.util.isUUID(instanceId)) {
         lsbqRml.instance._instanceId = instanceId;
         return instanceId;
     }

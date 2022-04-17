@@ -8,6 +8,14 @@ lart.forms.searchParams = new URLSearchParams(window.location.search);
 
 lart.forms.util = {};
 
+lart.forms.util.patternForUUID = /^[0-9a-f]{8}-?(?:[0-9a-f]{4}-?){3}[0-9a-f]{12}$/i;
+
+lart.forms.util.nilUUID = '00000000-0000-0000-0000-000000000000';
+
+lart.forms.util.isUUID = function(identifier) {
+    return lart.forms.util.patternForUUID.test(identifier);
+}
+
 lart.forms.util.getSelectValues = function (selectNode) {
     values = []
     for(const option of selectNode.selectedOptions) {
