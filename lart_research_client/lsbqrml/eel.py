@@ -301,11 +301,12 @@ def setnotes(instid: str, data: dict[str, Any]) -> str:
     store(instid)
     meta = instance.getmeta()
     params = {
-        "version": meta["version"],
-        "researcher_id": meta["researcher_id"],
-        "research_location": meta["research_location"],
-        "participant_id": meta["participant_id"],
-        "consent": int(meta["consent"])
+        "selectSurveyVersion": meta["version"],
+        "researcherId": meta["researcher_id"],
+        "researchLocation": meta["research_location"],
+        "participantId": meta["participant_id"],
+        "confirmConsent": int(meta["consent"]),
+        "surveyDataForm.submit": "true",
     }
     query = "&".join(
         [f"{key}={urlquote(str(value), safe='')}" for key, value in params.items()]

@@ -125,4 +125,7 @@
 {% endblock %}
 {% block tail_scripts %}
     {{ lart_form_pipeline('surveyDataForm', '_lsbqrml_init') }}
+    <script type="text/javascript">
+        lart.forms.util.autofillForm('surveyDataForm');
+    </script>
 {% endblock %}

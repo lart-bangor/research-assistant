@@ -49,8 +49,6 @@ lart.forms.util.getFormFieldValue = function(fieldNode) {
     return null;
 }
 
-
-
 lart.forms.util.inputConditionMatcher = function (nodes, comparisonValue, condition) {
     if( nodes instanceof NodeList && nodes.length > 1 ) {
         return function () {
@@ -113,6 +111,73 @@ lart.forms.util.inputConditionMatcher = function (nodes, comparisonValue, condit
         }
     }
     return null;
+}
+
+lart.forms.util.autofillForm = function(formId, delay=500) {
+    const form = document.getElementById(formId);
+    const fields = form.querySelectorAll('input, select, textarea');
+    const submitButton = form.querySelector('*[type="submit"]');
+    window.setTimeout(
+        function () {
+            for (const field of fields) {
+                // Get the field's name (with fallback to id)
+                let fieldName = '';
+                if (field.hasAttribute('name' )) {
+                    fieldName = field.name;
+                } else if (field.hasAttribute('id') ) {
+                    fieldName = field.id;
+                } else {
+                    continue;
+                }
+                // Obtain field value from search params
+                const fieldValue = lart.forms.searchParams.get(fieldName);
+                if (fieldValue === null) {
+                    continue;
+                }
+                // Try to set field to value
+                if( field instanceof HTMLSelectElement ) {
+                    const targetOption = field.querySelector(`option[value="${fieldValue}"]`);
+                    if (targetOption === null) {
+                        continue;
+                    }
+                    field.value = fieldValue;
+                } else if ( field instanceof HTMLTextAreaElement ) {
+                    field.value = fieldValue;
+                } else if ( field instanceof HTMLInputElement ) {
+                    switch(field.type) {
+                        case 'checkbox':
+                            if( parseInt(fieldValue) ) {
+                                field.checked = true;
+                            } else {
+                                field.checked = false;
+                            }
+                            break;
+                        case 'range':
+                        case 'number':
+                            field.value = parseFloat(fieldValue);
+                            break;
+                        case 'text':
+                        case 'password':
+                        case 'search':
+                        case 'email':
+                        case 'tel':
+                        case 'url':
+                            field.value = fieldValue;
+                            break;
+                    }
+                }
+            }
+            if ( ['true', '1'].includes(lart.forms.searchParams.get(`${formId}.submit`)) && submitButton ) {
+                window.setTimeout(
+                    function () {
+                        submitButton.click();
+                    },
+                    delay
+                );
+            }
+        },
+        delay
+    );
 }
 
 lart.forms.conditionalRequire = function (fieldName, targetName, value, condition = 'equal') {

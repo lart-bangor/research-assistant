@@ -209,7 +209,6 @@ booteel.registerWindowHandlers = function () {
             window.localStorage.setItem("_booteel_window_top", winProps.top);
             window.localStorage.setItem("_booteel_window_width", winProps.width);
             window.localStorage.setItem("_booteel_window_height", winProps.height);
-            sleep(1);
         },
         {capture: true}
     );
