@@ -11,8 +11,9 @@ import argparse
 from pathlib import Path
 from typing import Any
 import booteel
-import lsbqrml.eel  # type: ignore  # noqa: F401
-import atolc        # type: ignore  # noqa: F401
+import lsbqrml.eel      # type: ignore  # noqa: F401
+import memorygame.eel   # type: ignore  # noqa: F401
+import atolc            # type: ignore  # noqa: F401
 
 # Set up logger for main runtime
 logger = logging.getLogger(__name__)
