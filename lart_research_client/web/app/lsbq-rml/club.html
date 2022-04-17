@@ -42,6 +42,7 @@
                             </div>
                             <div class="col-1" id="[FieldPrefix]NotApplicableOption-[FieldName]">
                                 <p  class="text-muted d-inline-block ps-2"
+                                    id="[FieldPrefix]NotApplicableOptionPara-[FieldName]"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="left"
                                     data-bs-html="true"
@@ -105,6 +106,9 @@
                         const tt = new bootstrap.Tooltip(notApplicableOption.firstElementChild);
                         lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}-${fieldName}`, 'on', 'equal');
                         lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}Label-${fieldName}`, 'on', 'equal');
+                        let ttTranslationOptions = {};
+                        ttTranslationOptions[notApplicableOption.firstElementChild.id] = ["data-bs-original-title", "club.itemNotApplicableInfo"];  // NB: title attribute is removed by bootstrap tooltip
+                        lsbqRml.tr.translateAttrs(ttTranslationOptions);
                     }
                     // Sync the hint's left edge with the label
                     //const hintElement = document.getElementById(`${fieldPrefix}Hint-${fieldName}`);

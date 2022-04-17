@@ -406,8 +406,8 @@
         lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
         lsbqRml.tr.translateAttrs(
             {
-                "motherNotApplicableOption": ["title", "ldb.motherNotApplicableInfo"],
-                "fatherNotApplicableOption": ["title", "ldb.fatherNotApplicableInfo"]
+                "motherNotApplicableOption": ["data-bs-original-title", "ldb.motherNotApplicableInfo"],  // NB: title attribute is removed by bootstrap tooltip
+                "fatherNotApplicableOption": ["data-bs-original-title", "ldb.fatherNotApplicableInfo"]   // NB: title attribute is removed by bootstrap tooltip
             }
         );
         function fillLanguageListOptions() {
