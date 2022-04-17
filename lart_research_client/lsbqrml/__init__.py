@@ -1,6 +1,6 @@
 """Data structures for the Language and Social Background Questionnaire (RML)."""
 from typing import Any, Optional, TYPE_CHECKING
-import sys
+import uuid
 from datavalidator.schemas import DataSchema
 from datavalidator.types import EnumT, PolarT
 import logging
@@ -13,9 +13,9 @@ class Response(DataSchema):
     """Class for representing the data of an LSBQ-RML questionnaire response."""
     __schema = {
         "id": {
-            "type_": int,
+            "type_": str,
             "typedesc": "LSBQ-RML Response ID",
-            "constraint": (0, sys.maxsize),
+            "constraint": patterns.UUID_HEX,
         },
         "meta": {  # Meta data
             "version": {
@@ -476,20 +476,20 @@ class Response(DataSchema):
         },
     }
 
-    def __init__(self, id_: Optional[int] = None):
+    def __init__(self, id_: Optional[str] = None):
         """Instantiates a new LSBQ-RML response object."""
         super().__init__(forcecast=True, ignorecase=True)
         if id_ is None:
-            id_ = hash(self)
+            id_ = str(uuid.uuid1())
         self.setid(id_)
 
     if TYPE_CHECKING:  # noqa: C901
 
-        def setid(self, id: int) -> None:
+        def setid(self, id: str) -> None:
             """Set the id of the LSBQ-RML instance."""
             ...
 
-        def getid(self) -> int:
+        def getid(self) -> str:
             """Get the id of the LSBQ-RML instance."""
             ...
 

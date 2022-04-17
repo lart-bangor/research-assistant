@@ -21,12 +21,12 @@ F = TypeVar("F", bound=Callable[..., Any])
 exceptionhandler: Optional[Callable[..., None]] = None
 
 # Keeps track of current Response instances
-instances: dict[int, Response] = {}
+instances: dict[str, Response] = {}
 
 
-def _getinstance(instid: Union[int, str]) -> Response:
-    if not isinstance(instid, int):
-        instid = int(instid)
+def _getinstance(instid: str) -> Response:
+    if not isinstance(instid, str):  # type: ignore
+        instid = str(instid)
     if instid not in instances:
         raise AttributeError(f"No current response instance with instid `{instid}`.")
     return instances[instid]
@@ -82,7 +82,7 @@ def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
 
 
 @_expose
-def init(data: dict[str, Any]) -> int:
+def init(data: dict[str, Any]) -> str:
     """Initialises a new LSBQ-RML Response."""
     logger.info("Creating new LSBQ-RML instance..")
     logger.debug(f"... received data: {data!r}")
@@ -106,7 +106,7 @@ def init(data: dict[str, Any]) -> int:
 
 
 @_expose
-def setlsb(instid: int, data: dict[str, str]) -> int:  # noqa: C901
+def setlsb(instid: str, data: dict[str, str]) -> str:  # noqa: C901
     """Adds Language and Social Background Data to a Response."""
     logger.info(f"Setting LSB data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
@@ -153,7 +153,7 @@ def setlsb(instid: int, data: dict[str, str]) -> int:  # noqa: C901
 
 
 @_expose
-def setldb(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
+def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
     """Adds Language and Dialect Background Data to a Response."""
     logger.info(f"Setting LDB data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
@@ -243,7 +243,7 @@ def setldb(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
 
 
 @_expose
-def setclub(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
+def setclub(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
     """Adds Community Language Use Behaviour Data to a Response."""
     logger.info(f"Setting CLUB data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
@@ -290,7 +290,7 @@ def setclub(instid: int, data: dict[str, Any]) -> int:  # noqa: C901
 
 
 @_expose
-def setnotes(instid: int, data: dict[str, Any]) -> int:
+def setnotes(instid: str, data: dict[str, Any]) -> str:
     """Adds Participant and Experimenter Comments Data to a Response."""
     logger.info(f"Setting Notes data on LSBQ-RML instance {instid}..")
     logger.debug(f"... received data: {data!r}")
@@ -307,7 +307,7 @@ def setnotes(instid: int, data: dict[str, Any]) -> int:
         "participant_id": meta["participant_id"],
         "consent": int(meta["consent"])
     }
-    query = "&".join([f"{key}={urlquote(value, safe='', encoding='utf8')}" for key, value in params.items()])
+    query = "&".join([f"{key}={urlquote(str(value), safe='')}" for key, value in params.items()])
     booteel.setlocation(f"/app/atol-c/index.html?{query}")
     return instid
 
@@ -315,16 +315,20 @@ def setnotes(instid: int, data: dict[str, Any]) -> int:
 @_expose
 def getversions() -> dict[str, str]:
     """Retrieves the available versions of the LSBQ RML."""
-    return {
-        "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
-        # "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
-        "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
-        "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
-    }
+    # return {
+    #     "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
+    #     "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
+    #     "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
+    #     "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
+    # }
+    lsbq_versions: dict[str, str] = {}
+    for identifier in versions.keys():
+        lsbq_versions[identifier] = versions[identifier]["meta"]["versionName"]
+    return lsbq_versions
 
 
 @_expose
-def iscomplete(instid: int) -> bool:
+def iscomplete(instid: str) -> bool:
     """Checks whether a Response is complete."""
     instance = _getinstance(instid)
     completeness = instance.iscomplete()
@@ -334,7 +338,7 @@ def iscomplete(instid: int) -> bool:
 
 
 @_expose
-def getmissing(instid: int) -> list[str]:
+def getmissing(instid: str) -> list[str]:
     """Gets a list of missing fields."""
     instance = _getinstance(instid)
     missing = instance.missing()
@@ -344,7 +348,7 @@ def getmissing(instid: int) -> list[str]:
 
 
 @_expose
-def discard(instid: int) -> bool:
+def discard(instid: str) -> bool:
     """Discards a Response."""
     if instid not in instances:
         raise AttributeError(f"No current response instance with instid `{instid}`.")
@@ -355,7 +359,7 @@ def discard(instid: int) -> bool:
 
 
 @_expose
-def store(instid: int) -> bool:
+def store(instid: str) -> bool:
     """Submits a (complete) Response for long-term storage."""
     logger.info(f"Storing data of LSBQ-RML instance {instid}..")
     instance = _getinstance(instid)

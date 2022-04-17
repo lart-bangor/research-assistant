@@ -3,6 +3,16 @@ import sys
 from .types import PatternT, EnumT, PolarT, RangeT
 
 
+UUID: PatternT = r"(?:[0-9]{39})|(?:(?:(?:urn:)?uuid:|{)?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}}?)"  # noqa: E501
+
+UUID_HEX: PatternT = r"[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}"
+
+UUID_INT: PatternT = r"[0-9]{39}"
+
+UUID_URN: PatternT = r"(?:urn:)?uuid:[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}"  # noqa: E501
+
+GUID: PatternT = r"{?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}}?"
+
 ISO_MONTH: PatternT = r"(0?[1-9]|1[0-2])"                        # MM
 
 ISO_DAY: PatternT = r"(0?[1-9]|[12][0-9]|3[01])"                 # DD
