@@ -988,6 +988,373 @@ lart.forms.getFormData = function (formElementOrId) {
 }
 
 //
+// LART Translation Tools
+//
+
+/**
+ * LART utilities for client-side content translation.
+ * 
+ * @namespace
+ */
+lart.tr = {};
+
+
+/**
+ * Associative array holding translation identifiers and translations.
+ * 
+ * @readonly
+ * @type {Object<String,Object<String,Object<String,String>>>}
+ */
+lart.tr.strings = {};
+
+/**
+ * Associative array of trId's and innerHTML for missing translation items.
+ * 
+ * @readonly
+ * @type {Object<String,Object<String,String>>}
+ */
+lart.tr.missing = {};
+
+/**
+ * Get the missing trId's and associated innerHTML for missing translation items.
+ * 
+ * @param {String} ns - The translation namespace to get missing strings for.
+ * @returns {String} A JSON template of the missing trId's with their innerHTML.
+ */
+lart.tr.getMissing = function(ns) {
+    buf = {};
+    if (ns in lart.tr.missing) {
+        for (trId in lart.tr.missing[ns]) {
+            [key, subkey] = trId.split(".", 2);
+            if (key in buf) {
+                buf[key][subkey] = [lart.tr.missing[ns][trId]];
+            } else {
+                buf[key] = {};
+                buf[key][subkey] = [lart.tr.missing[ns][trId]];
+            }
+        }
+    }
+    return JSON.stringify(buf, null, 4);
+}
+
+/**
+ * Add a missing trId and associated innerHTML to the missing trId cache.
+ * 
+ * @param {String} ns - The translation namespace to add the missing trId to. 
+ * @param {String} trId - The translation string identifier.
+ * @param {String} [innerHTML='???'] - The associated innerHTML, default is `'???'`.
+ */
+lart.tr.addMissing = function(ns, trId, innerHTML = '???') {
+    if (!(ns in lart.tr.missing)) {
+        lart.tr.missing[ns] = {};
+    }
+    if (!(trId in lart.tr.missing[ns])) {
+        lart.tr.missing[ns][trId] = innerHTML;
+    } else if (lart.tr.missing[ns][trId] = '???') {
+        lart.tr.missing[ns][trId] = innerHTML;
+    }
+}
+
+/**
+ * Get a translation string by its trId.
+ * 
+ * @param {String} ns - The translation namespace to get the translation string from.
+ * @param {String} trId - The translation identifier string.
+ * @returns {?String} - The translated string for the identifier, or null if no string for the
+ *          *trId* could be found in *ns*.
+ */
+lart.tr.get = function(ns, trId) {
+    const [key, subkey] = trId.split(".", 2);
+    booteel.logger.debug(`Fetching translation string with trId '${ns}:${trId}' ['${key}', '${subkey}'].`);
+    if (ns in lart.tr.strings) {
+        if (key in lart.tr.strings[ns] && subkey in lart.tr.strings[ns][key]) {
+            const tr = lart.tr.strings[ns][key][subkey];
+            if (tr instanceof Array && tr.length < 3) {
+                if (tr.length > 1) {
+                    return tr[1];
+                }
+                return tr[0];
+            }
+            return tr;
+        }
+    }
+    lart.tr.addMissing(ns, trId);
+    booteel.logger.debug(`No translation with trId '${ns}:${trId}' found.`);
+    return null;
+}
+/**
+ * Load translation/adaptation strings into a translation namespace.
+ * 
+ * @example <caption>Loads the LSBQ-RML sections 'meta', 'base' and 'lsb' into the *lsbq* namespace:</caption>
+ * const instanceId = lart.utils.searchParams.get('instance');
+ * lart.tr.loadFromEel('lsbqrml', eel._lsbqrml_load_version, [instanceId, ['meta', 'base', 'lsb']]);
+ * 
+ * @param {String} ns - The translation namespace to be used.
+ * @param {Function} eelLoader - The Python eel function (from eel.js) implementing the
+ *          translation loader on the backend.
+ * @param {Array} [loaderParams=[]] - The parameters that the *eelLoader* should be called with.
+ */
+lart.tr.loadFromEel = function(ns, eelLoader, loaderParams = null) {
+    if (!loaderParams) {
+        loaderParams = [];
+    }
+    booteel.logger.debug(`Loading translation strings for namespace '${ns}' from ${eelLoader} with arguments`, loaderParams);
+    eelLoader(...loaderParams)(
+        function (strings) {
+            lart.tr._addStrings(ns, strings);
+        }
+    );
+}
+
+/**
+ * Add translation strings from array to {@link lart.tr.strings}.
+ * 
+ * @private
+ * @param {String} ns - The translation namespace to add the strings to.
+ * @param {Object<String,String>} strings - An associative array with translation
+ *          strings labelled by section. Each section contains an associative array
+ *          with a translation-string id, and a list of [1] the original untranslated
+ *          string, and [2] the version-specific translation/adaptation.
+ */
+lart.tr._addStrings = function(ns, strings) {
+    if (!(ns in lart.tr.strings)) {
+        lart.tr.strings[ns] = {};
+    }
+    for (key in strings) {
+        if (key in lart.tr.strings[ns]) {
+            for (subkey in strings[key]) {
+                booteel.logger.debug(
+                    `Overwriting translation string '${ns}:${key}.${subkey}':`,
+                    {
+                        'before': lart.tr.strings[ns][key][subkey],
+                        'after': strings[key][subkey]
+                    }
+                );
+                lart.tr.strings[ns][key][subkey] = strings[key][subkey];
+            }
+        } else {
+            lart.tr.strings[ns][key] = strings[key];
+        }
+    }
+    booteel.logger.debug(`Loaded translation strings for namespace '${ns}':`, lart.tr.strings[ns]);
+    lart.tr._activateObservers(ns);
+    lart.tr._triggerCallbacks();
+}
+
+/**
+ * Queue of callbacks waiting to be called once a certain translation namespace becomes available.
+ * 
+ * @private
+ * @type {Object<String,Array<Function>>}
+ */
+lart.tr._callbackQueue = {};
+
+/**
+ * List of Node Id's that should be observed for string translation after loading strings for a namespace.
+ * 
+ * @private
+ * @type {Object<String,Set<String>>}
+ */
+lart.tr._observerQueue = {};
+
+/**
+ * List of Node Id's that are being actively observed for string translation.
+ * 
+ * @private
+ * @type {Object<String,Set<String>>}
+ */
+lart.tr._activeObservers = {};
+
+/**
+ * Register a Node for translation observation for a specific namespace by a Node's Id.
+ *
+ * This will add an observer running translation on any `HTMLElement` / `Node` that is a
+ * child of the Node specified by *nodeId*. Any child node with a `data-*ns*-tr` attribute
+ * specifying the *trId* will be subject to translation from its namespace where a string
+ * with a matching *trId* is available.
+ * 
+ * Observers will automatically delay observation until the relevant namespace has been
+ * loaded. There is no need to (or point in) registering them separately as a callback.
+ * 
+ * @param {String} ns - The namespace that should be observed for translation. 
+ * @param {String} nodeId - The Id of the Node (and its children) to be observed.
+ */
+lart.tr.registerObserver = function(ns, nodeId) {
+    booteel.logger.debug(`Registering translation observer for node with id '${nodeId}' in namespace '${ns}'.`);
+    if (ns in lart.tr.strings) {
+        lart.tr._observe(ns, nodeId);
+    } else {
+        if (!(ns in lart.tr._observerQueue)) {
+            lart.tr._observerQueue[ns] = new Set();
+        }
+        if (!lart.tr._observerQueue[ns].has(nodeId)) {
+            lart.tr._observerQueue[ns].add(nodeId);
+        }
+    }
+}
+
+/**
+ * Activate translation observers currently held in the queue.
+ * 
+ * Cycles through queued Node Id's for translation observation. If the
+ * translation strings have been loaded already cycles through the nodes
+ * to translate them and then registers a MutationObserver on the node
+ * to monitor for changes. If translation strings are not available yet
+ * a timeout is set for 100ms, and translation and observer registration
+ * is done once the translation strings have been loaded.
+ * 
+ * @private
+ * @param {String} ns - The namespace for which observers should be
+ *          activated.
+ */
+lart.tr._activateObservers = function(ns) {
+    booteel.logger.debug(`Activating queued translation observers for namespace '${ns}'`);
+    if (!(ns in lart.tr._observerQueue)) {
+        return;
+    }
+    if (!(ns in lart.tr.strings)) {
+        booteel.logger.debug('Translation strings not loaded yet, trying again in 100ms.')
+        setTimeout(
+            function () {
+                lart.tr._activateObservers(ns)
+            },
+            100   // Try again in 100ms
+        );
+        return;
+    }
+    for (const nodeId of lart.tr._observerQueue[ns]) {
+        booteel.logger.debug(`Activating observer for namespace '${ns}' on Node with id '${nodeId}'.`);
+        const node = document.getElementById(nodeId);
+        if (!node) {
+            booteel.logger.error(`Could not retreive node with id '${nodeId}'.`);
+            continue;
+        }
+        lart.tr.translateNode(ns, node);
+        if (!(ns in lart.tr._activeObservers)) {
+            lart.tr._activeObservers[ns] = new Set();
+        }
+        if (!lart.tr._activeObservers[ns].has(nodeId)) {
+            const observer = new MutationObserver(
+                function (mutationList) {
+                    for (const mutation of mutationList) {
+                        if (mutation.target instanceof HTMLElement) {
+                            lart.tr.translateNode(ns, mutation.target);
+                        }
+                    }
+                }
+            );
+            observer.observe(
+                node,
+                {
+                    subtree: true,
+                    childList: true,
+                    attributeFilter: [`data-${ns}-tr`]
+                }
+            );
+            lart.tr._activeObservers[ns].add(nodeId);
+        }
+    }
+}
+
+/**
+ * Traverse through a DOM Node and translate all applicable HTMLElements.
+ * 
+ * @param {String} ns - The translation namespace to be translated on the nodes.
+ * @param {Node} node - A DOM Node to be traversed and translated. 
+ */
+lart.tr.translateNode = function(ns, node) {
+    booteel.logger.debug('Translating node:', node);
+    lart.tr._translateElement(ns, node);
+    const translatables = node.querySelectorAll(`[data-${ns}-tr]`);
+    for (const translatable of translatables) {
+        lart.tr._translateElement(ns, translatable);
+    }
+}
+
+/**
+ * Check, and if applicable, substitute a HTMLElement's innerHTML with version-specific string.
+ * 
+ * @private
+ * @param {String} ns - The translation namespace to be used.
+ * @param {HTMLElement} element - the HTMLElement to apply translation to.
+ */
+lart.tr._translateElement = function(ns, element) {
+    const attrName = `${ns}Tr`;
+    if (element instanceof HTMLElement && attrName in element.dataset) {
+        booteel.logger.debug('Translating element:', element);
+        const trId = element.dataset[attrName];
+        const trString = lart.tr.get(ns, trId);
+        if (trString) {
+            element.innerHTML = trString;
+            element.dataset[`${attrName}Origin`] = trId;
+            delete element.dataset[attrName]; // Avoid repeatedly targeting same string
+        } else {
+            lart.tr.addMissing(ns, trId, element.innerHTML);
+        }
+    } else {
+        booteel.logger.debug('Skipping untranslatable element:', element);
+    }
+}
+
+/**
+ * Translate an attribute on one or more elements specified by their id.
+ * 
+ * If namespace *ns* has not been loaded yet, then translation will automatically
+ * be postponed until it is loaded. There is no need to manually register a callback.
+ * 
+ * @param {String} ns - The translation namespace to be used.
+ * @param {Object<String,Array<String,String>} attrs - An associative array
+ * with Element Ids as key, and a two-member list as values, where the first
+ * is the attribute name and the second the trId.
+ */
+lart.tr.translateAttrs = function(ns, attrs) {
+    if(ns in lart.tr.strings) {
+        for (const elementId in attrs) {
+            const element = document.getElementById(elementId);
+            if (!element) {
+                booteel.logger.error(`Could not retreive element with id '${elementId}'.`);
+                continue;
+            }
+            const [attrName, trId] = attrs[elementId];
+            const trString = lart.tr.get(ns, trId);
+            if (trString) {
+                element.setAttribute(attrName, trString);
+            }
+        }
+        return;
+    }
+    lart.tr.registerCallback(
+        ns,
+        function () {
+            lart.tr.translateAttrs(ns, attrs);
+        }
+    );
+}
+
+lart.tr.registerCallback = function (ns, callback, callbackParams = null) {
+    if (!callbackParams) {
+        callbackParams = [];
+    }
+    if (!(ns in lart.tr._callbackQueue)) {
+        lart.tr._callbackQueue[ns] = {};
+    }
+    lart.tr._callbackQueue[ns].push([callback, callbackParams]);
+    if (ns in lart.tr.strings) {
+        lart.tr._triggerCallbacks();
+    }
+}
+
+lart.tr._triggerCallbacks = function () {
+    for (const ns in lart.tr.strings) {
+        if (ns in lart.tr._callbackQueue) {
+            for (const [callback, callbackParams] of lart.tr._callbackQueue[ns]) {
+                callback(...callbackParams);
+            }
+        }
+    }
+}
+
+//
 // LEGACY ALIASES FROM BEFORE REFACTOR OF LIBRARY
 //
 
