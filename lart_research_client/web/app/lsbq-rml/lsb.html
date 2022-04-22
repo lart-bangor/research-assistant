@@ -213,6 +213,29 @@
                 <div class="row mb-1">
                     <p class="col-form-label col-auto" data-lsbq-tr="lsb.otherPlaces">Where else have you lived for any significant period of time (&gt; 6 months)?</p>
                 </div>
+                <template id="otherPlacesTemplate">
+                    <div class="row mb-1" id="otherPlaces-[PlaceNumber]">
+                        <div class="col-1 d-flex align-items-center justify-content-end">
+                            <a class="btn btn-outline-secondary opacity-75" id="otherPlacesDelete-[PlaceNumber]"><i class="bi bi-trash"></i></a>
+                        </div>
+                        <div class="col form-floating">
+                            <input type="text" class="form-control" id="otherPlacesName-[PlaceNumber]" name="otherPlacesName-[PlaceNumber]" />
+                            <label for="otherPlacesName-[PlaceNumber]" data-lsbq-tr="lsb.placeName">Place name</label>
+                        </div>
+                        <div class="col form-floating">
+                            <input type="month" class="form-control" id="otherPlacesFrom-[PlaceNumber]" name="otherPlacesFrom-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
+                            <label for="otherPlacesFrom-0" data-lsbq-tr="lsb.from">From</label>
+                        </div>
+                        <div class="col form-floating">
+                            <input type="month" class="form-control" id="otherPlacesTo-[PlaceNumber]" name="otherPlacesTo-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
+                            <label for="otherPlacesTo-0" data-lsbq-tr="lsb.until">Until</label>
+                        </div>
+                    </div>
+                </template>
+                <div id="otherPlacesSlot">
+                    <!-- Placeholder dynamically filled with copies of otherPlacesTemplate -->
+                </div>
+                <!--
                 <div id="otherPlacesRepeat">
                     <div class="row mb-1 ms-5" id="otherPlaces-0">
                         <div class="col form-floating">
@@ -235,6 +258,16 @@
                     </div>
                     <div class="col text-end">
                         <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="lart.forms.repeatBlock('otherPlacesRepeat', /(otherPlaces[A-Z]?[a-z]*)-(0)/gm)"><i class="bi-plus-circle-dotted"></i> <span data-lsbq-tr="base.addLine">Add line</span></a>
+                    </div>
+                </div>
+                -->
+                <div class="row mt-1 mb-3 ms-1">
+                    <div class="col-1"></div>
+                    <div class="col ps-1">
+                        <p class="help-block p-2 text-muted ps-0"><i class="bi-info-circle text-info"></i> <span data-lsbq-tr="lsb.approximateAreaSufficient">Approximate area is sufficient.</span></p>
+                    </div>
+                    <div class="col text-end">
+                        <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="insertOtherPlacesLine()"><i class="bi-plus-circle-dotted"></i> <span data-lsbq-tr="base.addLine">Add line</span></a>
                     </div>
                 </div>
             </section>
@@ -289,6 +322,47 @@
         lsbqRml.tr.registerObserver('surveyLSBForm');
         lsbqRml.tr.registerObserver('lsbqRmlSectionTitle');
         lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
+        function insertOtherPlacesLine() {
+            if ( this.otherPlacesCounter === undefined ) {
+                this.otherPlacesCounter = 0;
+            }
+            const placeNumber = this.otherPlacesCounter++;
+            const template = document.getElementById('otherPlacesTemplate');
+            const slot = document.getElementById('otherPlacesSlot');
+            const clone = template.content.cloneNode(true);
+            // Replaces [PlaceNumber] in 'id', 'for', and 'name' attrs
+            function numberReplacer(node) {
+                if (node instanceof HTMLElement) {
+                    if (node.hasAttribute('id')) node.setAttribute('id', node.getAttribute('id').replace('[PlaceNumber]', placeNumber));
+                    if (node.hasAttribute('for')) node.setAttribute('for', node.getAttribute('for').replace('[PlaceNumber]', placeNumber));
+                    if (node.hasAttribute('name')) node.setAttribute('name', node.getAttribute('name').replace('[PlaceNumber]', placeNumber));
+                }
+                if ( node.hasChildNodes() ) {
+                    for (const child of node.childNodes) {
+                        numberReplacer(child);
+                    }
+                }
+            }
+            numberReplacer(clone);
+            // Append to slot
+            slot.appendChild(clone);
+            // Make input required dependent on otherPlacesName presence
+            lart.forms.conditionalRequire(`otherPlacesName-${placeNumber}`, `otherPlacesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`otherPlacesName-${placeNumber}`, `otherPlacesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            // Make otherPlaces lines deletable
+            const deleteButton = document.getElementById(`otherPlacesDelete-${placeNumber}`);
+            if ( placeNumber ) {
+                deleteButton.addEventListener(
+                    'click',
+                    function () {
+                        document.getElementById(`otherPlaces-${placeNumber}`).remove();
+                    }
+                );
+            } else {
+                deleteButton.remove();
+            }
+        }
+        insertOtherPlacesLine();
     </script>
     {{ lart_form_pipeline('surveyLSBForm', '_lsbqrml_setlsb') }}
 {% endblock %}

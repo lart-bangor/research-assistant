@@ -440,7 +440,7 @@ lart.forms.conditionMatcherFactory = function (controls, comparisonValue, condit
             break;
         case lart.forms.conditionMatcherCondition.NOT_EQUAL:
             testCondition = function (testValues) {
-                return testValues.has(comparisonValue);
+                return !testValues.has(comparisonValue);
             }
             break;
         case lart.forms.conditionMatcherCondition.SMALLER:
@@ -607,25 +607,39 @@ lart.forms.autoFill = function(formOrId, delay=500) {
 lart.forms.conditionalRequire = function (observedControlName, targetControlName, value, condition = lart.forms.conditionMatcherCondition.EQUAL) {
     const collection = document.getElementsByName(observedControlName);
     const targets = document.getElementsByName(targetControlName);
+    booteel.logger.debug(`Adding conditional requirement: If ${observedControlName}.value ${condition}s ${value} -> require ${targetControlName}.`);
+    booteel.logger.debug("    Observed controls:", collection);
+    booteel.logger.debug("    Target control:", targets);
     // Multiselect elements (radio, checkbox, select(?))
     for(const node of collection) {
+        booteel.logger.debug("    Adding condition matcher for control:", node);
         const matchesCondition = lart.forms.conditionMatcherFactory(node, value, condition);
+        node.addEventListener(
+            'input',
+            (event) => {
+                console.log(`Checking conditional require condition for ${observedControlName}...`);
+                console.log('INPUT EVENT', matchesCondition());
+            }
+        );
         node.addEventListener('input',
             function (event) {
+                console.debug(`Checking conditional require condition for ${observedControlName}...`);
                 if(matchesCondition()) {
                     for(const target of targets) {
+                        console.debug(`Control ${target.name} now required.`);
                         target.required = true;
                     }
                 } else {
                     for(const target of targets) {
+                        console.debug(`Control ${target.name} now NOT required.`);
                         target.required = false;
                     }
                 }
             }
         );
         // Trigger the input event now to get the setting consistent for default values
-        const event = new Event('input');
-        node.dispatchEvent(event);
+        // const event = new Event('input');
+        // node.dispatchEvent(event);
     }
 }
 
