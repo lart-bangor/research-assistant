@@ -206,7 +206,7 @@
             "Please select an option."
         ],
         "learnedWhereOtherLabel": [
-            "<i>Please specify...</i>"
+            "<i>Please specify…</i>"
         ],
         "learnedWhereOtherFeedback": [
             "Please give a brief indication of where you learned the language or dialect."
@@ -264,6 +264,9 @@
         ],
         "father": [
             "Father"
+        ],
+        "levelOfEducationFeedbackFather": [
+            "Please indicate the highest level of education from the list that your <i>father</i> has achieved (or the approximate equivalent)."
         ],
         "occupationFeedbackFather": [
             "Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>"

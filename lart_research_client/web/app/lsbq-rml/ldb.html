@@ -82,7 +82,7 @@
                     <div class="row mb-2" id="languagesSpoken-0">
                         <!-- field: languagesSpokenLanguage-0 -->
                         <div class="col-3 form-floating">
-                            <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-0" name="languagesSpokenLanguage-0" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                            <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-0" name="languagesSpokenLanguage-0" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
                             <label for="languagesSpokenLanguage-0" class="col-form-label col-auto" data-lsbq-tr="ldb.languageNameLabel">Language name</label>
                             <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters). You <i>must</i> list at least <i>two</i> languages/dialects.</div>
                         </div>
@@ -197,7 +197,7 @@
                             <div class="row mb-1">
                                 <label for="motherLanguage1" class="col-3 col-form-label" data-lsbq-tr="ldb.firstLanguage">First language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                    <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
                                     <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                             <div class="row mb-1">
                                 <label for="motherLanguage2" class="col-3 col-form-label" data-lsbq-tr="ldb.secondLanguage">Second language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                    <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
                                     <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
                                 </div>
                             </div>
@@ -274,7 +274,7 @@
                             <div class="row mb-1">
                                 <label for="fatherLanguage1" class="col-3 col-form-label" data-lsbq-tr="ldb.firstLanguage">First language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                    <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
                                     <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
                                 </div>
                             </div>
@@ -282,7 +282,7 @@
                             <div class="row mb-1">
                                 <label for="fatherLanguage2" class="col-3 col-form-label" data-lsbq-tr="ldb.secondLanguage">Second language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="[a-zA-Z][a-zA-Z0-9\-_ \(\)]{2,50}" />
+                                    <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
                                     <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
                                 </div>
                             </div>
