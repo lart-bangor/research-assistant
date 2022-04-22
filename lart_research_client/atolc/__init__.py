@@ -19,7 +19,7 @@ from config import config
 data_path: Path = config.paths.data / "AToL-C"
 if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
-data_file = data_path / "atolcResults.txt")
+data_file = data_path / "atolcResults.txt"
 
 @eel.expose
 def init_atol(data: dict[Any, Any]):
@@ -35,6 +35,7 @@ def init_atol(data: dict[Any, Any]):
             for key in data:
                 value = data[key]
                 fp.write(f"{key}: {str(value)}\n")
+            fp.write("\n")
     except FileNotFoundError:
         print("\n")
         print("##############################################\n")
