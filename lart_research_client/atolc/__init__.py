@@ -1,7 +1,7 @@
 """Data structures for the AToL Questionnaire (RML)."""
-from time import time
+# from time import time
 from typing import Any, Optional
-import datetime
+# import datetime
 import sys
 from datavalidator.schemas import DataSchema  # ModuleNotFoundError: No module named 'datavalidator'
 from datavalidator.types import PolarT
@@ -9,57 +9,64 @@ import booteel  # ModuleNotFoundError: No module named 'lart_survey_client'
 import eel
 from . import patterns
 from datetime import datetime
-import time
+# import time
 import random
 import json
+from pathlib import Path
+from config import config
 
 
-#retrieve initial info from index.html and print to file + to console
+data_path: Path = config.paths.data / "AToL-C"
+if not data_path.exists():
+    data_path.mkdir(parents=True, exist_ok=True)
+data_file = data_path / "atolcResults.txt")
+
 @eel.expose
 def init_atol(data: dict[Any, Any]):
+    """Retrieve initial info from index.html and print to file + to console."""
     global version
     version = data.get("selectSurveyVersion")
     presentime = datetime.now()
     dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
     try:
-        with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
-            file.write(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>")
-            file.write("\n\nDate & Time: " + dt_string + "\n")
+        with data_file.open("a") as fp:
+            fp.write("\n>>>>> NEW RESPONSE >>>>>\n")
+            fp.write(f"\nDate & Time: {dt_string}\n")
             for key in data:
                 value = data[key]
-                file.write(key + ": " + str(value) + "\n")
+                fp.write(f"{key}: {str(value)}\n")
     except FileNotFoundError:
         print("\n")
-        print("#########################################\n")
-        print("#   The 'data' directory does not exist #\n")
-        print("#########################################\n")
+        print("##############################################\n")
+        print("# ERROR: The 'data' directory does not exist #\n")
+        print("##############################################\n")
     print("Basic info from index.html: ")
     print(data)
     booteel.setlocation("atolRatingsMaj.html")
 
-#does the same as init_atol, but for part1.html
+
 @eel.expose
 def grab_atol_ratings(data: dict[Any, Any], source, version):
+    """Does the same as init_atol, but for part1.html."""
     location = fetch_location(source, version)
     presentation_order = key_list(data) #record order in which data was presented and output labels
     data = alphabetise(data)  #now reset data in alphabetical order ready for writing to file
-       
+
     try:
-        with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
-            file.write("\n")
-            file.write("Presentation order: ")
-            file.write(json.dumps(presentation_order))
-            file.write("\n")
+        with data_file.open("a") as fp:
+            fp.write("Presentation Order: ")
+            fp.write(json.dumps(presentation_order))
+            fp.write("\nRatings:\n")
             for key in data:
                 value = data[key]
-                file.write(key + ": " + str(value) + "\n")
-            file.write("\n")
-
+                fp.write(f"    {key}: {str(value)}\n")
+            fp.write("\n")
     except FileNotFoundError:
         print("The 'data' directory does not exist")
     print("AToL ratings from " + source + ".html: ")
     print(data)
     booteel.setlocation(location)
+
 
 def fetch_location(source_file, version):
     if 'Maj' in source_file:
@@ -71,12 +78,13 @@ def fetch_location(source_file, version):
         return "atolEnd_" + suffix + ".html"
     else:
         print("ERROR: no such file")
- 
+
+
 def randomize(dictionary):
     randomized_version = {}
     items = list(dictionary.items())  # List of tuples of (key,values)
     random.shuffle(items)
-    
+
     for key, value in items:
         randomized_version[key] = value
         print(key, ":", value)
@@ -90,6 +98,7 @@ def alphabetise(dictionary):
         alphabetised_dict[key] = value
     return alphabetised_dict
 
+
 def key_list(dic):
     list_of_keys = []
     for key in dic:
@@ -99,8 +108,6 @@ def key_list(dic):
     return list_of_keys
 
 
-
- #
 #@eel.expose
 #def get_atol_version():
     #test_version = version
@@ -137,7 +144,7 @@ def key_list(dic):
         atol_header = "AToL Fragebogen (RML)"
         btn_text = "Weiter"
 
-    
+
 _rating_adjectives = (
     "logical",
     "elegant",
@@ -153,7 +160,7 @@ _rating_adjectives = (
     "pleasant",
     "smooth",
     "graceful",
-    "round"    
+    "round"
 )
 
 @eel.expose  # type: ignore
@@ -210,20 +217,16 @@ def atol_c_get_items(version):
         "grace":        ("plump", "anmutig"),
         "angularity":   ("eckig", "rund"),
     }
- 
-   
+
+
     if version == 'CymEng_Eng_GB':
         output = EngVersion
     elif version == 'LtzGer_Ger_BE':
         output = BeVersion
     elif version == 'LmoIta_Ita_IT':
         output = ItVersion
-    
+
     return randomize(output)
-
-
-    
-
 
 
 class Response(DataSchema):
