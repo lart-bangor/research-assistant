@@ -215,7 +215,7 @@
                 </div>
                 <template id="otherPlacesTemplate">
                     <div class="row mb-1" id="otherPlaces-[PlaceNumber]">
-                        <div class="col-1 d-flex align-items-center justify-content-end">
+                        <div class="col-1 d-flex align-items-center justify-content-end pe-1">
                             <a class="btn btn-outline-secondary opacity-75" id="otherPlacesDelete-[PlaceNumber]"><i class="bi bi-trash"></i></a>
                         </div>
                         <div class="col form-floating">
@@ -296,11 +296,9 @@
         lsbqRml.tr.registerObserver('surveyLSBForm');
         lsbqRml.tr.registerObserver('lsbqRmlSectionTitle');
         lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
+        let otherPlacesCounter = 0;
         function insertOtherPlacesLine() {
-            if ( this.otherPlacesCounter === undefined ) {
-                this.otherPlacesCounter = 0;
-            }
-            const placeNumber = this.otherPlacesCounter++;
+            const placeNumber = otherPlacesCounter++;
             const template = document.getElementById('otherPlacesTemplate');
             const slot = document.getElementById('otherPlacesSlot');
             const clone = template.content.cloneNode(true);

@@ -195,6 +195,9 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
         if key in strip_keys:
             del data[key]
         if "languagesSpokenLanguage-" in key:
+            append_row = True
+            if datacopy[key].strip() == "":
+                append_row = False
             index = key[24:]
             key_map = {
                 f"languagesSpokenLanguage-{index}": "languages_spoken_name",
@@ -223,7 +226,8 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
                 if "languagesSpokenSource-" in needle and datacopy[needle].lower() != "o":
                     datacopy[source_specify_key] = 'n/a'
                 if fieldname in processed and isinstance(processed[fieldname], list):
-                    processed[fieldname].append(datacopy[needle])  # type: ignore
+                    if append_row:
+                        processed[fieldname].append(datacopy[needle])  # type: ignore
                     del data[needle]
                 else:
                     raise RuntimeError(
