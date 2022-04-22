@@ -21,4 +21,5 @@ ACQUISITION_SOURCE: EnumT = {  # noqa: F405
 
 ACQUISITION_AGE: RangeT = (0, 100)
 
-LANGUAGE_NAME: PatternT = r"[\w][\w\-_ \(\)]{2,50}"  # noqa: F405  # Are there any shorter than 3 (Ido)?
+# Are there any shorter than 3 (Ido)?
+LANGUAGE_NAME: PatternT = r"[\w][\w\-_ \(\)]{2,50}"  # noqa: F405
