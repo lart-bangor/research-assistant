@@ -1,8 +1,8 @@
 {%- set lart_forms = true %}
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
-{% block title %}LART Research Client - Memory Game{% endblock %}
-{% block headline %}Memory Game{% endblock %}
+{% block title %}LART Research Client - Memory Task{% endblock %}
+{% block headline %}Memory Task{% endblock %}
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
@@ -41,7 +41,7 @@
 
         <div class="row m-4 text-center">
             <div class="col">
-                <h2>Memory Game</h2>
+                <h2>Memory Task</h2>
             </div>
         </div>
 
@@ -50,14 +50,14 @@
             <!-- Survey version -->
             <section class="m-4">
                 <div class="mb-3">
-                    <label for="selectSurveyVersion" class="form-label">Select Memory Game version:</label>
+                    <label for="selectSurveyVersion" class="form-label">Select Memory Task version:</label>
                     <select id="selectSurveyVersion" class="form-select" required>
                     </select>
                     <script type="text/javascript">
                         loadSurveyVersions();
                     </script>
                     <div class="invalid-feedback">
-                        <p>Please select one of the available versions of the Memory Game.</p>
+                        <p>Please select one of the available versions of the Memory Task.</p>
                     </div>
                 </div>
             </section>

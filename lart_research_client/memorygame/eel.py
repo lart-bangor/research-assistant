@@ -108,8 +108,9 @@ def setscores(instid: str, data: dict[str, str]) -> str:  # noqa: C901
     logger.info(f"Setting scores on Memory Game instance {instid}..")
     logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
-    instance.setscores(data["scores"])
+    instance.setscores(data)
     logger.info(f"... set 'scores' data to {instance.getscores()}")
+    store(instid)
     booteel.setlocation(f"end.html?instance={instance.getid()}")
     return instid
 
@@ -165,7 +166,7 @@ def store(instid: str) -> bool:
     path: Path = config.paths.data / "Memory-Game" / d["meta"]["version"]
     if not path.exists():
         path.mkdir(parents=True, exist_ok=True)
-    filename = path / (str(instid) + ".json")
+    filename = path / f"{d['meta']['participant_id']}_{instid}.json"
     logger.info(f"... writing to filename: {filename}")
     with filename.open("w") as fp:
         fp.write(s)

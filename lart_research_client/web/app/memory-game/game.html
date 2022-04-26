@@ -1,7 +1,7 @@
 {%- set lart_forms = true %}
 {%- extends 'base.html' %}
-{% block title %}LART Research Client - Memory Game{% endblock %}
-{% block headline %}Memory Game{% endblock %}
+{% block title %}LART Research Client - Memory Task{% endblock %}
+{% block headline %}Memory Task{% endblock %}
 {% block head_scripts %}
 {% endblock %}
 {% block head_styles %}
@@ -96,8 +96,8 @@
 
 			<div class="row m-4 mb-0 text-center">
 				<h2 id="memoryGameSectionTitle">
-					<span data-memorygame-tr="game.gameCount">Game</span>
-					<span id="currentGameCount">0</span>/<span id="totalGameCount">0</span>.
+					<span data-memorygame-tr="game.gameCount">Round</span>
+					<span id="currentGameCount">0</span> of <span id="totalGameCount">0</span>.
 				</h2>
 			</div>
 			<div class="row m-4 mt-0 mb-0 text-center">
@@ -1016,9 +1016,39 @@
 		Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 	</div>
 
+	<div class="modal fade" id="memoryGameScoreModal" tabindex="-1" aria-labelledby="memoryGameScoreModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="memoryGameScoreModalLabel"><i class="bi bi-trophy text-primary"></i> Memory Task Results</h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>
+					Well done, you've matched all the cards!
+				</p>
+				<p>
+					<span class="h5">Your score:</span><br />
+					Number of tries: <span id="memoryGameScoreModalScore">0</span>.<br />
+					Time needed: <span id="memoryGameScoreModalTime">00:00</span>. 
+				</p>
+				<p id="memoryGameScoreModalInitial">
+					Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!					
+				</p>
+				<p id="memoryGameScoreModalFinal">
+					You've now successfully completed this task!<br />
+					Please click &ldquo;Continue&rdquo; to finish up.
+				</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Continue</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
 
 	<script  type="text/javascript">
-
 		class GameTimer {
 			constructor() {
 				console.log("GameTimer::constructor()");
@@ -1059,13 +1089,12 @@
 				if( this.tickIntervalId !== null ) {
 					clearInterval(this.tickIntervalId);
 				}
-				this.totalTimeElapsed = this.getTimeElapsed();
 			}
 
 			tick() {
 				console.log("GameTimer::tick()");
-				const secondsElapsed = this.getTimeElapsed();
-				this.uiTimer.textContent = this.formatTime(secondsElapsed);
+				this.totalTimeElapsed = this.getTimeElapsed();
+				this.uiTimer.textContent = this.formatTime(this.totalTimeElapsed);
 			}
 
 			getTimeElapsed() {
@@ -1100,6 +1129,7 @@
 				this.totalGames = nGames;
 				this.currentScore = 0;
 				this.scores = [];
+				this.times = [];
 				this.uiCurrentGameCounter = document.getElementById('currentGameCount');
 				this.uiTotalGameCount = document.getElementById('totalGameCount');
 				this.uiTotalGameCount.textContent = this.totalGames;
@@ -1151,12 +1181,19 @@
 								this.timer.stop();
 								this.nGames--;
 								this.scores.push(this.currentScore);
-								this.currentScore = 0;
-								if ( this.nGames < 1 ) {
-									let instanceId = lart.forms.searchParams.get('instance');
-									eel._memorygame_setscores(instanceId, {'scores': this.scores})();
-								}
-								this.rearrangeCards();
+								this.times.push(this.timer.totalTimeElapsed);
+								reportMemoryGameScore(
+									this.currentScore,
+									this.timer.totalTimeElapsed,
+									() => {
+										this.currentScore = 0;
+										if ( this.nGames < 1 ) {
+											let instanceId = lart.forms.searchParams.get('instance');
+											eel._memorygame_setscores(instanceId, {'score': this.scores, "time": this.times})();
+										}
+										this.rearrangeCards();
+									}
+								);
 							}
 						},
 						this.delay
@@ -1190,6 +1227,7 @@
 				}
 			}
 		}
+
 		const game = new MemoryGame();
 
 		game.cards.forEach(
@@ -1197,6 +1235,33 @@
 				card.addEventListener('click', game.flip.bind(game, card));
 			}
 		);
+
+		const memoryGameModal = document.getElementById('memoryGameScoreModal');
+		const memoryGameModalHandler = new bootstrap.Modal(memoryGameModal);
+		const memoryGameScoreModalScore = document.getElementById('memoryGameScoreModalScore');
+		const memoryGameScoreModalTime = document.getElementById('memoryGameScoreModalTime');
+		const memoryGameScoreModalInitial = document.getElementById('memoryGameScoreModalInitial');
+		const memoryGameScoreModalFinal = document.getElementById('memoryGameScoreModalFinal');
+
+		function reportMemoryGameScore(score, time, cb) {
+			memoryGameScoreModalScore.textContent = score;
+			memoryGameScoreModalTime.textContent = game.timer.formatTime(time);
+			if ( game.nGames < 1 ) {
+				memoryGameScoreModalInitial.hidden = true;
+				memoryGameScoreModalFinal.hidden = false;
+			} else {
+				memoryGameScoreModalInitial.hidden = false;
+				memoryGameScoreModalFinal.hidden = true;
+			}
+			memoryGameModal.addEventListener(
+				'hide.bs.modal',
+				function (event) {
+					cb();
+				},
+				{once: true}
+			);
+			memoryGameModalHandler.show();
+		}
 	</script>
 
 {% endblock %}

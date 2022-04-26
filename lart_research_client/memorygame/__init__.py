@@ -49,11 +49,19 @@ class Response(DataSchema):
                 "constraint": patterns.ISO_YEAR_MONTH_DAY,
             },
         },
-        "scores": {  # Scores from the memory games played
-            "type_": int,
-            "typedesc": "score",
-            "constraint": patterns.ANY_NUMBER,
-            "multiple": True,
+        "scores": {
+            "score": {  # Scores from the memory games played
+                "type_": int,
+                "typedesc": "score",
+                "constraint": patterns.POSITIVE_NUMBER_ZERO,
+                "multiple": True,
+            },
+            "time": {  # Time from the memory games played
+                "type_": int,
+                "typedesc": "time",
+                "constraint": patterns.POSITIVE_NUMBER_ZERO,
+                "multiple": True,
+            },
         },
     }
 
