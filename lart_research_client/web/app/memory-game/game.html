@@ -1,7 +1,7 @@
 {%- set lart_forms = true %}
 {%- extends 'base.html' %}
 {% block title %}LART Research Client - Memory Task{% endblock %}
-{% block headline %}Memory Task{% endblock %}
+{% block headline %}<span id="memoryGameAppTitle" data-memorygame-tr="base.appTitle">Memory Task</span>{% endblock %}
 {% block head_scripts %}
 {% endblock %}
 {% block head_styles %}
@@ -84,27 +84,30 @@
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}{% endblock %}
 {% block content %}
+	<article class="container-fluid p-2">
 
-<article class="container-fluid p-2">
-
-		<section class="row">
-			<!--
-			<div class="progress m-4">
-				<div class="progress-bar bg-info" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:33%"></div>
+		<!--
+		<div class="row m-4">
+			<div class="col">
+				<div class="progress">
+					<div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+				</div>
 			</div>
-			-->
+		</div>
+		-->
 
+		<section class="row" id="memoryGameHeader">
 			<div class="row m-4 mb-0 text-center">
 				<h2 id="memoryGameSectionTitle">
-					<span data-memorygame-tr="game.gameCount">Round</span>
-					<span id="currentGameCount">0</span> of <span id="totalGameCount">0</span>.
+					<span data-memorygame-tr="game.round">Round</span>
+					<span id="currentGameCount">0</span> <span data-memorygame-tr="game.xofy">of</span> <span id="totalGameCount">0</span>.
 				</h2>
 			</div>
 			<div class="row m-4 mt-0 mb-0 text-center">
 				<p class="h-3" id="memoryGameSubTitle">
-					<span data-memorygame-tr="game.currentScore">Cards turned:</span>
+					<span data-memorygame-tr="game.cardsTurned">Cards turned:</span>
 					<span id="currentGameScore">0</span>.<br />
-					<span data-memorygame-tr="game.timeExpired">Time:</span>
+					<span data-memorygame-tr="game.timeElapsed">Time:</span>
 					<span id="currentGameTimer">00:00</span>
 				</p>
 			</div>
@@ -1020,38 +1023,44 @@
 		<div class="modal-dialog modal-dialog-centered">
 		  <div class="modal-content">
 			<div class="modal-header">
-			  <h5 class="modal-title" id="memoryGameScoreModalLabel"><i class="bi bi-trophy text-primary"></i> Memory Task Results</h5>
-			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  <h5 class="modal-title" id="memoryGameScoreModalLabel"><i class="bi bi-trophy text-primary"></i> <span data-memorygame-tr="game.resultsModalTitle">Memory Task Results</span></h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Continue"></button>
 			</div>
 			<div class="modal-body">
-				<p>
+				<p data-memorygame-tr="game.completeCongratulations">
 					Well done, you've matched all the cards!
 				</p>
 				<p>
-					<span class="h5">Your score:</span><br />
-					Number of tries: <span id="memoryGameScoreModalScore">0</span>.<br />
-					Time needed: <span id="memoryGameScoreModalTime">00:00</span>. 
+					<span class="h5" data-memorygame-tr="game.yourScore">Your score:</span><br />
+					<span data-memorygame-tr="game.numberOfTries">Number of tries:</span> <span id="memoryGameScoreModalScore">0</span>.<br />
+					<span data-memorygame-tr="game.timeNeeded">Time needed:</span></span> <span id="memoryGameScoreModalTime">00:00</span>. 
 				</p>
-				<p id="memoryGameScoreModalInitial">
-					Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!					
+				<p id="memoryGameScoreModalInitial" data-memorygame-tr="game.continueNextGame">
+					Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!
 				</p>
-				<p id="memoryGameScoreModalFinal">
+				<p id="memoryGameScoreModalFinal" data-memorygame-tr="game.continueFinished">
 					You've now successfully completed this task!<br />
 					Please click &ldquo;Continue&rdquo; to finish up.
 				</p>
 			</div>
 			<div class="modal-footer">
-			  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Continue</button>
+			  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-memorygame-tr="game.continue">Continue</button>
 			</div>
 		  </div>
 		</div>
 	  </div>
-
-
+{% endblock %}
+{% block tail_scripts %}
 	<script  type="text/javascript">
+		// Initialise UI translation
+		let instanceId = lart.forms.searchParams.get('instance');
+		lart.tr.loadFromEel('memorygame', eel._memorygame_load_version, [instanceId, ['meta', 'base', 'game']]);
+		lart.tr.registerObserver('memorygame', 'memoryGameAppTitle');
+		lart.tr.registerObserver('memorygame', 'memoryGameHeader');
+		lart.tr.registerObserver('memorygame', 'memoryGameScoreModal');
+		// Timer for MemoryGame
 		class GameTimer {
 			constructor() {
-				console.log("GameTimer::constructor()");
 				this.totalTimeElapsed = 0;
 				this.startTimestamp = null;
 				this.tickIntervalId = null;
@@ -1060,12 +1069,10 @@
 
 
 			isActive() {
-				console.log("GameTimer::isActive()");
 				return !!(this.tickIntervalId);
 			}
 
 			reset() {
-				console.log("GameTimer::reset()");
 				this.stop();
 				this.startTimestamp = null;
 				this.totalTimeElapsed = 0;
@@ -1074,7 +1081,6 @@
 			}
 
 			start() {
-				console.log("GameTimer::start()");
 				this.startTimestamp = Date.now();
 				this.tickIntervalId = setInterval(
 					() => {
@@ -1085,32 +1091,27 @@
 			}
 
 			stop() {
-				console.log("GameTimer::stop()");
 				if( this.tickIntervalId !== null ) {
 					clearInterval(this.tickIntervalId);
 				}
 			}
 
 			tick() {
-				console.log("GameTimer::tick()");
 				this.totalTimeElapsed = this.getTimeElapsed();
 				this.uiTimer.textContent = this.formatTime(this.totalTimeElapsed);
 			}
 
 			getTimeElapsed() {
-				console.log("GameTimer::getTimeElapsed()");
 				return Math.floor( (Date.now() - this.startTimestamp) / 1000 );
 			}
 
 			secondsToMinSec(seconds) {
-				console.log("GameTimer::secondsToMinSec()");
 				const minCount = Math.floor( seconds / 60 );
 				const secCount = seconds - (minCount * 60);
 				return {'minutes': minCount, 'seconds': secCount};
 			}
 
 			formatTime(seconds) {
-				console.log("GameTimer::formatTime()");
 				const n = this.secondsToMinSec(seconds);
 				const minString = n.minutes.toString().padStart(2, "0");
 				const secString = n.seconds.toString().padStart(2, "0");
@@ -1118,6 +1119,7 @@
 			}
 		}
 
+		// Class for running MemoryGame
 		class MemoryGame {
 			constructor(nGames = 2) {
 				this.cardsContainer = document.querySelector('.js-cards');
@@ -1228,14 +1230,15 @@
 			}
 		}
 
+		// Initialise and run Memory Game
 		const game = new MemoryGame();
-
 		game.cards.forEach(
 			card => {
 				card.addEventListener('click', game.flip.bind(game, card));
 			}
 		);
 
+		// Set up Modal for reporting Memory Game scores
 		const memoryGameModal = document.getElementById('memoryGameScoreModal');
 		const memoryGameModalHandler = new bootstrap.Modal(memoryGameModal);
 		const memoryGameScoreModalScore = document.getElementById('memoryGameScoreModalScore');
@@ -1263,5 +1266,4 @@
 			memoryGameModalHandler.show();
 		}
 	</script>
-
 {% endblock %}

@@ -1131,12 +1131,13 @@ lart.tr.loadFromEel = function(ns, eelLoader, loaderParams = null) {
  *          string, and [2] the version-specific translation/adaptation.
  */
 lart.tr._addStrings = function(ns, strings) {
+    booteel.logger.debug(`Adding strings to namespace ${ns}:`, strings);
     if (!(ns in lart.tr.strings)) {
         lart.tr.strings[ns] = {};
     }
-    for (key in strings) {
+    for (const key in strings) {
         if (key in lart.tr.strings[ns]) {
-            for (subkey in strings[key]) {
+            for (const subkey in strings[key]) {
                 booteel.logger.debug(
                     `Overwriting translation string '${ns}:${key}.${subkey}':`,
                     {

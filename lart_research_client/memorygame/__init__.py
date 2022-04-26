@@ -14,7 +14,7 @@ class Response(DataSchema):
     __schema = {
         "id": {
             "type_": str,
-            "typedesc": "LSBQ-RML Response ID",
+            "typedesc": "Memory Game Response ID",
             "constraint": patterns.UUID_HEX,
         },
         "meta": {  # Meta data

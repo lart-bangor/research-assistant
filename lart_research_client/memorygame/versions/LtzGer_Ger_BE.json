@@ -3,6 +3,80 @@
         "versionId": "LtzGer_Ger_BE",
         "versionName": "Moselfränkisch - Deutsch (Belgien)",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2022-04-18"
+        "date": "2022-04-26"
+    },
+    "base": {
+        "appTitle": [
+            "Memory Task",
+            "Gedächtnisaufgabe"
+        ]
+    },
+    "game": {
+        "secTitle": [
+            "Memory Task",
+            "Gedächtnisaufgabe"
+        ],
+        "round": [
+            "Round",
+            "Runde"
+        ],
+        "xofy": [
+            "<!-- x --> of <!-- y -->",
+            "<!-- x --> von <!-- y -->"
+        ],
+        "cardsTurned": [
+            "Cards turned:",
+            "Kärtchen gedreht:"
+        ],
+        "timeElapsed": [
+            "Time:",
+            "Zeit:"
+        ],
+        "resultsModalTitle": [
+            "Memory Task Results",
+            "Ergebnisse der Gedächtnisaufgabe"
+        ],
+        "completeCongratulations": [
+            "Well done, you've matched all the cards!",
+            "Sehr gut, Sie haben alle Pärchen gefunden!"
+        ],
+        "yourScore": [
+            "Your score:",
+            "Ihr Ergebnis:"
+        ],
+        "numberOfTries": [
+            "Number of tries:",
+            "Anzahl versuche:"
+        ],
+        "timeNeeded": [
+            "Time needed:",
+            "Zeit:"
+        ],
+        "continueNextGame": [
+            "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
+            "Klicken Sie auf „Weiter“ für einen weiteren Versuch.<br /> Versuchen Sie Ihr Ergebnis nochmal zu verbessern!"
+        ],
+        "continueFinished": [
+            "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
+            "Sie haven diese Aufgabe nun erfolgreich erledigt!<br /> Bitte klicken Sie zum Beenden auf „Weiter“."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Memory Task!",
+            "Danke für das Erledigen der Gedächstnisaufgabe!"
+        ],
+        "thankYouMessage": [
+            "Well done on the memory task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
+            "Gute Arbeit mit der Gedächstnisaufgabe!<br /> Sie haben nun alle Aufgaben erledigt. Ihre Daten wurden automatisch gespeichert, aber bitte schließen Sie die App noch nicht."
+        ],
+        "followOnInstructions": [
+            "You can tell the experimenter that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
+            "Sie können dem Experimentleiter nun mitteilen, dass Sie mit den Aufgaben in der Apps fertig sind. Dieser wird dann überprüfen, dass wir alles haben was wir benötigen und Ihnen falls nötig weitere Anleitung geben."
+        ]
     }
 }
