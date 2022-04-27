@@ -49,7 +49,6 @@ def main():
         "--debug",
         dest="level",
         metavar="LEVEL",
-        default="warning",
         choices=("debug", "info", "warning", "error", "critical"),
         help=(
             "set the debug level,\n"

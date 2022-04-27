@@ -96,7 +96,7 @@ class Logging(DataclassDictMixin):
     """Class for Logging configuration."""
 
     max_files: int = field(default=10)
-    default_level: int = field(default=10)
+    default_level: int = field(default=logging.WARNING)
     stream_format: str = field(default="{levelname}:{name}: {message}")
     file_format: str = field(default="[{asctime} {levelname:<8} {name}] {message}")
 
