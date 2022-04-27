@@ -1,15 +1,18 @@
 """Exposes the Memory Game to Python Eel."""
-import eel
-from typing import Optional, Union, Callable, Any, TypeVar, cast
-from pathlib import Path
-from functools import wraps
-from memorygame import Response, logger
-from memorygame.versions import versions
 import datetime
-from datavalidator.exceptions import DataValidationError
-from config import config
-import booteel
+import eel
+import logging
 import json
+from functools import wraps
+from pathlib import Path
+from typing import Optional, Union, Callable, Any, TypeVar, cast
+from .. import booteel
+from ..config import config
+from ..datavalidator.exceptions import DataValidationError
+from .dataschema import Response
+from .versions import versions
+
+logger = logging.getLogger(__name__)
 
 # TypeVar for function wrappers
 F = TypeVar("F", bound=Callable[..., Any])

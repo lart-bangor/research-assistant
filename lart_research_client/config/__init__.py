@@ -8,7 +8,7 @@ from dataclasses import dataclass, field, fields, asdict, is_dataclass
 import json
 import logging
 
-__all__ = ["logger", "config"]
+__all__ = ["config"]
 
 logger = logging.getLogger(__name__)
 

@@ -1,8 +1,10 @@
 """Version implementations and translations for the LSBQ-RML."""
-from typing import Any
-from importlib import resources
+import logging
 import json
-from lsbqrml import logger
+from importlib import resources
+from typing import Any
+
+logger = logging.getLogger(__name__)
 
 
 def _get_versions() -> dict[str, dict[str, Any]]:

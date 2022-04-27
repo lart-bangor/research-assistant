@@ -1,18 +1,21 @@
 """Exposes the LSBQ-RML to Python Eel."""
-import eel
-import re
-from typing import Optional, Union, Callable, Any, TypeVar, cast
-from pathlib import Path
-from functools import wraps
-from lsbqrml import Response, logger
-from lsbqrml.versions import versions
+import logging
 import datetime
-from copy import copy
-from datavalidator.exceptions import DataValidationError
-from config import config
-import booteel
+import eel
 import json
+import re
+from copy import copy
+from functools import wraps
+from pathlib import Path
+from typing import Optional, Union, Callable, Any, TypeVar, cast
 from urllib.parse import quote as urlquote
+from .dataschema import Response
+from .versions import versions
+from .. import booteel
+from ..config import config
+from ..datavalidator.exceptions import DataValidationError
+
+logger = logging.getLogger(__name__)
 
 # TypeVar for function wrappers
 F = TypeVar("F", bound=Callable[..., Any])

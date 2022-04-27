@@ -1,5 +1,5 @@
 """Additional validation patterns for LSBQ-RML."""
-from datavalidator.patterns import *  # noqa: F403
+from ..datavalidator.patterns import *  # noqa: F403
 
 LOCATION_NAME: str = r"[A-Za-z0-9, \(\)]{1,50}"
 

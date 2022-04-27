@@ -17,21 +17,6 @@ def setloglevel(level: int):
     jslogger.setLevel(level)
 
 
-@eel.expose  # type: ignore
-def _booteel_logger_getlevel():
-    """Grant access to the module's loglevel to booteel.js."""
-    return jslogger.level
-
-
-@eel.expose  # type: ignore
-def _booteel_log(level: int, message: str, args: list[Any]):
-    """Expose logging interface to booteel.js."""
-    global jslogger
-    if args:
-        message += " " + ", ".join([repr(_) for _ in args])
-    jslogger.log(level, message)
-
-
 _modal_callbacks: dict[str, Callable[[str, str], bool]] = {}
 
 
@@ -79,7 +64,22 @@ def setlocation(location: str):
 
 
 @eel.expose  # type: ignore
-def _booteel_handlemodal(modal_id: str, choice: str):
+def _booteel_logger_getlevel():                                 # type: ignore
+    """Grant access to the module's loglevel to booteel.js."""
+    return jslogger.level
+
+
+@eel.expose  # type: ignore
+def _booteel_log(level: int, message: str, args: list[Any]):    # type: ignore
+    """Expose logging interface to booteel.js."""
+    global jslogger
+    if args:
+        message += " " + ", ".join([repr(_) for _ in args])
+    jslogger.log(level, message)
+
+
+@eel.expose  # type: ignore
+def _booteel_handlemodal(modal_id: str, choice: str):   # type: ignore
     if modal_id in _modal_callbacks:
         return _modal_callbacks[modal_id](modal_id, choice)
     else:

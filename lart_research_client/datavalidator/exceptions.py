@@ -1,8 +1,8 @@
-"""Exceptions for the datavalidator module."""
+"""Exceptions for the datavalidator package."""
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from . import Validator, ValidationResult
+    from .validation import Validator, ValidationResult
 
 
 class DataValidationError(Exception):

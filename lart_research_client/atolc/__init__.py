@@ -1,19 +1,16 @@
 """Data structures for the AToL Questionnaire (RML)."""
-# from time import time
-from typing import Any, Optional
-# import datetime
-import sys
-from datavalidator.schemas import DataSchema  # ModuleNotFoundError: No module named 'datavalidator'
-from datavalidator.types import PolarT
-import booteel  # ModuleNotFoundError: No module named 'lart_survey_client'
 import eel
-from . import patterns
-from datetime import datetime
-# import time
-import random
 import json
+import random
+import sys
+from datetime import datetime
 from pathlib import Path
-from config import config
+from typing import Any, Optional
+from .. import booteel
+from ..config import config
+from ..datavalidator.schemas import DataSchema
+from ..datavalidator.types import PolarT
+from . import patterns
 
 
 data_path: Path = config.paths.data / "AToL-C"

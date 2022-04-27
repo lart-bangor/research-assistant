@@ -1,4 +1,4 @@
-"""Type definitions for the datavalidator module."""
+"""Type definitions for the datavalidator package."""
 from typing import Any, Iterable, Union, TypeVar
 
 XT = TypeVar("XT")
