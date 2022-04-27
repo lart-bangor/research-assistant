@@ -11,13 +11,19 @@ import sys
 from pathlib import Path
 from typing import Any
 from . import atolc                                                     # type: ignore  # noqa: F401
+from .config import config
 from . import booteel
 from .lsbqrml import expose_to_eel as expose_lsbqrml
 from .memorygame import expose_to_eel as expose_memorygame        # type: ignore  # noqa: F401, F811
 
 # Set up logger for main runtime
-logger = logging.getLogger(__name__)
 logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
+root_logger_name = __name__.split(".", maxsplit=2)[0]
+root_logger = logging.getLogger(root_logger_name)
+root_logger.setLevel(config.logging.default_level)
+root_logger.addHandler(config.logging.get_stream_handler())                 # > sys.stderr
+root_logger.addHandler(config.logging.get_file_handler(root_logger_name))   # > app log dir
+logger = logging.getLogger(__name__)
 
 # Expose Eel API's for subpackages
 expose_lsbqrml()
@@ -52,12 +58,12 @@ def main():
         )
     )
     args = argparser.parse_args()
-    logger.debug("Starting with the following command line arguments:", args)
+    logger.debug("Starting with command line arguments: %s", args)
     try:
         loglevel = getattr(logging, args.level.upper())
     except AttributeError:
-        loglevel = logging.WARNING
-    logging.basicConfig(level=loglevel)
+        loglevel = config.logging.default_level
+    root_logger.setLevel(loglevel)
     booteel.setloglevel(loglevel)
 
     # Run app using eel

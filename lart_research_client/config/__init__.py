@@ -1,12 +1,13 @@
 """Configuration handler for LART Research Client."""
 from __future__ import annotations
-from appdirs import AppDirs
-from pathlib import Path
-from typing import Any, Callable, get_type_hints
-from copy import copy
-from dataclasses import dataclass, field, fields, asdict, is_dataclass
 import json
 import logging
+from appdirs import AppDirs
+from copy import copy
+from dataclasses import dataclass, field, fields, asdict, is_dataclass
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Callable, Optional, Union, get_type_hints
 
 __all__ = ["config"]
 
@@ -75,7 +76,7 @@ class DataclassDictMixin:
 
 @dataclass
 class Paths(DataclassDictMixin):
-    """Class for holding App paths."""
+    """Class for configuration of App paths."""
 
     config: Path = field(default=Path(_default_dirs.user_config_dir), init=False)
     data: Path = field(default=Path(_default_dirs.user_data_dir))
@@ -90,6 +91,54 @@ class Paths(DataclassDictMixin):
             ):
                 setattr(self, field_.name, Path(getattr(self, field_.name)))
 
+@dataclass
+class Logging(DataclassDictMixin):
+    """Class for Logging configuration."""
+
+    max_files: int = field(default=10)
+    default_level: int = field(default=10)
+    stream_format: str = field(default="{levelname}:{name}: {message}")
+    file_format: str = field(default="[{asctime} {levelname:<8} {name}] {message}")
+
+    def get_stream_handler(self, stream: Any = None) -> logging.StreamHandler[Any]:
+        """Return a `logging.StreamHandler` object for logging."""
+        sh = logging.StreamHandler(stream)
+        sh.setFormatter(logging.Formatter(self.stream_format, style="{"))
+        return sh
+
+    def get_file_handler(
+        self,
+        name: str,
+        path: Optional[Union[Path, str]] = None
+    ) -> logging.FileHandler:
+        """Return a `logging.FileHandler` object for logging."""
+        if path is None:
+            path = config.paths.logs
+        elif isinstance(path, str):
+            path = Path(path)
+        if not path.exists():
+            path.mkdir(parents=True, exist_ok=True)
+        if not path.is_dir():
+            raise ValueError(f"The specified path '{path}' is not a valid directory name.")
+        filepath = self._get_file_path(name, path)
+        fh = logging.FileHandler(filepath, mode="w", delay=True)
+        fh.setFormatter(logging.Formatter(self.file_format, style="{"))
+        return fh
+
+    def _get_file_path(self, name: str, path: Path) -> Path:
+        """Determine log file path and clear old log files.
+
+        Scans *path* for logfiles named after *name* (*name*_*.log). If there
+        are more than *config.logging.max_files - 1*, removes the oldest until
+        that value is reached, and returns a path to a new log file (without
+        creating it yet).
+        """
+        files = sorted(path.glob(f"{name}_*.log"))
+        if len(files) >= (self.max_files - 1):
+            for i in range(len(files) - self.max_files - 1):
+                files[i].unlink()
+        return path / f"{name}_{datetime.now():%Y%m%dT%H%M%S_%f}.log"
+
 
 @dataclass
 class Config(DataclassDictMixin):
@@ -98,6 +147,7 @@ class Config(DataclassDictMixin):
     appname: str = field(default=_appname, init=False)
     appauthor: str = field(default=_appauthor, init=False)
     paths: Paths = field(default=Paths())
+    logging: Logging = field(default=Logging())
 
     def save(self, filename: str = "settings.json"):
         """Save configuration to a file."""
