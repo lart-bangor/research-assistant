@@ -2,13 +2,13 @@
     "meta": {
         "versionId": "LmoIta_Ita_IT",
         "versionName": "Italian – Lombard (Italy)",
-        "author": "Lissander Arioli <a.arioli@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2022-04-17"
+        "author": "Alessandro Arioli <a.arioli@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2022-04-28"
     },
     "base": {
         "appTitle": [
             "Language and Social Background Questionnaire (RML)",
-            "Questionario sulla lingua ed estrazione sociale (RML)"
+            "Questionario su usi linguistici ed estrazione sociale (RML)"
         ],
         "yes": [
             "Yes",
@@ -62,7 +62,7 @@
     "lsb": {
         "secTitle": [
             "Language and Social Background",
-            "Lingua e estratto sociale"
+            "Usi linguistici ed estrazione sociale"
         ],
         "sex": [
             "Sex:",
@@ -86,7 +86,7 @@
         ],
         "otherFeedback": [
             "Please briefly specify what other sex you identify with.",
-            "TRANSLATION NEEDED"
+            "Specifichi brevemente con quale altro sesso si identifica"
         ],
         "occupation": [
             "Occupation:",
@@ -94,7 +94,7 @@
         ],
         "occupationFeedback": [
             "Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, …",
-            "TRANSLATION NEEDED"
+            "Indichi o descriva brevemente la Sua professione"
         ],
         "handedness": [
             "Handedness:",
@@ -194,7 +194,7 @@
         ],
         "levelOfEducationFeedback": [
             "Please indicate the highest level of education from the list that you have achieved (or the approximate equivalent).",
-            "Indichi il più alto titolo di studio da Lei conseguito."
+            "Scelga nella lista il più alto titolo di studio da Lei conseguito (o uno equivalente)."
         ]
     },
     "ldb": {
@@ -204,11 +204,11 @@
         ],
         "languagesInstructions": [
             "List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:",
-            "Elenchi tutte le lingue o dialetti che sa parlare e comprendere, incluso l’italiano e il lombardo (bergamasco, comasco, ecc.), in ordine di padronanza:"
+            "Elenchi tutte le varietà linguistiche che sa parlare e comprendere, incluso l’italiano e il lombardo (bergamasco, comasco, ecc.), in ordine di padronanza:"
         ],
         "languageName": [
             "Language or dialect",
-            "Lingua/dialetto"
+            "Varietà linguistica"
         ],
         "learnedWhere": [
             "Where did you learn it?",
@@ -232,11 +232,11 @@
         ],
         "languageNameLabel": [
             "Language name",
-            "Nome della lingua/dialetto"
+            "Nome della varietà linguistica"
         ],
         "languageNameFeedback": [
             "Please give the name of a language or dialect (between 3 and 50 characters).",
-            "Si prega di indicare il nome della lingua o dialetto (tra 3 e 50 caratteri)."
+            "Si prega di indicare il nome della varietà linguistica (tra 3 e 50 caratteri)."
         ],
         "atHome": [
             "At home",
@@ -268,7 +268,7 @@
         ],
         "learnedWhereOtherFeedback": [
             "Please give a brief indication of where you learned the language or dialect.",
-            "Si prega di indicare dove ha imparato questa lingua o dialetto."
+            "Si prega di indicare dove ha imparato questa varietà linguistica."
         ],
         "learnedAgeLabel": [
             "Learned from age",
@@ -276,7 +276,7 @@
         ],
         "learnedAgeFeedback": [
             "Please indicate how old you were (in years) when you started to learn this language.",
-            "Si prega di indicare a che età ha iniziato ad apprendere questa lingua."
+            "Si prega di indicare a che età ha iniziato ad apprendere questa varietà linguistica."
         ],
         "learnedBreaksYearsLabel": [
             "years",
@@ -296,7 +296,7 @@
         ],
         "parentsInstructions": [
             "Please indicate the highest level of education, the occupation, and the languages or dialects spoken by each of your parents:",
-            "Indichi il titolo di studio, la professione, e le lingue/dialetti parlate da ognuno dei Suoi genitori:"
+            "Indichi il titolo di studio, la professione, e le varietà parlate da ognuno dei Suoi genitori:"
         ],
         "mother": [
             "Mother",
@@ -320,23 +320,23 @@
         ],
         "occupationFeedbackMother": [
             "Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
-            "Si prega di indicare la professione svolta da Sua madere."
+            "Si prega di indicare la professione svolta da Sua madre."
         ],
         "firstLanguage": [
             "First language:",
-            "Prima lingua/dialetto:"
+            "Prima varietà linguistica:"
         ],
         "secondLanguage": [
             "Second language:",
-            "Seconda lingua/dialetto:"
+            "Seconda varietà linguistica:"
         ],
         "otherLanguages": [
             "Other language(s):",
-            "Altre lingue/dialetti:"
+            "Altre varietà linguistiche:"
         ],
         "otherLanguagesInfo": [
             "List additional languages separated by commas.",
-            "Indichi altre lingue/dialetti separandole con una virgola."
+            "Indichi altre varietà linguistiche separandole con una virgola."
         ],
         "father": [
             "Father",
@@ -356,15 +356,15 @@
         ],
         "aboutLanguageXInstr2": [
             "rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. -->",
-            "valuta la tua personale padronanza nelle seguenti attività svolte in <!-- ... [LanguageX]. -->"
+            "Valuti la Sua personale padronanza nelle seguenti attività svolte in <!-- ... [LanguageX]. -->"
         ],
         "noProficiency": [
             "No Proficiency",
-            "TRANSLATION NEEDED"
+            "Nessuna padronanza"
         ],
         "highProficiency": [
             "High Proficiency",
-            "TRANSLATION NEEDED"
+            "Ottima padronanza"
         ],
         "speaking": [
             "Speaking",
@@ -372,7 +372,7 @@
         ],
         "understanding": [
             "Understanding",
-            "TRANSLATION NEEDED"
+            "Comprendere"
         ],
         "timeOfActivity": [
             "Of the time you spend engaged in each of the following activities, how much of that time is carried out in <!-- ...[LanguageX]? -->",
@@ -421,106 +421,106 @@
     "club": {
         "secTitle": [
             "Community Language Use Behaviour",
-            "TRANSLATION NEEDED"
+            "Comportamento linguistico nella comunità"
         ],
         "onlyRML": [
             "Only [RML]",
-            "TRANSLATION NEEDED"
+            "Soltanto lombardo"
         ],
         "onlyMajorityLanguage": [
             "Only [MajorityLanguage]",
-            "TRANSLATION NEEDED"
+            "Soltanto italiano"
         ],
         "halfHalf": [
             "Half/Half",
-            "TRANSLATION NEEDED"
+            "Metà e metà"
         ],
         "itemNotApplicableInfo": [
             "Please mark this box <i>only</i> if you do not use either of these languages in the described context.",
-            "TRANSLATION NEEDED"
+            "Si prega di selezionare questa opzione <i>solo</i> se non usa nessuna di queste varietà nel contesto indicato."
         ],
         "lifeStageInstructions": [
             "Please indicate which language or dialect you most frequently heard or used in the following life stages, both inside and outside home.",
-            "TRANSLATION NEEDED"
+            "Indichi che varietà ha ascoltato o usato più spesso nelle seguenti fasi della Sua vita, in casa e fuori casa. "
         ],
         "lifeStageFields": {
-            "infancy":      ["TRANSLATION NEEDED"],
-            "nurseryAge":   ["TRANSLATION NEEDED"],
-            "primaryAge":   ["TRANSLATION NEEDED"],
-            "secondaryAge": ["TRANSLATION NEEDED"]
+            "infancy":      ["Prima infanzia"],
+            "nurseryAge":   ["Asilo"],
+            "primaryAge":   ["Scuola elementare"],
+            "secondaryAge": ["Dagli 11 ai 15 anni"]
         },
         "withPeopleNowInstructions": [
             "Please indicate which language or dialect you generally use when speaking to the following people.",
-            "TRANSLATION NEEDED"
+            "Indichi che varietà usa di solito quando parla con le seguenti persone."
         ],
         "withPeopleNowFields": {
-            "parents":          ["TRANSLATION NEEDED"],
-            "children":         ["TRANSLATION NEEDED"],
-            "siblings":         ["TRANSLATION NEEDED"],
-            "grandparents":     ["TRANSLATION NEEDED"],
-            "otherRelatives":   ["TRANSLATION NEEDED"],
-            "partner":          ["TRANSLATION NEEDED"],
-            "friends":          ["TRANSLATION NEEDED"],
-            "flatmates":        ["TRANSLATION NEEDED"],
-            "neighbours":       ["TRANSLATION NEEDED"]
+            "parents":          ["Genitori"],
+            "children":         ["Figli"],
+            "siblings":         ["Fratelli e sorelle"],
+            "grandparents":     ["Nonni"],
+            "otherRelatives":   ["Altri parenti"],
+            "partner":          ["Partner"],
+            "friends":          ["Amici"],
+            "flatmates":        ["Coinquilini"],
+            "neighbours":       ["Vicini di casa"]
         },
         "withPeopleEarlyLifeInstructions": [
             "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people.",
-            "TRANSLATION NEEDED"
+            "Indichi, per quanto possa ricordare, che varietà usava solitamente tra i 6 e i 12 anni quando parlava con le seguenti persone."
         ],
         "withPeopleEarlyLifeFields": {
-            "parents":          ["TRANSLATION NEEDED"],
-            "siblings":         ["TRANSLATION NEEDED"],
-            "grandparents":     ["TRANSLATION NEEDED"],
-            "otherRelatives":   ["TRANSLATION NEEDED"],
-            "friends":          ["TRANSLATION NEEDED"],
-            "neighbours":       ["TRANSLATION NEEDED"]
+            "parents":          ["Genitori"],
+            "siblings":         ["Fratelli e sorelle"],
+            "grandparents":     ["Nonni"],
+            "otherRelatives":   ["Altri parenti"],
+            "friends":          ["Amici"],
+            "neighbours":       ["Vicini di casa"]
         },
         "situationInstructions": [
             "Please indicate which language or dialect you generally use in the following situations.",
-            "TRANSLATION NEEDED"
+            "Indichi che varietà usa di solito nelle seguenti situazioni."
         ],
         "situationFields": {
-            "home":         ["TRANSLATION NEEDED"],
-            "school":       ["TRANSLATION NEEDED"],
-            "work":         ["TRANSLATION NEEDED"],
-            "socialising":  ["TRANSLATION NEEDED"],
-            "religion":     ["TRANSLATION NEEDED"],
-            "leisure":      ["TRANSLATION NEEDED",  "(hobbies, sports, volunteering, gaming, …)"],
-            "commercial":   ["TRANSLATION NEEDED",  "(shopping, restaurants, …)"],
-            "public":       ["TRANSLATION NEEDED",  "(healthcare services, banks, government, council, …)"]
+            "home":         ["Casa"],
+            "school":       ["Scuola"],
+            "work":         ["Lavoro"],
+            "socialising":  ["Socializzando"],
+            "religion":     ["Religione"],
+            "leisure":      ["Attività ricreative",     "(hobby, sport, volontariato, gioco, …)"],
+            "commercial":   ["Con i commercianti",      "(fecendo la spesa, ristorante, …)"],
+            "public":       ["Attività pubbliche",      "(servizi sanitari, banca, relazioni con le amministrazioni, assemblee pubbliche, …)"]
         },
         "activityInstructions": [
             "Please indicate which language or dialect you generally use for the following activities.",
-            "TRANSLATION NEEDED"
+            "Indichi che varietà usa di solito per le seguenti attività."
         ],
         "activityFields": {
-            "reading":          ["TRANSLATION NEEDED"],
-            "emailing":         ["TRANSLATION NEEDED"],
-            "texting":          ["TRANSLATION NEEDED"],
-            "socialMedia":      ["TRANSLATION NEEDED"],
-            "notes":            ["TRANSLATION NEEDED", "(shopping list, memos, notes, …)"],
-            "traditionalMedia": ["TRANSLATION NEEDED"],
-            "internet":         ["TRANSLATION NEEDED"],
-            "praying":          ["TRANSLATION NEEDED"]
+            "reading":          ["Leggere"],
+            "emailing":         ["E-mail"],
+            "texting":          ["Messaggi istantanei", "(sms, whatsapp, telegram, …)"],
+            "socialMedia":      ["Social media"],
+            "notes":            ["Appunti",             "(lista della spesa, promemoria, note, …)"],
+            "traditionalMedia": ["TV, film, radio"],
+            "internet":         ["Internet"],
+            "praying":          ["Pregare"]
         }
     },
     "notes": {
         "secTitle": [
             "Thank you for completing the LSBQ (RML)!",
-            "TRANSLATION NEEDED"
+            "Grazie per aver completato il questionario su usi linguistici ed estrazione sociale (RML)"
         ],
         "participantNoteInstructions": [
             "Is there anything else that you think is important for us to know about you?",
-            "TRANSLATION NEEDED"
+            "C’è qualche altra cosa che La riguarda, che secondo Lei sarebbe importante che noi sapessimo?"
         ],
         "thankYouMessage": [
             "Thank you for completing the background questionnaire! If you think there's anything else we should know about you or your background then you can use the box below to tell us about this. Then just click on the &ldquo;submit and continue&rdquo; button to save your data and continue with the next task.",
-            "TRANSLATION NEEDED"
+            "Grazie per aver completato il questionario su usi linguistici ed estrazione sociale! Se pensa che ci sia qualcos'altro che noi dovremmo sapere su di Lei o sul suo background, può scrivercelo nello spazio qui sotto. Poi clicchi sul tasto &ldquo;invia e continua&rdquo; per salvare i Suoi dati e continuare con la prossima fase."
         ],
         "submitAndContinue": [
             "Submit and Continue",
-            "TRANSLATION NEEDED"
+            "Invia e continua"
         ]
     }
 }
