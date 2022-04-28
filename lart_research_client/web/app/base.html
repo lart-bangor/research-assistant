@@ -53,6 +53,9 @@
                         <a class="nav-link disabled"><i class="bi bi-arrow-repeat"></i> Synch now</a>
                     </li>
                     <li class="nav-item">
+                        <a id="appLockStateSwitch" class="nav-link"><i class="bi bi-lock"></i> Unlock app</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="modal" data-bs-target="#aboutModal"><i class="bi bi-info-circle"></i> About</a>
                     </li>
                 </ul>
@@ -84,6 +87,10 @@
     </footer>
 
     {% block tail_scripts -%}{%- endblock %}
+
+    <script type="text/javascript">
+        lart.appLock.registerSwitch('appLockStateSwitch');
+    </script>
 
 </body>
 </html>

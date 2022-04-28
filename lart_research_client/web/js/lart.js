@@ -20,6 +20,83 @@ booteel.logger.debug("lart.js loaded.");
 const lart = {};
 
 //
+// App Locking state management.
+//
+
+/**
+ * App locking state management.
+ * 
+ * @namespace
+ */
+lart.appLock = {};
+
+lart.appLock.switches = new Set();
+
+lart.appLock.state = 'locked';
+
+setTimeout(
+    () => {
+        if (sessionStorage.getItem('lart.appLock.state') === 'unlocked') {
+            lart.appLock.unlock();
+        } else {
+            lart.appLock.lock();
+        }
+    }
+);
+
+lart.appLock.lock = function() {
+    console.log("Locking app...")
+    lart.appLock.state = 'locked';
+    sessionStorage.setItem('lart.appLock.state', lart.appLock.state);
+    for (const element of lart.appLock.switches) {
+        lart.appLock._setSwitchState(element);
+    }
+    document.querySelector('html').addEventListener('contextmenu', lart.appLock._contextMenuHandler);
+}
+
+lart.appLock.unlock = function() {
+    console.log("Unlocking app...")
+    lart.appLock.state = 'unlocked';
+    sessionStorage.setItem('lart.appLock.state', lart.appLock.state);
+    for (const element of lart.appLock.switches) {
+        lart.appLock._setSwitchState(element);
+    }
+    document.querySelector('html').removeEventListener('contextmenu', lart.appLock._contextMenuHandler);
+}
+
+lart.appLock._contextMenuHandler = function(event) {
+    event.preventDefault();
+}
+
+lart.appLock.toggleState = function() {
+    if (lart.appLock.state == 'locked') {
+        lart.appLock.unlock();
+    } else {
+        lart.appLock.lock();
+    }
+}
+
+lart.appLock.registerSwitch = function (switchElementOrId, eventType = 'click') {
+    const element = lart.forms.getElementByGreed(switchElementOrId);
+    lart.appLock.switches.add(element);
+    element.addEventListener(
+        'click',
+        () => {
+            lart.appLock.toggleState();
+        }
+    );
+    lart.appLock._setSwitchState(element);
+}
+
+lart.appLock._setSwitchState = function(element) {
+    if (lart.appLock.state == 'unlocked') {
+        element.innerHTML = '<i class="bi bi-unlock"></i> Lock app';
+    } else {
+        element.innerHTML = '<i class="bi bi-lock"></i> Unlock app';
+    }
+}
+
+//
 // LART Utilities
 //
 
