@@ -11,8 +11,12 @@
 </style>
 {% endblock %}
 {% block drawer_info %}{% endblock %}
-{% block drawer_nav_options %}{% endblock %}
-{% block content %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="location.replace('consent/partInfo.html');"><i class="bi-card-checklist"></i> Informed Consent</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}{% block content %}
     <article class="p-2">
         <div class="container-fluid text-center p-2">
             <h2>Choose a task:</h2>
