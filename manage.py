@@ -11,6 +11,7 @@ The goal is to eventually implement the following functionality:
     test:   run the tests.
 """
 import os
+import platform
 import shutil
 import subprocess
 from argparse import ArgumentParser
@@ -91,6 +92,12 @@ def build() -> bool:                                                            
     pyi_dir: Path = WORKSPACE_PATH / "build" / "pyinstaller"
     pyi_pkg_dir: Path = pyi_dir / QUALIFIED_PKG_NAME
 
+    # Platform string
+    platform_str: str = platform.system()
+    if platform.machine():
+        platform_str += f"_{platform.machine()}"
+    platform_str = platform_str.lower()
+
     # Clean the source directory
     if not clean("src"):
         return False
@@ -132,18 +139,21 @@ def build() -> bool:                                                            
     # Run PyInstaller...
     import PyInstaller.__main__ as pyi                                          # type: ignore
     pyi_args: list[str] = [
-        "--workpath=artifacts", "--distpath=dist/win_x86_64",
+        "--noconfirm", "--log-level=WARN",
+        f"--workpath=artifacts/{platform_str}", f"--distpath=dist/{APP_NAME}.{platform_str}",
         "--clean", f"{APP_NAME}.py",
         "--hidden-import", "bottle_websocket",
         "--add-data", f"{str(resources.path('eel', 'eel.js'))}{os.pathsep}eel",
         "--collect-data", QUALIFIED_PKG_NAME,
     ]
-    if SPLASH_IMAGE:
-        pyi_args.append("-i")
-        pyi_args.append(SPLASH_IMAGE)
-        # CURRENTLY BROKEN IN PyInstaller (tcl/tk lib dependency with vcruntime)
-        # pyi_args.append("--splash")
-        # pyi_args.append(SPLASH_IMAGE)
+    # if SPLASH_IMAGE:
+    #     CURRENTLY BROKEN IN PyInstaller (tcl/tk lib dependency with vcruntime)
+    #     pyi_args.append("--splash")
+    #     pyi_args.append(SPLASH_IMAGE)
+    if platform.system() == "Windows" or platform.system() == "Darwin":
+        if SPLASH_IMAGE:
+            pyi_args.append("-i")
+            pyi_args.append(SPLASH_IMAGE)
         # pyi_args.append("--windowed")
     print("Running PyInstaller...")
     print(f"{INDENT}Arguments:")
@@ -153,6 +163,24 @@ def build() -> bool:                                                            
             print(f" {pyi_args[i+1]}", end="")
         print("")
     pyi.run(pyi_args)                                                           # type: ignore
+    pyi_dist_dir: Path = pyi_dir / "dist" / f"{APP_NAME}.{platform_str}"
+    if not pyi_dist_dir.is_dir():
+        print(f"{INDENT}ERROR: PyInstaller dist dir at '{pyi_dist_dir}' not found.")
+        print("Failed.")
+        return False
+    print(f"{INDENT}Success: PyInstaller distribution at '{pyi_dist_dir}'.")
+    print("Done.")
+
+    # Set working directory for archiving...
+    os.chdir(pyi_dist_dir)
+    print(f"Changed current working directory to '{Path.cwd()}'.")
+
+    # Make distributable archive
+    archive_format: str = "zip"
+    if platform.system() == "Linux":
+        archive_format = "gztar"
+    print(f"Packaging distributable {archive_format.upper()} from PyInstaller distribution...")
+    shutil.make_archive(str(pyi_dist_dir), archive_format)
     print("Done.")
 
     os.chdir(oldwd)
