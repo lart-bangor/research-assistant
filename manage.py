@@ -15,13 +15,22 @@ import platform
 import shutil
 import subprocess
 from argparse import ArgumentParser
+from configparser import ConfigParser
 from importlib import resources
 from pathlib import Path
 from typing import Final, Iterable
 
+
+# Define constant values for project
 WORKSPACE_PATH: Final[Path] = Path(__file__).parent
-QUALIFIED_PKG_NAME: Final[str] = "lart_research_client"
-APP_NAME: Final[str] = "Research Client"
+config = ConfigParser()
+config.read(WORKSPACE_PATH / "setup.cfg")
+QUALIFIED_PKG_NAME: Final[str] = config.get("metadata", "name")
+APP_VERSION: Final[str] = config.get("metadata", "version")
+APP_URL: Final[str] = config.get("metadata", "url")
+APP_NAME: Final[str] = config.get("app.options", "name")
+APP_AUTHOR: Final[str] = config.get("app.options", "author")
+APP_LONG_AUTHOR: Final[str] = config.get("app.options", "long_author")
 SPLASH_IMAGE: Final[str] = str(WORKSPACE_PATH / QUALIFIED_PKG_NAME / "web" / "img" / "appicon.png")
 INDENT: Final[str] = "    "
 
@@ -183,9 +192,49 @@ def build() -> bool:                                                            
     shutil.make_archive(str(pyi_dist_dir), archive_format)
     print("Done.")
 
+    # Make Inno Setup installer
+    if platform.system() == "Windows":
+        print("Building Windows installer with Inno Setup...")
+        with open(WORKSPACE_PATH / "windows.iss", "r") as fp:
+            inno_tpl: str = fp.read()
+        inno_tpl = _str_replace_all(
+            inno_tpl,
+            {
+                "APP_NAME": APP_NAME,
+                "APP_VERSION": APP_VERSION,
+                "APP_AUTHOR": APP_AUTHOR,
+                "APP_LONG_AUTHOR": APP_LONG_AUTHOR,
+                "APP_URL": APP_URL,
+                "PLATFORM_STRING": platform_str,
+                "WORKSPACE_PATH": str(WORKSPACE_PATH),
+            }
+        )
+        inno_script: Path = pyi_dir / "artifacts" / platform_str / "windows.iss"
+        with inno_script.open("w+") as fp:
+            fp.write(inno_tpl)
+        try:
+            child = subprocess.run(["iscc", inno_script])
+        except FileNotFoundError:
+            print(
+                f"{INDENT}ERROR: Command 'iscc' not found. Is Inno Setup installed an on the path?"
+            )
+            return False
+        print(child)
+        print("Done.")
+
     os.chdir(oldwd)
     return True
 
+
+def _str_replace_all(
+    x: str,
+    mapping: dict[str, str],
+    open_delim: str ="[[",
+    close_delim: str = "]]"
+) -> str:
+    for key, value in mapping.items():
+        x = x.replace(f"{open_delim}{key}{close_delim}", value)
+    return x
 
 def _copy_dir_clean(source: Path, dest: Path):
     print(f"{INDENT}Copying contents of source directory...")
