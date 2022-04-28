@@ -91,6 +91,7 @@ class Paths(DataclassDictMixin):
             ):
                 setattr(self, field_.name, Path(getattr(self, field_.name)))
 
+
 @dataclass
 class Logging(DataclassDictMixin):
     """Class for Logging configuration."""

@@ -11,13 +11,17 @@ The goal is to eventually implement the following functionality:
     test:   run the tests.
 """
 import os
+import shutil
 import subprocess
 from argparse import ArgumentParser
+from importlib import resources
 from pathlib import Path
 from typing import Final, Iterable
 
 WORKSPACE_PATH: Final[Path] = Path(__file__).parent
 QUALIFIED_PKG_NAME: Final[str] = "lart_research_client"
+APP_NAME: Final[str] = "Research Client"
+SPLASH_IMAGE: Final[str] = str(WORKSPACE_PATH / QUALIFIED_PKG_NAME / "web" / "img" / "appicon.png")
 INDENT: Final[str] = "    "
 
 
@@ -31,6 +35,13 @@ def main():
         help="additional help",
         required=True
     )
+    parser_build = subparsers.add_parser(
+        "build",
+        help=(
+            "build the app from source"
+        )
+    )
+    parser_build.set_defaults(command="build")
     parser_clean = subparsers.add_parser(
         "clean",
         help="clean the workspace"
@@ -62,7 +73,9 @@ def main():
     parser_run.set_defaults(command="run")
     args = parser.parse_args()
     print(f"Workspace path: {WORKSPACE_PATH}.")
-    if args.command == "clean":
+    if args.command == "build":
+        build()
+    elif args.command == "clean":
         clean(args.clean_env)
     elif args.command == "run":
         run()
@@ -70,7 +83,97 @@ def main():
         debug()
 
 
-def clean(env: str):
+def build() -> bool:                                                            # noqa: C901
+    """Build app from source."""
+    # Set up paths
+    oldwd: Path = Path.cwd()
+    src_dir: Path = WORKSPACE_PATH / QUALIFIED_PKG_NAME
+    pyi_dir: Path = WORKSPACE_PATH / "build" / "pyinstaller"
+    pyi_pkg_dir: Path = pyi_dir / QUALIFIED_PKG_NAME
+
+    # Clean the source directory
+    if not clean("src"):
+        return False
+
+    # Make clean copy of source for pyinstaller
+    print("Setting up files for building...")
+    print(f"{INDENT}Creating package directory for pyinstaller...")
+    if not _copy_dir_clean(src_dir, pyi_pkg_dir):
+        print(f"{INDENT}ERROR: Could not copy directory '{src_dir}' to '{pyi_pkg_dir}'.")
+        print("Failed.")
+        return False
+    print("Done.")
+
+    # Create PyInstaller runner file..
+    print("Creating runner file for PyInstaller...")
+    runner_path: Path = pyi_dir / f"{APP_NAME}.py"
+    with runner_path.open("w") as fp:
+        fp.writelines(
+            [
+                f"'''Runner for {APP_NAME}.\n\n",
+                f"This is a wrapper/runner for {APP_NAME} to run with PyInstaller builds.\n",
+                "It has been automatically generated and changes will not persist across\n",
+                "fresh builds.\n",
+                "'''\n\n",
+                f"import {QUALIFIED_PKG_NAME}.app as app\n\n",
+                "app.main()\n\n"
+                "# EOF\n"
+            ]
+        )
+    if not runner_path.is_file():
+        print("Failed.")
+        return False
+    print("Done.")
+
+    # Set working directory for PyInstaller...
+    os.chdir(pyi_dir)
+    print(f"Changed current working directory to '{Path.cwd()}'.")
+
+    # Run PyInstaller...
+    import PyInstaller.__main__ as pyi                                          # type: ignore
+    pyi_args: list[str] = [
+        "--workpath=artifacts", "--distpath=dist/win_x86_64",
+        "--clean", f"{APP_NAME}.py",
+        "--hidden-import", "bottle_websocket",
+        "--add-data", f"{str(resources.path('eel', 'eel.js'))}{os.pathsep}eel",
+        "--collect-data", QUALIFIED_PKG_NAME,
+    ]
+    if SPLASH_IMAGE:
+        pyi_args.append("-i")
+        pyi_args.append(SPLASH_IMAGE)
+        # CURRENTLY BROKEN IN PyInstaller (tcl/tk lib dependency with vcruntime)
+        # pyi_args.append("--splash")
+        # pyi_args.append(SPLASH_IMAGE)
+        # pyi_args.append("--windowed")
+    print("Running PyInstaller...")
+    print(f"{INDENT}Arguments:")
+    for i in range(0, len(pyi_args), 2):
+        print(f"{INDENT}{INDENT}{pyi_args[i]}", end="")
+        if i+1 < len(pyi_args):
+            print(f" {pyi_args[i+1]}", end="")
+        print("")
+    pyi.run(pyi_args)                                                           # type: ignore
+    print("Done.")
+
+    os.chdir(oldwd)
+    return True
+
+
+def _copy_dir_clean(source: Path, dest: Path):
+    print(f"{INDENT}Copying contents of source directory...")
+    print(f"{INDENT}{INDENT}Source: '{source}'.")
+    print(f"{INDENT}{INDENT}Destination: '{dest}'.")
+    _recursively_delete_dir(dest)
+    try:
+        shutil.copytree(source, dest)
+    except OSError as exc:
+        print(f"{INDENT}ERROR: {exc}.")
+        return False
+    print(f"{INDENT}Done.")
+    return True
+
+
+def clean(env: str) -> bool:
     """Clean the development environment."""
     errors: bool = False
     if env == "build" or env == "all":
@@ -82,7 +185,7 @@ def clean(env: str):
     return not errors
 
 
-def debug():
+def debug() -> bool:
     """Debug the app from the development environment and continue in Python interpreter."""
     oldwd: Path = Path.cwd()
     os.chdir(WORKSPACE_PATH)
@@ -93,9 +196,10 @@ def debug():
     print(f"{INDENT}Process returned with code '{child.returncode}'.")
     os.chdir(oldwd)
     print("Done.")
+    return child.returncode == 0
 
 
-def run():
+def run() -> bool:
     """Run the app from the development environment."""
     oldwd: Path = Path.cwd()
     os.chdir(WORKSPACE_PATH)
@@ -106,6 +210,7 @@ def run():
     print(f"{INDENT}Process returned with code '{child.returncode}'.")
     os.chdir(oldwd)
     print("Done.")
+    return child.returncode == 0
 
 
 def _clean_build() -> bool:
