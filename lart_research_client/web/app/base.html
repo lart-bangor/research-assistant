@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/bootstrap-icons.css" />
     <link rel="stylesheet" href="/css/lart-custom.css" />
-    {% if lart_forms %}<link rel="stylesheet" href="/css/datavalidator.css" />{% endif -%}
+    <link rel="stylesheet" href="/css/datavalidator.css" />
     {% block head_styles %}{% endblock %}
 
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript" src="/js/booteel.js"></script>
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-    {% if lart_forms %}<script type="text/javascript" src="/js/lart.js"></script>{% endif -%}
+    <script type="text/javascript" src="/js/lart.js"></script>
     {% block head_scripts %}{% endblock -%}
 </head>
 <body>
@@ -83,11 +83,7 @@
           </div>
     </footer>
 
-    {%- if lart_forms %}
-    <script type="text/javascript">
-        lart.forms.requireValidation(true);
-    </script>
-    {% endif -%}
     {% block tail_scripts -%}{%- endblock %}
+
 </body>
 </html>

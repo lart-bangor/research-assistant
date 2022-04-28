@@ -1,4 +1,3 @@
-{%- set lart_forms = true %}
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
 {% block title %}LART Research Client - LSBQ-RML - Language and Dialect Background{% endblock %}
@@ -406,6 +405,7 @@
 {% endblock %}
 {% block tail_scripts %}
     <script type="text/javascript">
+        lart.forms.requireValidation(true);
         // Translate form for specific version
         lsbqRml.tr.load(lsbqRml.instance.getId(), ['ldb']);
         lsbqRml.tr.registerObserver('surveyLDBForm');

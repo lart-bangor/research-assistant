@@ -229,12 +229,13 @@ def build() -> bool:                                                            
 def _str_replace_all(
     x: str,
     mapping: dict[str, str],
-    open_delim: str ="[[",
+    open_delim: str = "[[",
     close_delim: str = "]]"
 ) -> str:
     for key, value in mapping.items():
         x = x.replace(f"{open_delim}{key}{close_delim}", value)
     return x
+
 
 def _copy_dir_clean(source: Path, dest: Path):
     print(f"{INDENT}Copying contents of source directory...")
