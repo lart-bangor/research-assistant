@@ -16,18 +16,21 @@ from . import patterns
 data_path: Path = config.paths.data / "AToL-C"
 if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
-data_file = data_path / "atolcResults.txt"
+
+presentime = datetime.now()
+dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
+dt_filename = presentime.strftime("%d_%m_%Y__%H-%M-%S")
 
 @eel.expose
 def init_atol(data: dict[Any, Any]):
     """Retrieve initial info from index.html and print to file + to console."""
     global version
     version = data.get("selectSurveyVersion")
-    presentime = datetime.now()
-    dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
+    file_name = data.get("participantId") + "_" + dt_filename + ".txt"
+    data_file = data_path / file_name
+
     try:
-        with data_file.open("a") as fp:
-            fp.write("\n>>>>> NEW RESPONSE >>>>>\n")
+        with open(data_file, "a") as fp:
             fp.write(f"\nDate & Time: {dt_string}\n")
             for key in data:
                 value = data[key]
@@ -44,14 +47,16 @@ def init_atol(data: dict[Any, Any]):
 
 
 @eel.expose
-def grab_atol_ratings(data: dict[Any, Any], source, version):
+def grab_atol_ratings(data: dict[Any, Any], source, version, partId):
     """Does the same as init_atol, but for part1.html."""
     location = fetch_location(source, version)
+    file_name = partId + "_" + dt_filename + ".txt"
+    data_file = data_path / file_name
     presentation_order = key_list(data) #record order in which data was presented and output labels
     data = alphabetise(data)  #now reset data in alphabetical order ready for writing to file
 
     try:
-        with data_file.open("a") as fp:
+        with open(data_file, "a") as fp:
             fp.write("Presentation Order: ")
             fp.write(json.dumps(presentation_order))
             fp.write("\nRatings:\n")
