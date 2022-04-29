@@ -1,8 +1,82 @@
 {
     "meta": {
         "versionId": "LmoIta_Ita_IT",
-        "versionName": "Italian – Lombard (Italy)",
-        "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2022-04-18"
+        "versionName": "Lombard - Italian (Italy)",
+        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2022-04-29"
+    },
+    "base": {
+        "appTitle": [
+            "Memory Task",
+            "Gioco di Memoria"
+        ]
+    },
+    "game": {
+        "secTitle": [
+            "Memory Task",
+            "Gioco di Memoria"
+        ],
+        "round": [
+            "Round",
+            "Tentativo"
+        ],
+        "xofy": [
+            "<!-- x --> of <!-- y -->",
+            "<!-- x --> di <!-- y -->"
+        ],
+        "cardsTurned": [
+            "Cards turned:",
+            "Carte girate:"
+        ],
+        "timeElapsed": [
+            "Time:",
+            "Tenmpo:"
+        ],
+        "resultsModalTitle": [
+            "Memory Task Results",
+            "Risultato per il Gioco di Memoria"
+        ],
+        "completeCongratulations": [
+            "Well done, you've matched all the cards!",
+            "Complimenti, hai trovato tutte le carte!"
+        ],
+        "yourScore": [
+            "Your score:",
+            "Il tuo punteggio:"
+        ],
+        "numberOfTries": [
+            "Number of tries:",
+            "Numero di tentativi:"
+        ],
+        "timeNeeded": [
+            "Time needed:",
+            "Tempo impiegato:"
+        ],
+        "continueNextGame": [
+            "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
+            "Clicca &ldquo;Continue&rdquo; per fare un altro tentativo e vedere se riesci a battere il tuo punteggio!"
+        ],
+        "continueFinished": [
+            "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
+            "Hai completato con successo questa attività!<br /> Fai clic su &ldquo;Continua&rdquo; per finire."
+        ],
+        "continue": [
+            "Continue",
+            "Continua"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Memory Task!",
+            "Grazie per aver completato il gioco di memoria!"
+        ],
+        "thankYouMessage": [
+            "Well done on the memory task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
+            "Complimenti!<br /> Hai completato tutte le attività. I tuoi dati sono stati salvati automaticamente, ma non chiudere ancora l'app."
+        ],
+        "followOnInstructions": [
+            "You can tell the experimenter that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
+            "Puoi informare il ricercatore che hai terminato le attività dell'app. Il ricercatore verificarà che abbiamo tutto ciò di cui abbiamo bisogno e ti darà ulteriori istruzioni se necessario."
+        ]
     }
 }
