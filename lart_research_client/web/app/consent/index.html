@@ -1,0 +1,158 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{% extends 'base.html' %}
+{% block title %}LART Research Client - Consent{% endblock %}
+{% block headline %}LART Research Client - Consent{% endblock %}
+{% block head_scripts %}
+<script type="text/javascript">
+function loadSurveyVersions() {
+    availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions); //this will probably need to be changed to a more generic "survey_rml_get_versions", 
+                                                                                    //or hard-coded for each questionnaire.
+        }
+    
+function populateSurveyVersions(versions) {
+    select = document.getElementById('selectSurveyVersion');
+    for(version in versions) {
+        option = document.createElement('option');
+        option.setAttribute('value', version);
+        option.appendChild(document.createTextNode(versions[version]))
+        select.appendChild(option);
+    }
+}
+
+function showStudyInfo() {
+    const fetch_version = document.getElementById("selectSurveyVersion");
+    const fetch_partId = document.getElementById("participantId");
+    const version = fetch_version.value;
+    const partId = fetch_partId.value;
+    document.getElementById("studyInfo").innerHTML = "Selected version: " + version + "<br>" + "Participant ID: " + partId;
+    //output_info(version); 
+    
+    
+}
+
+if (version == "CymEng_Eng_GB") {
+            const titleLabel = "Study Title";
+            const titleInfo = "Executive function in bilingual speakers.";
+}
+
+
+// Instructions to be outputed depending on language selection
+function output_info(version) {
+    if (version == "CymEng_Eng_GB") {
+            const titleLabel = "Study Title";
+            const titleInfo = "Executive function in bilingual speakers.";
+            
+        } else if (chosenVersion == "LmoIta_Ita_IT") {
+            sessionStorage.setItem("version", "LmoIta_Ita_IT");
+            sessionStorage.setItem("title", "Questionario Linguistico");
+            sessionStorage.setItem("language", "Italiano");
+            sessionStorage.setItem("rml", "lombardo");
+            sessionStorage.setItem("instruction", "Si prega di spostare il cursore per registrare la propria scelta.");
+            sessionStorage.setItem("language_header", "La lingua italiana è...");
+            sessionStorage.setItem("rml_header", "Il lombardo è...");
+            sessionStorage.setItem("atol_header", "Questionario AToL (RML)");
+            sessionStorage.setItem("btn_text", "Avanti");
+        } else if (chosenVersion == "LtzGer_Ger_BE") {
+            sessionStorage.setItem("version", "LtzGer_Ger_BE");
+            sessionStorage.setItem("title", "Sprachlicher Fragebogen");
+            sessionStorage.setItem("language", "Deutch");
+            sessionStorage.setItem("rml", "Moselfränkisch");
+            sessionStorage.setItem("instruction", "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??.");
+            sessionStorage.setItem("language_header", "Die deutsche Sprache ist...");
+            sessionStorage.setItem("rml_header", "Moselfränkisch ist...");
+            sessionStorage.setItem("atol_header", "AToL Fragebogen (RML)");
+            sessionStorage.setItem("btn_text", "Weiter");
+        }
+        
+        
+    }
+
+
+</script>
+
+
+{% endblock %}
+{% block head_styles %}
+<style type="text/css">
+    main .btn-primary {
+        min-width: 50%;
+    }
+    #infoItem li { color: #0000cd; }
+</style>
+
+{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="p-2">
+       
+
+        <div class="row m-4 text-center">
+            <div class="col">
+                <h2>Participant Consent</h2>
+            </div>
+        </div>
+
+        <!-- <form id="consentSelectForm" class="needs-validation">-->
+
+            <!-- Survey version -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="selectSurveyVersion" class="form-label">Select language version:</label>
+                    <select id="selectSurveyVersion" class="form-select" required>
+                    </select>
+                    <script type="text/javascript">
+                        loadSurveyVersions();
+                    </script>
+                    <div class="invalid-feedback">
+                        <p>Please select one of the available versions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Participant details -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="participantId" class="form-label">Participant ID:</label>
+                    <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required autocomplete="off" />
+                    <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
+                    <div class="invalid-feedback">
+                        <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activate version -->
+            <div class="row text-center p-3 m-4" id="hidden-div">
+                <div class="col">
+                    <button class="btn btn-primary btn-lg btn-action shadow" onclick="getElementById('hidden-div').style.display = 'block'; this.style.display = 'none'; showStudyInfo();">Start</button>
+
+                </div>
+            </div>
+            <!-- Displaying study information for consent -->
+        <p id="studyInfo"></p>
+
+        <ol id="infoItem">
+            <p>
+            <li><script type="text/javascript">document.write(titleLabel);</script>  </li>
+            <script type="text/javascript">document.write(titleInfo);</script>
+            </p>
+
+        <p>
+            <li id="studyPurpose ">What is the purpose of the research? </li> 
+            <p id= "studyPurposeInfo">
+            This study is part of a larger research project investigating bilingualism across Europe. 
+            <br /> The project aims to find out more about bilinguals in several areas across Europe, including Wales. </p>
+        </p>
+        
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+
+{% endblock %}

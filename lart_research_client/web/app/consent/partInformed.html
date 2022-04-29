@@ -2,30 +2,6 @@
 {% block title %}LART Research Client{% endblock %}
 {% block headline %}Participant information sheet{% endblock %}
 {% block head_scripts %}
-<script type="text/javascript">
-function recordData() {
-    const consent = document.getElementById("selectSurveyVersion").value;
-        
-    sessionStorage.setItem("atolVersion", atolVersion);
-    }
-
-// Requiring fs module in which
-// writeFile function is defined.
-function testData() {
-    console.log("Going to write into existing file");
-    const fs = require('fs')
-  
-    // Data which will write in a file.
-    let data = "Learning how to write in a file."
-  
-    // Write data in 'Output.txt' .
-    fs.writeFile('Output.txt', data, (err) => {
-      
-        // In case of a error throw err.
-        if (err) throw err;
-    })
-}
-</script>
 
 {% endblock %}
 {% block head_styles %}
