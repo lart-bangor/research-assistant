@@ -1,21 +1,47 @@
 {%- extends 'base.html' %}
 {% block title %}LART Research Client{% endblock %}
 {% block headline %}Participant information sheet{% endblock %}
-{% block head_scripts %}{% endblock %}
+{% block head_scripts %}
+<script type="text/javascript">
+function recordData() {
+    const consent = document.getElementById("selectSurveyVersion").value;
+        
+    sessionStorage.setItem("atolVersion", atolVersion);
+    }
+
+// Requiring fs module in which
+// writeFile function is defined.
+function testData() {
+    console.log("Going to write into existing file");
+    const fs = require('fs')
+  
+    // Data which will write in a file.
+    let data = "Learning how to write in a file."
+  
+    // Write data in 'Output.txt' .
+    fs.writeFile('Output.txt', data, (err) => {
+      
+        // In case of a error throw err.
+        if (err) throw err;
+    })
+}
+</script>
+
+{% endblock %}
 {% block head_styles %}
 <style type="text/css">
     main .btn-primary {
         min-width: 50%;
     }
+    #infoItem li { color: #0000cd; }
 </style>
 {% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
 {% endblock %}{% block content %}
-    <article class="p-1">
+    <article class="p-2">
         <div class="row m-4">
-            <div class="col fw-semi p-0">
-                <ol>
+                <ol id="infoItem">
                     <p>
                 <li> Study Title </li>
                 Executive function in bilingual speakers.
@@ -47,7 +73,7 @@
                 </p>
 
                 <p>
-                    <li> What are the possible disadvantages and risks of taking part? </li>
+                    <li> What are the possible disadvantages and risks of taking part?</li>
                     Participating in the research is not anticipated to cause you any disadvantages or discomfort 
                     <br />beyond what you might experience in everyday life. 
                 </p>
@@ -73,7 +99,7 @@
                </p>
 
                 <p>
-                    <li>What type of information will be sought from me and why is the collection of this information relevant for achieving the research project’s objectives?   </li>
+                    <li>What type of information will be sought from me and why is the collection of this information relevant for achieving the research project's objectives?   </li>
                     The questionnaire will ask you about your opinions and current language use in Wales. 
                     <br /> Your experience as a speaker is exactly what the project is interested in exploring.  
                 </p>
@@ -85,27 +111,68 @@
 
                 <p>
                     <li>Who is organising and funding the research?   </li>
-                    The project is a partnership involving Dr Marco Tamburelli and Prof Guillaume Thierry of Bangor University, and is funded by the UK’s Economic and Social Research Council. 
+                    The project is a partnership involving Dr Marco Tamburelli and Prof Guillaume Thierry of Bangor University, and is funded by the UK's Economic and Social Research Council. 
                 </p>
 
                 <p>
-                    <li>Who has ethically reviewed the project?  </li>
+                    <li>Who has ethically reviewed the project?</li>
                     This project has been ethically approved by the Research Ethics Committee in the College of Arts, Humanities and Business at Bangor University. 
-                    <br />This is the body that caries out the ethics review procedure and monitors the application and delivery of the College’s and University’s Research Ethics Guidelines and Ethics Approval Procedures.  
+                    <br />This is the body that caries out the ethics review procedure and monitors the application and delivery of the College's and University's Research Ethics Guidelines and Ethics Approval Procedures.  
                 </p>
 
                 <p>
                     <li>Contacts for further information </li>
-                    Dr Marco Tamburelli (Principal Investigator), School of Arts, Culture and Language, 39 College Road, Bangor University, UK. Tel: +44 (0)1248 38 2078, email: m.tamburelli@bangor.ac.uk   
+                    <i>Dr Marco Tamburelli</i> (Principal Investigator), School of Arts, Culture and Language, 39 College Road, Bangor University, UK. Tel: +44 (0)1248 38 2078, email: m.tamburelli@bangor.ac.uk   
                     <br />
-                    The contact person for Bangor University’s Governance Services is Lauren Roberts who can be reached at the following address: Lauren Roberts, Governance Services, Bangor University, Bangor, Gwynedd, LL57 2DG, UK or via email: l.roberts@bangor.ac.uk  
+                    The contact person for Bangor University's Governance Services is <i>Lauren Roberts</i> who can be reached at the following address: Lauren Roberts, Governance Services, Bangor University, Bangor, Gwynedd, LL57 2DG, UK or via email: l.roberts@bangor.ac.uk  
 
                 </p>
 
 
             </ol>
-            </div>
+            
         </div>
         
-    </article>
+    
+    <form id="partConsent" class="needs-validation" >
+        <!--action="../index.html"
+
+        -->
+
+    <section class="m-4">
+        <div class="mb-3">
+            <p class="form-label" style="margin-left:0">Confirm consent:</p>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="informedConsent" required autocomplete="off" />
+                <label class="form-check-label" for="confirmConsent">Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you.  
+                    </label>
+                <div class="invalid-feedback">
+                    <p>Please confirm that you consent to the above before beginning your paarticipation in the study, thank you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Form submission -->
+    <div class="row text-center p-3 m-4">
+        <div class="col">
+            <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Confirm</button>
+        </div>
+    </div>
+
+</form>
+</article>
+    
 {% endblock %}
+
+{% block tail_scripts %}
+    <script type="text/javascript">
+        lart.forms.requireValidation(true);
+        lart.forms.registerPipeline(
+            'partConsent',
+            async function(data) {
+                let success = await eel.record_consent(data)();
+                console.log("tail script: " + success);
+            }
+        );
+    </script>
+    {% endblock %}
