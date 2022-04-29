@@ -5,6 +5,7 @@
     <script type="text/javascript">
         const atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
         const chosenVersion = sessionStorage.getItem("atolVersion");
+        const participantId = sessionStorage.getItem("atolPartId");
 
         //eel.get_atol_version()(function(data_from_index){myversion = data_from_index});
 
@@ -167,7 +168,7 @@
     lart.forms.registerPipeline(
         'surveyAtolForm_majLang',
         async function(data) {
-            let success = await eel.grab_atol_ratings(data, 'atolRatingsMaj', chosenVersion)();
+            let success = await eel.grab_atol_ratings(data, 'atolRatingsMaj', chosenVersion, participantId)();
             console.log("tail script: " + success);
         }
     );
