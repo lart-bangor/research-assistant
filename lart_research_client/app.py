@@ -106,8 +106,8 @@ def close(page: str, opensockets: list[Any]):
                 logger.debug("New websockets found, cancelling shutdown...")
                 gevent.getcurrent().kill()                                      # type: ignore
 
-        logger.debug("No websockets left, registering shutodwn after 1.0s.")
-        gevent.spawn_later(1.0, conditional_shutdown)                           # type: ignore
+        logger.debug(f"No websockets left, registering shutodwn after {config.shutdown_delay}s.")
+        gevent.spawn_later(config.shutdown_delay, conditional_shutdown)         # type: ignore
 
 
 if __name__ == "__main__":

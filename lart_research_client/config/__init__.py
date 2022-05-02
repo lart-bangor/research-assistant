@@ -149,6 +149,7 @@ class Config(DataclassDictMixin):
     appauthor: str = field(default=_appauthor, init=False)
     paths: Paths = field(default=Paths())
     logging: Logging = field(default=Logging())
+    shutdown_delay: float = field(default=2.0)
 
     def save(self, filename: str = "settings.json"):
         """Save configuration to a file."""
