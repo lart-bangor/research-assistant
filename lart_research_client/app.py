@@ -11,11 +11,11 @@ import sys
 from pathlib import Path
 from typing import Any
 from . import atolc                                                     # type: ignore  # noqa: F401
+from . import consent                                                   # type: ignore  # noqa: F401
 from .config import config
 from . import booteel
 from .lsbqrml import expose_to_eel as expose_lsbqrml
 from .memorygame import expose_to_eel as expose_memorygame        # type: ignore  # noqa: F401, F811
-from . import consent
 
 # Set up logger for main runtime
 logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)

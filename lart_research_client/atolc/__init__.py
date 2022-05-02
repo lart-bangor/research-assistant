@@ -5,7 +5,7 @@ import random
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Iterable
 from .. import booteel
 from ..config import config
 from ..datavalidator.schemas import DataSchema
@@ -22,11 +22,11 @@ dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
 dt_filename = presentime.strftime("%d_%m_%Y__%H-%M-%S")
 
 @eel.expose
-def init_atol(data: dict[Any, Any]):
+def init_atol(data: dict[str, str]) -> None:
     """Retrieve initial info from index.html and print to file + to console."""
     global version
-    version = data.get("selectSurveyVersion")
-    file_name = data.get("participantId") + "_" + dt_filename + ".txt"
+    version = data["selectSurveyVersion"]
+    file_name = data["participantId"] + "_" + dt_filename + ".txt"
     data_file = data_path / file_name
 
     try:
@@ -47,7 +47,7 @@ def init_atol(data: dict[Any, Any]):
 
 
 @eel.expose
-def grab_atol_ratings(data: dict[Any, Any], source, version, partId):
+def grab_atol_ratings(data: dict[Any, Any], source: str, version: str, partId: str):
     """Does the same as init_atol, but for part1.html."""
     location = fetch_location(source, version)
     file_name = partId + "_" + dt_filename + ".txt"
@@ -71,7 +71,8 @@ def grab_atol_ratings(data: dict[Any, Any], source, version, partId):
     booteel.setlocation(location)
 
 
-def fetch_location(source_file, version):
+def fetch_location(source_file: str, version: str) -> Optional[str]:
+    """Get the name for atolEnd file."""
     if 'Maj' in source_file:
         return "atolRatingsRml.html"
     elif 'Rml' in source_file:
@@ -83,7 +84,8 @@ def fetch_location(source_file, version):
         print("ERROR: no such file")
 
 
-def randomize(dictionary):
+def randomize(dictionary: dict[str, Any]) -> dict[str, Any]:
+    """Return a dict in randomized order."""
     randomized_version = {}
     items = list(dictionary.items())  # List of tuples of (key,values)
     random.shuffle(items)
@@ -94,59 +96,59 @@ def randomize(dictionary):
     return randomized_version
 
 
-def alphabetise(dictionary):
+def alphabetise(dictionary: dict[str, Any]) -> dict[str, Any]:
+    """Return a dict in alphabetised order."""
     alphabetised_dict = {}
-    
+
     for key, value in sorted(dictionary.items()):
         alphabetised_dict[key] = value
     return alphabetised_dict
 
 
-def key_list(dic):
+def key_list(dic: dict[str, Any]) -> Iterable[Any]:
+    """Return the keys of a dictionary."""
     list_of_keys = []
     for key in dic:
-        list = key.rsplit("_")  #split list at each underscore
-        clean = list[-1]        #find last item on split tlist
+        list = key.rsplit("_")  # split list at each underscore
+        clean = list[-1]        # find last item on split tlist
         list_of_keys.append(clean)
     return list_of_keys
 
 
-#@eel.expose
-#def get_atol_version():
-    #test_version = version
-    #print("test version is: " + test_version)
-    #return test_version
+# @eel.expose
+# def get_atol_version():
+#     test_version = version
+#     print("test version is: " + test_version)
+#     return test_version
 
+#     if  version == "CymEng_Eng_GB":
+#         title = "Language Questionnaire"
+#         language = "English"
+#         rml = "Welsh"
+#         instruction = "Please move the slider to record your choice."
+#         language_header = "The English language is..."
+#         rml_header = "The Welsh language is..."
+#         atol_header = "AToL Questionnaire (RML)"
+#         btn_text = "Next"
+#     elif version == "LmoIta_Ita_IT":
+#         title = "Questionario Linguistico"
+#         language = "Italiano"
+#         rml = "lombardo"
+#         instruction = "Si prega di spostare il cursore per registrare la propria scelta."
+#         language_header = "La lingua italiana è..."
+#         rml_header = "il lombardo è..."
+#         atol_header = "Questionario AToL (RML)"
+#         btn_text = "Avanti"
 
-    if  version == "CymEng_Eng_GB":
-        title = "Language Questionnaire"
-        language = "English"
-        rml = "Welsh"
-        instruction = "Please move the slider to record your choice."
-        language_header = "The English language is..."
-        rml_header = "The Welsh language is..."
-        atol_header = "AToL Questionnaire (RML)"
-        btn_text = "Next"
-    elif version == "LmoIta_Ita_IT":
-        title = "Questionario Linguistico"
-        language = "Italiano"
-        rml = "lombardo"
-        instruction = "Si prega di spostare il cursore per registrare la propria scelta."
-        language_header = "La lingua italiana è..."
-        rml_header = "il lombardo è..."
-        atol_header = "Questionario AToL (RML)"
-        btn_text = "Avanti"
-
-    elif version == "LtzGer_Ger_BE":
-        title = "Sprachlicher Fragebogen"
-        language = "Deutch"
-        rml = "Moselfränkisch"
-        instruction = "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??."
-        rml_header = "Moselfränkisch ist..."
-        language_header = "Die deutsche Sprache ist..."
-        atol_header = "AToL Fragebogen (RML)"
-        btn_text = "Weiter"
-
+#     elif version == "LtzGer_Ger_BE":
+#         title = "Sprachlicher Fragebogen"
+#         language = "Deutch"
+#         rml = "Moselfränkisch"
+#         instruction = "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??."
+#         rml_header = "Moselfränkisch ist..."
+#         language_header = "Die deutsche Sprache ist..."
+#         atol_header = "AToL Fragebogen (RML)"
+#         btn_text = "Weiter"
 
 _rating_adjectives = (
     "logical",
@@ -167,69 +169,67 @@ _rating_adjectives = (
 )
 
 @eel.expose  # type: ignore
-def atol_c_get_items(version):
+def atol_c_get_items(version: str) -> Optional[dict[str, tuple[str, str]]]:
     """Get label pairs for each AToL item depending on language selection."""
-    EngVersion = {       
-        "logic":        ("logical", "illogical"),
-        "elegance":     ("inelegant", "elegant"),
-        "fluency":      ("choppy", "fluent"),
-        "ambiguity":    ("unambiguous", "ambiguous"),
-        "appeal":       ("appealing", "abhorrent"),
-        "structure":    ("unstructured", "structured"),
-        "precision":    ("precise", "vague"),
-        "harshness":    ("harsh", "soft"),
-        "flow":         ("flowing", "abrupt"),
-        "beauty":       ("beautiful", "ugly"),
-        "sistem":       ("systematic", "unsystematic"),
-        "pleasure":     ("pleasant", "unpleasant"),
-        "smoothness":   ("smooth", "raspy"),
-        "grace":        ("clumsy", "graceful"),
-        "angularity":   ("angular", "round"),
-              }
-    ItVersion = {       
-        "logic":        ("logica", "illogica"),
-        "elegance":     ("non elegante", "elegante"),
-        "fluency":      ("frammentata", "scorrevole"),
-        "ambiguity":    ("chiara", "ambigua"),
-        "appeal":       ("attraente", "ripugnante"),
+    EngVersion = {
+        "logic":        ("logical",         "illogical"),
+        "elegance":     ("inelegant",       "elegant"),
+        "fluency":      ("choppy",          "fluent"),
+        "ambiguity":    ("unambiguous",     "ambiguous"),
+        "appeal":       ("appealing",       "abhorrent"),
+        "structure":    ("unstructured",    "structured"),
+        "precision":    ("precise",         "vague"),
+        "harshness":    ("harsh",           "soft"),
+        "flow":         ("flowing",         "abrupt"),
+        "beauty":       ("beautiful",       "ugly"),
+        "sistem":       ("systematic",      "unsystematic"),
+        "pleasure":     ("pleasant",        "unpleasant"),
+        "smoothness":   ("smooth",          "raspy"),
+        "grace":        ("clumsy",          "graceful"),
+        "angularity":   ("angular",         "round"),
+    }
+    ItVersion = {
+        "logic":        ("logica",          "illogica"),
+        "elegance":     ("non elegante",    "elegante"),
+        "fluency":      ("frammentata",     "scorrevole"),
+        "ambiguity":    ("chiara",          "ambigua"),
+        "appeal":       ("attraente",       "ripugnante"),
         "structure":    ("non strutturata", "strutturata"),
-        "precision":    ("precisa", "vaga"),
-        "harshness":    ("dura", "morbida"),
-        "flow":         ("fluida", "brusca"),
-        "beauty":       ("bella", "brutta"),
-        "sistem":       ("sistematica", "non sistematica"),
-        "pleasure":     ("piacevole", "spiacevole"),
-        "smoothness":   ("liscia", "ruvida"),
-        "grace":        ("goffa", "aggraziata"),
-        "angularity":   ("spigolosa", "arrotondata"),
-              }
+        "precision":    ("precisa",         "vaga"),
+        "harshness":    ("dura",            "morbida"),
+        "flow":         ("fluida",          "brusca"),
+        "beauty":       ("bella",           "brutta"),
+        "sistem":       ("sistematica",     "non sistematica"),
+        "pleasure":     ("piacevole",       "spiacevole"),
+        "smoothness":   ("liscia",          "ruvida"),
+        "grace":        ("goffa",           "aggraziata"),
+        "angularity":   ("spigolosa",       "arrotondata"),
+    }
     BeVersion = {
-         "logic":       ("logisch",     "unlogisch"),
-        "elegance":     ("stillos",     "stilvoll"),
-        "fluency":      ("stockend",    "fließend"),
-        "ambiguity":    ("eindeutig",    "missverständlich"),  
-        "appeal":       ("anziehend",   "abstoßend"),
-        "structure":    ("stukturlos",  "sturkturiert"),
-        "precision":    ("genau",       "ungenau"),
-        "harshness":    ("hart",        "weich"),
-        "flow":         ("flüssig", "abgehackt"),
-        "beauty":       ("schön", "hässlich"),
-        "sistem":       ("systematisch", "unsystematisch"),
-        "pleasure":     ("angenehm", "unangenehm"),
-        "smoothness":   ("geschmeidig", "rau"),
-        "grace":        ("plump", "anmutig"),
-        "angularity":   ("eckig", "rund"),
+         "logic":       ("logisch",         "unlogisch"),
+        "elegance":     ("stillos",         "stilvoll"),
+        "fluency":      ("stockend",        "fließend"),
+        "ambiguity":    ("eindeutig",       "missverständlich"),
+        "appeal":       ("anziehend",       "abstoßend"),
+        "structure":    ("stukturlos",      "sturkturiert"),
+        "precision":    ("genau",           "ungenau"),
+        "harshness":    ("hart",            "weich"),
+        "flow":         ("flüssig",         "abgehackt"),
+        "beauty":       ("schön",           "hässlich"),
+        "sistem":       ("systematisch",    "unsystematisch"),
+        "pleasure":     ("angenehm",        "unangenehm"),
+        "smoothness":   ("geschmeidig",     "rau"),
+        "grace":        ("plump",           "anmutig"),
+        "angularity":   ("eckig",           "rund"),
     }
 
-
     if version == 'CymEng_Eng_GB':
-        output = EngVersion
+        return randomize(EngVersion)
     elif version == 'LtzGer_Ger_BE':
-        output = BeVersion
+        return randomize(BeVersion)
     elif version == 'LmoIta_Ita_IT':
-        output = ItVersion
-
-    return randomize(output)
+        return randomize(ItVersion)
+    return None
 
 
 class Response(DataSchema):
@@ -301,4 +301,10 @@ class Response(DataSchema):
         # Fill in today's date if not supplied
         if "date" not in data or data["date"] is None:
             data["date"] = datetime.date.today().isoformat()
-        super().setmeta(data)
+        super().setmeta(data)                                                   # type: ignore
+
+    if TYPE_CHECKING:
+
+        def setid(self, id_: str) -> None:
+            """Set the ID field of the Response."""
+            ...

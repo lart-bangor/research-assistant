@@ -27,9 +27,9 @@ def record_consent(data: dict[Any, Any]):
                 file.write(key + ": " + str(value) + "\n")
     except FileNotFoundError:
         print("\n")
-        print("#########################################\n")
+        print("############################################\n")
         print("#   The 'consent' directory does not exist #\n")
-        print("#########################################\n")
+        print("############################################\n")
     print("Consent info: ")
     print(data)
     booteel.setlocation("../index.html")
