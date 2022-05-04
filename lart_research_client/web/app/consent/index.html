@@ -2,6 +2,21 @@
 {% extends 'base.html' %}
 {% block title %}LART Research Client - Consent{% endblock %}
 {% block headline %}LART Research Client - Consent{% endblock %}
+{% block head_styles %}
+<style type="text/css">
+    main .btn-primary {
+        min-width: 50%;
+    }
+    #studyInfo li { color: #0000cd; }
+
+    #consentForm {
+        display: none;
+    }
+    
+</style>
+
+{% endblock %}
+
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
@@ -19,70 +34,93 @@
             }
         }
 
+        let infoVersions = [
+            {
+                "id": "CymEng_Eng_GB", 
+                "titleLabel":"Study Title", 
+                "titleInfo":"Executive function in bilingual speakers",
+                "purposeLabel": "What is the purpose of the research?",
+                "purposeInfo": "This study is part of a larger research project investigating bilingualism across Europe. <br /> The project aims to find out more about bilinguals in several areas across Europe, including Wales.",
+                "whyLabel": "Why am I being invited to participate?",
+                "whyInfo": "You have been chosen because you are a bilingual Welsh-English speaker.",
+                "commitLabel": "Do I have to take part?",
+                "commitInfo": "It is up to you to decide whether or not to take part. If you do decide to take part you should indicate your agreement on the online consent form.<br />You can still withdraw at any time, and you do not need to give a reason.",
+                "whatLabel": "What am I being invited to do?",
+                "whatInfo": "You will be asked to complete an electronic questionnaire and play a quick electronic game.<br /> We estimate that they full procedure will take you about 20 minutes to complete.<br />There are no other commitments or restrictions associated with participating.",
+                "concernLabel": "What are the possible disadvantages and risks of taking part?",
+                "concernInfo": "Participating in the research is not anticipated to cause you any disadvantages or discomfort <br />beyond what you might experience in everyday life.", 
+                "concern1Label": "What if something goes wrong?",
+                "concern1Info": "If you have any complaints about the project in the first instance you can contact any member of the research team.<br />If you feel your complaint has not been handled to your satisfaction you can contact Bangor University’s Governance Services to take your complaint further (see below).",
+                "confidentialLabel": "Will my taking part in this project be kept confidential?",
+                "confidentialInfo": "All the information that we collect about you during the course of the research will be kept strictly confidential. <br />You will not be identified or identifiable in any reports or publications. Any data collected about you in the electronic questionnaire will be stored in a Bangor University computer protected by passwords and by other relevant security processes and technologies. <br/> Data may be shared in an anonymised form to allow reuse by other researchers. These anonymised data will not allow you to be identified or identifiable. <br /> We also ask that you do not disclose anything about what you did during this study to anyone outside of the research team. It is important that information regarding the nature of the research remains confidential.",
+                "recordingLabel": "Will I be recorded, and how will the recorded media be used?",
+                "recordingInfo": "You may be audio-recorded while taking part in the research. <br />If you happen to be recorded, you will be informed in details at the end of your participation.",
+                "taskTypeLabel": "What type of information will be sought from me and why is the collection of this information relevant for achieving the research project's objectives?",
+                "taskTypeInfo": "The questionnaire will ask you about your opinions and current language use in Wales.<br /> Your experience as a speaker is exactly what the project is interested in exploring.",
+                "dataUseLabel": "What will happen to the results of the research project?",
+                "dataUseInfo": "Results of the research will be published as quantitative data, which means that no single individual will be identified in any report or publication.",
+                "whoLabel": "Who is organising and funding the research?",
+                "whoInfo": "The project is a partnership involving <i>Dr Marco Tamburelli</i> and <i>Prof Guillaume Thierry</i> of Bangor University, and is funded by the UK's Economic and Social Research Council.",
+                "ethicsLabel": "Who has ethically reviewed the project?",
+                "ethicsInfo": "This project has been ethically approved by the Research Ethics Committee in the College of Arts, Humanities and Business at Bangor University. <br />This is the body that caries out the ethics review procedure and monitors the application and delivery of the College's and University's Research Ethics Guidelines and Ethics Approval Procedures.",
+                "contactsLabel": "Contacts for further information",
+                "contactsInfo": "<i>Dr Marco Tamburelli</i> (Principal Investigator), School of Arts, Culture and Language, 39 College Road, Bangor University, UK. Tel: +44 (0)1248 38 2078, email: m.tamburelli@bangor.ac.uk <br /> The contact person for Bangor University's Governance Services is <i>Lauren Roberts</i> who can be reached at the following address: Lauren Roberts, Governance Services, Bangor University, Bangor, Gwynedd, LL57 2DG, UK or via email: l.roberts@bangor.ac.uk"
+
+             },
+
+            {
+                "id": "LmoIta_Ita_IT", 
+                 "titleLabel":"some words in IT", 
+                 "titleInfo":"more words in IT"
+            }
+        ]
+
+        
         function showStudyInfo() {
             const fetch_version = document.getElementById("selectSurveyVersion");
             const fetch_partId = document.getElementById("participantId");
             const version = fetch_version.value;
             const partId = fetch_partId.value;
-            document.getElementById("studyInfo").innerHTML = "Selected version: " + version + "<br>" + "Participant ID: " + partId;
-            //output_info(version); 
-            
-            
+            document.getElementById("userInfo").innerHTML = "Selected version: " + version + "<br>" + "Participant ID: " + partId;
+            output_info(version); 
         }
-
-        if (version == "CymEng_Eng_GB") {
-                    const titleLabel = "Study Title";
-                    const titleInfo = "Executive function in bilingual speakers.";
-        }
-
 
         // Instructions to be outputed depending on language selection
         function output_info(version) {
-            if (version == "CymEng_Eng_GB") {
-                    const titleLabel = "Study Title";
-                    const titleInfo = "Executive function in bilingual speakers.";
-                    
-                } else if (chosenVersion == "LmoIta_Ita_IT") {
-                    sessionStorage.setItem("version", "LmoIta_Ita_IT");
-                    sessionStorage.setItem("title", "Questionario Linguistico");
-                    sessionStorage.setItem("language", "Italiano");
-                    sessionStorage.setItem("rml", "lombardo");
-                    sessionStorage.setItem("instruction", "Si prega di spostare il cursore per registrare la propria scelta.");
-                    sessionStorage.setItem("language_header", "La lingua italiana è...");
-                    sessionStorage.setItem("rml_header", "Il lombardo è...");
-                    sessionStorage.setItem("atol_header", "Questionario AToL (RML)");
-                    sessionStorage.setItem("btn_text", "Avanti");
-                } else if (chosenVersion == "LtzGer_Ger_BE") {
-                    sessionStorage.setItem("version", "LtzGer_Ger_BE");
-                    sessionStorage.setItem("title", "Sprachlicher Fragebogen");
-                    sessionStorage.setItem("language", "Deutch");
-                    sessionStorage.setItem("rml", "Moselfränkisch");
-                    sessionStorage.setItem("instruction", "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??.");
-                    sessionStorage.setItem("language_header", "Die deutsche Sprache ist...");
-                    sessionStorage.setItem("rml_header", "Moselfränkisch ist...");
-                    sessionStorage.setItem("atol_header", "AToL Fragebogen (RML)");
-                    sessionStorage.setItem("btn_text", "Weiter");
-                }
-                
-                
+            let interface = infoVersions.find(infoVersions => infoVersions.id === version); //picks out object in array of objects called "infoVersion"
+            let htmlCode = "";
+            const iterableInterface = Object.values(interface); //turn object into array so that it can be iterated through with numbers (to skip id entry)
+            
+            for (let i = 1; i < iterableInterface.length; i+=2) {  //starting from [1] to skip id, then adding 2 to move to next label-info pair
+                label = iterableInterface[i];
+                info = iterableInterface[i+1];
+                htmlCode += '<p>' +
+                           '<li>' + label +
+                            '</li>' +
+                            info +
+                            '</p>';
+                            document.getElementById("studyInfo").innerHTML = htmlCode;
             }
+            show_form();
+             
+        }
+        
+        function show_form() {
+            document.getElementById("consentForm").style.display = "block";             
+        }
+
+        function hideBtn() {
+            const btn = document.getElementById('hidden-div');
+            btn.style.display = 'none';
+
+        }
     </script>
-
-
-{% endblock %}
-{% block head_styles %}
-<style type="text/css">
-    main .btn-primary {
-        min-width: 50%;
-    }
-    #infoItem li { color: #0000cd; }
-</style>
 
 {% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
     <li class="nav-item">
-        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+        <a class="nav-link" onClick="window.location = '/app/index.html'";><i class="bi bi-x-circle"></i>  Discard attempt</a>
     </li>
     <li><hr class="nav-divider"></li>
 {% endblock %}
@@ -98,7 +136,7 @@
 
         <!-- <form id="consentSelectForm" class="needs-validation">-->
 
-            <!-- Survey version -->
+            <!-- Language version -->
             <section class="m-4">
                 <div class="mb-3">
                     <label for="selectSurveyVersion" class="form-label">Select language version:</label>
@@ -126,33 +164,65 @@
             </section>
 
             <!-- Activate version -->
+            
+
+            <!-- Displaying study information for consent -->
+        <p id = "userInfo"></p>
+        <ol id="studyInfo"></ol>
+
+
+             <!-- Displaying consent form -->
+            <div id="consentForm">
+                <form id="partConsent" class="needs-validation" >
+                    <section class="m-4">
+                        <div class="mb-3">
+                            <p class="form-label" style="margin-left:0">Confirm consent:</p>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="informedConsent" required autocomplete="off" />
+                                <label class="form-check-label" for="confirmConsent">Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you. 
+                                </label>
+                                <div class="invalid-feedback"><p>Please confirm that you consent to the above before beginning your paarticipation in the study, thank you.<p>
+                                </div>
+                            </div> 
+                        </div>
+                    </section>
+                    
+                    <!-- Form submission -->
+                    <div class="row text-center p-3 m-4">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Confirm</button>
+                        </div>
+                    
+                    </div>
+                                      
+                
+                </form>
+            </div>
+
+            <!-- Activate version   -->
             <div class="row text-center p-3 m-4" id="hidden-div">
                 <div class="col">
-                    <button class="btn btn-primary btn-lg btn-action shadow" onclick="getElementById('hidden-div').style.display = 'block'; this.style.display = 'none'; showStudyInfo();">Start</button>
+                    <button class="btn btn-primary btn-lg btn-action shadow" onclick="showStudyInfo(); hideBtn();">Start</button>
 
                 </div>
             </div>
-            <!-- Displaying study information for consent -->
-        <p id="studyInfo"></p>
 
+            
 
-        <ol id="infoItem">
-            <p>
-            <li><script type="text/javascript">document.write(titleLabel);</script>  </li>
-            <script type="text/javascript">document.write(titleInfo);</script>
-            </p>
-
-        <p>
-            <li id="studyPurpose ">What is the purpose of the research? </li> 
-            <p id= "studyPurposeInfo">
-            This study is part of a larger research project investigating bilingualism across Europe. 
-            <br /> The project aims to find out more about bilinguals in several areas across Europe, including Wales. </p>
-        </p>
-
-
+            
+      
 
     </article>
 {% endblock %}
 {% block tail_scripts %}
-
+<script type="text/javascript">
+    lart.forms.requireValidation(true);
+    lart.forms.registerPipeline(
+        'partConsent',
+        async function(data) {
+            let success = await eel.record_consent(data)();
+            console.log("tail script: " + success);
+        }
+    );
+</script>
 {% endblock %}
