@@ -30,7 +30,7 @@
         ],
         "timeElapsed": [
             "Time:",
-            "Tenmpo:"
+            "Tempo:"
         ],
         "resultsModalTitle": [
             "Memory Task Results",
@@ -54,7 +54,7 @@
         ],
         "continueNextGame": [
             "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
-            "Clicca &ldquo;Continue&rdquo; per fare un altro tentativo e vedere se riesci a battere il tuo punteggio!"
+            "Clicca &ldquo;Continua&rdquo; per fare un altro tentativo e vedere se riesci a battere il tuo punteggio!"
         ],
         "continueFinished": [
             "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
