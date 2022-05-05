@@ -7,16 +7,14 @@
     main .btn-primary {
         min-width: 50%;
     }
-    #studyInfo li { color: #0000cd; }
+    #consentForm li { color: #0000cd; }
 
     #consentForm {
         display: none;
     }
     
 </style>
-
 {% endblock %}
-
 {% block head_scripts %}
     <script type="text/javascript">
                
@@ -58,30 +56,51 @@
         
         // Instructions & check button to be outputed depending on language selection
         function output_info(intface) {
-            let htmlCode = "";
             const iterableInterface = Object.values(intface.versionInfo); //turn object into array so that it can be iterated through with numbers (to establish label + Info pairs)
             const checkboxInfo = intface.confirmation;
             const confirmLabel = checkboxInfo.confirm;
             const confirmStatement = checkboxInfo.confirmTxt;
             const confirmWarnFeedback = checkboxInfo.confirmWarn;
             const btnLabel = checkboxInfo.btnTxt;
-            
+
+            const studyInfoElement = document.getElementById('studyInfo');
+            studyInfoElement.innerHTML = `<div class="row text-center">
+                                                <h3 class="col h-5">${intface.base.consentHeader}</h3>
+                                           </div>
+                                           <ol id="studyInfoList"></ol>`;
+
+            const studyInfoListElement = document.getElementById('studyInfoList');
             for (let i = 0; i < iterableInterface.length; i+=2) {  // adding 2 to i in order moveto  to next label-info pair
                 label = iterableInterface[i];
                 info = iterableInterface[i+1];
-                htmlCode += '<p>' +
-                           '<li>' + label +
-                            '</li>' +
-                            info +
-                            '</p>';
-                            document.getElementById("studyInfo").innerHTML = htmlCode;
+                const htmlCode = `<li><p>${label}</p><p class="text-body">${info}</p></li>`;
+                studyInfoListElement.innerHTML += htmlCode;
             }
+
             document.getElementById("consentLabel").innerHTML = "<b>" + confirmLabel + ": </b>";
             document.getElementById("confirmStatement").innerHTML = confirmStatement;
             document.getElementById("confirmFeedback").innerHTML = confirmWarnFeedback;
+
+            
+
+            const studyEligibilityElement = document.getElementById('studyEligibility');
+            studyEligibilityElement.innerHTML = `<div class="row text-center">
+                                                <h3 class="col h-5">${intface.base.eligibilityHeader}</h3>
+                                           </div>
+                                           <ol id="studyEligibilityList" start="15">
+                                                <li>
+                                                    <p>What are the eligibility criteria?</p>
+                                                    <p class="text-body">Foo, bar, faz, baz, ...</p>
+                                                </li>
+                                           </ol>`;
+
+            document.getElementById("eligibilityLabel").innerHTML = "<b>Confirm study eligibility: </b>";
+            document.getElementById("confirmEligibility").innerHTML = "I confirm that I'm eligible blah";
+            document.getElementById("confirmEligibilityFeedback").innerHTML = "Please confirm your eligibility.";
+
             document.getElementById("confirmBtn").innerHTML = btnLabel;
             show_form();
-             
+
         }
         
         function show_form() {
@@ -96,7 +115,6 @@
 
         
     </script>
-
 {% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
@@ -107,7 +125,6 @@
 {% endblock %}
 {% block content %}
     <article class="p-2">
-       
 
         <div class="row m-4 text-center">
             <div class="col">
@@ -144,56 +161,62 @@
                 </div>
             </section>
         </form>
+    </article>
 
-            <!-- Activate version -->
-            
+    <!-- Activate version -->
+    <article class="p-2">
 
-            <!-- Displaying study information for consent -->
-        <p id = "userInfo"></p>
-        <ol id="studyInfo"></ol>
+        <!-- Displaying consent form -->
+        <div id="consentForm">
+            <form id="partConsent" class="needs-validation">
 
-
-             <!-- Displaying consent form -->
-            <div id="consentForm">
-                <form id="partConsent" class="needs-validation" >
-                    <section class="m-4">
-                        <div class="mb-3">
-                            <p class="form-label" style="margin-left:0" id="consentLabel"> </p>
-                            <div class="form-check">
-                                <input type="hidden" id="partId" /> <!-- this is hidden & gets filled by JS within showStudyInfo()-->
-                                <input type="checkbox" class="form-check-input" id="informedConsent" required autocomplete="off" />
-                                <label class="form-check-label" for="confirmConsent" id="confirmStatement"> 
-                                </label>
-                                <div class="invalid-feedback"><p id="confirmFeedback"><p>
-                                </div>
-                            </div> 
-                        </div>
-                    </section>
-                    
-                    <!-- Form submission -->
-                    <div class="row text-center p-3 m-4">
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary btn-lg btn-action shadow" id="confirmBtn"></button>
-                        </div>
-                    
+                <!-- Consent form -->
+                <section class="m-4">
+                    <div id="studyInfo"></div>
+                    <div class="mb-3">
+                        <p class="form-label" style="margin-left:0" id="consentLabel"> </p>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="informedConsent" required autocomplete="off" />
+                            <label class="form-check-label" for="informedConsent" id="confirmStatement"> 
+                            </label>
+                            <div class="invalid-feedback"><p id="confirmFeedback"><p>
+                            </div>
+                        </div> 
                     </div>
-                                      
+                </section>
+
+                <!-- Eligibility criteria -->
+                <section class="m-4">
+                    <div id="studyEligibility"></div>
+                    <div class="mb-3">
+                        <p class="form-label" style="margin-left:0" id="eligibilityLabel"> </p>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="eligibilityConfirmation" required autocomplete="off" />
+                            <label class="form-check-label" for="eligibilityConfirmation" id="confirmEligibility"> 
+                            </label>
+                            <div class="invalid-feedback"><p id="confirmEligibilityFeedback"><p>
+                            </div>
+                        </div> 
+                    </div>
+                </section>
                 
-                </form>
-            </div>
-
-            <!-- Activate version   -->
-            <div class="row text-center p-3 m-4" id="hidden-div">
-                <div class="col">
-                    <button class="btn btn-primary btn-lg btn-action shadow" onclick="showStudyInfo();">Start</button>
-
+                <!-- Form submission -->
+                <div class="row text-center p-3 m-4">
+                    <div class="col">
+                        <input type="hidden" id="partId" /> <!-- this is hidden & gets filled by JS within showStudyInfo()-->
+                        <button type="submit" class="btn btn-primary btn-lg btn-action shadow" id="confirmBtn"></button>
+                    </div>
                 </div>
+            
+            </form>
+        </div>
+
+        <!-- Activate version   -->
+        <div class="row text-center p-3 m-4" id="hidden-div">
+            <div class="col">
+                <button class="btn btn-primary btn-lg btn-action shadow" onclick="showStudyInfo();">Start</button>
             </div>
-
-            
-
-            
-      
+        </div>
 
     </article>
 {% endblock %}

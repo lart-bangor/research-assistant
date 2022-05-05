@@ -88,26 +88,38 @@ def main():
     sys.exit(0)
 
 
+# Timer for close() function internal callbacks, do not modify outside close() method.
+_close_countdown_timer: float = config.shutdown_delay
+
+
 def close(page: str, opensockets: list[Any]):
     """Callback when an app socket is closed."""
     logger.info("Socket closed: %s", page)
     logger.debug("Remaining sockets: %s", len(opensockets))
 
-    # Exit gevent event loop if no further sockets open after 1s delay
+    # Exit gevent event loop if no further sockets open after config.shutdown_delay seconds delay
     if len(opensockets) == 0:
 
         def conditional_shutdown():
-            if len(eel._websockets) == 0:                                       # type: ignore
+            global _close_countdown_timer
+            if len(eel._websockets) == 0 and _close_countdown_timer < 1.0:      # type: ignore
                 logger.debug("Still no websockets found.")
+                logger.debug(f"Shutdown delay timeout remaining is {_close_countdown_timer}.")
                 logger.debug("Destroying gevent event loop...")
                 ghub = gevent.get_hub()                                         # type: ignore
                 ghub.loop.destroy()                                             # type: ignore
-            else:
+            elif len(eel._websockets) > 0:                                      # type: ignore
+                _close_countdown_timer = config.shutdown_delay
                 logger.debug("New websockets found, cancelling shutdown...")
                 gevent.getcurrent().kill()                                      # type: ignore
+            else:
+                _close_countdown_timer -= 1.0
+                logger.debug("Still no websockets found.")
+                logger.debug(f"Shutdown delay timeout remaining is {_close_countdown_timer}.")
+                gevent.spawn_later(1.0, conditional_shutdown)  # type: ignore
 
         logger.debug(f"No websockets left, registering shutodwn after {config.shutdown_delay}s.")
-        gevent.spawn_later(config.shutdown_delay, conditional_shutdown)         # type: ignore
+        gevent.spawn_later(1.0, conditional_shutdown)         # type: ignore
 
 
 if __name__ == "__main__":
