@@ -8,7 +8,7 @@
      "versionInfo" : {
          "titleLabel":"Titolo della ricerca", 
          "titleInfo":"Funzioni esecutive nei parlanti bilingui. ",
-         "purposeLabel": "ual è la finalità di questa ricerca?",
+         "purposeLabel": "Qual è la finalità di questa ricerca?",
          "purposeInfo": "Questo studio fa parte di un più ampio progetto di ricerca che indaga il bilinguismo in tutta Europa.<br/ > Il progetto mira a incrementare la nostra conoscenza sui soggetti bilingui di varie aree d'Europa, tra cui la Lombardia.",
          "whyLabel": "Perché sono stato invitato a partecipare?",
          "whyInfo": "Lei è stato scelto perché è un parlante bilingue lombardo-italiano, o perlomeno ha una buona competenza della Sua varietà locale del lombardo.",
@@ -17,7 +17,7 @@
          "whatLabel": "Che cosa mi sarà chiesto di fare? ",
          "whatInfo": "Le verrà chiesto di compilare un questionario elettronico e di completare un breve gioco di memoria. <br /?>Stimiamo che l’intera procedura durerà circa 20 minuti. Non ci sono altri impegni o restrizioni associati alla partecipazione. ",
          "concernLabel": "Quali sono i possibili svantaggi e rischi derivanti dalla mia partecipazione?",
-         "concernInfo": "Non si prevede che la partecipazione alla ricerca possa causare svantaggi o disagi,<br /> oltre a quelli che Lei potrebbe sperimentare nella vita di tutti i giorni. ", 
+         "concernInfo": "Non si prevede che la partecipazione alla ricerca possa causare svantaggi o disagi,<br /> oltre a quelli che Lei potrebbe incontrare nella vita di tutti i giorni. ", 
          "concern1Label": " Cosa posso fare se qualcosa va storto?",
          "concern1Info": "Se ha dei reclami da presentare riguardo al progetto, può per prima cosa contattare qualsiasi membro del team di ricerca.<br /> Se ritiene che il Suo reclamo non sia stato gestito in modo soddisfacente, può contattare Governance Services della Bangor University e presentare lì il Suo reclamo (veda sotto).",
          "confidentialLabel": "La mia partecipazione a questo progetto sarà tenuta riservata?",
@@ -33,7 +33,7 @@
          "ethicsLabel": "Chi ha esaminato gli aspetti etici del progetto?",
          "ethicsInfo": "Questo progetto è stato approvato dal punto di vista etico dal Comitato Etico per la Ricerca (<i>Research Ethics Committee</i>) della facoltà di umanistica (<i>College of Arts, Humanities and Business</i>) della Bangor University.<br /> Questo è l'organismo che cura la procedura di revisione etica e monitora l'applicazione e l'indicazione delle Linee guida adottate in Ateneo riguardanti l'etica della ricerca e le procedure di approvazione etica. ",
          "contactsLabel": " Contatti per ulteriori informazioni",
-         "contactsInfo": "<i>Dr Marco Tamburelli</i> (Ricercatore principale), School of Arts, Culture and Language, 39 College Road, Bangor University, UK. Tel: +44 (0)1248 38 2078, email: m.tamburelli@bangor.ac.uk <br /> The contact person for Bangor University's Governance Services is <i>Lauren Roberts</i> who can be reached at the following address: Lauren Roberts, Governance Services, Bangor University, Bangor, Gwynedd, LL57 2DG, UK or via email: l.roberts@bangor.ac.uk"
+         "contactsInfo": "<i>Dr Marco Tamburelli</i> (Ricercatore principale), School of Arts, Culture and Language, 39 College Road, Bangor University, UK. Tel: +44 (0)1248 38 2078, email: m.tamburelli@bangor.ac.uk <br /> La persona da contattare ai servizi di governance della Bangor University è <i>Lauren Roberts</i>. La può trovare al seguente indirizzo: Lauren Roberts, Governance Services, Bangor University, Bangor, Gwynedd, LL57 2DG, UK o via email: l.roberts@bangor.ac.uk"
                 
      },
      "confirmation": {
