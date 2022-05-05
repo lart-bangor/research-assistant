@@ -41,15 +41,20 @@
             const fetch_partId = document.getElementById("participantId");
             const version = fetch_version.value;
             const partId = fetch_partId.value;
-            document.getElementById("partId").value = partId; //pass partId on to consent form for processing
-            console.log("Selected version: " + version);
-            console.log("Participant ID: " + partId);
-            jsonFile = "versions/" + version + ".json";  //set filename based on selected version
-            fetch(jsonFile)
-                .then(response => response.json())
-                .then(data => output_info(data));
+            if (partId == "" || partId == null) {
+                    alert("Please provide a valid Participant ID.");
+                return false;
+            } else {
+                hideBtn();
+                document.getElementById("partId").value = partId; //pass partId on to consent form for processing
+                console.log("Selected version: " + version);
+                console.log("Participant ID: " + partId);
+                jsonFile = "versions/" + version + ".json";  //set filename based on selected version
+                fetch(jsonFile)
+                    .then(response => response.json())
+                    .then(data => output_info(data));  //pass teh contents of jsonFile to output_info()
             }
-
+        }
         
         // Instructions & check button to be outputed depending on language selection
         function output_info(intface) {
@@ -88,13 +93,15 @@
             btn.style.display = 'none';
 
         }
+
+        
     </script>
 
 {% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
     <li class="nav-item">
-        <a class="nav-link" onClick="window.location = '/app/index.html'";><i class="bi bi-x-circle"></i>  Discard attempt</a>
+        <a class="nav-link" onClick="window.location = 'index.html'";><i class="bi bi-x-circle"></i>  Discard attempt</a>
     </li>
     <li><hr class="nav-divider"></li>
 {% endblock %}
@@ -108,7 +115,7 @@
             </div>
         </div>
 
-        <!-- <form id="consentSelectForm" class="needs-validation">-->
+        <form id="consentSelectForm" class="needs-validation">
 
             <!-- Language version -->
             <section class="m-4">
@@ -136,6 +143,7 @@
                     </div>
                 </div>
             </section>
+        </form>
 
             <!-- Activate version -->
             
@@ -152,7 +160,7 @@
                         <div class="mb-3">
                             <p class="form-label" style="margin-left:0" id="consentLabel"> </p>
                             <div class="form-check">
-                                <input type="hidden" id="partId" /> <!-- this gets filled by JS within showStudyInfo()-->
+                                <input type="hidden" id="partId" /> <!-- this is hidden & gets filled by JS within showStudyInfo()-->
                                 <input type="checkbox" class="form-check-input" id="informedConsent" required autocomplete="off" />
                                 <label class="form-check-label" for="confirmConsent" id="confirmStatement"> 
                                 </label>
@@ -177,7 +185,7 @@
             <!-- Activate version   -->
             <div class="row text-center p-3 m-4" id="hidden-div">
                 <div class="col">
-                    <button class="btn btn-primary btn-lg btn-action shadow" onclick="showStudyInfo(); hideBtn();">Start</button>
+                    <button class="btn btn-primary btn-lg btn-action shadow" onclick="showStudyInfo();">Start</button>
 
                 </div>
             </div>
