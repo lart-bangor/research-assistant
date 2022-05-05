@@ -38,7 +38,7 @@
         ],
         "completeCongratulations": [
             "Well done, you've matched all the cards!",
-            "Complimenti, hai trovato tutte le carte!"
+            "Complimenti, hai trovato tutte le coppie!"
         ],
         "yourScore": [
             "Your score:",
@@ -54,11 +54,11 @@
         ],
         "continueNextGame": [
             "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
-            "Clicca &ldquo;Continua&rdquo; per fare un altro tentativo e vedere se riesci a battere il tuo punteggio!"
+            "Clicca &ldquo;Continua&rdquo; per fare un altro tentativo e provare a superare il tuo punteggio!"
         ],
         "continueFinished": [
             "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
-            "Hai completato con successo questa attività!<br /> Fai clic su &ldquo;Continua&rdquo; per finire."
+            "Hai completato con successo questo gioco!<br /> Fai clic su &ldquo;Continua&rdquo; per finire."
         ],
         "continue": [
             "Continue",
@@ -76,7 +76,7 @@
         ],
         "followOnInstructions": [
             "You can tell the experimenter that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
-            "Puoi informare il ricercatore che hai terminato le attività dell'app. Il ricercatore verificarà che abbiamo tutto ciò di cui abbiamo bisogno e ti darà ulteriori istruzioni se necessario."
+            "Puoi informare il ricercatore che hai terminato le attività dell'app. Il ricercatore verificherà che abbiamo tutto ciò che ci serve e ti darà ulteriori istruzioni se necessario."
         ]
     }
 }
