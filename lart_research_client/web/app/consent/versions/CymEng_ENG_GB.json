@@ -6,8 +6,9 @@
         "date": "2022-05-05"
     },
     "base": {
-        "consentHeader": "Consent Form",
-        "eligibilityHeader": "Study Eligibility"
+        "consentHeader": "Participant Information Sheet",
+        "eligibilityHeader": "Eligibility Criteria",
+        "eligibilityLabel": "Please read the eligibility criteria below and confirm that you qualify, thank you"
     },
     "versionInfo" : {
         "titleLabel":"Study Title", 
@@ -44,7 +45,22 @@
         "confirmTxt": "Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you.",
         "confirmWarn": "Please confirm that you consent to the above before beginning your participation in the study, thank you.",
         "btnTxt": "Confirm"
-    }
+    },
+    "eligibilityCriteria": {
+        "lang": "I am a speaker of English and Welsh",
+        "age": "I am between 25 and 35 years old",
+        "hearing": "I do not suffer from hearing impairments",
+        "vision": "I do not have any visual impairments (defined as a loss of sight that is not corrected by glasses or contact",
+        "injury": "I have never suffered a serious head injury",
+        "neuro": "I have never been diagnosed with any neurological impairments",
+        "meds": "I am not currently under heavy medical treatment for a neurological condition"
+    },
+    "eligibilityConfirm": {
+        "eligConfirmLabel": "Confirm eligibility:",
+        "eligConfirmTxt": "I confirm that I meet the criteria above",
+        "eligConfirmWarn": "Please confirm that you are eligible to take part in this study, thank you."
+    }    
+
 } 
 
  

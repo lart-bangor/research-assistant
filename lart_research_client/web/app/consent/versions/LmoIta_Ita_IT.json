@@ -5,6 +5,11 @@
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>, Lissander Brasca <a.arioli@bangor.ac.uk>",
         "date": "2022-05-05"
     },
+    "base": {
+        "consentHeader": "Scheda informativa",
+        "eligibilityHeader": "Criteri di Ammissibilità",
+        "eligibilityLabel": "Quali sono i criteri di ammissibilità?"
+    },
      "versionInfo" : {
          "titleLabel":"Titolo della ricerca", 
          "titleInfo":"Formazione linguistica e funzioni esecutive nei parlanti bilingui. ",
@@ -41,8 +46,21 @@
         "confirmTxt": "Si prega di confermare che ha letto e compreso quanto sopra e di essere disposto a partecipare allo studio. Grazie.",
         "confirmWarn": "Si prega di confermare che acconsente a quanto sopra prima di iniziare la partecipazione allo studio, grazie.",
         "btnTxt": "Confermo"
-
-     }
+     },
+     "eligibilityCriteria": {
+        "lang": "Parlo lingue",
+        "age": "Ho tra i 25 e 35 anni",
+        "hearing": "I do not suffer from hearing impairments",
+        "vision": "I do not have any visual impairments (defined as a loss of sight that is not corrected by glasses or contact",
+        "injury": "I have never suffered a serious head injury",
+        "neuro": "I have never been diagnosed with any neurological impairments",
+        "meds": "I am not currently under heavy medical treatment for a neurological condition"
+        },        
+    "eligibilityConfirm" : {
+        "eligConfirmLabel": "Confirm eligibility:",
+        "eligConfirmTxt": "Confermo",
+        "eligConfirmWarn": "Please confirm that you are eligible to take part in this study, thank you."
+    }    
 }
      
 

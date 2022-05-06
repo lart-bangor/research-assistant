@@ -7,7 +7,7 @@
     main .btn-primary {
         min-width: 50%;
     }
-    #consentForm li { color: #0000cd; }
+    #consentForm ol { color: #0000cd; }
 
     #consentForm {
         display: none;
@@ -56,53 +56,61 @@
         
         // Instructions & check button to be outputed depending on language selection
         function output_info(intface) {
+            //# Output participant informtion sheet & informed consent #//
             const iterableInterface = Object.values(intface.versionInfo); //turn object into array so that it can be iterated through with numbers (to establish label + Info pairs)
             const checkboxInfo = intface.confirmation;
             const confirmLabel = checkboxInfo.confirm;
             const confirmStatement = checkboxInfo.confirmTxt;
             const confirmWarnFeedback = checkboxInfo.confirmWarn;
             const btnLabel = checkboxInfo.btnTxt;
+            let listItems = iterableInterface.length;
 
             const studyInfoElement = document.getElementById('studyInfo');
-            studyInfoElement.innerHTML = `<div class="row text-center">
-                                                <h3 class="col h-5">${intface.base.consentHeader}</h3>
-                                           </div>
-                                           <ol id="studyInfoList"></ol>`;
+            studyInfoElement.innerHTML =  `<div class="row text-center">
+                                            <h4 class="col h-5">${intface.base.consentHeader}</h4>
+                                            </div>
+                                            <ol id="studyInfoList"></ol>`;
 
             const studyInfoListElement = document.getElementById('studyInfoList');
-            for (let i = 0; i < iterableInterface.length; i+=2) {  // adding 2 to i in order moveto  to next label-info pair
+
+            for (let i = 0; i < iterableInterface.length; i+=2) {  // adding 2 to i in order to move to next label-info pair
                 label = iterableInterface[i];
                 info = iterableInterface[i+1];
-                const htmlCode = `<li><p>${label}</p><p class="text-body">${info}</p></li>`;
+                const htmlCode = `<li>${label}<p class="text-body">${info}</p></li>`;
                 studyInfoListElement.innerHTML += htmlCode;
-            }
+                }
 
             document.getElementById("consentLabel").innerHTML = "<b>" + confirmLabel + ": </b>";
             document.getElementById("confirmStatement").innerHTML = confirmStatement;
             document.getElementById("confirmFeedback").innerHTML = confirmWarnFeedback;
 
+            //# Output Eigibility info #//
+            let startingNumber = listItems / 2 + 1;
+            const studyEligibilityElement = document.getElementById('studyEligibility');        //output eligibility header
+            studyEligibilityElement.innerHTML = `<br /><div class="row text-center">
+                                                    <h4 class="col h-5">${intface.base.eligibilityHeader}</h4>
+                                                </div>
+                                                <ol id="studyEligibilityList" start="` + startingNumber + `">
+                                                    <li>${intface.base.eligibilityLabel}
+                                                        <ul class="text-body" id="eligCriteriaList"></ul>
+                                                    </li>
+                                                </ol>`;
+            const eligibilityList = intface.eligibilityCriteria;                           // loop thorugh object to output list of eligibility criteria
+            const eligCriteriaListElement = document.getElementById('eligCriteriaList');
+            for (const key in eligibilityList) {
+                const htmlEligCode = `<li>${eligibilityList[key]}</li>`;
+                eligCriteriaListElement.innerHTML += htmlEligCode;
+            }
+            document.getElementById("eligibilityLabel").innerHTML = "<b>" + intface.eligibilityConfirm.eligConfirmLabel + "</b>";
+            document.getElementById("confirmEligibility").innerHTML = intface.eligibilityConfirm.eligConfirmTxt;
+            document.getElementById("confirmEligibilityFeedback").innerHTML = intface.eligibilityConfirm.eligConfirmWarn;
             
-
-            const studyEligibilityElement = document.getElementById('studyEligibility');
-            studyEligibilityElement.innerHTML = `<div class="row text-center">
-                                                <h3 class="col h-5">${intface.base.eligibilityHeader}</h3>
-                                           </div>
-                                           <ol id="studyEligibilityList" start="15">
-                                                <li>
-                                                    <p>What are the eligibility criteria?</p>
-                                                    <p class="text-body">Foo, bar, faz, baz, ...</p>
-                                                </li>
-                                           </ol>`;
-
-            document.getElementById("eligibilityLabel").innerHTML = "<b>Confirm study eligibility: </b>";
-            document.getElementById("confirmEligibility").innerHTML = "I confirm that I'm eligible blah";
-            document.getElementById("confirmEligibilityFeedback").innerHTML = "Please confirm your eligibility.";
-
+            //# Overall confirmation button #//
             document.getElementById("confirmBtn").innerHTML = btnLabel;
             show_form();
-
         }
-        
+
+                
         function show_form() {
             document.getElementById("consentForm").style.display = "block";             
         }
