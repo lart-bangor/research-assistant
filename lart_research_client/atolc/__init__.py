@@ -5,13 +5,13 @@ import random
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Optional, Iterable
+from typing import TYPE_CHECKING, Any, Optional, Iterable, final
 from .. import booteel
 from ..config import config
 from ..datavalidator.schemas import DataSchema
 from ..datavalidator.types import PolarT
 from . import patterns
-
+from collections import OrderedDict
 
 data_path: Path = config.paths.data / "AToL-C"
 if not data_path.exists():
@@ -21,21 +21,32 @@ presentime = datetime.now()
 dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
 dt_filename = presentime.strftime("%d_%m_%Y__%H-%M-%S")
 
+def arrange_data(data):
+    ordered_data = OrderedDict(data)
+    ordered_data.update({"Date_&_Time": dt_string})
+    ordered_data.move_to_end("Date_&_Time", last=False)
+    finalDict = {
+        "meta": ordered_data}
+    return finalDict
+    
+
+def get_id(dict):
+    id = dict["participantId"] + "_" + dt_filename
+    return id
+
 @eel.expose
-def init_atol(data: dict[str, str]) -> None:
+def init_atol(myData: dict[str, str]) -> None:
     """Retrieve initial info from index.html and print to file + to console."""
     global version
-    version = data["selectSurveyVersion"]
-    file_name = data["participantId"] + "_" + dt_filename + ".txt"
+    version = myData["selectSurveyVersion"]
+    file_name = get_id(myData) + ".json"
+    data = arrange_data(myData)
     data_file = data_path / file_name
-
+    
     try:
         with open(data_file, "a") as fp:
-            fp.write(f"\nDate & Time: {dt_string}\n")
-            for key in data:
-                value = data[key]
-                fp.write(f"{key}: {str(value)}\n")
-            fp.write("\n")
+            json_output = json.dumps(data, indent=4)
+            fp.write(json_output)
     except FileNotFoundError:
         print("\n")
         print("##############################################\n")
@@ -45,25 +56,40 @@ def init_atol(data: dict[str, str]) -> None:
     print(data)
     booteel.setlocation("atolRatingsMaj.html")
 
+def arrange_order(dict, source):
+    presentation_order = key_list(dict) #record order in which data was presented
+    print("presentable type is")
+    print(type(presentation_order))
+    presentable= alphabetise(dict)  #now reset data in alphabetical order ready for writing to file
+    presOrderLabel = "presentation order_" + source
+    ratingsLabel = "Ratings_" + source
+    finalDict = {
+        presOrderLabel: presentation_order,
+        ratingsLabel : presentable
+    }
+    return finalDict
+             
 
 @eel.expose
-def grab_atol_ratings(data: dict[Any, Any], source: str, version: str, partId: str):
-    """Does the same as init_atol, but for part1.html."""
+def grab_atol_ratings(myData: dict[Any, Any], source: str, version: str, partId: str):
+    """Does the same as init_atol, but for ratings"""
     location = fetch_location(source, version)
-    file_name = partId + "_" + dt_filename + ".txt"
+    file_name = partId + "_" + dt_filename + ".json"
     data_file = data_path / file_name
-    presentation_order = key_list(data) #record order in which data was presented and output labels
-    data = alphabetise(data)  #now reset data in alphabetical order ready for writing to file
-
+    data = arrange_order(myData, source)
+    
     try:
-        with open(data_file, "a") as fp:
-            fp.write("Presentation Order: ")
-            fp.write(json.dumps(presentation_order))
-            fp.write("\nRatings:\n")
-            for key in data:
-                value = data[key]
-                fp.write(f"    {key}: {str(value)}\n")
-            fp.write("\n")
+        with open(data_file, 'r') as fin:
+            current_data = json.load(fin)
+            current_data.update(data)
+            #full_data = current_data
+    except FileNotFoundError as exc:
+        pass
+            
+    try:
+        with open(data_file, 'w') as fout:
+            json_output = json.dumps(current_data, indent=4)
+            fout.write(json_output)
     except FileNotFoundError:
         print("The 'data' directory does not exist")
     print("AToL ratings from " + source + ".html: ")
