@@ -142,13 +142,24 @@ class Logging(DataclassDictMixin):
 
 
 @dataclass
+class Sequences(DataclassDictMixin):
+    """Class for app-task sequencing configuration."""
+
+    atolc: str = field(default="")
+    lsbqrml: str = field(default="")
+    memorygame: str = field(default="")
+    consent: str = field(default="")
+
+
+@dataclass
 class Config(DataclassDictMixin):
     """Class for keeping track of App configuration data."""
 
     appname: str = field(default=_appname, init=False)
     appauthor: str = field(default=_appauthor, init=False)
-    paths: Paths = field(default=Paths())
     logging: Logging = field(default=Logging())
+    paths: Paths = field(default=Paths())
+    sequences: Sequences = field(default=Sequences())
     shutdown_delay: float = field(default=2.0)
 
     def save(self, filename: str = "settings.json"):
@@ -157,8 +168,16 @@ class Config(DataclassDictMixin):
         if not path.parent.exists():
             path.parent.mkdir(parents=True, exist_ok=True)
         d = self.asdict()
-        with path.open("w") as fp:
-            json.dump(d, fp, indent=4, cls=JSONPathEncoder)
+        logging.debug(
+            f"Saving configuration to file: '{path}' "
+            f"with values {json.dumps(d, cls=JSONPathEncoder)}"
+        )
+        try:
+            with path.open("w") as fp:
+                json.dump(d, fp, indent=4, cls=JSONPathEncoder)
+        except Exception as e:
+            logging.error(e)
+            raise
 
     @classmethod
     def load(cls, filename: str = "settings.json"):
@@ -169,10 +188,15 @@ class Config(DataclassDictMixin):
                 with path.open("r") as fp:
                     d = json.load(fp)
                 cfg = Config.fromdict(d)
+                logging.debug(
+                    f"Successfully loaded config from file ('{path}') with "
+                    f"values: {json.dumps(cfg.asdict(), cls=JSONPathEncoder)}"
+                )
                 return cfg
-            except Exception as e:
-                logging.error(e)
+            except IOError as e:
+                logging.error(f"Failed to load config file: {e}.")
                 return Config()
+        logging.debug("No configuration file found. Issuing hard-coded default settings.")
         return Config()
 
 
