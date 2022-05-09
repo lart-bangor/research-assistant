@@ -1,0 +1,32 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 09/05/2022 15:43:57
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 09/05/2022 15:53:25
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 09/05/2022 15:59:50
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ssss
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 09/05/2022 16:26:00
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
