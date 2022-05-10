@@ -9,7 +9,7 @@ import gevent
 import logging
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 from . import atolc                                                     # type: ignore  # noqa: F401
 from . import consent                                                   # type: ignore  # noqa: F401
 from . import mgt                                                       # type: ignore  # noqa: F401
@@ -27,7 +27,7 @@ root_logger.addHandler(config.logging.get_stream_handler())                 # > 
 root_logger.addHandler(config.logging.get_file_handler(root_logger_name))   # > app log dir
 logger = logging.getLogger(__name__)
 
-# Expose Eel API's for subpackages
+# Expose Eel APIs for subpackages
 expose_lsbqrml()
 expose_memorygame()
 
@@ -46,6 +46,29 @@ def main():
     # Parse command line arguments
     argparser = argparse.ArgumentParser(
         description="Launch the LART Research Client App."
+    )
+
+    class StoreOptionalAction(argparse.Action):
+        def __call__(
+            self,
+            parser: argparse.ArgumentParser,
+            namespace: argparse.Namespace,
+            values: str | Sequence[Any] | None,
+            option_string: str | None = ...
+        ) -> None:
+            setattr(namespace, self.dest, None)
+
+    argparser.add_argument(
+        "-b, --backup",
+        action=StoreOptionalAction,
+        nargs="?",
+        dest="backup",
+        metavar="FILE",
+        help=(
+            "backup data as ZIP archive to FILE if given,\n"
+            "otherwise display a save as ... dialog."
+        ),
+        default=False
     )
     argparser.add_argument(
         "--debug",
@@ -66,6 +89,13 @@ def main():
         loglevel = config.logging.default_level
     root_logger.setLevel(loglevel)
     booteel.setloglevel(loglevel)
+
+    # Run backup exporter and exit if --backup supplied
+    if args.backup is not False:
+        if export_backup(args.backup):
+            sys.exit(0)
+        else:
+            sys.exit(1)
 
     # Run app using eel
     eel.init(                                                                   # type: ignore
@@ -121,6 +151,39 @@ def close(page: str, opensockets: list[Any]):
 
         logger.debug(f"No websockets left, registering shutodwn after {config.shutdown_delay}s.")
         gevent.spawn_later(1.0, conditional_shutdown)         # type: ignore
+
+
+def export_backup(filename: Path | str | None = None) -> bool:
+    """Export app data as a ZIP archive. Prompt for filename if needed."""
+    logger.debug("Exporting data backup...")
+    import os
+    import shutil
+    if filename is None:
+        from tkinter import filedialog
+        from datetime import datetime
+        dialog = filedialog.SaveAs(
+            master=None,
+            title="Save Data Backup as...",
+            initialfile=datetime.now().strftime("lartrc_backup_%Y-%m-%dT%H%M%S.zip"),
+            filetypes=[("ZIP Archives", "*.zip")]
+        )
+        filename = str(dialog.show())  # type: ignore
+    if not filename:
+        logger.error("No filename provided.")
+        return False
+    filename = Path(filename)
+    logger.debug(f"Backup filename: '{filename}'")
+    if str(filename).endswith(".zip"):
+        filename = filename.with_suffix("")
+    old_wd = Path.cwd()
+    os.chdir(config.paths.data)
+    result = shutil.make_archive(str(filename), "zip", logger=logger)
+    os.chdir(old_wd)
+    if Path(result).exists():
+        logger.info(f"Backup saved to file '{result}'.")
+        return True
+    logger.info("Failed to create backup.")
+    return False
 
 
 if __name__ == "__main__":
