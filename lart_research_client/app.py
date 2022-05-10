@@ -41,8 +41,6 @@ def atol_rating(data: dict[Any, Any]):
 
 def main():
     """App main function called on app launch."""
-    global logger, ROOT_DIR
-
     # Parse command line arguments
     argparser = argparse.ArgumentParser(
         description="Launch the LART Research Client App."
@@ -151,6 +149,15 @@ def close(page: str, opensockets: list[Any]):
 
         logger.debug(f"No websockets left, registering shutodwn after {config.shutdown_delay}s.")
         gevent.spawn_later(1.0, conditional_shutdown)         # type: ignore
+
+
+# Expose export_backup to spawn self --backup
+@eel.expose
+def export_data_backup():
+    """Non-blocking eel wrapper for the app's `export_backup()` function."""
+    import multiprocessing
+    p = multiprocessing.Process(target=export_backup)
+    p.start()
 
 
 def export_backup(filename: Path | str | None = None) -> bool:
