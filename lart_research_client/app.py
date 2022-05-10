@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 from . import atolc                                                     # type: ignore  # noqa: F401
 from . import consent                                                   # type: ignore  # noqa: F401
-from . import mgt
+from . import mgt                                                       # type: ignore  # noqa: F401
 from .config import config
 from . import booteel
 from .lsbqrml import expose_to_eel as expose_lsbqrml
