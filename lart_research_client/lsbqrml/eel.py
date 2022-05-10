@@ -8,7 +8,6 @@ from copy import copy
 from functools import wraps
 from pathlib import Path
 from typing import Optional, Union, Callable, Any, TypeVar, cast
-from urllib.parse import quote as urlquote
 from .dataschema import Response
 from .versions import versions
 from .. import booteel
@@ -306,31 +305,25 @@ def setnotes(instid: str, data: dict[str, Any]) -> str:
     logger.debug(f"LSBQ-RML instance id = {instid}")
     logger.debug(f"... set 'notes' data to {instance.getnotes()}")
     store(instid)
-    meta = instance.getmeta()
-    params = {
-        "selectSurveyVersion": meta["version"],
-        "researcherId": meta["researcher_id"],
-        "researchLocation": meta["research_location"],
-        "participantId": meta["participant_id"],
-        "confirmConsent": int(meta["consent"]),
-        "surveyDataForm.submit": "true",
-    }
-    query = "&".join(
-        [f"{key}={urlquote(str(value), safe='')}" for key, value in params.items()]
-    )
-    booteel.setlocation(f"/app/atol-c/index.html?{query}")
+    if config.sequences.lsbqrml:
+        meta = instance.getmeta()
+        query = booteel.buildquery({
+            "selectSurveyVersion": meta["version"],
+            "researcherId": meta["researcher_id"],
+            "researchLocation": meta["research_location"],
+            "participantId": meta["participant_id"],
+            "confirmConsent": int(meta["consent"]),
+            "surveyDataForm.submit": "true",
+        })
+        booteel.setlocation(f"/app/{config.sequences.lsbqrml}/index.html?{query}")
+    else:
+        booteel.setlocation("/app/index.html")
     return instid
 
 
 @_expose
 def getversions() -> dict[str, str]:
     """Retrieves the available versions of the LSBQ RML."""
-    # return {
-    #     "CymEng_Eng_GB": "Welsh – English (United Kingdom)",
-    #     "CymEng_Cym_GB": "Cymraeg – Saesneg (Deyrnas Unedig)",
-    #     "LmoIta_Ita_IT": "Lombard – Italiano (Italia)",
-    #     "LtzGer_Ger_BE": "Moselfränkisch – Deutsch (Belgien)",
-    # }
     lsbq_versions: dict[str, str] = {}
     for identifier in versions.keys():
         lsbq_versions[identifier] = versions[identifier]["meta"]["versionName"]
