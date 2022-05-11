@@ -7,6 +7,7 @@ import argparse
 import eel
 import gevent
 import logging
+import multiprocessing
 import sys
 from pathlib import Path
 from typing import Any, Sequence
@@ -17,6 +18,10 @@ from .config import config
 from . import booteel
 from .lsbqrml import expose_to_eel as expose_lsbqrml
 from .memorygame import expose_to_eel as expose_memorygame        # type: ignore  # noqa: F401, F811
+from .utils import export_backup
+
+# Enable multiprocessing in frozen apps (e.g. pyinstaller)
+multiprocessing.freeze_support()
 
 # Set up logger for main runtime
 logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
@@ -155,42 +160,8 @@ def close(page: str, opensockets: list[Any]):
 @eel.expose
 def export_data_backup():
     """Non-blocking eel wrapper for the app's `export_backup()` function."""
-    import multiprocessing
     p = multiprocessing.Process(target=export_backup)
     p.start()
-
-
-def export_backup(filename: Path | str | None = None) -> bool:
-    """Export app data as a ZIP archive. Prompt for filename if needed."""
-    logger.debug("Exporting data backup...")
-    import os
-    import shutil
-    if filename is None:
-        from tkinter import filedialog
-        from datetime import datetime
-        dialog = filedialog.SaveAs(
-            master=None,
-            title="Save Data Backup as...",
-            initialfile=datetime.now().strftime("lartrc_backup_%Y-%m-%dT%H%M%S.zip"),
-            filetypes=[("ZIP Archives", "*.zip")]
-        )
-        filename = str(dialog.show())  # type: ignore
-    if not filename:
-        logger.error("No filename provided.")
-        return False
-    filename = Path(filename)
-    logger.debug(f"Backup filename: '{filename}'")
-    if str(filename).endswith(".zip"):
-        filename = filename.with_suffix("")
-    old_wd = Path.cwd()
-    os.chdir(config.paths.data)
-    result = shutil.make_archive(str(filename), "zip", logger=logger)
-    os.chdir(old_wd)
-    if Path(result).exists():
-        logger.info(f"Backup saved to file '{result}'.")
-        return True
-    logger.info("Failed to create backup.")
-    return False
 
 
 if __name__ == "__main__":
