@@ -1,6 +1,5 @@
 """Informed consent from user."""
 import eel
-import json
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -10,6 +9,7 @@ from ..config import config
 data_path: Path = config.paths.data / "Consent"
 if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
+
 
 @eel.expose
 def record_consent(data: dict[Any, Any]):
@@ -34,4 +34,13 @@ def record_consent(data: dict[Any, Any]):
         print("############################################\n")
     print("Consent info: ")
     print(data)
-    booteel.setlocation("../index.html")
+    if config.sequences.consent:
+        query = booteel.buildquery({
+            "selectSurveyVersion": data["surveyVersion"],
+            "confirmConsent": int(data["informedConsent"]),
+            "participantId": data["partId"],
+            "surveyDataForm.submit": "false",
+        })
+        booteel.setlocation(f"/app/{config.sequences.consent}/index.html?{query}")
+    else:
+        booteel.setlocation("/app/index.html")

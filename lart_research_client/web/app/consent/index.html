@@ -44,6 +44,7 @@
                 return false;
             } else {
                 hideBtn();
+                document.getElementById("surveyVersion").value = version // pass selectSurveyVersion on to consent form for processing
                 document.getElementById("partId").value = partId; //pass partId on to consent form for processing
                 console.log("Selected version: " + version);
                 console.log("Participant ID: " + partId);
@@ -177,6 +178,9 @@
         <!-- Displaying consent form -->
         <div id="consentForm">
             <form id="partConsent" class="needs-validation">
+
+                <!-- Carry over survey version -->
+                <input type="hidden" id="surveyVersion" />
 
                 <!-- Consent form -->
                 <section class="m-4">

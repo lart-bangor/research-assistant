@@ -4,6 +4,7 @@ import logging
 import traceback
 import html
 from typing import Any, Callable, Optional
+from urllib.parse import quote as urlquote
 
 # Set up module loggers
 pylogger = logging.getLogger(__name__ + ".py")
@@ -55,6 +56,13 @@ def displayexception(exc: Exception):
         f"Error: {exc_type}",
         f'<code class="text-danger">{exc_text}</code>',
         icon="bug-fill text-danger"
+    )
+
+
+def buildquery(params: dict[str, str]) -> str:
+    """Build a URL query string based on a set of key-value pairs of parameters."""
+    return "&".join(
+        [f"{key}={urlquote(str(value), safe='')}" for key, value in params.items()]
     )
 
 

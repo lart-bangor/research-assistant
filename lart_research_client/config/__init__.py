@@ -79,7 +79,7 @@ class Paths(DataclassDictMixin):
     """Class for configuration of App paths."""
 
     config: Path = field(default=Path(_default_dirs.user_config_dir), init=False)
-    data: Path = field(default=Path(_default_dirs.user_data_dir))
+    data: Path = field(default=Path(_default_dirs.user_data_dir) / "data")
     logs: Path = field(default=Path(_default_dirs.user_log_dir))
     cache: Path = field(default=Path(_default_dirs.user_cache_dir))
 
