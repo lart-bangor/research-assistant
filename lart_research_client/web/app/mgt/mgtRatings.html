@@ -9,7 +9,7 @@ chosenVersion = sessionStorage.getItem("mgtVersion");
 partId = sessionStorage.getItem("mgtPartId");
 
 // instructions to be outputed depending on language selection
-function spitoutMgtItems()  {
+function fetchMgtInfo()  {
             console.log("Selected version: " + chosenVersion);
             console.log("Participant ID: " + partId);
             jsonFile = "versions/" + chosenVersion + ".json";  //set filename based on selected version
@@ -19,38 +19,52 @@ function spitoutMgtItems()  {
             }
 
 function displayMgt(data) {
-    console.log(data);
+    //console.log(data);
     const headerElement = document.getElementById("language_header");
     const sliderElement = document.getElementById("slider_info");
+    const btnElement = document.getElementById("btnNext");
+    const mgtElement = document.getElementById('mgtRatingScales');
     const headerTxt = data.base.header;
+    const agree = data.base.agreement;
+    const disagree = data.base.disagreement;
     const sliderTxt = data.base.sliderInfo;
+    const sliderWarn = data.base.sliderWarn;
+    const btnTxt = data.base.nextBtn;
     headerElement.innerHTML =  headerTxt;
     sliderElement.innerHTML =  " " + sliderTxt;
-}
-
-spitoutMgtItems();
-
-
-populateMgtItems = function (mgtItems) {
-    const element = document.getElementById('mgtRatingScales');
-    for(key in mgtItems) {
-        let language = sessionStorage.getItem("language");
-        let code = '<fieldset id="fieldset' + language + key + '">' +
-            '<label class="row mb-0" for="rating' + language + '_' + key + '">' +
-            '<div class="col text-start ps-5">' + mgtItems[key][0] + '</div>' +
-             //next
-            '<div class="col text-end pe-5">' + mgtItems[key][1] + '</div></label>' +
-            '<div class="row mb-5"><div class="col ps-4 pe-4">' +
-            '<input type="range" class="form-range" min="0" max="100" step="any" id="rating_' + 
-             language + '_' + key + '" required /><div class="form-check ps-5">' +
-            '<div class="invalid-feedback invalid range">' + "INSTRUCTIONS GO HERE" + '</div></div></div></div></fieldset>';
-        
-            element.insertAdjacentHTML('beforeend', code);
-            
-            }
+    btnElement.innerHTML = btnTxt;
+    itemList = data.mgtItems;
+     
+    console.log("Items = ");
+    console.log(itemList);
+    console.log(typeof(mgtItems));
+    let itemsLen = itemList.length;
+    let code = "<ul>";
+    for (let i = 0; i < itemsLen; i++) {
+        code += "<div class='row mb-0'>" +
+                    "<div class='col-2'></div>" +
+                    "<div class='col-5 text-start'><div style = 'font-size: small'>" + agree + "</div></div>" +
+                    "<div class='col-5 text-end'><div style = 'font-size: small'>" + disagree + "</div></div>" +
+                "</div>" +
+                "<div class='row mb-1'>" +
+                "<label for='" + "LANGUAGE_+_VOICE' " + "class='col-2 col-form-label'>" +  //s will pull from a variable once we have the info about which recording is being judged
+                    itemList[i] + 
+                "</label>" +
+                "<div class='col-10 mt-2'>" +
+                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + "VALUE TBA" + "' required />" +
+                    "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
+                "</div>" +
+            "</div>" + 
+            "<div><p><br /><br /><br /><br /></p></div>";
+       
+                               
+        }
+    mgtElement.insertAdjacentHTML('beforeend', code);
     }
 
-    eel.mgt_get_items(chosenVersion)(populateMgtItems);
+    fetchMgtInfo(chosenVersion);
+
+    //eel.mgt_get_items(chosenVersion)(populateMgtItems);
 
 
 </script>
@@ -99,12 +113,11 @@ populateMgtItems = function (mgtItems) {
             <div id="mgtRatingScales">
                 <!-- Placeholder where JavaScript will insert sliders -->
             </div>
-            
-        
+                               
             <!-- Form submission -->
             <div class="row text-end p-3">
                 <div clas="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" id="btnNext">
                         
                         
                     </button>
