@@ -14,8 +14,8 @@
         "languageRM": "Welsh",
         "agreement": "strongly agree",
         "disagreement": "strongly disagree"
-        
-    },
+        },
+         
     "mgtItems" : [
         "intelligent",
         "friendly",
@@ -34,8 +34,14 @@
         "proud",
         "faithful",
         "practical"
+    ],
+    
+    "mgtAudioList" : [
+        "beak2.mp3",
+        "crop2.mp3",
+        "hips2.mp3"
+
     ]
-       
 
 }
 

@@ -23,6 +23,14 @@
         "attraente",
         "ridicolo",
         "generoso"
+    ],
+    
+    "mgtAudioList" : [
+        "REC 1",
+        "REC 2",
+        "REC 3"
+
     ]
+
 
 }
