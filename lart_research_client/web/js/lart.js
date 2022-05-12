@@ -109,6 +109,25 @@ lart.appLock._setSwitchState = function(element) {
 lart.utils = {};
 
 /**
+ * Extract ISO 639-2 3-letter language code from a version string.
+ * 
+ * Given an input of the form "XxxYyy_Zzz_CC" where Xxx, Yyy, and Zzz are three-letter
+ * ISO 639-2 language codes, and CC and country code, will return the string Zzz, which
+ * is used in the LART app to identify the primary langauage of a test version.
+ * 
+ * @param {String} version - LART test version string of the form "XxxYyy_Zzz_CC".
+ * @returns {String|null} Returns three letter language code representing the primary language
+ *      of a LART test version, or null if the supplied string doesn't validly encode one.
+ */
+lart.utils.extractLanguageFromVersion = function (version) {
+    const parts = version.split("_")
+    if (parts.length > 1 && parts[1].length == 3) {
+        return parts[1]
+    }
+    return null;
+}
+
+/**
  * Shortcut to the URLSearchParams for the current page.
  * 
  * @readonly

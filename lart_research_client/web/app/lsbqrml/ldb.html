@@ -405,6 +405,56 @@
 {% endblock %}
 {% block tail_scripts %}
     <script type="text/javascript">
+        function localizeLanguageName(string, gender=null) {
+            // @TODO: add plural if ever needed?
+            const primaryLanguage = lart.utils.extractLanguageFromVersion(lsbqRml.tr.get("meta.versionId"));
+            const upperCase = (string[0] == string[0].toUpperCase())
+            let article = "";
+            string = string.toLowerCase();
+            if ( primaryLanguage.toLowerCase() == "ita" ) {
+                if ( gender != "m" && gender != "f" ) {
+                    // Very crude attempt to figure out the gender...
+                    if (
+                        string[string.length -1] == "o" ||
+                        string[string.length -2] == "ma" ||
+                        string[string.length -2] == "re"
+                        ) {
+                        gender = "m";
+                    } else if (
+                        string[string.length -1] == "a" ||
+                        string[string.length -2] == "tà" ||
+                        string[string.length -2] == "tù" ||
+                        string[string.length -4] == "ione"
+                        ) {
+                        gender = "f";
+                    } else {
+                        gender = "m";
+                    }
+                }
+                if (["a", "e", "i", "o", "u"].includes(string[0].normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+                    article = "l'"; // same for masc and fem
+                    // return `l'${string}`; // same for masc and fem
+                } else if ( gender == "m" ) {
+                    if ( string[0] == "s" && !["a", "e", "i", "o", "u"].includes(string[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ) {
+                        article = "lo ";
+                        // return `lo ${string}`;
+                    } else {
+                        article = "il ";
+                        // return `il ${string}`;
+                    }
+                } else if ( gender == "f" ) {
+                    article = "la ";
+                    // return `la ${string}`;
+                }
+            }
+            if ( article ) {
+                string = `${article}${string}`;
+            }
+            if ( upperCase ) {
+                string = `${string[0]}${string.slice(1)}`;
+            }
+            return string;
+        }
         lart.forms.requireValidation(true);
         // Translate form for specific version
         lsbqRml.tr.load(lsbqRml.instance.getId(), ['ldb']);
@@ -461,7 +511,7 @@
                 nameSource.addEventListener(
                     'input',
                     function (event) {
-                        languageNameSlot.textContent = event.target.value
+                        languageNameSlot.textContent = localizeLanguageName(event.target.value);
                     }
                 );
             }
