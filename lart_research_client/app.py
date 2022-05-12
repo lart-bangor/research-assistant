@@ -18,7 +18,7 @@ from .config import config
 from . import booteel
 from .lsbqrml import expose_to_eel as expose_lsbqrml
 from .memorygame import expose_to_eel as expose_memorygame        # type: ignore  # noqa: F401, F811
-from .utils import export_backup
+from .utils import export_backup, manage_settings
 
 # Enable multiprocessing in frozen apps (e.g. pyinstaller)
 multiprocessing.freeze_support()
@@ -59,7 +59,7 @@ def main():
             values: str | Sequence[Any] | None,
             option_string: str | None = ...
         ) -> None:
-            setattr(namespace, self.dest, None)
+            setattr(namespace, self.dest, values)
 
     argparser.add_argument(
         "-b, --backup",
@@ -73,6 +73,31 @@ def main():
         ),
         default=False
     )
+
+    argparser.add_argument(
+        "-c, --config",
+        action=StoreOptionalAction,
+        nargs="?",
+        dest="config",
+        metavar="CMD",
+        help=(
+            "Modify the app's settings file according to CMD.\n"
+            "CMD may be one of the literals 'clear' (delete the "
+            "current settings file), 'update' (ensure the settings "
+            "file is updated to include all current app settings, "
+            "preserving compatible already-saved settings), or "
+            "'reset' (overwrite the current settings file with the "
+            "app defaults.\n"
+            "Alternatively, CMD may be a JSON string of key-value "
+            "pairs enclosed by curly braces ('{...}'), where each key "
+            "represents a configuration attribute and the value the new "
+            "value it should be set to. For example '{\"sequences.consent\":"
+            "\"memorygame\"'} will set the follow-on sequence for the consent "
+            "task to the memorygame."
+        ),
+        default=False
+    )
+
     argparser.add_argument(
         "--debug",
         dest="level",
@@ -85,6 +110,7 @@ def main():
         )
     )
     args = argparser.parse_args()
+    print("Args:", args)
     logger.debug("Starting with command line arguments: %s", args)
     try:
         loglevel = getattr(logging, args.level.upper())
@@ -96,6 +122,13 @@ def main():
     # Run backup exporter and exit if --backup supplied
     if args.backup is not False:
         if export_backup(args.backup):
+            sys.exit(0)
+        else:
+            sys.exit(1)
+
+    # Run settings manager and exit if --config supplied
+    if args.config is not False:
+        if manage_settings(args.config):
             sys.exit(0)
         else:
             sys.exit(1)

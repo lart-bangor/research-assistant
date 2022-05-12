@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable, Optional, Union, get_type_hints
 
-__all__ = ["config"]
+__all__ = ["config", "Config", "_default_dirs"]
 
 logger = logging.getLogger(__name__)
 
@@ -193,7 +193,7 @@ class Config(DataclassDictMixin):
                     f"values: {json.dumps(cfg.asdict(), cls=JSONPathEncoder)}"
                 )
                 return cfg
-            except IOError as e:
+            except (IOError, json.JSONDecodeError) as e:
                 logging.error(f"Failed to load config file: {e}.")
                 return Config()
         logging.debug("No configuration file found. Issuing hard-coded default settings.")
