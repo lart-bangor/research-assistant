@@ -62,10 +62,10 @@ def main():
         metavar="ENV",
         nargs="?",
         default="all",
-        choices=("src", "build", "all"),
+        choices=("all", "build", "dist", "src"),
         help=(
             "The part of the development environment to be cleaned.\n"
-            "One of {all,build,src}, default=all."
+            "One of {all,build,dist,src}, default=all."
         )
     )
     parser_debug = subparsers.add_parser(
@@ -106,6 +106,14 @@ def build() -> bool:                                                            
     if platform.machine():
         platform_str += f"_{platform.machine()}"
     platform_str = platform_str.lower()
+
+    # Make sure dist dir exists..
+    dist_dir: Path = WORKSPACE_PATH / "dist" / platform_str
+    if not dist_dir.is_dir():
+        dist_dir.mkdir(parents=True)
+
+    # Installer name
+    installer_name: str = f"{APP_AUTHOR} {APP_NAME} v{APP_VERSION}-{platform_str}"
 
     # Clean the source directory
     if not clean("src"):
@@ -149,7 +157,7 @@ def build() -> bool:                                                            
     import PyInstaller.__main__ as pyi                                          # type: ignore
     pyi_args: list[str] = [
         "--noconfirm", "--log-level=WARN",
-        f"--workpath=artifacts/{platform_str}", f"--distpath=dist/{APP_NAME}.{platform_str}",
+        f"--workpath=artifacts/{platform_str}", f"--distpath=dist/{installer_name}",
         "--clean", f"{APP_NAME}.py",
         "--hidden-import", "bottle_websocket",
         "--add-data", f"{str(resources.path('eel', 'eel.js'))}{os.pathsep}eel",
@@ -172,7 +180,7 @@ def build() -> bool:                                                            
             print(f" {pyi_args[i+1]}", end="")
         print("")
     pyi.run(pyi_args)                                                           # type: ignore
-    pyi_dist_dir: Path = pyi_dir / "dist" / f"{APP_NAME}.{platform_str}"
+    pyi_dist_dir: Path = pyi_dir / "dist" / f"{installer_name}"
     if not pyi_dist_dir.is_dir():
         print(f"{INDENT}ERROR: PyInstaller dist dir at '{pyi_dist_dir}' not found.")
         print("Failed.")
@@ -189,7 +197,9 @@ def build() -> bool:                                                            
     if platform.system() == "Linux":
         archive_format = "gztar"
     print(f"Packaging distributable {archive_format.upper()} from PyInstaller distribution...")
-    shutil.make_archive(str(pyi_dist_dir), archive_format)
+    archive_file = Path(shutil.make_archive(str(pyi_dist_dir), archive_format))
+    archive_file.replace(dist_dir / archive_file.name)
+    print(f"{INDENT}ZIP distributable moved to '{archive_file}'.")
     print("Done.")
 
     # Make Inno Setup installer
@@ -219,6 +229,14 @@ def build() -> bool:                                                            
                 f"{INDENT}ERROR: Command 'iscc' not found. Is Inno Setup installed an on the path?"
             )
             return False
+        installer_file = pyi_dist_dir.with_suffix(pyi_dist_dir.suffix + ".exe")
+        if not installer_file.exists():
+            print(
+                f"{INDENT}ERROR: Expected installer file '{installer_file}' not found."
+            )
+            return False
+        installer_file.replace(dist_dir / installer_file.name)
+        print(f"{INDENT}EXE installer distributable moved to '{archive_file}'.")
         print(child)
         print("Done.")
 
@@ -251,11 +269,14 @@ def _copy_dir_clean(source: Path, dest: Path):
     return True
 
 
-def clean(env: str) -> bool:
+def clean(env: str) -> bool:                                                    # noqa: C901
     """Clean the development environment."""
     errors: bool = False
     if env == "build" or env == "all":
         if not _clean_build():
+            errors = True
+    if env == "dist" or env == "all":
+        if not _clean_dist():
             errors = True
     if env == "src" or env == "all":
         if not _clean_src():
@@ -309,6 +330,24 @@ def _clean_build() -> bool:
         errors = True
     return not errors
 
+
+def _clean_dist() -> bool:
+    errors: bool = False
+    dist_dir: Path = WORKSPACE_PATH / "dist"
+    print(f"Cleaning distribution directory at '{dist_dir!s}'...")
+    if _create_dir_if_not_exists(dist_dir):
+        if not _recursively_delete_dir(dist_dir):
+            print(f"{INDENT}ERROR: Could not delete dist directory.")
+            errors = True
+        if not _create_dir_if_not_exists(dist_dir):
+            print(f"{INDENT}ERROR: Could not reinstate dist directory.")
+            errors = True
+        print("Done.")
+    else:
+        print(f"{INDENT}ERROR: '{dist_dir}' is not a valid directory path.")
+        print("Failed.")
+        errors = True
+    return not errors
 
 def _clean_src() -> bool:
     errors: bool = False

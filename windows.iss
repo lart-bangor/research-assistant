@@ -8,6 +8,7 @@
 #define MyAppURL "[[APP_URL]]"
 #define MyAppPlatformString "[[PLATFORM_STRING]]"
 #define MyAppDevDir "[[WORKSPACE_PATH]]"
+#define MyAppDistributableName MyAppAuthor + " " + MyAppName + " v" + MyAppVersion + "-"  + MyAppPlatformString
 #define MyAppExeName MyAppName + ".exe"
 
 [Setup]
@@ -27,8 +28,9 @@ LicenseFile={#MyAppDevDir}\LICENSE
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#MyAppDevDir}\build\pyinstaller\dist
-OutputBaseFilename={#MyAppAuthor} {#MyAppName}.{#MyAppPlatformString}
-SetupIconFile={#MyAppDevDir}\lart_research_client\web\img\appicon.ico
+OutputBaseFilename={#MyAppDistributableName}
+SetupIconFile={#MyAppDevDir}\lart_research_client\web\img\setupicon.ico
+UninstallDisplayIcon={#MyAppDevDir}\lart_research_client\web\img\setupicon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -45,8 +47,8 @@ Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyAppDevDir}\build\pyinstaller\dist\Research Client.windows_amd64\Research Client\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDevDir}\build\pyinstaller\dist\Research Client.windows_amd64\Research Client\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyAppDevDir}\build\pyinstaller\dist\{#MyAppDistributableName}\Research Client\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppDevDir}\build\pyinstaller\dist\{#MyAppDistributableName}\Research Client\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -55,4 +57,7 @@ Name: "{autodesktop}\{#MyAppAuthor} {#MyAppName}"; Filename: "{app}\{#MyAppExeNa
 Name: "{group}\{#MyAppAuthor} {#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
 [Run]
+Filename: "{app}\{#MyAppExeName}"; Parameters: "-c update"; StatusMsg: "Updating app settings..."; Flags: runasoriginaluser
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
+[UninstallR]

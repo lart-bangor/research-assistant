@@ -109,8 +109,8 @@ def main():
             "default = warning"
         )
     )
+
     args = argparser.parse_args()
-    print("Args:", args)
     logger.debug("Starting with command line arguments: %s", args)
     try:
         loglevel = getattr(logging, args.level.upper())
