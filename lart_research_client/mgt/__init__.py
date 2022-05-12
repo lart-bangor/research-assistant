@@ -1,4 +1,6 @@
 """Data structures for the MGT (RML)."""
+from email.mime import audio
+from time import time, sleep
 import eel
 import json
 import random
@@ -12,14 +14,31 @@ from ..datavalidator.schemas import DataSchema
 from ..datavalidator.types import PolarT
 from . import patterns
 from collections import OrderedDict
+import os
+import pathlib
+from playsound import playsound
+
+#declare global variables to be accessed when MGT initialises
+guise_counter = 0
+mgtAudioList = list(())
 
 #retrieve initial info from index.html and print to file + to console
 @eel.expose
 def init_mgt(data: dict[Any, Any]):
-    global version
-    version = data.get("selectSurveyVersion")
+    global mgtAudioList
     presentime = datetime.now()
     dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
+    currentFileLocation = pathlib.Path(__file__).parent.absolute()
+    parentFolder = currentFileLocation.parent
+    jsonLocationPath = str(parentFolder.as_posix())
+    jsonFile = jsonLocationPath + "/web/app/mgt/versions/CymEng_ENG_GB.json"
+    
+    with open(jsonFile, 'r') as j:
+        contents = json.loads(j.read())
+        mgtAudioList = contents.get("mgtAudioList")
+        print("Counter is initialised at: " + str(guise_counter))
+        print("Audio list is initialised at: " + str(mgtAudioList) + "\n")
+
     try:
         with open("lart_research_client/mgt/data/dataLog.txt", "a") as file:
             file.write(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>")
@@ -35,16 +54,30 @@ def init_mgt(data: dict[Any, Any]):
     print("Basic info from index.html: ")
     print(data)
     booteel.setlocation("mgtRatings.html")
-
-#does the same as init_atol, but for part1.html
+    
+#fetches ratings from mgtRatings.html
 @eel.expose
 def grab_mgt_ratings(data: dict[Any, Any], source, version):
-    location = fetch_location(source, version)
+ #   location = fetch_location(source, version)
+    global mgtAudioList, guise_counter
     presentation_order = key_list(data) #record order in which data was presented and output labels
+    currentFileLocation = pathlib.Path(__file__).parent.absolute()
     data = alphabetise(data)  #now reset data in alphabetical order ready for writing to file
-       
+    
+    #check if there are guises left to play [they play via playGuise(), called in JS]
+    if guise_counter < (len(mgtAudioList)): ##if there are still items on the list:
+        mgtAudioList.pop(0)   #remove current 1st item from list
+        nxtLocation = "mgtRatings.html" #and set next page to _self
+        guise_counter +=1
+    else:
+        mgtAudioList.pop(0)
+        nxtLocation = "mgtEnd.html" #else, display thank you page and end MGT
+
+    print("\n" + "mgtAudioLIst now is: " + str(mgtAudioList))
+   
+    #record user respponses for guise
     try:
-        with open("lart_survey_client/atolc/data/dataLog.txt", "a") as file:
+        with open("lart_research_client/mgt/data/dataLog.txt", "a") as file:
             file.write("\n")
             file.write("Presentation order: ")
             file.write(json.dumps(presentation_order))
@@ -55,21 +88,21 @@ def grab_mgt_ratings(data: dict[Any, Any], source, version):
             file.write("\n")
 
     except FileNotFoundError:
-        print("The 'data' directory does not exist")
-    print("AToL ratings from " + source + ".html: ")
+        print("!!!The 'data' directory does not exist!!!")
+    print("\nMGT ratings from " + source + ".html: ")
     print(data)
-    booteel.setlocation(location)
+    
+    booteel.setlocation(nxtLocation)
 
-def fetch_location(source_file, version):
-    if 'Maj' in source_file:
-        return "atolRatingsRml.html"
-    elif 'Rml' in source_file:
-        length = len(version)
-        locationLabel = length - 2
-        suffix = version[locationLabel:]
-        return "atolEnd_" + suffix + ".html"
-    else:
-        print("ERROR: no such file")
+@eel.expose
+def playGuise():
+    currentFileLocation = pathlib.Path(__file__).parent.absolute()
+    audioLocationPath = str(currentFileLocation.as_posix())
+    audioFile = audioLocationPath + "/audio files/" + mgtAudioList[0]
+    sleep(1.5)
+    print("\ncurrently playing...:" + mgtAudioList[0])
+    playsound(audioFile)
+
  
 def randomize(dictionary):
     randomized_version = {}
@@ -99,71 +132,5 @@ def key_list(dic):
 
 
 
- 
-
-@eel.expose  # type: ignore
-def mgt_get_items(version):
-    """Get label pairs for each AToL item depending on language selection."""
-    EngVersion = {       
-        "logic":        ("ugly", "beautiful"),
-        "elegance":     ("inelegant", "elegant"),
-        "fluency":      ("choppy", "fluent"),
-        "ambiguity":    ("unambiguous", "ambiguous"),
-        "appeal":       ("appealing", "abhorrent"),
-        "structure":    ("unstructured", "structured"),
-        "precision":    ("precise", "vague"),
-        "harshness":    ("harsh", "soft"),
-        "flow":         ("flowing", "abrupt"),
-        "beauty":       ("beautiful", "ugly"),
-        "sistem":       ("systematic", "unsystematic"),
-        "pleasure":     ("pleasant", "unpleasant"),
-        "smoothness":   ("smooth", "raspy"),
-        "grace":        ("clumsy", "graceful"),
-        "angularity":   ("angular", "round"),
-              }
-    ItVersion = {       
-        "logic":        ("logica", "illogica"),
-        "elegance":     ("non elegante", "elegante"),
-        "fluency":      ("frammentata", "scorrevole"),
-        "ambiguity":    ("chiara", "ambigua"),
-        "appeal":       ("attraente", "ripugnante"),
-        "structure":    ("non strutturata", "strutturata"),
-        "precision":    ("precisa", "vaga"),
-        "harshness":    ("dura", "morbida"),
-        "flow":         ("fluida", "brusca"),
-        "beauty":       ("bella", "brutta"),
-        "sistem":       ("sistematica", "non sistematica"),
-        "pleasure":     ("piacevole", "spiacevole"),
-        "smoothness":   ("liscia", "ruvida"),
-        "grace":        ("goffa", "aggraziata"),
-        "angularity":   ("spigolosa", "arrotondata"),
-              }
-    BeVersion = {
-         "logic":       ("logisch",     "unlogisch"),
-        "elegance":     ("stillos",     "stilvoll"),
-        "fluency":      ("stockend",    "fließend"),
-        "ambiguity":    ("eindeutig",    "missverständlich"),  
-        "appeal":       ("anziehend",   "abstoßend"),
-        "structure":    ("stukturlos",  "sturkturiert"),
-        "precision":    ("genau",       "ungenau"),
-        "harshness":    ("hart",        "weich"),
-        "flow":         ("flüssig", "abgehackt"),
-        "beauty":       ("schön", "hässlich"),
-        "sistem":       ("systematisch", "unsystematisch"),
-        "pleasure":     ("angenehm", "unangenehm"),
-        "smoothness":   ("geschmeidig", "rau"),
-        "grace":        ("plump", "anmutig"),
-        "angularity":   ("eckig", "rund"),
-    }
- 
-   
-    if version == 'CymEng_Eng_GB':
-        output = EngVersion
-    elif version == 'LtzGer_Ger_BE':
-        output = BeVersion
-    elif version == 'LmoIta_Ita_IT':
-        output = ItVersion
-    
-    return randomize(output)
 
    

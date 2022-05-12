@@ -30,3 +30,839 @@ researcherId: mtamb
 researchLocation: lombardy
 participantId: dddd
 confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 10/05/2022 13:11:17
+selectSurveyVersion: LmoIta_Ita_IT
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 10/05/2022 13:16:22
+selectSurveyVersion: LmoIta_Ita_IT
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 10/05/2022 14:02:58
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: mmmmm
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 10/05/2022 14:30:38
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 13:01:22
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 13:14:10
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 13:38:22
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: sss
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 16:09:11
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: bbb
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 16:25:37
+selectSurveyVersion: LmoIta_Ita_IT
+researcherId: mtamb
+researchLocation: lombardy
+participantId: fffff
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 16:38:10
+selectSurveyVersion: LmoIta_Ita_IT
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 17:03:35
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 17:06:32
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 17:10:15
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 11/05/2022 17:11:53
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 09:50:26
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ggg
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 10:22:48
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: 2222
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 10:38:21
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:12:00
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:13:00
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ttt
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:26:17
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:28:47
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:31:13
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:36:02
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: fff
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:36:59
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:37:32
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:39:05
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: 44444
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:40:28
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:48:20
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:55:38
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 11:57:54
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 12:00:55
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 12:01:32
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ggg
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 12:03:49
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: jjjj
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 12:06:30
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: jjj
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 12:17:50
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ssss
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 12:19:10
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: gggg
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 12:21:52
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 13:46:16
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 13:48:48
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:03:37
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:06:12
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: gggg
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:07:39
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:08:25
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:09:51
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:12:06
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:16:51
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:23:58
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ssss
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:28:50
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: nnnnn
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:30:34
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:31:07
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:31:46
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:32:10
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:35:51
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: gggg
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:37:37
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:38:20
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:38:47
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:40:59
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:42:17
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: cccc
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:44:46
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:45:19
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: cccc
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:47:44
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: pppp
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:48:29
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:52:43
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:53:37
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+
+Presentation order: ["VALUE TBA"]
+VALUE TBA: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:54:17
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:55:15
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:56:41
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ssss
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 14:59:55
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:00:41
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: 5555
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:01:11
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: gggg
+confirmConsent: True
