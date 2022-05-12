@@ -145,10 +145,10 @@ class Logging(DataclassDictMixin):
 class Sequences(DataclassDictMixin):
     """Class for app-task sequencing configuration."""
 
-    atolc: str = field(default="")
-    lsbqrml: str = field(default="")
+    atolc: str = field(default="memorygame")
+    lsbqrml: str = field(default="atolc")
     memorygame: str = field(default="")
-    consent: str = field(default="")
+    consent: str = field(default="lsbqrml")
 
 
 @dataclass
