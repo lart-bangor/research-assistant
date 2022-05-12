@@ -44,7 +44,7 @@ def atol_rating(data: dict[Any, Any]):
     print(data)
 
 
-def main():
+def main():                                                                     # noqa: C901
     """App main function called on app launch."""
     # Parse command line arguments
     argparser = argparse.ArgumentParser(
