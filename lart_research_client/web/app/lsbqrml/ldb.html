@@ -408,10 +408,9 @@
         function localizeLanguageName(string, gender=null) {
             // @TODO: add plural if ever needed?
             const primaryLanguage = lart.utils.extractLanguageFromVersion(lsbqRml.tr.get("meta.versionId"));
-            const upperCase = (string[0] == string[0].toUpperCase())
             let article = "";
-            string = string.toLowerCase();
             if ( primaryLanguage.toLowerCase() == "ita" ) {
+                string = string.toLowerCase();
                 if ( gender != "m" && gender != "f" ) {
                     // Very crude attempt to figure out the gender...
                     if (
@@ -449,9 +448,6 @@
             }
             if ( article ) {
                 string = `${article}${string}`;
-            }
-            if ( upperCase ) {
-                string = `${string[0]}${string.slice(1)}`;
             }
             return string;
         }
