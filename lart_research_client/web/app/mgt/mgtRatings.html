@@ -8,6 +8,35 @@ mgtInstanceId = parseInt(lart.forms.searchParams.get('instance'));
 chosenVersion = sessionStorage.getItem("mgtVersion");
 partId = sessionStorage.getItem("mgtPartId");
 
+
+function fetchGuiseName(audioFile) {
+    console.log("trying py again: ");
+    console.log(audioFile);
+    return audioFile;
+    }
+
+guiseName = eel.fetchCurrentGuise()(fetchGuiseName);
+
+/*
+function fetchGuiseName() {
+    eel.fetchCurrentGuise()(callBack);
+    }
+function callBack(out) {
+    console.log("python function ");
+    console.log(out);
+    return out;
+}
+*/
+
+/*
+eel.fetchGuise()(function(currentAudio){        //get the value of currentGuise from Python
+    var  currentGuise = currentAudio
+    console.log("current guise: " + currentGuise);
+    })
+*/
+
+
+
 // instructions to be outputed depending on language selection
 function fetchMgtInfo()  {
             console.log("Selected version: " + chosenVersion);
@@ -34,10 +63,11 @@ function displayMgt(data) {
     sliderElement.innerHTML =  " " + sliderTxt;
     btnElement.innerHTML = btnTxt;
     itemList = data.mgtItems;
-     
+    
     console.log("Items = ");
     console.log(itemList);
-    console.log(typeof(mgtItems));
+    console.log("type of mgtItems: ");
+    console.log(typeof(itemList));
     let itemsLen = itemList.length;
     let code = "<ul>";
     for (let i = 0; i < itemsLen; i++) {
@@ -47,11 +77,11 @@ function displayMgt(data) {
                     "<div class='col-5 text-end'><div style = 'font-size: small'>" + disagree + "</div></div>" +
                 "</div>" +
                 "<div class='row mb-1'>" +
-                "<label for='" + "LANGUAGE_+_VOICE' " + "class='col-2 col-form-label'>" +  //s will pull from a variable once we have the info about which recording is being judged
+                "<label for='" + itemList[i] + "_" + "fetchGuiseName();" + "' class='col-2 col-form-label'>" +  //s will pull from a variable once we have the info about which recording is being judged
                     itemList[i] + 
                 "</label>" +
                 "<div class='col-10 mt-2'>" +
-                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + "VALUE TBA" + "' required />" +
+                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + itemList[i] + "_" + guiseName + "' required />" +
                     "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
                 "</div>" +
             "</div>" + 
