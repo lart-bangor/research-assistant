@@ -866,3 +866,531 @@ researcherId: mtamb
 researchLocation: lombardy
 participantId: gggg
 confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:19:58
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }<div class="]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }<div class=: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:21:38
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }<div class="]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }<div class=: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:29:07
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }"]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:30:05
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }"]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:30:59
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }"]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:38:16
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: kjhjkk
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 12/05/2022 15:40:13
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }"]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }"]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }"]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 09:58:01
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+
+Presentation order: ["callbacks[call.call] = {resolve: resolve, reject: reject};\n                });\n            }\n        }"]
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:09:21
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:12:26
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+function(callback = null) {
+            if(callback != null) {
+                eel._call_return_callbacks[call.call] = {resolve: callback};
+            } else {
+                return new Promise(function(resolve, reject) {
+                    eel._call_return_callbacks[call.call] = {resolve: resolve, reject: reject};
+                });
+            }
+        }: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:13:52
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+currentGuise: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:22:45
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+currentGuise: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:25:23
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:27:07
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+currentGuise: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:28:19
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+currentGuise: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:28:47
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+currentGuise: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:30:46
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:36:20
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: gggg
+confirmConsent: True
+currentGuise: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:38:11
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: hhhh
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:39:24
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: gggg
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:42:11
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:45:37
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 10:47:56
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:00:59
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+currentGuise: 50
+
+currentGuise: 50
+
+currentGuise: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:25:08
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: zzzz
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:28:16
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:31:44
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ssss
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:32:52
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: sdfg
+participantId: ssss
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:43:35
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:45:05
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+accepting new uses and customs_undefined<div class=: 50
+attractive_undefined<div class=: 50
+educated_undefined<div class=: 50
+faithful_undefined<div class=: 50
+friendly_undefined<div class=: 50
+funny_undefined<div class=: 50
+generous_undefined<div class=: 50
+hard-working_undefined<div class=: 50
+has a sense of humour_undefined<div class=: 50
+intelligent_undefined<div class=: 50
+interested in making progresses_undefined<div class=: 50
+leader_undefined<div class=: 50
+open-minded_undefined<div class=: 50
+proud_undefined<div class=: 50
+self-confident_undefined<div class=: 50
+tustworthy_undefined<div class=: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:53:13
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+accepting new uses and customs_undefined<div class=: 50
+attractive_undefined<div class=: 50
+educated_undefined<div class=: 50
+faithful_undefined<div class=: 50
+friendly_undefined<div class=: 50
+funny_undefined<div class=: 50
+generous_undefined<div class=: 50
+hard-working_undefined<div class=: 50
+has a sense of humour_undefined<div class=: 50
+intelligent_undefined<div class=: 50
+interested in making progresses_undefined<div class=: 50
+leader_undefined<div class=: 50
+open-minded_undefined<div class=: 50
+proud_undefined<div class=: 50
+self-confident_undefined<div class=: 50
+tustworthy_undefined<div class=: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 11:56:58
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+accepting new uses and customs_undefined<div class=: 50
+attractive_undefined<div class=: 50
+educated_undefined<div class=: 50
+faithful_undefined<div class=: 50
+friendly_undefined<div class=: 50
+funny_undefined<div class=: 50
+generous_undefined<div class=: 50
+hard-working_undefined<div class=: 50
+has a sense of humour_undefined<div class=: 50
+intelligent_undefined<div class=: 50
+interested in making progresses_undefined<div class=: 50
+leader_undefined<div class=: 50
+open-minded_undefined<div class=: 50
+proud_undefined<div class=: 50
+self-confident_undefined<div class=: 50
+tustworthy_undefined<div class=: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 12:17:23
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: eddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 12:19:05
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 12:23:28
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+accepting new uses and customs_undefined<div class=: 50
+attractive_undefined<div class=: 50
+educated_undefined<div class=: 50
+faithful_undefined<div class=: 50
+friendly_undefined<div class=: 50
+funny_undefined<div class=: 50
+generous_undefined<div class=: 50
+hard-working_undefined<div class=: 50
+has a sense of humour_undefined<div class=: 50
+intelligent_undefined<div class=: 50
+interested in making progresses_undefined<div class=: 50
+leader_undefined<div class=: 50
+open-minded_undefined<div class=: 50
+proud_undefined<div class=: 50
+self-confident_undefined<div class=: 50
+tustworthy_undefined<div class=: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 12:24:39
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ssss
+confirmConsent: True
+accepting new uses and customs_undefined: 50
+attractive_undefined: 50
+educated_undefined: 50
+faithful_undefined: 50
+friendly_undefined: 50
+funny_undefined: 50
+generous_undefined: 50
+hard-working_undefined: 50
+has a sense of humour_undefined: 50
+intelligent_undefined: 50
+interested in making progresses_undefined: 50
+leader_undefined: 50
+open-minded_undefined: 50
+practical_undefined: 50
+proud_undefined: 50
+self-confident_undefined: 50
+tustworthy_undefined: 50
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 13:13:00
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True

@@ -21,7 +21,7 @@ from playsound import playsound
 #declare global variables to be accessed when MGT initialises
 guise_counter = 0
 mgtAudioList = list(())
-
+ 
 #retrieve initial info from index.html and print to file + to console
 @eel.expose
 def init_mgt(data: dict[Any, Any]):
@@ -58,30 +58,29 @@ def init_mgt(data: dict[Any, Any]):
 #fetches ratings from mgtRatings.html
 @eel.expose
 def grab_mgt_ratings(data: dict[Any, Any], source, version):
- #   location = fetch_location(source, version)
+    fetchCurrentGuise()
     global mgtAudioList, guise_counter
-    presentation_order = key_list(data) #record order in which data was presented and output labels
-    currentFileLocation = pathlib.Path(__file__).parent.absolute()
-    data = alphabetise(data)  #now reset data in alphabetical order ready for writing to file
+    #presentation_order = key_list(data)        #record order in which data was presented and output labels
+    data = alphabetise(data)                    #now reset data in alphabetical order ready for writing to file
     
     #check if there are guises left to play [they play via playGuise(), called in JS]
     if guise_counter < (len(mgtAudioList)): ##if there are still items on the list:
-        mgtAudioList.pop(0)   #remove current 1st item from list
-        nxtLocation = "mgtRatings.html" #and set next page to _self
-        guise_counter +=1
+        mgtAudioList.pop(0)                 #remove current 1st item from list
+        nxtLocation = "mgtRatings.html"     #and set next page to _self
+        guise_counter +=1                   #reset counter
     else:
         mgtAudioList.pop(0)
-        nxtLocation = "mgtEnd.html" #else, display thank you page and end MGT
+        nxtLocation = "mgtEnd.html"         #else, display thank you page and end MGT
 
     print("\n" + "mgtAudioLIst now is: " + str(mgtAudioList))
    
     #record user respponses for guise
     try:
         with open("lart_research_client/mgt/data/dataLog.txt", "a") as file:
-            file.write("\n")
-            file.write("Presentation order: ")
-            file.write(json.dumps(presentation_order))
-            file.write("\n")
+            #file.write("\n")
+            #file.write("Presentation order: ")
+            #file.write(json.dumps(presentation_order))
+            #file.write("\n")
             for key in data:
                 value = data[key]
                 file.write(key + ": " + str(value) + "\n")
@@ -101,9 +100,17 @@ def playGuise():
     audioFile = audioLocationPath + "/audio files/" + mgtAudioList[0]
     sleep(1.5)
     print("\ncurrently playing...:" + mgtAudioList[0])
-    playsound(audioFile)
+    playsound(audioFile , block = False)
 
- 
+@eel.expose
+def fetchCurrentGuise():               #return name of guise being played, but without extension
+    global mgtAudioList
+    currentAudio = str(mgtAudioList[0])
+    extensionBegin = currentAudio.find(".")
+    guiseName = currentAudio[0:extensionBegin]
+    return guiseName
+
+
 def randomize(dictionary):
     randomized_version = {}
     items = list(dictionary.items())  # List of tuples of (key,values)
