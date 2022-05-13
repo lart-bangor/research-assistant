@@ -7,16 +7,11 @@
 mgtInstanceId = parseInt(lart.forms.searchParams.get('instance'));
 chosenVersion = sessionStorage.getItem("mgtVersion");
 partId = sessionStorage.getItem("mgtPartId");
+let mgtAudioList = [];
 
+fetchMgtInfo();
 
-// function fetchGuiseName(audioFile) {
-//     console.log("trying py again: ");
-//     console.log(audioFile);
-//     return audioFile;
-//     }
-
-// guiseName = eel.fetchCurrentGuise()(fetchGuiseName);
-
+/*
 let currentGuiseName = "";
 function fetchGuiseName(guiseName) {
     console.log("Current guise:", guiseName);
@@ -25,24 +20,6 @@ function fetchGuiseName(guiseName) {
 }
 
 eel.fetchCurrentGuise()(fetchGuiseName);
-
-
-/*
-function fetchGuiseName() {
-    eel.fetchCurrentGuise()(callBack);
-    }
-function callBack(out) {
-    console.log("python function ");
-    console.log(out);
-    return out;
-}
-*/
-
-/*
-eel.fetchGuise()(function(currentAudio){        //get the value of currentGuise from Python
-    var  currentGuise = currentAudio
-    console.log("current guise: " + currentGuise);
-    })
 */
 
 // instructions to be outputed depending on language selection
@@ -71,6 +48,9 @@ function displayMgt(data) {
     sliderElement.innerHTML =  " " + sliderTxt;
     btnElement.innerHTML = btnTxt;
     itemList = data.mgtItems;
+    mgtAudioList = data.mgtAudioList;
+
+    console.log("audio list is: ", mgtAudioList);
     
     console.log("Items = ");
     console.log(itemList);
@@ -89,7 +69,7 @@ function displayMgt(data) {
                     itemList[i] + 
                 "</label>" +
                 "<div class='col-10 mt-2'>" +
-                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + itemList[i] + "_" + currentGuiseName + "' required />" +
+                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + itemList[i] + "_" + "currentGuiseName" + "' required />" +
                     "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
                 "</div>" +
             "</div>" + 
@@ -98,11 +78,17 @@ function displayMgt(data) {
                                
         }
     mgtElement.insertAdjacentHTML('beforeend', code);
+    playGuise();
     }
 
-    //fetchMgtInfo(chosenVersion);
-    eel.playGuise();
+
     
+function playGuise() {
+    audioFile = "/audio files/" + mgtAudioList[0]
+    console.log("currently playing...:", mgtAudioList[0])
+    var audio = new Audio(audioFile);
+    audio.play();
+}
 
 </script>
 
@@ -170,7 +156,7 @@ function displayMgt(data) {
         'mgtForm_one',
         async function(data) {
 
-            let success = await eel.grab_mgt_ratings(data, 'mgtRatings', chosenVersion)();
+            let success = await eel.record_mgt_ratings(data, 'mgtRatings', chosenVersion)();
             console.log("tail script: " + success);
            
         }

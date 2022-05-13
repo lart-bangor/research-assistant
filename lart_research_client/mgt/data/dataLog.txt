@@ -1428,3 +1428,83 @@ proud_beak2: 50
 self-confident_beak2: 50
 tustworthy_beak2: 50
 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 13:54:05
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: gggg
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:04:36
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:06:47
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: dddd
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:07:27
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: fff
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:08:45
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:09:58
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: cccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:10:37
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: gggg
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:42:55
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ccc
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:51:12
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: uuuu
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 14:55:08
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: mtamb
+researchLocation: lombardy
+participantId: ssss
+confirmConsent: True

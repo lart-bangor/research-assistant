@@ -18,27 +18,17 @@ import os
 import pathlib
 from playsound import playsound
 
-#declare global variables to be accessed when MGT initialises
-guise_counter = 0
-mgtAudioList = list(())
  
 #retrieve initial info from index.html and print to file + to console
 @eel.expose
 def init_mgt(data: dict[Any, Any]):
-    global mgtAudioList
     presentime = datetime.now()
     dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
-    currentFileLocation = pathlib.Path(__file__).parent.absolute()
-    parentFolder = currentFileLocation.parent
-    jsonLocationPath = str(parentFolder.as_posix())
-    jsonFile = jsonLocationPath + "/web/app/mgt/versions/CymEng_ENG_GB.json"
+    #currentFileLocation = pathlib.Path(__file__).parent.absolute()
+    #parentFolder = currentFileLocation.parent
+    #jsonLocationPath = str(parentFolder.as_posix())
+    #jsonFile = jsonLocationPath + "/web/app/mgt/versions/CymEng_ENG_GB.json"
     
-    with open(jsonFile, 'r') as j:
-        contents = json.loads(j.read())
-        mgtAudioList = contents.get("mgtAudioList")
-        print("Counter is initialised at: " + str(guise_counter))
-        print("Audio list is initialised at: " + str(mgtAudioList) + "\n")
-
     try:
         with open("lart_research_client/mgt/data/dataLog.txt", "a") as file:
             file.write(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>")
@@ -59,20 +49,20 @@ def init_mgt(data: dict[Any, Any]):
 @eel.expose
 def grab_mgt_ratings(data: dict[Any, Any], source, version):
     fetchCurrentGuise()
-    global mgtAudioList, guise_counter
+#    global mgtAudioList, guise_counter
     #presentation_order = key_list(data)        #record order in which data was presented and output labels
     data = alphabetise(data)                    #now reset data in alphabetical order ready for writing to file
     
     #check if there are guises left to play [they play via playGuise(), called in JS]
-    if guise_counter < (len(mgtAudioList)): ##if there are still items on the list:
-        mgtAudioList.pop(0)                 #remove current 1st item from list
-        nxtLocation = "mgtRatings.html"     #and set next page to _self
-        guise_counter +=1                   #reset counter
-    else:
-        mgtAudioList.pop(0)
-        nxtLocation = "mgtEnd.html"         #else, display thank you page and end MGT
+ #   if guise_counter < (len(mgtAudioList)): ##if there are still items on the list:
+  #      mgtAudioList.pop(0)                 #remove current 1st item from list
+   #     nxtLocation = "mgtRatings.html"     #and set next page to _self
+    #    guise_counter +=1                   #reset counter
+   # else:
+    #    mgtAudioList.pop(0)
+    #    nxtLocation = "mgtEnd.html"         #else, display thank you page and end MGT
 
-    print("\n" + "mgtAudioLIst now is: " + str(mgtAudioList))
+   # print("\n" + "mgtAudioLIst now is: " + str(mgtAudioList))
    
     #record user respponses for guise
     try:
@@ -91,16 +81,16 @@ def grab_mgt_ratings(data: dict[Any, Any], source, version):
     print("\nMGT ratings from " + source + ".html: ")
     print(data)
     
-    booteel.setlocation(nxtLocation)
+    # booteel.setlocation(nxtLocation)
 
 @eel.expose
 def playGuise():
     currentFileLocation = pathlib.Path(__file__).parent.absolute()
     audioLocationPath = str(currentFileLocation.as_posix())
-    audioFile = audioLocationPath + "/audio files/" + mgtAudioList[0]
+#    audioFile = audioLocationPath + "/audio files/" + mgtAudioList[0]
     sleep(1.5)
-    print("\ncurrently playing...:" + mgtAudioList[0])
-    playsound(audioFile , block = False)
+ #   print("\ncurrently playing...:" + mgtAudioList[0])
+#    playsound(audioFile , block = False)
 
 @eel.expose
 def fetchCurrentGuise():               #return name of guise being played, but without extension
