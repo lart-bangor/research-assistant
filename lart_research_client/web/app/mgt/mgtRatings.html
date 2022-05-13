@@ -9,13 +9,23 @@ chosenVersion = sessionStorage.getItem("mgtVersion");
 partId = sessionStorage.getItem("mgtPartId");
 
 
-function fetchGuiseName(audioFile) {
-    console.log("trying py again: ");
-    console.log(audioFile);
-    return audioFile;
-    }
+// function fetchGuiseName(audioFile) {
+//     console.log("trying py again: ");
+//     console.log(audioFile);
+//     return audioFile;
+//     }
 
-guiseName = eel.fetchCurrentGuise()(fetchGuiseName);
+// guiseName = eel.fetchCurrentGuise()(fetchGuiseName);
+
+let currentGuiseName = "";
+function fetchGuiseName(guiseName) {
+    console.log("Current guise:", guiseName);
+    currentGuiseName = guiseName;
+    fetchMgtInfo(chosenVersion);
+}
+
+eel.fetchCurrentGuise()(fetchGuiseName);
+
 
 /*
 function fetchGuiseName() {
@@ -34,8 +44,6 @@ eel.fetchGuise()(function(currentAudio){        //get the value of currentGuise 
     console.log("current guise: " + currentGuise);
     })
 */
-
-
 
 // instructions to be outputed depending on language selection
 function fetchMgtInfo()  {
@@ -81,7 +89,7 @@ function displayMgt(data) {
                     itemList[i] + 
                 "</label>" +
                 "<div class='col-10 mt-2'>" +
-                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + itemList[i] + "_" + guiseName + "' required />" +
+                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + itemList[i] + "_" + currentGuiseName + "' required />" +
                     "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
                 "</div>" +
             "</div>" + 
@@ -92,7 +100,7 @@ function displayMgt(data) {
     mgtElement.insertAdjacentHTML('beforeend', code);
     }
 
-    fetchMgtInfo(chosenVersion);
+    //fetchMgtInfo(chosenVersion);
     eel.playGuise();
     
 

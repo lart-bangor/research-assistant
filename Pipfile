@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 eel = {extras = ["jinja2"], version = "*"}
 appdirs = "*"
+playsound = "==1.2.2"
 
 [dev-packages]
 pytest = "*"

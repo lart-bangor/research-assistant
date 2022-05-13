@@ -1394,3 +1394,37 @@ researcherId: mtamb
 researchLocation: lombardy
 participantId: dddd
 confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 13:21:08
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: florian
+researchLocation: Bangor, Gwynedd
+participantId: klsdjlk
+confirmConsent: True
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>
+
+Date & Time: 13/05/2022 13:33:18
+selectSurveyVersion: CymEng_Eng_GB
+researcherId: florian
+researchLocation: Bangor, Gwynedd
+participantId: sdf
+confirmConsent: True
+accepting new uses and customs_beak2: 50
+attractive_beak2: 50
+educated_beak2: 50
+faithful_beak2: 50
+friendly_beak2: 50
+funny_beak2: 50
+generous_beak2: 50
+hard-working_beak2: 50
+has a sense of humour_beak2: 50
+intelligent_beak2: 50
+interested in making progresses_beak2: 50
+leader_beak2: 50
+open-minded_beak2: 50
+practical_beak2: 50
+proud_beak2: 50
+self-confident_beak2: 50
+tustworthy_beak2: 50
+
