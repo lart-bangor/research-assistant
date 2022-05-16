@@ -7,15 +7,20 @@
     
     #consentForm ol { color: #0000cd; }
 
-    #consentForm {
+    #mgtBody {
         display: none;
-    }
+        }
+
+        
+ .show {
+    display: block;
+}
     
 </style>
 {% endblock %}
 {% block head_scripts %}
 <script type="text/javascript">
-
+//Funcions for MGT selection page
 function loadSurveyVersions() {
     availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_rml_get_versions", 
                                                                                       // or hard-coded for each questionnaire.
@@ -31,6 +36,29 @@ function populateSurveyVersions(versions) {
         }
     }
 
+
+//#########################################################################################################//
+//#                                                                                                       #// 
+//#     Main section: grab MGT info in LANG from json, display, record responses, send to Python          #//
+//#                                                                                                       #//
+//#########################################################################################################//
+
+// counter to keep track of DIV id's (each DIV is mgtRatingScale_ + a number)
+counter = 0;
+
+//initialise arrays for adjectives & for audio files to be played
+let mgtAdjectives = [];     
+let mgtAudioList = [];
+
+//initialise labels for sliders, to be redefined within fetchMgt()
+let agree = "";
+let disagree = "";
+let headerTxt = "";
+let sliderWarn = "";
+let sliderTxt = "";
+let btnTxt = "";
+let headerElement = "";
+let sliderElement = "";
         
 function showMgt() {
     const fetch_version = document.getElementById("selectMgtVersion");
@@ -44,34 +72,76 @@ function showMgt() {
     hideInitForm();
     fetch(jsonFile)
         .then(response => response.json())
-        .then(data => displayMgt(data));  //pass teh contents of jsonFile to output_info()
+        .then(data => fetchMgt(data));  //pass the contents of jsonFile to output_info()
     }
     
-        
-function displayMgt(data) {
-    console.log("data is ", data);
-    const headerElement = document.getElementById("language_header");
-    const sliderElement = document.getElementById("slider_info");
-    const btnElement = document.getElementById("btnNext");
-    const mgtElement = document.getElementById('mgtRatingScales');
-    const headerTxt = data.base.header;
-    const agree = data.base.agreement;
-    const disagree = data.base.disagreement;
-    const sliderTxt = data.base.sliderInfo;
-    const sliderWarn = data.base.sliderWarn;
-    const btnTxt = data.base.nextBtn;
-    headerElement.innerHTML =  headerTxt;
-    sliderElement.innerHTML =  " " + sliderTxt;
-    btnElement.innerHTML = btnTxt;
-    
-    itemList = data.mgtItems;
-    mgtAudioList = data.mgtAudioList;
 
-    console.log("audio list is: ", mgtAudioList);
+function fetchMgt(data) {
+    //displays MGT component of page
+    console.log("data is ", data);
+    headerElement = document.getElementById("language_header");
+    sliderElement = document.getElementById("slider_info");
+    btnElement = document.getElementById("btnNext");
+    document.getElementById("mgtBody").style.display = "block";     
+    headerTxt = data.base.header;
+       
+    agree = data.base.agreement;            
+    disagree = data.base.disagreement;
+    sliderTxt = data.base.sliderInfo;
+    sliderWarn = data.base.sliderWarn;
+    btnTxt = data.base.nextBtn;
+
+   
     
-    console.log("Items = ", itemList);
-    console.log("type of mgtItems: ", typeof(itemList));
-    let itemsLen = itemList.length;
+    
+//    headerElement.innerHTML =  headerTxt;
+  //  sliderElement.innerHTML =  " " + sliderTxt;
+    //btnElement.innerHTML = btnTxt;
+    
+    mgtAdjectives = data.mgtItems;  //set mgtAdjectives
+    mgtAudioList = data.mgtAudioList;   // set mgtAudioList;
+    moveToNext();
+}
+
+
+function moveToNext() {
+    hidePrecedingDiv();
+    currentAudioArray = mgtAudioList;
+    audioLen = currentAudioArray.length;
+    if(audioLen >0) {                       //if list of audio recs is not empty
+        loeadHeaders();
+        window.location.href = "#mgtTop";
+        console.log("in moveToNext audio list is: ", currentAudioArray);
+        playGuise(mgtAudioList[0]);  //play first item on guise list
+        loadAdjectives(mgtAdjectives);
+        console.log("Adjectives = ", mgtAdjectives);
+        currentAudioArray.shift();
+        mgtAudioList = currentAudioArray    //redefine mgtAudioList after first item is removed
+        console.log("after popping array is ", mgtAudioList);
+                
+    } else {
+        data = lart.forms.getFormData("mgtDataForm"); 
+        eel.grab_mgt_ratings(data)();
+        window.location.assign("mgtEnd.html");
+    }     
+     
+}
+
+function loeadHeaders() {
+        headerElement.innerHTML =  headerTxt;
+        sliderElement.innerHTML =  " " + sliderTxt;
+        btnElement.innerHTML = btnTxt;
+
+}
+
+function loadAdjectives() {
+    //this displays a slider for each adjective on itemList
+    let currentDiv = "mgtRatingScale_" + String(counter);
+    const mgtElement = document.getElementById(currentDiv);
+    let currentGuiseName = fetchAudioLabel(mgtAudioList[0]);
+    console.log("current DIV's ID is ", currentDiv);
+    let itemsLen = mgtAdjectives.length;
+    let shuffledAdjectives = mgtAdjectives.sort(() => Math.random() - 0.5)   //randomise order of adjectives
     let code = "<ul>";
     for (let i = 0; i < itemsLen; i++) {
         code += "<div class='row mb-0'>" +
@@ -80,27 +150,24 @@ function displayMgt(data) {
                     "<div class='col-5 text-end'><div style = 'font-size: small'>" + disagree + "</div></div>" +
                 "</div>" +
                 "<div class='row mb-1'>" +
-                "<label for='" + itemList[i] + "_" + "fetchGuiseName();" + "' class='col-2 col-form-label'>" +  //s will pull from a variable once we have the info about which recording is being judged
-                    itemList[i] + 
+                "<label for='" + shuffledAdjectives[i] + "_" + currentGuiseName + "' class='col-2 col-form-label'>" +  //s will pull from a variable once we have the info about which recording is being judged
+                    shuffledAdjectives[i] + 
                 "</label>" +
                 "<div class='col-10 mt-2'>" +
-                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + itemList[i] + "_" + "currentGuiseName" + "' required />" +
+                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + shuffledAdjectives[i] + "_" + currentGuiseName + "' required />" +
                     "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
                 "</div>" +
             "</div>" + 
             "<div><p><br /><br /><br /><br /></p></div>";
-            
-       
-                               
         }
-    mgtElement.insertAdjacentHTML('beforeend', code);
-    playGuise();
+    counter++;
+    mgtElement.insertAdjacentHTML('beforeend', code); 
     }
 
 
                 
- function show_form() {
-    document.getElementById("consentForm").style.display = "block";             
+function showMgtBlock() {
+    document.getElementById("mgtBody").style.display = "block";             
     }
 
 function hideInitForm() {
@@ -110,12 +177,31 @@ function hideInitForm() {
     btn.style.display = 'none';
     }
 
-function playGuise() {
-    //console.log("audio path is ", audioFile);
-    console.log("currently playing...:", mgtAudioList[0]);
-    const audio = document.getElementById("guiseAudio");
-    audio.play();
+function playGuise(audio) {
+    //console.log("Current audio path is ", audioFile);
+    console.log("current audio supposed to play is...:", audio);
+    //const audio = document.getElementById("guiseAudio");
+    //audio.play();
 
+}
+
+function fetchAudioLabel(filename) {
+    let guiseName = String(mgtAudioList[0]);
+    let extBegin = filename.indexOf(".mp3");
+    let currentGuiseName = guiseName.slice(0,extBegin);
+    return currentGuiseName;
+}
+
+function hidePrecedingDiv() {
+    console.log("inside hide DIV counter is: ", counter);
+    if(counter !== 0) {
+        let previousId = "mgtRatingScale_" + String(counter-1);
+        console.log("previous rat8ng id is: ", previousId);
+        var x = document.getElementById(previousId);
+        console.log("var x = ", x);
+        x.style.display = "none";
+    }
+      
 }
 
 function fetchAudio() {
@@ -140,14 +226,19 @@ function fetchAudio() {
     <li><hr class="nav-divider"></li>
 {% endblock %}
 {% block content %}
-    <article class="p-2">
+    <article class="p-2" id="mgtTop">
 
         <div class="row m-4 text-center">
             <div class="col">
                 <h2>MGT speaker rating</h2>
             </div>
         </div>
-
+    <!-- Progress bar    
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+        </div>
+      </div>
+    -->
         <div id = "mgtToggleForm">
         <form id="mgtSelectForm" class="needs-validation">
 
@@ -182,18 +273,15 @@ function fetchAudio() {
     </article>
  <!-- This is where the MGt main body begins -->
  <section id="mgtBody">
+   
 
-    <!-- Progress bar-->    
-<div class="progress">
-    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
-</div>
 <div class="row m-2 text-center">
     <h2></h2>
 </div>
 
 <audio id="guiseAudio"></audio>
 
-<form id="mgtForm" class="needs-validation"> <!-- action="part2.html">-->
+<form id="mgtDataForm" class="needs-validation"> 
 
     <!-- Name language statement to agree with... -->
     <div class="row mt-5 mb-0">
@@ -214,18 +302,32 @@ function fetchAudio() {
 
     <div id="mgtRatingScales">
         <!-- Placeholder where JavaScript will insert sliders -->
+        <div id="mgtRatingScale_0" class="show"></div>
+        <div id="mgtRatingScale_1"  class="show"></div>
+        <div id="mgtRatingScale_2"  class="show"></div>
+        <div id="mgtRatingScale_3"  class="show"></div>
+        <div id="mgtRatingScale_4" class="show"></div>
+        <div id="mgtRatingScale_5" class="show"></div>
+        <div id="mgtRatingScale_6" class="show"></div>
+        <div id="mgtRatingScale_7" class="show"></div>
+        <div id="mgtRatingScale_8" class="show"></div>
+        <div id="mgtRatingScale_9" class="show"></div>
+        <div id="mgtRatingScale_10" class="show"></div>
+        <div id="mgtRatingScale_11" class="show"></div>
+        
     </div>
                        
-    <!-- Form submission -->
-    <div class="row text-end p-3">
-        <div clas="col">
-            <button class="btn btn-primary btn-lg btn-action shadow" id="btnNext">
+    
                 
                 
             </button>
         </div>
     </div>
 </form>
+<!-- Form submission -->
+<div class="row text-end p-3">
+    <div clas="col">
+        <button class="btn btn-primary btn-lg btn-action shadow" id="btnNext" onclick="moveToNext();">
 </section>
 
 <!-- Activate version   -->
