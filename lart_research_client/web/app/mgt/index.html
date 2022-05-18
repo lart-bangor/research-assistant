@@ -45,10 +45,23 @@ function populateSurveyVersions(versions) {
 
 // counter to keep track of DIV id's (each DIV is mgtRatingScale_ + a number)
 counter = 0;
+const timeStamp = new Date();
 
 //initialise arrays for adjectives & for audio files to be played
 let mgtAdjectives = [];     
 let mgtAudioList = [];
+var fullDataset = {};
+var meta = {
+    "File ID": "",
+    "version": "",
+    "Researcher id": "",
+    "Location": "",
+    "participant id": "",
+    "Date & Time": timeStamp
+    
+};
+let presentationOrders = [];
+
 
 //initialise labels for sliders, to be redefined within fetchMgt()
 let agree = "";
@@ -61,13 +74,16 @@ let headerElement = "";
 let sliderElement = "";
         
 function showMgt() {
+    //get values from researcher
     const fetch_version = document.getElementById("selectMgtVersion");
+    const fetch_resId = document.getElementById("researcherId");
+    const fetch_location = document.getElementById("researchLocation");
     const fetch_partId = document.getElementById("participantId");
-    const version = fetch_version.value;
-    const partId = fetch_partId.value;
-    console.log("Selected version: " + version);
-    console.log("Participant ID: " + partId);
-    jsonFile = "versions/" + version + ".json";  //set filename based on selected version
+    const metaValues = [fetch_version.value, fetch_resId.value, fetch_location.value, fetch_partId.value];
+    setMeta(metaValues);    //load value on meta{} object, to keep for later
+    console.log("meta data is: ", meta);
+    
+    jsonFile = "versions/" + meta['version'] + ".json";  //set filename based on selected version
     console.log("json file is: ", jsonFile);
     hideInitForm();
     fetch(jsonFile)
@@ -83,17 +99,14 @@ function fetchMgt(data) {
     sliderElement = document.getElementById("slider_info");
     btnElement = document.getElementById("btnNext");
     document.getElementById("mgtBody").style.display = "block";     
+    
     headerTxt = data.base.header;
-       
     agree = data.base.agreement;            
     disagree = data.base.disagreement;
     sliderTxt = data.base.sliderInfo;
     sliderWarn = data.base.sliderWarn;
     btnTxt = data.base.nextBtn;
 
-   
-    
-    
 //    headerElement.innerHTML =  headerTxt;
   //  sliderElement.innerHTML =  " " + sliderTxt;
     //btnElement.innerHTML = btnTxt;
@@ -105,11 +118,11 @@ function fetchMgt(data) {
 
 
 function moveToNext() {
-    hidePrecedingDiv();
     currentAudioArray = mgtAudioList;
     audioLen = currentAudioArray.length;
     if(audioLen >0) {                       //if list of audio recs is not empty
-        loeadHeaders();
+        hidePrecedingDiv();
+        loadHeaders();
         window.location.href = "#mgtTop";
         console.log("in moveToNext audio list is: ", currentAudioArray);
         playGuise(mgtAudioList[0]);  //play first item on guise list
@@ -120,19 +133,30 @@ function moveToNext() {
         console.log("after popping array is ", mgtAudioList);
                 
     } else {
-        data = lart.forms.getFormData("mgtDataForm"); 
-        eel.grab_mgt_ratings(data)();
         window.location.assign("mgtEnd.html");
-    }     
+        formdata = lart.forms.getFormData("mgtDataForm"); 
+        data = presentationOrders.concat(formdata);
+        console.log("data type is: ", typeof(data));
+        eel.grab_mgt_ratings(data)();
+        }     
      
 }
 
-function loeadHeaders() {
+function loadHeaders() {
         headerElement.innerHTML =  headerTxt;
         sliderElement.innerHTML =  " " + sliderTxt;
         btnElement.innerHTML = btnTxt;
 
 }
+
+function setMeta(metaData) {
+    meta['version'] = metaData[0];
+    meta['Researcher id'] = metaData[1];
+    meta['Location'] = metaData[2];
+    meta['participant id'] = metaData[3];
+    idTime = timeStamp.getDate() + "-" + timeStamp.getMonth() + "-" + timeStamp.getFullYear() + "_" + timeStamp.getHours() + "-" + timeStamp.getMinutes() + "-" + timeStamp.getSeconds();
+    meta['File ID'] = metaData[3] + "_" + idTime;
+    }
 
 function loadAdjectives() {
     //this displays a slider for each adjective on itemList
@@ -142,6 +166,11 @@ function loadAdjectives() {
     console.log("current DIV's ID is ", currentDiv);
     let itemsLen = mgtAdjectives.length;
     let shuffledAdjectives = mgtAdjectives.sort(() => Math.random() - 0.5)   //randomise order of adjectives
+    let presentationOrder = {
+        "guise name": currentGuiseName,
+        "order of presentation": shuffledAdjectives
+    }
+    presentationOrders.unshift(presentationOrder);
     let code = "<ul>";
     for (let i = 0; i < itemsLen; i++) {
         code += "<div class='row mb-0'>" +
@@ -255,6 +284,27 @@ function fetchAudio() {
                         <p>Please select one of the available versions.</p>
                     </div>
                 </div>
+            </section>
+            <section class="m-4">
+            <div class="mb-3">
+                <label for="researcherId" class="form-label">Researcher ID:</label>
+                <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
+                <div id="researcherIdHelp" class="form-text">Enter the researcher’s name or ID.</div>
+                <div class="invalid-feedback">
+                    <p>Please provide a valid Researcher ID or name. The ID can only contain letters and numbers (no spaces, hyphens, etc.) and must be between 3 and 10 characters in length.</p>
+                </div>
+            </div>
+            </section>
+
+            <section class="m-4">
+            <div class="mb-3">
+                <label for="researchLocation" class="form-label">Location:</label>
+                <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="[A-Za-z0-9 ,\(\)]{1,50}" required />
+                <div id="researchLocationHelp" class="form-text">Enter the location (e.g. town name) where the research is undertaken.</div>
+                <div class="invalid-feedback">
+                    <p>Please enter a location name, for example <i>Bangor, Gwynedd</i>. Location names can contain letters, numbers, spaces, commas and parentheses and they can be up to 50 characters in length.</p>
+                </div>
+            </div>
             </section>
 
             <!-- Participant details -->
