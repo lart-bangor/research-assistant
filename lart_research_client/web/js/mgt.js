@@ -1,4 +1,4 @@
-//Funcions for MGT selection page
+//Funcions for MGT selection part of page
 function loadSurveyVersions() {
     availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_rml_get_versions", 
                                                                                       // or hard-coded for each questionnaire.
@@ -28,7 +28,8 @@ const timeStamp = new Date();
 //initialise arrays for adjectives & for audio files to be played
 let mgtAdjectives = [];     
 let mgtAudioList = [];
-var fullDataset = {};
+let mgtInitialAudioList = [];
+
 var meta = {
     "File ID": "",
     "version": "",
@@ -36,10 +37,18 @@ var meta = {
     "Location": "",
     "participant id": "",
     "Date & Time": timeStamp
-    
-};
-let presentationOrders = [];
+}
+ 
+partResponses = [];
 
+let currentGuiseName = "";
+
+//rating response constrcutor
+function Rating(name, presOrder, partRatings) {
+    this.guiseName = name;
+    this.presentationOrder = presOrder;
+    this.ratings = partRatings
+}
 
 //initialise labels for sliders, to be redefined within fetchMgt()
 let agree = "";
@@ -70,9 +79,9 @@ function showMgt() {
     }
     
 
-function fetchMgt(data) {
+function fetchMgt(data) {       
     //displays MGT component of page
-    console.log("data is ", data);
+    console.log("data from json is ", data);
     headerElement = document.getElementById("language_header");
     sliderElement = document.getElementById("slider_info");
     btnElement = document.getElementById("btnNext");
@@ -84,11 +93,8 @@ function fetchMgt(data) {
     sliderTxt = data.base.sliderInfo;
     sliderWarn = data.base.sliderWarn;
     btnTxt = data.base.nextBtn;
-
-//    headerElement.innerHTML =  headerTxt;
-  //  sliderElement.innerHTML =  " " + sliderTxt;
-    //btnElement.innerHTML = btnTxt;
-    
+   
+    mgtInitialAudioList = data.mgtAudioList // keep original list to use later
     mgtAdjectives = data.mgtItems;  //set mgtAdjectives
     mgtAudioList = data.mgtAudioList;   // set mgtAudioList;
     moveToNext();
@@ -104,20 +110,37 @@ function moveToNext() {
         window.location.href = "#mgtTop";
         console.log("in moveToNext audio list is: ", currentAudioArray);
         playGuise(mgtAudioList[0]);  //play first item on guise list
-        loadAdjectives(mgtAdjectives);
         console.log("Adjectives = ", mgtAdjectives);
+        loadAdjectives(mgtAdjectives);        
         currentAudioArray.shift();
         mgtAudioList = currentAudioArray    //redefine mgtAudioList after first item is removed
         console.log("after popping array is ", mgtAudioList);
                 
     } else {
-        window.location.assign("mgtEnd.html");
+        //window.location.assign("mgtEnd.html");
         formdata = lart.forms.getFormData("mgtDataForm"); 
-        data = presentationOrders.concat(formdata);
-        console.log("data type is: ", typeof(data));
-        eel.grab_mgt_ratings(data)();
+        console.log("form data is ", formdata);
+        const entries = Object.entries(formdata);
+        console.log("formdata now is: ", entries);
+        console.log("full JSOn object is : ", JSON.stringify(partResponses, undefined, 2));
+        console.log();
+        loadResponses(entries);
+        const fullDataset = {meta, partResponses};
+        console.log("FINAL JSOn object is : ", JSON.stringify(fullDataset, undefined, 2));
+        //console.log("full JSOn object after loading responses : ", JSON.stringify(partResponses, undefined, 2));
+        eel.grab_mgt_ratings(fullDataset)();
         }     
      
+}
+
+function loadResponses(array) {
+    for (let [key, value] of array) {
+        console.log(key, value);
+        for (const x of mgtInitialAudioList) {  
+        }
+    
+    }
+
 }
 
 function loadHeaders() {
@@ -140,15 +163,15 @@ function loadAdjectives() {
     //this displays a slider for each adjective on itemList
     let currentDiv = "mgtRatingScale_" + String(counter);
     const mgtElement = document.getElementById(currentDiv);
-    let currentGuiseName = fetchAudioLabel(mgtAudioList[0]);
+    currentGuiseName = fetchAudioLabel(mgtAudioList[0]);
     console.log("current DIV's ID is ", currentDiv);
     let itemsLen = mgtAdjectives.length;
-    let shuffledAdjectives = mgtAdjectives.sort(() => Math.random() - 0.5)   //randomise order of adjectives
-    let presentationOrder = {
-        "guise name": currentGuiseName,
-        "order of presentation": shuffledAdjectives
-    }
-    presentationOrders.unshift(presentationOrder);
+    let shuffledAdjectives = shuffle(mgtAdjectives)   //randomise order of adjectives
+    console.log("shuffled adjectives: ", shuffledAdjectives);
+    let thisRating = new Rating(currentGuiseName, shuffledAdjectives);
+    partResponses.push(thisRating);
+    console.log("Rating object is ", thisRating);
+    console.log("Part response array is ", partResponses);
     let code = "<ul>";
     for (let i = 0; i < itemsLen; i++) {
         code += "<div class='row mb-0'>" +
@@ -168,11 +191,11 @@ function loadAdjectives() {
             "<div><p><br /><br /><br /><br /></p></div>";
         }
     counter++;
-    mgtElement.insertAdjacentHTML('beforeend', code); 
+    mgtElement.insertAdjacentHTML('beforeend', code);
     }
 
 
-                
+
 function showMgtBlock() {
     document.getElementById("mgtBody").style.display = "block";             
     }
@@ -222,3 +245,14 @@ function fetchAudio() {
     console.log("audio file is: ", audioFile);
     return audioFile;
 }
+
+function shuffle(a) {       //shuffles members of array
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+        }
+    return a;
+    }
