@@ -350,13 +350,25 @@
             "About <!-- ...[LanguageX] -->",
             "Per quanto riguarda <!-- ...[LanguageX] -->"
         ],
+        "aboutLanguageXFormat": [
+            "[LanguageName]",
+            "[LanguageName:def]"
+        ],
         "aboutLanguageXInstr1": [
             "Relative to the performance of a highly proficient speaker of <!-- ... [LanguageX], -->",
             "Rispetto a una persona che a Suo parere parla molto bene <!-- ... [LanguageX], -->"
         ],
+        "aboutLanguageXInstr1Format": [
+            "[LanguageName]",
+            "[LanguageName:def]"
+        ],
         "aboutLanguageXInstr2": [
             "rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. -->",
             "Valuti la Sua personale padronanza nelle seguenti attività svolte in <!-- ... [LanguageX]. -->"
+        ],
+        "aboutLanguageXInstr2Format": [
+            "[LanguageName]",
+            "[LanguageName:lower]"
         ],
         "noProficiency": [
             "No Proficiency",
@@ -377,6 +389,10 @@
         "timeOfActivity": [
             "Of the time you spend engaged in each of the following activities, how much of that time is carried out in <!-- ...[LanguageX]? -->",
             "Del tempo che Lei passa compiendo le seguenti attività, quanto ne passa usando <!-- ...[LanguageX]? -->"
+        ],
+        "timeOfActivityFormat": [
+            "[LanguageName]",
+            "[LanguageName:def]"
         ],
         "noneOfTheTime": [
             "None of the time",
