@@ -312,18 +312,18 @@
             <!-- 12. Language proficiency and usage information -->
             <section class="m-4">
                 <template id="languageRatingTemplate">
-                    <div id="languageRatingInstance-[LanguageNumber]">
+                    <div id="languageRatingInstance-[LanguageNumber]" class="mb-5">
                         <div class="row mb-1">
                             <div class="col-auto">
-                                <p class="h6"><span data-lsbq-tr="ldb.aboutLanguageX">About <!-- ...[LanguageX] --></span> <span class="fst-italic languageNameSlot">[LanguageName]</span></p>
+                                <p class="h6"><span data-lsbq-tr="ldb.aboutLanguageX">About <!-- ...[LanguageX] --></span> <span class="fst-italic languageNameSlot" data-lsbq-tr="ldb.aboutLanguageXFormat">[LanguageName]</span></p>
                             </div>
                         </div>
                         <!-- Proficiency -->
                         <div class="row mb-1">
                             <div class="col-auto">
                                 <p>
-                                    <span data-lsbq-tr="ldb.aboutLanguageXInstr1">Relative to the performance of a highly proficient speaker of <!-- ... [LanguageX], --></span> <span class="languageNameSlot">[LanguageName]</span>,
-                                    <span data-lsbq-tr="ldb.aboutLanguageXInstr2">rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. --></span> <span class="languageNameSlot">[LanguageName]</span>.
+                                    <span data-lsbq-tr="ldb.aboutLanguageXInstr1">Relative to the performance of a highly proficient speaker of <!-- ... [LanguageX], --></span> <span class="languageNameSlot" data-lsbq-tr="ldb.aboutLanguageXInstr1Format">[LanguageName]</span>,
+                                    <span data-lsbq-tr="ldb.aboutLanguageXInstr2">rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. --></span> <span class="languageNameSlot" data-lsbq-tr="ldb.aboutLanguageXInstr2Format">[LanguageName]</span>.
                                 </p>
                             </div>
                         </div>
@@ -355,7 +355,7 @@
                             <div class="col-auto">
                                 <p>
                                     <span data-lsbq-tr="ldb.timeOfActivity">Of the time you spend engaged in each of the following activities,
-                                    how much of that time is carried out in <!-- ...[LanguageX]? --></span> <span class="languageNameSlot">[LanguageName]</span>?
+                                    how much of that time is carried out in <!-- ...[LanguageX]? --></span> <span class="languageNameSlot" data-lsbq-tr="ldb.timeOfActivityFormat">[LanguageName]</span>?
                                 </p>
                             </div>
                         </div>
@@ -405,49 +405,113 @@
 {% endblock %}
 {% block tail_scripts %}
     <script type="text/javascript">
-        function localizeLanguageName(string, gender=null) {
+        /**
+         * Localize a language name to fit the grammar of various languages.
+         * 
+         * The language is directly extracted from the version loaded for interface-translation.
+         * Languages currently handled are:
+         *  - Italian (Ita): Lowercase language name, optionally add definite article, can determine
+         *                   definite article and guess gender based on word shape.
+         *  - German (Deu): No case change, optionally add definite article, assuming neuter case by
+         *                  default (since languages in German are all neuter as far as I know).
+         *  - English (Eng): No case change, optionally add definite article.
+         *  - Welsh (Cym): No case change, shape of definite article automatically determined, optionally
+         *                  apply soft mutation (if `gender='f' specified`).
+         * 
+         * *NB:* The function currently does not handle plurals.
+         * 
+         * @param {String} string - The language name which should be localised.
+         * @param {String|null} gender - The gender of the string (literal 'm' for masc., 'f' for fem.,
+         *      'n' for neuter), if known. If not known or not relevant, the function will try to determine
+         *      this from the string shape (~ the word's morphophonology).
+         * @param {String|null} article - What article, if any, to add. 'def' for definite, 'indef' for
+         *      indefinite (not currently implemented!), `null` for no article.
+         */
+        function localizeLanguageName(string, gender=null, article=null) {
             // @TODO: add plural if ever needed?
             const primaryLanguage = lart.utils.extractLanguageFromVersion(lsbqRml.tr.get("meta.versionId"));
-            let article = "";
-            if ( primaryLanguage.toLowerCase() == "ita" ) {
-                string = string.toLowerCase();
-                if ( gender != "m" && gender != "f" ) {
-                    // Very crude attempt to figure out the gender...
-                    if (
-                        string[string.length -1] == "o" ||
-                        string[string.length -2] == "ma" ||
-                        string[string.length -2] == "re"
-                        ) {
-                        gender = "m";
-                    } else if (
-                        string[string.length -1] == "a" ||
-                        string[string.length -2] == "tà" ||
-                        string[string.length -2] == "tù" ||
-                        string[string.length -4] == "ione"
-                        ) {
-                        gender = "f";
+            if ( article == 'def' ) {
+                let article = "";
+                if ( primaryLanguage.toLowerCase() == "ita" ) {
+                    string = string.toLowerCase();
+                    if ( gender != "m" && gender != "f" ) {
+                        // Very crude attempt to figure out the gender...
+                        if (
+                            string[string.length -1] == "o" ||
+                            string[string.length -2] == "ma" ||
+                            string[string.length -2] == "re"
+                            ) {
+                            gender = "m";
+                        } else if (
+                            string[string.length -1] == "a" ||
+                            string[string.length -2] == "tà" ||
+                            string[string.length -2] == "tù" ||
+                            string[string.length -4] == "ione"
+                            ) {
+                            gender = "f";
+                        } else {
+                            gender = "m";
+                        }
+                    }
+                    if (["a", "e", "i", "o", "u"].includes(string[0].normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+                        article = "l'"; // same for masc and fem
+                        // return `l'${string}`; // same for masc and fem
+                    } else if ( gender == "m" ) {
+                        if ( string[0] == "s" && !["a", "e", "i", "o", "u"].includes(string[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ) {
+                            article = "lo ";
+                            // return `lo ${string}`;
+                        } else {
+                            article = "il ";
+                            // return `il ${string}`;
+                        }
+                    } else if ( gender == "f" ) {
+                        article = "la ";
+                        // return `la ${string}`;
+                    }
+                } else if ( primaryLanguage.toLowerCase() == "deu" ) {
+                    if ( gender == "f" ) {
+                        article = "die ";
+                    } else if ( gender == "m" ) {
+                        article = "der ";
                     } else {
-                        gender = "m";
+                        // Use neuter as fallback, since all bare language names are neuter in German
+                        article = "das ";
+                    }
+                } else if ( primaryLanguage.toLowerCase() == "eng" ) {
+                    article = "the ";
+                } else if ( primaryLanguage.toLowerCase() == "cym" ) {
+                    // Apply soft mutation on feminine gender targets
+                    if ( gender == 'f' ) {
+                        const soft_mut_map = {
+                            'p': 'b',
+                            't': 'd',
+                            'c': 'g',
+                            'b': 'f',
+                            'd': 'dd',
+                            'g': '',
+                            'm': 'f',
+                            'll': 'l',
+                            'rh': 'r'
+                        };
+                        for (const in_cons in soft_mut_map) {
+                            const in_len = in_cons.length;
+                            const in_Cons = in_cons.charAt(0).toUpperCase() + in_cons.slice(1);
+                            if ( string.substr(0, in_len) == in_cons ) {
+                                string = in_cons + string.slice(in_len);
+                            } else if ( string.substr(0, in_len) == in_Cons ) {
+                                string = in_Cons + string.slice(in_len);
+                            }
+                        }
+                    }
+                    if (["a", "e", "i", "o", "u", "w", "y", "A", "E", "I", "O", "U", "W", "Y"].includes(string[0].normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+                        article = "yr ";
+                    } else {
+                        article = "y ";
                     }
                 }
-                if (["a", "e", "i", "o", "u"].includes(string[0].normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
-                    article = "l'"; // same for masc and fem
-                    // return `l'${string}`; // same for masc and fem
-                } else if ( gender == "m" ) {
-                    if ( string[0] == "s" && !["a", "e", "i", "o", "u"].includes(string[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ) {
-                        article = "lo ";
-                        // return `lo ${string}`;
-                    } else {
-                        article = "il ";
-                        // return `il ${string}`;
-                    }
-                } else if ( gender == "f" ) {
-                    article = "la ";
-                    // return `la ${string}`;
+                if ( article ) {
+                    string = `${article}${string}`;
                 }
-            }
-            if ( article ) {
-                string = `${article}${string}`;
             }
             return string;
         }
@@ -507,7 +571,40 @@
                 nameSource.addEventListener(
                     'input',
                     function (event) {
-                        languageNameSlot.textContent = localizeLanguageName(event.target.value);
+                        // languageNameSlot items must keep track of localisation options
+                        let article_param = null;
+                        let gender_param = null;
+                        let case_param = null;
+                        if ( "lsbqTrOrigin" in languageNameSlot.dataset ) {
+                            const lg_field_props = lsbqRml.tr.get(languageNameSlot.dataset.lsbqTrOrigin).trim().slice(1, -1).split(":");
+                            console.log("Language name slot format:", lg_field_props);
+                            if ( lg_field_props.includes("def") ) {
+                                article_param = "def";
+                            } else if ( lg_field_props.includes("indef") ) {
+                                article_param = "indef";
+                            }
+                            if ( lg_field_props.includes("fem") ) {
+                                gender_param = "f";
+                            } else if ( lg_field_props.includes("masc") ) {
+                                gender_param = "m";
+                            } else if ( lg_field_props.includes("neut") ) {
+                                gender_param = "n";
+                            }
+                            if ( lg_field_props.includes("upper") ) {
+                                case_param = "upper";
+                            } else if ( lg_field_props.includes("lower") ) {
+                                case_param = "lower";
+                            }
+                        }
+                        let localizedName = localizeLanguageName(event.target.value, gender=gender_param, article=article_param);
+                        if ( case_param == "upper" ) {
+                            localizedName = localizedName.charAt(0).toUpperCase() + localizedName.slice(1);
+                        }
+                        if ( case_param == "lower" ) {
+                            console.log("Lowering name from ", localizedName, "to", localizedName.charAt(0).toLowerCase() + localizedName.slice(1));
+                            localizedName = localizedName.charAt(0).toLowerCase() + localizedName.slice(1);
+                        }
+                        languageNameSlot.textContent = localizedName;
                     }
                 );
             }
