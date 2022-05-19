@@ -18,206 +18,11 @@
     
 </style>
 {% endblock %}
+
 {% block head_scripts %}
-<script type="text/javascript">
-//Funcions for MGT selection page
-function loadSurveyVersions() {
-    availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_rml_get_versions", 
-                                                                                      // or hard-coded for each questionnaire.
-    }
-            
-function populateSurveyVersions(versions) {
-    select = document.getElementById('selectMgtVersion');
-        for(version in versions) {
-            option = document.createElement('option');
-            option.setAttribute('value', version);
-            option.appendChild(document.createTextNode(versions[version]))
-            select.appendChild(option);
-        }
-    }
-
-
-//#########################################################################################################//
-//#                                                                                                       #// 
-//#     Main section: grab MGT info in LANG from json, display, record responses, send to Python          #//
-//#                                                                                                       #//
-//#########################################################################################################//
-
-// counter to keep track of DIV id's (each DIV is mgtRatingScale_ + a number)
-counter = 0;
-
-//initialise arrays for adjectives & for audio files to be played
-let mgtAdjectives = [];     
-let mgtAudioList = [];
-
-//initialise labels for sliders, to be redefined within fetchMgt()
-let agree = "";
-let disagree = "";
-let headerTxt = "";
-let sliderWarn = "";
-let sliderTxt = "";
-let btnTxt = "";
-let headerElement = "";
-let sliderElement = "";
-        
-function showMgt() {
-    const fetch_version = document.getElementById("selectMgtVersion");
-    const fetch_partId = document.getElementById("participantId");
-    const version = fetch_version.value;
-    const partId = fetch_partId.value;
-    console.log("Selected version: " + version);
-    console.log("Participant ID: " + partId);
-    jsonFile = "versions/" + version + ".json";  //set filename based on selected version
-    console.log("json file is: ", jsonFile);
-    hideInitForm();
-    fetch(jsonFile)
-        .then(response => response.json())
-        .then(data => fetchMgt(data));  //pass the contents of jsonFile to output_info()
-    }
-    
-
-function fetchMgt(data) {
-    //displays MGT component of page
-    console.log("data is ", data);
-    headerElement = document.getElementById("language_header");
-    sliderElement = document.getElementById("slider_info");
-    btnElement = document.getElementById("btnNext");
-    document.getElementById("mgtBody").style.display = "block";     
-    headerTxt = data.base.header;
-       
-    agree = data.base.agreement;            
-    disagree = data.base.disagreement;
-    sliderTxt = data.base.sliderInfo;
-    sliderWarn = data.base.sliderWarn;
-    btnTxt = data.base.nextBtn;
-
-   
-    
-    
-//    headerElement.innerHTML =  headerTxt;
-  //  sliderElement.innerHTML =  " " + sliderTxt;
-    //btnElement.innerHTML = btnTxt;
-    
-    mgtAdjectives = data.mgtItems;  //set mgtAdjectives
-    mgtAudioList = data.mgtAudioList;   // set mgtAudioList;
-    moveToNext();
-}
-
-
-function moveToNext() {
-    hidePrecedingDiv();
-    currentAudioArray = mgtAudioList;
-    audioLen = currentAudioArray.length;
-    if(audioLen >0) {                       //if list of audio recs is not empty
-        loeadHeaders();
-        window.location.href = "#mgtTop";
-        console.log("in moveToNext audio list is: ", currentAudioArray);
-        playGuise(mgtAudioList[0]);  //play first item on guise list
-        loadAdjectives(mgtAdjectives);
-        console.log("Adjectives = ", mgtAdjectives);
-        currentAudioArray.shift();
-        mgtAudioList = currentAudioArray    //redefine mgtAudioList after first item is removed
-        console.log("after popping array is ", mgtAudioList);
-                
-    } else {
-        data = lart.forms.getFormData("mgtDataForm"); 
-        eel.grab_mgt_ratings(data)();
-        window.location.assign("mgtEnd.html");
-    }     
-     
-}
-
-function loeadHeaders() {
-        headerElement.innerHTML =  headerTxt;
-        sliderElement.innerHTML =  " " + sliderTxt;
-        btnElement.innerHTML = btnTxt;
-
-}
-
-function loadAdjectives() {
-    //this displays a slider for each adjective on itemList
-    let currentDiv = "mgtRatingScale_" + String(counter);
-    const mgtElement = document.getElementById(currentDiv);
-    let currentGuiseName = fetchAudioLabel(mgtAudioList[0]);
-    console.log("current DIV's ID is ", currentDiv);
-    let itemsLen = mgtAdjectives.length;
-    let shuffledAdjectives = mgtAdjectives.sort(() => Math.random() - 0.5)   //randomise order of adjectives
-    let code = "<ul>";
-    for (let i = 0; i < itemsLen; i++) {
-        code += "<div class='row mb-0'>" +
-                    "<div class='col-2'></div>" +
-                    "<div class='col-5 text-start'><div style = 'font-size: small'>" + agree + "</div></div>" +
-                    "<div class='col-5 text-end'><div style = 'font-size: small'>" + disagree + "</div></div>" +
-                "</div>" +
-                "<div class='row mb-1'>" +
-                "<label for='" + shuffledAdjectives[i] + "_" + currentGuiseName + "' class='col-2 col-form-label'>" +  //s will pull from a variable once we have the info about which recording is being judged
-                    shuffledAdjectives[i] + 
-                "</label>" +
-                "<div class='col-10 mt-2'>" +
-                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + shuffledAdjectives[i] + "_" + currentGuiseName + "' required />" +
-                    "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
-                "</div>" +
-            "</div>" + 
-            "<div><p><br /><br /><br /><br /></p></div>";
-        }
-    counter++;
-    mgtElement.insertAdjacentHTML('beforeend', code); 
-    }
-
-
-                
-function showMgtBlock() {
-    document.getElementById("mgtBody").style.display = "block";             
-    }
-
-function hideInitForm() {
-    const form = document.getElementById('mgtToggleForm');
-    const btn = document.getElementById('toggle-btn');
-    form.style.display = 'none';
-    btn.style.display = 'none';
-    }
-
-function playGuise(audio) {
-    //console.log("Current audio path is ", audioFile);
-    console.log("current audio supposed to play is...:", audio);
-    //const audio = document.getElementById("guiseAudio");
-    //audio.play();
-
-}
-
-function fetchAudioLabel(filename) {
-    let guiseName = String(mgtAudioList[0]);
-    let extBegin = filename.indexOf(".mp3");
-    let currentGuiseName = guiseName.slice(0,extBegin);
-    return currentGuiseName;
-}
-
-function hidePrecedingDiv() {
-    console.log("inside hide DIV counter is: ", counter);
-    if(counter !== 0) {
-        let previousId = "mgtRatingScale_" + String(counter-1);
-        console.log("previous rat8ng id is: ", previousId);
-        var x = document.getElementById(previousId);
-        console.log("var x = ", x);
-        x.style.display = "none";
-    }
-      
-}
-
-function fetchAudio() {
-    currentFile = String(window.location.pathname);
-    console.log("currentFile is: ", currentFile);
-    ext = currentFile.search("index.html");
-    console.log("ext is: " , ext);
-    currentLocation = currentFile.slice(0, ext);
-    console.log("current location is: ", currentLocation);
-    audioFile = currentLocation + "audio files/" + mgtAudioList[0];
-    console.log("audio file is: ", audioFile);
-    return audioFile;
-}
-
-    </script>
+<script type="text/javascript" src="../../js/mgt.js"></script>
 {% endblock %}
+
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
     <li class="nav-item">
@@ -255,6 +60,27 @@ function fetchAudio() {
                         <p>Please select one of the available versions.</p>
                     </div>
                 </div>
+            </section>
+            <section class="m-4">
+            <div class="mb-3">
+                <label for="researcherId" class="form-label">Researcher ID:</label>
+                <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
+                <div id="researcherIdHelp" class="form-text">Enter the researcher’s name or ID.</div>
+                <div class="invalid-feedback">
+                    <p>Please provide a valid Researcher ID or name. The ID can only contain letters and numbers (no spaces, hyphens, etc.) and must be between 3 and 10 characters in length.</p>
+                </div>
+            </div>
+            </section>
+
+            <section class="m-4">
+            <div class="mb-3">
+                <label for="researchLocation" class="form-label">Location:</label>
+                <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="[A-Za-z0-9 ,\(\)]{1,50}" required />
+                <div id="researchLocationHelp" class="form-text">Enter the location (e.g. town name) where the research is undertaken.</div>
+                <div class="invalid-feedback">
+                    <p>Please enter a location name, for example <i>Bangor, Gwynedd</i>. Location names can contain letters, numbers, spaces, commas and parentheses and they can be up to 50 characters in length.</p>
+                </div>
+            </div>
             </section>
 
             <!-- Participant details -->
