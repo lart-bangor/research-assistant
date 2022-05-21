@@ -28,9 +28,8 @@ const timeStamp = new Date();
 //initialise arrays for adjectives & for audio files to be played
 let mgtAdjectives = [];     
 let mgtAudioList = [];
-let mgtInitialAudioList = [];
 
-var meta = {
+const meta = {
     "File ID": "",
     "version": "",
     "Researcher id": "",
@@ -38,17 +37,11 @@ var meta = {
     "participant id": "",
     "Date & Time": timeStamp
 }
- 
-partResponses = [];
 
+let interface = {};
+let partResponses = [];
 let currentGuiseName = "";
 
-//rating response constrcutor
-function Rating(name, presOrder, partRatings) {
-    this.guiseName = name;
-    this.presentationOrder = presOrder;
-    this.ratings = partRatings
-}
 
 //initialise labels for sliders, to be redefined within fetchMgt()
 let agree = "";
@@ -75,9 +68,14 @@ function showMgt() {
     hideInitForm();
     fetch(jsonFile)
         .then(response => response.json())
-        .then(data => fetchMgt(data));  //pass the contents of jsonFile to output_info()
+        .then(data => setIntface(data))
+        .then(output => fetchMgt(output));  //pass the contents of jsonFile to output_info()
     }
     
+function setIntface(jsonObj) {
+    interface = jsonObj;
+    return interface;
+}
 
 function fetchMgt(data) {       
     //displays MGT component of page
@@ -87,33 +85,35 @@ function fetchMgt(data) {
     btnElement = document.getElementById("btnNext");
     document.getElementById("mgtBody").style.display = "block";     
     
-    headerTxt = data.base.header;
-    agree = data.base.agreement;            
-    disagree = data.base.disagreement;
-    sliderTxt = data.base.sliderInfo;
-    sliderWarn = data.base.sliderWarn;
-    btnTxt = data.base.nextBtn;
+    headerTxt = interface.base.header;
+    agree = interface.base.agreement;            
+    disagree = interface.base.disagreement;
+    sliderTxt = interface.base.sliderInfo;
+    sliderWarn = interface.base.sliderWarn;
+    btnTxt = interface.base.nextBtn;
    
-    mgtInitialAudioList = data.mgtAudioList // keep original list to use later
-    mgtAdjectives = data.mgtItems;  //set mgtAdjectives
-    mgtAudioList = data.mgtAudioList;   // set mgtAudioList;
-    moveToNext();
+    mgtAdjectives = interface.mgtItems;  //set mgtAdjectives
+    mgtAudioList = interface.mgtAudioList;   // set mgtAudioList;
+    moveToNext(mgtAdjectives, mgtAudioList);
 }
 
 
-function moveToNext() {
-    currentAudioArray = mgtAudioList;
-    audioLen = currentAudioArray.length;
+function moveToNext(words, audioFiles) {
+    if((typeof words === 'undefined'  || typeof audioFiles === 'undefined')) {
+        words = mgtAdjectives;
+        audioFiles = mgtAudioList;
+        }
+    audioLen = audioFiles.length;
     if(audioLen >0) {                       //if list of audio recs is not empty
         hidePrecedingDiv();
         loadHeaders();
         window.location.href = "#mgtTop";
-        console.log("in moveToNext audio list is: ", currentAudioArray);
-        playGuise(mgtAudioList[0]);  //play first item on guise list
-        console.log("Adjectives = ", mgtAdjectives);
-        loadAdjectives(mgtAdjectives);        
-        currentAudioArray.shift();
-        mgtAudioList = currentAudioArray    //redefine mgtAudioList after first item is removed
+        console.log("in moveToNext audio list is: ", audioFiles);
+        playGuise(audioFiles[0]);  //play first item on guise list
+        console.log("Adjectives = ", words);
+        loadAdjectives(words);        
+        audioFiles.shift();
+        mgtAudioList = audioFiles    //redefine mgtAudioList after first item is removed
         console.log("after popping array is ", mgtAudioList);
                 
     } else {
@@ -166,11 +166,10 @@ function loadAdjectives() {
     currentGuiseName = fetchAudioLabel(mgtAudioList[0]);
     console.log("current DIV's ID is ", currentDiv);
     let itemsLen = mgtAdjectives.length;
-    let shuffledAdjectives = shuffle(mgtAdjectives)   //randomise order of adjectives
+    let shuffledAdjectives = shuffle(interface.mgtItems);   //randomise order of adjectives from original list
     console.log("shuffled adjectives: ", shuffledAdjectives);
-    let thisRating = new Rating(currentGuiseName, shuffledAdjectives);
-    partResponses.push(thisRating);
-    console.log("Rating object is ", thisRating);
+    arrayCopy = shuffledAdjectives.slice();
+    partResponses.push({"guise name": currentGuiseName, "Presentation order": arrayCopy});
     console.log("Part response array is ", partResponses);
     let code = "<ul>";
     for (let i = 0; i < itemsLen; i++) {
