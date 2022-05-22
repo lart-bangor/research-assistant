@@ -34,6 +34,41 @@ APP_LONG_AUTHOR: Final[str] = config.get("app.options", "long_author")
 SPLASH_IMAGE: Final[str] = str(WORKSPACE_PATH / QUALIFIED_PKG_NAME / "web" / "img" / "appicon.png")
 INDENT: Final[str] = "    "
 
+# System-dependent parameters
+M_SUPPORTED_SYSTEMS: Final[tuple[str, ...]] = ("Windows", "Linux")
+M_SUPPORTED_MACHINES: Final[tuple[str, ...]] = ("AMD64", "x86_64")
+M_PLATFORM_SYSTEM: Final[str] = platform.system()
+if M_PLATFORM_SYSTEM not in M_SUPPORTED_SYSTEMS:
+    print(
+        f"WARNING: Running on unknown system type {M_PLATFORM_SYSTEM!r}. "
+        f"Supported system types are {M_SUPPORTED_SYSTEMS}. \n"
+        "You can still use manage.py, but you may run into unexpected errors.\n"
+    )
+if M_PLATFORM_SYSTEM == "Windows":
+    short_system = "win"
+elif M_PLATFORM_SYSTEM == "Linux":
+    short_system = "linux"
+else:
+    short_system = M_PLATFORM_SYSTEM.lower()
+M_PLATFORM_SHORT_SYSTEM: Final[str] = short_system
+del short_system
+M_PLATFORM_MACHINE: Final[str] = platform.machine()
+if M_PLATFORM_MACHINE not in M_SUPPORTED_MACHINES:
+    print(
+        f"WARNING: Running on unknown machine type {M_PLATFORM_MACHINE!r}. "
+        f"Supported system types are {M_SUPPORTED_MACHINES}. \n"
+        "You can still use manage.py, but you may run into unexpected errors.\n"
+    )
+if M_PLATFORM_MACHINE in ("AMD64", "x86_64"):
+    short_machine = "64"
+else:
+    short_machine = M_PLATFORM_MACHINE.lower()
+M_PLATFORM_SHORT_MACHINE: Final[str] = short_machine
+del short_machine
+M_PLATFORM_RELEASE: Final[str] = platform.release()
+M_PLATFORM_STRING: Final[str] = f"{M_PLATFORM_SHORT_SYSTEM}{M_PLATFORM_SHORT_MACHINE}"
+M_COMMAND_PYTHON: Final[str] = "py" if M_PLATFORM_SYSTEM == "Windows" else "python3"
+
 
 def main():
     """Script main function, parses arguments and runs commands."""
@@ -101,19 +136,13 @@ def build() -> bool:                                                            
     pyi_dir: Path = WORKSPACE_PATH / "build" / "pyinstaller"
     pyi_pkg_dir: Path = pyi_dir / QUALIFIED_PKG_NAME
 
-    # Platform string
-    platform_str: str = platform.system()
-    if platform.machine():
-        platform_str += f"_{platform.machine()}"
-    platform_str = platform_str.lower()
-
     # Make sure dist dir exists..
-    dist_dir: Path = WORKSPACE_PATH / "dist" / platform_str
+    dist_dir: Path = WORKSPACE_PATH / "dist" / M_PLATFORM_STRING
     if not dist_dir.is_dir():
         dist_dir.mkdir(parents=True)
 
     # Installer name
-    installer_name: str = f"{APP_AUTHOR} {APP_NAME} v{APP_VERSION}-{platform_str}"
+    installer_name: str = f"{APP_AUTHOR} {APP_NAME} v{APP_VERSION}-{M_PLATFORM_STRING}"
 
     # Clean the source directory
     if not clean("src"):
@@ -157,7 +186,7 @@ def build() -> bool:                                                            
     import PyInstaller.__main__ as pyi                                          # type: ignore
     pyi_args: list[str] = [
         "--noconfirm", "--log-level=WARN",
-        f"--workpath=artifacts/{platform_str}", f"--distpath=dist/{installer_name}",
+        f"--workpath=artifacts/{M_PLATFORM_STRING}", f"--distpath=dist/{installer_name}",
         "--clean", f"{APP_NAME}.py",
         "--hidden-import", "bottle_websocket",
         "--add-data", f"{str(resources.path('eel', 'eel.js'))}{os.pathsep}eel",
@@ -203,7 +232,7 @@ def build() -> bool:                                                            
     print("Done.")
 
     # Make Inno Setup installer
-    if platform.system() == "Windows":
+    if M_PLATFORM_SYSTEM == "Windows":
         print("Building Windows installer with Inno Setup...")
         with open(WORKSPACE_PATH / "windows.iss", "r") as fp:
             inno_tpl: str = fp.read()
@@ -215,11 +244,11 @@ def build() -> bool:                                                            
                 "APP_AUTHOR": APP_AUTHOR,
                 "APP_LONG_AUTHOR": APP_LONG_AUTHOR,
                 "APP_URL": APP_URL,
-                "PLATFORM_STRING": platform_str,
+                "PLATFORM_STRING": M_PLATFORM_STRING,
                 "WORKSPACE_PATH": str(WORKSPACE_PATH),
             }
         )
-        inno_script: Path = pyi_dir / "artifacts" / platform_str / "windows.iss"
+        inno_script: Path = pyi_dir / "artifacts" / M_PLATFORM_STRING / "windows.iss"
         with inno_script.open("w+") as fp:
             fp.write(inno_tpl)
         try:
@@ -290,8 +319,8 @@ def debug() -> bool:
     os.chdir(WORKSPACE_PATH)
     print("Running app...")
     print(f"{INDENT}Working directory is now '{Path.cwd()!s}'.")
-    print(f"{INDENT}Running command: py -im {QUALIFIED_PKG_NAME} --debug debug")
-    child = subprocess.run(["py", "-im", QUALIFIED_PKG_NAME, "--debug", "debug"])
+    print(f"{INDENT}Running command: {M_COMMAND_PYTHON} -im {QUALIFIED_PKG_NAME} --debug debug")
+    child = subprocess.run([M_COMMAND_PYTHON, "-im", QUALIFIED_PKG_NAME, "--debug", "debug"])
     print(f"{INDENT}Process returned with code '{child.returncode}'.")
     os.chdir(oldwd)
     print("Done.")
@@ -304,8 +333,8 @@ def run() -> bool:
     os.chdir(WORKSPACE_PATH)
     print("Running app...")
     print(f"{INDENT}Working directory is now '{Path.cwd()!s}'.")
-    print(f"{INDENT}Running command: py -m {QUALIFIED_PKG_NAME}")
-    child = subprocess.run(["py", "-m", QUALIFIED_PKG_NAME])
+    print(f"{INDENT}Running command: {M_COMMAND_PYTHON} -m {QUALIFIED_PKG_NAME}")
+    child = subprocess.run([M_COMMAND_PYTHON, "-m", QUALIFIED_PKG_NAME])
     print(f"{INDENT}Process returned with code '{child.returncode}'.")
     os.chdir(oldwd)
     print("Done.")
