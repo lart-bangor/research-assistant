@@ -714,7 +714,7 @@ lart.forms.conditionalRequire = function (observedControlName, targetControlName
             'input',
             (event) => {
                 console.log(`Checking conditional require condition for ${observedControlName}...`);
-                console.log('INPUT EVENT', matchesCondition());
+                console.log('...input event evaluates to:', matchesCondition());
             }
         );
         node.addEventListener('input',
@@ -1447,7 +1447,7 @@ lart.tr.registerCallback = function (ns, callback, callbackParams = null) {
         callbackParams = [];
     }
     if (!(ns in lart.tr._callbackQueue)) {
-        lart.tr._callbackQueue[ns] = {};
+        lart.tr._callbackQueue[ns] = [];
     }
     lart.tr._callbackQueue[ns].push([callback, callbackParams]);
     if (ns in lart.tr.strings) {
