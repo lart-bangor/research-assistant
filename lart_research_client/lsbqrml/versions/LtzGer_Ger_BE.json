@@ -458,7 +458,7 @@
         },
         "withPeopleNowInstructions": [
             "Please indicate which language or dialect you generally use when speaking to the following people.",
-            "Bitte geben Sie an, welche Sprache bzw. Dialekt Sie im Allgemeinen benutzen wenn Sie mit folgenden Personengruppen sprechen."
+            "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen benutzen wenn Sie mit folgenden Personengruppen sprechen."
         ],
         "withPeopleNowFields": {
             "parents":          ["Eltern"],
@@ -472,7 +472,8 @@
             "neighbours":       ["Nachbarn"]
         },
         "withPeopleEarlyLifeInstructions": [
-            "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people."
+            "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people.",
+            "Bitte geben Sie Ihrem besten Wissen nach an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen im Alter von 6-12 Jahren benutzt haben, wenn Sie mit folgenden Personengruppen sprachen."
         ],
         "withPeopleEarlyLifeFields": {
             "parents":          ["Eltern"],
@@ -496,7 +497,7 @@
             "public":       ["Öffentliche Dienstleistungen",    "(Gesundheitsleistungen, Banken, Regierung, Gemeindeverwaltung)"]
         },
         "activityInstructions": [
-            ". Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen für folgende Aktivitäten verwenden."
+            "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen für folgende Aktivitäten verwenden."
         ],
         "activityFields": {
             "reading":          ["Lesen"],
@@ -519,7 +520,7 @@
         ],
         "thankYouMessage": [
             "Thank you for completing the background questionnaire! If you think there's anything else we should know about you or your background then you can use the box below to tell us about this. Then just click on the &ldquo;submit and continue&rdquo; button to save your data and continue with the next task.",
-            "Danke, dass Sie den Hintergrundfragebogen ausgefüllt haben! Falls Sie glauben, es gäbe sonst nicht irgendetwas, dass wir über Sie oder Ihren Hintergrund wissen sollten, dann können Sie uns dies in dem unten anstehenden Feld mitteilen. Dannach klicken Sie bitte einfach auf „Absenden und Weiter“ um mit der nächsten Aufgabe weiter zu machen."
+            "Danke, dass Sie den Hintergrundfragebogen ausgefüllt haben! Falls Sie glauben, es gäbe sonst noch irgendetwas, dass wir über Sie oder Ihren Hintergrund wissen sollten, dann können Sie uns dies in dem unten anstehenden Feld mitteilen. Dannach klicken Sie bitte einfach auf „Absenden und Weiter“ um mit der nächsten Aufgabe weiter zu machen."
         ],
         "submitAndContinue": [
             "Submit and Continue",
