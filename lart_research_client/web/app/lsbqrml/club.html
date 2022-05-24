@@ -1,10 +1,8 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
 {% block title %}LART Research Client - LSBQ-RML - Community Language Use Behaviour{% endblock %}
-{% block headline %}<span id="lsbqRmlAppTitle" data-lsbq-tr="base.appTitle">Language and Social Background Questionnaire (RML)</span>{% endblock %}
-{% block head_scripts %}
-    <script type="text/javascript" src="/js/lsbq-rml.js"></script>
-{% endblock %}
+{% block headline %}<span id="lsbqRmlAppTitle" data-lsbqrml-tr="base.appTitle">Language and Social Background Questionnaire (RML)</span>{% endblock %}
+{% block head_scripts %}{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
@@ -21,7 +19,7 @@
         </div>
 
         <div class="row m-4 text-center">
-            <h2 id="lsbqRmlSectionTitle" data-lsbq-tr="club.secTitle">Community Language Use Behaviour</h2>
+            <h2 id="lsbqRmlSectionTitle" data-lsbqrml-tr="club.secTitle">Community Language Use Behaviour</h2>
         </div>
 
         <form id="surveyCLUBForm" class="needs-validation" autocomplete="off">
@@ -37,7 +35,7 @@
                             </label>
                             <div class="col-9 mt-2">
                                 <input type="range" class="form-range d-block" min="0" max="100" step="any" id="[FieldPrefix]-[FieldName]" required />
-                                <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                                <div class="invalid-feedback invalid-range" data-lsbqrml-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                             <div class="col-1" id="[FieldPrefix]NotApplicableOption-[FieldName]">
                                 <p  class="text-muted d-inline-block ps-2"
@@ -52,7 +50,7 @@
                                             id="[FieldPrefix]NotApplicable-[FieldName]"
                                             name="[FieldPrefix]NotApplicable-[FieldName]"
                                     />
-                                    <label class="form-check-label" for="[FieldPrefix]NotApplicable-[FieldName]" data-lsbq-tr="base.notApplicableAbbr">N/A</label>
+                                    <label class="form-check-label" for="[FieldPrefix]NotApplicable-[FieldName]" data-lsbqrml-tr="base.notApplicableAbbr">N/A</label>
                                 </p>
                             </div>
                         </div>
@@ -107,7 +105,7 @@
                         lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}Label-${fieldName}`, 'on', 'equal');
                         let ttTranslationOptions = {};
                         ttTranslationOptions[notApplicableOption.firstElementChild.id] = ["data-bs-original-title", "club.itemNotApplicableInfo"];  // NB: title attribute is removed by bootstrap tooltip
-                        lsbqRml.tr.translateAttrs(ttTranslationOptions);
+                        lart.tr.translateAttrs('lsbqrml', ttTranslationOptions);
                     }
                     // Sync the hint's left edge with the label
                     //const hintElement = document.getElementById(`${fieldPrefix}Hint-${fieldName}`);
@@ -133,7 +131,7 @@
             <section class="m-4">
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p data-lsbq-tr="club.lifeStageInstructions">
+                        <p data-lsbqrml-tr="club.lifeStageInstructions">
                             Please indicate which language or dialect you most frequently heard or used
                             in the following life stages, both inside and outside home.
                         </p>
@@ -141,13 +139,13 @@
                 </div>
                 <div class="row mb-0">
                     <div class="col-2"></div>
-                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                    <div class="col-3 text-start" data-lsbqrml-tr="club.onlyMajorityLanguage">
                         Only [MajorityLanguage]
                     </div>
-                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                    <div class="col-3 text-center" data-lsbqrml-tr="club.halfHalf">
                         Half/Half
                     </div>
-                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                    <div class="col-3 text-end" data-lsbqrml-tr="club.onlyRML">
                         Only [RML]
                     </div>
                 </div>
@@ -160,20 +158,20 @@
             <section class="m-4">
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p data-lsbq-tr="club.withPeopleNowInstructions">
+                        <p data-lsbqrml-tr="club.withPeopleNowInstructions">
                             Please indicate which language or dialect you generally use when speaking to the following people.
                         </p>
                     </div>
                 </div>
                 <div class="row mb-0">
                     <div class="col-2"></div>
-                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                    <div class="col-3 text-start" data-lsbqrml-tr="club.onlyMajorityLanguage">
                         Only [MajorityLanguage]
                     </div>
-                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                    <div class="col-3 text-center" data-lsbqrml-tr="club.halfHalf">
                         Half/Half
                     </div>
-                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                    <div class="col-3 text-end" data-lsbqrml-tr="club.onlyRML">
                         Only [RML]
                     </div>
                 </div>
@@ -186,20 +184,20 @@
             <section class="m-4">
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p data-lsbq-tr="club.withPeopleEarlyLifeInstructions">
+                        <p data-lsbqrml-tr="club.withPeopleEarlyLifeInstructions">
                             Please indicate which language or dialect you generally use when speaking to the following people.
                         </p>
                     </div>
                 </div>
                 <div class="row mb-0">
                     <div class="col-2"></div>
-                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                    <div class="col-3 text-start" data-lsbqrml-tr="club.onlyMajorityLanguage">
                         Only [MajorityLanguage]
                     </div>
-                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                    <div class="col-3 text-center" data-lsbqrml-tr="club.halfHalf">
                         Half/Half
                     </div>
-                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                    <div class="col-3 text-end" data-lsbqrml-tr="club.onlyRML">
                         Only [RML]
                     </div>
                 </div>
@@ -212,20 +210,20 @@
             <section class="m-4">
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p data-lsbq-tr="club.situationInstructions">
+                        <p data-lsbqrml-tr="club.situationInstructions">
                             Please indicate which language or dialect you generally use in the following situations.
                         </p>
                     </div>
                 </div>
                 <div class="row mb-0">
                     <div class="col-2"></div>
-                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                    <div class="col-3 text-start" data-lsbqrml-tr="club.onlyMajorityLanguage">
                         Only [MajorityLanguage]
                     </div>
-                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                    <div class="col-3 text-center" data-lsbqrml-tr="club.halfHalf">
                         Half/Half
                     </div>
-                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                    <div class="col-3 text-end" data-lsbqrml-tr="club.onlyRML">
                         Only [RML]
                     </div>
                 </div>
@@ -240,20 +238,20 @@
             <section class="m-4">
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p data-lsbq-tr="club.activityInstructions">
+                        <p data-lsbqrml-tr="club.activityInstructions">
                             Please indicate which language or dialect you generally use for the following activities.
                         </p>
                     </div>
                 </div>
                 <div class="row mb-0">
                     <div class="col-2"></div>
-                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                    <div class="col-3 text-start" data-lsbqrml-tr="club.onlyMajorityLanguage">
                         Only [MajorityLanguage]
                     </div>
-                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                    <div class="col-3 text-center" data-lsbqrml-tr="club.halfHalf">
                         Half/Half
                     </div>
-                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                    <div class="col-3 text-end" data-lsbqrml-tr="club.onlyRML">
                         Only [RML]
                     </div>
                 </div>
@@ -265,7 +263,7 @@
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div clas="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbq-tr="base.next">Next</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbqrml-tr="base.next">Next</button>
                 </div>
             </div>
 
@@ -277,10 +275,12 @@
     <script type="text/javascript">
         lart.forms.requireValidation(true);
         // Translate form for specific version
-        lsbqRml.tr.load(lsbqRml.instance.getId(), ['club']);
-        lsbqRml.tr.registerObserver('surveyCLUBForm');
-        lsbqRml.tr.registerObserver('lsbqRmlSectionTitle');
-        lsbqRml.tr.registerObserver('lsbqRmlAppTitle');
+        let instanceId = lart.forms.searchParams.get('instance');
+        lart.tr.loadFromEel('lsbqrml', eel._lsbqrml_load_version, [instanceId, ['meta', 'base', 'club']]);
+        lart.tr.registerObserver('lsbqrml', 'surveyCLUBForm');
+        lart.tr.registerObserver('lsbqrml', 'lsbqRmlSectionTitle');
+        lart.tr.registerObserver('lsbqrml', 'lsbqRmlAppTitle');
+
         // Defaults for slider fields
         const clubDefaults = {
             "lifeStageFields": {
@@ -345,18 +345,18 @@
             lart.forms.monitorRangeInputs(sliderSlot.id);
         }
         function fillClubSliders() {
-            if ("meta" in lsbqRml.tr.strings) {
+            if ('lsbqrml' in lart.tr.strings && 'meta' in lart.tr.strings['lsbqrml']) {
                 //Merge in translations
                 let clubTranslations = {};
                 for (const key in clubDefaults) {
                     clubTranslations[key] = {};
-                    const trFields = lsbqRml.tr.get(`club.${key}`);
+                    const trFields = lart.tr.get('lsbqrml', `club.${key}`);
                     for (const subkey in clubDefaults[key]) {
                         if (trFields && subkey in trFields) {
                             clubTranslations[key][subkey] = trFields[subkey];
                         } else {
                             clubTranslations[key][subkey] = clubDefaults[key][subkey];
-                            lsbqRml.tr.missing[`club.${key}.${subkey}`] = clubDefaults[key][subkey];
+                            lart.tr.addMissing('lsbqrml', `club.${key}.${subkey}`, clubDefaults[key][subkey]);
                         }
                     }
                 }

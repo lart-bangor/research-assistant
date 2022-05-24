@@ -372,7 +372,8 @@ def store(instid: str) -> bool:
     path: Path = config.paths.data / "LSBQ-RML" / d["meta"]["version"]
     if not path.exists():
         path.mkdir(parents=True, exist_ok=True)
-    filename = path / (str(instid) + ".json")
+    participant_id = d["meta"]["participant_id"]
+    filename = path / f"{participant_id}_{instid}.json"
     logger.info(f"... writing to filename: {filename}")
     with filename.open("w") as fp:
         fp.write(s)

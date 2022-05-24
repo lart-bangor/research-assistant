@@ -17,7 +17,8 @@ from . import mgt                                                       # type: 
 from .config import config
 from . import booteel
 from .lsbqrml import expose_to_eel as expose_lsbqrml
-from .memorygame import expose_to_eel as expose_memorygame        # type: ignore  # noqa: F401, F811
+from .memorygame import expose_to_eel as expose_memorygame
+from .settings import expose_to_eel as expose_settings
 from .utils import export_backup, manage_settings
 
 # Enable multiprocessing in frozen apps (e.g. pyinstaller)
@@ -35,6 +36,7 @@ logger = logging.getLogger(__name__)
 # Expose Eel APIs for subpackages
 expose_lsbqrml()
 expose_memorygame()
+expose_settings()
 
 
 @eel.expose

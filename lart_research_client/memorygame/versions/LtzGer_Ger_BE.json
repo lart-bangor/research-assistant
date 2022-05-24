@@ -58,7 +58,7 @@
         ],
         "continueFinished": [
             "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
-            "Sie haven diese Aufgabe nun erfolgreich erledigt!<br /> Bitte klicken Sie zum Beenden auf „Weiter“."
+            "Sie haben diese Aufgabe nun erfolgreich erledigt!<br /> Bitte klicken Sie zum Beenden auf „Weiter“."
         ],
         "continue": [
             "Continue",
