@@ -1,0 +1,148 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Client - Settings{% endblock %}
+{% block headline %}Settings{% endblock %}
+{% block head_scripts %}{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" href="../index.html"><i class="bi bi-x-circle"></i>  Discard changes</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="p-2">
+
+        <form id="settingsForm" class="needs-validation">
+
+
+            <template id="settingsFieldTemplate">
+                <div id="settingsField-[SectionName]-[FieldName]">
+                    <div class="row">
+                        <label class="col-form-label col-auto" for="settings-[SectionName]-[FieldName]">[FieldLabel]:</label>
+                        <input class="col-sm form-control" name="settings-[SectionName]-[FieldName]" type="text" />
+                        <button class="col-1 btn btn-outline-secondary ms-1" disabled><i class="bi bi-trash"></i> Discard</button>
+                        <button class="col-1 btn btn-outline-secondary ms-1"><i class="bi bi-ui-checks-grid"></i> Default</button>
+                    </div>
+                    <div class="row" id="settingsFieldHelp-[SectionName]-[FieldName]">
+                        <p class="col help-block ps-2 pe-2 pb-0 mb-0 text-muted small"><i class="bi-info-circle text-info"></i> [FieldHelp]</p>
+                    </div>
+                    <div class="row mb-3">
+                        <p class="col ps-2 pe-2 pt-1 text-muted small"><i>Default value:</i>&nbsp;<span class="font-monospace p-1" style="border:1px solid #eee;">[FieldDefault]</span></p>
+                    </div>
+                </div>
+            </template>
+
+            <template id="settingsSectionTemplate">
+                <section class="m-4" id="settingsSection-[SectionName]">
+                    <div class="row mb-4 text-start">
+                        <h2 class="h3 mb-1">[SectionLabel]</h2>
+                        <p>[SectionHelp]</p>
+                    </div>
+                    <div id="settingsFieldSlot-[SectionName]">
+                    </div>
+                </section>
+            </template>
+
+            <div id="settingsSectionSlot">
+            </div>
+
+
+            <div class="row text-end m-4">
+                <div class="col pe-1">
+                    <button type="submit" class="btn btn-secondary btn-lg shadow me-4"><i class="bi bi-x-lg"></i> Discard</button>
+                    <button type="submit" class="btn btn-primary btn-lg shadow"><i class="bi bi-check2"></i> Save</button>
+                </div>
+            </div>
+
+        </form>
+        <!--
+        <div class="row m-4 text-center">
+            <div class="col">
+                <h2>Memory Task</h2>
+            </div>
+        </div>
+
+        <form id="surveyDataForm" class="needs-validation">
+
+            <!-- Survey version -- >
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="selectSurveyVersion" class="form-label">Select Memory Task version:</label>
+                    <select id="selectSurveyVersion" class="form-select" required>
+                    </select>
+                    <script type="text/javascript">
+                        loadSurveyVersions();
+                    </script>
+                    <div class="invalid-feedback">
+                        <p>Please select one of the available versions of the Memory Task.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form submission -- >
+            <div class="row text-center p-3 m-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Start</button>
+                </div>
+            </div>
+
+        </form>
+        -->
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        lart.forms.requireValidation(true);
+
+        function loadSettings() {
+            availableVersions = eel._settings_load()(buildSettingsInterface);
+        }
+        loadSettings();
+
+        function buildSettingsInterface(settings) {
+            for(section in settings) {
+                insertSettingsSection(settings[section]);
+            }
+        }
+
+        function insertSettingsSection(section) {
+            console.log('section:', section)
+            const template = document.getElementById('settingsSectionTemplate');
+            const slot = document.getElementById('settingsSectionSlot');
+            const clone = template.content.cloneNode(true);
+            // Replace placeholder strings
+            booteel.util.replaceInDOM(clone, {
+                '[SectionName]': section['name'],
+                '[SectionLabel]': section['label'],
+                '[SectionHelp]': section['help'],
+            });
+
+            // Insert fields
+            const field_slot = clone.querySelector(`#settingsFieldSlot-${section['name']}`);
+            for (field of section.fields) {
+                const field_template = document.getElementById('settingsFieldTemplate');
+                const field_clone = field_template.content.cloneNode(true);
+                if ( 'help' in field === false ) {
+                    field['help'] = null;
+                    field_clone.querySelector('[id="settingsFieldHelp-[SectionName]-[FieldName]"]').remove();
+                }
+                booteel.util.replaceInDOM(field_clone, {
+                    '[SectionName]': section['name'],
+                    '[SectionLabel]': section['label'],
+                    '[SectionHelp]': section['help'],
+                    '[FieldName]': field['name'],
+                    '[FieldLabel]': field['label'],
+                    '[FieldHelp]': field['help'],
+                    '[FieldDefault]': field['default'],
+                });
+                field_slot.appendChild(field_clone);
+            }
+            // Append to slot
+            slot.appendChild(clone);
+        }
+
+    </script>
+    {{ lart_form_pipeline('settingsForm', '_settings_store') }}
+{% endblock %}
