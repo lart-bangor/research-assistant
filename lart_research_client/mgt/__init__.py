@@ -18,6 +18,9 @@ import os
 import pathlib
 from playsound import playsound
 
+data_path: Path = config.paths.data / "MGT"
+if not data_path.exists():
+    data_path.mkdir(parents=True, exist_ok=True)
  
 #retrieve initial info from index.html and print to file + to console
 @eel.expose
