@@ -136,24 +136,33 @@ function fetchAudioLabel(filename) {
 //#             Primary functions               #//
 //###############################################//
 
+//matches ratings to guise object and returns them as an array
+function addRatings(guiseObj, ratingsArr) {
+    ratings = [];
+    guiseNameSuf = "_" + guiseObj['guise name'];
+    for (const pair of ratingsArr) {          //for each pair on the array
+                 
+            if(pair[0].includes(guiseObj['guise name']) ) {           //if first element of name-rating pair includes current guise name
+                console.log("current element match: ", pair[0]);
+                cleanLabel = pair[0].replace(guiseNameSuf,'');
+                ratings.push([cleanLabel, pair[1]]);
+            }            
+    }
+    console.log("rating array is: ", ratings);
+    return ratings;
+    
+}
+
+
 //loads results onto json-ready object for passing to Python
-/*
-for (const element of formArr) {
-    console.log("array pair = ", element);
-    console.log("object list is: ", responsesArr);
-*/
-
-function loadResults(formArr, responsesArr) {
-    for(i = 0; i < responsesArr.length; i++) {  //for each response object on teh array 
-        currentGuise = responsesArr[0];
+function loadResults(formArr, responsesArr) {   //formArr contains arrays of pairs: [slider_name, rating] -- responseArr is an array of guises as objects: {guise name: + presentation order: }
+    for(i = 0; i < responsesArr.length; i++) {  //for each response object on the array 
+        currentGuise = responsesArr[i];
         console.log("guise name is: ", currentGuise["guise name"]);
-        if(element[0].includes(currentGuise['guise name']) ) {           //if first element of name-rating pair
-            console.log("current element match: ", element[0])               
-        } 
-        else {
-            console.log("current element MISmatch: ", element[0])
-
-        }
+        ratings = addRatings(currentGuise, formArr);
+        alpabetisedRatings = ratings.sort();
+        currentGuise["ratings"] = alpabetisedRatings;
+               
     }
  }
 
@@ -228,7 +237,7 @@ function moveToNext(words, audioFiles) {
         //const fullDataset = {meta, partResponses};
         //console.log("FINAL JSOn object is : ", JSON.stringify(fullDataset, undefined, 2));
         //console.log("full JSOn object after loading responses : ", JSON.stringify(partResponses, undefined, 2));
-        eel.grab_mgt_ratings(fullDataset)();
+        eel.grab_mgt_ratings(partResponses)();
         }     
      
 }
