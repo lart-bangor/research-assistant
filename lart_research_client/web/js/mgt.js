@@ -116,12 +116,12 @@ function shuffle(a) {       //shuffles members of array
     }
 
 //plays audio guise
-function playGuise(audio) {
+function playGuise() {
+    let audio = new Audio('audio files/beak2.mp3');
+    audio.play();
     //console.log("Current audio path is ", audioFile);
     console.log("current audio supposed to play is...:", audio);
     //const audio = document.getElementById("guiseAudio");
-    //audio.play();
-
 }
 
 //derives label based on audiofile's name
@@ -143,7 +143,6 @@ function addRatings(guiseObj, ratingsArr) {
     for (const pair of ratingsArr) {          //for each pair on the array
                  
             if(pair[0].includes(guiseObj['guise name']) ) {           //if first element of name-rating pair includes current guise name
-                console.log("current element match: ", pair[0]);
                 cleanLabel = pair[0].replace(guiseNameSuf,'');
                 ratings.push([cleanLabel, pair[1]]);
             }            
@@ -179,6 +178,7 @@ function loadAdjectives() {
     arrayCopy = shuffledAdjectives.slice();
     partResponses.push({"guise name": currentGuiseName, "Presentation order": arrayCopy});
     console.log("Part response array is ", partResponses);
+    console.log("location is: ", window.location.href);
     let code = "<ul>";
     for (let i = 0; i < itemsLen; i++) {
         code += "<div class='row mb-0'>" +
@@ -199,6 +199,7 @@ function loadAdjectives() {
         }
     counter++;
     mgtElement.insertAdjacentHTML('beforeend', code);
+    
     }
 
 
@@ -214,7 +215,7 @@ function moveToNext(words, audioFiles) {
         loadHeaders();
         window.location.href = "#mgtTop";
         console.log("in moveToNext audio list is: ", audioFiles);
-        playGuise(audioFiles[0]);  //play first item on guise list
+        //playGuise(audioFiles[0]);  //play first item on guise list
         console.log("Adjectives = ", words);
         loadAdjectives(words);        
         audioFiles.shift();
@@ -228,16 +229,9 @@ function moveToNext(words, audioFiles) {
         const entries = Object.entries(formdata);
         console.log("inside else partResponses is :", partResponses);
         loadResults(entries, partResponses);
-        
-        //const entries = Object.entries(formdata);
-        //console.log("formdata now is: ", entries);
-        //console.log("full JSOn object is : ", JSON.stringify(partResponses, undefined, 2));
-        //console.log();
-        //loadResponses(entries);
-        //const fullDataset = {meta, partResponses};
-        //console.log("FINAL JSOn object is : ", JSON.stringify(fullDataset, undefined, 2));
-        //console.log("full JSOn object after loading responses : ", JSON.stringify(partResponses, undefined, 2));
-        eel.grab_mgt_ratings(partResponses)();
+        const fullDataset = {meta, partResponses};
+        console.log("FINAL JSOn object is : ", JSON.stringify(fullDataset, undefined, 2));
+        eel.grab_mgt_ratings(fullDataset)();
         }     
      
 }
