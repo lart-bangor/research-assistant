@@ -10,10 +10,31 @@
     #mgtBody {
         display: none;
         }
+    #mgtBtn {
+        display: none;
+    }
+
+    #practiceBtn {
+        display: none;
+        }
+    #practiceSlider_info {
+        display: none;
+    }
 
         
  .show {
     display: block;
+}
+
+#instructionsMain {
+  
+  margin: auto;  
+  background-color: lightgray;
+  width: 60%;
+  border: 1px solid darkgrey;
+  padding: 20px;
+  display: none;
+  
 }
     
 </style>
@@ -36,7 +57,7 @@
 
         <div class="row m-4 text-center">
             <div class="col">
-                <h2>MGT speaker rating</h2>
+                <h2>MGT: voice rating</h2>
             </div>
         </div>
     <!-- Progress bar    
@@ -99,6 +120,29 @@
         </div>
         </form>
     </article>
+
+    <!-- Section for practice guise -->
+<section id = "instructions">
+    <div id="instructionsHead"></div>
+    <div id ="instructionsMain"></div>
+    <div class="row text-center p-3 m-4" id="practiceBtn">
+        <div class="col">
+        <button class="btn btn-primary btn-lg btn-action shadow" onclick="showPractice();">[begin pratice]</button>
+        </div>
+    </div>
+</section>
+<section id="practice">
+    <div id="practiceHeader"></div>
+    <div class="row mt-0 mb-0">
+        <div class="col">
+            <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info" id="practiceSlider_info"></i> 
+            </p>
+        </div>
+    </div>
+    <div id="practiceBody"></div>
+    <div id="practiceEnd"></div>
+</section>
+
  <!-- This is where the MGt main body begins -->
  <section id="mgtBody">
    
@@ -144,7 +188,9 @@
     </div>
     
 </form>
+</section>
 <!-- Form submission -->
+<section id="mgtBtn">
 <div class="row text-end p-3">
     <div clas="col">
         <button class="btn btn-primary btn-lg btn-action shadow" id="btnNext" onclick="moveToNext();">
@@ -153,13 +199,9 @@
 </div>
 </section>
 
+
+
 <!-- Activate version   -->
-    
-<div class="row text-center p-3 m-4" id="toggle-btn">
-    <div class="col">
-    <button class="btn btn-primary btn-lg btn-action shadow" onclick="showInstr();">Show Instructions</button>
-    </div>
-</div>
 
     <div class="row text-center p-3 m-4" id="toggle-btn">
         <div class="col">
