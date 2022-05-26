@@ -185,8 +185,8 @@ function loadAdjectives() {
     for (let i = 0; i < itemsLen; i++) {
         code += "<div class='row mb-0'>" +
                     "<div class='col-2'></div>" +
-                    "<div class='col-5 text-start'><div style = 'font-size: small'>" + agree + "</div></div>" +
-                    "<div class='col-5 text-end'><div style = 'font-size: small'>" + disagree + "</div></div>" +
+                    "<div class='col-5 text-start'><div style = 'font-size: small'>" + disagree + "</div></div>" +
+                    "<div class='col-5 text-end'><div style = 'font-size: small'>" + agree + "</div></div>" +
                 "</div>" +
                 "<div class='row mb-1'>" +
                 "<label for='" + shuffledAdjectives[i] + "_" + currentGuiseName + "' class='col-2 col-form-label'>" +  //s will pull from a variable once we have the info about which recording is being judged
@@ -197,44 +197,97 @@ function loadAdjectives() {
                     "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
                 "</div>" +
             "</div>" + 
-            "<div><p><br /><br /><br /><br /></p></div>";
+            "<div><p><br /><br /><br /><br /></p></div></ul>";
         }
     counter++;
     mgtElement.insertAdjacentHTML('beforeend', code);
     
     }
 
+function showPractice() {
+    document.getElementById("instructions").style.display = "none"; //hide instructions part
+    practiceHeadElement = document.getElementById("practiceHeader");
+    practiceHeadElement.innerHTML =  "<h5>" + practiceHeader + "</h5>";
+    practiceInfoElement = document.getElementById("practiceSlider_info");
+    practiceInfoElement.style.display = "block";
+    practiceInfoElement.innerHTML =  practiceInfo;
+    instrucTailElement = document.getElementById("practiceEnd");
+    instructTail = interface.base.instructionsTail;
+    let practiceElement = document.getElementById("practiceBody");
+    let num = 0;        //to provide different id for each practice slider
+    let listofAdj = interface.mgtItems;
+    eel.playGuise(practiceGuise);
+    itemsLen = listofAdj.length;    
+    let code = "";
+    for (let i = 0; i < itemsLen; i++) {
+        code += "<div class='row mb-0'>" +
+        "<div class='col-2'></div>" +
+        "<div class='col-5 text-start'><div style = 'font-size: small'>" + disagree + "</div></div>" +
+        "<div class='col-5 text-end'><div style = 'font-size: small'>" + agree + "</div></div>" +
+    "</div>" +
+    "<div class='row mb-1'>" +
+    "<label for='" + listofAdj[i] + num + "' class='col-2 col-form-label'>" +  listofAdj[i] + 
+    "</label>" +
+    "<div class='col-10 mt-2'>" +
+        "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + listofAdj[i] + num + "' required />" +
+        "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
+    "</div>" +
+"</div>" + 
+"<div><p><br /><br /><br /><br /></p></div>";
+        }
+    practiceElement.insertAdjacentHTML('beforeend', code);
+    num++;
+    instrucTailElement.innerHTML = "<br /><div class='row text-center'><h5 style='color: blue;'>" + interface.base.instructionsTail +  "</h5></div><br /><br />";
+    btnElement.innerHTML = startBtn;
+    document.getElementById("mgtBtn").style.display = "block";
+    }
+
+function showInstruct() {
+    instrHeadElement = document.getElementById("instructionsHead");
+    instrElement = document.getElementById("instructionsMain");
+    instrElement.style.display = "block";
+    instrHead =  interface.base.instructionsHead;
+    instrTxt = interface.base.instructionsTxt;
+    instrHeadElement.innerHTML =  "<br /><div class='row text-center'><h3>" + instrHead + "</h3></div>";
+    instrElement.innerHTML =  instrTxt;
+    document.getElementById("practiceBtn").style.display = "block";
+  
+}
+
 
 //loads rating interface as many times as there are recorded guises to rate
 function moveToNext(words, audioFiles) {
-    if((typeof words === 'undefined'  || typeof audioFiles === 'undefined')) {
+    if((typeof words === 'undefined'  || typeof audioFiles === 'undefined')) {      //if moveToNext() is called after initialising, run MGT proper
         words = mgtAdjectives;
         audioFiles = mgtAudioList;
-        }
-    audioLen = audioFiles.length;
-    if(audioLen >0) {                       //if list of audio recs is not empty
-        hidePrecedingDiv();
-        loadHeaders();
-        window.location.href = "#mgtTop";
-        console.log("in moveToNext audio list is: ", audioFiles);
-        eel.playGuise(audioFiles[0]);  //play first item on guise list
-        console.log("Adjectives = ", words);
-        loadAdjectives(words);        
-        audioFiles.shift();
-        mgtAudioList = audioFiles    //redefine mgtAudioList after first item is removed
-        console.log("after popping array is ", mgtAudioList);
+    
+        audioLen = audioFiles.length;
+        if(audioLen >0) {                       //if list of audio recs is not empty
+            hidePrecedingDiv();
+            loadHeaders();
+            window.location.href = "#mgtTop";
+            console.log("in moveToNext audio list is: ", audioFiles);
+            eel.playGuise(audioFiles[0]);  //play first item on guise list
+            console.log("Adjectives = ", words);
+            loadAdjectives(words);        
+            audioFiles.shift();
+            mgtAudioList = audioFiles    //redefine mgtAudioList after first item is removed
+            console.log("after popping array is ", mgtAudioList);
                 
-    } else {
-        //window.location.assign("mgtEnd.html");
-        formdata = lart.forms.getFormData("mgtDataForm"); 
-        console.log("form data is ", formdata);
-        const entries = Object.entries(formdata);
-        console.log("inside else partResponses is :", partResponses);
-        loadResults(entries, partResponses);
-        const fullDataset = {meta, partResponses};
-        console.log("FINAL JSOn object is : ", JSON.stringify(fullDataset, undefined, 2));
-        eel.grab_mgt_ratings(fullDataset)();
+        } else {
+            window.location.assign("mgtEnd.html");
+            formdata = lart.forms.getFormData("mgtDataForm"); 
+            console.log("form data is ", formdata);
+            const entries = Object.entries(formdata);
+            console.log("inside else partResponses is :", partResponses);
+            loadResults(entries, partResponses);
+            const fullDataset = {meta, partResponses};
+            console.log("FINAL JSOn object is : ", JSON.stringify(fullDataset, undefined, 2));
+            eel.grab_mgt_ratings(fullDataset)();
         }     
+    } else {                //if it is the first (initialising) call to moveToNext(), show instrcutions and practice guise
+        showInstruct();
+    }
      
 }
 
@@ -244,14 +297,18 @@ function fetchMgt(data) {
     headerElement = document.getElementById("language_header");
     sliderElement = document.getElementById("slider_info");
     btnElement = document.getElementById("btnNext");
-    document.getElementById("mgtBody").style.display = "block";     
-      
+    //document.getElementById("mgtBody").style.display = "block";
+    
     headerTxt = interface.base.header;
     agree = interface.base.agreement;            
     disagree = interface.base.disagreement;
     sliderTxt = interface.base.sliderInfo;
     sliderWarn = interface.base.sliderWarn;
     btnTxt = interface.base.nextBtn;
+    practiceHeader = headerTxt;
+    practiceInfo = sliderTxt;
+    startBtn = interface.base.startBtn;
+    practiceGuise = interface.practiceAudio;
       
     mgtAdjectives = interface.mgtItems;  //set mgtAdjectives
     mgtAudioList = interface.mgtAudioList;   // set mgtAudioList;
