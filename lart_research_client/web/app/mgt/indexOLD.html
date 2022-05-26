@@ -1,193 +1,28 @@
-{% set lart_forms = true %}
-{%- from 'lart_macros.html' import lart_form_pipeline %}
-{% extends 'base.html' %}
-{% block title %}LART Survey Client - MGT-RML{% endblock %}
-{% block headline %}MGT-RML{% endblock %}
-{% block head_styles %}
-<style type="text/css">
-    main .btn-primary {
-        min-width: 50%;
-    }
-        
-     
-</style>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<body>
 
-{% block head_scripts %}
-<script type="text/javascript">
-    function loadMgtVersions() {
-        availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions); 
-    }
-    
-    function populateSurveyVersions(versions) {
-        select = document.getElementById('selectMgtVersion');
-        for(version in versions) {
-            option = document.createElement('option');
-            option.setAttribute('value', version);
-            option.appendChild(document.createTextNode(versions[version]))
-            select.appendChild(option);
-        }
-    }
-    
-       
-//# begin MGT 
-mgtInstanceId = parseInt(lart.forms.searchParams.get('instance'));
-partId = sessionStorage.getItem("mgtPartId");
-let mgtAudioList = [];
+<audio id="myAudio">
+  <source src="audio files/beak2.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
+<p>Click the buttons to play or pause the audio.</p>
 
-// instructions to be outputed depending on language selection
-function fetchMgtInfo()  {
-        //chosenVersion = document.getElementById("selectMgtVersion");
-        console.log("Selected version: ");
-        //console.log(chosenVersion);
-        console.log("Participant ID: ", partId);
-      //  jsonFile = "versions/" + chosenVersion + ".json";  //set filename based on selected version
-//            fetch(jsonFile)
-  //             .then(response => response.json())
-    //           .then(data => displayMgt(data));  //pass the contents of jsonFile to output_info()
-            }
+<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button> 
 
-function displayMgt(data) {
-    //console.log(data);
-    const headerElement = document.getElementById("language_header");
-    const sliderElement = document.getElementById("slider_info");
-    const btnElement = document.getElementById("btnNext");
-    const mgtElement = document.getElementById('mgtRatingScales');
-    const headerTxt = data.base.header;
-    const agree = data.base.agreement;
-    const disagree = data.base.disagreement;
-    const sliderTxt = data.base.sliderInfo;
-    const sliderWarn = data.base.sliderWarn;
-    const btnTxt = data.base.nextBtn;
-    headerElement.innerHTML =  headerTxt;
-    sliderElement.innerHTML =  " " + sliderTxt;
-    btnElement.innerHTML = btnTxt;
-    itemList = data.mgtItems;
-    mgtAudioList = data.mgtAudioList;
+<script>
+var x = document.getElementById("myAudio"); 
 
-    console.log("audio list is: ", mgtAudioList);
-    
-    console.log("Items = ");
-    console.log(itemList);
-    console.log("type of mgtItems: ");
-    console.log(typeof(itemList));
-    let itemsLen = itemList.length;
-    let code = "<ul>";
-    for (let i = 0; i < itemsLen; i++) {
-        code += "<div class='row mb-0'>" +
-                    "<div class='col-2'></div>" +
-                    "<div class='col-5 text-start'><div style = 'font-size: small'>" + agree + "</div></div>" +
-                    "<div class='col-5 text-end'><div style = 'font-size: small'>" + disagree + "</div></div>" +
-                "</div>" +
-                "<div class='row mb-1'>" +
-                "<label for='" + itemList[i] + "_" + "fetchGuiseName();" + "' class='col-2 col-form-label'>" +  //s will pull from a variable once we have the info about which recording is being judged
-                    itemList[i] + 
-                "</label>" +
-                "<div class='col-10 mt-2'>" +
-                    "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + itemList[i] + "_" + "currentGuiseName" + "' required />" +
-                    "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
-                "</div>" +
-            "</div>" + 
-            "<div><p><br /><br /><br /><br /></p></div>";
-       
-                               
-        }
-    mgtElement.insertAdjacentHTML('beforeend', code);
-    playGuise();
-    }
+function playAudio() { 
+  x.play(); 
+} 
 
-
-    
-function playGuise() {
-    audioFile = "/audio files/" + mgtAudioList[0]
-    console.log("currently playing...:", mgtAudioList[0])
-    var audio = new Audio(audioFile);
-    audio.play();
-}
-
-     </script>
-{% endblock %}
-{% block drawer_info %}{% endblock %}
-{% block drawer_nav_options %}
-    <li class="nav-item">
-        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
-    </li>
-    <li><hr class="nav-divider"></li>
-{% endblock %}
-{% block content %}
-    <section class="p-2">
-        <div class="container-fluid p-2 text-center">
-            <h2>MGT Speaker rating (RML)</h2>
-        </div>
-        <form id="mgtDataForm" class="p-2 needs-validation">
-            <div class="mb-3">
-                <label for="selectMgtVersion" class="form-label">Select MGT-RML version:</label>
-                <select id="selectMgtVersion" class="form-select" required>
-                </select>
-                <script type="text/javascript">
-                    loadMgtVersions();
-                </script>
-                <div class="invalid-feedback">
-                    <p>Please select one of the available versions of the MGT-RML.</p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="researcherId" class="form-label">Researcher ID:</label>
-                <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
-                <div id="researcherIdHelp" class="form-text">Enter the researcher’s name or ID.</div>
-                <div class="invalid-feedback">
-                    <p>Please provide a valid Researcher ID or name. The ID can only contain letters and numbers (no spaces, hyphens, etc.) and must be between 3 and 10 characters in length.</p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="researchLocation" class="form-label">Location:</label>
-                <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="[A-Za-z0-9 ,\(\)]{1,50}" required />
-                <div id="researchLocationHelp" class="form-text">Enter the location (e.g. town name) where the research is undertaken.</div>
-                <div class="invalid-feedback">
-                    <p>Please enter a location name, for example <i>Bangor, Gwynedd</i>. Location names can contain letters, numbers, spaces, commas and parentheses and they can be up to 50 characters in length.</p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="participantId" class="form-label">Participant ID:</label>
-                <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required autocomplete="off" />
-                <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
-                <div class="invalid-feedback">
-                    <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <p class="form-label" style="margin-left:0">Confirm consent:</p>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="confirmConsent" required autocomplete="off" />
-                    <label class="form-check-label" for="confirmConsent">I confirm that the participant has given informed consent.</label>
-                    <div class="invalid-feedback">
-                        <p>Please confirm that you have obtained informed consent from the participant before starting this task.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="mb-3 text-center p-3">
-                <button class="btn btn-primary btn-lg btn-action shadow" onclick="fetchMgtInfo();">Start</button>
-            </div>
-        </form>
-    </section>
-    
-
-   
-{% endblock %}
-{% block tail_scripts %}
-<script type="text/javascript">
-    /*
-    lart.forms.requireValidation(true);
-    lart.forms.registerPipeline(
-        'mgtDataForm',
-        async function(data) {
-
-            let success = await eel.init_mgt(data)();
-            console.log("tail script: " + success);
-           
-        }
-    );
-    */
+function pauseAudio() { 
+  x.pause(); 
+} 
 </script>
-{% endblock %}
+
+</body>
+</html>
