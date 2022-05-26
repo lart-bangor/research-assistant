@@ -50,7 +50,7 @@ def grab_mgt_ratings(data: dict[Any, Any]):
         print("##############################################\n")
         print("# ERROR: The 'data' directory does not exist #\n")
         print("##############################################\n")
-    print("Basic info from index.html: ")
+    print("Data returned via index.html: ")
     print(data)
 
         
