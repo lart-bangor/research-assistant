@@ -1,6 +1,6 @@
 """Data structures for the MGT (RML)."""
 from email.mime import audio
-from time import time, sleep
+from time import sleep
 import eel
 import json
 import random
@@ -22,37 +22,38 @@ data_path: Path = config.paths.data / "MGT"
 if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
  
+
+@eel.expose
+def playGuise(audio):
+    thisPath = str(pathlib.Path(__file__).parent.resolve())
+    audiofile = thisPath + "/audio files/" + audio
+    sleep(1.5)
+    playsound(audiofile)
+
 #retrieve initial info from index.html and print to file + to console
 @eel.expose
 def grab_mgt_ratings(data: dict[Any, Any]):
+    print("data dict is: ")
+    print(data)
     presentime = datetime.now()
-    dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
-    #currentFileLocation = pathlib.Path(__file__).parent.absolute()
-    #parentFolder = currentFileLocation.parent
-    #jsonLocationPath = str(parentFolder.as_posix())
-    #jsonFile = jsonLocationPath + "/web/app/mgt/versions/CymEng_ENG_GB.json"
+    dt_filename = presentime.strftime("%d_%m_%Y__%H-%M-%S")
+    filenameId = data["meta"]["File ID"] + "_" + dt_filename
+    file_name = filenameId + ".json"
+    data_file = data_path / file_name
     
     try:
-        with open("lart_research_client/mgt/data/dataLog.json", "a") as file:
-            file.write(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEXT >>")
-            file.write("\n\nDate & Time: " + dt_string + "\n")
-        
-            #file.write("\n")
-            #file.write("Presentation order: ")
-            #file.write(json.dumps(presentation_order))
-            #file.write("\n")
-            jsonOutput = json.dumps(data, indent=4)
-            file.write(jsonOutput)
-            
+        with open(data_file, "a") as fp:
+            json_output = json.dumps(data, indent=4)
+            fp.write(json_output)
     except FileNotFoundError:
         print("\n")
-        print("#########################################\n")
-        print("#   The 'data' directory does not exist #\n")
-        print("#########################################\n")
-    print("\nMGT ratings: ")
+        print("##############################################\n")
+        print("# ERROR: The 'data' directory does not exist #\n")
+        print("##############################################\n")
+    print("Basic info from index.html: ")
     print(data)
-    
 
+        
 def randomize(dictionary):
     randomized_version = {}
     items = list(dictionary.items())  # List of tuples of (key,values)
