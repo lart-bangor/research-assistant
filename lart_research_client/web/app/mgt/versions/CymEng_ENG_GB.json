@@ -6,9 +6,13 @@
         "date": "2022-05-05"
     },
     "base": {
+        "instructionsHead": "Instructions",
+        "instructionsTxt": "In this task, you will hear a person speak and see a series of sliders asking you to rate that person on the basis of their voice alone. <br /> Please use the sliders to record the degree to which you agree or disagree with each statement. The first example will be a practice item so that you can familiarise yourself with the task<br /><br /> Click [begin practice] when you're ready",
+        "instructionsTail": "After completing the practice screen, please speak to the researcher before continuing, thank you.",
         "header": "I find this speaker...",
         "sliderInfo": "Please use the sliders to record your choice",
         "sliderWarn": "Please move the slider at least once to record your choice.",
+        "startBtn": "Start",
         "nextBtn": "next",
         "languageMaj": "English",
         "languageRM": "Welsh",
@@ -41,8 +45,8 @@
         "crop2.mp3",
         "hips2.mp3"
 
-    ]
-
+    ],
+    "practiceAudio": "hips2.mp3"
 }
 
  
