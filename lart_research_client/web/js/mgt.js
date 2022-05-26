@@ -181,7 +181,7 @@ function loadAdjectives() {
     partResponses.push({"guise name": currentGuiseName, "Presentation order": arrayCopy});
     console.log("Part response array is ", partResponses);
     console.log("location is: ", window.location.href);
-    let code = "<ul>";
+    let code = "";
     for (let i = 0; i < itemsLen; i++) {
         code += "<div class='row mb-0'>" +
                     "<div class='col-2'></div>" +
@@ -197,7 +197,7 @@ function loadAdjectives() {
                     "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
                 "</div>" +
             "</div>" + 
-            "<div><p><br /><br /><br /><br /></p></div></ul>";
+            "<div><p><br /><br /><br /><br /></p></div>";
         }
     counter++;
     mgtElement.insertAdjacentHTML('beforeend', code);
@@ -206,6 +206,7 @@ function loadAdjectives() {
 
 function showPractice() {
     document.getElementById("instructions").style.display = "none"; //hide instructions part
+    document.getElementById("practice").style.display = "block"; 
     practiceHeadElement = document.getElementById("practiceHeader");
     practiceHeadElement.innerHTML =  "<h5>" + practiceHeader + "</h5>";
     practiceInfoElement = document.getElementById("practiceSlider_info");
@@ -257,6 +258,11 @@ function showInstruct() {
 
 //loads rating interface as many times as there are recorded guises to rate
 function moveToNext(words, audioFiles) {
+    let pratceiDiv = document.getElementById("practice");
+    if (pratceiDiv.style.display === "block") {
+        pratceiDiv.style.display = "none";
+    }
+       
     if((typeof words === 'undefined'  || typeof audioFiles === 'undefined')) {      //if moveToNext() is called after initialising, run MGT proper
         words = mgtAdjectives;
         audioFiles = mgtAudioList;
@@ -265,6 +271,7 @@ function moveToNext(words, audioFiles) {
         if(audioLen >0) {                       //if list of audio recs is not empty
             hidePrecedingDiv();
             loadHeaders();
+            document.getElementById("mgtBody").style.display = "block";
             window.location.href = "#mgtTop";
             console.log("in moveToNext audio list is: ", audioFiles);
             eel.playGuise(audioFiles[0]);  //play first item on guise list
@@ -297,8 +304,7 @@ function fetchMgt(data) {
     headerElement = document.getElementById("language_header");
     sliderElement = document.getElementById("slider_info");
     btnElement = document.getElementById("btnNext");
-    //document.getElementById("mgtBody").style.display = "block";
-    
+       
     headerTxt = interface.base.header;
     agree = interface.base.agreement;            
     disagree = interface.base.disagreement;
