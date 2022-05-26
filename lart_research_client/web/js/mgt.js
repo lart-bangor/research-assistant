@@ -115,7 +115,8 @@ function shuffle(a) {       //shuffles members of array
     return a;
     }
 
-//plays audio guise
+//plays audio guise 
+/*
 function playGuise() {
     let audio = new Audio('audio files/beak2.mp3');
     audio.play();
@@ -123,6 +124,7 @@ function playGuise() {
     console.log("current audio supposed to play is...:", audio);
     //const audio = document.getElementById("guiseAudio");
 }
+*/
 
 //derives label based on audiofile's name
 function fetchAudioLabel(filename) {
@@ -215,7 +217,7 @@ function moveToNext(words, audioFiles) {
         loadHeaders();
         window.location.href = "#mgtTop";
         console.log("in moveToNext audio list is: ", audioFiles);
-        //playGuise(audioFiles[0]);  //play first item on guise list
+        eel.playGuise(audioFiles[0]);  //play first item on guise list
         console.log("Adjectives = ", words);
         loadAdjectives(words);        
         audioFiles.shift();
