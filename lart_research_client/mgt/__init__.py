@@ -4,6 +4,9 @@ from time import sleep
 import eel
 import json
 import random
+from random import seed
+from random import randint
+import string
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -22,22 +25,21 @@ data_path: Path = config.paths.data / "MGT"
 if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
  
-
+ 
 @eel.expose
 def playGuise(audio):
     thisPath = str(pathlib.Path(__file__).parent.resolve())
     audiofile = thisPath + "/audio files/" + audio
     sleep(1.5)
     playsound(audiofile)
-
+    
+    
 #retrieve initial info from index.html and print to file + to console
 @eel.expose
 def grab_mgt_ratings(data: dict[Any, Any]):
     print("data dict is: ")
     print(data)
-    presentime = datetime.now()
-    dt_filename = presentime.strftime("%d_%m_%Y__%H-%M-%S")
-    filenameId = data["meta"]["File ID"] + "_" + dt_filename
+    filenameId = data["meta"]["File ID"]
     file_name = filenameId + ".json"
     data_file = data_path / file_name
     

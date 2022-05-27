@@ -1,0 +1,5 @@
+####################
+AUDIO LOCATION: audio files are in mgt/audio files folder. 
+
+ADDING LOCATION TO CODE: After adding all relevant files, they need to be listed in the "version" file, e.g. web/app/versions/CymEng_ENG_GB.json. 
+Stimulus items (both test & fillers) are listed under teh property "mgtAudioList", while the practice guise goes in the "practiceAudio" property.
