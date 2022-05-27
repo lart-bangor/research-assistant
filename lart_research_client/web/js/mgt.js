@@ -57,14 +57,32 @@ let sliderElement = "";
 //#    secondary functions   #//
 //############################//
 
+//generates pseudo-random letter+number string to be added to file name
+function setSubId() {
+    let numSub = Math.floor(Math.random() * 1000000);
+    const alphabet = "abcdefghijklmnopqrstuvwxyz"
+    let res = "";
+    for(let i = 0; i<5; i++) {
+        res += alphabet[Math.floor(Math.random() * alphabet.length)]
+        }
+    res = res + numSub;
+    resArr = shuffle(res.split(""));
+    res1 = resArr.toString();
+    finalRes = res1.replace(/,/g, "");
+    return finalRes;
+}
+
+
 //sets meta values as object
 function setMeta(metaData) {
     meta['version'] = metaData[0];
     meta['Researcher id'] = metaData[1];
     meta['Location'] = metaData[2];
     meta['participant id'] = metaData[3];
-    idTime = timeStamp.getDate() + "-" + timeStamp.getMonth() + "-" + timeStamp.getFullYear() + "_" + timeStamp.getHours() + "-" + timeStamp.getMinutes() + "-" + timeStamp.getSeconds();
-    meta['File ID'] = metaData[3] + "_" + idTime;
+    month = timeStamp.getMonth() + 1;
+    idTime = timeStamp.getDate() + "-" + month + "-" + timeStamp.getFullYear() + "_" + timeStamp.getHours() + "-" + timeStamp.getMinutes() + "-" + timeStamp.getSeconds();
+    meta['File ID'] = metaData[3] + "_" + idTime + "_" + setSubId();
+    console.log("file ID is: ", meta['File ID']);
     }
 
 //hides user form before moving on to MGT proper
@@ -101,6 +119,7 @@ function loadHeaders() {
     headerElement.innerHTML =  headerTxt;
     sliderElement.innerHTML =  " " + sliderTxt;
     btnElement.innerHTML = btnTxt;
+    btnSectElement.style.display = "none";  //hide button so that guise can play. It will the re-appear as "next" insated of "start"
 }
 
 //shuffles order of adjectives 
@@ -115,16 +134,6 @@ function shuffle(a) {       //shuffles members of array
     return a;
     }
 
-//plays audio guise 
-/*
-function playGuise() {
-    let audio = new Audio('audio files/beak2.mp3');
-    audio.play();
-    //console.log("Current audio path is ", audioFile);
-    console.log("current audio supposed to play is...:", audio);
-    //const audio = document.getElementById("guiseAudio");
-}
-*/
 
 //derives label based on audiofile's name
 function fetchAudioLabel(filename) {
@@ -133,6 +142,7 @@ function fetchAudioLabel(filename) {
     let currentGuiseName = guiseName.slice(0,extBegin);
     return currentGuiseName;
 }
+
 
 //###############################################//
 //#             Primary functions               #//
@@ -218,30 +228,34 @@ function showPractice() {
     let num = 0;        //to provide different id for each practice slider
     let listofAdj = interface.mgtItems;
     eel.playGuise(practiceGuise);
+    console.log("Currently playing... ", practiceGuise);
     itemsLen = listofAdj.length;    
     let code = "";
+    
     for (let i = 0; i < itemsLen; i++) {
         code += "<div class='row mb-0'>" +
         "<div class='col-2'></div>" +
         "<div class='col-5 text-start'><div style = 'font-size: small'>" + disagree + "</div></div>" +
         "<div class='col-5 text-end'><div style = 'font-size: small'>" + agree + "</div></div>" +
-    "</div>" +
-    "<div class='row mb-1'>" +
-    "<label for='" + listofAdj[i] + num + "' class='col-2 col-form-label'>" +  listofAdj[i] + 
-    "</label>" +
-    "<div class='col-10 mt-2'>" +
+        "</div>" +
+        "<div class='row mb-1'>" +
+        "<label for='" + listofAdj[i] + num + "' class='col-2 col-form-label'>" +  listofAdj[i] + 
+        "</label>" +
+        "<div class='col-10 mt-2'>" +
         "<input type='range' class='form-range d-block' min='0' max='100' step='any' id='" + listofAdj[i] + num + "' required />" +
         "<div class='invalid-feedback invalid-range'>" + sliderWarn + "</div>" +
-    "</div>" +
-"</div>" + 
-"<div><p><br /><br /><br /><br /></p></div>";
+        "</div>" +
+        "</div>" + 
+        "<div><p><br /><br /><br /><br /></p></div>";
         }
-    practiceElement.insertAdjacentHTML('beforeend', code);
-    num++;
-    instrucTailElement.innerHTML = "<br /><div class='row text-center'><h5 style='color: blue;'>" + interface.base.instructionsTail +  "</h5></div><br /><br />";
-    btnElement.innerHTML = startBtn;
-    document.getElementById("mgtBtn").style.display = "block";
-    }
+        practiceElement.insertAdjacentHTML('beforeend', code);
+        num++;
+        instrucTailElement.innerHTML = "<br /><div class='row text-center'><h5 style='color: blue;'>" + interface.base.instructionsTail +  "</h5></div><br /><br />";
+        btnElement.innerHTML = startBtn;
+        mgtBtn =  document.getElementById("mgtBtn"); 
+        setTimeout(() => {  mgtBtn.style.display = "block"; }, 50000);   //wait till guise has finished playing, then show "next" button
+              
+}
 
 function showInstruct() {
     instrHeadElement = document.getElementById("instructionsHead");
@@ -258,9 +272,9 @@ function showInstruct() {
 
 //loads rating interface as many times as there are recorded guises to rate
 function moveToNext(words, audioFiles) {
-    let pratceiDiv = document.getElementById("practice");
-    if (pratceiDiv.style.display === "block") {
-        pratceiDiv.style.display = "none";
+    let practiceiDiv = document.getElementById("practice");
+    if (practiceiDiv.style.display === "block") {
+        practiceiDiv.style.display = "none";
     }
        
     if((typeof words === 'undefined'  || typeof audioFiles === 'undefined')) {      //if moveToNext() is called after initialising, run MGT proper
@@ -273,13 +287,14 @@ function moveToNext(words, audioFiles) {
             loadHeaders();
             document.getElementById("mgtBody").style.display = "block";
             window.location.href = "#mgtTop";
-            console.log("in moveToNext audio list is: ", audioFiles);
             eel.playGuise(audioFiles[0]);  //play first item on guise list
             console.log("Adjectives = ", words);
-            loadAdjectives(words);        
+            loadAdjectives(words);     
             audioFiles.shift();
             mgtAudioList = audioFiles    //redefine mgtAudioList after first item is removed
             console.log("after popping array is ", mgtAudioList);
+            btn =  document.getElementById("mgtBtn");
+            setTimeout(() => {  btn.style.display = "block"; }, 50000);   //wait till guise has finished playing, then show "start" button
                 
         } else {
             window.location.assign("mgtEnd.html");
@@ -304,6 +319,7 @@ function fetchMgt(data) {
     headerElement = document.getElementById("language_header");
     sliderElement = document.getElementById("slider_info");
     btnElement = document.getElementById("btnNext");
+    btnSectElement = document.getElementById("mgtBtn");
        
     headerTxt = interface.base.header;
     agree = interface.base.agreement;            
@@ -335,6 +351,7 @@ function showMgt() {
     jsonFile = "versions/" + meta['version'] + ".json";  //set filename based on selected version
     console.log("json file is: ", jsonFile);
     hideInitForm();
+    lart.forms.requireValidation(true);
     fetch(jsonFile)
         .then(response => response.json())
         .then(data => setIntface(data))
