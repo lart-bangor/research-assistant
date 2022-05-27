@@ -41,12 +41,12 @@
     ],
     
     "mgtAudioList" : [
-        "beak2.mp3",
+        "CymEng_Eng_Stim_Gwenfair.wav",
         "crop2.mp3",
         "hips2.mp3"
 
     ],
-    "practiceAudio": "hips2.mp3"
+    "practiceAudio": "CymEng_Eng_Practice.wav"
 }
 
  
