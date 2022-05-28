@@ -27,17 +27,19 @@
 
             <template id="settingsFieldTemplate">
                 <div id="settingsField-[SectionName]-[FieldName]">
-                    <div class="row">
-                        <label class="col-form-label col-auto" for="settings-[SectionName]-[FieldName]">[FieldLabel]:</label>
-                        <input class="col-sm form-control font-monospace" name="settings-[SectionName]-[FieldName]" type="text" />
-                        <button type="button" class="col-1 btn btn-outline-secondary ms-1" id="settings-[SectionName]-[FieldName]-ResetButton" disabled><i class="bi bi-trash"></i> Reset</button>
-                        <button type="button" class="col-1 btn btn-outline-secondary ms-1" id="settings-[SectionName]-[FieldName]-DefaultButton"><i class="bi bi-ui-checks-grid"></i> Default</button>
-                    </div>
-                    <div class="row" id="settingsFieldHelp-[SectionName]-[FieldName]">
-                        <p class="col help-block ps-2 pe-2 pb-0 mb-0 text-muted small"><i class="bi-info-circle text-info"></i> [FieldHelp]</p>
-                    </div>
-                    <div class="row mb-3">
-                        <p class="col ps-2 pe-2 pt-1 text-muted small"><i>Default value:</i>&nbsp;<span class="font-monospace p-1" style="border:1px solid #eee;">[FieldDefault]</span></p>
+                    <label class="form-label h6" for="settings-[SectionName]-[FieldName]">[FieldLabel]:</label>
+                    <div class="row ps-1 mb-3">
+                        <div class="col-9">
+                            <input class="form-control font-monospace text-black-50" name="settings-[SectionName]-[FieldName]" type="text" />
+                            <div id="settingsFieldHelp-[SectionName]-[FieldName]" class="ps-1 pe-2 text-muted small">
+                                <p class="help-block pb-0 mb-0"><i class="bi-info-circle text-info"></i> [FieldHelp]</p>
+                                <p class="pt-1"><i>Default value:</i>&nbsp;<span class="font-monospace p-1" style="border:1px solid #eee;">[FieldDefault]</span></p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary ms-1" id="settings-[SectionName]-[FieldName]-ResetButton" disabled><i class="bi bi-trash"></i> Reset</button>
+                            <button type="button" class="btn btn-secondary ms-1" id="settings-[SectionName]-[FieldName]-DefaultButton"><i class="bi bi-ui-checks-grid"></i> Default</button>
+                        </div>
                     </div>
                 </div>
             </template>
@@ -173,16 +175,28 @@
                         'input',
                         function () {
                             if ( targetField.value != targetField.dataset.storedValue ) {
+                                resetButton.classList.remove('btn-secondary');
+                                resetButton.classList.add('btn-danger');
                                 resetButton.disabled = false;
                                 targetField.classList.add('bg-warning');
                             } else {
                                 resetButton.disabled = true;
+                                resetButton.classList.remove('btn-danger');
+                                resetButton.classList.add('btn-secondary');
                                 targetField.classList.remove('bg-warning');
                             }
                             if ( targetField.value != targetField.dataset.defaultValue ) {
+                                defaultButton.classList.remove('btn-secondary');
+                                defaultButton.classList.add('btn-success');
                                 defaultButton.disabled = false;
+                                targetField.classList.remove('text-black-50');
+                                targetField.classList.add('text-black');
                             } else {
                                 defaultButton.disabled = true;
+                                defaultButton.classList.remove('btn-success');
+                                defaultButton.classList.add('btn-secondary');
+                                targetField.classList.remove('text-black');
+                                targetField.classList.add('text-black-50');
                             }
                         },
                         {passive: true}
