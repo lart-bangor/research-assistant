@@ -603,12 +603,12 @@ class DataSchema:
                 setattr(
                     cls,
                     f"del{field}",
-                    DataSchema.__getfieldlistfactory(field, fieldspec),
+                    DataSchema.__delfieldlistfactory(field, fieldspec),
                 )
                 setattr(
                     cls,
                     f"get{field}",
-                    DataSchema.__delfieldlistfactory(field, fieldspec),
+                    DataSchema.__getfieldlistfactory(field, fieldspec),
                 )
             else:
                 raise AttributeError(
