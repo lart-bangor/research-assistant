@@ -109,5 +109,5 @@ def store(settings: dict[str, dict[str, Any]]) -> bool:                         
             setattr(target, property, value)
     config.save()
     logger.info(f"Settings successfully updated to {config.asdict()}.")
-    eel._settings_notify_successful_update()
+    eel._settings_notify_successful_update()                                    # type: ignore
     return True
