@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-3">
                             <button type="button" class="btn btn-secondary ms-1" id="settings-[SectionName]-[FieldName]-ResetButton" disabled><i class="bi bi-trash"></i> Reset</button>
-                            <button type="button" class="btn btn-secondary ms-1" id="settings-[SectionName]-[FieldName]-DefaultButton"><i class="bi bi-ui-checks-grid"></i> Default</button>
+                            <button type="button" class="btn btn-success ms-1" id="settings-[SectionName]-[FieldName]-DefaultButton"><i class="bi bi-ui-checks-grid"></i> Default</button>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,6 @@
                             break;
                     }
                     if ( 'values' in field ) {
-                        console.warn("VALUES FIELD FOUND:", field);
                         const select = document.createElement('select');
                         select.name = field_input.name;
                         select.className = field_input.className;
@@ -220,6 +219,10 @@
                     );
                     if ( targetField.value == targetField.dataset.defaultValue ) {
                         defaultButton.disabled = true;
+                        defaultButton.classList.remove('btn-success');
+                        defaultButton.classList.add('btn-secondary');
+                        targetField.classList.remove('text-black');
+                        targetField.classList.add('text-black-50');
                     }
                     field_slot.appendChild(field_clone);
                 }
