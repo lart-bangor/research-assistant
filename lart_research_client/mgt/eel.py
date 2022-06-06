@@ -75,7 +75,7 @@ def _expose(func: F) -> F:
                 booteel.displayexception(exc)
                 _handleexception(exc)
             return False
-    eel._expose("_mgt2_" + func.__name__, api_wrapper)  # type: ignore
+    eel._expose("_mgt_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
 

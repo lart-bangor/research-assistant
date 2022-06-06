@@ -17,7 +17,7 @@ from .config import config
 from . import booteel
 from .lsbqrml import expose_to_eel as expose_lsbqrml
 from .memorygame import expose_to_eel as expose_memorygame
-from .mgt2 import expose_to_eel as expose_mgt2
+from .mgt import expose_to_eel as expose_mgt
 from .settings import expose_to_eel as expose_settings
 from .utils import export_backup, manage_settings
 
@@ -36,7 +36,7 @@ logger = logging.getLogger(__name__)
 # Expose Eel APIs for subpackages
 expose_lsbqrml()
 expose_memorygame()
-expose_mgt2()
+expose_mgt()
 expose_settings()
 
 

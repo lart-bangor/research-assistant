@@ -70,7 +70,7 @@
 
         // Initialise UI translation
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('mgt', eel._mgt2_load_version, [instanceId, ['meta', 'base', 'instructions']]);
+        lart.tr.loadFromEel('mgt', eel._mgt_load_version, [instanceId, ['meta', 'base', 'instructions']]);
         lart.tr.registerObserver('mgt', 'surveyInstructionsForm');
         lart.tr.registerObserver('mgt', 'mgtSectionTitle');
         lart.tr.registerObserver('mgt', 'mgtAppTitle');

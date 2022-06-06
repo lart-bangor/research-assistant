@@ -245,17 +245,25 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
     """Class for app-task sequencing configuration."""
 
     _sequence_options: ClassVar[dict[str, str]] = {
+        "App start screen": "",
         "AToL-C": "atolc",
+        "Consent Form": "consent",
         "LSBQ-RML": "lsbqrml",
         "Memory Game": "memorygame",
-        "Consent Form": "consent",
-        "App start screen": "",
+        "MGT": "mgt",
     }
 
     atolc: str = field(
         default="memorygame",
         metadata={
             "doc_label": "Task following the AToL-C",
+            "doc_values": _sequence_options,
+        }
+    )
+    consent: str = field(
+        default="lsbqrml",
+        metadata={
+            "doc_label": "Task following the Consent Form",
             "doc_values": _sequence_options,
         }
     )
@@ -273,10 +281,10 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
             "doc_values": _sequence_options,
         }
     )
-    consent: str = field(
-        default="lsbqrml",
+    mgt: str = field(
+        default="",
         metadata={
-            "doc_label": "Task following the Consent Form",
+            "doc_label": "Task following the MGT",
             "doc_values": _sequence_options,
         }
     )

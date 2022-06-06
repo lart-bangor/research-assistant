@@ -117,7 +117,7 @@
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
         let trialId = lart.forms.searchParams.get('trial');
-        lart.tr.loadFromEel('mgt', eel._mgt2_load_version, [instanceId, ['meta', 'base', 'rating']]);
+        lart.tr.loadFromEel('mgt', eel._mgt_load_version, [instanceId, ['meta', 'base', 'rating']]);
         lart.tr.registerObserver('mgt', 'surveyRatingForm');
         lart.tr.registerObserver('mgt', 'mgtSectionTitle');
         lart.tr.registerObserver('mgt', 'mgtAppTitle');
@@ -200,7 +200,7 @@
         lart.forms.getElementByGreed('trial').value = trialId;
 
         // Load and fill the traits to be rated
-        eel._mgt2_get_traits()(fillTraitRatingSection);
+        eel._mgt_get_traits()(fillTraitRatingSection);
 
         function fillTraitRatingSection(traits) {
             for ( trait of traits ) {
@@ -235,5 +235,5 @@
             redirectFormSubmission();
         }
     </script>
-    {{ lart_form_pipeline('surveyRatingForm', '_mgt2_setratings') }}
+    {{ lart_form_pipeline('surveyRatingForm', '_mgt_setratings') }}
 {% endblock %}
