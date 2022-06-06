@@ -34,30 +34,24 @@ mgt_guise_trials: Final[tuple[str, ...]] = (
 mgt_trials: Final[tuple[str, ...]] = mgt_practice_trials + mgt_filler_trials + mgt_guise_trials
 
 mgt_traits: Final[tuple[str, ...]] = (
-    "exciting",
-    "trendy",
-    "confident",
-    "natural",
-    "fun",
-    "relatable",
-    "likeable",
-    "genuine",
-    "ambitious",
-    "amusing",
+    "amusing",          # or funny?
+    "open-minded",
     "attractive",
-    "generous",
-    "ignorant",
-    "intelligent",
-    "proud",
-    "conservative",
     "trustworthy",
-    "lazy",
-    "close-minded",
+    "ignorant",
     "polite",
-    "rustic",
-    "uneducated",
-    "dishonest",
-    "competent"
+    "ambitious",
+    "international",    # or cosmopolitan?
+    "cool",
+    "intelligent",
+    "influential",      # or leader?
+    "likeable",
+    "educated",
+    "friendly",
+    "honest",
+    "competent",
+    "natural",
+    "pretentious",
 )
 
 
