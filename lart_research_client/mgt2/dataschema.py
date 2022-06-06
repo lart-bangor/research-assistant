@@ -237,21 +237,21 @@ class Response(DataSchema):
 
         | Speaker | Language | Example               |
         +---------+----------+-----------------------+
-        | F1      | --       | Filler 1              |
+        | F1      | Either   | Filler 1              |
         | S1      | L1       | Speaker 1, Language 1 |
         | S2      | L2       | Speaker 2, Language 2 |
-        | F2      | --       | Filler 2              |
+        | F2      | Either   | Filler 2              |
         | S3      | L2       | Speaker 3, Language 2 |
         | S4      | L1       | Speaker 4, Language 1 |
+        | F3      | Either   | Filler 3              |
         | S1      | L2       | Speaker 1, Language 2 |
-        | F3      | --       | Filler 3              |
         | S2      | L1       | Speaker 2, Language 1 |
+        | F4      | Either   | Filler 4              |
         | S3      | L1       | Speaker 3, Language 1 |
         | S4      | L2       | Speaker 4, Language 2 |
-        | F4      | --       | Filler 4              |
 
         The function randomises:
-            (a) the order of the fillers,
+            (a) the order of the fillers (regardless of filler language),
             (b) the order in which speakers are presented (distance kept constant)
             (c) whether L1 or L2 are presented first (keeping alternation constant)
         """
@@ -279,12 +279,12 @@ class Response(DataSchema):
             fillers[1],
             f"{speakers[2]}{sep}{languages[1]}",
             f"{speakers[3]}{sep}{languages[0]}",
-            f"{speakers[0]}{sep}{languages[1]}",
             fillers[2],
+            f"{speakers[0]}{sep}{languages[1]}",
             f"{speakers[1]}{sep}{languages[0]}",
+            fillers[3],
             f"{speakers[2]}{sep}{languages[0]}",
             f"{speakers[3]}{sep}{languages[1]}",
-            fillers[3],
         )
         return order
 
