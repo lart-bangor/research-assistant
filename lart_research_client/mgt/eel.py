@@ -5,6 +5,7 @@ import eel
 import json
 from functools import wraps
 from pathlib import Path
+from random import sample
 from typing import Optional, Union, Callable, Any, TypeVar, cast
 from .dataschema import Response, mgt_traits, mgt_trials
 from .versions import versions
@@ -98,7 +99,7 @@ def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
 @_expose
 def get_traits():
     """Return the list of MGT stimuli."""
-    return mgt_traits
+    return sample(mgt_traits, k=len(mgt_traits))
 
 
 @_expose
