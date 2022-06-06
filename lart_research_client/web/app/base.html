@@ -101,12 +101,26 @@
                         <iframe id="settingsModalFrame" src="/app/settings/index.html" frameborder="0" style="width:100%;height:100%" loading="lazy"></iframe>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" id="settingsModalCloseButton" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="settingsModalSaveButton">Save changes</button>
                         <script type="text/javascript">
                             (function (){
+                                function hideNavBar() {
+                                    const navDrawerCloseButton = document.getElementById('nav-header').querySelector('button');
+                                    navDrawerCloseButton.dispatchEvent(new Event('click'));
+                                }
+
+                                const settingsModalCloseButton = document.getElementById('settingsModalCloseButton');
+                                settingsModalCloseButton.addEventListener(
+                                    'click',
+                                    function () {
+                                        hideNavBar();
+                                    }
+                                );
+
                                 const settingsModalSaveButton = document.getElementById('settingsModalSaveButton');
                                 const settingsModalFrame = document.getElementById('settingsModalFrame');
+
                                 settingsModalSaveButton.addEventListener(
                                     'click',
                                     function () {
@@ -114,6 +128,7 @@
                                         settingsForm.dispatchEvent(new Event('submit'));
                                     }
                                 );
+
                                 function notifySuccessfulUpdate() {
                                     settingsModalFrame.contentWindow.location.reload();
                                     const settingsModal = document.getElementById('settingsModal');
@@ -141,8 +156,7 @@
                                     );
 
                                     // Hide nav drawer
-                                    const navDrawerCloseButton = document.getElementById('nav-header').querySelector('button');
-                                    navDrawerCloseButton.dispatchEvent(new Event('click'));
+                                    hideNavBar();
                                 }
                                 eel.expose(notifySuccessfulUpdate, "_settings_notify_successful_update");
                             })();
