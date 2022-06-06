@@ -1,0 +1,19 @@
+{
+    "meta": {
+        "versionId": "CymEng_Eng_GB",
+        "versionName": "Welsh – English (United Kingdom)",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2022-05-29"
+    },
+    "base": {
+        "appTitle": [
+            "MGT: Voice Rating"
+        ],
+        "next": [
+            "Next"
+        ],
+        "sliderFeedback": [
+            "Please move the slider at least once."
+        ]
+    }
+}

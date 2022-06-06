@@ -1,0 +1,239 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Client - MGT - Rating{% endblock %}
+{% block headline %}<span id="mgtAppTitle" data-mgt-tr="base.appTitle">MGT: Voice Rating</span>{% endblock %}
+{% block head_scripts %}{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="container-fluid p-2">
+
+        <!-- <div class="row m-4">
+            <div class="col">
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width:5%"></div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row m-4 text-center">
+            <h2  id="mgtSectionTitle" data-mgt-tr="rating.secTitle">Voice Rating Task</h2>
+        </div>
+
+        <form id="surveyRatingForm" class="needs-validation" autocomplete="off">
+
+            <input type="hidden" name="trial" value="" />
+
+            <!-- Present audio stimulus -->
+            <section id="audioWrapper" class="text-center mb-4" style="text-align:center">
+                <audio id="audioStimulus"></audio>
+                <div id="audioLabel" class="p-1">Loading audio...</div>
+                <div id="audioProgress" class="progress" style="max-width:30em;height:0.9em;margin:auto">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary" style="width:100%;transition:none"></div>
+                </div>
+                <div style="height:2em;"><!-- Separator--></div>
+            </section>
+
+
+            <!-- Participant prompt -->
+            <section class="row m-4">
+                <div class="col">
+                    <h3 data-mgt-tr="rating.statement">I find this speaker's voice...</h3>
+                    <p class="help-block p-2 text-muted ps-0">
+                        <i class="bi bi-info-circle text-info"></i> <span data-mgt-tr="rating.instructions">Please use the sliders to record your response.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Trait ratings -->
+            <template id="traitRatingTemplate">
+                <div id="traitRatingInstance-[TraitName]">
+                    <div class="row mb-0 pb-0">
+                        <div class="col-2"></div>
+                        <div class="col-5 text-start text-muted small" data-mgt-tr="rating.stronglyDisagree">
+                            Strongly disagree
+                        </div>
+                        <div class="col-5 text-end text-muted small" data-mgt-tr="rating.stronglyAgree">
+                            Strongly agree
+                        </div>
+                    </div>
+                    <div class="row mb-1 pt-0">
+                        <label for="trait-[TraitName]" class="col-2 col-form-label text-end fw-semi" data-mgt-tr="trait.[TraitName]">[TraitName]</label>
+                        <div class="col-10 mt-2">
+                            <input type="range" class="form-range" min="0" max="100" step="any" name="trait-[TraitName]" required />
+                            <div class="invalid-feedback invalid-range" data-mgt-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <section id="traitRatingSlot" class="m-2 me-4 mt-4">
+                <!-- Placeholder dynamically filled with copies of traitRatingTemplate -->
+            </section>
+
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div clas="col">
+                    <button id="traitRatingSubmitButton" type="submit" class="btn btn-primary btn-lg btn-action shadow" data-mgt-tr="base.next" disabled>Next</button>
+                </div>
+            </div>
+
+        </form>
+
+        <!-- Practice session feedback modal -->
+        <div class="modal fade" id="practiceFeedbackModal" tabindex="-1" aria-labelledby="practiceFeedbackModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="practiceFeedbackModalLabel"><i class="bi bi-check-square text-success"></i> Practice complete</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        You've completed the practice session. Please let the researcher know if you have any questions at this point,
+                        otherwise click <em>Continue</em> to begin the task.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" form="surveyRatingForm" class="btn btn-primary" data-bs-dismiss="modal">Continue</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        // Require form validation
+        lart.forms.requireValidation(true);
+        lart.forms.monitorRangeInputs('traitRatingSlot');
+
+        // Translate form for specific version
+        let instanceId = lart.forms.searchParams.get('instance');
+        let trialId = lart.forms.searchParams.get('trial');
+        lart.tr.loadFromEel('mgt', eel._mgt2_load_version, [instanceId, ['meta', 'base', 'rating']]);
+        lart.tr.registerObserver('mgt', 'surveyRatingForm');
+        lart.tr.registerObserver('mgt', 'mgtSectionTitle');
+        lart.tr.registerObserver('mgt', 'mgtAppTitle');
+
+        // Load and play audio stimulus
+        function presentAudioStimulus(version, trial) {
+            const audioWrapper = document.getElementById('audioWrapper');
+            const audioElement = document.getElementById('audioStimulus');
+            const audioLabel = document.getElementById('audioLabel');
+            const audioProgressBar = document.getElementById('audioProgress');
+
+            // Set current file...
+            audioElement.src = `/audio/mgt/${version}/${trial}.mp3`
+            audioElement.preload = 'auto';
+
+            // Set up and play audio stimulus...
+            function triggerPlayback() {
+                audioLabel.innerHTML = 'Audio loaded.';
+                audioProgressBar.firstElementChild.style.width = 0;
+                audioProgressBar.firstElementChild.classList.remove('progress-bar-animated');
+                audioProgressBar.firstElementChild.classList.remove('progress-bar-striped');
+                audioProgressBar.firstElementChild.classList.remove('bg-secondary');
+                audioProgressBar.firstElementChild.classList.add('bg-dark');
+                audioElement.play()
+                    .then(
+                        () => {
+                            console.log("Audio stimulus autoplay triggered.");
+                        }
+                    )
+                    .catch(
+                        error => {
+                            booteel.logger.error("Failed to start audio:", error);
+                            audioLabel.innerHTML = 'Audio could not be played. Click to try again.';
+                            audioWrapper.addEventListener(
+                                'click',
+                                function () {
+                                    audioElement.play();
+                                },
+                                {once: true}
+                            );
+                        }
+                    )
+            }
+            audioElement.addEventListener('canplaythrough', triggerPlayback);
+
+            // Give user feedback when playback starts...
+            function updateAudioProgressBar() {
+                const percentage = audioElement.currentTime / audioElement.duration * 100;
+                audioProgressBar.firstElementChild.style.width = `${percentage}%`;
+            }
+            updateAudioProgressBar.intervalId = null;
+            audioElement.addEventListener(
+                'playing',
+                function (event) {
+                    audioLabel.innerHTML = 'Playing audio...';
+                    updateAudioProgressBar.intervalId = setInterval(updateAudioProgressBar, 20);
+                }
+            );
+
+            // Give user feedback when playback has ended, and enable form submission
+            audioElement.addEventListener(
+                'ended',
+                function (event) {
+                    audioLabel.innerHTML = 'Audio playback complete.';
+                    document.getElementById('traitRatingSubmitButton').disabled = false;
+                    updateAudioProgressBar(); // Make sure final state is reflected
+                    clearInterval(updateAudioProgressBar.intervalId);
+                    updateAudioProgressBar.intervalId = null;
+                }
+            );
+        }
+        lart.tr.registerCallback(
+            'mgt',
+            () => {
+                presentAudioStimulus(lart.tr.get('mgt', 'meta.versionId'), trialId);
+            }
+        );
+
+        // Set the trial form field
+        lart.forms.getElementByGreed('trial').value = trialId;
+
+        // Load and fill the traits to be rated
+        eel._mgt2_get_traits()(fillTraitRatingSection);
+
+        function fillTraitRatingSection(traits) {
+            for ( trait of traits ) {
+                console.log("Adding trait rating:", trait);
+                addTraitRating(trait);
+            }
+        }
+
+        function addTraitRating(trait) {
+            const template = document.getElementById('traitRatingTemplate');
+            const slot = document.getElementById('traitRatingSlot');
+            const clone = template.content.cloneNode(true);
+
+            booteel.util.replaceInDOM(
+                clone,
+                {
+                    '[TraitName]': trait,
+                }
+            );
+
+            slot.appendChild(clone);
+        }
+
+        // Provide feedback iff this was a practice session
+        if ( trialId == 'practice' ) {
+            function redirectFormSubmission() {
+                const submitButton = document.getElementById('traitRatingSubmitButton');
+                submitButton.type = 'button';
+                submitButton.dataset.bsToggle = 'modal';
+                submitButton.dataset.bsTarget = '#practiceFeedbackModal';
+            }
+            redirectFormSubmission();
+        }
+    </script>
+    {{ lart_form_pipeline('surveyRatingForm', '_mgt2_setratings') }}
+{% endblock %}

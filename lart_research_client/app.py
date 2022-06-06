@@ -18,6 +18,7 @@ from .config import config
 from . import booteel
 from .lsbqrml import expose_to_eel as expose_lsbqrml
 from .memorygame import expose_to_eel as expose_memorygame
+from .mgt2 import expose_to_eel as expose_mgt2
 from .settings import expose_to_eel as expose_settings
 from .utils import export_backup, manage_settings
 
@@ -36,6 +37,7 @@ logger = logging.getLogger(__name__)
 # Expose Eel APIs for subpackages
 expose_lsbqrml()
 expose_memorygame()
+expose_mgt2()
 expose_settings()
 
 
@@ -138,7 +140,7 @@ def main():                                                                     
     # Run app using eel
     eel.init(                                                                   # type: ignore
         str(Path(__file__).parent / "web"),
-        allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png"]
+        allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png", ".mp3"]
     )
     eel.start(  # type: ignore
         "app/index.html",
