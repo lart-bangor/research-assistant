@@ -1,3 +1,4 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -227,7 +228,7 @@
             }
 
         </script>
-        <!-- {* { { lart_form_pipeline('settingsForm', '_settings_store') } } *} -->
+        {{ lart_form_pipeline('settingsForm', '_settings_store') }}
     </footer>
 </body>
 </html>

@@ -1,6 +1,7 @@
 """Exposes app configuration to Python Eel as Settings."""
 import eel
 import logging
+from dataclasses import is_dataclass
 from functools import wraps
 from typing import Optional, Union, Callable, Any, TypeVar, cast
 from .. import booteel
@@ -77,7 +78,36 @@ def load() -> dict[str, dict[str, Any]]:
 
 
 @_expose
-def store(settings: dict[str, dict[str, Any]]) -> bool:
+def store(settings: dict[str, dict[str, Any]]) -> bool:                         # noqa: C901
     """Validate settings, store in config, and save.."""
-    raise NotImplementedError
-    return False
+    logger.info("Updating app settings...")
+    logger.debug(f"Data received: {settings}")
+    for key, value in settings.items():
+        if not key.startswith("settings-"):
+            continue
+        key = key.removeprefix("settings-")
+        if "-" not in key:
+            continue
+        section, property = key.split("-")
+        target = None
+        if section == "root":
+            target = config
+        elif hasattr(config, section) and is_dataclass(getattr(config, section)):
+            target = getattr(config, section)
+        if target is None:
+            continue
+        if hasattr(target, property):
+            target_type = type(getattr(target, property))
+            if type(value) is not target_type:
+                try:
+                    value = target_type(value)
+                except ValueError:
+                    raise ValueError(
+                        f"Could not convert input {value!r} to required type {target_type} "
+                        f"for field config.{section}.{property}"
+                    )
+            setattr(target, property, value)
+    config.save()
+    logger.info(f"Settings successfully updated to {config.asdict()}.")
+    eel._settings_notify_successful_update()
+    return True
