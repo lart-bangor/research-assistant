@@ -37,10 +37,15 @@
         function showStudyInfo() {
             const fetch_version = document.getElementById("selectSurveyVersion");
             const fetch_partId = document.getElementById("participantId");
+            const fetch_test = document.getElementById("selectTestType");
             const version = fetch_version.value;
             const partId = fetch_partId.value;
+            const testType = fetch_test.value;
             if (partId == "" || partId == null) {
                     alert("Please provide a valid Participant ID.");
+                return false;
+            } else if (testType == "0") {
+                    alert("Please select the test for which you are seeking consent.");
                 return false;
             } else {
                 hideBtn();
@@ -48,7 +53,8 @@
                 document.getElementById("partId").value = partId; //pass partId on to consent form for processing
                 console.log("Selected version: " + version);
                 console.log("Participant ID: " + partId);
-                jsonFile = "versions/" + version + ".json";  //set filename based on selected version
+                console.log("Selected Test: " + testType);
+                jsonFile = "versions/" + testType + "/" + version + ".json";  //set filename based on selected version + selected test
                 fetch(jsonFile)
                     .then(response => response.json())
                     .then(data => output_info(data));  //pass teh contents of jsonFile to output_info()
@@ -166,6 +172,21 @@
                     <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
                     <div class="invalid-feedback">
                         <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
+                    </div>
+                </div>
+            
+            </section>
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="selectTestType" class="form-label">Test for which consent is being sought:</label>
+                    <select id="selectTestType" class="form-select" required>
+                        <option value="0"></option>
+                        <option value="atolc">AToL</option>
+                        <option value="mgt">MGT</option>
+                    </select>
+                    <div id="testTypeHelp" class="form-text">Select which test you are seeking consent for.</div>
+                    <div class="invalid-feedback">
+                        <p>Please select the test for which you are seeking consent.</p>
                     </div>
                 </div>
             </section>
