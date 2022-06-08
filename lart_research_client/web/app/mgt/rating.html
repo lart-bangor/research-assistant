@@ -44,7 +44,7 @@
             <!-- Participant prompt -->
             <section class="row m-4">
                 <div class="col">
-                    <h3 data-mgt-tr="rating.statement">I find this speaker's voice...</h3>
+                    <h3 data-mgt-tr="rating.statement">The person in this recording sounds...</h3>
                     <p class="help-block p-2 text-muted ps-0">
                         <i class="bi bi-info-circle text-info"></i> <span data-mgt-tr="rating.instructions">Please use the sliders to record your response.</span>
                     </p>
@@ -142,25 +142,30 @@
                 audioProgressBar.firstElementChild.classList.remove('progress-bar-striped');
                 audioProgressBar.firstElementChild.classList.remove('bg-secondary');
                 audioProgressBar.firstElementChild.classList.add('bg-dark');
-                audioElement.play()
-                    .then(
-                        () => {
-                            console.log("Audio stimulus autoplay triggered.");
-                        }
-                    )
-                    .catch(
-                        error => {
-                            booteel.logger.error("Failed to start audio:", error);
-                            audioLabel.innerHTML = 'Audio could not be played. Click to try again.';
-                            audioWrapper.addEventListener(
-                                'click',
-                                function () {
-                                    audioElement.play();
-                                },
-                                {once: true}
-                            );
-                        }
-                    )
+                setTimeout(
+                    () => {
+                        audioElement.play()
+                            .then(
+                                () => {
+                                    console.log("Audio stimulus autoplay triggered.");
+                                }
+                            )
+                            .catch(
+                                error => {
+                                    booteel.logger.error("Failed to start audio:", error);
+                                    audioLabel.innerHTML = 'Audio could not be played. Click to try again.';
+                                    audioWrapper.addEventListener(
+                                        'click',
+                                        function () {
+                                            audioElement.play();
+                                        },
+                                        {once: true}
+                                    );
+                                }
+                            )
+                    },
+                    1000
+                )
             }
             audioElement.addEventListener('canplaythrough', triggerPlayback);
 

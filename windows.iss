@@ -29,12 +29,20 @@ PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#MyAppDevDir}\build\pyinstaller\dist
 OutputBaseFilename={#MyAppDistributableName}
+OutputManifestFile={#MyAppDistributableName}.manifest
 SetupIconFile={#MyAppDevDir}\lart_research_client\web\img\setupicon.ico
 UninstallDisplayIcon={#MyAppDevDir}\lart_research_client\web\img\setupicon.ico
 Compression=lzma
 SolidCompression=yes
+ShowLanguageDialog=auto
+LanguageDetectionMethod=uilanguage
 WizardStyle=modern
-#if "windows_amd64" == MyAppPlatformString
+WizardSmallImageFile={#MyAppDevDir}\lart_research_client\web\img\appicon.bmp
+; These don't seem to have any effect with WizardStyle=modern
+; BackColor=$FF0000
+; BackColor2=$000000
+; BackSolid=no
+#if "win64" == MyAppPlatformString
     ArchitecturesAllowed=x64
 #endif
 
@@ -56,8 +64,11 @@ Name: "{autoprograms}\{#MyAppAuthor} {#MyAppName}"; Filename: "{app}\{#MyAppExeN
 Name: "{autodesktop}\{#MyAppAuthor} {#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 Name: "{group}\{#MyAppAuthor} {#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
+[Registry]
+; App Paths shortcut to the app creates an alias without the need to add app dir to the PATH
+Root: HKA; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\lartrc.exe"; ValueType: string; ValueData: "{app}\{#MyAppExeName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\lartrc.exe"; ValueName: "Path"; ValueType: string; ValueData: "{app}\"; Flags: uninsdeletevalue
+
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Parameters: "-c update"; StatusMsg: "Updating app settings..."; Flags: runasoriginaluser
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
-[UninstallR]
