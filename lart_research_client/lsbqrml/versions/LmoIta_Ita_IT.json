@@ -212,11 +212,11 @@
         ],
         "learnedWhere": [
             "Where did you learn it?",
-            "Dove l'ha imparato?"
+            "Dove ha cominciato a esserne regolarmente esposto?"
         ],
         "learnedAge": [
             "At what age did you learn it?",
-            "A che età l'ha imparato?"
+            "Da che età?"
         ],
         "learnedBreaks": [
             "Were there any significant periods in your life when you did not use this language?",
@@ -256,7 +256,7 @@
         ],
         "learnedWhereLabel": [
             "Learned where",
-            "Dove l'ha imparato?"
+            "Dove"
         ],
         "learnedWhereFeedback": [
             "Please select an option.",
@@ -461,8 +461,8 @@
         ],
         "lifeStageFields": {
             "infancy":      ["Prima infanzia"],
-            "nurseryAge":   ["Asilo"],
-            "primaryAge":   ["Scuola elementare"],
+            "nurseryAge":   ["Periodo dell'asilo"],
+            "primaryAge":   ["Periodo della scuola elementare"],
             "secondaryAge": ["Dagli 11 ai 15 anni"]
         },
         "withPeopleNowInstructions": [
