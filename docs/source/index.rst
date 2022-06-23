@@ -1,21 +1,26 @@
-.. transcriptionist documentation master file, created by
-   sphinx-quickstart on Mon Jun 14 20:40:43 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Welcome to LART Research Client documentation!
+==============================================
 
-Welcome to transcriptionist's documentation!
-============================================
+The LART Research Client is an app for researchers in the fields of sociolinguistics, language attutides, and
+minority languges. It ... [Marco will write a bit more here].
+
+
+
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contents
 
-   modules
+   about
+   users/index
+   developers/index
+   api
+
 
 
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

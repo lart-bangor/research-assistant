@@ -12,17 +12,31 @@
 #
 import os
 import sys
+from pathlib import Path
+from configparser import ConfigParser
 sys.path.insert(0, os.path.abspath('../..'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'LART Research Client'
-copyright = '2022, Bangor University Language Attitudes Research Team'
-author = 'Florian Breit, Marco Tamburelli'
+
+setup_cfg = ConfigParser()
+setup_cfg.read(Path(__file__).parent.parent.parent / "setup.cfg")
+
+project = " ".join([
+        setup_cfg.get("app.options", "author"),
+        setup_cfg.get("app.options", "name")
+])
+
+copyright = " ".join([
+    "2022",
+    setup_cfg.get("app.options", "long_author")
+])
+
+author = setup_cfg.get("metadata", "author")
 
 # The full version, including alpha/beta/rc tags
-release = '0.1a'
+release = setup_cfg.get("metadata", "version")
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,6 +49,8 @@ extensions = [
     'sphinx_autodoc_typehints',
     'sphinx.ext.napoleon',
     'sphinx.ext.todo',
+    'sphinx_inline_tabs',
+    'sphinx.ext.autosummary',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
