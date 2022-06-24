@@ -19,9 +19,10 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
+project_root_path = Path(__file__).parent.parent.parent
 
 setup_cfg = ConfigParser()
-setup_cfg.read(Path(__file__).parent.parent.parent / "setup.cfg")
+setup_cfg.read(project_root_path / "setup.cfg")
 
 project = " ".join([
         setup_cfg.get("app.options", "author"),
@@ -37,7 +38,12 @@ author = setup_cfg.get("metadata", "author")
 
 # The full version, including alpha/beta/rc tags
 release = setup_cfg.get("metadata", "version")
+version = release
 
+github_url = setup_cfg.get("metadata", "url")
+
+html_logo = str(project_root_path / "lart_research_client" / "web" / "img" / "appicon.png")
+html_favicon = str(project_root_path / "lart_research_client" / "web" / "img" / "appicon.png")
 
 # -- General configuration ---------------------------------------------------
 
@@ -45,13 +51,55 @@ release = setup_cfg.get("metadata", "version")
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx_autodoc_typehints',
     'sphinx.ext.napoleon',
     'sphinx.ext.todo',
     'sphinx_inline_tabs',
+    'sphinx.ext.coverage',
+    'sphinx.ext.viewcode',
+    'sphinx_toolbox',
+    'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
+    'sphinx_toolbox.more_autodoc.no_docstring',
+    'sphinx_toolbox.more_autodoc.generic_bases',
+    'sphinx_toolbox.more_autodoc.genericalias',
+    'sphinx_toolbox.more_autodoc.regex',
+    'sphinx_toolbox.more_autodoc.typevars',
+    # 'sphinx_toolbox.more_autodoc.sourcelink',
+    'sphinx_autodoc_typehints',
 ]
+
+github_username = 'lart-bangor'
+github_repository = 'lart-research-client'
+
+autoapi_dirs = ['../../lart_research_client']
+
+autodoc_default_options = {
+    'members': True,
+    'private-members': True,
+    # 'inherited-members': True,
+    'undoc-members': True,
+    # 'exclude-members': ['with_traceback'],
+    'show-inheritance': True,
+    'ignore-module-all': True,
+}
+
+autodoc_class_signature = 'separated'
+autodoc_member_order = 'groupwise'
+autodoc_typehints = 'both'
+autodoc_typehints_format = 'short'
+autodoc_preserve_defaults = True
+typehints_defaults = 'comma'
+autodoc_show_sourcelink = True
+python_use_unqualified_type_names = True
+
+default_role = 'py:obj'
+
+add_module_names = False
+modindex_common_prefix = ['lart_research_client']
+
+napoleon_google_docstring = True
+napoleon_preprocess_types = True
+napoleon_attr_annotations = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -68,6 +116,21 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
+html_theme_options = {
+    'body_max_width': 'none',
+    'style_external_links': True,
+}
+html_css_files = [
+    'style.css',
+]
+html_context = {
+    "display_github": True,
+    "github_user": "lart-bangor",
+    "github_repo": "lart-survey-client",
+    "github_version": "master",
+    "conf_py_path": "/docs/source/",
+}
+html_show_sphinx = False
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

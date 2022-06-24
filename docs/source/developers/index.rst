@@ -5,4 +5,5 @@ Developers' Guide
    :maxdepth: 2
    :caption: Contents
 
+   contributing
    setup
