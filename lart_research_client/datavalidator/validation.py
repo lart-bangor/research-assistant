@@ -71,7 +71,7 @@ class ValidationResult:
             success: Whether the validaton has succeeded or failed.
             type_: The built-in data type against which validation was carried out.
             typedesc: A short user-intelligible description of the data's type.
-            constraint: A constraint data type appropriate to the type_ of the data,
+            constraint: A constraint data type appropriate to the type of the data,
                 see also the `types` submodule.
             data: The data that was evaluated (after casting if the forcecasting and/or
                 softcasting options were active.)

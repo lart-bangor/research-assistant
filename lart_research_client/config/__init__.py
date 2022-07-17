@@ -1,4 +1,33 @@
-"""Configuration handler for LART Research Client."""
+"""Configuration handler for LART Research Client.
+
+This package provides an API to read, modify, and store app configuration. The
+configuration is stored in a JSON file and relevant paths (unless explicitly
+specified) are determined based on the Operating System (using the `AppDirs`
+package).
+
+The configuration package only exposes the actual interface to the configuration,
+which is done via the singleton `config` object, an instantiation of the `Config`
+class.
+
+To access and/or modify the configuration of the running app, you should import
+only `config`. The other classes and objects in the package will not typically
+be needed, perhaps with the exceptions of functions that deal with system updates
+and the like (as for instance the functionality in the
+`lart_research_client.utils` module).
+
+Example:
+    Let's imagine you want to ensure that the *shutdown_delay* setting is always
+    at least three seconds. The following example shows how you would load the
+    current app configuration, check the current value, and if it is below the
+    threshold increase it to `3.00` and then save the modified configuration
+    (so that it will persist when the app is restarted)::
+
+        from .config import config
+
+        if config.shutdown_delay < 3.00:
+            config.shutdown_delay = 3.00
+            config.save()
+"""
 from __future__ import annotations
 import json
 import logging
@@ -7,7 +36,7 @@ from copy import copy
 from dataclasses import MISSING, dataclass, field, fields, asdict, is_dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Callable, ClassVar, Optional, Union, get_type_hints
+from typing import Any, Final, Callable, ClassVar, Optional, Union, get_type_hints
 
 __all__ = ["config", "Config", "_default_dirs"]
 
@@ -80,10 +109,11 @@ class DataclassDocMixin:
     This enables adding additional documentation to dataclass fields using the
     field's *metadata* property. The following metadata properties are read by
     the DataclassDocMixin:
-    - doc_label: A human-friendly label/short description of a field.
-    - doc_help: A human-friendly explanation of what a field does / why it's there.
-    - doc_values: A dictionary of label-value pairs, which can be used to give
-        an indication of specific values the field can take and what they mean.
+
+    * doc_label: A human-friendly label/short description of a field.
+    * doc_help: A human-friendly explanation of what a field does / why it's there.
+    * doc_values: A dictionary of label-value pairs, which can be used to give
+      an indication of specific values the field can take and what they mean.
     """
 
     def getdocs(                                                                # noqa: C901
@@ -375,4 +405,12 @@ class Config(DataclassDictMixin, DataclassDocMixin):
         return Config()
 
 
-config = Config.load()
+config: Final[Config] = Config.load()
+"""The default configuration object for the app.
+
+This is an instance of `Config` loaded from the users' stored settings upon module
+initialisation (if available), otherwise it is populated with (sensible) default values.
+
+When saved with `config.save()` it will automatically save in the correct file and
+location depending on the user's system and installation type.
+"""

@@ -229,6 +229,7 @@ class Response(DataSchema):
         produce a presentation order for Matched Guise Task,
         based on the following grid:
 
+        +---------+----------+-----------------------+
         | Speaker | Language | Example               |
         +---------+----------+-----------------------+
         | F1      | Either   | Filler 1              |
@@ -243,6 +244,7 @@ class Response(DataSchema):
         | F4      | Either   | Filler 4              |
         | S3      | L1       | Speaker 3, Language 1 |
         | S4      | L2       | Speaker 4, Language 2 |
+        +---------+----------+-----------------------+
 
         The function randomises:
             (a) the order of the fillers (regardless of filler language),

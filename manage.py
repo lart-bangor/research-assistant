@@ -110,6 +110,12 @@ def main():
             "session in the Python interpreter after the app exits"
         )
     )
+    parser_build = subparsers.add_parser(
+        "docs",
+        help=(
+            "build/update the app documentation"
+        )
+    )
     parser_debug.set_defaults(command="debug")
     parser_run = subparsers.add_parser(
         "run",
@@ -126,6 +132,13 @@ def main():
         run()
     elif args.command == "debug":
         debug()
+    elif args.command == "docs":
+        docs()
+
+
+def docs() -> bool:
+    """Build/update the app documentation from source."""
+    return False
 
 
 def build() -> bool:                                                            # noqa: C901
