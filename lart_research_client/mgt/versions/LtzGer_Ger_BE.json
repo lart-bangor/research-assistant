@@ -1,0 +1,22 @@
+{
+    "meta": {
+        "versionId": "CymEng_Eng_GB",
+        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2022-09-22"
+    },
+    "base": {
+        "appTitle": [
+            "MGT: Stimmbewertung",
+            "MGT: Voice Rating"
+        ],
+        "next": [
+            "Next",
+            "Weiter"
+        ],
+        "sliderFeedback": [
+            "Please move the slider at least once.",
+            "Bitte bewegen Sie den Schieber wenigstens ein Mal."
+        ]
+    }
+}
