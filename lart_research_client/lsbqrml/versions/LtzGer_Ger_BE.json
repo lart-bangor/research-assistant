@@ -27,7 +27,7 @@
         ],
         "levelOfEducation1": [
             "EQF Level 1",
-            "Abschluss der Grundschule, <abbr title=\"Certificat d’études de base\">CEB</abbr>, getuigschrift basisonderwijs, oder weniger."
+            "Abschluss der Grund&ndash; oder Primarschule, <abbr title=\"Certificat d’études de base\">CEB</abbr>, getuigschrift basisonderwijs, oder weniger."
         ],
         "levelOfEducation2": [
             "EQF Level 2-3",
@@ -35,7 +35,7 @@
         ],
         "levelOfEducation3": [
             "EQF Level 4",
-            "Abschluss der Oberstufe, Abschluss einer mittelständischen Lehre mit Gesellenzeugnis, <abbr title=\"Certificat de qualification\">CQ</abbr>, <abbr title=\"Certificat d’études de sixième année de l’enseignement secondaire professionnel\">CE6P</abbr>, <abbr title=\"Certificat d’enseignement secondaire supérieur\">CESS</abbr>, Diploma van secondair onderwijs, studiegetuigschrift."
+            "Abschluss der Oberstufe, Abitur, Abschluss einer mittelständischen Lehre mit Gesellenzeugnis, <abbr title=\"Certificat de qualification\">CQ</abbr>, <abbr title=\"Certificat d’études de sixième année de l’enseignement secondaire professionnel\">CE6P</abbr>, <abbr title=\"Certificat d’enseignement secondaire supérieur\">CESS</abbr>, Diploma van secondair onderwijs, studiegetuigschrift."
         ],
         "levelOfEducation4": [
             "EQF Level 5-6",
