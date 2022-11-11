@@ -55,9 +55,13 @@
                 console.log("Participant ID: " + partId);
                 console.log("Selected Test: " + testType);
                 jsonFile = "versions/" + testType + "/" + version + ".json";  //set filename based on selected version + selected test
-                fetch(jsonFile)
-                    .then(response => response.json())
-                    .then(data => output_info(data));  //pass teh contents of jsonFile to output_info()
+                if(jsonFile.exists) {
+                    fetch(jsonFile)
+                        .then(response => response.json())
+                        .then(data => output_info(data));  //pass teh contents of jsonFile to output_info()
+                } else {
+                    document.getElementById('consent-file-error').innerHTML= "<font color='red'>The requested consent form does not exist. Please refer to the App documentation on how to build one.</font>";
+                }
             }
         }
         
@@ -193,6 +197,7 @@
                 </div>
             </section>
         </form>
+        <p id="consent-file-error"></p>
     </article>
 
     <!-- Activate version -->
