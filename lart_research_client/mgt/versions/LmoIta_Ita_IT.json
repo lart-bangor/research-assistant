@@ -1,22 +1,22 @@
 {
     "meta": {
-        "versionId": "LtzGer_Ger_BE",
-        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "versionId": "LmoIta_Ita_IT",
+        "versionName": "Lombard – Italiano (Italia)",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2022-09-22"
+        "date": "2022-12-01"
     },
     "base": {
         "appTitle": [
             "MGT: Voice Rating",
-            "MGT: Stimmbewertung"
+            "MGT: Voto Vocale"
         ],
         "next": [
             "Next",
-            "Weiter"
+            "Avanti"
         ],
         "sliderFeedback": [
             "Please move the slider at least once.",
-            "Bitte bewegen Sie den Schieber wenigstens ein Mal."
+            "Si prega di spostare il cursore almeno una volta."
         ]
     }
 }
