@@ -1,7 +1,7 @@
-"""Additional validation patterns for LSBQ-RML."""
+"""Additional validation patterns for AToL-C."""
 from ..datavalidator.patterns import *  # noqa: F403
 
-LOCATION_NAME: str = r"[A-Za-z0-9, \(\)]{1,50}"
+LOCATION_NAME: str = r"[\w,' \(\)\.\-]{1,50}"
 
 VERSION_LABEL: str = r"\w{13,17}"
 

@@ -1,8 +1,8 @@
-"""Additional validation patterns for LSBQ-RML."""
+"""Additional validation patterns for LSBQe."""
 from ..datavalidator.patterns import *                                          # noqa: F401, F403
 from ..datavalidator.types import EnumT, RangeT, PatternT
 
-LOCATION_NAME: str = r"[\w, \(\)]{1,50}"
+LOCATION_NAME: str = r"[\w,' \(\)\.\-]{1,50}"
 
 VERSION_LABEL: str = r"\w{13,17}"
 
