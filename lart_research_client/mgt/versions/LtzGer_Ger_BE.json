@@ -86,5 +86,19 @@
         "competent":    [ "kompetent" ],
         "natural":      [ "natürlich" ],
         "pretentious":  ["hochgestochen" ]
+    },
+    "practice": {
+        "completeTitle": [
+            "Practice complete",
+            "Übungslauf abgeschlossen"
+        ],
+        "completeMessage": [
+            "You've completed the practice session. If you have any questions at this point please let the researcher know, otherwise click <em>Continue</em> to begin the task.",
+            "Sie haben den Übungslauf abgeschlossen. Falls Sie zu diesem Zeitpunkt Fragen haben, sagen Sie bitten dem Forscher Bescheid. Ansonsten klicken Sie auf <em>Weiter</em> um die Aufgabe anzufangen."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
+        ]
     }
 }
