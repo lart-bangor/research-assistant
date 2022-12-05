@@ -18,5 +18,73 @@
             "Please move the slider at least once.",
             "Si prega di spostare il cursore almeno una volta."
         ]
+    },
+    "instructions": {
+        "secTitle": [
+            "MGT Instructions",
+            "MGT Istruzioni"
+        ],
+        "begin": [
+            "Begin practice",
+            "Inizia la pratica"
+        ],
+        "taskDescription": [
+            "In this task, you will hear a person speak and see a series of sliders asking you to rate that person on the basis of their voice alone.",
+            "In questa attività, ascolterai una persona parlare e vedrai una serie di cursori che ti chiedono di valutare quella persona solo in base alla sua voce."
+        ],
+        "taskInstruction": [
+            "Please use the sliders to record the degree to which you agree or disagree with each statement. You will only hear each voice once. However, if any problem occurs during the task, for example the audio doesn't play properly, please speak to the researcher.",
+            "Utilizza i cursori per registrare il grado di accordo o disaccordo con ogni affermazione. Ascolterai ogni voce solo una volta. Tuttavia, se si verificano problemi durante l'attività, ad esempio l'audio non viene riprodotto correttamente, si prega di parlare con il ricercatore."
+        ],
+        "taskPracticeDescription": [
+            "The first example will be a practice item so that you can familiarise yourself with the task. After you have completed the practice item, you will have the opportunity to speak to the researcher to ask any questions you might have about the task.",
+            "Il primo esempio sarà un elemento pratico in modo che tu possa familiarizzare con l'attività. Dopo aver completato l'esercizio, avrai l'opportunità di parlare con il ricercatore per porre eventuali domande sull'attività."
+        ],
+        "taskNextStep": [
+            "Click on <em>begin practice</em> when you're ready.",
+            "Fai clic su <em>inizia la pratica</em> quando sei pronto."
+        ]
+    },
+    "rating": {
+        "secTitle": [
+            "Voice Rating",
+            "Voto Vocale"
+        ],
+        "statement": [
+            "The person in this recording sounds...",
+            "La persona in questa registrazione suona..."
+        ],
+        "instructions": [
+            "Please use the sliders to record your response.",
+            "Utilizza i cursori per registrare la tua risposta."
+        ],
+        "stronglyAgree": [
+            "strongly agree",
+            "fortemente d'accordo"
+        ],
+        "stronglyDisagree": [
+            "strongly disagree",
+            "fortemente in disaccordo"
+        ]
+    },
+    "trait": {
+        "amusing":      [ "divertente" ],
+        "open-minded":  [ "di larghe vedute" ],
+        "attractive":   [ "attraente" ],
+        "trustworthy":  [ "affidabile" ],
+        "ignorant":     [ "ignorante"],
+        "polite":       [ "cortesia"],
+        "ambitious":    [ "ambiziosa"],
+        "international": [ "internazionale"],
+        "cool":         [ "cool" ],
+        "intelligent":  [ "intelligente" ],
+        "influential":  [ "influente" ],
+        "likeable":     [ "simpatica" ],
+        "educated":     [ "educata" ],
+        "friendly":     [ "amichevole" ],
+        "honest":       [ "onesta" ],
+        "competent":    [ "competente" ],
+        "natural":      [ "naturale" ],
+        "pretentious":  [ "pretenziosa" ]
     }
 }
