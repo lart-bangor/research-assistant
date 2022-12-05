@@ -118,7 +118,7 @@
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
         let trialId = lart.forms.searchParams.get('trial');
-        lart.tr.loadFromEel('mgt', eel._mgt_load_version, [instanceId, ['meta', 'base', 'rating']]);
+        lart.tr.loadFromEel('mgt', eel._mgt_load_version, [instanceId, ['meta', 'base', 'rating', 'trait']]);
         lart.tr.registerObserver('mgt', 'surveyRatingForm');
         lart.tr.registerObserver('mgt', 'mgtSectionTitle');
         lart.tr.registerObserver('mgt', 'mgtAppTitle');
