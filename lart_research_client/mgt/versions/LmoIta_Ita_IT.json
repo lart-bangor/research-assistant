@@ -8,7 +8,7 @@
     "base": {
         "appTitle": [
             "MGT: Voice Rating",
-            "MGT: Voto Vocale"
+            "MGT: Valutazione della Voce"
         ],
         "next": [
             "Next",
@@ -26,37 +26,37 @@
         ],
         "begin": [
             "Begin practice",
-            "Inizia la pratica"
+            "Inizia la prova"
         ],
         "taskDescription": [
             "In this task, you will hear a person speak and see a series of sliders asking you to rate that person on the basis of their voice alone.",
-            "In questa attività, ascolterai una persona parlare e vedrai una serie di cursori che ti chiedono di valutare quella persona solo in base alla sua voce."
+            "In questo test sentirà una persona parlare. Vedrà anche una serie di cursori che Lei dovrà usare per esprimere una valutazione della persona che parla unicamente sulla base della sua voce."
         ],
         "taskInstruction": [
             "Please use the sliders to record the degree to which you agree or disagree with each statement. You will only hear each voice once. However, if any problem occurs during the task, for example the audio doesn't play properly, please speak to the researcher.",
-            "Utilizza i cursori per registrare il grado di accordo o disaccordo con ogni affermazione. Ascolterai ogni voce solo una volta. Tuttavia, se si verificano problemi durante l'attività, ad esempio l'audio non viene riprodotto correttamente, si prega di parlare con il ricercatore."
+            "Usi il cursore per esprimere quanto Lei sia d’accordo con ognuna delle affermazioni che vedrà comparire. Sentirà ogni voce soltanto una volta. Tuttavia, se dovesse presentarsi qualche problema durante il test, per esempio se l’audio non funzionasse adeguatamente, avverta il ricercatore, per piacere."
         ],
         "taskPracticeDescription": [
             "The first example will be a practice item so that you can familiarise yourself with the task. After you have completed the practice item, you will have the opportunity to speak to the researcher to ask any questions you might have about the task.",
-            "Il primo esempio sarà un elemento pratico in modo che tu possa familiarizzare con l'attività. Dopo aver completato l'esercizio, avrai l'opportunità di parlare con il ricercatore per porre eventuali domande sull'attività."
+            "La prima voce servirà come prova che La aiuterà a prendere confidenza con il test. Dopo che avrà completato il test di prova potrà rivolgersi al ricercatore per eventuali domande concernenti il test."
         ],
         "taskNextStep": [
             "Click on <em>begin practice</em> when you're ready.",
-            "Fai clic su <em>inizia la pratica</em> quando sei pronto."
+            "Faccia clic su <em>inizia la prova</em> quando vuole iniziare."
         ]
     },
     "rating": {
         "secTitle": [
             "Voice Rating",
-            "Voto Vocale"
+            "Valutazione della Voce"
         ],
         "statement": [
             "The person in this recording sounds...",
-            "La persona in questa registrazione suona..."
+            "La persona che parla mi sembra..."
         ],
         "instructions": [
             "Please use the sliders to record your response.",
-            "Utilizza i cursori per registrare la tua risposta."
+            "Si prega di spostare il cursore per registrare la propria scelta."
         ],
         "stronglyAgree": [
             "strongly agree",
@@ -73,14 +73,14 @@
         "attractive":   [ "attraente" ],
         "trustworthy":  [ "affidabile" ],
         "ignorant":     [ "ignorante"],
-        "polite":       [ "cortesia"],
+        "polite":       [ "educata"],
         "ambitious":    [ "ambiziosa"],
         "international": [ "internazionale"],
         "cool":         [ "cool" ],
         "intelligent":  [ "intelligente" ],
         "influential":  [ "influente" ],
         "likeable":     [ "simpatica" ],
-        "educated":     [ "educata" ],
+        "educated":     [ "istruita" ],
         "friendly":     [ "amichevole" ],
         "honest":       [ "onesta" ],
         "competent":    [ "competente" ],
@@ -90,11 +90,11 @@
     "practice": {
         "completeTitle": [
             "Practice complete",
-            "Pratica completata"
+            "Prova completata"
         ],
         "completeMessage": [
             "You've completed the practice session. If you have any questions at this point please let the researcher know, otherwise click <em>Continue</em> to begin the task.",
-            "Hai completato la sessione pratica. Se hai domande a questo punto, informa il ricercatore, altrimenti fai clic su <em>Continua</em> per iniziare l'attività."
+            "Ha completato la prova. Se ha qualche domanda la rivolga al ricercatore. Altrimenti, prema <em>Continua</em> per cominciare il test."
         ],
         "continue": [
             "Continue",
