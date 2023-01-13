@@ -342,6 +342,9 @@
             "Father",
             "Padre"
         ],
+        "levelOfEducationFeedbackFather": [
+            "Si prega di indicare il titolo di studio conseguito da Suo <i>padre</i>."
+        ],
         "occupationFeedbackFather": [
             "Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
             "Si prega di indicare la professione svolta da Suo padre."
