@@ -40,10 +40,26 @@
             "Click on <em>begin practice</em> when you're ready."
         ]
     },
+    "audioMsg": {
+        "load": [
+            "Loading audio..."
+            
+        ],
+        "loaded": [
+            "Audio loaded."
+            
+        ],
+        "play": [
+            "Playing audio..."
+        ],
+        "complete": [
+            "Audio playback complete."
+        ]
+    },
+    
     "rating": {
         "secTitle": [
             "Voice Rating"
-            
         ],
         "statement": [
             "The person in this recording sounds..."

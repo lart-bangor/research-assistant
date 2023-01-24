@@ -45,6 +45,23 @@
             "Klicken Sie auf <em>Übungslauf starten</em> wenn Sie bereit sind."
         ]
     },
+    "audioMsg": {
+        "load": [
+            "Audio laden..."
+            
+        ],
+        "loaded": [
+            "Ton geladen."
+            
+        ],
+        "play": [
+            "Audio abspielen..."
+        ],
+        "complete": [
+            "Audiowiedergabe abgeschlossen."
+        ]
+    },
+
     "rating": {
         "secTitle": [
             "Voice Rating",

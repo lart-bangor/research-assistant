@@ -45,6 +45,22 @@
             "Faccia clic su <em>inizia la prova</em> quando vuole iniziare."
         ]
     },
+    "audioMsg": {
+        "load": [
+            "Caricamento audio..."
+            
+        ],
+        "loaded": [
+            "Audio caricato."
+            
+        ],
+        "play": [
+            "Riproduzione audio..."
+        ],
+        "complete": [
+            "Riproduzione audio completata."
+        ]
+    },
     "rating": {
         "secTitle": [
             "Voice Rating",
