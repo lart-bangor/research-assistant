@@ -1,7 +1,26 @@
 {
-    "version_code":"CymEng_Eng_GB",
-    "version_name":"Welsh – English (United Kingdom)",
-    "maj_lang": "English",
-    "rm_lang": "Welsh"
+    "meta": {
+        "versionId": "EngCym_Eng_GB",
+        "versionName": "English – Welsh (United Kingdom)",
+        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2023-01-16"
+    },
 
+    "adjectives": {
+        "logic":        ["logical",         "illogical"],
+        "elegance":     ["inelegant",       "elegant"],
+        "fluency":      ["choppy",          "fluent"],
+        "ambiguity":    ["unambiguous",     "ambiguous"],
+        "appeal":       ["appealing",       "abhorrent"],
+        "structure":    ["unstructured",    "structured"],
+        "precision":    ["precise",         "vague"],
+        "harshness":    ["harsh",           "soft"],
+        "flow":         ["flowing",         "abrupt"],
+        "beauty":       ["beautiful",       "ugly"],
+        "sistem":       ["systematic",      "unsystematic"],
+        "pleasure":     ["pleasant",        "unpleasant"],
+        "smoothness":   ["smooth",          "raspy"],
+        "grace":        ["clumsy",          "graceful"],
+        "angularity":   ["angular",         "round"]
+    }
     }

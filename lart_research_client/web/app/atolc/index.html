@@ -5,7 +5,7 @@
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
-            availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions); //this will probably need to be changed to a more generic "survey_rml_get_versions", 
+            availableVersions = eel._mgt_getversions()(populateSurveyVersions); //this will probably need to be changed to a more generic "survey_rml_get_versions", 
                                                                                     //or hard-coded for each questionnaire.
         }
         

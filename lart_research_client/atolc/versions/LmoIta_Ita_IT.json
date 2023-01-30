@@ -1,0 +1,26 @@
+{
+    "meta": {
+        "versionId": "ItaLmo_Ita_IT",
+        "versionName": "Italian – Lombard (Italy)",
+        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2023-01-30"
+    },
+
+    "adjectives": {
+        "logic":        ["logico",         "illogico"],
+        "elegance":     ["elegante",       "non elegante"],
+        "fluency":      ["frammentato",     "scorrevole"],
+        "ambiguity":    ["chiaro",          "ambiguo"],
+        "appeal":       ["attraente",       "ripugnante"],
+        "structure":    ["non strutturato",  "strutturato"],
+        "precision":    ["preciso",         "vago"],
+        "harshness":    ["duro",           "morbido"],
+        "flow":         ["fluido",         "brusco"],
+        "beauty":       ["bello",           "brutto"],
+        "sistem":       ["sistematico",      "non sistematico"],
+        "pleasure":     ["piacevole",        "spiacevole"],
+        "smoothness":   ["liscio",          "ruvido"],
+        "grace":        ["goffo",          "aggraziato"],
+        "angularity":   ["spigoloso",         "arrotondato"]
+    }
+    }

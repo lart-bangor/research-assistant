@@ -12,6 +12,7 @@ from ..datavalidator.schemas import DataSchema
 from ..datavalidator.types import PolarT
 from . import patterns
 from collections import OrderedDict
+import os
 
 data_path: Path = config.paths.data / "AToL-C"
 if not data_path.exists():
@@ -140,42 +141,6 @@ def key_list(dic: dict[str, Any]) -> Iterable[Any]:
         list_of_keys.append(clean)
     return list_of_keys
 
-
-# @eel.expose
-# def get_atol_version():
-#     test_version = version
-#     print("test version is: " + test_version)
-#     return test_version
-
-#     if  version == "CymEng_Eng_GB":
-#         title = "Language Questionnaire"
-#         language = "English"
-#         rml = "Welsh"
-#         instruction = "Please move the slider to record your choice."
-#         language_header = "The English language is..."
-#         rml_header = "The Welsh language is..."
-#         atol_header = "AToL Questionnaire (RML)"
-#         btn_text = "Next"
-#     elif version == "LmoIta_Ita_IT":
-#         title = "Questionario Linguistico"
-#         language = "Italiano"
-#         rml = "lombardo"
-#         instruction = "Si prega di spostare il cursore per registrare la propria scelta."
-#         language_header = "La lingua italiana è..."
-#         rml_header = "il lombardo è..."
-#         atol_header = "Questionario AToL (RML)"
-#         btn_text = "Avanti"
-
-#     elif version == "LtzGer_Ger_BE":
-#         title = "Sprachlicher Fragebogen"
-#         language = "Deutch"
-#         rml = "Moselfränkisch"
-#         instruction = "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen??."
-#         rml_header = "Moselfränkisch ist..."
-#         language_header = "Die deutsche Sprache ist..."
-#         atol_header = "AToL Fragebogen (RML)"
-#         btn_text = "Weiter"
-
 _rating_adjectives = (
     "logical",
     "elegant",
@@ -197,65 +162,17 @@ _rating_adjectives = (
 @eel.expose  # type: ignore
 def atol_c_get_items(version: str) -> Optional[dict[str, tuple[str, str]]]:
     """Get label pairs for each AToL item depending on language selection."""
-    EngVersion = {
-        "logic":        ("logical",         "illogical"),
-        "elegance":     ("inelegant",       "elegant"),
-        "fluency":      ("choppy",          "fluent"),
-        "ambiguity":    ("unambiguous",     "ambiguous"),
-        "appeal":       ("appealing",       "abhorrent"),
-        "structure":    ("unstructured",    "structured"),
-        "precision":    ("precise",         "vague"),
-        "harshness":    ("harsh",           "soft"),
-        "flow":         ("flowing",         "abrupt"),
-        "beauty":       ("beautiful",       "ugly"),
-        "sistem":       ("systematic",      "unsystematic"),
-        "pleasure":     ("pleasant",        "unpleasant"),
-        "smoothness":   ("smooth",          "raspy"),
-        "grace":        ("clumsy",          "graceful"),
-        "angularity":   ("angular",         "round"),
-    }
-    ItVersion = {
-        "logic":        ("logico",          "illogico"),
-        "elegance":     ("non elegante",    "elegante"),
-        "fluency":      ("frammentato",     "scorrevole"),
-        "ambiguity":    ("chiaro",          "ambiguo"),
-        "appeal":       ("attraente",       "ripugnante"),
-        "structure":    ("non strutturato", "strutturato"),
-        "precision":    ("preciso",         "vago"),
-        "harshness":    ("duro",            "morbido"),
-        "flow":         ("fluido",          "brusco"),
-        "beauty":       ("bello",           "brutto"),
-        "sistem":       ("sistematico",     "non sistematico"),
-        "pleasure":     ("piacevole",       "spiacevole"),
-        "smoothness":   ("liscio",          "ruvido"),
-        "grace":        ("goffo",           "aggraziato"),
-        "angularity":   ("spigoloso",       "arrotondato"),
-    }
-    BeVersion = {
-         "logic":       ("logisch",         "unlogisch"),
-        "elegance":     ("stillos",         "stilvoll"),
-        "fluency":      ("stockend",        "fließend"),
-        "ambiguity":    ("eindeutig",       "missverständlich"),
-        "appeal":       ("anziehend",       "abstoßend"),
-        "structure":    ("stukturlos",      "sturkturiert"),
-        "precision":    ("genau",           "ungenau"),
-        "harshness":    ("hart",            "weich"),
-        "flow":         ("flüssig",         "abgehackt"),
-        "beauty":       ("schön",           "hässlich"),
-        "sistem":       ("systematisch",    "unsystematisch"),
-        "pleasure":     ("angenehm",        "unangenehm"),
-        "smoothness":   ("geschmeidig",     "rau"),
-        "grace":        ("plump",           "anmutig"),
-        "angularity":   ("eckig",           "rund"),
-    }
-
-    if version == 'CymEng_Eng_GB':
-        return randomize(EngVersion)
-    elif version == 'LtzGer_Ger_BE':
-        return randomize(BeVersion)
-    elif version == 'LmoIta_Ita_IT':
-        return randomize(ItVersion)
-    return None
+    directory = os.path.abspath(os.getcwd()) + "\\lart_research_client\\atolc"
+    version_file = directory + "\\versions\\" + version + ".json"
+        
+    with open(version_file) as f:
+        atol_stim = json.load(f)
+        
+        #print("Adjectives:")
+        #print(atol_stim)
+        #print(atol_stim['adjectives'])
+        stim_list = atol_stim['adjectives']
+        return randomize(stim_list)
 
 
 class Response(DataSchema):
