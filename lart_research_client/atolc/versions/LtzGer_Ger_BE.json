@@ -1,0 +1,27 @@
+{
+    "meta": {
+        "versionId": "LtzGer_Ger_BE",
+        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2023-01-30"
+    },
+
+    "adjectives": {
+        "logic":        ["logisch",         "unlogisch"],         
+        "elegance":     ["stillos",         "stilvoll"],
+        "fluency":      ["stockend",        "fließend"],
+        "ambiguity":    ["eindeutig",       "missverständlich"],
+        "appeal":       ["anziehend",         "abstoßend"],
+        "structure":    ["stukturlos",      "sturkturiert"],
+        "precision":    ["genau",           "ungenau"],
+        "harshness":    ["hart",            "weich"],
+        "flow":         ["flüssig",         "abgehackt"],
+        "beauty":       ["schön",           "hässlich"],
+        "sistem":       ["systematisch",    "unsystematisch"],
+        "pleasure":     ["angenehm",        "unangenehm"],
+        "smoothness":   ["geschmeidig",     "rau"],
+        "grace":        ["plump",           "anmutig"],
+        "angularity":   ["eckig",           "rund"]
+    }
+    
+}

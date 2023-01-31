@@ -1,0 +1,25 @@
+{
+    "meta": {
+        "versionId": "CymEng_Cym_GB",
+        "versionName": "Cymraeg - Sesnaeg (UK)",
+        "author": "Ianto Gryffudd <ianto.gryffudd@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2023-01-30"
+    },
+    "adjectives": {
+        "logic":        ["rhesymegol", "afresymegol"],
+        "elegance":     ["anghywrain",  "cywrain"],
+        "fluency":      ["toredig",     "rhugl"],
+        "ambiguity":    ["diamwys",     "amwys"],
+        "appeal":       ["apelgar",     "atgas"],
+        "structure":    ["distrwythur", "strwythuredig"],
+        "precision":    ["manwl",       "amhendant"],
+        "harshness":    ["llym",        "meddal"],
+        "flow":         ["llifo",       "swta"],
+        "beauty":       ["prydferth",   "hyll"],
+        "sistem":       ["trefnus",     "di-drefn"],
+        "pleasure":     ["dymunol",     "annymunol"],
+        "smoothness":   ["llyfn",       "cryg"],
+        "grace":        ["trwsgl",      "gosgeiddig"],
+        "angularity":   ["onglog",      "crwn"]
+    }
+}
