@@ -64,7 +64,6 @@
             "Fehler beim abspielen. Klicken um es erneut zu versuchen."
         ]
     },
-
     "rating": {
         "secTitle": [
             "Voice Rating",
@@ -119,6 +118,20 @@
         "continue": [
             "Continue",
             "Weiter"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the MGT Voice Rating task!",
+            "Dank für das Durchführen der MGT Stimmbewerungsaufgabe!"
+        ],
+        "thankYouMessage" : [
+            "Well done on the voice rating task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
+            "Gute Arbeit mit der Stimmbewertung!<br /> Sie haben jetzt alle Aufgaben erledigt. Die Daten wurden automatisch gespreichert, aber bitte schliesse die App noch nicht."
+        ],
+        "followOnInstructions": [
+            "You can tell the researcher that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
+            "Sie können dem Forscher jetzt Bescheid geben, dass Sie mit den Aufgaben an der App fertig sind. Der Forscher wird dann überprüfen, dass alles seine Richtigkeit hat und falls nötig weitere Anleitungen geben."
         ]
     }
 }

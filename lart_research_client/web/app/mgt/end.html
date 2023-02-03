@@ -39,7 +39,7 @@
         lart.forms.requireValidation(true);
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('mgt', eel._mgt2_load_version, [instanceId, ['meta', 'base', 'end']]);
+        lart.tr.loadFromEel('mgt', eel._mgt_load_version, [instanceId, ['meta', 'base', 'end']]);
         lart.tr.registerObserver('mgt', 'mgtEndScreen');
         lart.tr.registerObserver('mgt', 'mgtAppTitle');
     </script>

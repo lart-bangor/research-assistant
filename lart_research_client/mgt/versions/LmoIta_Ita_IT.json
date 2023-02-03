@@ -116,5 +116,19 @@
             "Continue",
             "Continua"
         ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the MGT Voice Rating task!",
+            "Grazie per aver completato l'attività MGT Valutazione della Voce!"
+        ],
+        "thankYouMessage" : [
+            "Well done on the voice rating task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
+            "Complimenti per l'attività di valutazione vocale!<br /> Ora hai completato tutte le attività. I tuoi dati sono stati salvati automaticamente, ma non chiudere ancora l'app."
+        ],
+        "followOnInstructions": [
+            "You can tell the researcher that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
+            "Puoi dire al ricercatore che hai terminato con le attività dell'app e controlleranno che abbiamo tutto ciò di cui abbiamo bisogno e ti daranno ulteriori istruzioni se necessario."
+        ]
     }
 }
