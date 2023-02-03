@@ -137,7 +137,7 @@
 
             // Set up and play audio stimulus...
             function triggerPlayback() {
-                audioLabel.innerHTML = 'Audio loaded.'; //audioMsg.loaded;
+                audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.loaded">Audio loaded.</span>';
                 audioProgressBar.firstElementChild.style.width = 0;
                 audioProgressBar.firstElementChild.classList.remove('progress-bar-animated');
                 audioProgressBar.firstElementChild.classList.remove('progress-bar-striped');
@@ -154,7 +154,7 @@
                             .catch(
                                 error => {
                                     booteel.logger.error("Failed to start audio:", error);
-                                    audioLabel.innerHTML = 'Audio could not be played. Click to try again.';
+                                    audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.error">Audio could not be played. Click to try again.</span>';
                                     audioWrapper.addEventListener(
                                         'click',
                                         function () {
@@ -187,7 +187,7 @@
             audioElement.addEventListener(
                 'playing',
                 function (event) {
-                    audioLabel.innerHTML = 'Playing audio...'; //audioMsg.play;
+                    audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.play">Playing audio...</span>';
                     updateAudioProgressBar.intervalId = setInterval(updateAudioProgressBar, 20);
                 }
             );
@@ -196,7 +196,7 @@
             audioElement.addEventListener(
                 'ended',
                 function (event) {
-                    audioLabel.innerHTML = 'Audio playback complete.'; //audioMsg.complete;
+                    audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.complete">Audio playback complete.<span>';
                     enableFormSubmission(); // Should've been enabled half way through playback, but let's make doubly sure
                     updateAudioProgressBar(); // Make sure final state is reflected
                     clearInterval(updateAudioProgressBar.intervalId);

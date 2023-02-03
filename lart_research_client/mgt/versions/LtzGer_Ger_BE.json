@@ -47,7 +47,7 @@
     },
     "audioMsg": {
         "load": [
-            "Audio laden..."
+            "Ton laden..."
             
         ],
         "loaded": [
@@ -55,10 +55,13 @@
             
         ],
         "play": [
-            "Audio abspielen..."
+            "Ton spielt..."
         ],
         "complete": [
-            "Audiowiedergabe abgeschlossen."
+            "Wiedergabe abgeschlossen."
+        ],
+        "error": [
+            "Fehler beim abspielen. Klicken um es erneut zu versuchen."
         ]
     },
 
