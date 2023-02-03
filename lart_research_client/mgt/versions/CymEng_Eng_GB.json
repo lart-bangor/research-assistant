@@ -15,5 +15,21 @@
         "sliderFeedback": [
             "Please move the slider at least once."
         ]
+    },
+    "audioMsg": {
+        "load": [
+            "Loading audio..."
+            
+        ],
+        "loaded": [
+            "Audio loaded."
+            
+        ],
+        "play": [
+            "Playing audio..."
+        ],
+        "complete": [
+            "Audio playback complete."
+        ]
     }
 }

@@ -122,6 +122,7 @@
         lart.tr.registerObserver('mgt', 'surveyRatingForm');
         lart.tr.registerObserver('mgt', 'mgtSectionTitle');
         lart.tr.registerObserver('mgt', 'mgtAppTitle');
+        lart.tr.registerObserver('mgt', 'audioLabel');
 
         // Load and play audio stimulus
         function presentAudioStimulus(version, trial) {
@@ -136,7 +137,7 @@
 
             // Set up and play audio stimulus...
             function triggerPlayback() {
-                audioLabel.innerHTML = audioMsg.loaded;//'Audio loaded.';
+                audioLabel.innerHTML = 'Audio loaded.'; //audioMsg.loaded;
                 audioProgressBar.firstElementChild.style.width = 0;
                 audioProgressBar.firstElementChild.classList.remove('progress-bar-animated');
                 audioProgressBar.firstElementChild.classList.remove('progress-bar-striped');
@@ -186,7 +187,7 @@
             audioElement.addEventListener(
                 'playing',
                 function (event) {
-                    audioLabel.innerHTML = audioMsg.play; //'Playing audio...';
+                    audioLabel.innerHTML = 'Playing audio...'; //audioMsg.play;
                     updateAudioProgressBar.intervalId = setInterval(updateAudioProgressBar, 20);
                 }
             );
@@ -195,7 +196,7 @@
             audioElement.addEventListener(
                 'ended',
                 function (event) {
-                    audioLabel.innerHTML = audioMsg.complete; //'Audio playback complete.';
+                    audioLabel.innerHTML = 'Audio playback complete.'; //audioMsg.complete;
                     enableFormSubmission(); // Should've been enabled half way through playback, but let's make doubly sure
                     updateAudioProgressBar(); // Make sure final state is reflected
                     clearInterval(updateAudioProgressBar.intervalId);

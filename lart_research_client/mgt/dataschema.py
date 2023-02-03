@@ -21,14 +21,14 @@ mgt_filler_trials: Final[tuple[str, ...]] = (
 )
 
 mgt_guise_trials: Final[tuple[str, ...]] = (
-    "s1_maj",       # S1 Majority Language
-    "s1_rml",       # S1 Regional/Minority Language
-    "s2_maj",       # S2 Majority Language
-    "s2_rml",       # S2 Regional/Minority Language
-    "s3_maj",       # S3 Majority Language
-    "s3_rml",       # S3 Regional/Minority Language
-    "s4_maj",       # S4 Majority Language
-    "s4_rml",       # S4 Regional/Minority Language
+    "s1_maj",    # 1st recording of variety 1
+    "s1_rml",    # 1st recording of variety 2
+    "s2_maj",    # 2nd recording of variety 1
+    "s2_rml",    # 2md recording of variety 2
+    "s3_maj",    # 3rd recording of variety 1
+    "s3_rml",    # 3rd recording of variety 2
+    "s4_maj",    # 4th recording of variety 1
+    "s4_rml",    # 4th recording of variety 2
 )
 
 mgt_trials: Final[tuple[str, ...]] = mgt_practice_trials + mgt_filler_trials + mgt_guise_trials
