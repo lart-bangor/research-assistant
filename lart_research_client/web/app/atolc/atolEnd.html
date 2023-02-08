@@ -3,22 +3,30 @@
 {% block title %}LART Research Client{% endblock %}
 {% block headline %}LART Research Client{% endblock %}
 {% block head_scripts %}
+<script type="text/javascript">
+    const thanks = sessionStorage.getItem("thankyou");
+    const next = sessionStorage.getItem("next");
+    console.log("THANKS " + thanks);
+    console.log("NEXT " + next);
+    //document.getElementById("thank_you").innerHTML = thanks;
+    //document.getElementById("next").innerHTML = next;
+</script>
 {% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block content %}
     <article class="p-2">
         <div class="container-fluid text-center p-2">
-            <h2>Vielen Dank für das Ausfüllen des Fragebogens!</h2>
+            <h2 id="thank_you"><script type="text/javascript">document.write(thanks)</script></h2>
         </div>
         <div class="container-fluid text-center p-2">
-            <h4>Bitte beginnen Sie mit der Gedächtnisaufgabe, wenn Sie bereit sind</h4>
+            <h4 id="next"><script type="text/javascript">document.write(next)</script></h4>
         </div>
         <div class="container-fluid text-center p-2">
             <p></p>
         </div>
         <div class="container-fluid text-center p-2">
-            <a id="nextUrlButton" class="btn btn-primary fs-5 p-2" style="min-width:50%" href="../memory-game/index.html">&rarr; Gedächtnisaufgabe beginnen &rarr;</a>
+            <a id="nextUrlButton" class="btn btn-primary fs-5 p-2" style="min-width:50%" href="../memory-game/index.html">&rarr; Begin memory task &rarr;</a>
             <script type="text/javascript">
                 nextUrl = `../memorygame/index.html?selectSurveyVersion=${sessionStorage.atolVersion}&researcherId=${sessionStorage.atolResId}&researchLocation=${sessionStorage.atolLocation}&participantId=${sessionStorage.atolPartId}&confirmConsent=1&surveyDataForm.submit=true`;
                 nextUrlButton = document.getElementById('nextUrlButton');

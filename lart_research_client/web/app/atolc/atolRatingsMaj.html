@@ -6,55 +6,30 @@
         const atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
         const chosenVersion = sessionStorage.getItem("atolVersion");
         const participantId = sessionStorage.getItem("atolPartId");
-
-        //eel.get_atol_version()(function(data_from_index){myversion = data_from_index});
-
-        // Instructions to be outputed depending on language selection
-        if (chosenVersion == "CymEng_Eng_GB") {
-            sessionStorage.setItem("version", "CymEng_Eng_GB");
-            sessionStorage.setItem("title", "Language Questionnaire");
-            sessionStorage.setItem("language", "English");
-            sessionStorage.setItem("rml", "Welsh"),
-            sessionStorage.setItem("instruction", "Please move the slider to record your choice.");
-            sessionStorage.setItem("language_header", "The English language is...");
-            sessionStorage.setItem("rml_header", "The Welsh language is...");
-            sessionStorage.setItem("atol_header", "AToL Questionnaire (RML)");
-            sessionStorage.setItem("btn_text", "Next");
-        } else if (chosenVersion == "LmoIta_Ita_IT") {
-            sessionStorage.setItem("version", "LmoIta_Ita_IT");
-            sessionStorage.setItem("title", "AToL - RML");
-            sessionStorage.setItem("language", "Italiano");
-            sessionStorage.setItem("rml", "lombardo");
-            sessionStorage.setItem("instruction", "Si prega di spostare il cursore per registrare la propria scelta.");
-            sessionStorage.setItem("language_header", "A mio avviso, l'italiano è...");
-            sessionStorage.setItem("rml_header", "A mio avviso, il lombardo è...");
-            sessionStorage.setItem("atol_header", "Questionario sulle varietà linguistiche.");
-            sessionStorage.setItem("btn_text", "Avanti");
-        } else if (chosenVersion == "LtzGer_Ger_BE") {
-            sessionStorage.setItem("version", "LtzGer_Ger_BE");
-            sessionStorage.setItem("title", "Sprachlicher Fragebogen");
-            sessionStorage.setItem("language", "Deutch");
-            sessionStorage.setItem("rml", "Eifeler Platt");
-            sessionStorage.setItem("instruction", "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen.");
-            sessionStorage.setItem("language_header", "Die deutsche Sprache ist...");
-            sessionStorage.setItem("rml_header", "Das Eifeler Platt ist...");
-            sessionStorage.setItem("atol_header", "AToL Fragebogen (RML)");
-            sessionStorage.setItem("btn_text", "Weiter");
-        }
-
-        const title = sessionStorage.getItem("title");
-        const language = sessionStorage.getItem("language");
-        const rml = sessionStorage.getItem("rml");
-        const instruction = sessionStorage.getItem("instruction");
-        const language_header = sessionStorage.getItem("language_header");
-        const rml_header = sessionStorage.getItem("rml_header");
-        const atol_header = sessionStorage.getItem("atol_header");
-        const btn_text = sessionStorage.getItem("btn_text");
-
-        populateAtolItems = function (atolItems) {
+        
+        populateAtolItems = function (atolAllItems) {
+            console.log("FULL AToL items list for MAJ: ")
+            console.log(atolAllItems);
+            const atolItems = atolAllItems[1];
+            const intface = atolAllItems[0];
+            console.log("Interface items for MAJ: ");
+            console.log(intface);
+            sessionStorage.setItem("thankyou", intface["thank_you"]);
+            sessionStorage.setItem("next", intface["next_task"]);
+            const title = intface["atol_header"]
+            const header = intface["title"];
+            const lang_header = intface["language_header"];
+            const instruction = intface["instruction"];
+            const btn_txt = intface["btn_text"];
+            document.getElementById("atolTitle").innerHTML = title;
+            document.getElementById("atolSectionTitle").innerHTML = header;
+            document.getElementById("language_header").innerHTML = lang_header;
+            document.getElementById("slider_info").innerHTML = " " + instruction;
+            document.getElementById("next_btn").innerHTML = btn_txt;
+            
             const element = document.getElementById('AtolRatingScales');
             for(key in atolItems) {
-                let language = sessionStorage.getItem("language");
+                let language = intface["language"];
                 let code = `
                     <div id="fieldset${language + key}">
                         <label class="row mb-0" for="rating_${language}_${key}">
@@ -64,9 +39,9 @@
                         <div class="row mb-4">
                             <div class="col-12">
                                 <input type="range" class="form-range" min="0" max="100" step="any" id="rating_${language}_${key}" required />
-                                <div class="invalid-feedback invalid-range">
-                                    ${instruction}
-                                </div>
+                                <div class="invalid-feedback invalid-range">`
+                                    + instruction +
+                                `</div>
                             </div>
                         </div>
                     </div>
@@ -76,11 +51,10 @@
         }
 
         eel.atol_c_get_items(chosenVersion)(populateAtolItems);
-
+        
     </script>
 {% endblock %}
-{% block headline %}<script type="text/javascript">document.write(title);</script>{% endblock %}
-
+{% block headline %}<span id="atolTitle"></span>{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
@@ -102,30 +76,24 @@
 
         <div class="row m-4 text-center">
             <div class="col">
-                <h2 id="atolSectionTitle"><script type = "text/javascript">document.write(atol_header);</script></h2>
+                <h2 id="atolSectionTitle"></h2>
+                    
             </div>
         </div>
 
-        <!-- testing whether we can pick up language choice
-            <div id="atolVersion">
-                <script type="text/javascript">        
-                outputData();
-                </script>
-            </div>
-        -->
-
+        
         <form id="surveyAtolForm_majLang" class="needs-validation" autocomplete="off">
 
             <!-- Header -->
             <section class="m-4">
                 <div class="row mb-0">
-                    <h4 class="col" id="language_header"><script type="text/javascript">document.write(language_header);</script></h4>
+                    <h4 class="col" id="language_header"></h4>
                 </div>
                 <div class="row mb-0">
                     <div class="col">
                         <p class="help-block text-muted">
-                            <i class="bi-info-circle text-info"></i> 
-                            <script type="text/javascript">document.write(instruction);</script>
+                            <i class="bi-info-circle text-info"><span id="slider_info"></span></i>
+                            
                         </p>
                     </div>
                 </div>
@@ -142,8 +110,7 @@
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div clas="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">
-                        <script type="text/javascript">document.write(btn_text)</script>
+                    <button id="next_btn" type="submit" class="btn btn-primary btn-lg btn-action shadow">
                     </button>
                 </div>
             </div>

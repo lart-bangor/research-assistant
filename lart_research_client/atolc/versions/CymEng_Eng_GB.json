@@ -5,6 +5,18 @@
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2023-01-16"
     },
+"intface_info": {
+    "title": "Language Questionnaire",
+     "language": "English",
+     "rml": "Welsh",
+     "instruction": "Please move the slider to record your choice.",
+     "language_header": "The English language is...",
+     "rml_header": "The Welsh language is...",
+     "atol_header": "AToL Questionnaire (RML)",
+     "btn_text": "Next",
+     "thank_you": "Thank you for completing the questionnaire!",
+     "next_task": "Please click [continue] when you're ready"
+},
 
     "adjectives": {
         "logic":        ["logical",         "illogical"],

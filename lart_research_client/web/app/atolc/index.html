@@ -5,8 +5,7 @@
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
-            availableVersions = eel._mgt_getversions()(populateSurveyVersions); //this will probably need to be changed to a more generic "survey_rml_get_versions", 
-                                                                                    //or hard-coded for each questionnaire.
+            availableVersions = eel._mgt_getversions()(populateSurveyVersions); //need a function for AToL. I tried but can't get an ID for options 
         }
         
         function populateSurveyVersions(versions) {
@@ -18,9 +17,10 @@
                 select.appendChild(option);
             }
         }
-
-        // @TODO: Can probably refactor as a loop?
+                  
+               // @TODO: Can probably refactor as a loop?
         function recordData() {
+            
             const atolVersion = document.getElementById("selectSurveyVersion").value;
             const atolResId = document.getElementById("researcherId").value;
             const atolLocation = document.getElementById("researchLocation").value;
@@ -30,7 +30,9 @@
             sessionStorage.setItem("atolResId", atolResId);
             sessionStorage.setItem("atolLocation", atolLocation);
             sessionStorage.setItem("atolPartId", atolPartId);
-        }
+            
+        }    
+
     </script>
 {% endblock %}
 {% block head_styles %}{% endblock %}

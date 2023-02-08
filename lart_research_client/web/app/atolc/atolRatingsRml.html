@@ -4,18 +4,29 @@
 {% block head_scripts %}
     <script type="text/javascript">
         const atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
-        const chosenVersion = sessionStorage.getItem("version");
+        const chosenVersion = sessionStorage.getItem("atolVersion");
         const participantId = sessionStorage.getItem("atolPartId");
+        console.log("VERSION ");
+        console.log(chosenVersion);
 
-        const title = sessionStorage.getItem("title");
-        const language = sessionStorage.getItem("language");
-        const rml = sessionStorage.getItem("rml");
-        const instruction = sessionStorage.getItem("instruction");
-        const rml_header = sessionStorage.getItem("rml_header");
-        const atol_header = sessionStorage.getItem("atol_header");
-        const btn_text = sessionStorage.getItem("btn_text");
-
-        populateAtolItems = function (atolItems) {
+        populateAtolItems = function (atolAllItems) {
+            console.log("FULL AToL items list for RML: ")
+            console.log(atolAllItems);
+            const atolItems = atolAllItems[1];
+            const intface = atolAllItems[0];
+            console.log("Interface items for RML: ");
+            console.log(intface);
+            const title = intface["atol_header"]
+            const header = intface["title"];
+            const rml_header = intface["rml_header"];
+            const instruction = intface["instruction"];
+            const btn_txt = intface["btn_text"];
+            document.getElementById("atolTitle").innerHTML = title;
+            document.getElementById("atolSectionTitle").innerHTML = header;
+            document.getElementById("language_header").innerHTML = rml_header;
+            document.getElementById("slider_info").innerHTML = " " + instruction;
+            document.getElementById("next_btn").innerHTML = btn_txt;
+            
             const element = document.getElementById('AtolRatingScales');
             for(key in atolItems) {
                 let code = `
@@ -42,7 +53,7 @@
  
     </script>
 {% endblock %}
-{% block headline %}<script type="text/javascript">document.write(title);</script>{% endblock %}
+{% block headline %}<span id="atolTitle"></span>{% endblock %}
 
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
@@ -65,7 +76,7 @@
 
         <div class="row m-4 text-center">
             <div class="col">
-                <h2 id="atolSectionTitle"><script type = "text/javascript">document.write(atol_header);</script></h2>
+                <h2 id="atolSectionTitle"></h2>
             </div>
         </div>
 
@@ -82,13 +93,13 @@
             <!-- Header -->
             <section class="m-4">
                 <div class="row mb-0">
-                    <h4 class="col" id="language_header"><script type="text/javascript">document.write(rml_header);</script></h4>
+                    <h4 class="col" id="language_header"></h4>
                 </div>
                 <div class="row mb-0">
                     <div class="col">
                         <p class="help-block text-muted">
-                            <i class="bi-info-circle text-info"></i> 
-                            <script type="text/javascript">document.write(instruction);</script>
+                            <i class="bi-info-circle text-info"><span id = "slider_info"></i> 
+                            
                         </p>
                     </div>
                 </div>
@@ -105,8 +116,8 @@
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div clas="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">
-                        <script type="text/javascript">document.write(btn_text)</script>
+                    <button id="next_btn" type="submit" class="btn btn-primary btn-lg btn-action shadow">
+                        
                     </button>
                 </div>
             </div>
