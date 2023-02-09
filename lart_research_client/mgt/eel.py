@@ -43,7 +43,7 @@ def _getnexttrial(instid: str, current_trial: str) -> str | None:
     if next_index < len(trials):
         logger.info(f"Next MGT trial: {trials[next_index]}")
         return trials[next_index]
-    logger.warning("No further MGT trials in list")
+    logger.info("No further MGT trials in list")
     return None
 
 
