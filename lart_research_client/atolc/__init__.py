@@ -23,30 +23,20 @@ presentime = datetime.now()
 dt_string = presentime.strftime("%Y-%m-%d")
 dt_filename = str(uuid.uuid1())
 
-##This works in that it gets the versions from json, but can't get it to work with 
-##the <options> dropdown as I can't work out where the ID would come from...
-##so currently this fucntion is not called anywhere
-@eel.expose
-def atol_getversions():
-    absolute_path = os.path.abspath(__file__)
-    vers_path = os.path.dirname(absolute_path) + "\\versions"
-    versions = []
-
-    for filename in glob.glob(os.path.join(vers_path, '*.json')):
-        with open(os.path.join(os.getcwd(), filename), 'r') as f:
-            vers_data = json.load(f)
-            this_version_id = vers_data["meta"]["versionName"]
-            # this_version_no = vers_data["meta"]["versionNumber"]
-            versions.append(this_version_id)
-            print(this_version_id)
-    return versions
-
-
 def arrange_data(data):
-    ordered_data = OrderedDict(data)
-    ordered_data.update({"date": dt_string})
-    ordered_data.move_to_end("date", last=False)
-    ordered_data.update({"app_version": config.appversion})
+    """orders data so that meta info is consistent with other tasks in the app"""
+    ordered_data = OrderedDict()
+    ordered_data['version_id'] = data['selectSurveyVersion']
+    ordered_data['version_no'] = "????"
+    ordered_data['app_version'] = config.appversion
+    ordered_data['researcher_id'] = data['researcherId']
+    ordered_data['research_location'] = data['researchLocation']
+    ordered_data['participant_id'] = data['participantId']
+    ordered_data['consent'] = data['confirmConsent']
+    ordered_data['date'] = dt_string
+    print("ordered data is: ")
+    print(ordered_data)
+    
     finalDict = {
         "meta": ordered_data}
     return finalDict
@@ -58,12 +48,12 @@ def get_id(dict):
 
 @eel.expose
 def init_atol(myData: dict[str, str]) -> None:
-    """Retrieve initial info from index.html and print to file + to console."""
-    global version
+    """Retrieves initial info from index.html and prints to file & to terminal."""
+    global version_id
     version_id = myData["selectSurveyVersion"]
     file_name = get_id(myData) + ".json"
     data = arrange_data(myData)
-    data_file = data_path / myData["selectSurveyVersion"] / file_name
+    data_file = data_path / version_id / file_name
     data_file.parent.mkdir(parents=True, exist_ok=True)
     
     try:
@@ -94,21 +84,17 @@ def arrange_order(dict, source):
              
 
 @eel.expose
-def grab_atol_ratings(myData: dict[Any, Any], source: str, version: str, partId: str):
+def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, partId: str):
     """Does the same as init_atol, but for ratings"""
-    location = fetch_location(source, version)
+    location = fetch_location(source, version_id)
     file_name = partId + "_" + dt_filename + ".json"
-    data_file = data_path / file_name
+    data_file = data_path / version_id / file_name
     data = arrange_order(myData, source)
     
-    try:
-        with open(data_file, 'r') as fin:
-            current_data = json.load(fin)
-            current_data.update(data)
-            #full_data = current_data
-    except FileNotFoundError as exc:
-        pass
-            
+    with open(data_file, 'r') as fin:
+        current_data = json.load(fin)
+        current_data.update(data)
+                    
     try:
         with open(data_file, 'w') as fout:
             json_output = json.dumps(current_data, indent=4)
@@ -125,9 +111,6 @@ def fetch_location(source_file: str, version: str) -> Optional[str]:
     if 'Maj' in source_file:
         return "atolRatingsRml.html"
     elif 'Rml' in source_file:
-        #length = len(version)
-        #locationLabel = length - 2
-        #suffix = version[locationLabel:]
         return "atolEnd.html"
     else:
         print("fetch_location() in __init__.py says: ERROR: no such file")
@@ -191,7 +174,9 @@ def atol_c_get_items(version: str) -> Optional[dict[str, tuple[str, str]]]:
         atol_stim = json.load(f)
         stim_list = atol_stim['adjectives']
         intface = atol_stim['intface_info']
+        meta = atol_stim['meta']
         rand_list = randomize(stim_list)
+        atol_items.append(meta)
         atol_items.append(intface)
         atol_items.append(rand_list)
         return atol_items
