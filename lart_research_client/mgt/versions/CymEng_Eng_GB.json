@@ -20,11 +20,9 @@
     "audioMsg": {
         "load": [
             "Loading audio..."
-            
         ],
         "loaded": [
             "Audio loaded."
-            
         ],
         "play": [
             "Playing audio..."

@@ -116,6 +116,14 @@
             "You've completed the practice session. If you have any questions at this point please let the researcher know, otherwise click <em>Continue</em> to begin the task.",
             "Sie haben den Übungslauf abgeschlossen. Falls Sie zu diesem Zeitpunkt Fragen haben, sagen Sie bitten dem Forscher Bescheid. Ansonsten klicken Sie auf <em>Weiter</em> um die Aufgabe anzufangen."
         ],
+        "errorTitle": [
+            "Let’s try that again...",
+            "Versuchen Sie es nochmal..."
+        ],
+        "errorMessage": [
+            "It seems you’ve missed some items. Click <em>Continue</em> to have another look and make sure you’ve moved each slider at least once. The one’s you’ve missed should show up in red. When you’ve moved all the red sliders, click <em>Next</em> again.",
+            "Es sieht so aus als ob Sie etwas übersehen haben. Klicken Sie auf <em>Weiter</em> und stellen Sie sicher, dass Sie jeden Schieber bewegt haben. Unbewegte Schieber erscheinen in rot. Wenn Sie alle roten Schieber bewegt haben, klicken Sie erneut aus <em>Weiter</em>."
+        ],
         "continue": [
             "Continue",
             "Weiter"

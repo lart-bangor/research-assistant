@@ -90,14 +90,25 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="practiceFeedbackModalLabel"><i class="bi bi-check-square text-success"></i> <span data-mgt-tr="practice.completeTitle">Practice complete</span></h5>
+                  <h5 class="modal-title" id="practiceFeedbackModalLabel">
+                    <i class="bi bi-check-square text-success" data-mgt-feedback="valid"></i>
+                    <span data-mgt-tr="practice.completeTitle" data-mgt-feedback="valid">Practice complete</span>
+                    <i class="bi bi-exclamation-square text-warning" data-mgt-feedback="invalid"></i>
+                    <span data-mgt-tr="practice.errorTitle" data-mgt-feedback="invalid">Let’s try that again...</span>
+                  </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p data-mgt-tr="practice.completeMessage">
-                        You've completed the practice session.
+                    <p data-mgt-tr="practice.completeMessage" data-mgt-feedback="valid">
+                        You’ve completed the practice session.
                         If you have any questions at this point please let the researcher know,
                         otherwise click <em>Continue</em> to begin the task.
+                    </p>
+                    <p data-mgt-tr="practice.errorMessage" data-mgt-feedback="invalid">
+                        It seems you’ve missed some items.
+                        Click <em>Continue</em> to have another look and make sure you’ve moved
+                        each slider at least once. The one’s you’ve missed should show up in red.
+                        When you’ve moved all the red sliders, click <em>Next</em> again.
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -242,11 +253,30 @@
 
         // Provide feedback iff this was a practice session
         if ( trialId == 'practice' ) {
+            function setFormFeedbackValidity() {
+                const surveyRatingForm = lart.forms.getElementByGreed('surveyRatingForm');
+                const validity = surveyRatingForm.checkValidity() ? 'valid' : 'invalid';
+                const practiceFeedbackModal = document.getElementById('practiceFeedbackModal');
+                const validityNodes = practiceFeedbackModal.querySelectorAll('[data-mgt-feedback]');
+                for (const validityNode of validityNodes.values()) {
+                    console.log("Node:", validityNode);
+                    console.log("Data:", validityNode.dataset);
+                    console.log("Validity:", validityNode.dataset.mgtFeedback, " === ", validity, " -> ", validityNode.dataset.mgtFeedback === validity);
+                    if ( validityNode.dataset.mgtFeedback === validity ) {
+                        validityNode.style.display = 'initial';
+                        console.log("--> visible");
+                    } else {
+                        validityNode.style.display = 'none';
+                        console.log("--> hidden");
+                    }
+                }
+            }
             function redirectFormSubmission() {
                 const submitButton = document.getElementById('traitRatingSubmitButton');
                 submitButton.type = 'button';
                 submitButton.dataset.bsToggle = 'modal';
                 submitButton.dataset.bsTarget = '#practiceFeedbackModal';
+                submitButton.addEventListener('click', setFormFeedbackValidity);
             }
             redirectFormSubmission();
         }
