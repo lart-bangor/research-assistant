@@ -85,7 +85,7 @@ def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
     """Load specified sections of an MGT version implementation."""
     logger.info(f"Retrieving version data for MGT instance {instid}..")
     instance = _getinstance(instid)
-    version_id = instance.getmeta()["version"]
+    version_id = instance.getmeta()["version_id"]
     if version_id not in versions:
         logger.error(f"Requested MGT version '{version_id}' not found.")
         return {}
@@ -110,9 +110,14 @@ def init(data: dict[str, Any]) -> str:
     instance = Response()
     instid = instance.getid()
     logger.debug(f"... 'id' of instance is {instid}")
+    version_id = data["selectSurveyVersion"]
+    if version_id not in versions:
+        logger.error(f"Requested LSBQe version '{version_id}' not found.")
     instance.setmeta(
         {
-            "version": data["selectSurveyVersion"],
+            "version_id": version_id,
+            "version_no": versions[version_id]["meta"]["versionNumber"],
+            "app_version": config.appversion,
             "researcher_id": data["researcherId"],
             "participant_id": data["participantId"],
             "research_location": data["researchLocation"],
@@ -202,7 +207,7 @@ def store(instid: str) -> bool:
     d = instance.data()
     s = json.dumps(d, indent=4)
     logger.info(f"... JSON serialization: {s}")
-    path: Path = config.paths.data / "MGT" / d["meta"]["version"]
+    path: Path = config.paths.data / "MGT" / d["meta"]["version_id"]
     if not path.exists():
         path.mkdir(parents=True, exist_ok=True)
     participant_id = d["meta"]["participant_id"]

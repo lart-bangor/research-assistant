@@ -64,10 +64,20 @@ class Response(DataSchema):
             "constraint": patterns.UUID_HEX,
         },
         "meta": {  # Meta data
-            "version": {
+            "version_id": {
                 "type_": str,
                 "typedesc": "MGT version identifier",
                 "constraint": patterns.VERSION_LABEL,
+            },
+            "version_no": {
+                "type_": str,
+                "typedesc": "MGT version number",
+                "constraint": patterns.VERSION_NUMBER,
+            },
+            "app_version": {
+                "type_": str,
+                "typedesc": "Version of app that last modified the Response",
+                "constraint": patterns.VERSION_NUMBER,
             },
             "researcher_id": {
                 "type_": str,
