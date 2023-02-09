@@ -50,13 +50,28 @@ The app is built into a installable package using [PyInstaller](https://pyinstal
 
 #### 2.2 Inno Setup (Windows)
 
-The executable installer for Windows is built using [Inno Setup](https://jrsoftware.org/isinfo.php), and this needs to be installed on your system or the build process will fail. Download Inno Setup from [https://jrsoftware.org/isdl.php] and install it on your system.
+The executable installer for Windows is built using [Inno Setup](https://jrsoftware.org/isinfo.php), and this needs to be installed on your system or the build process will fail. Download Inno Setup from https://jrsoftware.org/isdl.php and install it on your system.
 
-Once you have installed Inno Setup, you have to make sure its available on the system path. The best way to do this is to open up a terminal window (Windows+R, then type `cmd` and press Enter). Now type `iscc` and press enter. If this shows some text starting with something like "Inno Setup 6 Command-Line Compiler" and then some instruction, you're good to go. If it doesn't, you have to add the directory containing `ISCC.exe` (the folder where you installed Inno Setup) to the path environment variable. This might be `C:/Program Files/Inno Setup 6` or `C:/Program Files (x86)/Inno Setup 6`, but do double check. Either type "environment variables" in the Start search box, or go to Settings -> System -> Advanced system settings, then on the bottom of the dialog box click on `Environment Variables...`. Highlight the variable called `Path` in the top half of the dialogue window, click on `Edit` and add the path where Inno Setup is installed, e.g. `C:/Program Files (x86)/Inno Setup 6`. Click `OK` and close all the dialogue windows. Start a new terminal window (it won't work in one opened before you modified the path) and try running the `iscc` command again - it should work now, meaning you're ready to build the app on windows.
+Once you have installed Inno Setup, you have to make sure it's available on the system path. The best way to do this is to open up a terminal window (Windows+R, then type `cmd` and press Enter). Now type `iscc` and press enter.
+
+If this shows some text starting with something like "Inno Setup 6 Command-Line Compiler" followed by instruction, you're good to go.
+If it doesn't, you have to add the directory containing `ISCC.exe` (the folder where you installed Inno Setup, probably `C:\Program Files\Inno Setup 6` or `C:\Program Files (x86)\Inno Setup 6`) to the Path environment variable.
+
+To add Inno Setup to the Path environment variable, follow these steps:
+* Either type "environment variables" in the Start search box, or go to Settings -> System -> Advanced system settings.
+* On the bottom of the dialog box click on `Environment Variables...`.
+* Highlight the variable called `Path` in the top half of the dialogue window and click on `Edit`.
+* Click `New` and add the path where Inno Setup is installed, e.g. `C:\Program Files (x86)\Inno Setup 6`.
+* Click `OK` and close all the dialogue windows.
+* Start a new terminal window (it won't work in one opened before you modified the path) and try running the `iscc` command again - it should work now, meaning you're ready to build the app on windows.
 
 #### 2.3 Building the app and installer
 
 Building is super simple, just go to the folder containing the `manage.py`, make sure you're running in pipenv shell (if you're not sure, just run `pipenv shell` again), then run `py manage.py build`. The folder `./build` will contain all the build artifacts and direct outputs from PyInstaller, and the `./dist` folder will contain a ZIP file and (on Windows) an executable (.exe) file which can be used to install the app.
+
+#### 2.4 Known issues with building
+
+* Building with PyInstaller fails for Python version 3.10.0 ([bug tracker](https://github.com/pyinstaller/pyinstaller/issues/6301)). If your Python version is 3.10.0, then update to 3.10.1 or later (but not 3.11.x!).
 
 ### 3 The project management utility: manage.py
 
