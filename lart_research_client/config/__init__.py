@@ -278,7 +278,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         "App start screen": "",
         "AToL-C": "atolc",
         "Consent Form": "consent",
-        "LSBQ-RML": "lsbqrml",
+        "LSBQe": "lsbqrml",
         "Memory Game": "memorygame",
         "MGT": "mgt",
     }
@@ -300,7 +300,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
     lsbqrml: str = field(
         default="atolc",
         metadata={
-            "doc_label": "Task following the LSBQ-RML",
+            "doc_label": "Task following the LSBQe",
             "doc_values": _sequence_options,
         }
     )
