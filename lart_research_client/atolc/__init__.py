@@ -3,6 +3,7 @@ import eel
 import json
 import random
 import sys
+import uuid
 from datetime import datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Optional, Iterable, final
@@ -19,8 +20,8 @@ if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
 
 presentime = datetime.now()
-dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
-dt_filename = presentime.strftime("%d_%m_%Y__%H-%M-%S")
+dt_string = presentime.strftime("%Y-%m-%d")
+dt_filename = str(uuid.uuid1())
 
 ##This works in that it gets the versions from json, but can't get it to work with 
 ##the <options> dropdown as I can't work out where the ID would come from...
@@ -34,16 +35,18 @@ def atol_getversions():
     for filename in glob.glob(os.path.join(vers_path, '*.json')):
         with open(os.path.join(os.getcwd(), filename), 'r') as f:
             vers_data = json.load(f)
-            this_version = vers_data["meta"]["versionName"]
-            versions.append(this_version)
-            print(this_version)
+            this_version_id = vers_data["meta"]["versionName"]
+            # this_version_no = vers_data["meta"]["versionNumber"]
+            versions.append(this_version_id)
+            print(this_version_id)
     return versions
 
 
 def arrange_data(data):
     ordered_data = OrderedDict(data)
-    ordered_data.update({"Date_&_Time": dt_string})
-    ordered_data.move_to_end("Date_&_Time", last=False)
+    ordered_data.update({"date": dt_string})
+    ordered_data.move_to_end("date", last=False)
+    ordered_data.update({"app_version": config.appversion})
     finalDict = {
         "meta": ordered_data}
     return finalDict
@@ -57,10 +60,11 @@ def get_id(dict):
 def init_atol(myData: dict[str, str]) -> None:
     """Retrieve initial info from index.html and print to file + to console."""
     global version
-    version = myData["selectSurveyVersion"]
+    version_id = myData["selectSurveyVersion"]
     file_name = get_id(myData) + ".json"
     data = arrange_data(myData)
-    data_file = data_path / file_name
+    data_file = data_path / myData["selectSurveyVersion"] / file_name
+    data_file.parent.mkdir(parents=True, exist_ok=True)
     
     try:
         with open(data_file, "a") as fp:
