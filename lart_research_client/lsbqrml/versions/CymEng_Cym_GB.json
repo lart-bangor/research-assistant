@@ -2,6 +2,7 @@
     "meta": {
         "versionId": "CymEng_Cym_GB",
         "versionName": "Cymraeg - Saesneg (Y Deyrnas Unedig)", 
+        "versionNumber": "0.3.4",
         "author": "Florian Breit <f.breit@bangor.ac.uk>, Ianto Gruffydd <ianto.gruffydd@bangor.ac.uk>",
         "date": "2022-06-30"
     },

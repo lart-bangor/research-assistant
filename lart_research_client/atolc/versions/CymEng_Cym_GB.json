@@ -2,6 +2,7 @@
     "meta": {
         "versionId": "CymEng_Cym_GB",
         "versionName": "Cymraeg - Sesnaeg (UK)",
+        "versionNumber": "0.3.4",
         "author": "Ianto Gryffudd <ianto.gryffudd@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2023-01-30"
     },
