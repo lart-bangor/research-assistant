@@ -23,6 +23,7 @@ ISO_YEAR_MONTH: PatternT = ISO_YEAR + r"\-" + ISO_MONTH          # YYYY-MM
 
 ISO_YEAR_MONTH_DAY: PatternT = ISO_YEAR_MONTH + r"\-" + ISO_DAY  # YYYY-MM-DD
 
+VERSION_NUMBER: PatternT = r"(?:\d+.)*\d+\w?\w?\d*" # 3, 0.4, 1.0a, 24.2.4rc45 etc.
 
 MONTH_NAME: EnumT = {
     "January": 1,

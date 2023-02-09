@@ -44,7 +44,7 @@ Examples:
 PatternT = str
 r"""Type for regular expression patterns for string matching.
 
-Note: In use a PatternT string will always be annotated with a preceding r"\A"
+Note: In use, a PatternT string will always be annotated with a preceding r"\A"
       and a succeeding r"\Z" to match the start and end of a string exhaustively.
 
 Examples:

@@ -326,6 +326,7 @@ class Config(DataclassDictMixin, DataclassDocMixin):
 
     appname: str = field(default=_appname, init=False)
     appauthor: str = field(default=_appauthor, init=False)
+    appversion: str = field(default="0.3.4", init=False)
     logging: Logging = field(
         default=Logging(),
         metadata={

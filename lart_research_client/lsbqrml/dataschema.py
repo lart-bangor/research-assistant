@@ -1,4 +1,4 @@
-"""Data schema implementing the LSBQ-RML questionnaire."""
+"""Data schema implementing the LSBQe questionnaire."""
 import logging
 import uuid
 from typing import Any, Optional, TYPE_CHECKING
@@ -10,18 +10,28 @@ logger = logging.getLogger(__name__)
 
 
 class Response(DataSchema):
-    """Class for representing the data of an LSBQ-RML questionnaire response."""
+    """Class for representing the data of an LSBQe questionnaire response."""
     __schema = {
         "id": {
             "type_": str,
-            "typedesc": "LSBQ-RML Response ID",
+            "typedesc": "LSBQe Response ID",
             "constraint": patterns.UUID_HEX,
         },
         "meta": {  # Meta data
-            "version": {
+            "version_id": {
                 "type_": str,
-                "typedesc": "LSBQ-RML version identifier",
+                "typedesc": "LSBQe version identifier",
                 "constraint": patterns.VERSION_LABEL,
+            },
+            "version_no": {
+                "type_": str,
+                "typedesc": "LSBQe version number",
+                "constraint": patterns.VERSION_NUMBER,
+            },
+            "app_version": {
+                "type_": str,
+                "typedesc": "Version of app that last modified the Response",
+                "constraint": patterns.VERSION_NUMBER,
             },
             "researcher_id": {
                 "type_": str,
@@ -477,7 +487,7 @@ class Response(DataSchema):
     }
 
     def __init__(self, id_: Optional[str] = None):
-        """Instantiates a new LSBQ-RML response object."""
+        """Instantiates a new LSBQe response object."""
         super().__init__(forcecast=True, ignorecase=True)
         if id_ is None:
             id_ = str(uuid.uuid1())
@@ -486,49 +496,49 @@ class Response(DataSchema):
     if TYPE_CHECKING:  # noqa: C901
 
         def setid(self, id: str) -> None:
-            """Set the id of the LSBQ-RML instance."""
+            """Set the id of the LSBQe instance."""
             ...
 
         def getid(self) -> str:
-            """Get the id of the LSBQ-RML instance."""
+            """Get the id of the LSBQe instance."""
             ...
 
         def setmeta(self, *args: Any) -> None:
-            """Set the meta data of the LSBQ-RML instance."""
+            """Set the meta data of the LSBQe instance."""
             ...
 
         def getmeta(self) -> dict[str, Any]:
-            """Get the meta data of the LSBQ-RML instance."""
+            """Get the meta data of the LSBQe instance."""
             ...
 
         def setlsb(self, *args: Any) -> None:
-            """Set the landuage and social background data of the LSBQ-RML instance."""
+            """Set the landuage and social background data of the LSBQe instance."""
             ...
 
         def getlsb(self) -> dict[str, Any]:
-            """Get the landuage and social background data of the LSBQ-RML instance."""
+            """Get the landuage and social background data of the LSBQe instance."""
             ...
 
         def setldb(self, *args: Any) -> None:
-            """Set the landuage and dialect background data of the LSBQ-RML instance."""
+            """Set the landuage and dialect background data of the LSBQe instance."""
             ...
 
         def getldb(self) -> dict[str, Any]:
-            """Get the landuage and dialect background data of the LSBQ-RML instance."""
+            """Get the landuage and dialect background data of the LSBQe instance."""
             ...
 
         def setclub(self, *args: Any) -> None:
-            """Set the community language use behaviour data of the LSBQ-RML instance."""
+            """Set the community language use behaviour data of the LSBQe instance."""
             ...
 
         def getclub(self) -> dict[str, Any]:
-            """Get the community language use behaviour data of the LSBQ-RML instance."""
+            """Get the community language use behaviour data of the LSBQe instance."""
             ...
 
         def setnotes(self, *args: Any) -> None:
-            """Set the notes data of the LSBQ-RML instance."""
+            """Set the notes data of the LSBQe instance."""
             ...
 
         def getnotes(self) -> dict[str, Any]:
-            """Get the notes data of the LSBQ-RML instance."""
+            """Get the notes data of the LSBQe instance."""
             ...

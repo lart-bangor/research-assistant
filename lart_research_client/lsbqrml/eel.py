@@ -1,4 +1,4 @@
-"""Exposes the LSBQ-RML to Python Eel."""
+"""Exposes the LSBQe to Python Eel."""
 import logging
 import datetime
 import eel
@@ -30,7 +30,7 @@ def _getinstance(instid: str) -> Response:
     if not isinstance(instid, str):  # type: ignore
         instid = str(instid)
     if instid not in instances:
-        raise AttributeError(f"No current response instance with instid `{instid}`.")
+        raise AttributeError(f"No current Response instance with instid `{instid}`.")
     return instances[instid]
 
 
@@ -69,12 +69,12 @@ def _expose(func: F) -> F:
 
 @_expose
 def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
-    """Load specified sections of an LSBQ-RML version implementation."""
-    logger.info(f"Retrieving version data for LSBQ-RML instance {instid}..")
+    """Load specified sections of an LSBQe version implementation."""
+    logger.info(f"Retrieving version data for LSBQe instance {instid}..")
     instance = _getinstance(instid)
-    version_id = instance.getmeta()["version"]
+    version_id = instance.getmeta()["version_id"]
     if version_id not in versions:
-        logger.error(f"Requested LSBQ-RML version '{version_id}' not found.")
+        logger.error(f"Requested LSBQe version '{version_id}' not found.")
         return {}
     buf: dict[str, dict[str, Any]] = {}
     for section in sections:
@@ -85,15 +85,20 @@ def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
 
 @_expose
 def init(data: dict[str, Any]) -> str:
-    """Initialises a new LSBQ-RML Response."""
-    logger.info("Creating new LSBQ-RML instance..")
+    """Initialises a new LSBQe Response."""
+    logger.info("Creating new LSBQe instance..")
     logger.debug(f"... received data: {data!r}")
     instance = Response()
     instid = instance.getid()
     logger.debug(f"... 'id' of instance is {instid}")
+    version_id = data["selectSurveyVersion"]
+    if version_id not in versions:
+        logger.error(f"Requested LSBQe version '{version_id}' not found.")
     instance.setmeta(
         {
-            "version": data["selectSurveyVersion"],
+            "version_id": version_id,
+            "version_no": versions[version_id]["meta"]["versionNumber"],
+            "app_version": config.appversion,
             "researcher_id": data["researcherId"],
             "participant_id": data["participantId"],
             "research_location": data["researchLocation"],
@@ -110,7 +115,7 @@ def init(data: dict[str, Any]) -> str:
 @_expose
 def setlsb(instid: str, data: dict[str, str]) -> str:  # noqa: C901
     """Adds Language and Social Background Data to a Response."""
-    logger.info(f"Setting LSB data on LSBQ-RML instance {instid}..")
+    logger.info(f"Setting LSB data on LSBQe instance {instid}..")
     logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
     processed: dict[str, Union[str, list[str]]] = {}
@@ -157,7 +162,7 @@ def setlsb(instid: str, data: dict[str, str]) -> str:  # noqa: C901
 @_expose
 def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
     """Adds Language and Dialect Background Data to a Response."""
-    logger.info(f"Setting LDB data on LSBQ-RML instance {instid}..")
+    logger.info(f"Setting LDB data on LSBQe instance {instid}..")
     logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
     processed: dict[str, Union[str, int, list[Union[str, int]]]] = {
@@ -242,7 +247,7 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
     processed.update(data)
     logger.debug(f"... preprocessed data: {processed!r}")
     instance.setldb(processed)
-    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"LSBQe instance id = {instid}")
     logger.debug(f"... set 'ldb' data to {instance.getldb()}")
     booteel.setlocation(f"club.html?instance={instance.getid()}")
     return instid
@@ -251,7 +256,7 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
 @_expose
 def setclub(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
     """Adds Community Language Use Behaviour Data to a Response."""
-    logger.info(f"Setting CLUB data on LSBQ-RML instance {instid}..")
+    logger.info(f"Setting CLUB data on LSBQe instance {instid}..")
     logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
 
@@ -289,7 +294,7 @@ def setclub(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
     logger.debug(f"... preprocessed data: {processed!r}")
     instance.setclub(processed)
 
-    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"LSBQe instance id = {instid}")
     logger.debug(f"... set 'club' data to {instance.getclub()}")
     booteel.setlocation(f"end.html?instance={instance.getid()}")
     return instid
@@ -298,17 +303,17 @@ def setclub(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
 @_expose
 def setnotes(instid: str, data: dict[str, Any]) -> str:
     """Adds Participant and Experimenter Comments Data to a Response."""
-    logger.info(f"Setting Notes data on LSBQ-RML instance {instid}..")
+    logger.info(f"Setting Notes data on LSBQe instance {instid}..")
     logger.debug(f"... received data: {data!r}")
     instance = _getinstance(instid)
     instance.setnotes({"participant_note": data["participantNote"]})
-    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"LSBQe instance id = {instid}")
     logger.debug(f"... set 'notes' data to {instance.getnotes()}")
     store(instid)
     if config.sequences.lsbqrml:
         meta = instance.getmeta()
         query = booteel.buildquery({
-            "selectSurveyVersion": meta["version"],
+            "selectSurveyVersion": meta["version_id"],
             "researcherId": meta["researcher_id"],
             "researchLocation": meta["research_location"],
             "participantId": meta["participant_id"],
@@ -335,7 +340,7 @@ def iscomplete(instid: str) -> bool:
     """Checks whether a Response is complete."""
     instance = _getinstance(instid)
     completeness = instance.iscomplete()
-    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"LSBQe instance id = {instid}")
     logger.debug(f"... checking complete: {completeness}")
     return completeness
 
@@ -345,7 +350,7 @@ def getmissing(instid: str) -> list[str]:
     """Gets a list of missing fields."""
     instance = _getinstance(instid)
     missing = instance.missing()
-    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"LSBQe instance id = {instid}")
     logger.debug(f"... checking missing fields: {missing}")
     return missing
 
@@ -356,7 +361,7 @@ def discard(instid: str) -> bool:
     if instid not in instances:
         raise AttributeError(f"No current response instance with instid `{instid}`.")
     del instances[instid]
-    logger.debug(f"LSBQ-RML instance id = {instid}")
+    logger.debug(f"LSBQe instance id = {instid}")
     logger.debug(f"... discarded instance with id {instid}")
     return True
 
@@ -364,12 +369,12 @@ def discard(instid: str) -> bool:
 @_expose
 def store(instid: str) -> bool:
     """Submits a (complete) Response for long-term storage."""
-    logger.info(f"Storing data of LSBQ-RML instance {instid}..")
+    logger.info(f"Storing data of LSBQe instance {instid}..")
     instance = _getinstance(instid)
     d = instance.data()
     s = json.dumps(d, indent=4)
     logger.info(f"... JSON serialization: {s}")
-    path: Path = config.paths.data / "LSBQ-RML" / d["meta"]["version"]
+    path: Path = config.paths.data / "LSBQe" / d["meta"]["version_id"]
     if not path.exists():
         path.mkdir(parents=True, exist_ok=True)
     participant_id = d["meta"]["participant_id"]

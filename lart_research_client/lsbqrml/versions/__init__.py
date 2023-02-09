@@ -1,4 +1,4 @@
-"""Version implementations and translations for the LSBQ-RML."""
+"""Version implementations and translations for the LSBQe."""
 import logging
 import json
 from importlib import resources
@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 def _get_versions() -> dict[str, dict[str, Any]]:
-    """Loads all available LSBQ-RML versions into memory."""
+    """Loads all available LSBQe versions into memory."""
     versions: dict[str, dict[str, Any]] = {}
     for item in resources.contents(__name__):
         if resources.is_resource(__name__, item) and item[-5:] == ".json":
