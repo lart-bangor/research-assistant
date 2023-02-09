@@ -12,7 +12,7 @@ from ..datavalidator.schemas import DataSchema
 from ..datavalidator.types import PolarT
 from . import patterns
 from collections import OrderedDict
-import os
+import os, glob
 
 data_path: Path = config.paths.data / "AToL-C"
 if not data_path.exists():
@@ -21,6 +21,24 @@ if not data_path.exists():
 presentime = datetime.now()
 dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
 dt_filename = presentime.strftime("%d_%m_%Y__%H-%M-%S")
+
+##This works in that it gets the versions from json, but can't get it to work with 
+##the <options> dropdown as I can't work out where the ID would come from...
+##so currently this fucntion is not called anywhere
+@eel.expose
+def atol_getversions():
+    absolute_path = os.path.abspath(__file__)
+    vers_path = os.path.dirname(absolute_path) + "\\versions"
+    versions = []
+
+    for filename in glob.glob(os.path.join(vers_path, '*.json')):
+        with open(os.path.join(os.getcwd(), filename), 'r') as f:
+            vers_data = json.load(f)
+            this_version = vers_data["meta"]["versionName"]
+            versions.append(this_version)
+            print(this_version)
+    return versions
+
 
 def arrange_data(data):
     ordered_data = OrderedDict(data)
@@ -103,12 +121,12 @@ def fetch_location(source_file: str, version: str) -> Optional[str]:
     if 'Maj' in source_file:
         return "atolRatingsRml.html"
     elif 'Rml' in source_file:
-        length = len(version)
-        locationLabel = length - 2
-        suffix = version[locationLabel:]
-        return "atolEnd_" + suffix + ".html"
+        #length = len(version)
+        #locationLabel = length - 2
+        #suffix = version[locationLabel:]
+        return "atolEnd.html"
     else:
-        print("ERROR: no such file")
+        print("fetch_location() in __init__.py says: ERROR: no such file")
 
 
 def randomize(dictionary: dict[str, Any]) -> dict[str, Any]:
@@ -164,15 +182,15 @@ def atol_c_get_items(version: str) -> Optional[dict[str, tuple[str, str]]]:
     """Get label pairs for each AToL item depending on language selection."""
     directory = os.path.abspath(os.getcwd()) + "\\lart_research_client\\atolc"
     version_file = directory + "\\versions\\" + version + ".json"
-        
-    with open(version_file) as f:
+    atol_items = []
+    with open(version_file, encoding='utf-8') as f:
         atol_stim = json.load(f)
-        
-        #print("Adjectives:")
-        #print(atol_stim)
-        #print(atol_stim['adjectives'])
         stim_list = atol_stim['adjectives']
-        return randomize(stim_list)
+        intface = atol_stim['intface_info']
+        rand_list = randomize(stim_list)
+        atol_items.append(intface)
+        atol_items.append(rand_list)
+        return atol_items
 
 
 class Response(DataSchema):
