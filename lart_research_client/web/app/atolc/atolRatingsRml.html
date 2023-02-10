@@ -6,9 +6,11 @@
         const atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
         const chosenVersion = sessionStorage.getItem("atolVersion");
         const participantId = sessionStorage.getItem("atolPartId");
-        console.log("VERSION ");
+        const versionNumber = sessionStorage.getItem("versionNumber");
+        console.log("User-selected version: ");
         console.log(chosenVersion);
-
+        console.log("Version number in atolRatingsRml.html " + versionNumber);
+        
         populateAtolItems = function (atolAllItems) {
             console.log("FULL AToL items list for RML: ")
             console.log(atolAllItems);
@@ -132,7 +134,7 @@
     lart.forms.registerPipeline(
         'surveyAtolForm_rml',
         async function(data) {
-            let success = await eel.grab_atol_ratings(data, 'atolRatingsRml', chosenVersion, participantId)();
+            let success = await eel.grab_atol_ratings(data, 'atolRatingsRml', chosenVersion, participantId, versionNumber)();
             console.log(success);
         }
     );

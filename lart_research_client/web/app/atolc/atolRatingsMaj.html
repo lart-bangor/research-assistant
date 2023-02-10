@@ -6,12 +6,16 @@
         const atolInstanceId = parseInt(lart.forms.searchParams.get('instance'));
         const chosenVersion = sessionStorage.getItem("atolVersion");
         const participantId = sessionStorage.getItem("atolPartId");
+        var versionNumb;
         
         populateAtolItems = function (atolAllItems) {
             console.log("FULL AToL items list for MAJ: ")
             console.log(atolAllItems);
             const atolItems = atolAllItems[2];
             const intface = atolAllItems[1];
+            const meta = atolAllItems[0];
+            var versionNumb = meta['versionNumber'];
+            sessionStorage.setItem("versionNumber", versionNumb);
             console.log("Interface items for MAJ: ");
             console.log(intface);
             sessionStorage.setItem("thankyou", intface["thank_you"]);
@@ -49,8 +53,8 @@
                 element.insertAdjacentHTML('beforeend', code);
             }
         }
-
         eel.atol_c_get_items(chosenVersion)(populateAtolItems);
+                
         
     </script>
 {% endblock %}
@@ -125,7 +129,7 @@
     lart.forms.registerPipeline(
         'surveyAtolForm_majLang',
         async function(data) {
-            let success = await eel.grab_atol_ratings(data, 'atolRatingsMaj', chosenVersion, participantId)();
+            let success = await eel.grab_atol_ratings(data, 'atolRatingsMaj', chosenVersion, participantId, "null")();
             console.log("tail script: " + success);
         }
     );
