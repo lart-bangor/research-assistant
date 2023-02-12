@@ -1,5 +1,6 @@
 """Informed consent from user."""
 import eel
+import uuid
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -15,10 +16,12 @@ if not data_path.exists():
 def record_consent(data: dict[Any, Any]):
     """Retrieve consent from partInformed.html and print to file + to console."""
     presentime = datetime.now()
-    dt_string = presentime.strftime("%d/%m/%Y %H:%M:%S")
-    dt_filename = presentime.strftime("%d_%m_%Y__%H-%M-%S")
+    dt_string = presentime.strftime("%Y-%m-%dT%H:%M:%S")
+    dt_filename = str(uuid.uuid1())
     file_name = data["partId"] + "_" + dt_filename + ".txt"
-    data_file = data_path / file_name
+    data_file: Path = data_path / data["surveyVersion"] / file_name
+    if not data_file.parent.exists():
+        data_file.parent.mkdir(parents=True, exist_ok=True)
 
     try:
         with open(data_file, "a") as file:
