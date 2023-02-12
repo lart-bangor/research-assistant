@@ -18,6 +18,7 @@ import os, glob
 
 data_path: Path = config.paths.data / "AToL-C"
 if not data_path.exists():
+    print(f"WARNING: destination folder in {data_path} did not exist/n [has now been automatically built]")
     data_path.mkdir(parents=True, exist_ok=True)
 
 presentime = datetime.now()
@@ -29,7 +30,7 @@ def arrange_data(data):
     """Orders data so that meta info is consistent with other tasks in the app."""
     ordered_data = OrderedDict()
     ordered_data['version_id'] = data['selectSurveyVersion']
-    ordered_data['version_no'] = "????"
+    ordered_data['version_no'] = False
     ordered_data['app_version'] = config.appversion
     ordered_data['researcher_id'] = data['researcherId']
     ordered_data['research_location'] = data['researchLocation']
@@ -83,7 +84,7 @@ def arrange_order(dict, source):
     presentation_order = key_list(dict) #record order in which data was presented
     print("presentable type is")
     print(type(presentation_order))
-    presentable= alphabetise(dict)  #now reset data in alphabetical order ready for writing to file
+    presentable = alphabetise(dict)  #now reset data in alphabetical order ready for writing to file
     presOrderLabel = "presentation order_" + source
     ratingsLabel = "Ratings_" + source
     finalDict = {
@@ -94,7 +95,7 @@ def arrange_order(dict, source):
              
 
 @eel.expose
-def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, partId: str):
+def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, partId: str, versN: str):
     """Does the same as init_atol, but for ratings"""
     location = fetch_location(source, version_id)
     file_name = partId + "_" + dt_filename + ".json"
@@ -103,6 +104,10 @@ def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, part
     
     with open(data_file, 'r') as fin:
         current_data = json.load(fin)
+        if versN != "null":     #version number comes from atolRatingsRml.html, while atolRatingsMaj.html rteturns null, so ignore that
+            current_data["meta"]["version_no"] = versN
+            print("Version number: ")
+            print(current_data["meta"]["version_no"])
         current_data.update(data)
                     
     try:
