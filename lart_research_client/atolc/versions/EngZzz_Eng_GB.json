@@ -1,7 +1,7 @@
 {
     "meta": {
-        "versionId": "EngCym_Eng_GB",
-        "versionName": "English – Welsh (United Kingdom)",
+        "versionId": "EngZzz_Eng_GB",
+        "versionName": "English – Custom (United Kingdom)",
         "versionNumber": "0.3.4",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2023-01-16"
@@ -9,7 +9,7 @@
 "intface_info": {
     "title": "Language Questionnaire",
      "language": "English",
-     "rml": "Welsh",
+     "rml": "[ENTER LANGUAGE NAME HERE]",
      "instruction": "Please move the slider to record your choice.",
      "language_header": "The English language is...",
      "rml_header": "The [ENTER LANGUAGE NAME HERE] language is...",

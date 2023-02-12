@@ -6,7 +6,8 @@ import sys
 import uuid
 from datetime import datetime
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Optional, Iterable, final
+from typing import TYPE_CHECKING, Any, Optional, Iterable
+from .versions import versions
 from .. import booteel
 from ..config import config
 from ..datavalidator.schemas import DataSchema
@@ -23,8 +24,9 @@ presentime = datetime.now()
 dt_string = presentime.strftime("%Y-%m-%d")
 dt_filename = str(uuid.uuid1())
 
+
 def arrange_data(data):
-    """orders data so that meta info is consistent with other tasks in the app"""
+    """Orders data so that meta info is consistent with other tasks in the app."""
     ordered_data = OrderedDict()
     ordered_data['version_id'] = data['selectSurveyVersion']
     ordered_data['version_no'] = "????"
@@ -36,15 +38,23 @@ def arrange_data(data):
     ordered_data['date'] = dt_string
     print("ordered data is: ")
     print(ordered_data)
-    
+
     finalDict = {
         "meta": ordered_data}
     return finalDict
-    
+
 
 def get_id(dict):
     id = dict["participantId"] + "_" + dt_filename
     return id
+
+@eel.expose
+def _atol_getversions() -> dict[str, str]:
+    """Retrieves the available versions of the AToL."""
+    atol_versions: dict[str, str] = {}
+    for identifier in versions.keys():
+        atol_versions[identifier] = versions[identifier]["meta"]["versionName"]
+    return atol_versions
 
 @eel.expose
 def init_atol(myData: dict[str, str]) -> None:
