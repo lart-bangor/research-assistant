@@ -52,6 +52,12 @@ def get_id(dict):
 @eel.expose
 def _atol_getversions() -> dict[str, str]:
     """Retrieves the available versions of the AToL."""
+    # BEGIN/FIXME: This is a workaround to ensure every participant gets a new UUID
+    # It should really be solved by not passing dt_filename to the frontend
+    global dt_filename
+    dt_filename = str(uuid.uuid1())
+    # END/FIXME
+
     atol_versions: dict[str, str] = {}
     for identifier in versions.keys():
         atol_versions[identifier] = versions[identifier]["meta"]["versionName"]
