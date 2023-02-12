@@ -325,6 +325,12 @@
             // Make input required dependent on otherPlacesName presence
             lart.forms.conditionalRequire(`otherPlacesName-${placeNumber}`, `otherPlacesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
             lart.forms.conditionalRequire(`otherPlacesName-${placeNumber}`, `otherPlacesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            // Make input required dependent on otherPlacesFrom presence
+            lart.forms.conditionalRequire(`otherPlacesFrom-${placeNumber}`, `otherPlacesName-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`otherPlacesFrom-${placeNumber}`, `otherPlacesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            // Make input required dependent on otherPlacesTo presence
+            lart.forms.conditionalRequire(`otherPlacesTo-${placeNumber}`, `otherPlacesName-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`otherPlacesTo-${placeNumber}`, `otherPlacesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
             // Make otherPlaces lines deletable
             const deleteButton = document.getElementById(`otherPlacesDelete-${placeNumber}`);
             if ( placeNumber ) {
