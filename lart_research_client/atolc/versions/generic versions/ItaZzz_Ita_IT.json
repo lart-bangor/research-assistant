@@ -1,0 +1,39 @@
+{
+    "meta": {
+        "versionId": "ItaZzz_Ita_IT",
+        "versionName": "Italian - custom (Italy)",
+        "versionNumber": "0.3.4",
+        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2023-01-30"
+    },
+    "intface_info": {
+        "title": "AToL - RML",
+        "language": "Italiano",
+        "rml": "[ENTER language name HERE]",
+        "instruction": "Si prega di spostare il cursore per registrare la propria scelta.",
+        "language_header": "A mio avviso, l'italiano è...",
+        "rml_header": "A mio avviso, il [ENTER language name HERE] è...",
+        "atol_header": "Questionario sulle varietà linguistiche",
+        "btn_text": "Avanti",
+        "thank_you": "Grazie per aver completato il questionario!",
+        "next_task": "Si prega di cliccare [continua] appena possibile"
+},
+
+    "adjectives": {
+        "logic":        ["logico",         "illogico"],
+        "elegance":     ["elegante",       "non elegante"],
+        "fluency":      ["frammentato",     "scorrevole"],
+        "ambiguity":    ["chiaro",          "ambiguo"],
+        "appeal":       ["attraente",       "ripugnante"],
+        "structure":    ["non strutturato",  "strutturato"],
+        "precision":    ["preciso",         "vago"],
+        "harshness":    ["duro",           "morbido"],
+        "flow":         ["fluido",         "brusco"],
+        "beauty":       ["bello",           "brutto"],
+        "sistem":       ["sistematico",      "non sistematico"],
+        "pleasure":     ["piacevole",        "spiacevole"],
+        "smoothness":   ["liscio",          "ruvido"],
+        "grace":        ["goffo",          "aggraziato"],
+        "angularity":   ["spigoloso",         "arrotondato"]
+    }
+    }
