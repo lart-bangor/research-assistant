@@ -9,10 +9,10 @@
 "intface_info": {
     "title": "Language Questionnaire",
      "language": "English",
-     "rml": "[ENTER LANGUAGE NAME HERE]",
+     "rml": "[ENTER language name HERE]",
      "instruction": "Please move the slider to record your choice.",
      "language_header": "The English language is...",
-     "rml_header": "The [ENTER LANGUAGE NAME HERE] language is...",
+     "rml_header": "The [ENTER language name HERE] language is...",
      "atol_header": "AToL Questionnaire (RML)",
      "btn_text": "Next",
      "thank_you": "Thank you for completing the questionnaire!",
