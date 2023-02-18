@@ -60,6 +60,30 @@
         ],
         "complete": [
             "Gorffennwyd chwarae’r sain."
+        ],
+        "playbackError": [
+            "Audio could not be played. Click to try again.",
+            "Nid oedd modd chwarae sain. Cliciwch i geisio eto."
+        ],
+        "abortedError": [
+            "Error: Playback aborted.",
+            "Gwall: Stopiwyd y chwarae."
+        ],
+        "networkError": [
+            "Error: Audio couldn't be loaded due to a network error.",
+            "Gwall: Ni fu modd llwytho sain oherwydd gwall rhwydwaith."
+        ],
+        "decodeError": [
+            "Error: Audio could not be decoded.",
+            "Gwall: Nid oedd modd dadgodio sain."
+        ],
+        "formatError": [
+            "Error: Audio file not found or format not supported.",
+            "Gwall: Ni chanfuwyd y ffeil sain neu ni chefnogir y fformat."
+        ],
+        "unknownError": [
+            "Error: An unknown error occurred.",
+            "Gwall: Digwyddodd gwall anhysbys."
         ]
     },
     "rating": {

@@ -29,6 +29,24 @@
         ],
         "complete": [
             "Audio playback complete."
+        ],
+        "playbackError": [
+            "Audio could not be played. Click to try again."
+        ],
+        "abortedError": [
+            "Error: Playback aborted."
+        ],
+        "networkError": [
+            "Error: Audio couldn't be loaded due to a network error."
+        ],
+        "decodeError": [
+            "Error: Audio could not be decoded."
+        ],
+        "formatError": [
+            "Error: Audio file not found or format not supported."
+        ],
+        "unknownError": [
+            "Error: An unknown error occurred."
         ]
     }
 }

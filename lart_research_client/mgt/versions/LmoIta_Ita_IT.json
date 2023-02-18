@@ -60,6 +60,30 @@
         ],
         "complete": [
             "Riproduzione audio completata."
+        ],
+        "playbackError": [
+            "Audio could not be played. Click to try again.",
+            "Impossibile riprodurre l'audio. Fai clic per riprovare."
+        ],
+        "abortedError": [
+            "Error: Playback aborted.",
+            "Errore: riproduzione interrotta."
+        ],
+        "networkError": [
+            "Error: Audio couldn't be loaded due to a network error.",
+            "Errore: impossibile caricare l'audio a causa di un errore di rete."
+        ],
+        "decodeError": [
+            "Error: Audio could not be decoded.",
+            "Errore: non è stato possibile decodificare l'audio."
+        ],
+        "formatError": [
+            "Error: Audio file not found or format not supported.",
+            "Errore: file audio non trovato o formato non supportato."
+        ],
+        "unknownError": [
+            "Error: An unknown error occurred.",
+            "Errore: si è verificato un errore sconosciuto."
         ]
     },
     "rating": {

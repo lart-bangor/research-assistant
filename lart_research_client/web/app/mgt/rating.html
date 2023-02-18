@@ -166,7 +166,7 @@
                             .catch(
                                 error => {
                                     booteel.logger.error("Failed to start audio:", error);
-                                    audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.error">Audio could not be played. Click to try again.</span>';
+                                    audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.playbackError">Audio could not be played. Click to try again.</span>';
                                     audioWrapper.addEventListener(
                                         'click',
                                         function () {
@@ -181,6 +181,34 @@
                 )
             }
             audioElement.addEventListener('canplaythrough', triggerPlayback);
+
+            // Catch errors during audio load/playback
+            function reportAudioErrors(e) {
+                const error = e.target.error;
+                let errorMessage = 'Error: An unknown error occurred.';
+                let errorTranslation = 'unknownError';
+                switch(error.code) {
+                    case MediaError.MEDIA_ERR_ABORTED:
+                        errorMessage = 'Error: Playback aborted.';
+                        errorTranslation = 'abortedError';
+                        break;
+                    case MediaError.MEDIA_ERR_NETWORK:
+                        errorMessage = "Error: Audio couldn't be loaded due to a network error.";
+                        errorTranslation = 'networkError';
+                        break;
+                    case MediaError.MEDIA_ERR_DECODE:
+                        errorMessage = 'Error: Audio could not be decoded.';
+                        errorTranslation = 'decodeError';
+                        break;
+                    case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                        errorMessage = 'Error: Audio file not found or format not supported.';
+                        errorTranslation = 'formatError';
+                        break;
+                }
+                audioLabel.innerHTML = `<span data-mgt-tr="audioMsg.${errorTranslation}">${errorMessage}</span>`;
+                booteel.logger.error("Error loading audio:", errorMessage, error.code, error.message);
+            }
+            audioElement.addEventListener('error', reportAudioErrors);
 
             // Callback function to enable form submission at set point(s) during playback
             function enableFormSubmission() {
