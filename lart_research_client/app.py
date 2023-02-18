@@ -5,7 +5,7 @@ developed by the Language Attitudes Research Team at Bangor University.
 """
 import argparse
 import eel
-import gevent
+import gevent                                                           # type: ignore
 import logging
 import multiprocessing
 import sys
@@ -137,16 +137,16 @@ def main():                                                                     
             sys.exit(1)
 
     # Run app using eel
-    eel.init(                                                                   # type: ignore
+    eel.init(
         str(Path(__file__).parent / "web"),
         allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png", ".mp3"]
     )
-    eel.start(  # type: ignore
+    eel.start(
         "app/index.html",
         jinja_templates="app",
         close_callback=close,
         block=False
-    )  # type: ignore
+    )
     logger.info(
         f"Now running on "
         f"http://{eel._start_args['host']}:{eel._start_args['port']}"           # type: ignore
