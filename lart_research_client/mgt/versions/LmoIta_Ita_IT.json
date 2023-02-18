@@ -119,7 +119,7 @@
         ],
         "errorMessage": [
             "It seems you’ve missed some items. Click <em>Continue</em> to have another look and make sure you’ve moved each slider at least once. The one’s you’ve missed should show up in red. When you’ve moved all the red sliders, click <em>Next</em> again.",
-            "Sembra che tu abbia perso alcuni elementi. Fai clic su <em>Continua</em> per dare un'altra occhiata e assicurati di aver spostato ogni dispositivo di scorrimento almeno una volta. Quello che ti sei perso dovrebbe apparire in rosso. Dopo aver spostato tutti i cursori rossi, fai di nuovo clic su <em>Avanti</em>."
+            "Sembra che tu abbia perso alcuni elementi. Fai clic su <em>Continua</em> per dare un'altra occhiata e assicurati di aver spostato ogni cursore almeno una volta. Quelli che mancano appariranno in rosso. Dopo aver spostato tutti i cursori rossi, fai di nuovo clic su <em>Avanti</em>."
         ],
         "continue": [
             "Continue",
