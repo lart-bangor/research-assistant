@@ -21,7 +21,7 @@ docs/build/
 docs/source/generated/
 
 # Pipenv
-Pipfile.lock
+# Pipfile.lock
 
 # Visual Studio Code
 .vscode/*
