@@ -1,6 +1,6 @@
 # L'ART Research Client App
 
-An app that facilitates collection, storage and transfer of data for research on bilingualism, with a particular focus on bilinguals who speak a majority language and a regional / minority / minoritized language. Developed by the Language Attitudes Research Team at Bangor University.
+An app that facilitates collection, storage and transfer of data for research on bilingualism, with a particular focus on bilinguals who speak a majority language and a regional / minority / minoritized language. Developed by the [Language Attitudes Research Team](https://www.bangor.ac.uk/arts-humanities-and-business/lart) at [Bangor University](https://www.bangor.ac.uk/research).
 
 ## Contributing
 
