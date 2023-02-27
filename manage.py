@@ -97,7 +97,7 @@ def main():
         metavar="ENV",
         nargs="?",
         default="all",
-        choices=("all", "build", "dist", "src"),
+        choices=("all", "build", "dist", "docs", "src"),
         help=(
             "The part of the development environment to be cleaned.\n"
             "One of {all,build,dist,src}, default=all."
@@ -110,13 +110,14 @@ def main():
             "session in the Python interpreter after the app exits"
         )
     )
-    parser_build = subparsers.add_parser(
+    parser_debug.set_defaults(command="debug")
+    parser_docs = subparsers.add_parser(
         "docs",
         help=(
             "build/update the app documentation"
         )
     )
-    parser_debug.set_defaults(command="debug")
+    parser_docs.set_defaults(command="docs")
     parser_run = subparsers.add_parser(
         "run",
         help="run the app from the development environment"
@@ -136,9 +137,43 @@ def main():
         docs()
 
 
-def docs() -> bool:
+def docs() -> bool:                                                             # noqa: C901
     """Build/update the app documentation from source."""
-    return False
+    # Set up paths
+    oldwd: Path = Path.cwd()
+    docs_dir: Path = WORKSPACE_PATH / "docs"
+
+    # Make sure dist dir exists..
+    dist_dir: Path = WORKSPACE_PATH / "dist" / "docs"
+    if not dist_dir.is_dir():
+        dist_dir.mkdir(parents=True)
+
+    # Run the sphinx make procedure
+    os.chdir(docs_dir)
+    print(f"Changed current working directory to '{Path.cwd()}'.")
+    if platform.system() == "Windows":
+        try:
+            subprocess.run(["make.bat", "clean"])
+            subprocess.run(["make.bat", "html"])
+        except FileNotFoundError:
+            print(
+                f"{INDENT}ERROR: The script 'docs/make.bat' was not found. Is Sphinx set up correctly?"
+            )
+            os.chdir(oldwd)
+            return False
+    else:
+        print("Sorry, this script cannot currently build the documentation on non-Windows platforms.")
+    os.chdir(oldwd)
+
+    # Move documentation to dist dir
+    html_docs_dir: Path = docs_dir / "build" / "html"
+    if html_docs_dir.exists():
+        print(f"Moving HTML documentation to '{dist_dir}'..")
+        if not _copy_dir_clean(html_docs_dir, dist_dir / "html"):
+            print(f"{INDENT}ERROR: Could not copy directory '{html_docs_dir}' to '{dist_dir}/html'.")
+            print("Failed.")
+            return False
+        print("Success.")
 
 
 def build() -> bool:                                                            # noqa: C901
@@ -323,6 +358,9 @@ def clean(env: str) -> bool:                                                    
     if env == "src" or env == "all":
         if not _clean_src():
             errors = True
+    if env == "docs" or env == "all":
+        if not _clean_docs():
+            errors = True
     return not errors
 
 
@@ -387,6 +425,25 @@ def _clean_dist() -> bool:
         print("Done.")
     else:
         print(f"{INDENT}ERROR: '{dist_dir}' is not a valid directory path.")
+        print("Failed.")
+        errors = True
+    return not errors
+
+
+def _clean_docs() -> bool:
+    errors: bool = False
+    docs_dir: Path = WORKSPACE_PATH / "docs" / "build"
+    print(f"Cleaning documentation directory at '{docs_dir!s}'...")
+    if _create_dir_if_not_exists(docs_dir):
+        if not _recursively_delete_dir(docs_dir):
+            print(f"{INDENT}ERROR: Could not delete docs/build directory.")
+            errors = True
+        if not _create_dir_if_not_exists(docs_dir):
+            print(f"{INDENT}ERROR: Could not reinstate docs/build directory.")
+            errors = True
+        print("Done.")
+    else:
+        print(f"{INDENT}ERROR: '{docs_dir!s}' is not a valid directory path.")
         print("Failed.")
         errors = True
     return not errors

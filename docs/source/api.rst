@@ -26,3 +26,5 @@ Backend API (Python)
 
 Frontend API (JavaScript)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+(**To do:** We will include the Frontend API documentation here in the near future.)
