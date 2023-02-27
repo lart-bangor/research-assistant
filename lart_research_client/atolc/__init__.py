@@ -72,7 +72,7 @@ def init_atol(myData: dict[str, str]) -> None:
     data = arrange_data(myData)
     data_file = data_path / version_id / file_name
     data_file.parent.mkdir(parents=True, exist_ok=True)
-    
+
     try:
         with open(data_file, "a") as fp:
             json_output = json.dumps(data, indent=4)

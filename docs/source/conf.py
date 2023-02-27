@@ -14,6 +14,7 @@ import os
 import sys
 from pathlib import Path
 from configparser import ConfigParser
+from datetime import date
 sys.path.insert(0, os.path.abspath('../..'))
 
 
@@ -30,7 +31,7 @@ project = " ".join([
 ])
 
 copyright = " ".join([
-    "2022",
+    f"2022-{date.today().year}",
     setup_cfg.get("app.options", "long_author")
 ])
 
