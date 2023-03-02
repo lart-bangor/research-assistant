@@ -237,14 +237,14 @@ lart.forms = {};
  *          identifies the element using the *querySelector* syntax. 
  * @param {(Document|HTMLElement)} [root=document] - A Document or HTMLElement to be used as the root
  *          for querying. Ignored if *ref* already is a HTMLElement or RadioNodeList.
- * @returns {(HTMLElement|RadioNodeList|null)}
+ * @returns {(HTMLElement|RadioNodeList|NodeList|null)}
  */
 lart.forms.getElementByGreed = function (ref, root = null) {
     if (!root) {
         root = document;
     }
     // Just return argument if it already is an HTMLElement or RadioNodeList
-    if (ref instanceof HTMLElement || ref instanceof RadioNodeList) {
+    if (ref instanceof HTMLElement || ref instanceof RadioNodeList || (ref instanceof NodeList && lart.forms.isCheckboxGroup(ref)) ) {
         return ref;
     }
     let tmp = null;
@@ -258,6 +258,7 @@ lart.forms.getElementByGreed = function (ref, root = null) {
     // Try to get single element or RadioNodeList by name
     if('getElementsByName' in root) {
         tmp = root.getElementsByName(ref);
+        // Radio node lists
         if (tmp.length > 0 && tmp[0] instanceof HTMLInputElement && tmp[0].type == 'radio' && tmp[0].form) {
             const parentForm = tmp[0].form;
             let allCongruent = true;
@@ -269,6 +270,20 @@ lart.forms.getElementByGreed = function (ref, root = null) {
             }
             if (allCongruent) {
                 return lart.forms.getRadioNodeList(tmp[0]);
+            }
+        }
+        // CheckboxGroup lists
+        if (tmp.length > 0 && tmp[0] instanceof HTMLInputElement && tmp[0].type == 'checkbox' && tmp[0].form) {
+            const parentForm = tmp[0].form;
+            let allCongruent = true;
+            for (const node of tmp) {
+                if (!(node instanceof HTMLInputElement) || node.type != 'checkbox' || node.form !== parentForm) {
+                    allCongruent = false;
+                    break;
+                }
+            }
+            if (allCongruent) {
+                return tmp;
             }
         }
         if (tmp.length == 1) {
@@ -349,6 +364,54 @@ lart.forms.getSelectValues = function (elementOrId) {
 }
 
 /**
+ * Check whether a passed NodeList or `name` is a group of checkboxes with the same `name`.
+ * @param {NodeList|String} nodesOrName 
+ * @returns {Boolean}
+ */
+lart.forms.isCheckboxGroup = function(nodesOrName) {
+    if ( !(nodesOrName instanceof NodeList) ) {
+        nodesOrName = lart.forms.getElementByGreed(nodesOrName);
+    }
+    if ( nodesOrName instanceof NodeList && nodesOrName.length > 0 && nodesOrName[0].hasAttribute('name') ) {
+        let congruent = true;
+        const firstName = nodesOrName[0].name;
+        if ( firstName === '' ) {
+            congruent = false;
+        }
+        for (const node of nodesOrName) {
+            if ( !(node instanceof HTMLInputElement) || node.type != 'checkbox' || node.name != firstName ) {
+                congruent = false;
+            } else {
+            }
+        }
+        return congruent;
+    }
+    return false;
+}
+
+/**
+ * Get set of values from a CheckboxGroup.
+ * 
+ * @param {NodeList|String} nodesOrName
+ * @returns {Array<String>} An array of values (or empty set, if applicable)
+ */
+lart.forms.getCheckboxGroupValue = function(nodesOrName) {
+    if ( !(nodesOrName instanceof NodeList) ) {
+        nodesOrName = lart.forms.getElementByGreed(nodesOrName);
+    }
+    if (!lart.forms.isCheckboxGroup(nodesOrName)) {
+        throw TypeError('The argument `nodesOrName` must reference a CheckboxGroup.')
+    }
+    const values = []
+    for (const checkbox of nodesOrName) {
+        if (checkbox.checked) {
+            values.push(checkbox.value);
+        }
+    }
+    return values;
+}
+
+/**
  * Obtain the value of an {@link HTMLFormControlElement}.
  * 
  * @param {HTMLFormControlElement} controlElement The form control element
@@ -357,6 +420,7 @@ lart.forms.getSelectValues = function (elementOrId) {
  */
 lart.forms.getControlValue = function(elementOrId) {
     const controlElement = lart.forms.getElementByGreed(elementOrId);
+    console.log("ControlElement:", controlElement);
     if (controlElement instanceof HTMLInputElement) {
         if(['radio', 'checkbox'].includes(controlElement.type) ) {
             if( controlElement.checked ) {
@@ -375,6 +439,8 @@ lart.forms.getControlValue = function(elementOrId) {
             default:
                 return values;
         }
+    } else if ( lart.forms.isCheckboxGroup(controlElement) ) {
+        return lart.forms.getCheckboxGroupValue(controlElement);
     } else if ( 'value' in controlElement ) {
         return controlElement.value;
     } else {
@@ -915,7 +981,7 @@ lart.forms.requireValidation = function (novalidate = false) {
  * monitor for input and adjust the data attribute accordingly. A MutatioObserver
  * is further attached to the target zone to monitor for the insertion of any
  * further range controls.
- *  
+ * 
  * @param {(HTMLElement|String)} targetZoneElementOrId - A HTMLElement, or a string
  *          refering to an `id` or `name` attribute identifying an HTMLElement which
  *          is the parent of the range input controls to be validated.
@@ -985,6 +1051,103 @@ lart.forms.validateRangeInputs = function (targetZoneElementOrId) {
     }
     const observer = new MutationObserver(observerCallback);
     observer.observe(targetZone, {childList: true, subtree: true});
+}
+
+/**
+ * Set of NodeLists for any CheckboxGroups which are being validated ('pseudo-required')
+ */
+lart.forms.validatedCheckboxGroups = new Set();
+
+/**
+ * Validation function for CheckboxGroups
+ * @param {NodeList} targetNodes 
+ */
+lart.forms.checkboxGroupValidator = function(targetNodes) {
+    let checked = false;
+    // Check validity
+    for (const targetNode of targetNodes) {
+        if( targetNode.checked ) {
+            checked = true;
+        }
+    }
+    // Set validity
+    for (const targetNode of targetNodes) {
+        if (checked) {
+            targetNode.setCustomValidity('');
+        } else {
+            targetNode.setCustomValidity('Select at least one option.')
+        }
+    }
+}
+
+/**
+ * Add validation to groups of HTMLInputElements of type `checkbox`.
+ * 
+ * Attach a validation observer to all HTMLInputElements of type `checkbox` which are
+ * passed as a NodeList or identified by the `name` attribute given as *targetControls*.
+ * 
+ * It is recommended that the `name` attribute end with a set of empty square brackets,
+ * e.g. `name="mycheckgroup[]"` to semantically distinguish them from regular checkbox
+ * controls.
+ * 
+ * Note that these do not need to have the `required` attribute set, as this would
+ * fail validation unless all of the checkboxes in a group are checked.
+ * 
+ * The observed checkbox inputs will pass (client-side) validation only if at least
+ * one of the checkboxes with any given `name` attribute is checked.
+ * 
+ * @param {(NodeList|String)} targetControls - A string refering to a `name` attribute
+ *          identifying a set of HTMLInputElements which are to be validated.
+ */
+lart.forms.validateCheckboxGroup = function (targetControls) {
+    const targetNodes = (targetControls instanceof NodeList ? targetControls : document.getElementsByName(targetControls));
+
+    if (targetNodes in lart.forms.validatedCheckboxGroups) {
+        return; // Nothing to do, this CheckboxGroup is already being validated.
+    }
+
+    // Check all nodes are checkbox controls
+    for (const targetNode of targetNodes) {
+        if (!(targetNode instanceof HTMLInputElement) || targetNode.type != 'checkbox') {
+            throw TypeError("The argument specified by targetControls must exclusively reference HTMLInputElements with type 'checkbox'")
+        }
+    }
+
+    // Validate at least once (validate initial state)
+    lart.forms.checkboxGroupValidator(targetNodes);
+    // Add to Set of validated CheckboxGroups
+    lart.forms.validatedCheckboxGroups.add(targetNodes);
+    // Monitor for changes of state and revalidate
+    for (const targetNode of targetNodes) {
+        targetNode.addEventListener(
+            'input',
+            function (event) {
+                lart.forms.checkboxGroupValidator(targetNodes);
+            }
+        );
+    }
+}
+
+lart.forms.removeCheckboxGroupValidation = function (targetControls) {
+    const targetNodes = (targetControls instanceof NodeList ? targetControls : document.getElementsByName(targetControls));
+
+    // Check all nodes are checkbox controls
+    for (const targetNode of targetNodes) {
+        if (!(targetNode instanceof HTMLInputElement) || targetNode.type != 'checkbox') {
+            throw TypeError("The argument specified by targetControls must exclusively reference HTMLInputElements with type 'checkbox'")
+        }
+    }
+
+    // Reset valid state and remove listeners
+    for (const targetNode of targetNodes) {
+        targetNode.removeEventListener(
+            'input',
+            function (event) {
+                lart.forms.checkboxGroupValidator(targetNodes);
+            }
+        );
+        targetNode.setCustomValidity('');
+    }
 }
 
 /**
