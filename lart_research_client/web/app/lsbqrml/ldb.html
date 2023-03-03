@@ -692,11 +692,16 @@
                     }
                 );
             }
-            //Make the multiselect into a select2...
+            // Make the multiselect into a select2...
             function transformMultiselectToSelect2(placeholder = null) {
+                // Get translated placeholder (if needed)
                 if ( placeholder === null ) {
                     placeholder = lart.tr.get("lsbqrml", "ldb.learnedWhereLabel");
                 }
+                if ( placeholder === null ) {
+                    placeholder = "Learned where"; // Default if no translation found
+                }
+                // Activate select2
                 $(`#languagesSpokenSource-${languageNumber}`).select2({
                     placeholder:placeholder,
                     closeOnSelect:false,
@@ -704,6 +709,16 @@
                     selectionCssClass:"select2--small",
                     dropdownCssClass: "select2--small",
                     minimumResultsForSearch: Infinity
+                });
+                // Make select2's changes to <select> trigger input event..
+                $(`#languagesSpokenSource-${languageNumber}`).on('change', (e) => {
+                    console.warn("IT HAPPENED GUYS!");
+                    const inputEvent = new Event('input', {
+                        bubbles: true,
+                        cancelable: true,
+                    });
+                    const selectControl = document.getElementById(`languagesSpokenSource-${languageNumber}`);
+                    selectControl.dispatchEvent(inputEvent);
                 });
             }
             // Update multiselect/select2 once placeholder translation is available...

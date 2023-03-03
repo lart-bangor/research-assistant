@@ -596,7 +596,14 @@ lart.forms.conditionMatcherFactory = function (controls, comparisonValue, condit
         // Collect the values to test against
         const testValues = new Set();
         for (const testElement of testControls) {
-            testValues.add(lart.forms.getControlValue(testElement));
+            let controlValues = lart.forms.getControlValue(testElement);
+            if (Array.isArray(controlValues)) {
+                for (const controlValue of controlValues) {
+                    testValues.add(controlValue);
+                }
+            } else {
+                testValues.add(lart.forms.getControlValue(testElement));
+            }
         }
         return testCondition(testValues);
     }
@@ -713,8 +720,8 @@ lart.forms.conditionalRequire = function (observedControlName, targetControlName
         node.addEventListener(
             'input',
             (event) => {
-                console.log(`Checking conditional require condition for ${observedControlName}...`);
-                console.log('...input event evaluates to:', matchesCondition());
+                console.debug(`Checking conditional require condition for ${observedControlName}...`);
+                console.debug('...input event evaluates to:', matchesCondition());
             }
         );
         node.addEventListener('input',
