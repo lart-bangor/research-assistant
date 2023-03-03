@@ -12,14 +12,25 @@
     #consentForm {
         display: none;
     }
-    
+    #formOptions {
+        display: none;
+    }
+    #startTask {
+        display: none;
+    }
+    #consent_options {
+        display: block;
+    }
+    #consent_options_btn {
+        display: block;
+    }
 </style>
 {% endblock %}
 {% block head_scripts %}
     <script type="text/javascript">
                
         function loadSurveyVersions() {
-            availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_rml_get_versions", 
+            availableVersions = eel._mgt_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_rml_get_versions", 
                                                                                         // or hard-coded for each questionnaire.
                 }
             
@@ -32,33 +43,40 @@
                 select.appendChild(option);
             }
         }
-
         
-        function showStudyInfo() {
-            const fetch_version = document.getElementById("selectSurveyVersion");
-            const fetch_partId = document.getElementById("participantId");
-            const fetch_test = document.getElementById("selectTestType");
-            const version = fetch_version.value;
-            const partId = fetch_partId.value;
-            const testType = fetch_test.value;
-            if (partId == "" || partId == null) {
-                    alert("Please provide a valid Participant ID.");
-                return false;
-            } else if (testType == "0") {
-                    alert("Please select the test for which you are seeking consent.");
-                return false;
-            } else {
-                hideBtn();
-                document.getElementById("surveyVersion").value = version // pass selectSurveyVersion on to consent form for processing
-                document.getElementById("partId").value = partId; //pass partId on to consent form for processing
-                console.log("Selected version: " + version);
-                console.log("Participant ID: " + partId);
-                console.log("Selected Test: " + testType);
-                jsonFile = "versions/" + testType + "/" + version + ".json";  //set filename based on selected version + selected test
-                fetch(jsonFile)
-                    .then(response => response.json())
-                    .then(data => output_info(data));  //pass the contents of jsonFile to output_info()
-                }
+        
+        function loadFormVersions(thisVersion) {
+            availableConsentVersions = eel.set_options(thisVersion)(populateConsentVersions); 
+                                                                                        
+                } 
+        
+        function populateConsentVersions(list) {
+            console.log("LIST is " + list);
+            select_tag = "<select name='consent_options' id='consent_options' class='form-select'>";
+            input_option = "";
+            for(item in list) {
+                console.log("ITEM is: " + item);
+                console.log("ITEM IS is " + list[item]);
+                input_option += "<option value='" + list[item] + "''>" + list[item] + "</option>";
+            }
+            select_code = select_tag + input_option + "</select>";
+            select_block = document.getElementById('formOptions');
+            select_block.innerHTML = select_code;
+            select_block.style.display = 'block';
+           // document.getElementById('consent_options_btn ').style.display = 'block';
+            document.getElementById('startTask').style.display = 'block';
+                //input_option = document.createElement('consent_option');
+                //input_option.setAttribute('value', item);
+                //input_option.appendChild(document.createTextNode(list[item]))
+                //select.appendChild(input_option);
+            }
+            //document.getElementById("formOptions").style.display = "block";     
+            //showBtn();   
+      
+        
+        function showStudyInfo(selected_language_version) {
+            info = eel.fetch_study_info(selected_language_version)(output_info); 
+            
         }
         
         // Instructions & check button to be outputed depending on language selection
@@ -123,8 +141,14 @@
         }
 
         function hideBtn() {
-            const btn = document.getElementById('hidden-div');
+            var btn = document.getElementById('hidden-div');
             btn.style.display = 'none';
+
+        }
+
+        function showBtn() {
+            var btn = document.getElementById('startTask');
+            btn.style.display = 'block';
 
         }
 
@@ -149,21 +173,6 @@
 
         <form id="consentSelectForm" class="needs-validation">
 
-            <!-- Language version -->
-            <section class="m-4">
-                <div class="mb-3">
-                    <label for="selectSurveyVersion" class="form-label">Select language version:</label>
-                    <select id="selectSurveyVersion" class="form-select" required>
-                    </select>
-                    <script type="text/javascript">
-                        loadSurveyVersions();
-                    </script>
-                    <div class="invalid-feedback">
-                        <p>Please select one of the available versions.</p>
-                    </div>
-                </div>
-            </section>
-
             <!-- Participant details -->
             <section class="m-4">
                 <div class="mb-3">
@@ -176,11 +185,35 @@
                 </div>
             
             </section>
+
+            <!-- Language version -->
             <section class="m-4">
-                <div class="mb-3">
+                                   
+                <div class="row mb-1 align-items-end">
+                    
+                    <div class="col-7 small">
+                        <label for="selectSurveyVersion" class="form-label">Select language version:</label>
+                        <select id="selectSurveyVersion" class="form-select" required>
+                        </select>
+                        <script type="text/javascript">
+                            loadSurveyVersions();
+                        </script>
+                    </div>
+
+                    <div class="col-2 small">
+                        <button class="btn btn-outline-secondary shadow-sm col-auto" onclick="loadFormVersions(document.getElementById('selectSurveyVersion').value);">load</button>
+                    </div>
+                                       
+                </div>
+            </section>
+            
+                <section class="m-4">
+                <div class="row mb-1 align-items-end">
+                <div class="col-7 small" id="formOptions">
                     <label for="selectTestType" class="form-label">Select which consent form you wish to use:</label>
+                    <!--
                     <select id="selectTestType" class="form-select" required>
-                        <option value="0"></option>
+                        
                         <option value="generic">Generic consent form</option>
                         <option value="atolc">AToL-C consent</option>
                         <option value="mgt">MGT consent</option>
@@ -189,8 +222,12 @@
                     <div id="testTypeHelp" class="form-text">Select a consent form.</div>
                     <div class="invalid-feedback">
                         <p>Please select which consent form you wish to use.</p>
-                    </div>
+                    </div> -->
+                </div> 
+                <div class="col-2 small" id="consent_options_btn">
+                    <button class="btn btn-outline-secondary shadow-sm col-auto" onclick="showStudyInfo(document.getElementById('consent_options').value);">load</button>
                 </div>
+            </div>
             </section>
         </form>
         <p id="consent-file-error"></p>
@@ -246,13 +283,7 @@
             
             </form>
         </div>
-
-        <!-- Activate version   -->
-        <div class="row text-center p-3 m-4" id="hidden-div">
-            <div class="col">
-                <button class="btn btn-primary btn-lg btn-action shadow" onclick="showStudyInfo();">Start</button>
-            </div>
-        </div>
+        
 
     </article>
 {% endblock %}
