@@ -1,5 +1,5 @@
 Welcome to the L’ART Research Client documentation!
-==============================================
+===================================================
 
 The L’ART Research Client is a freely available open-source app that aims to make life easier for
 researchers working on bilingualism, sociolinguistics, language attitudes, and
