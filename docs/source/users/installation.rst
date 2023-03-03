@@ -23,9 +23,11 @@ Installing on Windows 10/11
    that you've downnloaded the Software from a reputable source before running it 'this is fine if you've
    used our official link **above**'. Click `Run anyway` to continue with the installation.
 
-   .. // insert figure 2 - Microsoft...
+   .. figure:: figures/figure2.png
+      :width: 400
+      :alt: An image of protection message from Windows taken from Microsoft Defender Smartscreen.
 
-   *Figure 2 - Microsoft Defender SmartScreen*
+      Figure 2 - Microsoft Defender SmartScreen
 
 4. Select you preferred install mode. We recommend choosing `Install for me only` for most use cases, which
    will install the app only for the current user. **However** you may wish to install the app for all users.
@@ -33,17 +35,27 @@ Installing on Windows 10/11
    installation for all users (This requires Administrator privileges). 
    If in any doubt, choose `Install for me only`
 
-   .. //insert figure 3 
+   .. figure:: figures/figure3.png
+      :width: 400
+      :alt: Screenshot of selecting an install mode for users
 
-   *Figure 3 - Install mode setup*
+      Figure 3 - Install mode setup
 
 5. Click `Yes` to allow L'ART Research Client to make changes to your device (i.e., to install the app).
 
-   .. // insert figure 4
+   .. figure:: figures/figure4.png
+      :width: 400
+      :alt: Screenshot of User Account Control Screen.
 
-   *Figure 4 - User account control screen* 
+      Figure 4 - User account control screen
 
 6. Read and accept the licence agreement [INSERT LINK]. You must accept the agreement before installation can begin.
+
+   .. figure:: figures/figure5.png
+      :width: 400
+      :alt: Screenshot of setup screen for the License agreement.
+
+      Figure 5 - License agreement
 
 
 7. Select the destination location for your app. Normally you should be able to leave this at the path
@@ -51,11 +63,29 @@ Installing on Windows 10/11
    and the chosen installation mode. Make sure you have at least 65MB of free disk space on your device.
    Click `browse` if you wish to change the installation path of the app.  
 
+   .. figure:: figures/figure6.png
+      :width: 400
+      :alt: Screenshot of setup screen requesting the user to select a destination location
+
+      Figure 6 - Select destination location
+
 
 8. Click ‘Install’ to install the L’ART Research Client app on your device. 
 
+   .. figure:: figures/figure7.png
+      :width: 400
+      :alt: Screenshot of application ready for installation.
+
+      Figure 7 - Install Research Client app
+
 
 9. Complete setup by clicking ‘Finish’ and enjoy. 
+
+   .. figure:: figures/figure8.png
+      :width: 400
+      :alt: Screenshot of completing the L'ART Research Client Setup Wizard
+
+      Figure 8 - Complete setup of Research Client app
 
 
 
