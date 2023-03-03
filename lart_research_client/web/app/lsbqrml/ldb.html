@@ -2,8 +2,14 @@
 {%- extends 'base.html' %}
 {% block title %}L’ART Research Client - LSBQₑ - Language and Dialect Background{% endblock %}
 {% block headline %}<span id="lsbqRmlAppTitle" data-lsbqrml-tr="base.appTitle">Language and Social Background Questionnaire (RML)</span>{% endblock %}
-{% block head_scripts %}{% endblock %}
-{% block head_styles %}{% endblock %}
+{% block head_scripts %}
+    <script type="text/javascript" src="/js/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="/js/select2.min.js"></script>
+{% endblock %}
+{% block head_styles %}
+    <link rel="stylesheet" href="/css/select2.min.css" />
+    <link rel="stylesheet" href="/css/select2-bootstrap-5-theme.min.css" />
+{% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
     <li class="nav-item">
@@ -36,10 +42,10 @@
                     <div class="col-3 small" data-lsbqrml-tr="ldb.languageName">
                         Language or dialect
                     </div>
-                    <div class="col-2 small" data-lsbqrml-tr="ldb.learnedWhere">
+                    <div class="col-3 small" data-lsbqrml-tr="ldb.learnedWhere">
                         Where did you learn it?
                     </div>
-                    <div class="col-3 small" data-lsbqrml-tr="ldb.learnedAge">
+                    <div class="col-2 small" data-lsbqrml-tr="ldb.learnedAge">
                         At what age did you learn it?
                     </div>
                     <div class="col-3 small" data-lsbqrml-tr="ldb.learnedBreaks">
@@ -47,9 +53,9 @@
                     </div>
                 </div>
                 <div class="row mb-1">
-                    <div class="col-6 small">
+                    <div class="col-7 small">
                     </div>
-                    <div class="col-3 small">
+                    <div class="col-2 small">
                         <small class="help-block text-muted"><i class="bi-info-circle text-info"></i> <span data-lsbqrml-tr="ldb.learnedAgeInfo">If learned from birth enter &ldquo;0&rdquo;.</span></small>
                     </div>
                     <div class="col-3 small">
@@ -88,10 +94,9 @@
                             <div class="invalid-feedback" data-lsbqrml-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters). You <i>must</i> list at least <i>two</i> languages/dialects.</div>
                         </div>
                         <!-- fields: languagesSpokenSource-[LanguageNumber] and languagesSpokenSourceSpecifyBlock-[LanguageNumber] -->
-                        <div class="col-2">
+                        <div class="col-3">
                             <div class="form-floating">
-                                <select class="form-select" id="languagesSpokenSource-[LanguageNumber]" name="languagesSpokenSource-[LanguageNumber]">
-                                    <option value=""></option>
+                                <select class="form-select" id="languagesSpokenSource-[LanguageNumber]" name="languagesSpokenSource-[LanguageNumber]" multiple style="min-height:2em">
                                     <option value="h" data-lsbqrml-tr="ldb.atHome">At home</option>
                                     <option value="s" data-lsbqrml-tr="ldb.atSchool">At school</option>
                                     <option value="c" data-lsbqrml-tr="ldb.inCommunity">In the community</option>
@@ -107,7 +112,7 @@
                             </div>
                         </div>
                         <!-- field: languagesSpokenAge-[LanguageNumber] -->
-                        <div class="col-3 form-floating">
+                        <div class="col-2 form-floating">
                             <input type="number" class="form-control" id="languagesSpokenAge-[LanguageNumber]" name="languagesSpokenAge-[LanguageNumber]" min="0" max="100" />
                             <label for="languagesSpokenAge-[LanguageNumber]" class="col-form-label col-auto pt-2 ms-2" data-lsbqrml-tr="ldb.learnedAgeLabel">Learned from age</label>
                             <div class="invalid-feedback" data-lsbqrml-tr="ldb.learnedAgeFeedback">Please indicate how old you were (in years) when you started to learn this language.</div>
@@ -687,9 +692,22 @@
                     }
                 );
             }
+            //Make the multiselect into a select2 as soon as the translation for the label is ready...
+            function transformMultiselectToSelect2() {
+                $(`#languagesSpokenSource-${languageNumber}`).select2({
+                    placeholder:"Learned where",
+                    closeOnSelect:false,
+                    theme:"bootstrap-5",
+                    selectionCssClass:"select2--small",
+                    dropdownCssClass: "select2--small",
+                    minimumResultsForSearch: Infinity
+                });
+            }
+            transformMultiselectToSelect2();
         }
         insertLanguagesSpoken();
         insertLanguagesSpoken();
+        
     </script>
     {{ lart_form_pipeline('surveyLDBForm', '_lsbqrml_setldb') }}
 {% endblock %}
