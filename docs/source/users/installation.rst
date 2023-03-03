@@ -21,23 +21,23 @@ Installing on Windows 10/11
 3. If you have Microsoft Defender active, you may be warned about running an unrecognised app. This is
    expected behaviour for unsigned Software downloaded from the internet, and is meant to get you to check
    that you've downnloaded the Software from a reputable source before running it 'this is fine if you've
-   used our official link **above**'. Click \'Run anyway'\ to continue with the installation.
+   used our official link **above**'. Click `Run anyway` to continue with the installation.
 
    .. // insert figure 2 - Microsoft...
 
    *Figure 2 - Microsoft Defender SmartScreen*
 
-4. Select you preferred install mode. We recommend choosing \'Install for me only'\ for most use cases, which
+4. Select you preferred install mode. We recommend choosing `Install for me only` for most use cases, which
    will install the app only for the current user. **However** you may wish to install the app for all users.
    For example, if you're installing on a shared university or lab computer and want to centrally manage the 
    installation for all users (This requires Administrator privileges). 
-   If in any doubt, choose \'Install for me only'\ 
+   If in any doubt, choose `Install for me only`
 
    .. //insert figure 3 
 
    *Figure 3 - Install mode setup*
 
-5. Click \'Yes'\ to allow L'ART Research Client to make changes to your device (i.e., to install the app).
+5. Click `Yes` to allow L'ART Research Client to make changes to your device (i.e., to install the app).
 
    .. // insert figure 4
 
@@ -49,7 +49,7 @@ Installing on Windows 10/11
 7. Select the destination location for your app. Normally you should be able to leave this at the path
    already suggested by the installer, which will be the default directory for app installation for your system
    and the chosen installation mode. Make sure you have at least 65MB of free disk space on your device.
-   Click \'browse'\ if you wish to change the installation path of the app.  
+   Click `browse` if you wish to change the installation path of the app.  
 
 
 8. Click ‘Install’ to install the L’ART Research Client app on your device. 
