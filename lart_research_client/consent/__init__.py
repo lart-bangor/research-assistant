@@ -6,10 +6,38 @@ from pathlib import Path
 from typing import Any
 from .. import booteel
 from ..config import config
+import os
+import json
 
 data_path: Path = config.paths.data / "Consent"
 if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
+
+#EngCym_GB.atolc.json
+@eel.expose
+def set_options(selected_version: str):
+    """Takes a language version as arg and finds all consent forms available for that version. Retursn a list in teh form of [version_name, version_data]"""
+    print("My version: " + selected_version + str(type(selected_version))) 
+    options = []
+    dir = os.listdir()
+    dir = os.listdir('lart_research_client\\consent\\versions')
+    for file_name in dir:
+        bare_file_name = file_name.split(".", 1)[0]
+        if bare_file_name == selected_version:
+            options.append(file_name)
+    print("final list = ")
+    print(options)
+    return options
+
+
+
+@eel.expose
+def fetch_study_info(filename: str):
+    file = 'lart_research_client\\consent\\versions\\' + filename
+    with open(file, "r") as f:
+        version_data = json.load(f)
+        #print(version_data)
+    return version_data
 
 
 @eel.expose
