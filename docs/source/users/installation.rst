@@ -14,7 +14,7 @@ Installing on Windows 10/11
 
    .. figure:: figures/figure1.png
       :width: 400
-      :alt: Screenshot of windows download dialogue showing the downloaded installer file.
+      :alt: Screenshot of Windows download dialogue showing the downloaded installer file.
 
       Figure 1 - Open file from downloads
 
