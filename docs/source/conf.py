@@ -43,8 +43,8 @@ version = release
 
 github_url = setup_cfg.get("metadata", "url")
 
-html_logo = str(project_root_path / "lart_research_client" / "web" / "img" / "appicon.png")
-html_favicon = str(project_root_path / "lart_research_client" / "web" / "img" / "appicon.png")
+html_logo = str(project_root_path / "research_client" / "web" / "img" / "appicon.png")
+html_favicon = str(project_root_path / "research_client" / "web" / "img" / "appicon.png")
 
 # -- General configuration ---------------------------------------------------
 
@@ -72,7 +72,7 @@ extensions = [
 github_username = 'lart-bangor'
 github_repository = 'lart-research-client'
 
-autoapi_dirs = ['../../lart_research_client']
+autoapi_dirs = ['../../research_client']
 
 autodoc_default_options = {
     'members': True,
@@ -96,7 +96,7 @@ python_use_unqualified_type_names = True
 default_role = 'py:obj'
 
 add_module_names = False
-modindex_common_prefix = ['lart_research_client']
+modindex_common_prefix = ['research_client']
 
 napoleon_google_docstring = True
 napoleon_preprocess_types = True

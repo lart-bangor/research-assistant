@@ -1,0 +1,74 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}L’ART Research Client - LSBQₑ - Completion{% endblock %}
+{% block headline %}<span id="lsbqAppTitle" data-lsbq-tr="base.appTitle">Language and Social Background Questionnaire</span>{% endblock %}
+{% block head_scripts %}{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="container-fluid p-2">
+
+        <div class="progress m-4">
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width:95%"></div>
+        </div>
+
+        <div class="row m-4 text-center">
+            <h2 id="lsbqSectionTitle" data-lsbq-tr="notes.secTitle">Thank you for completing the LSBQ<sub>e</sub>!</h2>
+        </div>
+
+        <div class="row m-4">
+            <div id="lsbqThankYouMessage" class="col fw-semi p-0" data-lsbq-tr="notes.thankYouMessage">
+                Thank you for completing the Language and Social Background Questionnaire! If you think there's anything else we should know about you
+                or your background then you can use the box below to tell us about this. Then just click on the &ldquo;submit and
+                continue&rdquo; button to save your data and continue with the next task.
+            </div>
+        </div>
+
+        <form id="surveyNotesForm" class="needs-validation" autocomplete="off">
+
+            <!-- 18. Participant note -->
+            <section class="m-4">
+                <div class="row mb-1">
+                    <div class="col">
+                        <label for="participantNote" data-lsbq-tr="notes.participantNoteInstructions">
+                            Is there anything else that you think is important for us to know about you?
+                        </label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <textarea class="form-control" style="min-height:15ex" id="participantNote" name="participantNote"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div clas="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbq-tr="notes.submitAndContinue">Submit and Continue</button>
+                </div>
+            </div>
+
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        lart.forms.requireValidation(true);
+        // Translate form for specific version
+        let instanceId = lart.forms.searchParams.get('instance');
+        lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'notes']]);
+        lart.tr.registerObserver('lsbq', 'surveyNotesForm');
+        lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
+        lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
+        lart.tr.registerObserver('lsbq', 'lsbqThankYouMessage');
+    </script>
+    {{ lart_form_pipeline('surveyNotesForm', '_lsbq_setnotes') }}
+{% endblock %}

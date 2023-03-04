@@ -1,0 +1,37 @@
+
+{%- extends 'base.html' %}
+{% block title %}L’ART Research Client{% endblock %}
+{% block headline %}L’ART Research Client{% endblock %}
+{% block head_scripts %}{% endblock %}
+{% block head_styles %}
+    <style type="text/css">
+        main .btn-primary, main .btn-secondary {
+            min-width: 50%;
+        }
+    </style>
+{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" href="consent/index.html"><i class="bi-card-checklist"></i> Informed Consent</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}{% block content %}
+    <article class="p-2">
+        <div class="container-fluid text-center p-2">
+            <h2>Choose a task:</h2>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <a class="btn btn-primary fs-5 p-2" href="atolc/index.html">AToL-C</a>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <a class="btn btn-primary fs-5 p-2" href="lsbq/index.html">LSBQ<sub>e</sub></a>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <a class="btn btn-primary fs-5 p-2" href="memorygame/index.html">Memory Task</a>
+        </div>
+        <div class="container-fluid text-center p-2">
+            <a class="btn btn-primary fs-5 p-2" href="mgt/index.html">MGT</a>
+        </div>
+    </article>
+{% endblock %}
