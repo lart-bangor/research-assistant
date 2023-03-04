@@ -1,6 +1,6 @@
-# L'ART Research Client App
+# The L'ART Research Client
 
-An app that facilitates collection, storage and transfer of data for research on bilingualism, with a particular focus on bilinguals who speak a majority language and a regional / minority / minoritized language. Developed by the [Language Attitudes Research Team](https://www.bangor.ac.uk/arts-humanities-and-business/lart) at [Bangor University](https://www.bangor.ac.uk/research).
+An app that facilitates collection, storage and transfer of data for research on bilingualism, with a particular focus on bilinguals who speak a majority language and a regional / minority / minoritized language. Developed by the [Language Attitudes Research Team](https://www.bangor.ac.uk/lart) at [Bangor University](https://www.bangor.ac.uk/research).
 
 ## Contributing
 
@@ -12,7 +12,7 @@ If you haven't yet, you'll first need to install [git](https://git-scm.com/). Yo
 
 When you have git installed, make a directory where you want to house the source code for the project (e.g. `/home/users/jane.doe/dev/lart-rc`) and open it in a terminal.
 
-Inside the terminal, and inside the project directory you just set up, then type the command `git clone https://github.com/lart-bangor/lart-research-client.git`. You may be prompted for your [GitHub](https://github.org/) username and password, or maybe not.
+Inside the terminal, and inside the project directory you just set up, then type the command `git clone https://github.com/lart-bangor/research-client.git`. You may be prompted for your [GitHub](https://github.org/) username and password, or maybe not.
 
 This should download a copy of the entire sourcecode and some ancillary project files into the project directory.
 
