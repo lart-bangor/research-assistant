@@ -24,7 +24,7 @@ Once you have Python 3.10 set up, you'll need to install [pipenv](https://pipenv
 
 #### 1.3 Setting up the virtual environment and dependencies
 
-Now head back to the project directory in a terminal. If you type `dir` on Windows or `ls -l` on Linux and MacOS you should see a list of files including `manage.py` and `setup.cfg` and a folder named `lart_research_client`. If you don't you're in the wrong directory somewhere and need to go to the same directory where you exectured `git clone` earlier.
+Now head back to the project directory in a terminal. If you type `dir` on Windows or `ls -l` on Linux and MacOS you should see a list of files including `manage.py` and `setup.cfg` and a folder named `research_client`. If you don't you're in the wrong directory somewhere and need to go to the same directory where you exectured `git clone` earlier.
 
 Now, inside the project directory, run `pipenv install --dev`. This will instruct pipenv to create a virtual environment and then install all the project's dependencies, including all the other development dependencies it has (within python, at least).
 
@@ -32,7 +32,7 @@ Now, inside the project directory, run `pipenv install --dev`. This will instruc
 
 To check that everything is working, inside the project directory, first run `pipenv shell` to activate the virtual environment.
 
-Now try running `py -m lart_research_client` (on Windows) or `python -m lart_research_client` (on Linux and MacOS). Hopefully you'll see the app pop up (or at least get a useful error message!).
+Now try running `py -m research_client` (on Windows) or `python -m research_client` (on Linux and MacOS). Hopefully you'll see the app pop up (or at least get a useful error message!).
 
 #### 1.5 Running the app during development
 
@@ -46,7 +46,7 @@ For debugging, you might want to try running `python manage.py debug` instead. T
 
 #### 2.1 PyInstaller
 
-The app is built into a installable package using [PyInstaller](https://pyinstaller.org/). This will already have been installed if you followed the step with `pipenv install --dev` above. If you get an error saying PyInstaller couldn't be found, try re-running that command (remember to do this inside the directory which itself contains the `manage.py`, `Pipfile`, `lart_research_client`, etc.).
+The app is built into a installable package using [PyInstaller](https://pyinstaller.org/). This will already have been installed if you followed the step with `pipenv install --dev` above. If you get an error saying PyInstaller couldn't be found, try re-running that command (remember to do this inside the directory which itself contains the `manage.py`, `Pipfile`, `research_client`, etc.).
 
 #### 2.2 Inno Setup (Windows)
 
