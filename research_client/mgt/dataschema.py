@@ -1,4 +1,4 @@
-"""Data schema implementing the LSBQ-RML questionnaire."""
+"""Data schema implementing the MGT."""
 import logging
 import uuid
 from random import shuffle

@@ -1212,9 +1212,9 @@ lart.tr.get = function(ns, trId) {
 /**
  * Load translation/adaptation strings into a translation namespace.
  * 
- * @example <caption>Loads the LSBQ-RML sections 'meta', 'base' and 'lsb' into the *lsbq* namespace:</caption>
+ * @example <caption>Loads the LSBQe sections 'meta', 'base' and 'lsb' into the *lsbq* namespace:</caption>
  * const instanceId = lart.utils.searchParams.get('instance');
- * lart.tr.loadFromEel('lsbqrml', eel._lsbqrml_load_version, [instanceId, ['meta', 'base', 'lsb']]);
+ * lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'lsb']]);
  * 
  * @param {String} ns - The translation namespace to be used.
  * @param {Function} eelLoader - The Python eel function (from eel.js) implementing the

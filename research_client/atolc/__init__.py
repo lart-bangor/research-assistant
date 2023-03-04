@@ -188,7 +188,7 @@ _rating_adjectives = (
 @eel.expose  # type: ignore
 def atol_c_get_items(version: str) -> Optional[dict[str, tuple[str, str]]]:
     """Get label pairs for each AToL item depending on language selection."""
-    directory = os.path.abspath(os.getcwd()) + "\\lart_research_client\\atolc"
+    directory = os.path.abspath(os.getcwd()) + "\\research_client\\atolc"
     version_file = directory + "\\versions\\" + version + ".json"
     atol_items = []
     with open(version_file, encoding='utf-8') as f:

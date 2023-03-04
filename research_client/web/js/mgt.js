@@ -1,6 +1,6 @@
 //Funcions for MGT selection part of page
 function loadSurveyVersions() {
-    availableVersions = eel._lsbqrml_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_mgt_get_versions", 
+    availableVersions = eel._lsbq_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_mgt_get_versions", 
                                                                                 // or hard-coded for each questionnaire.
 }
 

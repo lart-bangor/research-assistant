@@ -15,7 +15,7 @@ from . import atolc                                                     # type: 
 from . import consent                                                   # type: ignore  # noqa: F401
 from .config import config
 from . import booteel
-from .lsbqrml import expose_to_eel as expose_lsbqrml
+from .lsbq import expose_to_eel as expose_lsbq
 from .memorygame import expose_to_eel as expose_memorygame
 from .mgt import expose_to_eel as expose_mgt
 from .settings import expose_to_eel as expose_settings
@@ -34,7 +34,7 @@ root_logger.addHandler(config.logging.get_file_handler(root_logger_name))   # > 
 logger = logging.getLogger(__name__)
 
 # Expose Eel APIs for subpackages
-expose_lsbqrml()
+expose_lsbq()
 expose_memorygame()
 expose_mgt()
 expose_settings()

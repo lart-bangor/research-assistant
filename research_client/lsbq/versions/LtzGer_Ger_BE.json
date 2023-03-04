@@ -1,14 +1,14 @@
 {
     "meta": {
-        "versionId": "GswGer_Ger_DE",
-        "versionName": "Alemannisch – Deutsch (Deutschland)",
-        "versionNumber": "0.3.4",
+        "versionId": "LtzGer_Ger_BE",
+        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "versionNumber": "0.3.5",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2022-09-22"
+        "date": "2022-04-10"
     },
     "base": {
         "appTitle": [
-            "Fragebogen zum sprachlichen und sozialen Hintergrund (LSBQ-RML)"
+            "Fragebogen zum sprachlichen und sozialen Hintergrund"
         ],
         "yes": [
             "Yes",
@@ -28,23 +28,23 @@
         ],
         "levelOfEducation1": [
             "EQF Level 1",
-            "weniger als Hauptschulabschluss."
+            "Abschluss der Grund&ndash; oder Primarschule, <abbr title=\"Certificat d’études de base\">CEB</abbr>, getuigschrift basisonderwijs, oder weniger."
         ],
         "levelOfEducation2": [
             "EQF Level 2-3",
-            "Hauptschulabschluss, Berufsfachschule, 2-jährige Berufsausbildung, Realschulabschluss."
+            "Befähigungsnachweis/Abschluss der Unterstufe, zertifizierte Teilqualifikation der mittelständischen Lehre, <abbr title=\"Certificat d’enseignement secondaire inférieure\">CESI</abbr>, <abbr title=\"Certificat d’études du 1er degré\">CE1D</abbr>, <abbr title=\"Certificat d’enseignement secondaire du deuxième degré\">CESDD</abbr>, getuigschrift van de eerste/tweede graad."
         ],
         "levelOfEducation3": [
             "EQF Level 4",
-            "Hochschulreife/Fachhochschulreife oder 3-jährige Berufsausbildung."
+            "Abschluss der Oberstufe, Abitur, Abschluss einer mittelständischen Lehre mit Gesellenzeugnis, <abbr title=\"Certificat de qualification\">CQ</abbr>, <abbr title=\"Certificat d’études de sixième année de l’enseignement secondaire professionnel\">CE6P</abbr>, <abbr title=\"Certificat d’enseignement secondaire supérieur\">CESS</abbr>, Diploma van secondair onderwijs, studiegetuigschrift."
         ],
         "levelOfEducation4": [
             "EQF Level 5-6",
-            "Bachelor, Diplom (FH), 1. Staatsexamen, Fachwirt, Meister/Techniker."
+            "Bachelor, Abschluss einer Meisterausbildung mit Meisterbrief, Abschluss einer Ausbildung im ergänzenden beruflichen Sekundarunterricht."
         ],
         "levelOfEducation5": [
             "EQF Level 7-8",
-            "Master, Diplom (Univ.), Magister, 2. Staatsexamen, Promotion/Doktorgrad, Habilitation."
+            "Master, Promotion/Doktorgrad, Habilitation."
         ],
         "notApplicableFull": [
             "not applicable",
@@ -204,7 +204,7 @@
         ],
         "languagesInstructions": [
             "List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:",
-            "Geben Sie alle Sprachen und Dialekte an, die Sie sprechen und verstehen können, inklusive Alemannisch und Deutsch. Bitte geben Sie diese der Reihenfolge nach an, wie sicher Sie sich in der jeweiligen Sprach oder dem Dialekt fühlen:"
+            "Geben Sie alle Sprachen und Dialekte an, die Sie sprechen und verstehen können, inklusive Eifeler Platt und Deutsch. Bitte geben Sie diese der Reihenfolge nach an, wie sicher Sie sich in der jeweiligen Sprach oder dem Dialekt fühlen:"
         ],
         "languageName": [
             "Language or dialect",
@@ -403,35 +403,29 @@
             "Bitte dieses Kästchen <i>nur</i> ankreuzen, wenn Sie keine Fragen zu Ihrem Vater beantworten können (z.B. weil Sie ihn nicht kennen)."
         ],
         "languageListOptions": [
-            "Alemannisch",
+            "Eifeler Platt (Moselfränkisch)",
             "Deutsch",
-            "Deutsche Gebärdensprache (DGS)",
-            "Dänisch",
-            "Sorbisch",
-            "Friesisch",
-            "Romani",
-            "Englisch",
             "Französisch",
-            "Russisch",
-            "Spanisch",
-            "Italienisch",
-            "Türkisch",
-            "Polnisch",
             "Niederländisch",
+            "Wallonisch",
+            "Picardisch",
+            "Champenois",
+            "Romanisches Lothringisch",
+            "Limburgisch",
+            "Jiddisch",
+            "Deutsche Gebärdensprache (DGS)",
+            "Belgisch-französische Gebärdensprache (LSFB)",
+            "Flämische Gebärdensprache (VGT)",
+            "Englisch",
             "Berber",
             "Maghrebinisches Arabisch (Darija)",
-            "Chinesisch",
-            "Rumänisch",
-            "Ungarisch",
-            "Griechisch",
-            "Japanisch",
-            "Schwedisch",
-            "Tschechisch",
+            "Spanisch",
+            "Türkisch",
             "Portugiesisch",
-            "Norwegisch",
-            "Modernes Standard-Arabisch",
-            "Jenisch",
-            "Jiddisch"
+            "Italienisch",
+            "Griechisch",
+            "Polnisch",
+            "Modernes Standard-Arabisch"
         ]
     },
     "club": {
@@ -440,7 +434,7 @@
         ],
         "onlyRML": [
             "Only [RML]",
-            "Nur Alemannisch"
+            "Nur Eifeler Platt"
         ],
         "onlyMajorityLanguage": [
             "Only [MajorityLanguage]",
@@ -519,8 +513,8 @@
     },
     "notes": {
         "secTitle": [
-            "Thank you for completing the Language and Social Background Questionnaire (RML)!",
-            "Vielen Dank für das Ausfüllen des Fragebogen zum sprachlichen und sozialen Hintergrund (LSBQ-RML)!"
+            "Thank you for completing the Language and Social Background Questionnaire!",
+            "Vielen Dank für das Ausfüllen des Fragebogen zum sprachlichen und sozialen Hintergrund!"
         ],
         "participantNoteInstructions": [
             "Gibt es sonst noch irgendetwas, von dem Sie glauben, dass wir es über Sie wissen sollten?"

@@ -1,7 +1,7 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
 {% block title %}L’ART Research Client - LSBQₑ - Completion{% endblock %}
-{% block headline %}<span id="lsbqRmlAppTitle" data-lsbqrml-tr="base.appTitle">Language and Social Background Questionnaire (RML)</span>{% endblock %}
+{% block headline %}<span id="lsbqAppTitle" data-lsbq-tr="base.appTitle">Language and Social Background Questionnaire</span>{% endblock %}
 {% block head_scripts %}{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
@@ -19,11 +19,11 @@
         </div>
 
         <div class="row m-4 text-center">
-            <h2 id="lsbqRmlSectionTitle" data-lsbqrml-tr="notes.secTitle">Thank you for completing the LSBQ (RML)!</h2>
+            <h2 id="lsbqSectionTitle" data-lsbq-tr="notes.secTitle">Thank you for completing the LSBQ<sub>e</sub>!</h2>
         </div>
 
         <div class="row m-4">
-            <div id="lsbqRmlThankYouMessage" class="col fw-semi p-0" data-lsbqrml-tr="notes.thankYouMessage">
+            <div id="lsbqThankYouMessage" class="col fw-semi p-0" data-lsbq-tr="notes.thankYouMessage">
                 Thank you for completing the Language and Social Background Questionnaire! If you think there's anything else we should know about you
                 or your background then you can use the box below to tell us about this. Then just click on the &ldquo;submit and
                 continue&rdquo; button to save your data and continue with the next task.
@@ -36,7 +36,7 @@
             <section class="m-4">
                 <div class="row mb-1">
                     <div class="col">
-                        <label for="participantNote" data-lsbqrml-tr="notes.participantNoteInstructions">
+                        <label for="participantNote" data-lsbq-tr="notes.participantNoteInstructions">
                             Is there anything else that you think is important for us to know about you?
                         </label>
                     </div>
@@ -51,7 +51,7 @@
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div clas="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbqrml-tr="notes.submitAndContinue">Submit and Continue</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbq-tr="notes.submitAndContinue">Submit and Continue</button>
                 </div>
             </div>
 
@@ -64,11 +64,11 @@
         lart.forms.requireValidation(true);
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('lsbqrml', eel._lsbqrml_load_version, [instanceId, ['meta', 'base', 'notes']]);
-        lart.tr.registerObserver('lsbqrml', 'surveyNotesForm');
-        lart.tr.registerObserver('lsbqrml', 'lsbqRmlSectionTitle');
-        lart.tr.registerObserver('lsbqrml', 'lsbqRmlAppTitle');
-        lart.tr.registerObserver('lsbqrml', 'lsbqRmlThankYouMessage');
+        lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'notes']]);
+        lart.tr.registerObserver('lsbq', 'surveyNotesForm');
+        lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
+        lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
+        lart.tr.registerObserver('lsbq', 'lsbqThankYouMessage');
     </script>
-    {{ lart_form_pipeline('surveyNotesForm', '_lsbqrml_setnotes') }}
+    {{ lart_form_pipeline('surveyNotesForm', '_lsbq_setnotes') }}
 {% endblock %}

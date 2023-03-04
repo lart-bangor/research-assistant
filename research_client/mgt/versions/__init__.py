@@ -1,4 +1,4 @@
-"""Version implementations and translations for the LSBQ-RML."""
+"""Version implementations and translations for the MGT."""
 import logging
 import json
 from importlib import resources

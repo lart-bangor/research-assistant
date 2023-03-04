@@ -1,7 +1,7 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
 {% block title %}L’ART Research Client - LSBQₑ - Language and Social Background{% endblock %}
-{% block headline %}<span id="lsbqRmlAppTitle" data-lsbqrml-tr="base.appTitle">Language and Social Background Questionnaire (RML)</span>{% endblock %}
+{% block headline %}<span id="lsbqAppTitle" data-lsbq-tr="base.appTitle">Language and Social Background Questionnaire</span>{% endblock %}
 {% block head_scripts %}{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
@@ -24,7 +24,7 @@
 
         <div class="row m-4 text-center">
             <div class="col">
-                <h2 id="lsbqRmlSectionTitle" data-lsbqrml-tr="lsb.secTitle">Language and Social Background</h2>
+                <h2 id="lsbqSectionTitle" data-lsbq-tr="lsb.secTitle">Language and Social Background</h2>
             </div>
         </div>
 
@@ -33,24 +33,24 @@
             <!-- 1. Sex -->
             <section class="m-4">
                 <fieldset class="row mb-3">
-                    <legend class="col-form-label col-auto pt-0" data-lsbqrml-tr="lsb.sex">Sex:</legend>
+                    <legend class="col-form-label col-auto pt-0" data-lsbq-tr="lsb.sex">Sex:</legend>
                     <div class="col-sm">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sex" id="sexFemale" value="F" required />
-                            <label class="form-check-label" for="sexFemale" data-lsbqrml-tr="lsb.female">Female</label>
+                            <label class="form-check-label" for="sexFemale" data-lsbq-tr="lsb.female">Female</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sex" id="sexMale" value="M" required />
-                            <label class="form-check-label" for="sexMale" data-lsbqrml-tr="lsb.male">Male</label>
+                            <label class="form-check-label" for="sexMale" data-lsbq-tr="lsb.male">Male</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sex" id="sexOther" value="O" required />
-                            <label class="form-check-label align-text-top" for="sexOther" data-lsbqrml-tr="lsb.other">Other</label>
+                            <label class="form-check-label align-text-top" for="sexOther" data-lsbq-tr="lsb.other">Other</label>
                             <div id="sexOtherSpecifyCollapse" class="d-inline-block align-text-top collapse">
                                 <input name="sex_other" id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" aria-label="Specify sex, if other." />
-                                <div class="invalid-feedback" data-lsbqrml-tr="lsb.otherFeedback">Please briefly specify what other sex you identify with.</div>
+                                <div class="invalid-feedback" data-lsbq-tr="lsb.otherFeedback">Please briefly specify what other sex you identify with.</div>
                             </div>
-                            <div class="invalid-feedback invalid-radio" data-lsbqrml-tr="lsb.sexFeedback">Please select an option for <i>Sex</i>.</div>
+                            <div class="invalid-feedback invalid-radio" data-lsbq-tr="lsb.sexFeedback">Please select an option for <i>Sex</i>.</div>
                             <script type="text/javascript">
                                 lart.forms.conditionalRequire('sex', 'sex_other', 'O');
                                 lart.forms.conditionalDisplay('sex', 'sexOtherSpecify', 'O');
@@ -63,10 +63,10 @@
             <!-- 2. Occupation -->
             <section class="m-4">
                 <div class="row mb-3">
-                    <label for="occupation" class="col-form-label col-auto" data-lsbqrml-tr="lsb.occupation">Occupation:</label>
+                    <label for="occupation" class="col-form-label col-auto" data-lsbq-tr="lsb.occupation">Occupation:</label>
                     <div class="col-sm">
                     <input type="text" class="form-control" id="occupation" required />
-                    <div class="invalid-feedback" data-lsbqrml-tr="lsb.occupationFeedback">Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, &mldr;</div>
+                    <div class="invalid-feedback" data-lsbq-tr="lsb.occupationFeedback">Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, &mldr;</div>
                     </div>
                 </div>
             </section>
@@ -74,16 +74,16 @@
             <!-- 3. Handedness -->
             <section class="m-4">
                 <fieldset class="row mb-3">
-                    <legend class="col-form-label col-auto pt-0" data-lsbqrml-tr="lsb.handedness">Handedness:</legend>
+                    <legend class="col-form-label col-auto pt-0" data-lsbq-tr="lsb.handedness">Handedness:</legend>
                     <div class="col-sm-10">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="handedness" id="handednessLeft" value="L" required />
-                            <label class="form-check-label" for="handednessLeft" data-lsbqrml-tr="lsb.left">Left</label>
+                            <label class="form-check-label" for="handednessLeft" data-lsbq-tr="lsb.left">Left</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="handedness" id="handednessRight" value="R" required />
-                            <label class="form-check-label" for="handednessRight" data-lsbqrml-tr="lsb.right">Right</label>
-                            <div class="invalid-feedback invalid-radio" data-lsbqrml-tr="lsb.handednessFeedback">Please indicate whether you are <i>left-</i> or <i>righthanded</i>.</div>
+                            <label class="form-check-label" for="handednessRight" data-lsbq-tr="lsb.right">Right</label>
+                            <div class="invalid-feedback invalid-radio" data-lsbq-tr="lsb.handednessFeedback">Please indicate whether you are <i>left-</i> or <i>righthanded</i>.</div>
                         </div>
                     </div>
                 </fieldset>
@@ -92,13 +92,13 @@
             <!-- 4. Date of birth -->
             <section class="m-4">
                 <div class="row mb-3">
-                    <label for="dateOfBirth" class="col-form-label col-sm-auto" data-lsbqrml-tr="lsb.dateOfBirth">Date of birth:</label>
+                    <label for="dateOfBirth" class="col-form-label col-sm-auto" data-lsbq-tr="lsb.dateOfBirth">Date of birth:</label>
                     <div class="col-sm-auto">
                         <input type="date" class="form-control" name="date_of_birth" id="dateOfBirth" min="1922-01-01" required />
                         <script type="text/javascript">
                             booteel.DOM.setAttribute('dateOfBirth', 'max', booteel.today.iso.YEAR_MONTH_DAY);
                         </script>
-                        <div class="invalid-feedback" data-lsbqrml-tr="lsb.dateOfBirthFeedback">Please give your <i>date of birth</i> (must be in the past).</div>
+                        <div class="invalid-feedback" data-lsbq-tr="lsb.dateOfBirthFeedback">Please give your <i>date of birth</i> (must be in the past).</div>
                     </div>
                 </div>
             </section>
@@ -106,30 +106,30 @@
             <!-- 5. Hearing problems -->
             <section class="m-4">
                 <fieldset class="row mb-3">
-                    <legend class="col-form-label col-sm-auto pt-0" data-lsbqrml-tr="lsb.impairedHearing">Do you have impaired hearing?</legend>
+                    <legend class="col-form-label col-sm-auto pt-0" data-lsbq-tr="lsb.impairedHearing">Do you have impaired hearing?</legend>
                     <div class="col-sm-auto">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="hearing_impairment" id="hearingProblemYes" value="yes" required />
-                            <label class="form-check-label" for="hearingProblemYes" data-lsbqrml-tr="base.yes">Yes</label>
+                            <label class="form-check-label" for="hearingProblemYes" data-lsbq-tr="base.yes">Yes</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="hearing_impairment" id="hearingProblemNo" value="no" required />
-                            <label class="form-check-label" for="hearingProblemNo" data-lsbqrml-tr="base.no">No</label>
-                        <div class="invalid-feedback invalid-radio" data-lsbqrml-tr="lsb.impairedHearingFeedback">Please indicate whether you have any difficulties with your hearing.</div>
+                            <label class="form-check-label" for="hearingProblemNo" data-lsbq-tr="base.no">No</label>
+                        <div class="invalid-feedback invalid-radio" data-lsbq-tr="lsb.impairedHearingFeedback">Please indicate whether you have any difficulties with your hearing.</div>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="row mb-3 ms-5" id="hearingAid">
-                    <legend class="col-form-label col-sm-auto pt-0" data-lsbqrml-tr="lsb.hearingAid">If <strong>yes</strong>, do you wear a hearing aid?</legend>
+                    <legend class="col-form-label col-sm-auto pt-0" data-lsbq-tr="lsb.hearingAid">If <strong>yes</strong>, do you wear a hearing aid?</legend>
                     <div class="col-sm-auto">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="hearing_aid" id="hearingAidYes" value="yes" />
-                            <label class="form-check-label" for="hearingYes" data-lsbqrml-tr="base.yes">Yes</label>
+                            <label class="form-check-label" for="hearingYes" data-lsbq-tr="base.yes">Yes</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="hearing_aid" id="hearingAidNo" value="no" />
-                            <label class="form-check-label" for="hearingAidNo" data-lsbqrml-tr="base.no">No</label>
-                            <div class="invalid-feedback invalid-radio" data-lsbqrml-tr="lsb.hearingAidFeedback">Please indicate whether you use a hearing aid or not.</div>
+                            <label class="form-check-label" for="hearingAidNo" data-lsbq-tr="base.no">No</label>
+                            <div class="invalid-feedback invalid-radio" data-lsbq-tr="lsb.hearingAidFeedback">Please indicate whether you use a hearing aid or not.</div>
                         </div>
                     </div>
                 </fieldset>
@@ -142,30 +142,30 @@
             <!-- 6. Vision problems -->
             <section class="m-4">
                 <fieldset class="row mb-3">
-                    <legend class="col-form-label col-sm-auto pt-0" data-lsbqrml-tr="lsb.visionImpairment">Do you have impaired vision?</legend>
+                    <legend class="col-form-label col-sm-auto pt-0" data-lsbq-tr="lsb.visionImpairment">Do you have impaired vision?</legend>
                     <div class="col-sm-auto">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_impairment" id="visionProblemYes" value="yes" required />
-                            <label class="form-check-label" for="visionProblemYes" data-lsbqrml-tr="base.yes">Yes</label>
+                            <label class="form-check-label" for="visionProblemYes" data-lsbq-tr="base.yes">Yes</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_impairment" id="visionProblemNo" value="no" required />
-                            <label class="form-check-label" for="visionProblemNo" data-lsbqrml-tr="base.no">No</label>
-                            <div class="invalid-feedback invalid-radio" data-lsbqrml-tr="lsb.visionImpairmentFeedback">Please indicate whether you have a vision impairment or not.</div>
+                            <label class="form-check-label" for="visionProblemNo" data-lsbq-tr="base.no">No</label>
+                            <div class="invalid-feedback invalid-radio" data-lsbq-tr="lsb.visionImpairmentFeedback">Please indicate whether you have a vision impairment or not.</div>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="row mb-3 ms-5" id="visionGlasses">
-                    <legend class="col-form-label col-sm-auto pt-0" data-lsbqrml-tr="lsb.visionAid">If <strong>yes</strong>, do you wear glasses/contacts?</legend>
+                    <legend class="col-form-label col-sm-auto pt-0" data-lsbq-tr="lsb.visionAid">If <strong>yes</strong>, do you wear glasses/contacts?</legend>
                     <div class="col-sm-auto">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_aid" id="visionGlassesYes" value="yes" />
-                            <label class="form-check-label" for="visionGlassesYes" data-lsbqrml-tr="base.yes">Yes</label>
+                            <label class="form-check-label" for="visionGlassesYes" data-lsbq-tr="base.yes">Yes</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_aid" id="visionGlassesNo" value="no" />
-                            <label class="form-check-label" for="visionGlassesNo" data-lsbqrml-tr="base.no">No</label>
-                            <div class="invalid-feedback invalid-radio" data-lsbqrml-tr="lsb.visionAidFeedback">Please indicate whether you use a vision aid such as glasses or contact lenses.</div>
+                            <label class="form-check-label" for="visionGlassesNo" data-lsbq-tr="base.no">No</label>
+                            <div class="invalid-feedback invalid-radio" data-lsbq-tr="lsb.visionAidFeedback">Please indicate whether you use a vision aid such as glasses or contact lenses.</div>
                         </div>
                     </div>
                 </fieldset>
@@ -174,16 +174,16 @@
                     lart.forms.conditionalDisplay('vision_impairment', 'visionGlasses', 'yes');
                 </script>
                 <fieldset class="row mb-3 ms-5" id="visionCorrected">
-                    <legend class="col-form-label col-sm-auto pt-0" data-lsbqrml-tr="lsb.visionCorrected">Do they correct your vision to normal?</legend>
+                    <legend class="col-form-label col-sm-auto pt-0" data-lsbq-tr="lsb.visionCorrected">Do they correct your vision to normal?</legend>
                     <div class="col-sm-auto">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_fully_corrected" id="visionCorrectedYes" value="yes" />
-                            <label class="form-check-label" for="visionGlassesYes" data-lsbqrml-tr="base.yes">Yes</label>
+                            <label class="form-check-label" for="visionGlassesYes" data-lsbq-tr="base.yes">Yes</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_fully_corrected" id="visionCorrectedNo" value="no" />
-                            <label class="form-check-label" for="visionCorrectedNo" data-lsbqrml-tr="base.no">No</label>
-                            <div class="invalid-feedback invalid-radio" data-lsbqrml-tr="lsb.visionCorrectedFeedback">Please indicate whether, using your vision aid, your vision is fully corrected to normal.</div>
+                            <label class="form-check-label" for="visionCorrectedNo" data-lsbq-tr="base.no">No</label>
+                            <div class="invalid-feedback invalid-radio" data-lsbq-tr="lsb.visionCorrectedFeedback">Please indicate whether, using your vision aid, your vision is fully corrected to normal.</div>
                         </div>
                     </div>
                 </fieldset>
@@ -196,11 +196,11 @@
             <!-- 7. Place of birth -->
             <section class="m-4">
                 <div class="row mb-3">
-                    <label for="placeOfBirth" class="col-form-label col-auto" data-lsbqrml-tr="lsb.placeOfBirth">Place of birth:</label>
+                    <label for="placeOfBirth" class="col-form-label col-auto" data-lsbq-tr="lsb.placeOfBirth">Place of birth:</label>
                     <div class="col-sm">
                     <input type="text" class="form-control" name="place_of_birth" id="placeOfBirth" required />
-                    <div class="invalid-feedback" data-lsbqrml-tr="lsb.placeOfBirthFeedback">Please give your (approximate) <i>place of birth</i>, e.g. <i>Madrid, Spain</i>.</div>
-                    <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> <span data-lsbqrml-tr="lsb.approximateAreaSufficient">Approximate area is sufficient.</span></p>
+                    <div class="invalid-feedback" data-lsbq-tr="lsb.placeOfBirthFeedback">Please give your (approximate) <i>place of birth</i>, e.g. <i>Madrid, Spain</i>.</div>
+                    <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> <span data-lsbq-tr="lsb.approximateAreaSufficient">Approximate area is sufficient.</span></p>
                     </div>
                 </div>
             </section>
@@ -208,7 +208,7 @@
             <!-- 8. Where else have you lived -->
             <section class="m-4">
                 <div class="row mb-1">
-                    <p class="col-form-label col-auto" data-lsbqrml-tr="lsb.otherPlaces">Where else have you lived for any significant period of time (&gt; 6 months)?</p>
+                    <p class="col-form-label col-auto" data-lsbq-tr="lsb.otherPlaces">Where else have you lived for any significant period of time (&gt; 6 months)?</p>
                 </div>
                 <template id="otherPlacesTemplate">
                     <div class="row mb-1" id="otherPlaces-[PlaceNumber]">
@@ -217,15 +217,15 @@
                         </div>
                         <div class="col form-floating">
                             <input type="text" class="form-control" id="otherPlacesName-[PlaceNumber]" name="otherPlacesName-[PlaceNumber]" />
-                            <label for="otherPlacesName-[PlaceNumber]" data-lsbqrml-tr="lsb.placeName">Place name</label>
+                            <label for="otherPlacesName-[PlaceNumber]" data-lsbq-tr="lsb.placeName">Place name</label>
                         </div>
                         <div class="col form-floating">
                             <input type="month" class="form-control" id="otherPlacesFrom-[PlaceNumber]" name="otherPlacesFrom-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
-                            <label for="otherPlacesFrom-0" data-lsbqrml-tr="lsb.from">From</label>
+                            <label for="otherPlacesFrom-0" data-lsbq-tr="lsb.from">From</label>
                         </div>
                         <div class="col form-floating">
                             <input type="month" class="form-control" id="otherPlacesTo-[PlaceNumber]" name="otherPlacesTo-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
-                            <label for="otherPlacesTo-0" data-lsbqrml-tr="lsb.until">Until</label>
+                            <label for="otherPlacesTo-0" data-lsbq-tr="lsb.until">Until</label>
                         </div>
                     </div>
                 </template>
@@ -235,10 +235,10 @@
                 <div class="row mt-1 mb-3 ms-1">
                     <div class="col-1"></div>
                     <div class="col ps-1">
-                        <p class="help-block p-2 text-muted ps-0"><i class="bi-info-circle text-info"></i> <span data-lsbqrml-tr="lsb.approximateAreaSufficient">Approximate area is sufficient.</span></p>
+                        <p class="help-block p-2 text-muted ps-0"><i class="bi-info-circle text-info"></i> <span data-lsbq-tr="lsb.approximateAreaSufficient">Approximate area is sufficient.</span></p>
                     </div>
                     <div class="col text-end">
-                        <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="insertOtherPlacesLine()"><i class="bi-plus-circle-dotted"></i> <span data-lsbqrml-tr="base.addLine">Add line</span></a>
+                        <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="insertOtherPlacesLine()"><i class="bi-plus-circle-dotted"></i> <span data-lsbq-tr="base.addLine">Add line</span></a>
                     </div>
                 </div>
             </section>
@@ -247,30 +247,30 @@
             <section class="m-4">
                 <fieldset id="levelOfEducation">
                     <div class="row">
-                        <legend class="col-form-label col-auto pt-0" data-lsbqrml-tr="lsb.levelOfEducation">Please indicate the highest level of education you have achieved:</legend>
+                        <legend class="col-form-label col-auto pt-0" data-lsbq-tr="lsb.levelOfEducation">Please indicate the highest level of education you have achieved:</legend>
                     </div>
                     <div class="row-mb-3">
                         <div class="col ms-5">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation1" value="1" required />
-                                <label class="form-check-label" for="levelOfEducation1" data-lsbqrml-tr="base.levelOfEducation1">EQF Level 1</label>
+                                <label class="form-check-label" for="levelOfEducation1" data-lsbq-tr="base.levelOfEducation1">EQF Level 1</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation2" value="2" required />
-                                <label class="form-check-label" for="levelOfEducation2" data-lsbqrml-tr="base.levelOfEducation2">EQF Level 2-3</label>
+                                <label class="form-check-label" for="levelOfEducation2" data-lsbq-tr="base.levelOfEducation2">EQF Level 2-3</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation3" value="3" required />
-                                <label class="form-check-label" for="levelOfEducation3" data-lsbqrml-tr="base.levelOfEducation3">EQF Level 4</label>
+                                <label class="form-check-label" for="levelOfEducation3" data-lsbq-tr="base.levelOfEducation3">EQF Level 4</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation4" value="4" required />
-                                <label class="form-check-label" for="levelOfEducation4" data-lsbqrml-tr="base.levelOfEducation4">EQF Level 5-6</label>
+                                <label class="form-check-label" for="levelOfEducation4" data-lsbq-tr="base.levelOfEducation4">EQF Level 5-6</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="education_level" id="levelOfEducation5" value="5" required />
-                                <label class="form-check-label" for="levelOfEducation5" data-lsbqrml-tr="base.levelOfEducation5">EQF Level 7-8</label>
-                                <div class="invalid-feedback invalid-radio" data-lsbqrml-tr="lsb.levelOfEducationFeedback">Please indicate the highest level of education from the list that you have achieved (or the approximate equivalent).</div>
+                                <label class="form-check-label" for="levelOfEducation5" data-lsbq-tr="base.levelOfEducation5">EQF Level 7-8</label>
+                                <div class="invalid-feedback invalid-radio" data-lsbq-tr="lsb.levelOfEducationFeedback">Please indicate the highest level of education from the list that you have achieved (or the approximate equivalent).</div>
                             </div>
                         </div> 
                     </div>
@@ -280,7 +280,7 @@
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div clas="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbqrml-tr="base.next">Next</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbq-tr="base.next">Next</button>
                 </div>
             </div>
 
@@ -294,10 +294,10 @@
 
         // Initialise UI translation
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('lsbqrml', eel._lsbqrml_load_version, [instanceId, ['meta', 'base', 'lsb']]);
-        lart.tr.registerObserver('lsbqrml', 'surveyLSBForm');
-        lart.tr.registerObserver('lsbqrml', 'lsbqRmlSectionTitle');
-        lart.tr.registerObserver('lsbqrml', 'lsbqRmlAppTitle');
+        lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'lsb']]);
+        lart.tr.registerObserver('lsbq', 'surveyLSBForm');
+        lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
+        lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
 
         // Set up repeats for "other places" fields
         let otherPlacesCounter = 0;
@@ -346,5 +346,5 @@
         }
         insertOtherPlacesLine();
     </script>
-    {{ lart_form_pipeline('surveyLSBForm', '_lsbqrml_setlsb') }}
+    {{ lart_form_pipeline('surveyLSBForm', '_lsbq_setlsb') }}
 {% endblock %}

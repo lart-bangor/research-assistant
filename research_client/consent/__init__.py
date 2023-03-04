@@ -20,7 +20,7 @@ def set_options(selected_version: str):
     print("My version: " + selected_version + str(type(selected_version))) 
     options = []
     dir = os.listdir()
-    dir = os.listdir('lart_research_client\\consent\\versions')
+    dir = os.listdir('research_client\\consent\\versions')
     for file_name in dir:
         bare_file_name = file_name.split(".", 1)[0]
         if bare_file_name == selected_version:
@@ -33,7 +33,7 @@ def set_options(selected_version: str):
 
 @eel.expose
 def fetch_study_info(filename: str):
-    file = 'lart_research_client\\consent\\versions\\' + filename
+    file = 'research_client\\consent\\versions\\' + filename
     with open(file, "r") as f:
         version_data = json.load(f)
         #print(version_data)

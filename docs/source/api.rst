@@ -4,7 +4,7 @@ API Documentation
 Backend API (Python)
 ^^^^^^^^^^^^^^^^^^^^
 
-.. currentmodule:: lart_research_client
+.. currentmodule:: research_client
 
 .. autosummary::
     :toctree: generated

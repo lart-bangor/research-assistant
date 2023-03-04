@@ -2,13 +2,13 @@
     "meta": {
         "versionId": "CymEng_Cym_GB",
         "versionName": "Cymraeg - Saesneg (Y Deyrnas Unedig)", 
-        "versionNumber": "0.3.4",
+        "versionNumber": "0.3.5",
         "author": "Florian Breit <f.breit@bangor.ac.uk>, Ianto Gruffydd <ianto.gruffydd@bangor.ac.uk>",
         "date": "2022-06-30"
     },
     "base": {
         "appTitle": [
-            "Holiadur Iaith a Chefndir Cymdeithasol (RML)"
+            "Holiadur Iaith a Chefndir Cymdeithasol"
         ],
         "yes": [
             "Ie"
@@ -425,7 +425,7 @@
     },
     "notes": {
         "secTitle": [
-            "Diolch am gwblhau'r Holiadur Iaith a Chefndir Cymdeithasol (RML)!"
+            "Diolch am gwblhau'r Holiadur Iaith a Chefndir Cymdeithasol!"
         ],
         "participantNoteInstructions": [
             "A oes unrhyw beth arall y credwch sy’n bwysig inni wybod amdanoch?"

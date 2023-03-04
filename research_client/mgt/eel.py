@@ -1,4 +1,4 @@
-"""Exposes the LSBQ-RML to Python Eel."""
+"""Exposes the MGT to Python Eel."""
 import logging
 import datetime
 import eel

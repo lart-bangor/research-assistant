@@ -2,14 +2,14 @@
     "meta": {
         "versionId": "LmoIta_Ita_IT",
         "versionName": "Lombard – Italiano (Italia)",
-        "versionNumber": "0.3.4",
+        "versionNumber": "0.3.5",
         "author": "Alessandro Arioli <a.arioli@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2022-04-28"
     },
     "base": {
         "appTitle": [
-            "Language and Social Background Questionnaire (RML)",
-            "Questionario su usi linguistici ed estrazione sociale (RML)"
+            "Language and Social Background Questionnaire",
+            "Questionario su usi linguistici ed estrazione sociale"
         ],
         "yes": [
             "Yes",
@@ -527,8 +527,8 @@
     },
     "notes": {
         "secTitle": [
-            "Thank you for completing the LSBQ (RML)!",
-            "Grazie per aver completato il questionario su usi linguistici ed estrazione sociale (RML)"
+            "Thank you for completing the LSBQ!",
+            "Grazie per aver completato il questionario su usi linguistici ed estrazione sociale"
         ],
         "participantNoteInstructions": [
             "Is there anything else that you think is important for us to know about you?",

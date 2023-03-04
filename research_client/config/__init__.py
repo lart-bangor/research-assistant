@@ -13,7 +13,7 @@ To access and/or modify the configuration of the running app, you should import
 only `config`. The other classes and objects in the package will not typically
 be needed, perhaps with the exceptions of functions that deal with system updates
 and the like (as for instance the functionality in the
-`lart_research_client.utils` module).
+`research_client.utils` module).
 
 Example:
     Let's imagine you want to ensure that the *shutdown_delay* setting is always
@@ -278,7 +278,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         "App start screen": "",
         "AToL-C": "atolc",
         "Consent Form": "consent",
-        "LSBQe": "lsbqrml",
+        "LSBQe": "lsbq",
         "Memory Game": "memorygame",
         "MGT": "mgt",
     }
@@ -291,13 +291,13 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         }
     )
     consent: str = field(
-        default="lsbqrml",
+        default="lsbq",
         metadata={
             "doc_label": "Task following the Consent Form",
             "doc_values": _sequence_options,
         }
     )
-    lsbqrml: str = field(
+    lsbq: str = field(
         default="atolc",
         metadata={
             "doc_label": "Task following the LSBQe",

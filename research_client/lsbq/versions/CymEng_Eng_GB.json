@@ -1,10 +1,10 @@
 {
     "meta": {
-        "versionId": "EngZzz_Eng_GB",
-        "versionName": "English - generic (United Kingdom)",
-        "versionNumber": "0.3.4",
-        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2022-07-07"
+        "versionId": "CymEng_Eng_GB",
+        "versionName": "Welsh – English (United Kingdom)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>, Ianto Gruffydd <ianto.gruffydd@bangor.ac.uk>",
+        "date": "2022-04-10"
     },
     "base": {
         "appTitle": [
@@ -132,7 +132,7 @@
             "Place of birth:"
         ],
         "placeOfBirthFeedback": [
-            "Please give your (approximate) <i>place of birth</i>, e.g. <i>Leicester, England</i>."
+            "Please give your (approximate) <i>place of birth</i>, e.g. <i>Madrid, Spain</i>."
         ],
         "approximateAreaSufficient": [
             "Approximate area is sufficient."
@@ -161,8 +161,8 @@
             "Language and Dialect Background"
         ],
         "languagesInstructions": [
-            "List all the languages and dialects you can speak and understand, including [MajorityLanguage], in order of how comfortable you feel using them:",
-            "List all the languages and dialects you can speak and understand, including English, in order of how comfortable you feel using them:"
+            "List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:",
+            "List all the languages and dialects you can speak and understand, including Welsh and English, in order of how comfortable you feel using them:"
         ],
         "languageName": [
             "Language or dialect"
@@ -312,7 +312,9 @@
             "Please mark this box <i>only</i> if you cannot answer questions about your father (e.g. because you don't know them)."
         ],
         "languageListOptions": [
+            "Welsh",
             "English",
+            "Scots",
             "French",
             "German",
             "Spanish",
@@ -325,10 +327,8 @@
             "Gujarati",
             "Tamil",
             "Scottish Gaelic",
-            "Mandarin",
+            "Chinese",
             "Portuguese",
-            "Welsh",
-            "Scots",
             "Italian",
             "Ulster Scots",
             "Turkish",
@@ -351,7 +351,7 @@
         ],
         "onlyRML": [
             "Only [RML]",
-            "Only the other language"
+            "Only Welsh"
         ],
         "onlyMajorityLanguage": [
             "Only [MajorityLanguage]",
@@ -426,7 +426,7 @@
     },
     "notes": {
         "secTitle": [
-            "Thank you for completing the Language and Social Background Questionnaire (RML)!"
+            "Thank you for completing the Language and Social Background Questionnaire!"
         ],
         "participantNoteInstructions": [
             "Is there anything else that you think is important for us to know about you?"

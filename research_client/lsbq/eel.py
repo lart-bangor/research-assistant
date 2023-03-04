@@ -63,7 +63,7 @@ def _expose(func: F) -> F:
                 booteel.displayexception(exc)
                 _handleexception(exc)
             return False
-    eel._expose("_lsbqrml_" + func.__name__, api_wrapper)  # type: ignore
+    eel._expose("_lsbq_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
 
@@ -325,7 +325,7 @@ def setnotes(instid: str, data: dict[str, Any]) -> str:
     logger.debug(f"LSBQe instance id = {instid}")
     logger.debug(f"... set 'notes' data to {instance.getnotes()}")
     store(instid)
-    if config.sequences.lsbqrml:
+    if config.sequences.lsbq:
         meta = instance.getmeta()
         query = booteel.buildquery({
             "selectSurveyVersion": meta["version_id"],
@@ -335,7 +335,7 @@ def setnotes(instid: str, data: dict[str, Any]) -> str:
             "confirmConsent": int(meta["consent"]),
             "surveyDataForm.submit": "true",
         })
-        booteel.setlocation(f"/app/{config.sequences.lsbqrml}/index.html?{query}")
+        booteel.setlocation(f"/app/{config.sequences.lsbq}/index.html?{query}")
     else:
         booteel.setlocation("/app/index.html")
     return instid
@@ -343,7 +343,7 @@ def setnotes(instid: str, data: dict[str, Any]) -> str:
 
 @_expose
 def getversions() -> dict[str, str]:
-    """Retrieves the available versions of the LSBQ RML."""
+    """Retrieves the available versions of the LSBQe."""
     lsbq_versions: dict[str, str] = {}
     for identifier in versions.keys():
         lsbq_versions[identifier] = versions[identifier]["meta"]["versionName"]
