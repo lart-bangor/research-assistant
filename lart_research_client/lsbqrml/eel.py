@@ -163,12 +163,16 @@ def setlsb(instid: str, data: dict[str, str]) -> str:  # noqa: C901
 def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
     """Adds Language and Dialect Background Data to a Response."""
     logger.info(f"Setting LDB data on LSBQe instance {instid}..")
-    logger.debug(f"... received data: {data!r}")
+    logger.info(f"... received data: {data!r}")
     instance = _getinstance(instid)
     processed: dict[str, Union[str, int, list[Union[str, int]]]] = {
         "languages_spoken_name": [],
-        "languages_spoken_source": [],
+        "languages_spoken_source": [],  # This gets stripped later
+        "languages_spoken_source_home": [],
+        "languages_spoken_source_school": [],
+        "languages_spoken_source_community": [],
         "languages_spoken_source_other": [],
+        "languages_spoken_source_other_detail": [],
         "languages_spoken_age": [],
         "languages_spoken_breaks": [],
         "languages_proficiency_speaking": [],
@@ -209,7 +213,7 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
             key_map = {
                 f"languagesSpokenLanguage-{index}": "languages_spoken_name",
                 f"languagesSpokenSource-{index}": "languages_spoken_source",
-                f"languagesSpokenSourceSpecify-{index}": "languages_spoken_source_other",
+                f"languagesSpokenSourceSpecify-{index}": "languages_spoken_source_other_detail",
                 f"languagesSpokenAge-{index}": "languages_spoken_age",
                 f"languagesSpokenBreakMonths-{index}": "languages_spoken_breaks",
                 f"proficiencySpeakingLanguage-{index}": "languages_proficiency_speaking",
@@ -230,7 +234,7 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
                     datacopy[needle] = int(datacopy[needle])
                     datacopy[needle] += int(datacopy[break_year_key])*12
                     del data[break_year_key]
-                if "languagesSpokenSource-" in needle and datacopy[needle].lower() != "o":
+                if "languagesSpokenSource-" in needle and "o" not in datacopy[needle] and "O" not in datacopy[needle]:
                     datacopy[source_specify_key] = 'n/a'
                 if fieldname in processed and isinstance(processed[fieldname], list):
                     if append_row:
@@ -245,7 +249,18 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
     if "father_second_language" in data and not data["father_second_language"]:
         del data["father_second_language"]
     processed.update(data)
-    logger.debug(f"... preprocessed data: {processed!r}")
+    # Divide languages_spoken_source into constituent parts
+    for languages_spoken_source in processed["languages_spoken_source"]:
+        home = True if "h" in languages_spoken_source else False
+        school = True if "s" in languages_spoken_source else False
+        community = True if "c" in languages_spoken_source else False
+        other = True if "o" in languages_spoken_source else False
+        processed["languages_spoken_source_home"].append(home)
+        processed["languages_spoken_source_school"].append(school)
+        processed["languages_spoken_source_community"].append(community)
+        processed["languages_spoken_source_other"].append(other)
+    del processed["languages_spoken_source"]
+    logger.info(f"... preprocessed data: {processed!r}")
     instance.setldb(processed)
     logger.debug(f"LSBQe instance id = {instid}")
     logger.debug(f"... set 'ldb' data to {instance.getldb()}")

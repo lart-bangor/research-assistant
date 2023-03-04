@@ -712,7 +712,6 @@
                 });
                 // Make select2's changes to <select> trigger input event..
                 $(`#languagesSpokenSource-${languageNumber}`).on('change', (e) => {
-                    console.warn("IT HAPPENED GUYS!");
                     const inputEvent = new Event('input', {
                         bubbles: true,
                         cancelable: true,

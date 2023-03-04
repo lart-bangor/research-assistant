@@ -456,7 +456,7 @@ class Validator:
         else:
             if cdata in constraint[0]:
                 cval = True
-            elif cdata in constraint[0]:
+            elif cdata in constraint[1]:
                 cval = False
         cmp = cval is not None
         validation = ValidationResult(

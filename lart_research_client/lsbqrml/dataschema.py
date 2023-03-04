@@ -153,15 +153,33 @@ class Response(DataSchema):
                 "constraint": patterns.LANGUAGE_NAME,
                 "multiple": True,
             },
-            "languages_spoken_source": {
-                "type_": EnumT,
-                "typedesc": "source of language acquisition",
-                "constraint": patterns.ACQUISITION_SOURCE,
+            "languages_spoken_source_home": {
+                "type_": PolarT,
+                "typedesc": "language acquired in the home",
+                "constraint": patterns.ACQUISITION_SOURCE_HOME,
+                "multiple": True,
+            },
+            "languages_spoken_source_school": {
+                "type_": PolarT,
+                "typedesc": "language acquired at school",
+                "constraint": patterns.ACQUISITION_SOURCE_SCHOOL,
+                "multiple": True,
+            },
+            "languages_spoken_source_community": {
+                "type_": PolarT,
+                "typedesc": "language acquired in the community",
+                "constraint": patterns.ACQUISITION_SOURCE_COMMUNITY,
                 "multiple": True,
             },
             "languages_spoken_source_other": {
+                "type_": PolarT,
+                "typedesc": "language acquired in other ways",
+                "constraint": patterns.ACQUISITION_SOURCE_OTHER,
+                "multiple": True,
+            },
+            "languages_spoken_source_other_detail": {
                 "type_": str,
-                "typedesc": "other source of language acquisition",
+                "typedesc": "details of other source of language acquisition",
                 "constraint": patterns.SHORT_TEXT,
                 "multiple": True,
                 "required": False,

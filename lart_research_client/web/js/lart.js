@@ -341,11 +341,15 @@ lart.forms.getSelectValues = function (elementOrId) {
             `The passed argument elementOrId=${elementOrId} does not refer to a HTMLSelectElement, but ${selectElement}.`
         );
     }
-    const values = []
-    for(const option of selectElement.selectedOptions) {
-        values.push(option.value);
+    if ( selectElement.multiple ) {
+        const values = []
+        for(const option of selectElement.selectedOptions) {
+            values.push(option.value);
+        }
+        return values;
+    } else {
+        return selectElement.value;
     }
-    return values;
 }
 
 /**
@@ -1079,7 +1083,7 @@ lart.forms.getFormData = function (formElementOrId) {
         );
     }
     const data = {};
-    const target_elements = ["input", "textarea", "select", "datalist"];
+    const target_elements = ["input", "textarea", "select"];
     const selector = "#" + form.id + " " + target_elements.join(", #" + form.id + " ");
     const fields = document.querySelectorAll(selector);
     for (const field of fields) {
@@ -1089,6 +1093,10 @@ lart.forms.getFormData = function (formElementOrId) {
         } else {
             ref = field.id;
         }
+        // Skip fields that have neither a name nor ID
+        if (ref == '') {
+            continue;
+        }
         if (field.getAttribute("type") === "checkbox") {
             // Use value of 'checked' property (boolean)
             data[ref] = field.checked
@@ -1097,6 +1105,8 @@ lart.forms.getFormData = function (formElementOrId) {
             if (field.checked) {
                 data[ref] = field.value
             }
+        } else if (field instanceof HTMLSelectElement) {
+            data[ref] = lart.forms.getSelectValues(field);
         } else {
             data[ref] = field.value;
         }
