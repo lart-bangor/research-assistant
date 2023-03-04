@@ -6,11 +6,13 @@ Installation
 Installing on Windows 10/11
 ---------------------------
 
-1. Download the official Windows installer for the L'ART Research Client on Windows from here: 
-.. //insert link above 
+1. Download the official Windows installer for the L'ART Research Client on Windows.
 
-2. Once downnloaded to your device, open the Downloads dialogue in the browser and click `Open file`.
-   Alternatively, navigate to your *Downloads* folder in File Explorer and double click on the installer file.
+   You can find the latest release (as well as earlier versions) at
+   `github.com/lart-bangor/research-client/releases <https://github.com/lart-bangor/research-client/releases>`_.
+
+2. Once downloaded to your device, open the *Downloads* dialogue in the browser and click :guilabel:`Open file`.
+   Alternatively, navigate to your :file:`Downloads` folder in File Explorer and double click on the installer file.
 
    .. figure:: figures/figure1.png
       :width: 400
@@ -18,22 +20,33 @@ Installing on Windows 10/11
 
       Figure 1 - Open file from downloads
 
-3. If you have Microsoft Defender active, you may be warned about running an unrecognised app. This is
-   expected behaviour for unsigned Software downloaded from the internet, and is meant to get you to check
-   that you've downnloaded the Software from a reputable source before running it 'this is fine if you've
-   used our official link **above**'. Click `Run anyway` to continue with the installation.
+   .. note::
 
-   .. figure:: figures/figure2.png
-      :width: 400
-      :alt: An image of protection message from Windows taken from Microsoft Defender Smartscreen.
+      If you have Microsoft Defender active, you may be warned about running an unrecognised app.
+      
+      This is expected behaviour for unsigned software downloaded from the internet. It is meant to get you to
+      check that you've downnloaded the Software from a reputable source before running it.
+      
+      *This is fine if you've used our official download link above!*
+      
+      Click :guilabel:`Run anyway` to continue with the installation.
 
-      Figure 2 - Microsoft Defender SmartScreen
+      .. figure:: figures/figure2.png
+         :width: 400
+         :alt: An image of protection message from Windows taken from Microsoft Defender Smartscreen.
 
-4. Select you preferred install mode. We recommend choosing `Install for me only` for most use cases, which
-   will install the app only for the current user. **However** you may wish to install the app for all users.
-   For example, if you're installing on a shared university or lab computer and want to centrally manage the 
-   installation for all users (This requires Administrator privileges). 
-   If in any doubt, choose `Install for me only`
+         Figure 2 - Microsoft Defender SmartScreen
+
+3. Select you preferred install mode.
+
+   We recommend choosing :guilabel:`Install for me only` for most use cases, which
+   will install the app only for the current user.
+   
+   *However*, you may wish to install the app for all users. For example, if you're installing on a
+   shared university or lab computer and want to centrally manage the installation for all users
+   (requires administrator privileges).
+
+   If in any doubt, choose :guilabel:`Install for me only`
 
    .. figure:: figures/figure3.png
       :width: 400
@@ -41,7 +54,8 @@ Installing on Windows 10/11
 
       Figure 3 - Install mode setup
 
-5. Click `Yes` to allow L'ART Research Client to make changes to your device (i.e., to install the app).
+4. Click :guilabel:`Yes` to allow L'ART Research Client to make changes to your device
+   (namely, to install the app).
 
    .. figure:: figures/figure4.png
       :width: 400
@@ -49,7 +63,9 @@ Installing on Windows 10/11
 
       Figure 4 - User account control screen
 
-6. Read and accept the licence agreement [INSERT LINK]. You must accept the agreement before installation can begin.
+5. Read and accept the licence agreement.
+
+   You must accept the agreement before installation can begin.
 
    .. figure:: figures/figure5.png
       :width: 400
@@ -58,10 +74,15 @@ Installing on Windows 10/11
       Figure 5 - License agreement
 
 
-7. Select the destination location for your app. Normally you should be able to leave this at the path
-   already suggested by the installer, which will be the default directory for app installation for your system
-   and the chosen installation mode. Make sure you have at least 65MB of free disk space on your device.
-   Click `browse` if you wish to change the installation path of the app.  
+6. Select the destination location for your app.
+
+   Normally you should be able to leave this at the path already suggested by the installer,
+   which will be the default directory for app installation for your system and the chosen
+   installation mode.
+   
+   Make sure you have at least 65MB of free disk space on your device.
+   
+   Click :guilabel:`Browse` if you wish to change the installation path of the app.  
 
    .. figure:: figures/figure6.png
       :width: 400
@@ -70,7 +91,7 @@ Installing on Windows 10/11
       Figure 6 - Select destination location
 
 
-8. Click ‘Install’ to install the L’ART Research Client app on your device. 
+7. Click :guilabel:`Install` to install the L’ART Research Client app on your device. 
 
    .. figure:: figures/figure7.png
       :width: 400
@@ -79,7 +100,7 @@ Installing on Windows 10/11
       Figure 7 - Install Research Client app
 
 
-9. Complete setup by clicking ‘Finish’ and enjoy. 
+8. Complete setup by clicking :guilabel:`Finish`. 
 
    .. figure:: figures/figure8.png
       :width: 400
@@ -87,14 +108,18 @@ Installing on Windows 10/11
 
       Figure 8 - Complete setup of Research Client app
 
+9. Launch the Research Client and enjoy ;)
 
 
-Linux
------
+Installing on Linux
+-------------------
 
-Build from source.
+This currently requires building from source or running as a Python package (requires Python 3.10),
+but should run if you have Chrome or Chromium installed.
 
-MacOS
------
 
-Build from source.
+Installing on MacOS
+-------------------
+
+This currently requires building from source or running as a Python package (requires Python 3.10),
+but should run if you have Chrome or Chromium installed.
