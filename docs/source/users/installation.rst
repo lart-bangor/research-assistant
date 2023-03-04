@@ -6,12 +6,12 @@ Installation
 Installing on Windows 10/11
 ---------------------------
 
-1. Download the official Windows installer for the L'ART Research Client on Windows.
+#. Download the official Windows installer for the L'ART Research Client on Windows.
 
    You can find the latest release (as well as earlier versions) at
    `github.com/lart-bangor/research-client/releases <https://github.com/lart-bangor/research-client/releases>`_.
 
-2. Once downloaded to your device, open the *Downloads* dialogue in the browser and click :guilabel:`Open file`.
+#. Once downloaded to your device, open the *Downloads* dialogue in the browser and click :guilabel:`Open file`.
    Alternatively, navigate to your :file:`Downloads` folder in File Explorer and double click on the installer file.
 
    .. figure:: figures/figure1.png
@@ -37,7 +37,7 @@ Installing on Windows 10/11
 
          Figure 2 - Microsoft Defender SmartScreen
 
-3. Select you preferred install mode.
+#. Select you preferred install mode.
 
    We recommend choosing :guilabel:`Install for me only` for most use cases, which
    will install the app only for the current user.
@@ -54,7 +54,7 @@ Installing on Windows 10/11
 
       Figure 3 - Install mode setup
 
-4. Click :guilabel:`Yes` to allow L'ART Research Client to make changes to your device
+#. Click :guilabel:`Yes` to allow L'ART Research Client to make changes to your device
    (namely, to install the app).
 
    .. figure:: figures/figure4.png
@@ -63,7 +63,7 @@ Installing on Windows 10/11
 
       Figure 4 - User account control screen
 
-5. Read and accept the licence agreement.
+#. Read and accept the licence agreement.
 
    You must accept the agreement before installation can begin.
 
@@ -74,7 +74,7 @@ Installing on Windows 10/11
       Figure 5 - License agreement
 
 
-6. Select the destination location for your app.
+#. Select the destination location for your app.
 
    Normally you should be able to leave this at the path already suggested by the installer,
    which will be the default directory for app installation for your system and the chosen
@@ -91,7 +91,7 @@ Installing on Windows 10/11
       Figure 6 - Select destination location
 
 
-7. Click :guilabel:`Install` to install the L’ART Research Client app on your device. 
+#. Click :guilabel:`Install` to install the L’ART Research Client app on your device. 
 
    .. figure:: figures/figure7.png
       :width: 400
@@ -100,7 +100,7 @@ Installing on Windows 10/11
       Figure 7 - Install Research Client app
 
 
-8. Complete setup by clicking :guilabel:`Finish`. 
+#. Complete setup by clicking :guilabel:`Finish`. 
 
    .. figure:: figures/figure8.png
       :width: 400
@@ -108,7 +108,7 @@ Installing on Windows 10/11
 
       Figure 8 - Complete setup of Research Client app
 
-9. Launch the Research Client and enjoy ;)
+#. Launch the Research Client and enjoy ;)
 
 
 Installing on Linux
