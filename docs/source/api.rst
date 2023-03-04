@@ -17,7 +17,7 @@ Backend API (Python)
     config
     consent
     datavalidator
-    lsbqrml
+    lsbq
     memorygame
     mgt
     utils
