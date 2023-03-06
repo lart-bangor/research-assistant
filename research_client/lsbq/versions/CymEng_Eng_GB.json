@@ -4,7 +4,20 @@
         "versionName": "Welsh – English (United Kingdom)",
         "versionNumber": "0.3.5",
         "author": "Florian Breit <f.breit@bangor.ac.uk>, Ianto Gruffydd <ianto.gruffydd@bangor.ac.uk>",
-        "date": "2023-03-06"
+        "date": "2023-03-06",
+        "options": {
+            "lsb_allow_other_gender": true,
+            "lsb_show_fps": false,
+            "lsb_show_colour_blind": false,
+            "lsb_show_head_injury": false,
+            "lsb_show_neurological_impairments": false,
+            "lsb_show_psychoactive_medications": false,
+            "ldb_minimum_required_languages": 2,
+            "ldb_show_reading": true,
+            "ldb_show_writing": true,
+            "club_show_use_as_child": true,
+            "club_show_codeswitching": false
+        }
     },
     "base": {
         "appTitle": [
