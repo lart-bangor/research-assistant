@@ -4,7 +4,7 @@
         "versionName": "Lombard – Italiano (Italia)",
         "versionNumber": "0.3.5",
         "author": "Alessandro Arioli <a.arioli@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2022-04-28"
+        "date": "2023-03-06"
     },
     "base": {
         "appTitle": [
@@ -436,6 +436,14 @@
             "Russo",
             "Portoghese",
             "Turco"
+        ],
+        "repeatedLanguageErrorTitle": [
+            "Repeated language",
+            "Linguaggio ripetuto"
+        ],
+        "repeatedLanguageErrorMessage": [
+            "“<span class=\"languageNameSlot\">[languageName]</span>” has already been added to this list.",
+            "„<span class=\"languageNameSlot\">[languageName]</span>“ è già stato aggiunto a questo elenco."
         ]
     },
     "club": {

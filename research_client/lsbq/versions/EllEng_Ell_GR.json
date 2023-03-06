@@ -2,9 +2,9 @@
     "meta": {
         "versionId": "EllEng_Ell_GR",
         "versionName": "Ελληνικά – Αγγλικά",
-        "versionNumber": "0.3.4",
+        "versionNumber": "0.3.5",
         "author": "Athanasia Papastergiou <a.papastergiou@bangor.ac.uk>",
-        "date": "2023-02-28"
+        "date": "2023-03-06"
     },
     "base": {
         "appTitle": [
@@ -50,6 +50,9 @@
         ],
         "sliderFeedback": [
             "Παρακαλώ μετακινήστε την οριζόντια γραμμή κύλισης τουλάχιστον μία φορά."
+        ],
+        "ok": [
+            "εντάξει"
         ]
     },
     "lsb": {
@@ -348,6 +351,14 @@
             "Ούρντου",
             "Ταγκάλογκ",
             "Παστό"
+        ],
+        "repeatedLanguageErrorTitle": [
+            "Repeated language",
+            "Επαναλαμβανόμενη γλώσσα"
+        ],
+        "repeatedLanguageErrorMessage": [
+            "“<span class=\"languageNameSlot\">[languageName]</span>” has already been added to this list.",
+            "Το „<span class=\"languageNameSlot\">[languageName]</span>“ έχει ήδη προστεθεί σε αυτή τη λίστα."
         ]
     },
     "club": {

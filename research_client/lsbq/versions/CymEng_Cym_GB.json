@@ -4,7 +4,7 @@
         "versionName": "Cymraeg - Saesneg (Y Deyrnas Unedig)", 
         "versionNumber": "0.3.5",
         "author": "Florian Breit <f.breit@bangor.ac.uk>, Ianto Gruffydd <ianto.gruffydd@bangor.ac.uk>",
-        "date": "2022-06-30"
+        "date": "2023-03-06"
     },
     "base": {
         "appTitle": [
@@ -50,6 +50,10 @@
         ],
         "sliderFeedback": [
             "Symudwch y llithrydd o leiaf un waith."
+        ],
+        "ok": [
+            "OK",
+            "Cadarnhau"
         ]
     },
     "lsb": {
@@ -342,6 +346,14 @@
             "Guernésiais",
             "Jèrriais",
             "Manaweg"
+        ],
+        "repeatedLanguageErrorTitle": [
+            "Repeated language",
+            "Iaith ailadroddus"
+        ],
+        "repeatedLanguageErrorMessage": [
+            "“<span class=\"languageNameSlot\">[languageName]</span>” has already been added to this list.",
+            "Cafodd “<span class=\"languageNameSlot\">[languageName]</span>” ei chofnodi yn yr rhestr hon yn barod."
         ]
     },
     "club": {
