@@ -9,6 +9,15 @@
 {% block head_styles %}
     <link rel="stylesheet" href="/css/select2.min.css" />
     <link rel="stylesheet" href="/css/select2-bootstrap-5-theme.min.css" />
+    <style type="text/css">
+        .select2-container--bootstrap-5 .select2--small.select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+            padding: 0.1em 0.65em;
+            margin: 0.1rem;
+        }
+        .select2-container--bootstrap-5 .select2--small.select2-selection {
+            min-height: 3.6rem;
+        }
+    </style>
 {% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}
@@ -404,6 +413,29 @@
 
         </form>
 
+        <!-- Repeated language entry modal -->
+        <div class="modal fade" id="repeatedLanguageModal" tabindex="-1" aria-labelledby="repeatedLanguageModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="repeatedLanguageModal">
+                    <i class="bi bi-exclamation-square text-warning"></i>
+                    <span data-lsbq-tr="ldb.repeatedLanguageErrorTitle">Repeated language</span>
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p data-lsbq-tr="ldb.repeatedLanguageErrorMessage" data-mgt-feedback="invalid">
+                        It seems you have already added “<span class="languageNameSlot">[languageName]</span>” to this list.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" data-mgt-tr="ldb.ok">OK</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
     </article>
 {% endblock %}
 {% block tail_scripts %}
@@ -692,6 +724,30 @@
                     }
                 );
             }
+            // Give UI hint when languages repeated...
+            lart.forms.getElementByGreed(`languagesSpokenLanguage-${languageNumber}`).addEventListener(
+                'change',
+                function (e) {
+                    const languageNameField = lart.forms.getElementByGreed(`languagesSpokenLanguage-${languageNumber}`);
+                    const languageName = languageNameField.value;
+                    const otherLanguages = new Set();
+                    const languagesSpokenFields = document.querySelectorAll('[id^="languagesSpokenLanguage-"]');
+                    for (const languagesSpokenField of languagesSpokenFields) {
+                        if (languagesSpokenField.id == `languagesSpokenLanguage-${languageNumber}` || languagesSpokenField.value == '' ) {
+                            continue;
+                        } else {
+                            otherLanguages.add(languagesSpokenField.value);
+                        }
+                    }
+                    if (otherLanguages.has(languageName)) {
+                        const repeatedLanguageModal = document.getElementById('repeatedLanguageModal');
+                        repeatedLanguageModal.querySelector('.languageNameSlot').innerHTML = languageName;
+                        const modalHandler = new bootstrap.Modal(repeatedLanguageModal);
+                        modalHandler.show();
+                        languageNameField.value = '';
+                    }
+                }
+            );
             // Make the multiselect into a select2...
             function transformMultiselectToSelect2(placeholder = null) {
                 // Get translated placeholder (if needed)
