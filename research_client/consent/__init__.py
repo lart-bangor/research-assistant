@@ -46,7 +46,7 @@ def record_consent(data: dict[Any, Any]):
     presentime = datetime.now()
     dt_string = presentime.strftime("%Y-%m-%dT%H:%M:%S")
     dt_filename = str(uuid.uuid1())
-    file_name = data["partId"] + "_" + dt_filename + ".txt"
+    file_name = data["participantId"] + "_" + dt_filename + ".txt"
     data_file: Path = data_path / data["surveyVersion"] / file_name
     if not data_file.parent.exists():
         data_file.parent.mkdir(parents=True, exist_ok=True)
@@ -69,7 +69,7 @@ def record_consent(data: dict[Any, Any]):
         query = booteel.buildquery({
             "selectSurveyVersion": data["surveyVersion"],
             "confirmConsent": int(data["informedConsent"]),
-            "participantId": data["partId"],
+            "participantId": data["participantId"],
             "surveyDataForm.submit": "false",
         })
         booteel.setlocation(f"/app/{config.sequences.consent}/index.html?{query}")
