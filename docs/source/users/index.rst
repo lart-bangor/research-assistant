@@ -7,7 +7,7 @@ Users' Guide
 
     system-requirements
     installation
-    user-interface
+    collecting-data
     configuration
     getting-started
     exporting-data

@@ -81,5 +81,7 @@ to the LSBQe, and when the LSBQe is complete they will be sent back to the app h
 
 Because the initial release of the L’ART Research Client only implements two tasks (informed consent and the LSBQe), the use case
 for this is setting is somewhat limited. However, future releases will include other tasks, and advanced users/researchers might 
-want to extend the app with their own tasks (see the Developer’s Guide [INSERT LINK]), in which case the other tasks will be displayed
+want to extend the app with their own tasks (see the Developer's Guide), in which case the other tasks will be displayed
 as part of the selection here and can be configured for their relative sequencing. 
+
+.. / add link to developers guide. :docs: developers/index?
