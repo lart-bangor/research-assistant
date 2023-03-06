@@ -129,6 +129,7 @@ def export_backup(filename: Path | str | None = None) -> bool:
         label.pack()
         tkroot.geometry("500x50")
         tkroot.lift()
+        tkroot.withdraw()
         from datetime import datetime
         dialog = filedialog.SaveAs(
             master=tkroot,
