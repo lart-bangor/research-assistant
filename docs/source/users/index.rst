@@ -9,6 +9,6 @@ Users' Guide
     installation
     user-interface
     configuration
-    running-participants
+    getting-started
     exporting-data
     troubleshooting
