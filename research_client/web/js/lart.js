@@ -1479,6 +1479,7 @@ lart.tr._triggerCallbacks = function () {
                 callback(...callbackParams);
             }
         }
+        delete lart.tr._callbackQueue[ns];
     }
 }
 
