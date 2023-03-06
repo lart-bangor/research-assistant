@@ -7,9 +7,9 @@
     main .btn-primary {
         min-width: 50%;
     }
-    #consentForm ol { color: #0000cd; }
+    #consentInfo ol { color: #0000cd; }
 
-    #consentForm {
+    #consentInfo {
         display: none;
     }
     #formOptions {
@@ -24,6 +24,10 @@
     #consent_options_btn {
         display: block;
     }
+    #partIdSection {
+        display: none;
+    }
+    
 </style>
 {% endblock %}
 {% block head_scripts %}
@@ -63,8 +67,8 @@
             select_block = document.getElementById('formOptions');
             select_block.innerHTML = select_code;
             select_block.style.display = 'block';
-           // document.getElementById('consent_options_btn ').style.display = 'block';
-            document.getElementById('startTask').style.display = 'block';
+            //document.getElementById('consent_options_btn ').style.display = 'block';
+            //document.getElementById('startTask').style.display = 'block';
                 //input_option = document.createElement('consent_option');
                 //input_option.setAttribute('value', item);
                 //input_option.appendChild(document.createTextNode(list[item]))
@@ -82,6 +86,7 @@
         // Instructions & check button to be outputed depending on language selection
         function output_info(intface) {
             //# Output participant informtion sheet & informed consent #//
+            document.getElementById('partIdSection').style.display = 'block';
             const iterableInterface = Object.values(intface.versionInfo); //turn object into array so that it can be iterated through with numbers (to establish label + Info pairs)
             const checkboxInfo = intface.confirmation;
             const confirmLabel = checkboxInfo.confirm;
@@ -137,7 +142,7 @@
 
                 
         function show_form() {
-            document.getElementById("consentForm").style.display = "block";             
+            document.getElementById("consentInfo").style.display = "block";             
         }
 
         function hideBtn() {
@@ -152,6 +157,16 @@
 
         }
 
+        function setPartId() {
+            const fetch_version = document.getElementById("selectSurveyVersion");
+            //const fetch_test = document.getElementById("selectTestType");
+            const version = fetch_version.value;
+            console.log("FETCHED: " + version);
+            //const testType = fetch_test.value;
+            document.getElementById("surveyVersion").value = version // pass selectSurveyVersion on to consent form for processing
+            
+
+        }
         
     </script>
 {% endblock %}
@@ -171,20 +186,7 @@
             </div>
         </div>
 
-        <form id="consentSelectForm" class="needs-validation">
-
-            <!-- Participant details -->
-            <section class="m-4">
-                <div class="mb-3">
-                    <label for="participantId" class="form-label">Participant ID:</label>
-                    <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required autocomplete="off" />
-                    <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
-                    <div class="invalid-feedback">
-                        <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
-                    </div>
-                </div>
-            
-            </section>
+     <!--   <form id="consentSelectForm" class="needs-validation">-->
 
             <!-- Language version -->
             <section class="m-4">
@@ -229,21 +231,34 @@
                 </div>
             </div>
             </section>
-        </form>
-        <p id="consent-file-error"></p>
+
+             
+        </section>
+        <!--</form>-->
+        
     </article>
 
     <!-- Activate version -->
     <article class="p-2">
 
         <!-- Displaying consent form -->
-        <div id="consentForm">
+        <div id="consentInfo">
             <form id="partConsent" class="needs-validation">
 
                 <!-- Carry over survey version -->
-                <input type="hidden" id="surveyVersion" />
+                <input type="text" id="surveyVersion" />
+<!-- Participant details -->
+<section class="m-4" id="partIdSection">
+    <div class="mb-3">
+        <label for="participantId" class="form-label">Participant ID:</label>
+        <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required autocomplete="off" onchange="setPartId()" />
+        <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
+        <div class="invalid-feedback">
+            <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
+        </div>
+    </div>
 
-                <!-- Consent form -->
+                <!-- Consent info part of the form -->
                 <section class="m-4">
                     <div id="studyInfo"></div>
                     <div class="mb-3">
@@ -276,12 +291,13 @@
                 <!-- Form submission -->
                 <div class="row text-center p-3 m-4">
                     <div class="col">
-                        <input type="hidden" id="partId" /> <!-- this is hidden & gets filled by JS within showStudyInfo()-->
+                        <input type="text" id="consentType" /> <!-- this is hidden & gets filled by JS within showStudyInfo()-->
                         <button type="submit" class="btn btn-primary btn-lg btn-action shadow" id="confirmBtn"></button>
                     </div>
                 </div>
             
             </form>
+            <p id="consent-file-error"></p>
         </div>
         
 
