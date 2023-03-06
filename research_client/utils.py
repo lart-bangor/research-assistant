@@ -4,7 +4,7 @@ import shutil
 import logging
 import json
 from pathlib import Path
-from tkinter import Tk, Label, filedialog
+from tkinter import Tk, Label, Button, filedialog, messagebox
 from typing import Any, Literal
 from .config import config, Config, _default_dirs                               # type: ignore
 
@@ -154,3 +154,13 @@ def export_backup(filename: Path | str | None = None) -> bool:
         return True
     logger.info("Failed to create backup.")
     return False
+
+
+def show_error_dialog(title: str | None = None, message: str | None = None):
+    """Display a graphical error message box even if eel is not active."""
+    tkroot = Tk()
+    tkroot.withdraw()
+    messagebox.showerror(
+        title if title else "Error",
+        message if message else "An unknown error occured."
+    )
