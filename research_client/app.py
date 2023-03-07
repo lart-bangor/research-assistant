@@ -19,7 +19,7 @@ from .lsbq import expose_to_eel as expose_lsbq
 from .memorygame import expose_to_eel as expose_memorygame
 from .mgt import expose_to_eel as expose_mgt
 from .settings import expose_to_eel as expose_settings
-from .utils import export_backup, manage_settings
+from .utils import export_backup, manage_settings, show_error_dialog
 
 # Enable multiprocessing in frozen apps (e.g. pyinstaller)
 multiprocessing.freeze_support()
@@ -141,12 +141,22 @@ def main():                                                                     
         str(Path(__file__).parent / "web"),
         allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png", ".mp3"]
     )
-    eel.start(
-        "app/index.html",
-        jinja_templates="app",
-        close_callback=close,
-        block=False
-    )
+    try:
+        eel.start(
+            "app/index.html",
+            jinja_templates="app",
+            close_callback=close,
+            block=False
+        )
+    except OSError as exc:
+        logger.critical(str(exc))
+        show_error_dialog(
+            "Chrome not installed",
+            (
+                "Can't find Google Chrome/Chromium installation.\n\n"
+                "Please install Google Chrome/Chromium before running the Research Client."
+            )
+        )
     logger.info(
         f"Now running on "
         f"http://{eel._start_args['host']}:{eel._start_args['port']}"           # type: ignore

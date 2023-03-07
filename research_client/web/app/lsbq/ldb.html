@@ -387,13 +387,28 @@
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-1">
                             <label for="usageListeningLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.listening">Listening</label>
                             <div class="col-10 mt-2">
                                 <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
+                        <div class="row mb-1 readingOption">
+                            <label for="usageListeningLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.reading">Reading</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
+                                <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-1 writingOption">
+                            <label for="usageListeningLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.writing">Writing</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
+                                <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2"></div>
                     </div>
                 </template>
                 <div id="languageRatingSlot">
@@ -585,9 +600,10 @@
                 }
                 return;
             }
-            setTimeout(fillLanguageListOptions, 250);
+            //setTimeout(fillLanguageListOptions, 250);
         }
-        fillLanguageListOptions();
+        //fillLanguageListOptions();
+        lart.tr.registerCallback("lsbq", fillLanguageListOptions);
 
         // Sync language use ratings
         function insertLanguageRating(languageNumber) {
@@ -676,9 +692,8 @@
             slot.appendChild(clone);
         }
         // Insert languagesSpoken items
-        const requiredLanuagesSpokenItems = 2;
         let languagesSpokenCounter = 0;
-        function insertLanguagesSpoken() {
+        function insertLanguagesSpoken(required = false) {
             const languageNumber = languagesSpokenCounter++;
             console.log(`Inserting languageNumber`, languageNumber);
             const template = document.getElementById('languagesSpokenTemplate');
@@ -710,9 +725,9 @@
             lart.forms.conditionalDisplay(`languagesSpokenSource-${languageNumber}`, `languagesSpokenSourceSpecifyBlock-${languageNumber}`, 'o');
             // Insert corresponding language rating slider
             insertLanguageRating(languageNumber);
-            // Make delete option functional for all but requiredLanguagesSpokenItems number of repeats
+            // Make delete option functional for all but required languages
             const deleteButton = document.getElementById(`languagesSpokenDelete-${languageNumber}`);
-            if ( languageNumber < requiredLanuagesSpokenItems ) {
+            if ( required ) {
                 deleteButton.remove();
                 document.getElementById(`languagesSpokenLanguage-${languageNumber}`).required = true;
                 document.getElementById(`languagesSpokenAge-${languageNumber}`).value = 0;
@@ -778,13 +793,37 @@
                 });
             }
             // Update multiselect/select2 once placeholder translation is available...
-            lart.tr.registerCallback(
-                "lsbq",
-                () => { window.setTimeout(transformMultiselectToSelect2, 5) }
-            );
+            transformMultiselectToSelect2();
         }
-        insertLanguagesSpoken();
-        insertLanguagesSpoken();
+
+        // Implement configuration options for LSB
+        function configureLDB() {
+            console.log("configureLDB called");
+            const options = lart.tr.get("lsbq", "meta.options");
+            // ldb_show_reading - default: true
+            // ldb_show_writing - default: true
+            if ('ldb_show_reading' in options && options.ldb_show_reading == false) {
+                const nodesToRemove = document.querySelectorAll('.readingOption');
+                for (const nodeToRemove of nodesToRemove) {
+                    nodeToRemove.remove();
+                }
+            }
+            if ('ldb_show_writing' in options && options.ldb_show_writing == false) {
+                const nodesToRemove = document.querySelectorAll('.writingOption');
+                for (const nodeToRemove of nodesToRemove) {
+                    nodeToRemove.remove();
+                }
+            }
+            // ldb_minimum_required_languages - default: 1
+            insertLanguagesSpoken(true); // Insert at least one slot for languagesSpoken
+            if ('ldb_minimum_required_languages' in options && options.ldb_minimum_required_languages > 1) {
+                for (let i = 1; i < options.ldb_minimum_required_languages; i++) {
+                    insertLanguagesSpoken(true);
+                }
+            }
+            // NOTE: ldb_minimum_required_languages is implemented separately after insertSpokenLanguages(); 
+        }
+        lart.tr.registerCallback("lsbq", configureLDB);
         
     </script>
     {{ lart_form_pipeline('surveyLDBForm', '_lsbq_setldb') }}
