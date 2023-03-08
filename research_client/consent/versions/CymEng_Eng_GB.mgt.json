@@ -1,7 +1,8 @@
 {
     "meta": {
-        "versionId": "CymEng_ENG_GB",
-        "versionName": "Welsh – English (United Kingdom)",
+        "versionId": "CymEng_ENG_GB.mgt",
+        "versionType": "AGT",
+        "versionName": "AGT: Welsh – English (United Kingdom)",
         "versionNumber": "0.3.4",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2022-07-06"

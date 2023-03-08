@@ -1,7 +1,8 @@
 {
     "meta": {
-        "versionId": "LmoIta_Ita_IT",
-        "versionName": "Lombard - Italian (Italy)",
+        "versionId": "LmoIta_Ita_IT.mgt",
+        "versionType": "AGT",
+        "versionName": "AGT: Lombard - Italian (Italy)",
         "versionNumber": "0.3.4",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>, Lissander Brasca <a.arioli@bangor.ac.uk>",
         "date": "2022-05-05"

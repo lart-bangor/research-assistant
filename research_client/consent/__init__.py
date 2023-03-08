@@ -13,19 +13,28 @@ data_path: Path = config.paths.data / "Consent"
 if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
 
-#EngCym_GB.atolc.json
+dir = os.path.dirname(os.path.realpath(__file__))
+versions_dir = dir + "\\versions\\"
+
 @eel.expose
 def set_options(selected_version: str):
-    """Takes a language version as arg and finds all consent forms available for that version. Retursn a list in teh form of [version_name, version_data]"""
-    print("My version: " + selected_version + str(type(selected_version))) 
+    """Takes a language version as arg and finds all consent forms available for that version. Returns a list in the form of [version_name, version_ID, version_data]"""
+    versionsDirList = os.listdir(dir + '\\versions')
     options = []
-    dir = os.listdir()
-    dir = os.listdir('research_client\\consent\\versions')
-    for file_name in dir:
+    print("Informed Consent: working DIR = " + dir)
+    for file_name in versionsDirList:
         bare_file_name = file_name.split(".", 1)[0]
         if bare_file_name == selected_version:
-            options.append(file_name)
-    print("final list = ")
+            with open(versions_dir + file_name, encoding='utf-8') as f:
+                data = json.load(f)
+                optionName = data["meta"]["versionName"]
+                optionID = data["meta"]["versionId"]
+                print("\n Option found:")
+                print("\t option name: " + optionName)
+                print("\t option ID: " + optionID)
+                option = [optionID, optionName]
+                options.append(option)
+    print("\nList of consent files available: ")
     print(options)
     return options
 
@@ -33,10 +42,9 @@ def set_options(selected_version: str):
 
 @eel.expose
 def fetch_study_info(filename: str):
-    file = 'research_client\\consent\\versions\\' + filename
+    file = versions_dir + filename
     with open(file, "r") as f:
         version_data = json.load(f)
-        #print(version_data)
     return version_data
 
 
