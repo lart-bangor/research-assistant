@@ -20,7 +20,7 @@ own digital consent form (see section **[NUMBER]** of documentation for instruct
 Obtaining consent in the app
 ----------------------------
 
-To obtain consent digitally, open the side menu on the top left-handby clicking on the ‘burger menu’ icon. 
+To obtain consent digitally, open the side menu on the top left-handby clicking on the "burger menu" icon. 
 Then click on :guilabel:`informed consent`.
 
 .. figure:: figures/figure10.png
@@ -46,9 +46,9 @@ If the participant gives their consent and confirms their eligibility through ma
 automatically advanced to the start screen for the first task (at present always the LSBQe).  
 
 The task start screen is the same start screen that researchers who opt for the LSBQe without digital
-informed consent will see after they select the LSBQe task from the app home screen. 
+informed consent will see after they select the LSBQe task from the app home screen.
 
-The next sub-section discusses how to collect LSBQe responses with the app. 
+The next sub-section discusses how to collect LSBQe responses with the app.
 
 Collecting LSBQe responses
 --------------------------
@@ -57,7 +57,7 @@ Upon starting the LSBQe, you are first asked to enter the relevant information f
 
 #. Which version of the LSBQe you require, i.e. what localisation is pertinent to your study, in which determines factors
    such as the primary (and possibly secondary) language displayed during the LSBQe, the suggested list of alternative 
-   languages, and the education level indicators. 
+   languages, and the education level indicators.
 
 #. A researcher ID, e.g., the name of the researcher conducting your experiment.
 
@@ -120,7 +120,7 @@ Once moved, the slider will turn a darker shade of blue to show that the slider 
 Should the participant want to keep the slider in the middle of the bar, the slider will need to be moved once and then moved back to the middle point of the bar.
 
 If the participant fails to move the slider, a red flag will appear **(see Figure 13)** and the participant will not be able to advance 
-*(though note that some sliders provide a ‘not applicable’ tickbox, which negates the need for the user to interact with that slider).*
+*(though note that some sliders provide a ""not applicable" tickbox, which negates the need for the user to interact with that slider).*
 
 
 .. figure:: figures/figure14.png
@@ -153,7 +153,7 @@ might not want them to have (at the point of data collection).
 
 Researchers might find it useful however to unlock the app and access such functionality from time to time. For example to go back to the previous screen if
 an error was inadvertently made, or to reload the current screen if for any reason something isn’t rendered correctly. Unlocking the app is also useful for
-researchers who develop new localisations of a task (see [INSERT LINK]). 
+researchers who develop new localisations of a task (see **[INSERT LINK]**). 
 
 .. figure:: figures/figure16.png
       :width: 400
@@ -161,7 +161,7 @@ researchers who develop new localisations of a task (see [INSERT LINK]).
 
       Figure 16 - Open the sidebar to unlock the app
 
-To unlock the app, open the side menu and click ‘Unlock app’. After unlocking the app, right click and these options (as well as a few more) will be available to you.
+To unlock the app, open the side menu and click :guilabel:`Unlock app`. After unlocking the app, right click and these options (as well as a few more) will be available to you.
 If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. Do this by following the same
 steps as for unlocking.  
 
