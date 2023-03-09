@@ -81,7 +81,7 @@ Upon starting the LSBQe, you are first asked to enter the relevant information f
 
 The task start screen is followed by the three main sections of the LSBQe on Language and Social Background, Language and Dialect Background, and Community Language Use Behaviour respectively. 
 
-*For more details on the contents of the LSBQe and how this differs from the standard version of the LSBQ, see the documentation of the LSBQe: [INSERT LINK]*
+*For more details on the contents of the LSBQe and how this differs from the standard version of the LSBQ, see the documentation of the LSBQe*
 
 User input on the LSBQe
 -----------------------
@@ -113,9 +113,8 @@ with the user-feedback provided for each field.
 
 
 A significant portion of the LSBQe’s answers make use of sliders. Sliders are displayed in a lighter hue with their indicator
-displayed in the middle by default, and they have to be moved **at least once** for the answer to be valid. 
-
-Once moved, the slider will turn a darker shade of blue to show that the slider is active and has been moved by the participant.
+displayed in the middle by default, and they have to be moved **at least once** for the answer to be valid. Once moved, the slider
+will turn a darker shade of blue to show that the slider is active and has been moved by the participant.
 
 Should the participant want to keep the slider in the middle of the bar, the slider will need to be moved once and then moved back to the middle point of the bar.
 
@@ -147,13 +146,16 @@ Locking and unlocking the app
 -----------------------------
 
 The app is always in a “locked” state when it is first started. The locked state prevents the user from (accidentally or purposely) carrying out certain actions,
-such as inspecting the logic behind the forms they see or using right-click context menus to reload or revert to an earlier screen. Done unintentionally,
-this could lead to invalid, corrupted, or duplicate responses, and/or might give the participants information about the administered tasks that the researchers
-might not want them to have (at the point of data collection).
+such as inspecting the logic behind the forms they see or using right-click context menus to reload or revert to an earlier screen. 
+
+Done unintentionally, this could lead to invalid, corrupted, or duplicate responses, and/or might give the participants information about the administered tasks
+that the researchers might not want them to have (at the point of data collection).
 
 Researchers might find it useful however to unlock the app and access such functionality from time to time. For example to go back to the previous screen if
 an error was inadvertently made, or to reload the current screen if for any reason something isn’t rendered correctly. Unlocking the app is also useful for
 researchers who develop new localisations of a task (see **[INSERT LINK]**). 
+
+.. // once localisation link is available
 
 .. figure:: figures/figure16.png
       :width: 400
@@ -162,8 +164,8 @@ researchers who develop new localisations of a task (see **[INSERT LINK]**).
       Figure 16 - Open the sidebar to unlock the app
 
 To unlock the app, open the side menu and click :guilabel:`Unlock app`. After unlocking the app, right click and these options (as well as a few more) will be available to you.
-If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. Do this by following the same
-steps as for unlocking.  
+If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. **Do this by following the same
+steps as for unlocking.**
 
 .. figure:: figures/figure17.png
       :width: 400
