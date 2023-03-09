@@ -7,8 +7,10 @@ Users' Guide
 
     system-requirements
     installation
-    collecting-data
     configuration
     getting-started
+    collecting-data
+    locking-app
     exporting-data
-    troubleshooting
+    discarding-attempts
+    sequencing

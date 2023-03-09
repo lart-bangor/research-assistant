@@ -3,6 +3,7 @@ Configuring the app for your needs
 
 The app’s settings can be accessed via the app side menu. There are numerous aspects of the app that 
 can be changed on the settings page. The various options are discussed in some detail below. 
+
 Remember to click :guilabel:`Save changes` and restart the app in order for the changes you make to take effect. 
 
 .. figure:: figures/figure21.png
@@ -18,11 +19,10 @@ Shutdown delay is the amount of time the app’s backend process (basically, wha
 waits before closing after you close the main app window.
 
 Under normal circumstances there should be no need to adjust this. However, it can be beneficial to increase the shutdown
-delay when using an underpowered device (e.g., a 4GB Surface Tab Go or some other device not meeting the recommended system requirements,
-see `System Requirements <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/system-requirements.html>`_ section). 
+delay when using an underpowered device e.g., a 4GB Surface Tab Go or some other device not meeting the recommended system requirements
+(see `System Requirements <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/system-requirements.html>`_ for more information). 
 
-
-Problems with limited system resources can lead to the app freezing or becoming unresponsive, and increasing the shutdown
+Problems with limited system resources can lead to the app freezing or becoming unresponsive. Increasing the shutdown
 delay means that the app will wait longer in case the system temporarily delays the processing of expected signals and information. 
 
 .. figure:: figures/figure22.png
@@ -62,7 +62,7 @@ Lowering the log level might be useful if you try to diagnose an error or bug an
 (but we recommend not doing this "just in case", as the amount of information might be overwhelming with log levels below 30). 
 
 The log message format is only relevant for advanced users and developers who may want to format logs in a specific way for working with their
-preferred analysis tools. If you are not sure what this is or how it works you should not have anythere is no  need for you to modify it. 
+preferred analysis tools. If you are not sure what this is or how it works, there is no need for you to modify it. 
 
 For details on the formatting see the documentation of the :file:`logging` package in the Python standard library.
 
@@ -79,9 +79,4 @@ The task sequencing settings allow researchers to configure which tasks (if any)
 For example, with the default settings, when the informed consent task is completed the participant will be automatically advanced
 to the LSBQe, and when the LSBQe is complete they will be sent back to the app home screen. 
 
-Because the initial release of the L’ART Research Client only implements two tasks (informed consent and the LSBQe), the use case
-for this is setting is somewhat limited. However, future releases will include other tasks, and advanced users/researchers might 
-want to extend the app with their own tasks (see the `Developer's Guide <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/developers/index.html>`_),
-in which case the other tasks will be displayed as part of the selection here and can be configured for their relative sequencing. 
-
-.. / add link to developers guide. :docs: developers/index?
+.. // find screenshot to insert 

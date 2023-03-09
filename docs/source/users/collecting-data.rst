@@ -1,7 +1,7 @@
 Collecting Data
 ===============
 
-Commencing data collection and gaining consent 
+Starting data collection and obtaining consent 
 ----------------------------------------------
 There are two possible paths available to the researcher to collect data with the L’ART Research Client.
 Your preference will depend on how you wish to obtain informed consent from your participants. 
@@ -12,13 +12,11 @@ then you will start data collection by clicking directly on the research tool yo
 The second option offers the researcher an integrated digital avenue to obtain informed consent, which negates the
 need to handle physical information sheets, consent forms and signatures. 
 
-This can be done by using the generic consent form provided (see section **[NUMBER]** of the documentation) or by linking it to your
-own digital consent form (see section **[NUMBER]** of documentation for instructions on how to add a custom consent form). 
+This can be done by using the generic consent form provided (see section **[NUMBER]**) or by linking it to your
+own digital consent form (see section **[NUMBER]** for instructions on how to add a custom consent form). 
 
-.. / add section number in
+.. / insert section number
 
-Obtaining consent in the app
-----------------------------
 
 To obtain consent digitally, open the side menu on the top left-handby clicking on the "burger menu" icon. 
 Then click on :guilabel:`informed consent`.
@@ -50,12 +48,13 @@ informed consent will see after they select the LSBQe task from the app home scr
 
 The next sub-section discusses how to collect LSBQe responses with the app.
 
+
 Collecting LSBQe responses
---------------------------
+---------------------------
 
 Upon starting the LSBQe, you are first asked to enter the relevant information for your study. These are:
 
-#. Which version of the LSBQe you require, i.e. what localisation is pertinent to your study, in which determines factors
+#. Which version of the LSBQe you require, i.e. what localisation is pertinent to your study, which determines factors
    such as the primary (and possibly secondary) language displayed during the LSBQe, the suggested list of alternative 
    languages, and the education level indicators.
 
@@ -81,10 +80,10 @@ Upon starting the LSBQe, you are first asked to enter the relevant information f
 
 The task start screen is followed by the three main sections of the LSBQe on Language and Social Background, Language and Dialect Background, and Community Language Use Behaviour respectively. 
 
-*For more details on the contents of the LSBQe and how this differs from the standard version of the LSBQ, see the documentation of the LSBQe*
+*For more details on the contents of the LSBQe and how this differs from the standard version of the LSBQ, see the documentation of the LSBQe [insert link]*
 
-User input on the LSBQe
------------------------
+**User input on the LSBQe:**
+
 
 This sub-section describes how user input is collected on the LSBQe. While the LSBQe can be completed with a
 touch interface or keyboard-only input, we strongly recommend that users are provided with access to both a
@@ -96,9 +95,7 @@ Any mandatory fields that haven’t been completed by the participant will be fl
 to the next page without having fully completed any section of the LSBQe or the response entered in a field is invalid 
 (e.g. text entered in a field expecting a date). 
 
-
 The user is given instructions on how they should complete the missing fields if this happens. 
-
 
 For researchers using the app, or a specific localisation of the LSBQe for the first time, it might be useful to complete 
 the LSBQe and purposely leave all fields blank before trying to submit so they can read through and familiarise themselves
@@ -115,6 +112,8 @@ with the user-feedback provided for each field.
 A significant portion of the LSBQe’s answers make use of sliders. Sliders are displayed in a lighter hue with their indicator
 displayed in the middle by default, and they have to be moved **at least once** for the answer to be valid. Once moved, the slider
 will turn a darker shade of blue to show that the slider is active and has been moved by the participant.
+
+.. // see if I can import color styles for text - s5defs.txt
 
 Should the participant want to keep the slider in the middle of the bar, the slider will need to be moved once and then moved back to the middle point of the bar.
 
@@ -142,32 +141,27 @@ to anything they thought might not have been accurately captured by the standard
       Figure 15 - LSBQe submission page
 
 
-Locking and unlocking the app
------------------------------
+Collecting ATOL responses
+-------------------------
 
-The app is always in a “locked” state when it is first started. The locked state prevents the user from (accidentally or purposely) carrying out certain actions,
-such as inspecting the logic behind the forms they see or using right-click context menus to reload or revert to an earlier screen. 
+Collecting AGT responses
+-------------------------
 
-Done unintentionally, this could lead to invalid, corrupted, or duplicate responses, and/or might give the participants information about the administered tasks
-that the researchers might not want them to have (at the point of data collection).
+Loading Recordings for the AGT
+******************************
 
-Researchers might find it useful however to unlock the app and access such functionality from time to time. For example to go back to the previous screen if
-an error was inadvertently made, or to reload the current screen if for any reason something isn’t rendered correctly. Unlocking the app is also useful for
-researchers who develop new localisations of a task (see **[INSERT LINK]**). 
 
-.. // once localisation link is available
+The Audio Guise Test (AGT) allows users to run either a Matched Guise Technique (MGT; Lambert, Hodsgon, Gardner & Fillenbaum, 1960)
+or a Verbal Guise Technique (VGT; Markel, Eisler & Reese, 1967). 
 
-.. figure:: figures/figure16.png
-      :width: 400
-      :alt: Screenshot of LART Research Client menu
+(See **Breit et al., 2023** for more details)
 
-      Figure 16 - Open the sidebar to unlock the app
+Differentiation between MGT or VGT is executed via your audio recordings.
 
-To unlock the app, open the side menu and click :guilabel:`Unlock app`. After unlocking the app, right click and these options (as well as a few more) will be available to you.
-If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. **Do this by following the same
-steps as for unlocking.**
+Firstly, the AGT requires thirteen recordings in order to function. Eight recordings are classed as experimental recordings, four are classed as filler recordings and one is a practice recording.
 
-.. figure:: figures/figure17.png
-      :width: 400
-      
-      Figure 17 - Right click will reveal options available after unlocking the app
+For an MGT setup, you must load **eight experimental recordings** from **four speakers**
+with each speaker providing a recording in either language variety. 
+
+For a VGT setup, you would load eight experimental recordings from eight speakers, with four speakers
+providing a recording in one language variety, and the other four speakers providing
