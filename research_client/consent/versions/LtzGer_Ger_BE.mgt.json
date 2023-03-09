@@ -1,8 +1,9 @@
 {
     "meta": {
         "versionId": "LtzGer_Ger_BE.mgt",
-        "versionType": "MGT",
-        "versionName": "MGT: Moselfränkisch – Deutsch (Belgien)",
+        "versionType": "AGT",
+        "versionLanguages": "Moselfränkisch – Deutsch (Belgien)",
+        "versionName": "AGT: Moselfränkisch – Deutsch (Belgien)",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
         "date": "2022-09-22"
     }

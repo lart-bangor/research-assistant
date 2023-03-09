@@ -9,31 +9,70 @@ from ..config import config
 import os
 import json
 
+#Define paths used is functions below
 data_path: Path = config.paths.data / "Consent"
 if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
 
 dir = os.path.dirname(os.path.realpath(__file__))
 versions_dir = dir + "\\versions\\"
+versionsDirList = os.listdir(dir + '\\versions')
+
+
+def fetch_file_info(file: str):
+    """takes a json file and returns info from inside the file as a list in the form of [version_name, version_ID, version_data]"""
+    file_info = []
+    with open(file, encoding='utf-8') as f:
+        #print("WORKING FILE is: " + file)
+        data = json.load(f)
+        versionId = data["meta"]["versionId"]
+        versionType = data["meta"]["versionType"]
+        versionLanguages = data["meta"]["versionLanguages"]
+        versionName = data["meta"]["versionName"]
+        file_info.extend([versionId, versionType, versionLanguages, versionName])
+    print(f"\nFile fetched: {file}. \nFile info is: {file_info}")
+    return file_info
+
+
+@eel.expose
+def consent_getversions():
+     """loops through the folder [versions] inside [consent] and finds all unique language versions, regardless of test type. 
+     Returns a list of lists in the form: [versionId, languageInfo]"""
+     versions = []
+     versionsTracker = []
+     for file_name in versionsDirList:
+          fileInfo = fetch_file_info(versions_dir + file_name)
+          languageInfo = fileInfo[2]
+          versionId = fileInfo[0]
+          print("\n Version found:")
+          print("\t version languages: " + languageInfo)
+          print("\t version ID: " + versionId)
+          if versionsTracker.count(languageInfo) == 0:
+               versionsTracker.append(languageInfo)  #keep track of the fact that you found a language version, regardless of task type
+               versions.append([versionId, languageInfo])
+     return versions
+
+
 
 @eel.expose
 def set_options(selected_version: str):
     """Takes a language version as arg and finds all consent forms available for that version. Returns a list in the form of [version_name, version_ID, version_data]"""
-    versionsDirList = os.listdir(dir + '\\versions')
     options = []
-    print("Informed Consent: working DIR = " + dir)
+    print("Informed Consent: working DIR = " + versions_dir)
     for file_name in versionsDirList:
         bare_file_name = file_name.split(".", 1)[0]
-        if bare_file_name == selected_version:
-            with open(versions_dir + file_name, encoding='utf-8') as f:
-                data = json.load(f)
-                optionName = data["meta"]["versionName"]
-                optionID = data["meta"]["versionId"]
-                print("\n Option found:")
-                print("\t option name: " + optionName)
-                print("\t option ID: " + optionID)
-                option = [optionID, optionName]
-                options.append(option)
+        bare_version = selected_version.split(".", 1)[0]
+        #print("bare version: " + bare_version)
+        #print("bare file name: " + bare_file_name)
+        if bare_file_name == bare_version:
+            file_info = fetch_file_info(versions_dir + file_name)
+            optionID = file_info[0]
+            optionName = file_info[3]
+            print("\n Option found:")
+            print("\t option name: " + optionName)
+            print("\t option ID: " + optionID)
+            option = [optionID, optionName]
+            options.append(option)
     print("\nList of consent files available: ")
     print(options)
     return options
@@ -42,15 +81,16 @@ def set_options(selected_version: str):
 
 @eel.expose
 def fetch_study_info(filename: str):
+    """takes a filename and returns the json data from that file"""
     file = versions_dir + filename
-    with open(file, "r") as f:
+    with open(file, "r", encoding='utf-8') as f:
         version_data = json.load(f)
     return version_data
 
 
 @eel.expose
 def record_consent(data: dict[Any, Any]):
-    """Retrieve consent from partInformed.html and print to file + to console."""
+    """Takes in data from index.html and prints it to file && to console."""
     presentime = datetime.now()
     dt_string = presentime.strftime("%Y-%m-%dT%H:%M:%S")
     dt_filename = str(uuid.uuid1())
