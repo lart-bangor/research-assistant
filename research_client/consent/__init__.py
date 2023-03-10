@@ -30,7 +30,7 @@ def fetch_file_info(file: str):
         versionLanguages = data["meta"]["versionLanguages"]
         versionName = data["meta"]["versionName"]
         file_info.extend([versionId, versionType, versionLanguages, versionName])
-    print(f"\nFile fetched: {file}. \nFile info is: {file_info}")
+    #print(f"\nFile fetched: {file}. \nFile info is: {file_info}")
     return file_info
 
 
@@ -44,12 +44,13 @@ def consent_getversions():
           fileInfo = fetch_file_info(versions_dir + file_name)
           languageInfo = fileInfo[2]
           versionId = fileInfo[0]
-          print("\n Version found:")
-          print("\t version languages: " + languageInfo)
-          print("\t version ID: " + versionId)
+          #print("\n Version found:")
+          #print("\t version languages: " + languageInfo)
+          #print("\t version ID: " + versionId)
           if versionsTracker.count(languageInfo) == 0:
                versionsTracker.append(languageInfo)  #keep track of the fact that you found a language version, regardless of task type
                versions.append([versionId, languageInfo])
+     print(f"\nDigital consent: {len(versions)} language versions found.")
      return versions
 
 
@@ -73,8 +74,8 @@ def set_options(selected_version: str):
             print("\t option ID: " + optionID)
             option = [optionID, optionName]
             options.append(option)
-    print("\nList of consent files available: ")
-    print(options)
+    #print("\nList of consent files available: ")
+    #print(options)
     return options
 
 
