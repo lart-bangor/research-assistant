@@ -61,7 +61,7 @@ class DataclassDictMixin:
     """Mixin adding asdict() and fromdict() methods to a dataclass."""
 
     @classmethod
-    def fromdict(cls, d: dict[str, Any]):  # noqa: C901
+    def fromdict(cls, d: dict[str, Any], ignorefaults: bool = False):  # noqa: C901
         """Recursively converts a dictionary to a dataclass instance."""
         if not is_dataclass(cls):
             raise TypeError(f"Class {cls!r} is not a dataclass.")
@@ -75,10 +75,16 @@ class DataclassDictMixin:
         args: dict[str, Any] = {}
         for name, value in d.items():
             if name not in type_map:
-                raise ValueError(f"Dataclass {cls!r} has no attribute {name!r}.")
+                if ignorefaults:
+                    logger.error(
+                        f"Dataclass {cls!r} has no attribute {name!r} - {name!r} will be ignored."
+                    )
+                    continue
+                else:
+                    raise ValueError(f"Dataclass {cls!r} has no attribute {name!r}.")
             if is_dataclass(type_map[name]) and isinstance(d[name], dict):
                 if hasattr(type_map[name], "fromdict"):
-                    value = type_map[name].fromdict(d[name])  # type: ignore
+                    value = type_map[name].fromdict(d[name], ignorefaults)  # type: ignore
                 else:
                     raise TypeError(
                         f"Dataclass {type_map[name]!r} has no method 'fromdict'."
@@ -386,14 +392,14 @@ class Config(DataclassDictMixin, DataclassDocMixin):
             raise
 
     @classmethod
-    def load(cls, filename: str = "settings.json"):
+    def load(cls, filename: str = "settings.json") -> Config:
         """Load configuration from a file or return default Config()."""
         path = Path(_default_dirs.user_config_dir) / filename
         if path.exists():
             try:
                 with path.open("r") as fp:
                     d = json.load(fp)
-                cfg = Config.fromdict(d)
+                cfg = Config.fromdict(d, ignorefaults=True)
                 logging.debug(
                     f"Successfully loaded config from file ('{path}') with "
                     f"values: {json.dumps(cfg.asdict(), cls=JSONPathEncoder)}"
