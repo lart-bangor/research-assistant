@@ -1,5 +1,5 @@
-System requirements
-===================
+Compatibility and Requirements
+==============================
 
 Operating systems
 -----------------
@@ -12,10 +12,10 @@ installation/building from source (see `Developer’s Guide <file:///C:/Users/ad
 
 We have plans to officially support these platforms with the version 1.0 stable release in the near future.
 
-.. // ask whether subheadings (-) or bolded text is better below:
+System requirements
+-------------------
 
-Minimal requirements:
----------------------
+**Minimal requirements:**
 
 - 64-bit Intel, AMD, or otherwise x64 compatible processor, 2.4GHz. 
 
@@ -24,14 +24,19 @@ Minimal requirements:
 - 4GB RAM. 
 
 
-Recommended requirements
-------------------------
+**Recommended requirements:**
 
 - 64-bit Intel or AMD processor, 3.0GHz dual-core. 
 
 - 200MB free disk space. 
 
 - 8GB RAM. 
+
+Required Software
+-----------------
+
+You must have a current version of the `Google Chrome browser <https://www.google.co.uk/chrome/>`_` installed. The L’ART Research Client relies on this to provide its User Interface. 
+
 
 Tested System Configurations
 ----------------------------

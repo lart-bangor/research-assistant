@@ -9,7 +9,10 @@ Users' Guide
     installation
     configuration
     getting-started
-    collecting-data
+    data-setup
+    collecting-responses
+    research-task-lsbqe
+    research-task-atol
     locking-app
     exporting-data
     discarding-attempts
