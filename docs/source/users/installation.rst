@@ -100,15 +100,13 @@ Installing on Windows 10/11
       Figure 7 - Install Research Client app
 
 
-#. Complete setup by clicking :guilabel:`Finish`. 
+#. Complete setup by clicking :guilabel:`Finish` and enjoy!
 
    .. figure:: figures/figure8.png
       :width: 400
       :alt: Screenshot of completing the L'ART Research Client Setup Wizard
 
       Figure 8 - Complete setup of Research Client app
-
-#. Launch the Research Client and enjoy ;)
 
 
 Installing on Linux

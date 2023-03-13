@@ -7,8 +7,13 @@ Users' Guide
 
     system-requirements
     installation
-    collecting-data
     configuration
     getting-started
+    data-setup
+    collecting-responses
+    research-task-lsbqe
+    research-task-atol
+    locking-app
     exporting-data
-    troubleshooting
+    discarding-attempts
+    sequencing
