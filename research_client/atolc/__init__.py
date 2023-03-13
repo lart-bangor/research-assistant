@@ -16,6 +16,7 @@ from . import patterns
 from collections import OrderedDict
 import os, glob
 
+"""Global vars: directories, file paths etc. for AToL task"""
 data_path: Path = config.paths.data / "AToL-C"
 if not data_path.exists():
     print(f"WARNING: destination folder in {data_path} did not exist/n [has now been automatically built]")
@@ -46,6 +47,7 @@ def arrange_data(data):
 
 
 def get_id(dict):
+    """Returns a participant ID"""
     id = dict["participantId"] + "_" + dt_filename
     return id
 
@@ -87,6 +89,7 @@ def init_atol(myData: dict[str, str]) -> None:
     booteel.setlocation("atolRatingsMaj.html")
 
 def arrange_order(dict, source):
+    """Records order in which traits were presented for a given trial, then orders them alphabetically for write readability"""
     presentation_order = key_list(dict) #record order in which data was presented
     print("presentable type is")
     print(type(presentation_order))
@@ -128,7 +131,7 @@ def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, part
 
 
 def fetch_location(source_file: str, version: str) -> Optional[str]:
-    """Get the name for atolEnd file."""
+    """Finds which html page to load next"""
     if 'Maj' in source_file:
         return "atolRatingsRml.html"
     elif 'Rml' in source_file:
@@ -182,7 +185,8 @@ _rating_adjectives = (
     "pleasant",
     "smooth",
     "graceful",
-    "round"
+    "round",
+    "ballsy"
 )
 
 @eel.expose  # type: ignore

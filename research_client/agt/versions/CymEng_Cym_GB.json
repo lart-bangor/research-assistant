@@ -8,8 +8,8 @@
     },
     "base": {
         "appTitle": [
-            "MGT: Voice Rating",
-            "MGT: Sgôr Llais"
+            "AGT: Voice Rating",
+            "AGT: Sgôr Llais"
         ],
         "next": [
             "Next",
@@ -22,8 +22,8 @@
     },
     "instructions": {
         "secTitle": [
-            "MGT Instructions",
-            "Cyfarwyddiadau MGT "
+            "AGT Instructions",
+            "Cyfarwyddiadau AGT "
         ],
         "begin": [
             "Begin practice",

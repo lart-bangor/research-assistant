@@ -1,15 +1,15 @@
 {
     "meta": {
-        "versionId": "LtzGer_Ger_BE",
-        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "versionId": "GerZzz_Ger_DE",
+        "versionName": "Deutsch – custom (Deutschland)",
         "versionNumber": "0.3.4",
-        "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2022-12-05"
+        "author": "Florian Breit <f.breit@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2023-01-20"
     },
     "base": {
         "appTitle": [
-            "MGT: Voice Rating",
-            "MGT: Stimmbewertung"
+            "AGT: Voice Rating",
+            "AGT: Stimmbewertung"
         ],
         "next": [
             "Next",
@@ -22,8 +22,8 @@
     },
     "instructions": {
         "secTitle": [
-            "MGT Instructions",
-            "MGT Anleitung"
+            "AGT Instructions",
+            "AGT Anleitung"
         ],
         "begin": [
             "Begin practice",
@@ -48,42 +48,17 @@
     },
     "audioMsg": {
         "load": [
-            "Ton laden..."
-            
+            "Audio laden..."
         ],
         "loaded": [
             "Ton geladen."
             
         ],
         "play": [
-            "Ton spielt..."
+            "Audio abspielen..."
         ],
         "complete": [
-            "Wiedergabe abgeschlossen."
-        ],
-        "playbackError": [
-            "Audio could not be played. Click to try again.",
-            "Fehler beim abspielen. Klicken um es erneut zu versuchen."
-        ],
-        "abortedError": [
-            "Error: Playback aborted.",
-            "Fehler: Wiedergabe abgebrochen."
-        ],
-        "networkError": [
-            "Error: Audio couldn't be loaded due to a network error.",
-            "Fehler: Audio konnte wegen eines Netzwerkfehlers nicht geladen werden."
-        ],
-        "decodeError": [
-            "Error: Audio could not be decoded.",
-            "Fehler: Audiodecodierung fehlgeschlagen."
-        ],
-        "formatError": [
-            "Error: Audio file not found or format not supported.",
-            "Fehler: Audiodatei nicht gefunden oder Format nicht unterstützt."
-        ],
-        "unknownError": [
-            "Error: An unknown error occurred.",
-            "Fehler: Ein unbekannter Fehler ist aufgetreten."
+            "Audiowiedergabe abgeschlossen."
         ]
     },
     "rating": {
@@ -137,31 +112,9 @@
             "You've completed the practice session. If you have any questions at this point please let the researcher know, otherwise click <em>Continue</em> to begin the task.",
             "Sie haben den Übungslauf abgeschlossen. Falls Sie zu diesem Zeitpunkt Fragen haben, sagen Sie bitten dem Forscher Bescheid. Ansonsten klicken Sie auf <em>Weiter</em> um die Aufgabe anzufangen."
         ],
-        "errorTitle": [
-            "Let’s try that again...",
-            "Versuchen Sie es nochmal..."
-        ],
-        "errorMessage": [
-            "It seems you’ve missed some items. Click <em>Continue</em> to have another look and make sure you’ve moved each slider at least once. The one’s you’ve missed should show up in red. When you’ve moved all the red sliders, click <em>Next</em> again.",
-            "Es sieht so aus als ob Sie etwas übersehen haben. Klicken Sie auf <em>Weiter</em> und stellen Sie sicher, dass Sie jeden Schieber bewegt haben. Unbewegte Schieber erscheinen in rot. Wenn Sie alle roten Schieber bewegt haben, klicken Sie erneut aus <em>Weiter</em>."
-        ],
         "continue": [
             "Continue",
             "Weiter"
-        ]
-    },
-    "end": {
-        "secTitle": [
-            "Thank you for completing the MGT Voice Rating task!",
-            "Dank für das Durchführen der MGT Stimmbewerungsaufgabe!"
-        ],
-        "thankYouMessage" : [
-            "Well done on the voice rating task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
-            "Gute Arbeit mit der Stimmbewertung!<br /> Sie haben jetzt alle Aufgaben erledigt. Die Daten wurden automatisch gespreichert, aber bitte schliesse die App noch nicht."
-        ],
-        "followOnInstructions": [
-            "You can tell the researcher that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
-            "Sie können dem Forscher jetzt Bescheid geben, dass Sie mit den Aufgaben an der App fertig sind. Der Forscher wird dann überprüfen, dass alles seine Richtigkeit hat und falls nötig weitere Anleitungen geben."
         ]
     }
 }

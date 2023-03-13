@@ -280,7 +280,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         "Consent Form": "consent",
         "LSBQe": "lsbq",
         "Memory Game": "memorygame",
-        "MGT": "mgt",
+        "AGT": "agt",
     }
 
     atolc: str = field(

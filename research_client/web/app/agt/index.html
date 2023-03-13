@@ -1,7 +1,7 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
-{% block title %}LART Research Client - MGT{% endblock %}
-{% block headline %}MGT: Voice Rating{% endblock %}
+{% block title %}LART Research Client - AGT{% endblock %}
+{% block headline %}AGT: Voice Rating{% endblock %}
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
@@ -40,7 +40,7 @@
 
         <div class="row m-4 text-center">
             <div class="col">
-                <h2>MGT: Voice Rating</h2>
+                <h2>AGT: Voice Rating</h2>
             </div>
         </div>
 
@@ -49,14 +49,14 @@
             <!-- Survey version -->
             <section class="m-4">
                 <div class="mb-3">
-                    <label for="selectSurveyVersion" class="form-label">Select MGT version:</label>
+                    <label for="selectSurveyVersion" class="form-label">Select AGT version:</label>
                     <select id="selectSurveyVersion" class="form-select" required>
                     </select>
                     <script type="text/javascript">
                         loadSurveyVersions();
                     </script>
                     <div class="invalid-feedback">
-                        <p>Please select one of the available versions of the MGT.</p>
+                        <p>Please select one of the available versions of the AGT.</p>
                     </div>
                 </div>
             </section>

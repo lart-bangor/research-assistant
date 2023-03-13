@@ -17,7 +17,7 @@ function populateSurveyVersions(versions) {
 
 // #########################################################################################################
 // #                                                                                                       #
-// #     Main section: grab MGT info in LANG from json, display, record responses, send to Python          #
+// #     Main section: grab AGT info in LANG from json, display, record responses, send to Python          #
 // #                                                                                                       #
 // #########################################################################################################
 
@@ -110,7 +110,7 @@ function hideInitForm() {
 }
 
 /**
- * Return language-specific data for the MGT interface.
+ * Return language-specific data for the AGT interface.
  * 
  * CAUTION: Sets the gloabl *interface* object as a side effect.
  * 
@@ -259,7 +259,7 @@ function loadAdjectives() {
 }
 
 /**
- * Show the MGT practice task.
+ * Show the AGT practice task.
  * 
  * @TODO Needs proper documentation.
  */

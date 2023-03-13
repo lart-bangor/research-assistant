@@ -17,7 +17,7 @@ from .config import config
 from . import booteel
 from .lsbq import expose_to_eel as expose_lsbq
 from .memorygame import expose_to_eel as expose_memorygame
-from .mgt import expose_to_eel as expose_mgt
+from .agt import expose_to_eel as expose_mgt
 from .settings import expose_to_eel as expose_settings
 from .utils import export_backup, manage_settings, show_error_dialog
 

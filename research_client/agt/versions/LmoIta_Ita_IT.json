@@ -1,15 +1,15 @@
 {
     "meta": {
-        "versionId": "ItaZzz_Ita_IT",
-        "versionName": "Italiano – custom (Italia)",
+        "versionId": "LmoIta_Ita_IT",
+        "versionName": "Lombard – Italiano (Italia)",
         "versionNumber": "0.3.4",
-        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>, Florian Breit <f.breit@bangor.ac.uk>, Lissander Brasca <elp2d5@bangor.ac.uk>",
-        "date": "2023-01-20"
+        "author": "Florian Breit <f.breit@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2022-12-05"
     },
     "base": {
         "appTitle": [
-            "MGT: Voice Rating",
-            "MGT: Valutazione della Voce"
+            "AGT: Voice Rating",
+            "AGT: Valutazione della Voce"
         ],
         "next": [
             "Next",
@@ -22,8 +22,8 @@
     },
     "instructions": {
         "secTitle": [
-            "MGT Instructions",
-            "MGT Istruzioni"
+            "AGT Instructions",
+            "AGT Istruzioni"
         ],
         "begin": [
             "Begin practice",
@@ -60,6 +60,30 @@
         ],
         "complete": [
             "Riproduzione audio completata."
+        ],
+        "playbackError": [
+            "Audio could not be played. Click to try again.",
+            "Impossibile riprodurre l'audio. Fai clic per riprovare."
+        ],
+        "abortedError": [
+            "Error: Playback aborted.",
+            "Errore: riproduzione interrotta."
+        ],
+        "networkError": [
+            "Error: Audio couldn't be loaded due to a network error.",
+            "Errore: impossibile caricare l'audio a causa di un errore di rete."
+        ],
+        "decodeError": [
+            "Error: Audio could not be decoded.",
+            "Errore: non è stato possibile decodificare l'audio."
+        ],
+        "formatError": [
+            "Error: Audio file not found or format not supported.",
+            "Errore: file audio non trovato o formato non supportato."
+        ],
+        "unknownError": [
+            "Error: An unknown error occurred.",
+            "Errore: si è verificato un errore sconosciuto."
         ]
     },
     "rating": {
@@ -113,9 +137,31 @@
             "You've completed the practice session. If you have any questions at this point please let the researcher know, otherwise click <em>Continue</em> to begin the task.",
             "Ha completato la prova. Se ha qualche domanda la rivolga al ricercatore. Altrimenti, prema <em>Continua</em> per cominciare il test."
         ],
+        "errorTitle": [
+            "Let’s try that again...",
+            "Proviamo di nuovo..."
+        ],
+        "errorMessage": [
+            "It seems you’ve missed some items. Click <em>Continue</em> to have another look and make sure you’ve moved each slider at least once. The one’s you’ve missed should show up in red. When you’ve moved all the red sliders, click <em>Next</em> again.",
+            "Sembra che tu abbia perso alcuni elementi. Fai clic su <em>Continua</em> per dare un'altra occhiata e assicurati di aver spostato ogni cursore almeno una volta. Quelli che mancano appariranno in rosso. Dopo aver spostato tutti i cursori rossi, fai di nuovo clic su <em>Avanti</em>."
+        ],
         "continue": [
             "Continue",
             "Continua"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Voice Rating task!",
+            "Grazie per aver completato l'attività di Valutazione della Voce!"
+        ],
+        "thankYouMessage" : [
+            "Well done on the voice rating task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
+            "Complimenti per l'attività di valutazione vocale!<br /> Adesso ha completato tutte le attività. I Suoi dati sono stati salvati automaticamente, ma non chiuda ancora l'app."
+        ],
+        "followOnInstructions": [
+            "You can tell the researcher that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
+            "Può dire al ricercatore che ha terminato con le attività dell'app. Il ricercatore controllerà che abbiamo tutto ciò di cui abbiamo bisogno e Le darà ulteriori istruzioni se necessario."
         ]
     }
 }

@@ -56,22 +56,22 @@ mgt_traits: Final[tuple[str, ...]] = (
 
 
 class Response(DataSchema):
-    """Class for representing the data of an MGT questionnaire response."""
+    """Class for representing the data of an AGT questionnaire response."""
     __schema = {
         "id": {
             "type_": str,
-            "typedesc": "MGT Response ID",
+            "typedesc": "AGT Response ID",
             "constraint": patterns.UUID_HEX,
         },
         "meta": {  # Meta data
             "version_id": {
                 "type_": str,
-                "typedesc": "MGT version identifier",
+                "typedesc": "AGT version identifier",
                 "constraint": patterns.VERSION_LABEL,
             },
             "version_no": {
                 "type_": str,
-                "typedesc": "MGT version number",
+                "typedesc": "AGT version number",
                 "constraint": patterns.VERSION_NUMBER,
             },
             "app_version": {
@@ -297,21 +297,21 @@ class Response(DataSchema):
     if TYPE_CHECKING:  # noqa: C901
 
         def setid(self, id: str) -> None:
-            """Set the id of the MGT instance."""
+            """Set the id of the AGT instance."""
             ...
 
         def getid(self) -> str:
-            """Get the id of the MGT instance."""
+            """Get the id of the AGT instance."""
             ...
 
         def setmeta(self, *args: Any) -> None:
-            """Set the meta data of the MGT instance."""
+            """Set the meta data of the AGT instance."""
             ...
 
         def getmeta(self) -> dict[str, Any]:
-            """Get the meta data of the MGT instance."""
+            """Get the meta data of the AGT instance."""
             ...
 
         def gettrial_order(self) -> list[str]:
-            """Get the order of trials for the MGT instance."""
+            """Get the order of trials for the AGT instance."""
             ...

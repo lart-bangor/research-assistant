@@ -1,4 +1,4 @@
-"""Version implementations and translations for the MGT."""
+"""Version implementations and translations for the AGT."""
 import logging
 import json
 from importlib import resources
@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 def _get_versions() -> dict[str, dict[str, Any]]:
-    """Loads all available MGT versions into memory."""
+    """Loads all available AGT versions into memory."""
     versions: dict[str, dict[str, Any]] = {}
     for item in resources.contents(__name__):
         if resources.is_resource(__name__, item) and item[-5:] == ".json":
