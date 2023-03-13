@@ -2,9 +2,9 @@
     "meta": {
         "versionId": "LtzGer_Ger_BE",
         "versionName": "Moselfränkisch – Deutsch (Belgien)",
-        "versionNumber": "0.3.4",
+        "versionNumber": "0.3.5",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2022-12-05"
+        "date": "2023-03-13"
     },
     "base": {
         "appTitle": [
@@ -31,15 +31,15 @@
         ],
         "taskDescription": [
             "In this task, you will hear a person speak and see a series of sliders asking you to rate that person on the basis of their voice alone.",
-            "Bei dieser Aufgabe hörst du wie eine Person spricht und siehst eine Auswahl an Slidern mit denen du den Sprecher ausschliesslich auf der Basis seiner Stimme bewerten sollst."
+            "Bei dieser Aufgabe hören Sie, wie eine Person spricht. Gleichzeitig sehen Sie eine Auswahl an Schiebern mit denen Sie den Sprecher, ausschliesslich auf der Basis seiner Stimme, bewerten sollen."
         ],
         "taskInstruction": [
             "Please use the sliders to record the degree to which you agree or disagree with each statement. You will only hear each voice once. However, if any problem occurs during the task, for example the audio doesn't play properly, please speak to the researcher.",
-            "Bitte benutzen Sie die Slider um anzugeben, zu welchem Grad Sie jeder Aussage zustimmen oder nicht. Sie werden jede Stimme nur einmal hören. Falls wärend der Aufgabe irgendwelche Probelme auftreten (z.B. die Aufnahme spielt nicht ab), dann wenden Sie sich bitte an den Forscher."
+            "Bitte benutzen Sie die Schieber um anzugeben, zu welchem Grad Sie jeder Aussage zustimmen oder nicht zustimmen. Sie werden jede Stimme nur einmal hören. Falls wärend der Aufgabe irgendwelche Probelme auftreten (z.B. die Aufnahme spielt nicht ab), dann wenden Sie sich bitte an den Forscher."
         ],
         "taskPracticeDescription": [
             "The first example will be a practice item so that you can familiarise yourself with the task. After you have completed the practice item, you will have the opportunity to speak to the researcher to ask any questions you might have about the task.",
-            "Die erste Aufnahme ist ein Übungsbeispiel, damit Sie die Aufgabe kennenlernen können. Nachdem Sie den Übungslauf absolviert haben, haben Sie nochmal die Chance dem Forschungsleiter Fragen zu der Aufgabe zu stellen, bevor die richtige Aufgabe losgeht."
+            "Die erste Aufnahme ist ein Beispiel zur Übung, damit Sie die Aufgabe kennenlernen können. Nachdem Sie den Übungslauf absolviert haben, haben Sie nochmal die Chance dem Forscher Fragen zu der Aufgabe zu stellen, bevor die richtige Aufgabe losgeht."
         ],
         "taskNextStep": [
             "Click on <em>begin practice</em> when you're ready.",
@@ -97,7 +97,7 @@
         ],
         "instructions": [
             "Please use the sliders to record your response.",
-            "Bitte benutzen Sie die Slider um zu antworten."
+            "Bitte benutzen Sie die Schieber um zu antworten."
         ],
         "stronglyAgree": [
             "strongly agree",
@@ -109,24 +109,24 @@
         ]
     },
     "trait": {
-        "amusing":      [ "amüsant" ],
-        "open-minded":  [ "offen" ],
-        "attractive":   [ "attraktiv" ],
-        "trustworthy":  [ "vertrauenswürdig" ],
-        "ignorant":     [ "ignorant"],
-        "polite":       [ "höflich"],
-        "ambitious":    [ "ehrgeizig"],
+        "amusing":       [ "amüsant" ],
+        "open-minded":   [ "aufgeschlossen" ],
+        "attractive":    [ "attraktiv" ],
+        "trustworthy":   [ "vertrauenswürdig" ],
+        "ignorant":      [ "ignorant"],
+        "polite":        [ "höflich"],
+        "ambitious":     [ "ehrgeizig"],
         "international": [ "international"],
-        "cool":         [ "cool" ],
-        "intelligent":  [ "intelligent" ],
-        "influential":  [ "einflussreich" ],
-        "likeable":     [ "sympathisch" ],
-        "educated":     [ "gebildet" ],
-        "friendly":     [ "freundlich" ],
-        "honest":       [ "ehrlich" ],
-        "competent":    [ "kompetent" ],
-        "natural":      [ "natürlich" ],
-        "pretentious":  ["hochgestochen" ]
+        "cool":          [ "cool" ],
+        "intelligent":   [ "intelligent" ],
+        "influential":   [ "einflussreich" ],
+        "likeable":      [ "sympathisch" ],
+        "educated":      [ "gebildet" ],
+        "friendly":      [ "freundlich" ],
+        "honest":        [ "ehrlich" ],
+        "competent":     [ "kompetent" ],
+        "natural":       [ "natürlich" ],
+        "pretentious":   [ "hochgestochen" ]
     },
     "practice": {
         "completeTitle": [
@@ -139,11 +139,11 @@
         ],
         "errorTitle": [
             "Let’s try that again...",
-            "Versuchen Sie es nochmal..."
+            "Versuchen Sie es noch einmal..."
         ],
         "errorMessage": [
             "It seems you’ve missed some items. Click <em>Continue</em> to have another look and make sure you’ve moved each slider at least once. The one’s you’ve missed should show up in red. When you’ve moved all the red sliders, click <em>Next</em> again.",
-            "Es sieht so aus als ob Sie etwas übersehen haben. Klicken Sie auf <em>Weiter</em> und stellen Sie sicher, dass Sie jeden Schieber bewegt haben. Unbewegte Schieber erscheinen in rot. Wenn Sie alle roten Schieber bewegt haben, klicken Sie erneut aus <em>Weiter</em>."
+            "Es sieht so aus, als ob Sie etwas übersehen haben. Klicken Sie auf <em>Weiter</em> und stellen Sie sicher, dass Sie alle Schieber bewegt haben. Unbewegte Schieber erscheinen in rot. Wenn Sie alle roten Schieber bewegt haben, klicken Sie erneut auf <em>Weiter</em>."
         ],
         "continue": [
             "Continue",
@@ -157,11 +157,11 @@
         ],
         "thankYouMessage" : [
             "Well done on the voice rating task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
-            "Gute Arbeit mit der Stimmbewertung!<br /> Sie haben jetzt alle Aufgaben erledigt. Die Daten wurden automatisch gespreichert, aber bitte schliesse die App noch nicht."
+            "Gute Arbeit mit der Stimmbewertung!<br /> Sie haben jetzt alle Aufgaben erledigt. Die Daten wurden automatisch gespreichert, aber bitte schließen Sie die App noch nicht."
         ],
         "followOnInstructions": [
             "You can tell the researcher that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
-            "Sie können dem Forscher jetzt Bescheid geben, dass Sie mit den Aufgaben an der App fertig sind. Der Forscher wird dann überprüfen, dass alles seine Richtigkeit hat und falls nötig weitere Anleitungen geben."
+            "Sie können dem Forscher jetzt Bescheid geben, dass Sie mit den Aufgaben an der App fertig sind. Der Forscher wird dann überprüfen, dass alles richtig gespeichert wurde und falls nötig weitere Anweisungen geben."
         ]
     }
 }
