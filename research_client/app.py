@@ -17,7 +17,7 @@ from .config import config
 from . import booteel
 from .lsbq import expose_to_eel as expose_lsbq
 from .memorygame import expose_to_eel as expose_memorygame
-from .agt import expose_to_eel as expose_mgt
+from .agt import expose_to_eel as expose_agt
 from .settings import expose_to_eel as expose_settings
 from .utils import export_backup, manage_settings, show_error_dialog
 
@@ -36,7 +36,7 @@ logger = logging.getLogger(__name__)
 # Expose Eel APIs for subpackages
 expose_lsbq()
 expose_memorygame()
-expose_mgt()
+expose_agt()
 expose_settings()
 
 

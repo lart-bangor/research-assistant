@@ -355,10 +355,10 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
             "doc_values": _sequence_options,
         }
     )
-    mgt: str = field(
+    agt: str = field(
         default="",
         metadata={
-            "doc_label": "Task following the MGT",
+            "doc_label": "Task following the AGT",
             "doc_values": _sequence_options,
         }
     )

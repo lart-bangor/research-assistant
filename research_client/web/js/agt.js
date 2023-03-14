@@ -1,11 +1,11 @@
-//Funcions for MGT selection part of page
+//Funcions for AGT selection part of page
 function loadSurveyVersions() {
-    availableVersions = eel._lsbq_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_mgt_get_versions", 
+    availableVersions = eel._lsbq_getversions()(populateSurveyVersions);     // this will probably need to be changed to a more generic "survey_agt_get_versions", 
                                                                                 // or hard-coded for each questionnaire.
 }
 
 function populateSurveyVersions(versions) {
-    select = document.getElementById('selectMgtVersion');
+    select = document.getElementById('selectAgtVersion');
     for (const version in versions) {
         option = document.createElement('option');
         option.setAttribute('value', version);
@@ -21,13 +21,13 @@ function populateSurveyVersions(versions) {
 // #                                                                                                       #
 // #########################################################################################################
 
-// counter to keep track of DIV id's (each DIV is mgtRatingScale_ + a number)
+// counter to keep track of DIV id's (each DIV is agtRatingScale_ + a number)
 let counter = 0;
 const timeStamp = new Date();
 
 //initialise arrays for adjectives & for audio files to be played
-let mgtAdjectives = [];
-let mgtAudioList = [];
+let agtAdjectives = [];
+let agtAudioList = [];
 
 const meta = {
     "file_id": "",
@@ -43,7 +43,7 @@ let partResponses = [];
 let currentGuiseName = "";
 
 
-//initialise labels for sliders, to be redefined within fetchMgt()
+//initialise labels for sliders, to be redefined within fetchAgt()
 let agree = "";
 let disagree = "";
 let headerTxt = "";
@@ -103,7 +103,7 @@ function setMeta(metaData) {
  * Hide the version selection form.
  */
 function hideInitForm() {
-    const form = document.getElementById('mgtToggleForm');
+    const form = document.getElementById('agtToggleForm');
     const btn = document.getElementById('toggle-btn');
     form.style.display = 'none';
     btn.style.display = 'none';
@@ -128,7 +128,7 @@ function setIntface(jsonObj) {
 function hidePrecedingDiv() {
     console.log("inside hide DIV counter is: ", counter);
     if (counter !== 0) {
-        const previousId = "mgtRatingScale_" + String(counter - 1);
+        const previousId = "agtRatingScale_" + String(counter - 1);
         console.log("previous rat8ng id is: ", previousId);
         const x = document.getElementById(previousId);
         console.log("var x = ", x);
@@ -170,7 +170,7 @@ function shuffle(a) {       //shuffles members of array
  * @returns {String} The label to be used for this audio file
  */
 function fetchAudioLabel(filename) {
-    let guiseName = String(mgtAudioList[0]);
+    let guiseName = String(agtAudioList[0]);
     let extBegin = filename.indexOf(".mp3");
     let currentGuiseName = guiseName.slice(0, extBegin);
     return currentGuiseName;
@@ -224,12 +224,12 @@ function loadResults(formArr, responsesArr) {   //formArr contains arrays of pai
  * CAUTION: Affects globals *counter* and *partResponse* as side effect.
  */
 function loadAdjectives() {
-    const currentDivId = "mgtRatingScale_" + String(counter);
-    const mgtElement = document.getElementById(currentDivId);
-    const currentGuiseName = fetchAudioLabel(mgtAudioList[0]);
+    const currentDivId = "agtRatingScale_" + String(counter);
+    const agtElement = document.getElementById(currentDivId);
+    const currentGuiseName = fetchAudioLabel(agtAudioList[0]);
     console.log("current DIV's ID is ", currentDivId);
-    const itemsLen = mgtAdjectives.length;
-    const shuffledAdjectives = shuffle(interface.mgtItems);   //randomise order of adjectives from original list
+    const itemsLen = agtAdjectives.length;
+    const shuffledAdjectives = shuffle(interface.agtItems);   //randomise order of adjectives from original list
     console.log("shuffled adjectives: ", shuffledAdjectives);
     const arrayCopy = shuffledAdjectives.slice();
     partResponses.push({ "guise name": currentGuiseName, "Presentation order": arrayCopy });
@@ -254,7 +254,7 @@ function loadAdjectives() {
             "<div><p><br /><br /><br /><br /></p></div>";
     }
     counter++;
-    mgtElement.insertAdjacentHTML('beforeend', code);
+    agtElement.insertAdjacentHTML('beforeend', code);
 
 }
 
@@ -275,7 +275,7 @@ function showPractice() {
     instructTail = interface.base.instructionsTail;
     let practiceElement = document.getElementById("practiceBody");
     let num = 0;        //to provide different id for each practice slider
-    let listofAdj = interface.mgtItems;
+    let listofAdj = interface.agtItems;
     eel.playGuise(practiceGuise);
     console.log("Currently playing... ", practiceGuise);
     itemsLen = listofAdj.length;
@@ -301,13 +301,13 @@ function showPractice() {
     num++;
     instrucTailElement.innerHTML = "<br /><div class='row text-center'><h5 style='color: blue;'>" + interface.base.instructionsTail + "</h5></div><br /><br />";
     btnElement.innerHTML = startBtn;
-    mgtBtn = document.getElementById("mgtBtn");
-    setTimeout(() => { mgtBtn.style.display = "block"; }, 50000);   //wait till guise has finished playing, then show "next" button
+    agtBtn = document.getElementById("agtBtn");
+    setTimeout(() => { agtBtn.style.display = "block"; }, 50000);   //wait till guise has finished playing, then show "next" button
 
 }
 
 /**
- * Show MGT Instructions.
+ * Show AGT Instructions.
  * 
  * @TODO Needs proper documentation.
  */
@@ -337,35 +337,35 @@ function moveToNext(words, audioFiles) {
         practiceiDiv.style.display = "none";
     }
 
-    if ((typeof words === 'undefined' || typeof audioFiles === 'undefined')) {      //if moveToNext() is called after initialising, run MGT proper
-        words = mgtAdjectives;
-        audioFiles = mgtAudioList;
+    if ((typeof words === 'undefined' || typeof audioFiles === 'undefined')) {      //if moveToNext() is called after initialising, run AGT proper
+        words = agtAdjectives;
+        audioFiles = agtAudioList;
 
         audioLen = audioFiles.length;
         if (audioLen > 0) {                       //if list of audio recs is not empty
             hidePrecedingDiv();
             loadHeaders();
-            document.getElementById("mgtBody").style.display = "block";
-            window.location.href = "#mgtTop";
+            document.getElementById("agtBody").style.display = "block";
+            window.location.href = "#agtTop";
             eel.playGuise(audioFiles[0]);  //play first item on guise list
             console.log("Adjectives = ", words);
             loadAdjectives(words);
             audioFiles.shift();
-            mgtAudioList = audioFiles    //redefine mgtAudioList after first item is removed
-            console.log("after popping array is ", mgtAudioList);
-            btn = document.getElementById("mgtBtn");
+            agtAudioList = audioFiles    //redefine agtAudioList after first item is removed
+            console.log("after popping array is ", agtAudioList);
+            btn = document.getElementById("agtBtn");
             setTimeout(() => { btn.style.display = "block"; }, 50000);   //wait till guise has finished playing, then show "start" button
 
         } else {
-            window.location.assign("mgtEnd.html");
-            formdata = lart.forms.getFormData("mgtDataForm");
+            window.location.assign("agtEnd.html");
+            formdata = lart.forms.getFormData("agtDataForm");
             console.log("form data is ", formdata);
             const entries = Object.entries(formdata);
             console.log("inside else partResponses is :", partResponses);
             loadResults(entries, partResponses);
             const fullDataset = { meta, partResponses };
             console.log("FINAL JSOn object is : ", JSON.stringify(fullDataset, undefined, 2));
-            eel.grab_mgt_ratings(fullDataset)();
+            eel.grab_agt_ratings(fullDataset)();
         }
     } else {                //if it is the first (initialising) call to moveToNext(), show instrcutions and practice guise
         showInstruct();
@@ -374,18 +374,18 @@ function moveToNext(words, audioFiles) {
 }
 
 /**
- * Display the MGT component of the page.
+ * Display the AGT component of the page.
  * 
  * @TODO Needs proper documentation.
  * 
  * @param {*} data 
  */
-function fetchMgt(data) {
+function fetchAgt(data) {
     console.log("data from json is ", data);
     headerElement = document.getElementById("language_header");
     sliderElement = document.getElementById("slider_info");
     btnElement = document.getElementById("btnNext");
-    btnSectElement = document.getElementById("mgtBtn");
+    btnSectElement = document.getElementById("agtBtn");
 
     headerTxt = interface.base.header;
     agree = interface.base.agreement;
@@ -398,16 +398,16 @@ function fetchMgt(data) {
     startBtn = interface.base.startBtn;
     practiceGuise = interface.practiceAudio;
 
-    mgtAdjectives = interface.mgtItems;  //set mgtAdjectives
-    mgtAudioList = interface.mgtAudioList;   // set mgtAudioList;
-    moveToNext(mgtAdjectives, mgtAudioList);
+    agtAdjectives = interface.agtItems;  //set agtAdjectives
+    agtAudioList = interface.agtAudioList;   // set agtAudioList;
+    moveToNext(agtAdjectives, agtAudioList);
 }
 
 /**
- * Get the version selection information and initial MGT.
+ * Get the version selection information and initial AGT.
  */
-function showMgt() {
-    const fetch_version = document.getElementById("selectMgtVersion");
+function showAgt() {
+    const fetch_version = document.getElementById("selectAgtVersion");
     const fetch_resId = document.getElementById("researcherId");
     const fetch_location = document.getElementById("researchLocation");
     const fetch_partId = document.getElementById("participantId");
@@ -422,5 +422,5 @@ function showMgt() {
     fetch(jsonFile)
         .then(response => response.json())
         .then(data => setIntface(data))
-        .then(output => fetchMgt(output));  //pass the contents of jsonFile to output_info()
+        .then(output => fetchAgt(output));  //pass the contents of jsonFile to output_info()
 }

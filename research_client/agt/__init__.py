@@ -1,4 +1,4 @@
-"""Package implementing the Matched Guise Task (MGT)."""
+"""Package implementing the Audio Guise Task (AGT)."""
 
 
 def expose_to_eel():

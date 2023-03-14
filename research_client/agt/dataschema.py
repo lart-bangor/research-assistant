@@ -1,4 +1,4 @@
-"""Data schema implementing the MGT."""
+"""Data schema implementing the AGT."""
 import logging
 import uuid
 from random import shuffle
@@ -9,18 +9,18 @@ from . import patterns
 
 logger = logging.getLogger(__name__)
 
-mgt_practice_trials: Final[tuple[str, ...]] = (
+agt_practice_trials: Final[tuple[str, ...]] = (
     "practice",     # Practice trial
 )
 
-mgt_filler_trials: Final[tuple[str, ...]] = (
+agt_filler_trials: Final[tuple[str, ...]] = (
     "f1",           # Filler 1
     "f2",           # Filler 2
     "f3",           # Filler 3
     "f4",           # Filler 4
 )
 
-mgt_guise_trials: Final[tuple[str, ...]] = (
+agt_guise_trials: Final[tuple[str, ...]] = (
     "s1_maj",    # 1st recording of variety 1
     "s1_rml",    # 1st recording of variety 2
     "s2_maj",    # 2nd recording of variety 1
@@ -31,9 +31,9 @@ mgt_guise_trials: Final[tuple[str, ...]] = (
     "s4_rml",    # 4th recording of variety 2
 )
 
-mgt_trials: Final[tuple[str, ...]] = mgt_practice_trials + mgt_filler_trials + mgt_guise_trials
+agt_trials: Final[tuple[str, ...]] = agt_practice_trials + agt_filler_trials + agt_guise_trials
 
-mgt_traits: Final[tuple[str, ...]] = (
+agt_traits: Final[tuple[str, ...]] = (
     "amusing",
     "open-minded",
     "attractive",
@@ -117,91 +117,91 @@ class Response(DataSchema):
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "s1_rml_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "s2_maj_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "s2_rml_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "s3_maj_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "s3_rml_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "s4_maj_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "s4_rml_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "f1_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "f2_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "f3_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "f4_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
         "practice_ratings": {
             label: {
                 "type_": float,
                 "typedesc": f"rating of {label}",
                 "constraint": (0, 100)
-            } for label in mgt_traits
+            } for label in agt_traits
         },
     }
 
@@ -233,7 +233,7 @@ class Response(DataSchema):
         languages: list[str] | None = None,
         sep: str = "_"
     ) -> tuple[str, ...]:
-        """Produce a pseudo-randomised MGT presentation order.
+        """Produce a pseudo-randomised AGT presentation order.
 
         Given four speakers, four fillers, and two languages,
         produce a presentation order for Matched Guise Task,

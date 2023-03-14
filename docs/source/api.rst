@@ -19,7 +19,7 @@ Backend API (Python)
     datavalidator
     lsbq
     memorygame
-    mgt
+    agt
     utils
     settings
 

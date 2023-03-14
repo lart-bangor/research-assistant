@@ -7,7 +7,7 @@ from functools import wraps
 from pathlib import Path
 from random import sample
 from typing import Optional, Union, Callable, Any, TypeVar, cast
-from .dataschema import Response, mgt_traits, mgt_trials
+from .dataschema import Response, agt_traits, agt_trials
 from .versions import versions
 from .. import booteel
 from ..config import config
@@ -76,7 +76,7 @@ def _expose(func: F) -> F:
                 booteel.displayexception(exc)
                 _handleexception(exc)
             return False
-    eel._expose("_mgt_" + func.__name__, api_wrapper)  # type: ignore
+    eel._expose("_agt_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
 
@@ -99,7 +99,7 @@ def load_version(instid: str, sections: list[str]) -> dict[str, dict[str, Any]]:
 @_expose
 def get_traits():
     """Return the list of AGT stimuli."""
-    return sample(mgt_traits, k=len(mgt_traits))
+    return sample(agt_traits, k=len(agt_traits))
 
 
 @_expose
@@ -142,7 +142,7 @@ def setratings(instid: str, data: dict[str, str]) -> None:
     instance = _getinstance(instid)
     if "trial" not in data:
         raise ValueError("Missing trial id.")
-    if data["trial"] not in mgt_trials:
+    if data["trial"] not in agt_trials:
         raise ValueError(f"Unknown trial id {data['trial']!r}")
     trait_ratings: dict[str, float] = {}
     for key in data:
@@ -162,10 +162,10 @@ def setratings(instid: str, data: dict[str, str]) -> None:
 @_expose
 def getversions() -> dict[str, str]:
     """Retrieves the available versions of the AGT."""
-    mgt_versions: dict[str, str] = {}
+    agt_versions: dict[str, str] = {}
     for identifier in versions.keys():
-        mgt_versions[identifier] = versions[identifier]["meta"]["versionName"]
-    return mgt_versions
+        agt_versions[identifier] = versions[identifier]["meta"]["versionName"]
+    return agt_versions
 
 
 @_expose

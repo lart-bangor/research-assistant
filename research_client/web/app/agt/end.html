@@ -1,30 +1,30 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
 {% block title %}LART Research Client - AGT - Completion{% endblock %}
-{% block headline %}<span id="mgtAppTitle" data-mgt-tr="base.appTitle">AGT: Voice Rating</span>{% endblock %}
+{% block headline %}<span id="agtAppTitle" data-agt-tr="base.appTitle">AGT: Voice Rating</span>{% endblock %}
 {% block head_scripts %}{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
 {% block drawer_nav_options %}{% endblock %}
 {% block content %}
-    <article id="mgtEndScreen" class="container-fluid p-2">
+    <article id="agtEndScreen" class="container-fluid p-2">
 
         <!-- <div class="progress m-4">
             <div class="progress-bar bg-info" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width:95%"></div>
         </div> -->
 
         <div class="row m-4 text-center">
-            <h2 data-mgt-tr="end.secTitle">Thank you for completing the AGT Voice Rating task!</h2>
+            <h2 data-agt-tr="end.secTitle">Thank you for completing the AGT Voice Rating task!</h2>
         </div>
 
         <div class="row m-4">
             <div class="col fw-semi p-0">
-                <p data-mgt-tr="end.thankYouMessage">
+                <p data-agt-tr="end.thankYouMessage">
                     Well done on the voice rating task!<br />
                     You have now completed all the tasks. Your data has been saved automatically,
                     but please do not close the app yet.
                 </p>
-                <p data-mgt-tr="end.followOnInstructions">
+                <p data-agt-tr="end.followOnInstructions">
                     You can tell the researcher that you've finished with the app tasks and
                     they will check that we have everything we need and give you any further
                     instructions if needed.
@@ -39,8 +39,8 @@
         lart.forms.requireValidation(true);
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('mgt', eel._mgt_load_version, [instanceId, ['meta', 'base', 'end']]);
-        lart.tr.registerObserver('mgt', 'mgtEndScreen');
-        lart.tr.registerObserver('mgt', 'mgtAppTitle');
+        lart.tr.loadFromEel('agt', eel._agt_load_version, [instanceId, ['meta', 'base', 'end']]);
+        lart.tr.registerObserver('agt', 'agtEndScreen');
+        lart.tr.registerObserver('agt', 'agtAppTitle');
     </script>
 {% endblock %}
