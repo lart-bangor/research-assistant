@@ -15,8 +15,8 @@ if not data_path.exists():
     data_path.mkdir(parents=True, exist_ok=True)
 
 dir = os.path.dirname(os.path.realpath(__file__))
-versions_dir = dir + "\\versions\\"
-versionsDirList = os.listdir(dir + '\\versions')
+versions_dir = os.path.join(dir, "versions")
+versionsDirList = os.listdir(versions_dir)
 
 
 def fetch_file_info(file: str):
@@ -41,7 +41,7 @@ def consent_getversions():
      versions = []
      versionsTracker = []
      for file_name in versionsDirList:
-          fileInfo = fetch_file_info(versions_dir + file_name)
+          fileInfo = fetch_file_info(os.path.join(versions_dir, file_name))
           languageInfo = fileInfo[2]
           versionId = fileInfo[0]
           #print("\n Version found:")
@@ -59,14 +59,14 @@ def consent_getversions():
 def set_options(selected_version: str):
     """Takes a language version as arg and finds all consent forms available for that version. Returns a list in the form of [version_name, version_ID, version_data]"""
     options = []
-    print("Informed Consent: working DIR = " + versions_dir)
+    print("Informed Consent: working DIR = ", versions_dir)
     for file_name in versionsDirList:
         bare_file_name = file_name.split(".", 1)[0]
         bare_version = selected_version.split(".", 1)[0]
         #print("bare version: " + bare_version)
         #print("bare file name: " + bare_file_name)
         if bare_file_name == bare_version:
-            file_info = fetch_file_info(versions_dir + file_name)
+            file_info = fetch_file_info(os.path.join(versions_dir, file_name))
             optionID = file_info[0]
             optionName = file_info[3]
             print("\n Option found:")
@@ -83,7 +83,7 @@ def set_options(selected_version: str):
 @eel.expose
 def fetch_study_info(filename: str):
     """takes a filename and returns the json data from that file"""
-    file = versions_dir + filename
+    file = os.path.join(versions_dir, filename)
     with open(file, "r", encoding='utf-8') as f:
         version_data = json.load(f)
     return version_data
