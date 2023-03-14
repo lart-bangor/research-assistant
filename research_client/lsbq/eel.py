@@ -177,8 +177,12 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
         "languages_spoken_breaks": [],
         "languages_proficiency_speaking": [],
         "languages_proficiency_understanding": [],
+        "languages_proficiency_reading": [],
+        "languages_proficiency_writing": [],
         "languages_usage_speaking": [],
         "languages_usage_listening": [],
+        "languages_usage_reading": [],
+        "languages_usage_writing": [],
     }
     datacopy = copy(data)
     strip_keys = [
@@ -218,14 +222,18 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
                 f"languagesSpokenBreakMonths-{index}": "languages_spoken_breaks",
                 f"proficiencySpeakingLanguage-{index}": "languages_proficiency_speaking",
                 f"proficiencyUnderstandingLanguage-{index}": "languages_proficiency_understanding",  # noqa: E501
+                f"proficiencyReadingLanguage-{index}": "languages_proficiency_reading",
+                f"proficiencyWritingLanguage-{index}": "languages_proficiency_writing",  # noqa: E501
                 f"usageSpeakingLanguage-{index}": "languages_usage_speaking",
                 f"usageListeningLanguage-{index}": "languages_usage_listening",
+                f"usageReadingLanguage-{index}": "languages_usage_reading",
+                f"usageWritingLanguage-{index}": "languages_usage_writing",
             }
             break_year_key = f"languagesSpokenBreakYears-{index}"
             source_specify_key = f"languagesSpokenSourceSpecify-{index}"
             for needle in key_map:
                 fieldname = key_map[needle]
-                if needle not in datacopy:
+                if needle not in datacopy and "Reading" not in needle and "Writing" not in needle:
                     raise ValueError(
                         f"Data for {key!r} ({datacopy[key]!r}) "
                         f"is missing corresponding field {needle!r}"
@@ -238,8 +246,12 @@ def setldb(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
                     datacopy[source_specify_key] = 'n/a'
                 if fieldname in processed and isinstance(processed[fieldname], list):
                     if append_row:
-                        processed[fieldname].append(datacopy[needle])  # type: ignore
-                    del data[needle]
+                        if needle in datacopy:
+                            processed[fieldname].append(datacopy[needle])  # type: ignore
+                        else:
+                            processed[fieldname].append(-1)  # type: ignore  # insert sentinel value
+                    if needle in data:
+                        del data[needle]
                 else:
                     raise RuntimeError(
                         f"Could not map {needle} to field {fieldname} (report as bug)"

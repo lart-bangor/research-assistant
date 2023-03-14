@@ -208,6 +208,18 @@ class Response(DataSchema):
                 "constraint": patterns.ANY_NUMBER,
                 "multiple": True,
             },
+            "languages_proficiency_reading": {
+                "type_": float,
+                "typedesc": "indication of proficiency",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+            },
+            "languages_proficiency_writing": {
+                "type_": float,
+                "typedesc": "indication of proficiency",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+            },
             "languages_usage_speaking": {
                 "type_": float,
                 "typedesc": "proportion of language use",
@@ -215,6 +227,18 @@ class Response(DataSchema):
                 "multiple": True,
             },
             "languages_usage_listening": {
+                "type_": float,
+                "typedesc": "proportion of language use",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+            },
+            "languages_usage_reading": {
+                "type_": float,
+                "typedesc": "proportion of language use",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+            },
+            "languages_usage_writing": {
                 "type_": float,
                 "typedesc": "proportion of language use",
                 "constraint": patterns.ANY_NUMBER,

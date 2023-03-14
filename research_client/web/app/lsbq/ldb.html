@@ -355,13 +355,28 @@
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-1">
                             <label for="proficiencyUnderstandingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.understanding">Understanding</label>
                             <div class="col-10 mt-2">
                                 <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyUnderstandingLanguage-[LanguageNumber]" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
+                        <div class="row mb-1 readingOption">
+                            <label for="proficiencyReadingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.reading">Reading</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="proficiencyReadingLanguage-[LanguageNumber]" required />
+                                <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-1 writingOption">
+                            <label for="proficiencyWritingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.writing">Writing</label>
+                            <div class="col-10 mt-2">
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyWritingLanguage-[LanguageNumber]" required />
+                                <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2"></div>
                         <!-- Usage -->
                         <div class="row mb-1">
                             <div class="col-auto">
@@ -395,16 +410,16 @@
                             </div>
                         </div>
                         <div class="row mb-1 readingOption">
-                            <label for="usageListeningLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.reading">Reading</label>
+                            <label for="usageReadingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.reading">Reading</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageReadingLanguage-[LanguageNumber]" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
                         <div class="row mb-1 writingOption">
-                            <label for="usageListeningLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.writing">Writing</label>
+                            <label for="usageWritingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.writing">Writing</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageWritingLanguage-[LanguageNumber]" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
@@ -800,16 +815,23 @@
         function configureLDB() {
             console.log("configureLDB called");
             const options = lart.tr.get("lsbq", "meta.options");
+            const template = document.getElementById('languageRatingTemplate');
             // ldb_show_reading - default: true
             // ldb_show_writing - default: true
             if ('ldb_show_reading' in options && options.ldb_show_reading == false) {
-                const nodesToRemove = document.querySelectorAll('.readingOption');
+                const nodesToRemove = [
+                    ...document.querySelectorAll('.readingOption'),
+                    ...template.content.querySelectorAll('.readingOption')
+                ];
                 for (const nodeToRemove of nodesToRemove) {
                     nodeToRemove.remove();
                 }
             }
             if ('ldb_show_writing' in options && options.ldb_show_writing == false) {
-                const nodesToRemove = document.querySelectorAll('.writingOption');
+                const nodesToRemove = [
+                    ...document.querySelectorAll('.writingOption'),
+                    ...template.content.querySelectorAll('.writingOption')
+                ];
                 for (const nodeToRemove of nodesToRemove) {
                     nodeToRemove.remove();
                 }
