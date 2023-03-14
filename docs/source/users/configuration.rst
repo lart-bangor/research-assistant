@@ -64,7 +64,7 @@ Lowering the log level might be useful if you try to diagnose an error or bug an
 The log message format is only relevant for advanced users and developers who may want to format logs in a specific way for working with their
 preferred analysis tools. If you are not sure what this is or how it works, there is no need for you to modify it. 
 
-For details on the formatting see the documentation of the :file:`logging` package in the Python standard library.
+For details on the formatting see the documentation of the :py:mod:`logging` package in the Python standard library.
 
 .. figure:: figures/figure23.png
       :width: 400

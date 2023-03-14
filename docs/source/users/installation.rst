@@ -46,7 +46,7 @@ Installing on Windows 10/11
    shared university or lab computer and want to centrally manage the installation for all users
    (requires administrator privileges).
 
-   If in any doubt, choose :guilabel:`Install for me only`
+   If in any doubt, choose :guilabel:`Install for me only`.
 
    .. figure:: figures/figure3.png
       :width: 400
@@ -82,7 +82,7 @@ Installing on Windows 10/11
    
    Make sure you have at least 65MB of free disk space on your device.
    
-   Click :guilabel:`Browse` if you wish to change the installation path of the app.  
+   Click :guilabel:`Browse...` if you wish to change the installation path of the app.  
 
    .. figure:: figures/figure6.png
       :width: 400

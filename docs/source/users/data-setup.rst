@@ -1,25 +1,32 @@
 Setting up data collection and obtaining consent 
 ================================================
-There are two possible paths available to the researcher to collect data with the L’ART Research Client.
-Your preference will depend on how you wish to obtain informed consent from your participants. 
 
-Should you wish to obtain your participants’ consent on paper for any reason (e.g., you require your participant’s signature, or you prefer to work with physical copies of ethics-related documentation)
-then you will start data collection by clicking directly on the research tool you require under :guilabel:`‘Choose a task’` on the app’s home screen.
+There are two possible paths available to the researcher to collect data with the
+L’ART Research Client. Your preference will depend on how you wish to obtain informed
+consent from your participants. 
 
-In the current version **[version]**, the tasks available are LSBQe, AToL, AGT, and Memory Game.
+Should you wish to obtain your participants’ consent on paper for any reason (e.g., you
+require your participant’s signature, or you prefer to work with physical copies of
+ethics-related documentation) then you will start data collection by clicking directly on
+the research tool you require under *Choose a task* on the app’s home screen.
+
+In the current version (|version|), the tasks available are: :guilabel:`LSBQe`,
+:guilabel:`AToL`, :guilabel:`AGT`, and :guilabel:`Memory Game`.
 
 **[Insert Screenshot]**
 
-The second option offers the researcher an integrated digital avenue to obtain informed consent, which negates the
-need to handle physical information sheets, consent forms and signatures. 
+The second option offers the researcher an integrated digital avenue to obtain informed
+consent, which negates the need to handle physical information sheets, consent forms and
+signatures. 
 
-This can be done by using the generic consent form provided (see section **[insert link]**) or by linking it to your
-own digital consent form (see section **[insert link]** for instructions on how to add a custom consent form). 
+This can be done by using the generic consent form provided (see section **[insert link]**)
+or by linking it to your own digital consent form (see section **[insert link]** for
+instructions on how to add a custom consent form). 
 
 .. / insert section numbers?
 
-To obtain consent digitally, open the side menu on the top left-handby clicking on the "burger menu" icon. 
-Then click on :guilabel:`informed consent`.
+To obtain consent digitally, open the side menu on the top left-handby clicking on the
+"burger menu" icon. Then click on :guilabel:`Informed Consent`.
 
 .. figure:: figures/figure10.png
       :width: 350
@@ -37,21 +44,23 @@ Then click on :guilabel:`informed consent`.
 
 
 
-After selecting the required language version and entering a unique participant ID, your study’s consent form, 
-information sheet and eligibility criteria will appear below. 
+After selecting the required language version and entering a unique participant ID, your
+study’s consent form,  information sheet and eligibility criteria will appear below. 
 
-If the participant gives their consent and confirms their eligibility through marking their respective boxes, they will be
-automatically advanced to the start screen for the first task (see [task sequencing link] section on how to set this).  
+If the participant gives their consent and confirms their eligibility through marking their
+respective boxes, they will be automatically advanced to the start screen for the first task
+(see [task sequencing link] section on how to set this up).
 
-The task start screen is the same start screen that researchers who opt for the LSBQe without digital informed consent will see
-after they select a task from the app's home screen. 
+The task start screen is the same start screen that researchers who opt for the LSBQe without
+digital informed consent will see after they select a task from the app's home screen. 
 
-The next section discusses how to collect responses for each task available in the L'ART Research Client: **LSBQe, AToL,** and **AGT**.
+The next section discusses how to collect responses for each task available in the L'ART
+Research Client: **LSBQe, AToL,** and **AGT**.
 
 
-////////////////////////////////////
+/////////////////////////////////////
 Notes - make a new section for below:
------------------------------------
+-------------------------------------
 
 
 The Audio Guise Test (AGT) allows users to run either a Matched Guise Technique (MGT; Lambert, Hodsgon, Gardner & Fillenbaum, 1960)
@@ -84,7 +93,7 @@ indicate Chinese recordings and “rml” should indicate English recordings con
 
 .. note::
 
-It should be noted that the example shown in Figure 25 is for an MGT.
+   It should be noted that the example shown in Figure 25 is for an MGT.
 
 **All sound files must be in mp3 format.**
 

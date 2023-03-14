@@ -27,11 +27,11 @@ all the responses currently stored on the computer in a location of your choice.
 For advanced users who want to automate export or backup of the responses, or monitor and integrate these files
 with some other system, the files can be accessed directly on the system. 
 
-On Windows these are stored in the Roaming profile by default, identified by the path :guilabel:`%APPDATA%\LART\Research Client\data.`
+On Windows these are stored in the Roaming profile by default, identified by the path :file:`%AppData%\LART\Research Client\data.`
 
-On Mac OS X the default path will be :guilabel:`~/Library/Application Support/Research Client/data.`
+On Mac OS X the default path will be :file:`~/Library/Application Support/Research Client/data.`
 
-For most Linux distributions the default path will be :guilabel:`~/.local/share/Research Client/data.`
+For most Linux distributions the default path will be :file:`~/.local/share/Research Client/data.`
 
 .. note::
 
