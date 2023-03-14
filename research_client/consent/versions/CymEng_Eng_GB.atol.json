@@ -1,10 +1,11 @@
 {
     "meta": {
-        "versionId": "CymEng_ENG_GB",
-        "versionName": "Welsh – English (United Kingdom)",
-        "versionNumber": "0.3.4",
+        "versionId": "CymEng_Eng_GB.atol",
+        "versionType": "AToL",
+        "versionLanguages": "Welsh – English (United Kingdom)",
+        "versionName": "AToL: Welsh – English (United Kingdom)",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2022-07-06"
+        "date": "2022-05-05"
     },
     "base": {
         "consentHeader": "Participant Information Sheet",
@@ -13,15 +14,15 @@
     },
     "versionInfo" : {
         "titleLabel":"Study Title", 
-        "titleInfo":"Rating voices in bilingual societies",
+        "titleInfo":"Language background and executive function in bilingual speakers",
         "purposeLabel": "What is the purpose of the research?",
-        "purposeInfo": "This study is part of a lager research project investigating the perception and rating of different voices across Europe. The project aims to find out more about voice perception in several areas across Europe, including Wales.",
+        "purposeInfo": "This study is part of a larger research project investigating bilingualism across Europe. <br /> The project aims to find out more about bilinguals in several areas across Europe, including Wales.",
         "whyLabel": "Why am I being invited to participate?",
-        "whyInfo": "You have been chosen because as a speaker of Welsh and English you will be able to rate voices in more than one language.",
+        "whyInfo": "You have been chosen because you are a bilingual Welsh-English speaker.",
         "commitLabel": "Do I have to take part?",
         "commitInfo": "It is up to you to decide whether or not to take part. If you do decide to take part you should indicate your agreement on the online consent form.<br />You can still withdraw at any time, and you do not need to give a reason.",
         "whatLabel": "What am I being invited to do?",
-        "whatInfo": "Firstly, you will need to fill in a questionnaire on your language and social background. You will then be asked to listen to a number of voices and provide a rating on each via an electronic app. We estimate that the full procedure will take you about 30 minutes to complete. There are no other commitments or restrictions associated with participating.",
+        "whatInfo": "You will be asked to complete an electronic questionnaire and play a quick electronic game.<br /> We estimate that they full procedure will take you about 20 minutes to complete.<br />There are no other commitments or restrictions associated with participating.",
         "concernLabel": "What are the possible disadvantages and risks of taking part?",
         "concernInfo": "Participating in the research is not anticipated to cause you any disadvantages or discomfort <br />beyond what you might experience in everyday life.", 
         "concern1Label": "What if something goes wrong?",
@@ -31,7 +32,7 @@
         "recordingLabel": "Will I be recorded, and how will the recorded media be used?",
         "recordingInfo": "You may be audio-recorded while taking part in the research. <br />If you happen to be recorded, you will be informed in details at the end of your participation.",
         "taskTypeLabel": "What type of information will be sought from me and why is the collection of this information relevant for achieving the research project's objectives?",
-        "taskTypeInfo": "TThe task will require you to state your opinions about a person's voice. Your perception of different voices is what the project is interested in exploring.",
+        "taskTypeInfo": "The questionnaire will ask you about your opinions and current language use in Wales.<br /> Your experience as a speaker is exactly what the project is interested in exploring.",
         "dataUseLabel": "What will happen to the results of the research project?",
         "dataUseInfo": "Results of the research will be published as quantitative data, which means that no single individual will be identified in any report or publication.",
         "whoLabel": "Who is organising and funding the research?",

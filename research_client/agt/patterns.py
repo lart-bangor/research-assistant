@@ -1,4 +1,4 @@
-"""Additional validation patterns for MGT."""
+"""Additional validation patterns for AGT."""
 from ..datavalidator.patterns import *                                          # noqa: F401, F403
 from ..datavalidator.types import EnumT, RangeT, PatternT
 

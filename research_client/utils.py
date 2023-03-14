@@ -118,9 +118,10 @@ def export_backup(filename: Path | str | None = None) -> bool:
     if filename is None:
         tkroot = Tk()
         tkroot.title("LART Research Client data backup")
-        tkroot.iconbitmap(  # type: ignore
-            str(Path(__file__).parent / "web" / "img" / "appicon.ico")
-        )
+        if os.name == "nt":
+            tkroot.iconbitmap(  # type: ignore
+                str(Path(__file__).parent / "web" / "img" / "appicon.ico")
+            )
         label = Label(
             master=tkroot,
             text="Please select the path to save the data backup to...",

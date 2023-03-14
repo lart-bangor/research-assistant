@@ -14,8 +14,9 @@ from ..datavalidator.schemas import DataSchema
 from ..datavalidator.types import PolarT
 from . import patterns
 from collections import OrderedDict
-import os, glob
+import os
 
+"""Global vars: directories, file paths etc. for AToL task"""
 data_path: Path = config.paths.data / "AToL-C"
 if not data_path.exists():
     print(f"WARNING: destination folder in {data_path} did not exist/n [has now been automatically built]")
@@ -46,6 +47,7 @@ def arrange_data(data):
 
 
 def get_id(dict):
+    """Returns a participant ID"""
     id = dict["participantId"] + "_" + dt_filename
     return id
 
@@ -87,6 +89,7 @@ def init_atol(myData: dict[str, str]) -> None:
     booteel.setlocation("atolRatingsMaj.html")
 
 def arrange_order(dict, source):
+    """Records order in which traits were presented for a given trial, then orders them alphabetically for write readability"""
     presentation_order = key_list(dict) #record order in which data was presented
     print("presentable type is")
     print(type(presentation_order))
@@ -107,7 +110,7 @@ def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, part
     file_name = partId + "_" + dt_filename + ".json"
     data_file = data_path / version_id / file_name
     data = arrange_order(myData, source)
-    
+
     with open(data_file, 'r') as fin:
         current_data = json.load(fin)
         if versN != "null":     #version number comes from atolRatingsRml.html, while atolRatingsMaj.html rteturns null, so ignore that
@@ -115,7 +118,7 @@ def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, part
             print("Version number: ")
             print(current_data["meta"]["version_no"])
         current_data.update(data)
-                    
+
     try:
         with open(data_file, 'w') as fout:
             json_output = json.dumps(current_data, indent=4)
@@ -128,7 +131,7 @@ def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, part
 
 
 def fetch_location(source_file: str, version: str) -> Optional[str]:
-    """Get the name for atolEnd file."""
+    """Finds which html page to load next."""
     if 'Maj' in source_file:
         return "atolRatingsRml.html"
     elif 'Rml' in source_file:
@@ -182,14 +185,15 @@ _rating_adjectives = (
     "pleasant",
     "smooth",
     "graceful",
-    "round"
+    "round",
+    "ballsy"
 )
 
 @eel.expose  # type: ignore
 def atol_c_get_items(version: str) -> Optional[dict[str, tuple[str, str]]]:
     """Get label pairs for each AToL item depending on language selection."""
-    directory = os.path.abspath(os.getcwd()) + "\\research_client\\atolc"
-    version_file = directory + "\\versions\\" + version + ".json"
+    directory = os.path.dirname(os.path.realpath(__file__))
+    version_file = os.path.join(directory, "versions", version + ".json")
     atol_items = []
     with open(version_file, encoding='utf-8') as f:
         atol_stim = json.load(f)

@@ -1,7 +1,7 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
-{% block title %}LART Research Client - MGT - Rating{% endblock %}
-{% block headline %}<span id="mgtAppTitle" data-mgt-tr="base.appTitle">MGT: Voice Rating</span>{% endblock %}
+{% block title %}LART Research Client - AGT - Rating{% endblock %}
+{% block headline %}<span id="agtAppTitle" data-agt-tr="base.appTitle">AGT: Voice Rating</span>{% endblock %}
 {% block head_scripts %}{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
@@ -23,7 +23,7 @@
         </div> -->
 
         <div class="row m-4 text-center">
-            <h2  id="mgtSectionTitle" data-mgt-tr="rating.secTitle">Voice Rating Task</h2>
+            <h2  id="agtSectionTitle" data-agt-tr="rating.secTitle">Voice Rating Task</h2>
         </div>
 
         <form id="surveyRatingForm" class="needs-validation" autocomplete="off">
@@ -33,7 +33,7 @@
             <!-- Present audio stimulus -->
             <section id="audioWrapper" class="text-center mb-4" style="text-align:center">
                 <audio id="audioStimulus"></audio>
-                <div id="audioLabel" class="p-1" data-mgt-tr="audioMsg.load">Loading audio...</div>
+                <div id="audioLabel" class="p-1" data-agt-tr="audioMsg.load">Loading audio...</div>
                 <div id="audioProgress" class="progress" style="max-width:30em;height:0.9em;margin:auto">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary" style="width:100%;transition:none"></div>
                 </div>
@@ -44,9 +44,9 @@
             <!-- Participant prompt -->
             <section class="row m-4">
                 <div class="col">
-                    <h3 data-mgt-tr="rating.statement">The person in this recording sounds...</h3>
+                    <h3 data-agt-tr="rating.statement">The person in this recording sounds...</h3>
                     <p class="help-block p-2 text-muted ps-0">
-                        <i class="bi bi-info-circle text-info"></i> <span data-mgt-tr="rating.instructions">Please use the sliders to record your response.</span>
+                        <i class="bi bi-info-circle text-info"></i> <span data-agt-tr="rating.instructions">Please use the sliders to record your response.</span>
                     </p>
                 </div>
             </section>
@@ -56,18 +56,18 @@
                 <div id="traitRatingInstance-[TraitName]">
                     <div class="row mb-0 pb-0">
                         <div class="col-2"></div>
-                        <div class="col-5 text-start text-muted small" data-mgt-tr="rating.stronglyDisagree">
+                        <div class="col-5 text-start text-muted small" data-agt-tr="rating.stronglyDisagree">
                             Strongly disagree
                         </div>
-                        <div class="col-5 text-end text-muted small" data-mgt-tr="rating.stronglyAgree">
+                        <div class="col-5 text-end text-muted small" data-agt-tr="rating.stronglyAgree">
                             Strongly agree
                         </div>
                     </div>
                     <div class="row mb-1 pt-0">
-                        <label for="trait-[TraitName]" class="col-2 col-form-label text-end fw-semi" data-mgt-tr="trait.[TraitName]">[TraitName]</label>
+                        <label for="trait-[TraitName]" class="col-2 col-form-label text-end fw-semi" data-agt-tr="trait.[TraitName]">[TraitName]</label>
                         <div class="col-10 mt-2">
                             <input type="range" class="form-range" min="0" max="100" step="any" name="trait-[TraitName]" required />
-                            <div class="invalid-feedback invalid-range" data-mgt-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                            <div class="invalid-feedback invalid-range" data-agt-tr="base.sliderFeedback">Please move the slider at least once.</div>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div clas="col">
-                    <button id="traitRatingSubmitButton" type="submit" class="btn btn-primary btn-lg btn-action shadow" data-mgt-tr="base.next" disabled>Next</button>
+                    <button id="traitRatingSubmitButton" type="submit" class="btn btn-primary btn-lg btn-action shadow" data-agt-tr="base.next" disabled>Next</button>
                 </div>
             </div>
 
@@ -91,20 +91,20 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="practiceFeedbackModalLabel">
-                    <i class="bi bi-check-square text-success" data-mgt-feedback="valid"></i>
-                    <span data-mgt-tr="practice.completeTitle" data-mgt-feedback="valid">Practice complete</span>
-                    <i class="bi bi-exclamation-square text-warning" data-mgt-feedback="invalid"></i>
-                    <span data-mgt-tr="practice.errorTitle" data-mgt-feedback="invalid">Let’s try that again...</span>
+                    <i class="bi bi-check-square text-success" data-agt-feedback="valid"></i>
+                    <span data-agt-tr="practice.completeTitle" data-agt-feedback="valid">Practice complete</span>
+                    <i class="bi bi-exclamation-square text-warning" data-agt-feedback="invalid"></i>
+                    <span data-agt-tr="practice.errorTitle" data-agt-feedback="invalid">Let’s try that again...</span>
                   </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p data-mgt-tr="practice.completeMessage" data-mgt-feedback="valid">
+                    <p data-agt-tr="practice.completeMessage" data-agt-feedback="valid">
                         You’ve completed the practice session.
                         If you have any questions at this point please let the researcher know,
                         otherwise click <em>Continue</em> to begin the task.
                     </p>
-                    <p data-mgt-tr="practice.errorMessage" data-mgt-feedback="invalid">
+                    <p data-agt-tr="practice.errorMessage" data-agt-feedback="invalid">
                         It seems you’ve missed some items.
                         Click <em>Continue</em> to have another look and make sure you’ve moved
                         each slider at least once. The one’s you’ve missed should show up in red.
@@ -112,7 +112,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" form="surveyRatingForm" class="btn btn-primary" data-bs-dismiss="modal" data-mgt-tr="practice.continue">Continue</button>
+                  <button type="submit" form="surveyRatingForm" class="btn btn-primary" data-bs-dismiss="modal" data-agt-tr="practice.continue">Continue</button>
                 </div>
               </div>
             </div>
@@ -129,12 +129,12 @@
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
         let trialId = lart.forms.searchParams.get('trial');
-        lart.tr.loadFromEel('mgt', eel._mgt_load_version, [instanceId, ['meta', 'base', 'rating', 'audioMsg', 'trait', 'practice']]);
-        lart.tr.registerObserver('mgt', 'surveyRatingForm');
-        lart.tr.registerObserver('mgt', 'practiceFeedbackModal');
-        lart.tr.registerObserver('mgt', 'mgtSectionTitle');
-        lart.tr.registerObserver('mgt', 'mgtAppTitle');
-        lart.tr.registerObserver('mgt', 'audioLabel');
+        lart.tr.loadFromEel('agt', eel._agt_load_version, [instanceId, ['meta', 'base', 'rating', 'audioMsg', 'trait', 'practice']]);
+        lart.tr.registerObserver('agt', 'surveyRatingForm');
+        lart.tr.registerObserver('agt', 'practiceFeedbackModal');
+        lart.tr.registerObserver('agt', 'agtSectionTitle');
+        lart.tr.registerObserver('agt', 'agtAppTitle');
+        lart.tr.registerObserver('agt', 'audioLabel');
 
         // Load and play audio stimulus
         function presentAudioStimulus(version, trial) {
@@ -144,12 +144,12 @@
             const audioProgressBar = document.getElementById('audioProgress');
 
             // Set current file...
-            audioElement.src = `/audio/mgt/${version}/${trial}.mp3`
+            audioElement.src = `/audio/agt/${version}/${trial}.mp3`
             audioElement.preload = 'auto';
 
             // Set up and play audio stimulus...
             function triggerPlayback() {
-                audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.loaded">Audio loaded.</span>';
+                audioLabel.innerHTML = '<span data-agt-tr="audioMsg.loaded">Audio loaded.</span>';
                 audioProgressBar.firstElementChild.style.width = 0;
                 audioProgressBar.firstElementChild.classList.remove('progress-bar-animated');
                 audioProgressBar.firstElementChild.classList.remove('progress-bar-striped');
@@ -166,7 +166,7 @@
                             .catch(
                                 error => {
                                     booteel.logger.error("Failed to start audio:", error);
-                                    audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.playbackError">Audio could not be played. Click to try again.</span>';
+                                    audioLabel.innerHTML = '<span data-agt-tr="audioMsg.playbackError">Audio could not be played. Click to try again.</span>';
                                     audioWrapper.addEventListener(
                                         'click',
                                         function () {
@@ -205,7 +205,7 @@
                         errorTranslation = 'formatError';
                         break;
                 }
-                audioLabel.innerHTML = `<span data-mgt-tr="audioMsg.${errorTranslation}">${errorMessage}</span>`;
+                audioLabel.innerHTML = `<span data-agt-tr="audioMsg.${errorTranslation}">${errorMessage}</span>`;
                 booteel.logger.error("Error loading audio:", errorMessage, error.code, error.message);
             }
             audioElement.addEventListener('error', reportAudioErrors);
@@ -227,7 +227,7 @@
             audioElement.addEventListener(
                 'playing',
                 function (event) {
-                    audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.play">Playing audio...</span>';
+                    audioLabel.innerHTML = '<span data-agt-tr="audioMsg.play">Playing audio...</span>';
                     updateAudioProgressBar.intervalId = setInterval(updateAudioProgressBar, 20);
                 }
             );
@@ -236,7 +236,7 @@
             audioElement.addEventListener(
                 'ended',
                 function (event) {
-                    audioLabel.innerHTML = '<span data-mgt-tr="audioMsg.complete">Audio playback complete.<span>';
+                    audioLabel.innerHTML = '<span data-agt-tr="audioMsg.complete">Audio playback complete.<span>';
                     enableFormSubmission(); // Should've been enabled half way through playback, but let's make doubly sure
                     updateAudioProgressBar(); // Make sure final state is reflected
                     clearInterval(updateAudioProgressBar.intervalId);
@@ -245,9 +245,9 @@
             );
         }
         lart.tr.registerCallback(
-            'mgt',
+            'agt',
             () => {
-                presentAudioStimulus(lart.tr.get('mgt', 'meta.versionId'), trialId);
+                presentAudioStimulus(lart.tr.get('agt', 'meta.versionId'), trialId);
             }
         );
 
@@ -255,7 +255,7 @@
         lart.forms.getElementByGreed('trial').value = trialId;
 
         // Load and fill the traits to be rated
-        eel._mgt_get_traits()(fillTraitRatingSection);
+        eel._agt_get_traits()(fillTraitRatingSection);
 
         function fillTraitRatingSection(traits) {
             for ( trait of traits ) {
@@ -285,12 +285,12 @@
                 const surveyRatingForm = lart.forms.getElementByGreed('surveyRatingForm');
                 const validity = surveyRatingForm.checkValidity() ? 'valid' : 'invalid';
                 const practiceFeedbackModal = document.getElementById('practiceFeedbackModal');
-                const validityNodes = practiceFeedbackModal.querySelectorAll('[data-mgt-feedback]');
+                const validityNodes = practiceFeedbackModal.querySelectorAll('[data-agt-feedback]');
                 for (const validityNode of validityNodes.values()) {
                     console.log("Node:", validityNode);
                     console.log("Data:", validityNode.dataset);
-                    console.log("Validity:", validityNode.dataset.mgtFeedback, " === ", validity, " -> ", validityNode.dataset.mgtFeedback === validity);
-                    if ( validityNode.dataset.mgtFeedback === validity ) {
+                    console.log("Validity:", validityNode.dataset.agtFeedback, " === ", validity, " -> ", validityNode.dataset.agtFeedback === validity);
+                    if ( validityNode.dataset.agtFeedback === validity ) {
                         validityNode.style.display = 'initial';
                         console.log("--> visible");
                     } else {
@@ -309,5 +309,5 @@
             redirectFormSubmission();
         }
     </script>
-    {{ lart_form_pipeline('surveyRatingForm', '_mgt_setratings') }}
+    {{ lart_form_pipeline('surveyRatingForm', '_agt_setratings') }}
 {% endblock %}

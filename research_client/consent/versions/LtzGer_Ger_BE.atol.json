@@ -1,7 +1,9 @@
 {
     "meta": {
-        "versionId": "LtzGer_Ger_BE",
-        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "versionId": "LtzGer_Ger_BE.atol",
+        "versionType": "AToL",
+        "versionLanguages": "Moselfränkisch – Deutsch (Belgien)",
+        "versionName": "AToL: Moselfränkisch – Deutsch (Belgien)",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
         "date": "2022-09-22"
     },
