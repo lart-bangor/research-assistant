@@ -305,6 +305,8 @@ def setclub(instid: str, data: dict[str, Any]) -> str:  # noqa: C901
             processed[field] = value
         elif group == "activity" and field_applicable(group, field):
             processed[field] = value
+        elif group == "code_switching" and field_applicable(group, field):
+            processed[f"switching_{field}"] = value
 
     logger.debug(f"... preprocessed data: {processed!r}")
     instance.setclub(processed)

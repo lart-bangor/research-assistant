@@ -1,10 +1,17 @@
 {
     "meta": {
         "versionId": "EllEng_Ell_GR",
-        "versionName": "Ελληνικά – Αγγλικά",
+        "versionName": "Ελληνικά – Αγγλικά (Ελλάδα)",
         "versionNumber": "0.3.5",
         "author": "Athanasia Papastergiou <a.papastergiou@bangor.ac.uk>",
-        "date": "2023-03-06"
+        "date": "2023-03-14",
+        "options": {
+            "lsb_show_other_sex": true,
+            "ldb_minimum_required_languages": 2,
+            "ldb_show_reading": true,
+            "ldb_show_writing": true,
+            "club_show_codeswitching": true
+        }
     },
     "base": {
         "appTitle": [

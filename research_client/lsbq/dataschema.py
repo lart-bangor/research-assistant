@@ -489,6 +489,24 @@ class Response(DataSchema):
                 "constraint": patterns.ANY_NUMBER,
                 "required": False,
             },
+            "switching_parents_and_family": {
+                "type_": float,
+                "typedesc": "frequency of code switching with parents and family",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "switching_friends": {
+                "type_": float,
+                "typedesc": "frequency of code switching with friends",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "switching_social_media": {
+                "type_": float,
+                "typedesc": "frequency of code switching on social media",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
         },
         "notes": {  # Notes
             "participant_note": {

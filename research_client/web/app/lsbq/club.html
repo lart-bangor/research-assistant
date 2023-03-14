@@ -417,7 +417,7 @@
         function configureCLUB() {
             const options = lart.tr.get("lsbq", "meta.options");
             // club_show_codeswitching - default: true
-            if ('club_show_codeswitching' in options && options.club_show_codeswitching == false || true) {
+            if ('club_show_codeswitching' in options && options.club_show_codeswitching == false) {
                 const nodesToRemove = document.querySelectorAll('.codeSwitchingOption');
                 for (const nodeToRemove of nodesToRemove) {
                     nodeToRemove.remove();
