@@ -3,6 +3,7 @@ import eel
 import logging
 from dataclasses import is_dataclass
 from functools import wraps
+from pathlib import Path
 from typing import Optional, Union, Callable, Any, TypeVar, cast
 from .. import booteel
 from ..config import config
@@ -73,6 +74,12 @@ def load() -> dict[str, dict[str, Any]]:
         del settings[dataclass["name"]]["default"]
         # Remove sub-dataclasses from fields attribute
         settings[dataclass["name"]]["fields"] = settings[dataclass["name"]]["fields"][1]
+        # For Path type arguments, convert default and value to string
+        for fieldindex in range(0, len(settings[dataclass["name"]]["fields"])):
+            if isinstance(settings[dataclass["name"]]["fields"][fieldindex]["default"], Path):
+                settings[dataclass["name"]]["fields"][fieldindex]["default"] = str(settings[dataclass["name"]]["fields"][fieldindex]["default"])
+            if isinstance(settings[dataclass["name"]]["fields"][fieldindex]["value"], Path):
+                settings[dataclass["name"]]["fields"][fieldindex]["value"] = str(settings[dataclass["name"]]["fields"][fieldindex]["value"])
     logger.debug(f"    Settings: {settings}")
     return settings
 
@@ -80,6 +87,8 @@ def load() -> dict[str, dict[str, Any]]:
 @_expose
 def store(settings: dict[str, dict[str, Any]]) -> bool:                         # noqa: C901
     """Validate settings, store in config, and save.."""
+    from pprint import pprint
+    pprint(config.asdict())
     logger.info("Updating app settings...")
     logger.debug(f"Data received: {settings}")
     for key, value in settings.items():
@@ -97,11 +106,15 @@ def store(settings: dict[str, dict[str, Any]]) -> bool:                         
         if target is None:
             continue
         if hasattr(target, property):
+            print(f"Setting {property} on {target}")
             target_type = type(getattr(target, property))
             if type(value) is not target_type:
+                print(f"VALUE IS TYPE {type(value)} - target is type {target_type}")
                 try:
                     value = target_type(value)
+                    print("CONVERSION SUCCESSFUL:", value)
                 except ValueError:
+                    print("CONVERSION NOT SUCCESSFUL :->")
                     raise ValueError(
                         f"Could not convert input {value!r} to required type {target_type} "
                         f"for field config.{section}.{property}"
@@ -109,5 +122,6 @@ def store(settings: dict[str, dict[str, Any]]) -> bool:                         
             setattr(target, property, value)
     config.save()
     logger.info(f"Settings successfully updated to {config.asdict()}.")
+    pprint(config.asdict())
     eel._settings_notify_successful_update()                                    # type: ignore
     return True

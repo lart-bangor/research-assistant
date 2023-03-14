@@ -174,10 +174,48 @@ class DataclassDocMixin:
 class Paths(DataclassDictMixin, DataclassDocMixin):
     """Class for configuration of App paths."""
 
-    config: Path = field(default=Path(_default_dirs.user_config_dir), init=False)
-    data: Path = field(default=Path(_default_dirs.user_data_dir) / "data")
-    logs: Path = field(default=Path(_default_dirs.user_log_dir))
-    cache: Path = field(default=Path(_default_dirs.user_cache_dir))
+    config: Path = field(
+        default=Path(_default_dirs.user_config_dir),
+        init=False,
+        metadata={
+            "doc_label": "Path for configuration files",
+            "doc_help": (
+                "Note that changes to the configuration file path have no effect "
+                "and will automatically revert to the default path. The path "
+                "shown here is primarily of informational value."
+            )
+        }
+    )
+    data: Path = field(
+        default=Path(_default_dirs.user_data_dir) / "data",
+        metadata={
+            "doc_label": "Path for data files",
+            "doc_help": (
+                "This is the path where data files (responses) from the app's "
+                "tasks are stored."
+            )
+        }
+    )
+    logs: Path = field(
+        default=Path(_default_dirs.user_log_dir),
+        metadata={
+            "doc_label": "Path for log files",
+            "doc_help": (
+                "This is the path where the app stores log files, which may "
+                "contain useful information for debugging and error reporting. "
+            )
+        }
+    )
+    cache: Path = field(
+        default=Path(_default_dirs.user_cache_dir),
+        metadata={
+            "doc_label": "Path for temporarily cached data and files",
+            "doc_help": (
+                "This is a path where the app may temporarily cache "
+                "(store, modify, delete) various files during operation."
+            )
+        }
+    )
 
     def __post_init__(self):
         """Post-init method that ensures paths are all pathlib Path objects."""
@@ -337,16 +375,32 @@ class Config(DataclassDictMixin, DataclassDocMixin):
         default=Logging(),
         metadata={
             "doc_label": "Logging settings",
-            "doc_help": "Configures the app's debug and error logging."
+            "doc_help": (
+                "Configures the app's debug and error logging."
+                "\n"
+                "Modifying the logging settings can be useful for diagnosing "
+                "errors you encounter or when developing new tasks using the "
+                "app. Be mindful that it is easy to get 'too much information' "
+                "if the logging levels are set to report very high detail."
+            )
         }
     )
     paths: Paths = field(
         default=Paths(),
         metadata={
-            "doc_label": "App path and directory settings",
+            "doc_label": "Path and directory settings",
             "doc_help": (
                 "Configures the paths used by the app for storing and reading "
                 "various files, such as data, settings, and logs."
+                "\n"
+                "It is strongly recommended that you do not modify any of the "
+                "app paths unless you are positively confident that you know "
+                "what you are doing. Incorrect path information could lead to "
+                "unstable behaviour and in the worst case even data loss."
+                "\n"
+                "If paths are modified it is best to always restart the app and "
+                "fully test that everything is working as expected, including "
+                "inspecting the stored data files after running a task."
             )
         }
     )
@@ -355,7 +409,9 @@ class Config(DataclassDictMixin, DataclassDocMixin):
         metadata={
             "doc_label": "Task sequencing",
             "doc_help": (
-                "Configures the automatic sequencing of tasks. If a task is "
+                "Configures the automatic sequencing of tasks."
+                "\n"
+                "If a task is "
                 "assigned a follow-up task, the user will be automatically "
                 "redirected to the follow-up task upon completion."
             )

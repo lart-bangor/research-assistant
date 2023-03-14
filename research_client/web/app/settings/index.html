@@ -137,7 +137,14 @@
                         case 'str':
                             field_input.type = 'text';
                             field_input.value = field['value'];
+                            break;
+                        case 'Path':
+                            field_input.type = 'text'
+                            field_input.value = field['value'];
+                            //field_input.readOnly = true;
+                            break;
                         default:
+                            booteel.logger.error(`Unknown settings field type ${field['type']}`)
                             break;
                     }
                     if ( 'values' in field ) {
