@@ -1,0 +1,73 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Client - Conclusion{% endblock %}
+{% block headline %}Conclusion{% endblock %}
+{% block head_scripts %}
+    <script type="text/javascript">
+        function loadSurveyVersions() {
+            availableVersions = eel._conclusion_getversions()(populateSurveyVersions);
+        }
+
+        function populateSurveyVersions(versions) {
+            select = document.getElementById('selectSurveyVersion');
+            for(version in versions) {
+                option = document.createElement('option');
+                option.setAttribute('value', version);
+                option.appendChild(document.createTextNode(versions[version]))
+                select.appendChild(option);
+            }
+        }
+    </script>
+{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="p-2">
+
+        <div class="row m-4 text-center">
+            <div class="col">
+                <h2>Conclusion Screen</h2>
+            </div>
+        </div>
+
+        <form id="surveyDataForm" class="needs-validation">
+
+            <!-- Survey version -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="selectSurveyVersion" class="form-label">Select Conclusion Screen version:</label>
+                    <select id="selectSurveyVersion" class="form-select" required>
+                    </select>
+                    <script type="text/javascript">
+                        loadSurveyVersions();
+                    </script>
+                    <div class="invalid-feedback">
+                        <p>Please select one of the available versions of the Conclusion Screen.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form submission -->
+            <div class="row text-center p-3 m-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Start</button>
+                </div>
+            </div>
+
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        lart.forms.requireValidation(true);
+        lart.forms.util.autofillForm('surveyDataForm');
+    </script>
+    {{ lart_form_pipeline('surveyDataForm', '_conclusion_init') }}
+{% endblock %}
