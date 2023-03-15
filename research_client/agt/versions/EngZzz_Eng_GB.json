@@ -48,5 +48,22 @@
         "unknownError": [
             "Error: An unknown error occurred."
         ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Voice Rating Task!"
+        ],
+        "feedback": [
+            "Well done!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the memory task. Your data has been saved."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue."
+        ],
+        "continue": [
+            "Continue"
+        ]
     }
 }

@@ -153,15 +153,23 @@
     "end": {
         "secTitle": [
             "Thank you for completing the Voice Rating task!",
-            "Dank für das Durchführen der AGT Stimmbewerungsaufgabe!"
+            "Dank für das Durchführen der Stimmbewerungsaufgabe!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Gut gemacht!"
         ],
         "thankYouMessage" : [
-            "Well done on the voice rating task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
-            "Gute Arbeit mit der Stimmbewertung!<br /> Sie haben jetzt alle Aufgaben erledigt. Die Daten wurden automatisch gespreichert, aber bitte schließen Sie die App noch nicht."
+            "You have now completed the AGT Voice Rating task. Your data has been saved.",
+            "Sie haben die AGT Stimmberwertungsaufgabe jetzt erledigt. Ihre Daten wurden gespeichert."
         ],
         "followOnInstructions": [
-            "You can tell the researcher that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
-            "Sie können dem Forscher jetzt Bescheid geben, dass Sie mit den Aufgaben an der App fertig sind. Der Forscher wird dann überprüfen, dass alles richtig gespeichert wurde und falls nötig weitere Anweisungen geben."
+            "Please click “Continue” when you’re ready to continue.",
+            "Bitte klicken Sie auf „Weiter“, wenn Sie bereit sind weiter zu machen."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
         ]
     }
 }

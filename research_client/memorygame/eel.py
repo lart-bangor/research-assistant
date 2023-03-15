@@ -185,7 +185,7 @@ def store(instid: str) -> bool:
 @_expose
 def end(instid: str, data: Optional[dict[str, str]] = None) -> str:
     """Redirect participant in right sequence after Memory Game end screen."""
-    logger.info(f"Redirecting participant after completing instance {instid}..")
+    logger.info(f"Redirecting participant after completing Memory Game instance {instid}..")
     instance = _getinstance(instid)
     if config.sequences.memorygame:
         meta = instance.getmeta()

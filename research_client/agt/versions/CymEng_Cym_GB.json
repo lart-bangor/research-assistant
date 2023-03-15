@@ -150,5 +150,27 @@
             "Continue",
             "Parhau"
         ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Voice Rating task!",
+            "Diolch am gwblhau'r Dasg Sgôr Llais!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Da iawn!"
+        ],
+        "thankYouMessage" : [
+            "You have now completed the AGT Voice Rating task. Your data has been saved.",
+            "Rydych bellach wedi cwblhau'r dasg AGT: Sgôr Llais. Mae eich data wedi'i gadw."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Cliciwch “Parhau” pan fyddwch yn barod i barhau."
+        ],
+        "continue": [
+            "Continue",
+            "Parhau"
+        ]
     }
 }

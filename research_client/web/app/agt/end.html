@@ -19,18 +19,27 @@
 
         <div class="row m-4">
             <div class="col fw-semi p-0">
+                <p data-agt-tr="end.feedback">
+                    Well done!
+                </p>
                 <p data-agt-tr="end.thankYouMessage">
-                    Well done on the voice rating task!<br />
-                    You have now completed all the tasks. Your data has been saved automatically,
-                    but please do not close the app yet.
+                    You have now completed the AGT Voice Rating task. Your data has been saved.
                 </p>
                 <p data-agt-tr="end.followOnInstructions">
-                    You can tell the researcher that you've finished with the app tasks and
-                    they will check that we have everything we need and give you any further
-                    instructions if needed.
+                    Please click “Continue” when you’re ready to continue.
                 </p>
             </div>
         </div>
+
+        <form id="surveyDataForm">
+            <input type="hidden" name="instanceId" />
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-agt-tr="end.continue">Continue</button>
+                </div>
+            </div>
+        </form>
 
     </article>
 {% endblock %}
@@ -42,5 +51,12 @@
         lart.tr.loadFromEel('agt', eel._agt_load_version, [instanceId, ['meta', 'base', 'end']]);
         lart.tr.registerObserver('agt', 'agtEndScreen');
         lart.tr.registerObserver('agt', 'agtAppTitle');
+        // Set instanceId value on surveyDataForm
+        const instanceIdFields = document.getElementsByName('instanceId');
+        for (const instanceIdField of instanceIdFields) {
+            instanceIdField.value = instanceId;
+        }
+    </script>
+    {{ lart_form_pipeline('surveyDataForm', '_agt_end') }}
     </script>
 {% endblock %}
