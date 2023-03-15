@@ -1,10 +1,10 @@
 {
     "meta": {
         "versionId": "LtzGer_Ger_BE",
-        "versionName": "Moselfränkisch - Deutsch (Belgien)",
-        "versionNumber": "0.3.4",
+        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "versionNumber": "0.3.5",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2022-04-26"
+        "date": "2023-03-15"
     },
     "base": {
         "appTitle": [
@@ -47,7 +47,7 @@
         ],
         "numberOfTries": [
             "Number of tries:",
-            "Anzahl versuche:"
+            "Anzahl Versuche:"
         ],
         "timeNeeded": [
             "Time needed:",
@@ -71,13 +71,21 @@
             "Thank you for completing the Memory Task!",
             "Danke für das Erledigen der Gedächstnisaufgabe!"
         ],
+        "feedback": [
+            "Well done!",
+            "Gut gemacht!"
+        ],
         "thankYouMessage": [
-            "Well done on the memory task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
-            "Gute Arbeit mit der Gedächstnisaufgabe!<br /> Sie haben nun alle Aufgaben erledigt. Ihre Daten wurden automatisch gespeichert, aber bitte schließen Sie die App noch nicht."
+            "You have now completed the memory task. Your data has been saved.",
+            "Sie haben die Gedächstnisaufgabe jetzt erledigt. Ihre Daten wurden gespreichert."
         ],
         "followOnInstructions": [
-            "You can tell the experimenter that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
-            "Sie können dem Experimentleiter nun mitteilen, dass Sie mit den Aufgaben in der App fertig sind. Dieser wird dann überprüfen, dass wir alles haben was wir benötigen und Ihnen falls nötig weitere Anleitung geben."
+            "Please click “Continue” when you’re ready to continue.",
+            "Bitte klicken Sie auf „Weiter“, wenn Sie bereit sind weiter zu machen."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
         ]
     }
 }

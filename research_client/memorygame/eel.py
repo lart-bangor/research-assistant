@@ -180,3 +180,24 @@ def store(instid: str) -> bool:
         fp.write(s)
     logger.debug("... file saved successfully.")
     return True
+
+
+@_expose
+def end(instid: str, data: Optional[dict[str, str]] = None) -> str:
+    """Redirect participant in right sequence after Memory Game end screen."""
+    logger.info(f"Redirecting participant after completing instance {instid}..")
+    instance = _getinstance(instid)
+    if config.sequences.memorygame:
+        meta = instance.getmeta()
+        query = booteel.buildquery({
+            "selectSurveyVersion": meta["version_id"],
+            "researcherId": meta["researcher_id"],
+            "researchLocation": meta["research_location"],
+            "participantId": meta["participant_id"],
+            "confirmConsent": str(int(meta["consent"])),
+            "surveyDataForm.submit": "true",
+        })
+        booteel.setlocation(f"/app/{config.sequences.memorygame}/index.html?{query}")
+    else:
+        booteel.setlocation("/app/index.html")
+    return instid

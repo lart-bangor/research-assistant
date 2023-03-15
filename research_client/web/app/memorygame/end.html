@@ -1,3 +1,4 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
 {% block title %}LART Research Client - Memory Task{% endblock %}
 {% block headline %}<span id="memoryGameAppTitle" data-memorygame-tr="base.appTitle">Memory Task</span>{% endblock %}
@@ -26,18 +27,27 @@
 
         <div class="row m-4">
             <div class="col fw-semi p-0">
+                <p data-memorygame-tr="end.feedback">
+                    Well done!
+                </p>
                 <p data-memorygame-tr="end.thankYouMessage">
-                    Well done on the memory task!<br />
-                    You have now completed all the tasks. Your data has been saved automatically,
-                    but please do not close the app yet.
+                    You have now completed the memory task. Your data has been saved.
                 </p>
                 <p data-memorygame-tr="end.followOnInstructions">
-                    You can tell the experimenter that you've finished with the app tasks and
-                    they will check that we have everything we need and give you any further
-                    instructions if needed.
+                    Please click “Continue” when you’re ready to continue.
                 </p>
             </div>
         </div>
+
+        <form id="surveyDataForm">
+            <input type="hidden" name="instanceId" />
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-memorygame-tr="end.continue">Continue</button>
+                </div>
+            </div>
+        </form>
 
     </article>
 {% endblock %}
@@ -48,5 +58,11 @@
         lart.tr.loadFromEel('memorygame', eel._memorygame_load_version, [instanceId, ['meta', 'base', 'end']]);
         lart.tr.registerObserver('memorygame', 'memoryGameAppTitle');
         lart.tr.registerObserver('memorygame', 'memoryGameEndScreen');
+        // Set instanceId value on surveyDataForm
+        const instanceIdFields = document.getElementsByName('instance');
+        for (const instanceIdField of instanceIdFields) {
+            instanceIdField.value = instanceId;
+        }
     </script>
+    {{ lart_form_pipeline('surveyDataForm', '_memorygame_end') }}
 {% endblock %}

@@ -325,7 +325,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         "Conclusion Screen": "conclusion",
         "Consent Form": "consent",
         "LSBQe": "lsbq",
-        "Memory Game": "memorygame",
+        "Memory Task": "memorygame",
     }
     agt: str = field(
         default="",
@@ -365,7 +365,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
     memorygame: str = field(
         default="",
         metadata={
-            "doc_label": "Task following the Memory Game",
+            "doc_label": "Task following the Memory Task",
             "doc_values": _sequence_options,
         }
     )

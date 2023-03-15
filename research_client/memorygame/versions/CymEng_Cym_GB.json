@@ -1,91 +1,91 @@
 {
     "meta": {
-        "versionId": "LmoIta_Ita_IT",
-        "versionName": "Lombard – Italiano (Italia)",
+        "versionId": "CymEng_Cym_GB",
+        "versionName": "Cymraeg – Saesneg (Deutschland)",
         "versionNumber": "0.3.5",
-        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
         "date": "2023-03-15"
     },
     "base": {
         "appTitle": [
             "Memory Task",
-            "Gioco di Memoria"
+            "Tasg Cof"
         ]
     },
     "game": {
         "secTitle": [
             "Memory Task",
-            "Gioco di Memoria"
+            "Tasg Cof"
         ],
         "round": [
             "Round",
-            "Tentativo"
+            "Rownd"
         ],
         "xofy": [
             "<!-- x --> of <!-- y -->",
-            "<!-- x --> di <!-- y -->"
+            "<!-- x --> o <!-- y -->"
         ],
         "cardsTurned": [
             "Cards turned:",
-            "Carte girate:"
+            "Cerdyn wedi'i droi:"
         ],
         "timeElapsed": [
             "Time:",
-            "Tempo:"
+            "Amser:"
         ],
         "resultsModalTitle": [
             "Memory Task Results",
-            "Risultato per il Gioco di Memoria"
+            "Canlyniadau tasg cof"
         ],
         "completeCongratulations": [
             "Well done, you've matched all the cards!",
-            "Complimenti, hai trovato tutte le coppie!"
+            "Da iawn, rydych chi wedi dod o hyd i'r parau i gyd!"
         ],
         "yourScore": [
             "Your score:",
-            "Il tuo punteggio:"
+            "Eich canlyniad:"
         ],
         "numberOfTries": [
             "Number of tries:",
-            "Numero di tentativi:"
+            "Nifer y ceisiadau:"
         ],
         "timeNeeded": [
             "Time needed:",
-            "Tempo impiegato:"
+            "Amser:"
         ],
         "continueNextGame": [
             "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
-            "Clicca &ldquo;Continua&rdquo; per fare un altro tentativo e provare a superare il tuo punteggio!"
+            "Cliciwch ar &ldquo;Nesaf&rdquo; i geisio eto.<br /> Ceisiwch wella eich canlyniad eto!"
         ],
         "continueFinished": [
             "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
-            "Hai completato con successo questo gioco!<br /> Fai clic su “Continua” per finire."
+            "Rydych bellach wedi cwblhau'r dasg hon yn llwyddiannus!<br /> Cliciwch &ldquo;Nesaf&rdquo; i orffen."
         ],
         "continue": [
             "Continue",
-            "Continua"
+            "Nesaf"
         ]
     },
     "end": {
         "secTitle": [
             "Thank you for completing the Memory Task!",
-            "Grazie per aver completato il gioco di memoria!"
+            "Diolch am gwblhau'r Dasg Cof!"
         ],
         "feedback": [
             "Well done!",
-            "Ben fatto!"
+            "Da iawn!"
         ],
         "thankYouMessage": [
             "You have now completed the memory task. Your data has been saved.",
-            "Ora hai completato l'attività di memoria. I tuoi dati sono stati salvati."
+            "Rydych chi bellach wedi cwblhau'r dasg cof. Mae eich data wedi'i gadw."
         ],
         "followOnInstructions": [
             "Please click “Continue” when you’re ready to continue.",
-            "Fai clic su “Continua” quando sei pronto per continuare."
+            "Cliciwch “Parhau” pan fyddwch yn barod i barhau."
         ],
         "continue": [
             "Continue",
-            "Continua"
+            "Parhau"
         ]
     }
 }
