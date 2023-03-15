@@ -129,6 +129,27 @@ def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, part
     print(data)
     booteel.setlocation(location)
 
+@eel.expose
+def atol_end(data: dict[str, str]) -> str:
+    """Redirect participant in right sequence after AToL-C end screen."""
+    from pprint import pprint
+    print("Received the following data for atol_end:")
+    pprint(data)
+    if config.sequences.atolc:
+        query = booteel.buildquery({
+            "selectSurveyVersion": data["version_id"],
+            "researcherId": data["researcher_id"],
+            "researchLocation": data["research_location"],
+            "participantId": data["participant_id"],
+            "confirmConsent": str(int(data["confirm_consent"])),
+            "surveyDataForm.submit": "true",
+        })
+        booteel.setlocation(f"/app/{config.sequences.atolc}/index.html?{query}")
+    else:
+        booteel.setlocation("/app/index.html")
+    return data["version_id"]
+
+
 
 def fetch_location(source_file: str, version: str) -> Optional[str]:
     """Finds which html page to load next."""
