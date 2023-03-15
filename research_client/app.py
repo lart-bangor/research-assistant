@@ -19,6 +19,7 @@ from .lsbq import expose_to_eel as expose_lsbq
 from .memorygame import expose_to_eel as expose_memorygame
 from .agt import expose_to_eel as expose_agt
 from .settings import expose_to_eel as expose_settings
+from .conclusion import expose_to_eel as expose_conclusion
 from .utils import export_backup, manage_settings, show_error_dialog
 
 # Enable multiprocessing in frozen apps (e.g. pyinstaller)
@@ -38,7 +39,7 @@ expose_lsbq()
 expose_memorygame()
 expose_agt()
 expose_settings()
-
+expose_conclusion()
 
 @eel.expose
 def atol_rating(data: dict[Any, Any]):

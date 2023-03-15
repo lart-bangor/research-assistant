@@ -1,91 +1,91 @@
 {
     "meta": {
-        "versionId": "LmoIta_Ita_IT",
-        "versionName": "Lombard – Italiano (Italia)",
+        "versionId": "EllEng_Ell_GR",
+        "versionName": "Moselfränkisch – Deutsch (Belgien)",
         "versionNumber": "0.3.5",
-        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
         "date": "2023-03-15"
     },
     "base": {
         "appTitle": [
             "Memory Task",
-            "Gioco di Memoria"
+            "Εργασία Πνήμης"
         ]
     },
     "game": {
         "secTitle": [
             "Memory Task",
-            "Gioco di Memoria"
+            "Εργασία Πνήμης"
         ],
         "round": [
             "Round",
-            "Tentativo"
+            "Γύρος"
         ],
         "xofy": [
             "<!-- x --> of <!-- y -->",
-            "<!-- x --> di <!-- y -->"
+            "<!-- x --> από <!-- y -->"
         ],
         "cardsTurned": [
             "Cards turned:",
-            "Carte girate:"
+            "Kάρτα περιστράφηκε:"
         ],
         "timeElapsed": [
             "Time:",
-            "Tempo:"
+            "Ώρα:"
         ],
         "resultsModalTitle": [
             "Memory Task Results",
-            "Risultato per il Gioco di Memoria"
+            "Αποτελέσματα της εργασίας μνήμης"
         ],
         "completeCongratulations": [
             "Well done, you've matched all the cards!",
-            "Complimenti, hai trovato tutte le coppie!"
+            "Πολύ καλό, τα έχεις βρει όλα τα ζευγάρια!"
         ],
         "yourScore": [
             "Your score:",
-            "Il tuo punteggio:"
+            "Το αποτέλεσμά σας"
         ],
         "numberOfTries": [
             "Number of tries:",
-            "Numero di tentativi:"
+            "Αριθμός προσπαθειών:"
         ],
         "timeNeeded": [
             "Time needed:",
-            "Tempo impiegato:"
+            "Ώρα:"
         ],
         "continueNextGame": [
             "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
-            "Clicca &ldquo;Continua&rdquo; per fare un altro tentativo e provare a superare il tuo punteggio!"
+            "Κάντε κλικ στο &ldquo;Επόμενο&rdquo; για να προσπαθήσετε ξανά.<br /> Προσπαθήστε να βελτιώσετε ξανά το αποτέλεσμά σας!"
         ],
         "continueFinished": [
             "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
-            "Hai completato con successo questo gioco!<br /> Fai clic su “Continua” per finire."
+            "Ολοκληρώσατε με επιτυχία αυτήν την εργασία!<br /> Κάντε κλικ στο &ldquo;Συνέχεια&rdquo; να τελειώσει."
         ],
         "continue": [
             "Continue",
-            "Continua"
+            "Επόμενο"
         ]
     },
     "end": {
         "secTitle": [
             "Thank you for completing the Memory Task!",
-            "Grazie per aver completato il gioco di memoria!"
+            "Ευχαριστούμε που ολοκληρώσατε την εργασία μνήμης!"
         ],
         "feedback": [
             "Well done!",
-            "Ben fatto!"
+            "Μπράβο!"
         ],
         "thankYouMessage": [
             "You have now completed the memory task. Your data has been saved.",
-            "Ora hai completato l'attività di memoria. I tuoi dati sono stati salvati."
+            "Έχετε ολοκληρώσει τώρα την εργασία μνήμης. Τα δεδομένα σας έχουν αποθηκευτεί."
         ],
         "followOnInstructions": [
             "Please click “Continue” when you’re ready to continue.",
-            "Fai clic su “Continua” quando sei pronto per continuare."
+            "Κάντε κλικ στο “Συνέχεια” όταν είστε έτοιμοι να συνεχίσετε."
         ],
         "continue": [
             "Continue",
-            "Continua"
+            "Συνέχεια"
         ]
     }
 }

@@ -320,18 +320,32 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
 
     _sequence_options: ClassVar[dict[str, str]] = {
         "App start screen": "",
+        "AGT": "agt",
         "AToL-C": "atolc",
+        "Conclusion Screen": "conclusion",
         "Consent Form": "consent",
         "LSBQe": "lsbq",
-        "Memory Game": "memorygame",
-        "AGT": "agt",
+        "Memory Task": "memorygame",
     }
-
+    agt: str = field(
+        default="",
+        metadata={
+            "doc_label": "Task following the AGT",
+            "doc_values": _sequence_options,
+        }
+    )
     atolc: str = field(
         default="memorygame",
         metadata={
             "doc_label": "Task following the AToL-C",
             "doc_values": _sequence_options,
+        }
+    )
+    conclusion: str = field(
+        default="",
+        metadata={
+            "doc_label": "Task following the Conclusion Screen",
+            "doc_values": _sequence_options
         }
     )
     consent: str = field(
@@ -351,14 +365,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
     memorygame: str = field(
         default="",
         metadata={
-            "doc_label": "Task following the Memory Game",
-            "doc_values": _sequence_options,
-        }
-    )
-    agt: str = field(
-        default="",
-        metadata={
-            "doc_label": "Task following the AGT",
+            "doc_label": "Task following the Memory Task",
             "doc_values": _sequence_options,
         }
     )
