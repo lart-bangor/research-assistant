@@ -1,0 +1,31 @@
+{
+    "meta": {
+        "versionId": "EngZzz_Eng_GB",
+        "versionName": "English – generic (United Kingdom)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-03-15"
+    },
+    "base": {
+        "appTitle": [
+            "Conclusion Screen"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "All tasks completed!"
+        ],
+        "feedback": [
+            "Well done!"
+        ],
+        "thankYouMessage": [
+            "You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet."
+        ],
+        "followOnInstructions": [
+            "Please let the researcher know that you've finished with the app tasks. They will check that we have everything we need and give you any further instructions if needed."
+        ],
+        "close": [
+            "Close"
+        ]
+    }
+}

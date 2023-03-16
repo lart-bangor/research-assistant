@@ -1,0 +1,62 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Client - AGT - Completion{% endblock %}
+{% block headline %}<span id="agtAppTitle" data-agt-tr="base.appTitle">AGT: Voice Rating</span>{% endblock %}
+{% block head_scripts %}{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}{% endblock %}
+{% block content %}
+    <article id="agtEndScreen" class="container-fluid p-2">
+
+        <!-- <div class="progress m-4">
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width:95%"></div>
+        </div> -->
+
+        <div class="row m-4 text-center">
+            <h2 data-agt-tr="end.secTitle">Thank you for completing the AGT Voice Rating task!</h2>
+        </div>
+
+        <div class="row m-4">
+            <div class="col fw-semi p-0">
+                <p data-agt-tr="end.feedback">
+                    Well done!
+                </p>
+                <p data-agt-tr="end.thankYouMessage">
+                    You have now completed the AGT Voice Rating task. Your data has been saved.
+                </p>
+                <p data-agt-tr="end.followOnInstructions">
+                    Please click “Continue” when you’re ready to continue.
+                </p>
+            </div>
+        </div>
+
+        <form id="surveyDataForm">
+            <input type="hidden" name="instanceId" />
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-agt-tr="end.continue">Continue</button>
+                </div>
+            </div>
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        lart.forms.requireValidation(true);
+        // Translate form for specific version
+        let instanceId = lart.forms.searchParams.get('instance');
+        lart.tr.loadFromEel('agt', eel._agt_load_version, [instanceId, ['meta', 'base', 'end']]);
+        lart.tr.registerObserver('agt', 'agtEndScreen');
+        lart.tr.registerObserver('agt', 'agtAppTitle');
+        // Set instanceId value on surveyDataForm
+        const instanceIdFields = document.getElementsByName('instanceId');
+        for (const instanceIdField of instanceIdFields) {
+            instanceIdField.value = instanceId;
+        }
+    </script>
+    {{ lart_form_pipeline('surveyDataForm', '_agt_end') }}
+    </script>
+{% endblock %}

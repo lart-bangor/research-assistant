@@ -1,10 +1,17 @@
 {
     "meta": {
         "versionId": "EngZzz_Eng_GB",
-        "versionName": "English - generic (United Kingdom)",
+        "versionName": "English – generic (United Kingdom)",
         "versionNumber": "0.3.5",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2022-07-07"
+        "date": "2023-03-14",
+        "options": {
+            "lsb_show_other_sex": true,
+            "ldb_minimum_required_languages": 1,
+            "ldb_show_reading": true,
+            "ldb_show_writing": true,
+            "club_show_codeswitching": true
+        }
     },
     "base": {
         "appTitle": [
@@ -50,6 +57,9 @@
         ],
         "sliderFeedback": [
             "Please move the slider at least once."
+        ],
+        "ok": [
+            "OK"
         ]
     },
     "lsb": {
@@ -343,6 +353,12 @@
             "Guernésiais",
             "Jèrriais",
             "Manx Gaelic"
+        ],
+        "repeatedLanguageErrorTitle": [
+            "Repeated language"
+        ],
+        "repeatedLanguageErrorMessage": [
+            "“<span class=\"languageNameSlot\">[languageName]</span>” has already been added to this list."
         ]
     },
     "club": {

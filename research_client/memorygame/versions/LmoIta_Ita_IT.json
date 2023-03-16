@@ -2,9 +2,9 @@
     "meta": {
         "versionId": "LmoIta_Ita_IT",
         "versionName": "Lombard – Italiano (Italia)",
-        "versionNumber": "0.3.4",
+        "versionNumber": "0.3.5",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2022-04-29"
+        "date": "2023-03-15"
     },
     "base": {
         "appTitle": [
@@ -59,7 +59,7 @@
         ],
         "continueFinished": [
             "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
-            "Hai completato con successo questo gioco!<br /> Fai clic su &ldquo;Continua&rdquo; per finire."
+            "Hai completato con successo questo gioco!<br /> Fai clic su “Continua” per finire."
         ],
         "continue": [
             "Continue",
@@ -71,13 +71,21 @@
             "Thank you for completing the Memory Task!",
             "Grazie per aver completato il gioco di memoria!"
         ],
+        "feedback": [
+            "Well done!",
+            "Ben fatto!"
+        ],
         "thankYouMessage": [
-            "Well done on the memory task!<br /> You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
-            "Complimenti!<br /> Hai completato tutte le attività. I tuoi dati sono stati salvati automaticamente, ma non chiudere ancora l'app."
+            "You have now completed the memory task. Your data has been saved.",
+            "Ora hai completato l'attività di memoria. I tuoi dati sono stati salvati."
         ],
         "followOnInstructions": [
-            "You can tell the experimenter that you've finished with the app tasks and they will check that we have everything we need and give you any further instructions if needed.",
-            "Puoi informare il ricercatore che hai terminato le attività dell'app. Il ricercatore verificherà che abbiamo tutto ciò che ci serve e ti darà ulteriori istruzioni se necessario."
+            "Please click “Continue” when you’re ready to continue.",
+            "Fai clic su “Continua” quando sei pronto per continuare."
+        ],
+        "continue": [
+            "Continue",
+            "Continua"
         ]
     }
 }

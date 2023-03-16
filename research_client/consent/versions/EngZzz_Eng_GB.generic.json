@@ -1,7 +1,9 @@
 {
     "meta": {
-        "versionId": "EngZzz_ENG_GB",
-        "versionName": "English - generic (United Kingdom)",
+        "versionId": "EngZzz_Eng_GB.generic",
+        "versionType": "generic",
+        "versionLanguages": "English – generic (United Kingdom)",
+        "versionName": "Generic consent: English (United Kingdom)",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2022-05-05"
     },

@@ -1,0 +1,72 @@
+{
+    "meta": {
+        "versionId": "EngZzz_Eng_GB",
+        "versionName": "English – Generic (United Kingdom)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-03-15"
+    },
+    "base": {
+        "appTitle": [
+            "Memory Task"
+        ]
+    },
+    "game": {
+        "secTitle": [
+            "Memory Task"
+        ],
+        "round": [
+            "Round"
+        ],
+        "xofy": [
+            "<!-- x --> of <!-- y -->"
+        ],
+        "cardsTurned": [
+            "Cards turned:"
+        ],
+        "timeElapsed": [
+            "Time:"
+        ],
+        "resultsModalTitle": [
+            "Memory Task Results"
+        ],
+        "completeCongratulations": [
+            "Well done, you've matched all the cards!"
+        ],
+        "yourScore": [
+            "Your score:"
+        ],
+        "numberOfTries": [
+            "Number of tries:"
+        ],
+        "timeNeeded": [
+            "Time needed:"
+        ],
+        "continueNextGame": [
+            "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!"
+        ],
+        "continueFinished": [
+            "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up."
+        ],
+        "continue": [
+            "Continue"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Memory Task!"
+        ],
+        "feedback": [
+            "Well done!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the memory task. Your data has been saved."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue."
+        ],
+        "continue": [
+            "Continue"
+        ]
+    }
+}

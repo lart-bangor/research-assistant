@@ -1,0 +1,37 @@
+{
+    "meta": {
+        "versionId": "GswGer_Ger_BE",
+        "versionName": "Alemannisch – Deutsch (Deutschland)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-03-15"
+    },
+    "base": {
+        "appTitle": [
+            "Conclusion Screen",
+            "Abschlussbildschirm"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "All tasks completed!",
+            "Alle Aufgaben erledigt!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Gut gemacht!"
+        ],
+        "thankYouMessage": [
+            "You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
+            "Sie haben jetzt alle Aufgaben abgeschlossen. Ihre Daten wurden automatisch gespeichert, aber schließen Sie die App bitte noch nicht."
+        ],
+        "followOnInstructions": [
+            "Please let the researcher know that you've finished with the app tasks. They will check that we have everything we need and give you any further instructions if needed.",
+            "Bitte sagen Sie dem Forscher, dass Sie mit den Aufgaben in der App fertig sind. Dieser überpruft dann, dass wir alles haben was wir benötigen, und gibt Ihnen weitere Anweisungen."
+        ],
+        "close": [
+            "Close",
+            "Schließen"
+        ]
+    }
+}

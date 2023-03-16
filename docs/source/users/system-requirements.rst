@@ -43,10 +43,13 @@ Tested System Configurations
 
 We have successfully tested the app on the following systems: 
 
-- Dell Inspiron 7620 2-in-1 (Intel i7-1260P, 16GB RAM, Windows 11 64-bit). 
+============  ====================  ===============  ====  =================
+Manufacturer  Model                 Processor        RAM   Operating System
+============  ====================  ===============  ====  =================
+Dell          Inspiron 7620 2-in-1  Intel i7-1260P   16GB  Windows 11 64-bit
+Dell          Latitude 5520         Intel i7-1165G7  16GB  Windows 11 64-bit
+Dell          Latitude 5520         Intel i7-1165G7  16GB  Windows 10 64-bit
+Dell          XPS 9520              Intel i7-9750H   16GB  Windows 10 64-bit
+Lenovo        ThinkPad                                8GB  Windows 10 64-bit
+============  ====================  ===============  ====  =================
 
-- Dell Latitude 5520
-
-- Dell XPS 6520
-
-- Lenovo ThinkPad 

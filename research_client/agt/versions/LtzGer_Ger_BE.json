@@ -1,0 +1,175 @@
+{
+    "meta": {
+        "versionId": "LtzGer_Ger_BE",
+        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-03-13"
+    },
+    "base": {
+        "appTitle": [
+            "AGT: Voice Rating",
+            "AGT: Stimmbewertung"
+        ],
+        "next": [
+            "Next",
+            "Weiter"
+        ],
+        "sliderFeedback": [
+            "Please move the slider at least once.",
+            "Bitte bewegen Sie den Schieber wenigstens ein Mal."
+        ]
+    },
+    "instructions": {
+        "secTitle": [
+            "AGT Instructions",
+            "AGT Anleitung"
+        ],
+        "begin": [
+            "Begin practice",
+            "Übungslauf starten"
+        ],
+        "taskDescription": [
+            "In this task, you will hear a person speak and see a series of sliders asking you to rate that person on the basis of their voice alone.",
+            "Bei dieser Aufgabe hören Sie, wie eine Person spricht. Gleichzeitig sehen Sie eine Auswahl an Schiebern mit denen Sie den Sprecher, ausschliesslich auf der Basis seiner Stimme, bewerten sollen."
+        ],
+        "taskInstruction": [
+            "Please use the sliders to record the degree to which you agree or disagree with each statement. You will only hear each voice once. However, if any problem occurs during the task, for example the audio doesn't play properly, please speak to the researcher.",
+            "Bitte benutzen Sie die Schieber um anzugeben, zu welchem Grad Sie jeder Aussage zustimmen oder nicht zustimmen. Sie werden jede Stimme nur einmal hören. Falls wärend der Aufgabe irgendwelche Probelme auftreten (z.B. die Aufnahme spielt nicht ab), dann wenden Sie sich bitte an den Forscher."
+        ],
+        "taskPracticeDescription": [
+            "The first example will be a practice item so that you can familiarise yourself with the task. After you have completed the practice item, you will have the opportunity to speak to the researcher to ask any questions you might have about the task.",
+            "Die erste Aufnahme ist ein Beispiel zur Übung, damit Sie die Aufgabe kennenlernen können. Nachdem Sie den Übungslauf absolviert haben, haben Sie nochmal die Chance dem Forscher Fragen zu der Aufgabe zu stellen, bevor die richtige Aufgabe losgeht."
+        ],
+        "taskNextStep": [
+            "Click on <em>begin practice</em> when you're ready.",
+            "Klicken Sie auf <em>Übungslauf starten</em> wenn Sie bereit sind."
+        ]
+    },
+    "audioMsg": {
+        "load": [
+            "Ton laden..."
+            
+        ],
+        "loaded": [
+            "Ton geladen."
+            
+        ],
+        "play": [
+            "Ton spielt..."
+        ],
+        "complete": [
+            "Wiedergabe abgeschlossen."
+        ],
+        "playbackError": [
+            "Audio could not be played. Click to try again.",
+            "Fehler beim abspielen. Klicken um es erneut zu versuchen."
+        ],
+        "abortedError": [
+            "Error: Playback aborted.",
+            "Fehler: Wiedergabe abgebrochen."
+        ],
+        "networkError": [
+            "Error: Audio couldn't be loaded due to a network error.",
+            "Fehler: Audio konnte wegen eines Netzwerkfehlers nicht geladen werden."
+        ],
+        "decodeError": [
+            "Error: Audio could not be decoded.",
+            "Fehler: Audiodecodierung fehlgeschlagen."
+        ],
+        "formatError": [
+            "Error: Audio file not found or format not supported.",
+            "Fehler: Audiodatei nicht gefunden oder Format nicht unterstützt."
+        ],
+        "unknownError": [
+            "Error: An unknown error occurred.",
+            "Fehler: Ein unbekannter Fehler ist aufgetreten."
+        ]
+    },
+    "rating": {
+        "secTitle": [
+            "Voice Rating",
+            "Stimmbewertung"
+        ],
+        "statement": [
+            "The person in this recording sounds...",
+            "Die Person in dieser Aufnahme klingt..."
+        ],
+        "instructions": [
+            "Please use the sliders to record your response.",
+            "Bitte benutzen Sie die Schieber um zu antworten."
+        ],
+        "stronglyAgree": [
+            "strongly agree",
+            "Stimme zu"
+        ],
+        "stronglyDisagree": [
+            "strongly disagree",
+            "Stimme nicht zu"
+        ]
+    },
+    "trait": {
+        "amusing":       [ "amüsant" ],
+        "open-minded":   [ "aufgeschlossen" ],
+        "attractive":    [ "attraktiv" ],
+        "trustworthy":   [ "vertrauenswürdig" ],
+        "ignorant":      [ "ignorant"],
+        "polite":        [ "höflich"],
+        "ambitious":     [ "ehrgeizig"],
+        "international": [ "international"],
+        "cool":          [ "cool" ],
+        "intelligent":   [ "intelligent" ],
+        "influential":   [ "einflussreich" ],
+        "likeable":      [ "sympathisch" ],
+        "educated":      [ "gebildet" ],
+        "friendly":      [ "freundlich" ],
+        "honest":        [ "ehrlich" ],
+        "competent":     [ "kompetent" ],
+        "natural":       [ "natürlich" ],
+        "pretentious":   [ "hochgestochen" ]
+    },
+    "practice": {
+        "completeTitle": [
+            "Practice complete",
+            "Übungslauf abgeschlossen"
+        ],
+        "completeMessage": [
+            "You've completed the practice session. If you have any questions at this point please let the researcher know, otherwise click <em>Continue</em> to begin the task.",
+            "Sie haben den Übungslauf abgeschlossen. Falls Sie zu diesem Zeitpunkt Fragen haben, sagen Sie bitten dem Forscher Bescheid. Ansonsten klicken Sie auf <em>Weiter</em> um die Aufgabe anzufangen."
+        ],
+        "errorTitle": [
+            "Let’s try that again...",
+            "Versuchen Sie es noch einmal..."
+        ],
+        "errorMessage": [
+            "It seems you’ve missed some items. Click <em>Continue</em> to have another look and make sure you’ve moved each slider at least once. The one’s you’ve missed should show up in red. When you’ve moved all the red sliders, click <em>Next</em> again.",
+            "Es sieht so aus, als ob Sie etwas übersehen haben. Klicken Sie auf <em>Weiter</em> und stellen Sie sicher, dass Sie alle Schieber bewegt haben. Unbewegte Schieber erscheinen in rot. Wenn Sie alle roten Schieber bewegt haben, klicken Sie erneut auf <em>Weiter</em>."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Voice Rating task!",
+            "Dank für das Durchführen der Stimmbewerungsaufgabe!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Gut gemacht!"
+        ],
+        "thankYouMessage" : [
+            "You have now completed the AGT Voice Rating task. Your data has been saved.",
+            "Sie haben die AGT Stimmberwertungsaufgabe jetzt erledigt. Ihre Daten wurden gespeichert."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Bitte klicken Sie auf „Weiter“, wenn Sie bereit sind weiter zu machen."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
+        ]
+    }
+}

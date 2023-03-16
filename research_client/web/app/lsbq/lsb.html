@@ -44,9 +44,9 @@
                             <label class="form-check-label" for="sexMale" data-lsbq-tr="lsb.male">Male</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="sexOther" value="O" required />
-                            <label class="form-check-label align-text-top" for="sexOther" data-lsbq-tr="lsb.other">Other</label>
-                            <div id="sexOtherSpecifyCollapse" class="d-inline-block align-text-top collapse">
+                            <input class="form-check-input sexOtherOption" type="radio" name="sex" id="sexOther" value="O" required />
+                            <label class="form-check-label align-text-top sexOtherOption" for="sexOther" data-lsbq-tr="lsb.other">Other</label>
+                            <div id="sexOtherSpecifyCollapse sexOtherOption" class="d-inline-block align-text-top collapse">
                                 <input name="sex_other" id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" aria-label="Specify sex, if other." />
                                 <div class="invalid-feedback" data-lsbq-tr="lsb.otherFeedback">Please briefly specify what other sex you identify with.</div>
                             </div>
@@ -298,6 +298,19 @@
         lart.tr.registerObserver('lsbq', 'surveyLSBForm');
         lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
         lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
+
+        // Implement configuration options for LSB
+        function configureLSB() {
+            const options = lart.tr.get("lsbq", "meta.options");
+            // lsb_show_other_sex - default: true
+            if ('lsb_show_other_sex' in options && options.lsb_show_other_sex == false) {
+                const nodesToRemove = document.querySelectorAll('.sexOtherOption');
+                for (const nodeToRemove of nodesToRemove) {
+                    nodeToRemove.style.display = 'none';
+                }
+            }
+        }
+        lart.tr.registerCallback("lsbq", configureLSB);
 
         // Set up repeats for "other places" fields
         let otherPlacesCounter = 0;

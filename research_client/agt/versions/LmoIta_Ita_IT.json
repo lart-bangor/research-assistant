@@ -1,0 +1,175 @@
+{
+    "meta": {
+        "versionId": "LmoIta_Ita_IT",
+        "versionName": "Lombard – Italiano (Italia)",
+        "versionNumber": "0.3.4",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2022-12-05"
+    },
+    "base": {
+        "appTitle": [
+            "AGT: Voice Rating",
+            "AGT: Valutazione della Voce"
+        ],
+        "next": [
+            "Next",
+            "Avanti"
+        ],
+        "sliderFeedback": [
+            "Please move the slider at least once.",
+            "Si prega di spostare il cursore almeno una volta."
+        ]
+    },
+    "instructions": {
+        "secTitle": [
+            "AGT Instructions",
+            "AGT Istruzioni"
+        ],
+        "begin": [
+            "Begin practice",
+            "Inizia la prova"
+        ],
+        "taskDescription": [
+            "In this task, you will hear a person speak and see a series of sliders asking you to rate that person on the basis of their voice alone.",
+            "In questo test sentirà una persona parlare. Vedrà anche una serie di cursori che Lei dovrà usare per esprimere una valutazione della persona che parla unicamente sulla base della sua voce."
+        ],
+        "taskInstruction": [
+            "Please use the sliders to record the degree to which you agree or disagree with each statement. You will only hear each voice once. However, if any problem occurs during the task, for example the audio doesn't play properly, please speak to the researcher.",
+            "Usi il cursore per esprimere quanto Lei sia d’accordo con ognuna delle affermazioni che vedrà comparire. Sentirà ogni voce soltanto una volta. Tuttavia, se dovesse presentarsi qualche problema durante il test, per esempio se l’audio non funzionasse adeguatamente, avverta il ricercatore, per piacere."
+        ],
+        "taskPracticeDescription": [
+            "The first example will be a practice item so that you can familiarise yourself with the task. After you have completed the practice item, you will have the opportunity to speak to the researcher to ask any questions you might have about the task.",
+            "La prima voce servirà come prova che La aiuterà a prendere confidenza con il test. Dopo che avrà completato il test di prova potrà rivolgersi al ricercatore per eventuali domande concernenti il test."
+        ],
+        "taskNextStep": [
+            "Click on <em>begin practice</em> when you're ready.",
+            "Faccia clic su <em>inizia la prova</em> quando vuole iniziare."
+        ]
+    },
+    "audioMsg": {
+        "load": [
+            "Caricamento audio..."
+            
+        ],
+        "loaded": [
+            "Audio caricato."
+            
+        ],
+        "play": [
+            "Riproduzione audio..."
+        ],
+        "complete": [
+            "Riproduzione audio completata."
+        ],
+        "playbackError": [
+            "Audio could not be played. Click to try again.",
+            "Impossibile riprodurre l'audio. Fai clic per riprovare."
+        ],
+        "abortedError": [
+            "Error: Playback aborted.",
+            "Errore: riproduzione interrotta."
+        ],
+        "networkError": [
+            "Error: Audio couldn't be loaded due to a network error.",
+            "Errore: impossibile caricare l'audio a causa di un errore di rete."
+        ],
+        "decodeError": [
+            "Error: Audio could not be decoded.",
+            "Errore: non è stato possibile decodificare l'audio."
+        ],
+        "formatError": [
+            "Error: Audio file not found or format not supported.",
+            "Errore: file audio non trovato o formato non supportato."
+        ],
+        "unknownError": [
+            "Error: An unknown error occurred.",
+            "Errore: si è verificato un errore sconosciuto."
+        ]
+    },
+    "rating": {
+        "secTitle": [
+            "Voice Rating",
+            "Valutazione della Voce"
+        ],
+        "statement": [
+            "The person in this recording sounds...",
+            "La persona che parla mi sembra..."
+        ],
+        "instructions": [
+            "Please use the sliders to record your response.",
+            "Si prega di spostare il cursore per registrare la propria scelta."
+        ],
+        "stronglyAgree": [
+            "strongly agree",
+            "fortemente d'accordo"
+        ],
+        "stronglyDisagree": [
+            "strongly disagree",
+            "fortemente in disaccordo"
+        ]
+    },
+    "trait": {
+        "amusing":      [ "divertente" ],
+        "open-minded":  [ "di larghe vedute" ],
+        "attractive":   [ "attraente" ],
+        "trustworthy":  [ "affidabile" ],
+        "ignorant":     [ "ignorante"],
+        "polite":       [ "educata"],
+        "ambitious":    [ "ambiziosa"],
+        "international": [ "internazionale"],
+        "cool":         [ "cool" ],
+        "intelligent":  [ "intelligente" ],
+        "influential":  [ "influente" ],
+        "likeable":     [ "simpatica" ],
+        "educated":     [ "istruita" ],
+        "friendly":     [ "amichevole" ],
+        "honest":       [ "onesta" ],
+        "competent":    [ "competente" ],
+        "natural":      [ "naturale" ],
+        "pretentious":  [ "pretenziosa" ]
+    },
+    "practice": {
+        "completeTitle": [
+            "Practice complete",
+            "Prova completata"
+        ],
+        "completeMessage": [
+            "You've completed the practice session. If you have any questions at this point please let the researcher know, otherwise click <em>Continue</em> to begin the task.",
+            "Ha completato la prova. Se ha qualche domanda la rivolga al ricercatore. Altrimenti, prema <em>Continua</em> per cominciare il test."
+        ],
+        "errorTitle": [
+            "Let’s try that again...",
+            "Proviamo di nuovo..."
+        ],
+        "errorMessage": [
+            "It seems you’ve missed some items. Click <em>Continue</em> to have another look and make sure you’ve moved each slider at least once. The one’s you’ve missed should show up in red. When you’ve moved all the red sliders, click <em>Next</em> again.",
+            "Sembra che tu abbia perso alcuni elementi. Fai clic su <em>Continua</em> per dare un'altra occhiata e assicurati di aver spostato ogni cursore almeno una volta. Quelli che mancano appariranno in rosso. Dopo aver spostato tutti i cursori rossi, fai di nuovo clic su <em>Avanti</em>."
+        ],
+        "continue": [
+            "Continue",
+            "Continua"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Voice Rating task!",
+            "Grazie per aver completato l'attività di Valutazione della Voce!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Ben fatto!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the memory task. Your data has been saved.",
+            "Ora hai completato l'attività di memoria. I tuoi dati sono stati salvati."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Fai clic su “Continua” quando sei pronto per continuare."
+        ],
+        "continue": [
+            "Continue",
+            "Continua"
+        ]
+    }
+}

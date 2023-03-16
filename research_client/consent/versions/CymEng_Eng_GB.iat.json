@@ -1,7 +1,9 @@
 {
     "meta": {
-        "versionId": "CymEng_ENG_GB",
-        "versionName": "Welsh – English (United Kingdom)",
+        "versionId": "CymEng_Eng_GB.iat",
+        "versionType": "IAT",
+        "versionLanguages": "Welsh – English (United Kingdom)",
+        "versionName": "IAT: Welsh – English (United Kingdom)",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>; Ianto Gruffydd <i.gruffydd>@bangor.ac.uk",
         "date": "2022-07-06"
     },

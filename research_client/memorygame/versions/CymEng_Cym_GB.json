@@ -1,0 +1,91 @@
+{
+    "meta": {
+        "versionId": "CymEng_Cym_GB",
+        "versionName": "Cymraeg – Saesneg (Deutschland)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-03-15"
+    },
+    "base": {
+        "appTitle": [
+            "Memory Task",
+            "Tasg Cof"
+        ]
+    },
+    "game": {
+        "secTitle": [
+            "Memory Task",
+            "Tasg Cof"
+        ],
+        "round": [
+            "Round",
+            "Rownd"
+        ],
+        "xofy": [
+            "<!-- x --> of <!-- y -->",
+            "<!-- x --> o <!-- y -->"
+        ],
+        "cardsTurned": [
+            "Cards turned:",
+            "Cerdyn wedi'i droi:"
+        ],
+        "timeElapsed": [
+            "Time:",
+            "Amser:"
+        ],
+        "resultsModalTitle": [
+            "Memory Task Results",
+            "Canlyniadau tasg cof"
+        ],
+        "completeCongratulations": [
+            "Well done, you've matched all the cards!",
+            "Da iawn, rydych chi wedi dod o hyd i'r parau i gyd!"
+        ],
+        "yourScore": [
+            "Your score:",
+            "Eich canlyniad:"
+        ],
+        "numberOfTries": [
+            "Number of tries:",
+            "Nifer y ceisiadau:"
+        ],
+        "timeNeeded": [
+            "Time needed:",
+            "Amser:"
+        ],
+        "continueNextGame": [
+            "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
+            "Cliciwch ar &ldquo;Nesaf&rdquo; i geisio eto.<br /> Ceisiwch wella eich canlyniad eto!"
+        ],
+        "continueFinished": [
+            "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
+            "Rydych bellach wedi cwblhau'r dasg hon yn llwyddiannus!<br /> Cliciwch &ldquo;Nesaf&rdquo; i orffen."
+        ],
+        "continue": [
+            "Continue",
+            "Nesaf"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Memory Task!",
+            "Diolch am gwblhau'r Dasg Cof!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Da iawn!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the memory task. Your data has been saved.",
+            "Rydych chi bellach wedi cwblhau'r dasg cof. Mae eich data wedi'i gadw."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Cliciwch “Parhau” pan fyddwch yn barod i barhau."
+        ],
+        "continue": [
+            "Continue",
+            "Parhau"
+        ]
+    }
+}

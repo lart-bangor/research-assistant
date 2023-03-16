@@ -208,6 +208,18 @@ class Response(DataSchema):
                 "constraint": patterns.ANY_NUMBER,
                 "multiple": True,
             },
+            "languages_proficiency_reading": {
+                "type_": float,
+                "typedesc": "indication of proficiency",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+            },
+            "languages_proficiency_writing": {
+                "type_": float,
+                "typedesc": "indication of proficiency",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+            },
             "languages_usage_speaking": {
                 "type_": float,
                 "typedesc": "proportion of language use",
@@ -215,6 +227,18 @@ class Response(DataSchema):
                 "multiple": True,
             },
             "languages_usage_listening": {
+                "type_": float,
+                "typedesc": "proportion of language use",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+            },
+            "languages_usage_reading": {
+                "type_": float,
+                "typedesc": "proportion of language use",
+                "constraint": patterns.ANY_NUMBER,
+                "multiple": True,
+            },
+            "languages_usage_writing": {
                 "type_": float,
                 "typedesc": "proportion of language use",
                 "constraint": patterns.ANY_NUMBER,
@@ -486,6 +510,24 @@ class Response(DataSchema):
             "praying": {
                 "type_": float,
                 "typedesc": "proportion of language use for praying",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "switching_parents_and_family": {
+                "type_": float,
+                "typedesc": "frequency of code switching with parents and family",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "switching_friends": {
+                "type_": float,
+                "typedesc": "frequency of code switching with friends",
+                "constraint": patterns.ANY_NUMBER,
+                "required": False,
+            },
+            "switching_social_media": {
+                "type_": float,
+                "typedesc": "frequency of code switching on social media",
                 "constraint": patterns.ANY_NUMBER,
                 "required": False,
             },

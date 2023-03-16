@@ -1,0 +1,88 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Client - AGT - Instructions{% endblock %}
+{% block headline %}<span id="agtAppTitle" data-agt-tr="base.appTitle">AGT: Voice Rating</span>{% endblock %}
+{% block head_scripts %}{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="container-fluid p-2">
+
+        <!-- <div class="row m-4">
+            <div class="col">
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width:5%"></div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row m-4 text-center">
+            <div class="col">
+                <h2 id="agtSectionTitle" data-agt-tr="instructions.secTitle">AGT Instructions</h2>
+            </div>
+        </div>
+
+        <form id="surveyInstructionsForm" class="needs-validation" autocomplete="off">
+
+            <!-- 1. Instructions -->
+            <section class="m-4 p-3 bg-info border border-secondary rounded">
+                <p data-agt-tr="instructions.taskDescription">
+                    In this task, you will hear a person speak and see a series of sliders asking you to
+                    rate that person on the basis of their voice alone.
+                </p>
+                <p data-agt-tr="instructions.taskInstruction">
+                    Please use the sliders to record the degree to which you agree or disagree with each
+                    statement. 
+                    You will only hear each voice once. However, if any problem occurs during the task,
+                    for example the audio doesn't play properly, please speak to the researcher.
+                </p>
+                <p data-agt-tr="instructions.taskPracticeDescription">
+                    The first example will be a practice item so that you can familiarise yourself
+                    with the task.
+                    After you have completed the practice item, you will have the opportunity to speak to the
+                    researcher to ask any questions you might have about the task.
+                </p>
+                <p data-agt-tr="instructions.taskNextStep">
+                    Click on <em>begin practice</em> when you're ready.</p>
+                </p>
+            </section>
+
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div clas="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-agt-tr="instructions.begin">Begin practice</button>
+                </div>
+            </div>
+
+        </form>
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        // Require form validation
+        lart.forms.requireValidation(true);
+
+        // Initialise UI translation
+        let instanceId = lart.forms.searchParams.get('instance');
+        lart.tr.loadFromEel('agt', eel._agt_load_version, [instanceId, ['meta', 'base', 'instructions']]);
+        lart.tr.registerObserver('agt', 'surveyInstructionsForm');
+        lart.tr.registerObserver('agt', 'agtSectionTitle');
+        lart.tr.registerObserver('agt', 'agtAppTitle');
+
+        // Redirect to rating.html on form submission
+        document.getElementById('surveyInstructionsForm').addEventListener(
+            'submit',
+            function (event) {
+                location.assign(`rating.html?instance=${instanceId}&trial=practice`);
+                console.log(window.location);
+                event.preventDefault();
+            }
+        );
+    </script>
+{% endblock %}

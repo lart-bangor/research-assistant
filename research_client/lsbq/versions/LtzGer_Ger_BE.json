@@ -4,7 +4,14 @@
         "versionName": "Moselfränkisch – Deutsch (Belgien)",
         "versionNumber": "0.3.5",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2022-04-10"
+        "date": "2023-03-14",
+        "options": {
+            "lsb_show_other_sex": true,
+            "ldb_minimum_required_languages": 2,
+            "ldb_show_reading": false,
+            "ldb_show_writing": false,
+            "club_show_codeswitching": false
+        }
     },
     "base": {
         "appTitle": [
@@ -57,6 +64,10 @@
         "sliderFeedback": [
             "Please move the slider at least once.",
             "Bitte bewegen Sie den Schieber wenigstens ein Mal."
+        ],
+        "ok": [
+            "OK",
+            "OK"
         ]
     },
     "lsb": {
@@ -426,10 +437,19 @@
             "Griechisch",
             "Polnisch",
             "Modernes Standard-Arabisch"
+        ],
+        "repeatedLanguageErrorTitle": [
+            "Repeated language",
+            "Wiederholte Sprache"
+        ],
+        "repeatedLanguageErrorMessage": [
+            "“<span class=\"languageNameSlot\">[languageName]</span>” has already been added to this list.",
+            "„<span class=\"languageNameSlot\">[languageName]</span>“ wurde dieser Liste schon hinzugefügt."
         ]
     },
     "club": {
         "secTitle": [
+            "Community Language Use Behaviour",
             "Gemeinschaftssprachverhalten"
         ],
         "onlyRML": [
@@ -441,6 +461,7 @@
             "Nur Deutsch"
         ],
         "halfHalf": [
+            "Half/Half",
             "Halb/Halb"
         ],
         "itemNotApplicableInfo": [

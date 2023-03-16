@@ -1,0 +1,61 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Client - Conclusion{% endblock %}
+{% block headline %}<span id="conclusionAppTitle" data-conclusion-tr="base.appTitle">Conclusion Screen</span>{% endblock %}
+{% block head_scripts %}
+{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+{% endblock %}
+{% block content %}
+    <article class="container-fluid p-2" id="conclusionEndScreen">
+
+        <div class="row m-4 text-center">
+            <h2 data-conclusion-tr="end.secTitle">All tasks completed!</h2>
+        </div>
+
+        <div class="row m-4">
+            <div class="col fw-semi p-0">
+                <p data-conclusion-tr="end.feedback">
+                    Well done!
+                </p>
+                <p data-conclusion-tr="end.thankYouMessage">
+                    You have now completed all the tasks. Your data has been saved automatically,
+                    but please do not close the app yet.
+                </p>
+                <p data-conclusion-tr="end.followOnInstructions">
+                    Please let the researcher know that you've finished with the app tasks.
+                    They will check that we have everything we need and give you any further
+                    instructions if needed.
+                </p>
+            </div>
+        </div>
+
+        <form id="surveyDataForm">
+            <input type="hidden" name="versionId" />
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-secondary btn-action shadow" data-conclusion-tr="end.close">Close</button>
+                </div>
+            </div>
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script  type="text/javascript">
+        // Initialise UI translation
+        let versionId = lart.forms.searchParams.get('versionId');
+        lart.tr.loadFromEel('conclusion', eel._conclusion_load_version, [versionId, ['meta', 'base', 'end']]);
+        lart.tr.registerObserver('conclusion', 'conclusionAppTitle');
+        lart.tr.registerObserver('conclusion', 'conclusionEndScreen');
+        // Set versionId value on surveyDataForm
+        const versionIdFields = document.getElementsByName('versionId');
+        for (const versionIdField of versionIdFields) {
+            versionIdField.value = versionId;
+        }
+    </script>
+    {{ lart_form_pipeline('surveyDataForm', '_conclusion_end') }}
+{% endblock %}

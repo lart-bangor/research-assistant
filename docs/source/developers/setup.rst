@@ -1,10 +1,18 @@
 Setting up the development environment
 ======================================
 
+This article will guide you through the setup of the development environment, aimed primarily at those with
+relatively little previous experience of software development.
+
+If you're a seasoned developer it will probably be a bit verbose for your taste, so if you know what you're
+doing you might just want to install any of the tools listed below (if you don't have them already), fork
+the repo, and run ``pipenv install --dev`` in the root of the source tree to get going.
+
+
 Installing the pre-requirements
 -------------------------------
 
-To work on the LART Research Client codebase, you need to have at least the following:
+To work on the L'ART Research Client codebase, you need to have at least the following:
 
 * `git <https://git-scm.com>`_ -- The version management system we use
 * `python <https://python.org>`_ (version >= 3.10) -- The primary programming language of the app
@@ -44,7 +52,7 @@ the respective software (linked above) and just follow their installation instru
         pip install pipenv
 
 
-.. tab:: Ubuntu Linux (apt)
+.. tab:: Ubuntu Linux < 22.04 (apt)
 
     .. code-block:: console
 
@@ -67,20 +75,49 @@ the respective software (linked above) and just follow their installation instru
         # Now check that you have python3.10 running:
         $ python3.10 --version
         Python 3.10.5
-        # Install pipenv (if you already had python 3.10 isntall, just use "python3" instead of "python3.10")
+        # Install pipenv (if you already had python 3.10 show above, just use "python3" instead of "python3.10")
         $ python3.10 -m pip install pipenv
+
+
+.. tab:: Ubuntu Linux >= 22.04 (apt)
+
+    .. code-block:: console
+
+        $ # First make sure the system's packaged and package index are up-to-date
+        $ sudo apt update && sudo apt upgrade -y
+        $ # Install Google Chrome
+        $ sudo apt install libxss1 libappindicator1 libindicator7
+        $ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        $ sudo apt install ./google-chrome*.deb
+        $ rm ./google-chrome*.deb
+        # Install Git
+        $ sudo apt install git -y
+        # Check your current python version is >= 3.10.0
+        $ python3 --version
+        Python 3.10.5
+        # Install pipenv
+        $ python3 -m pip install pipenv
+
+
+Following the installation of the above, make sure that both :command:`python` and :command:`pipenv` are on your
+:envvar:`PATH` environment variable. You may need to re-start your console, or log out and log back in for this
+to be the case. To test, just open a new console window and type both ``python --version`` and
+``pipenv --version``. If this does not work, you need to find out how to add them to the :envvar:`PATH`
+environment variable on your system before proceeding.
+
 
 .. important:: Know your machine!
 
-    For most of what follows in this Developers' Guide we will assume you have the above Software installed and
-    know the correct commands to use. This is especially for Python, which depending on your installation may go
-    by different names.
+    For most of what follows we will assume you have the above software installed and know the correct commands
+    to use. This is especially important for Python, which depending on your installation may go by different names.
 
-    If you aren't sure, open a command-line/terminal window and try the following commands in order:
+    If you aren't sure which Python command to use, open a command-line/terminal window and try the following
+    commands in order:
 
     * ``py --version``
     * ``python --version``
     * ``python3 --version``
+    * ``python3.10 --version``
 
     The first one of these that doesn't give you an error message and prints a Python version that is at least
     3.10.0 is the command you should use for everything else.
@@ -89,54 +126,119 @@ the respective software (linked above) and just follow their installation instru
     documentation -- it's *your responsibility* to adapt accordingly.
 
 
-Setting up the development environment
---------------------------------------
-
-If you have the pre-requirements above out of the way, you can follow these steps to get the sourcecode and all
+If you have the pre-requirements above out of the way, you can follow these steps to get the source code and all
 dependencies setup.
 
-Get a copy of the sourcecode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a copy of the source code
+-----------------------------
 
 These are the steps you need to follow to get a current copy of the sourcecode:
 
 #. Open a console (terminal / command-line prompt)
+
 #. Go to (or make) your prefered directory for development, for example
-   ``cd C:\Users\florian\development`` (Windows) or ``cd /home/florian/development`` (Linux/Unix). If you don't have
-   a directory you use for software development yet, you can use the `mkdir` command to create it, then ``cd`` into
-   it.
-#. Clone the repository with ``git clone https://github.com/lart-bangor/lart-research-client.git``.
+   ``cd C:\Users\florian\Development`` (Windows) or ``cd /home/florian/development`` (Linux/Unix).
+   If you don't have a directory you use for software development yet, you can use the
+   :command:`mkdir` command to create it, then :command:`cd` into it.
+
+#. Clone the repository with ``git clone https://github.com/lart-bangor/research-client.git``.
 
 
+.. tip::
 
-Set up a Python virtual environment and install dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   You might want to make a *fork* of our repository on GitHub and work on that fork, so that
+   your own work benefits from the added security of having the version control history in the
+   cloud even if you do not have write permissions to our repository. This will also be needed
+   if you want to make a *pull request* to have your modifications adopted in the official
+   repository and builds of the L'ART Research Client later on.
 
-As mentioned above, we use *pipenv* to manage the environment and dependencies. This makes it very easy to ensure
-that we all keep up-to-date and have the same, stable environment for development.
+   For more information, check out the
+   `Fork a repo <https://docs.github.com/en/get-started/quickstart/fork-a-repo>`_ in the
+   `GitHub Quickstart Guide <https://docs.github.com/en/get-started/quickstart>`_.
 
-After cloning the sourcecode repository, there are just two steps to get this all set up (assuming you're still
-in the same console session as above).
 
-#. Run ``pipenv install --dev``. This will set up a new virtual environment (so it doesn't get polluted by any 
-    other packages or changes on your system's Python installation, and vice-versa), and then install all the
-    Python packages you need. The ``--dev`` switch is quite important here, because without it you will be able
-    to run the app from the console, but you won't be able to build the app binaries or the documentation for
-    example.
-#. You now have to actually activate the virtual environment, so your console knows to use the isolated copy
-    of Python it made for this project instead of the system installation. You activate the environment by
-    typing ``pipenv shell`` (normally, after this you will see something like ``(lartrc)`` at the start of
-    your command prompt.)
+Set up pipenv and install dependencies
+--------------------------------------
+
+As mentioned above, we use :command:`pipenv` to manage the environment and dependencies.
+This makes it very easy to ensure that we all keep up-to-date and have the same, stable
+environment for development.
+
+After cloning the source code repository, there are just two steps to get this all set up
+(assuming you're still in the same console session as above).
+
+#. Run ``pipenv install --dev``.
+
+   This will set up a new virtual environment (so it doesn't get polluted by any 
+   other packages or changes on your system's Python installation, and vice-versa), and then install all the
+   Python packages you need. The ``--dev`` switch is quite important here, because without it you will be able
+   to run the app from the console, but you won't be able to build the app binaries or the documentation for
+   example.
+
+#. Activate the pipenv environment with ``pipenv shell``.
+
+   You now have to actually activate the virtual environment, so your console knows to use the isolated copy
+   of Python it made for this project instead of the system installation. You activate the environment by
+   typing ``pipenv shell`` (normally, after this you will see something like ``(research-client)`` at the
+   start of your command prompt.)
 
 
 .. important:: Remember pipenv!
-    It's important to remember to activate and use ``pipenv`` whenever you start working on the project.
-    If you don't, you'll probably get error messages, and if you then just use regular ``pip`` to try and
-    resolve these you'll mess up your system-wide installation and run the risk of introducing new
-    dependencies that can break the code, without other people being able to later see what these
-    dependencies were. It might also prevent you from being able to build the binaries from the source.
+   
+   It's important to remember to activate and use :command:`pipenv` whenever you start working on the project.
+   If you don't, you'll probably get error messages, and if you then just use regular ``pip`` to try and
+   resolve these you'll mess up your system-wide installation and run the risk of introducing new
+   dependencies that can break the code, without other people being able to later see what these
+   dependencies were. It might also prevent you from being able to build the binaries from the source.
+   
+   So, every time you open a console to work on the project, remember to use ``pipenv shell`` first.
+   Every time you install a package, remember to use ``pipenv install <pkgname>`` or
+   ``pipenv install <nobr>--dev</nobr> <pkgname>`` (if the package is only needed for development,
+   but not for the version the end-user gets).
 
-    So, every time you open a console to work on the project, remember to use ``pipenv shell`` first.
-    Every time you install a package, remember to use ``pipenv install <pkgname>`` or
-    ``pipenv install <nobr>--dev</nobr> <pkgname>`` (if the package is only needed for development, but not for the
-    version the end-user gets).
+
+Test that everything is working
+-------------------------------
+
+Now let's test that things are working as they should. Open a terminal and go to the directory to which
+you've cloned the source code, e.g. :file:`/home/florian/development/research-client`. You know that
+you are in the right directory if you type ``ls`` (or ``dir`` on Windows) and the list shown contains
+a file named :file:`manage.py`.
+
+Now just type :code:`python manage.py run` in your console and hit :kbd:`Enter`. If you get an error
+something in the above steps probably went wrong. If you see the app's main window and some text on
+the console telling you that it is running, then you should be good to go.
+
+
+.. tip::
+   If you use `VS Code <https://code.visualstudio.com/>`_ as your editor, you can tell it to always used
+   the :command:`pipenv` environment when you open your source code.
+   
+   Just install the *Python extension* in VS Code and then press :kbd:`Ctrl+Shift+P` and type
+   *Python: Select Interpreter*, then select the one showing "(PipEnv)" in parentheses at the end.
+   
+   Similar extensions are available for most other editors and IDEs, it's worth consulting their
+   documentation on this.
+
+
+Bonus: Consider using a specialised source code editor
+------------------------------------------------------
+
+If you have only written a few lines of Python, HTML, or JavaScript here and there in the past,
+chances are that you've just used a general purpose text editor in the past. We recommend that you
+consider a modern specialised source code editor or :abbr:`IDE (Integrated Development Environment)`
+instead. The extra features they offer, such as running terminal commands from within the editor,
+integrating with git, showing type-error hints in your code, etc. will pay of quickly on
+a codebase like this.
+
+Some free options you might want to consider:
+
+* `VS Code <https://code.visualstudio.com/>`_: Lightweight, responsive, platform-independent. Used by most people on our team.
+* `Geany <https://www.geany.org/>`_: Super-lightweigt, responsive, platform-independent. A popular choice for those that don't
+  want to run just a 'free' Microsoft product or otherwise don't like VS Code.
+* `vim <https://www.vim.org/>`_: Lightweight, super-fast, very powerful console-based editor. If you prefer not to use a graphical
+  user interface and stay on the command line this is probably for you, but the learning curve is quite steep.
+* `PyCharm <https://www.jetbrains.com/pycharm/>`_: A more heavy-weight IDE with many features, quite popular and probably a bit
+  more than what is needed. It's commercial software, but there is a free community version you can download, and if you're an
+  academic or student you can get a free full license.

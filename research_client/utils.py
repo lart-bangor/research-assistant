@@ -4,9 +4,9 @@ import shutil
 import logging
 import json
 from pathlib import Path
-from tkinter import Tk, Label, filedialog
+from tkinter import Tk, Label, filedialog, messagebox
 from typing import Any, Literal
-from .config import config, Config, _default_dirs                               # type: ignore
+from .config import config, Config, _default_paths                               # type: ignore
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,7 @@ def manage_settings(command: Literal["update", "reset", "clear"] | str) -> bool:
                     useful in cases where the user wants to revert to the apps
                     default settings, without the intent to make manual changes.
     """
-    config_file = Path(_default_dirs.user_config_dir) / "settings.json"
+    config_file = _default_paths.user_config_path / "settings.json"
     if command == "clear":
         logger.debug("Clearing the settings file...")
         if config_file.is_file():
@@ -118,9 +118,10 @@ def export_backup(filename: Path | str | None = None) -> bool:
     if filename is None:
         tkroot = Tk()
         tkroot.title("LART Research Client data backup")
-        tkroot.iconbitmap(  # type: ignore
-            str(Path(__file__).parent / "web" / "img" / "appicon.ico")
-        )
+        if os.name == "nt":
+            tkroot.iconbitmap(  # type: ignore
+                str(Path(__file__).parent / "web" / "img" / "appicon.ico")
+            )
         label = Label(
             master=tkroot,
             text="Please select the path to save the data backup to...",
@@ -129,6 +130,7 @@ def export_backup(filename: Path | str | None = None) -> bool:
         label.pack()
         tkroot.geometry("500x50")
         tkroot.lift()
+        tkroot.withdraw()
         from datetime import datetime
         dialog = filedialog.SaveAs(
             master=tkroot,
@@ -154,3 +156,13 @@ def export_backup(filename: Path | str | None = None) -> bool:
         return True
     logger.info("Failed to create backup.")
     return False
+
+
+def show_error_dialog(title: str | None = None, message: str | None = None):
+    """Display a graphical error message box even if eel is not active."""
+    tkroot = Tk()
+    tkroot.withdraw()
+    messagebox.showerror(
+        title if title else "Error",
+        message if message else "An unknown error occured."
+    )

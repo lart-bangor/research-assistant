@@ -1,0 +1,37 @@
+{
+    "meta": {
+        "versionId": "LmoIta_Ita_IT",
+        "versionName": "Lombard – Italiano (Italia)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-03-15"
+    },
+    "base": {
+        "appTitle": [
+            "Conclusion Screen",
+            "Schermata Finale"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "All tasks completed!",
+            "Ha completato tutte le attività!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Ben fatto!"
+        ],
+        "thankYouMessage": [
+            "You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
+            "Ha completato tutte le attività. I Suoi dati sono stati salvati automaticamente, ma non chiuda ancora l'app."
+        ],
+        "followOnInstructions": [
+            "Please let the researcher know that you've finished with the app tasks. They will check that we have everything we need and give you any further instructions if needed.",
+            "La preghiamo di comunicare al ricercatore che ha terminato le attività nell'app. Il ricercatore verificherà che abbiamo tutto ciò di cui abbiamo bisogno e Le darà ulteriori istruzioni."
+        ],
+        "close": [
+            "Close this message",
+            "Chiudi questo messaggio"
+        ]
+    }
+}

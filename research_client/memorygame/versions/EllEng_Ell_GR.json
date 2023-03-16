@@ -1,0 +1,91 @@
+{
+    "meta": {
+        "versionId": "EllEng_Ell_GR",
+        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-03-15"
+    },
+    "base": {
+        "appTitle": [
+            "Memory Task",
+            "Εργασία Πνήμης"
+        ]
+    },
+    "game": {
+        "secTitle": [
+            "Memory Task",
+            "Εργασία Πνήμης"
+        ],
+        "round": [
+            "Round",
+            "Γύρος"
+        ],
+        "xofy": [
+            "<!-- x --> of <!-- y -->",
+            "<!-- x --> από <!-- y -->"
+        ],
+        "cardsTurned": [
+            "Cards turned:",
+            "Kάρτα περιστράφηκε:"
+        ],
+        "timeElapsed": [
+            "Time:",
+            "Ώρα:"
+        ],
+        "resultsModalTitle": [
+            "Memory Task Results",
+            "Αποτελέσματα της εργασίας μνήμης"
+        ],
+        "completeCongratulations": [
+            "Well done, you've matched all the cards!",
+            "Πολύ καλό, τα έχεις βρει όλα τα ζευγάρια!"
+        ],
+        "yourScore": [
+            "Your score:",
+            "Το αποτέλεσμά σας"
+        ],
+        "numberOfTries": [
+            "Number of tries:",
+            "Αριθμός προσπαθειών:"
+        ],
+        "timeNeeded": [
+            "Time needed:",
+            "Ώρα:"
+        ],
+        "continueNextGame": [
+            "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
+            "Κάντε κλικ στο &ldquo;Επόμενο&rdquo; για να προσπαθήσετε ξανά.<br /> Προσπαθήστε να βελτιώσετε ξανά το αποτέλεσμά σας!"
+        ],
+        "continueFinished": [
+            "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
+            "Ολοκληρώσατε με επιτυχία αυτήν την εργασία!<br /> Κάντε κλικ στο &ldquo;Συνέχεια&rdquo; να τελειώσει."
+        ],
+        "continue": [
+            "Continue",
+            "Επόμενο"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Memory Task!",
+            "Ευχαριστούμε που ολοκληρώσατε την εργασία μνήμης!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Μπράβο!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the memory task. Your data has been saved.",
+            "Έχετε ολοκληρώσει τώρα την εργασία μνήμης. Τα δεδομένα σας έχουν αποθηκευτεί."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Κάντε κλικ στο “Συνέχεια” όταν είστε έτοιμοι να συνεχίσετε."
+        ],
+        "continue": [
+            "Continue",
+            "Συνέχεια"
+        ]
+    }
+}

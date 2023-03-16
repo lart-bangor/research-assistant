@@ -1,0 +1,131 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Client - AGT{% endblock %}
+{% block headline %}AGT: Voice Rating{% endblock %}
+{% block head_scripts %}
+    <script type="text/javascript">
+        function loadSurveyVersions() {
+            availableVersions = eel._agt_getversions()(populateSurveyVersions);
+        }
+
+        function populateSurveyVersions(versions) {
+            select = document.getElementById('selectSurveyVersion');
+            for(version in versions) {
+                option = document.createElement('option');
+                option.setAttribute('value', version);
+                option.appendChild(document.createTextNode(versions[version]))
+                select.appendChild(option);
+            }
+        }
+    </script>
+{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="p-2">
+
+        <!-- <div class="row m-4">
+            <div class="col">
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row m-4 text-center">
+            <div class="col">
+                <h2>AGT: Voice Rating</h2>
+            </div>
+        </div>
+
+        <form id="surveyDataForm" class="needs-validation">
+
+            <!-- Survey version -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="selectSurveyVersion" class="form-label">Select AGT version:</label>
+                    <select id="selectSurveyVersion" class="form-select" required>
+                    </select>
+                    <script type="text/javascript">
+                        loadSurveyVersions();
+                    </script>
+                    <div class="invalid-feedback">
+                        <p>Please select one of the available versions of the AGT.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Researcher details -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="researcherId" class="form-label">Researcher ID:</label>
+                    <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
+                    <div id="researcherIdHelp" class="form-text">Enter the researcher’s name or ID.</div>
+                    <div class="invalid-feedback">
+                        <p>Please provide a valid Researcher ID or name. The ID can only contain letters and numbers (no spaces, hyphens, etc.) and must be between 3 and 10 characters in length.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research location -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="researchLocation" class="form-label">Location:</label>
+                    <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="[\p{L}0-9,' \(\)\.\-]{1,50}" required />
+                    <div id="researchLocationHelp" class="form-text">Enter the location (e.g. town name) where the research is undertaken.</div>
+                    <div class="invalid-feedback">
+                        <p>Please enter a location name, for example <i>Bangor, Gwynedd</i>. Location names can contain letters, numbers, spaces, commas and parentheses and they can be up to 50 characters in length.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Participant details -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="participantId" class="form-label">Participant ID:</label>
+                    <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required autocomplete="off" />
+                    <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
+                    <div class="invalid-feedback">
+                        <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Informed consent -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <p class="form-label" style="margin-left:0">Confirm consent:</p>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="confirmConsent" required autocomplete="off" />
+                        <label class="form-check-label" for="confirmConsent">I confirm that the participant has given informed consent.</label>
+                        <div class="invalid-feedback">
+                            <p>Please confirm that you have obtained informed consent from the participant before starting this questionnaire.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form submission -->
+            <div class="row text-center p-3 m-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow">Start</button>
+                </div>
+            </div>
+
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        lart.forms.requireValidation(true);
+        lart.forms.util.autofillForm('surveyDataForm');
+    </script>
+    {{ lart_form_pipeline('surveyDataForm', '_agt_init') }}
+{% endblock %}

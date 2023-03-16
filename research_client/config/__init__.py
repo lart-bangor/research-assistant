@@ -31,20 +31,20 @@ Example:
 from __future__ import annotations
 import json
 import logging
-from appdirs import AppDirs
+from platformdirs import PlatformDirs
 from copy import copy
 from dataclasses import MISSING, dataclass, field, fields, asdict, is_dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Final, Callable, ClassVar, Optional, Union, get_type_hints
 
-__all__ = ["config", "Config", "_default_dirs"]
+__all__ = ["config", "Config", "_default_paths"]
 
 logger = logging.getLogger(__name__)
 
 _appname: str = "Research Client"
 _appauthor: str = "LART"
-_default_dirs: AppDirs = AppDirs(_appname, _appauthor, roaming=True)
+_default_paths = PlatformDirs(_appname, _appauthor, roaming=True)
 
 
 class JSONPathEncoder(json.JSONEncoder):
@@ -61,7 +61,7 @@ class DataclassDictMixin:
     """Mixin adding asdict() and fromdict() methods to a dataclass."""
 
     @classmethod
-    def fromdict(cls, d: dict[str, Any]):  # noqa: C901
+    def fromdict(cls, d: dict[str, Any], ignorefaults: bool = False):  # noqa: C901
         """Recursively converts a dictionary to a dataclass instance."""
         if not is_dataclass(cls):
             raise TypeError(f"Class {cls!r} is not a dataclass.")
@@ -75,10 +75,16 @@ class DataclassDictMixin:
         args: dict[str, Any] = {}
         for name, value in d.items():
             if name not in type_map:
-                raise ValueError(f"Dataclass {cls!r} has no attribute {name!r}.")
+                if ignorefaults:
+                    logger.error(
+                        f"Dataclass {cls!r} has no attribute {name!r} - {name!r} will be ignored."
+                    )
+                    continue
+                else:
+                    raise ValueError(f"Dataclass {cls!r} has no attribute {name!r}.")
             if is_dataclass(type_map[name]) and isinstance(d[name], dict):
                 if hasattr(type_map[name], "fromdict"):
-                    value = type_map[name].fromdict(d[name])  # type: ignore
+                    value = type_map[name].fromdict(d[name], ignorefaults)  # type: ignore
                 else:
                     raise TypeError(
                         f"Dataclass {type_map[name]!r} has no method 'fromdict'."
@@ -168,10 +174,48 @@ class DataclassDocMixin:
 class Paths(DataclassDictMixin, DataclassDocMixin):
     """Class for configuration of App paths."""
 
-    config: Path = field(default=Path(_default_dirs.user_config_dir), init=False)
-    data: Path = field(default=Path(_default_dirs.user_data_dir) / "data")
-    logs: Path = field(default=Path(_default_dirs.user_log_dir))
-    cache: Path = field(default=Path(_default_dirs.user_cache_dir))
+    config: Path = field(
+        default=_default_paths.user_config_path,
+        init=False,
+        metadata={
+            "doc_label": "Path for configuration files",
+            "doc_help": (
+                "Note that changes to the configuration file path have no effect "
+                "and will automatically revert to the default path. The path "
+                "shown here is primarily of informational value."
+            )
+        }
+    )
+    data: Path = field(
+        default=_default_paths.user_data_path / "data",
+        metadata={
+            "doc_label": "Path for data files",
+            "doc_help": (
+                "This is the path where data files (responses) from the app's "
+                "tasks are stored."
+            )
+        }
+    )
+    logs: Path = field(
+        default=_default_paths.user_log_path,
+        metadata={
+            "doc_label": "Path for log files",
+            "doc_help": (
+                "This is the path where the app stores log files, which may "
+                "contain useful information for debugging and error reporting. "
+            )
+        }
+    )
+    cache: Path = field(
+        default=_default_paths.user_cache_path,
+        metadata={
+            "doc_label": "Path for temporarily cached data and files",
+            "doc_help": (
+                "This is a path where the app may temporarily cache "
+                "(store, modify, delete) various files during operation."
+            )
+        }
+    )
 
     def __post_init__(self):
         """Post-init method that ensures paths are all pathlib Path objects."""
@@ -276,18 +320,32 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
 
     _sequence_options: ClassVar[dict[str, str]] = {
         "App start screen": "",
+        "AGT": "agt",
         "AToL-C": "atolc",
+        "Conclusion Screen": "conclusion",
         "Consent Form": "consent",
         "LSBQe": "lsbq",
-        "Memory Game": "memorygame",
-        "MGT": "mgt",
+        "Memory Task": "memorygame",
     }
-
+    agt: str = field(
+        default="",
+        metadata={
+            "doc_label": "Task following the AGT",
+            "doc_values": _sequence_options,
+        }
+    )
     atolc: str = field(
         default="memorygame",
         metadata={
             "doc_label": "Task following the AToL-C",
             "doc_values": _sequence_options,
+        }
+    )
+    conclusion: str = field(
+        default="",
+        metadata={
+            "doc_label": "Task following the Conclusion Screen",
+            "doc_values": _sequence_options
         }
     )
     consent: str = field(
@@ -307,14 +365,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
     memorygame: str = field(
         default="",
         metadata={
-            "doc_label": "Task following the Memory Game",
-            "doc_values": _sequence_options,
-        }
-    )
-    mgt: str = field(
-        default="",
-        metadata={
-            "doc_label": "Task following the MGT",
+            "doc_label": "Task following the Memory Task",
             "doc_values": _sequence_options,
         }
     )
@@ -331,16 +382,32 @@ class Config(DataclassDictMixin, DataclassDocMixin):
         default=Logging(),
         metadata={
             "doc_label": "Logging settings",
-            "doc_help": "Configures the app's debug and error logging."
+            "doc_help": (
+                "Configures the app's debug and error logging."
+                "\n"
+                "Modifying the logging settings can be useful for diagnosing "
+                "errors you encounter or when developing new tasks using the "
+                "app. Be mindful that it is easy to get 'too much information' "
+                "if the logging levels are set to report very high detail."
+            )
         }
     )
     paths: Paths = field(
         default=Paths(),
         metadata={
-            "doc_label": "App path and directory settings",
+            "doc_label": "Path and directory settings",
             "doc_help": (
                 "Configures the paths used by the app for storing and reading "
                 "various files, such as data, settings, and logs."
+                "\n"
+                "It is strongly recommended that you do not modify any of the "
+                "app paths unless you are positively confident that you know "
+                "what you are doing. Incorrect path information could lead to "
+                "unstable behaviour and in the worst case even data loss."
+                "\n"
+                "If paths are modified it is best to always restart the app and "
+                "fully test that everything is working as expected, including "
+                "inspecting the stored data files after running a task."
             )
         }
     )
@@ -349,7 +416,9 @@ class Config(DataclassDictMixin, DataclassDocMixin):
         metadata={
             "doc_label": "Task sequencing",
             "doc_help": (
-                "Configures the automatic sequencing of tasks. If a task is "
+                "Configures the automatic sequencing of tasks."
+                "\n"
+                "If a task is "
                 "assigned a follow-up task, the user will be automatically "
                 "redirected to the follow-up task upon completion."
             )
@@ -386,14 +455,14 @@ class Config(DataclassDictMixin, DataclassDocMixin):
             raise
 
     @classmethod
-    def load(cls, filename: str = "settings.json"):
+    def load(cls, filename: str = "settings.json") -> Config:
         """Load configuration from a file or return default Config()."""
-        path = Path(_default_dirs.user_config_dir) / filename
+        path = _default_paths.user_config_path / filename
         if path.exists():
             try:
                 with path.open("r") as fp:
                     d = json.load(fp)
-                cfg = Config.fromdict(d)
+                cfg = Config.fromdict(d, ignorefaults=True)
                 logging.debug(
                     f"Successfully loaded config from file ('{path}') with "
                     f"values: {json.dumps(cfg.asdict(), cls=JSONPathEncoder)}"

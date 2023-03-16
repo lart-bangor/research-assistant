@@ -1,0 +1,68 @@
+{
+    "meta": {
+        "versionId": "CymEng_Eng_GB.atol",
+        "versionType": "AToL",
+        "versionLanguages": "Welsh – English (United Kingdom)",
+        "versionName": "AToL: Welsh – English (United Kingdom)",
+        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2022-05-05"
+    },
+    "base": {
+        "consentHeader": "Participant Information Sheet",
+        "eligibilityHeader": "Eligibility Criteria",
+        "eligibilityLabel": "Please read the eligibility criteria below and confirm that you qualify, thank you"
+    },
+    "versionInfo" : {
+        "titleLabel":"Study Title", 
+        "titleInfo":"Language background and executive function in bilingual speakers",
+        "purposeLabel": "What is the purpose of the research?",
+        "purposeInfo": "This study is part of a larger research project investigating bilingualism across Europe. <br /> The project aims to find out more about bilinguals in several areas across Europe, including Wales.",
+        "whyLabel": "Why am I being invited to participate?",
+        "whyInfo": "You have been chosen because you are a bilingual Welsh-English speaker.",
+        "commitLabel": "Do I have to take part?",
+        "commitInfo": "It is up to you to decide whether or not to take part. If you do decide to take part you should indicate your agreement on the online consent form.<br />You can still withdraw at any time, and you do not need to give a reason.",
+        "whatLabel": "What am I being invited to do?",
+        "whatInfo": "You will be asked to complete an electronic questionnaire and play a quick electronic game.<br /> We estimate that they full procedure will take you about 20 minutes to complete.<br />There are no other commitments or restrictions associated with participating.",
+        "concernLabel": "What are the possible disadvantages and risks of taking part?",
+        "concernInfo": "Participating in the research is not anticipated to cause you any disadvantages or discomfort <br />beyond what you might experience in everyday life.", 
+        "concern1Label": "What if something goes wrong?",
+        "concern1Info": "If you have any complaints about the project in the first instance you can contact any member of the research team.<br />If you feel your complaint has not been handled to your satisfaction you can contact Bangor University’s Governance Services to take your complaint further (see below).",
+        "confidentialLabel": "Will my taking part in this project be kept confidential?",
+        "confidentialInfo": "All the information that we collect about you during the course of the research will be kept strictly confidential. <br />You will not be identified or identifiable in any reports or publications. Any data collected about you in the electronic questionnaire will be stored in a Bangor University computer protected by passwords and by other relevant security processes and technologies. <br/> Data may be shared in an anonymised form to allow reuse by other researchers. These anonymised data will not allow you to be identified or identifiable. <br /> We also ask that you do not disclose anything about what you did during this study to anyone outside of the research team. It is important that information regarding the nature of the research remains confidential.",
+        "recordingLabel": "Will I be recorded, and how will the recorded media be used?",
+        "recordingInfo": "You may be audio-recorded while taking part in the research. <br />If you happen to be recorded, you will be informed in details at the end of your participation.",
+        "taskTypeLabel": "What type of information will be sought from me and why is the collection of this information relevant for achieving the research project's objectives?",
+        "taskTypeInfo": "The questionnaire will ask you about your opinions and current language use in Wales.<br /> Your experience as a speaker is exactly what the project is interested in exploring.",
+        "dataUseLabel": "What will happen to the results of the research project?",
+        "dataUseInfo": "Results of the research will be published as quantitative data, which means that no single individual will be identified in any report or publication.",
+        "whoLabel": "Who is organising and funding the research?",
+        "whoInfo": "The project is a partnership involving <i>Dr Marco Tamburelli</i> and <i>Prof Guillaume Thierry</i> of Bangor University, and is funded by the UK's Economic and Social Research Council.",
+        "ethicsLabel": "Who has ethically reviewed the project?",
+        "ethicsInfo": "This project has been ethically approved by the Research Ethics Committee in the College of Arts, Humanities and Business at Bangor University. <br />This is the body that caries out the ethics review procedure and monitors the application and delivery of the College's and University's Research Ethics Guidelines and Ethics Approval Procedures.",
+        "contactsLabel": "Contacts for further information",
+        "contactsInfo": "<i>Dr Marco Tamburelli</i> (Principal Investigator), School of Arts, Culture and Language, 39 College Road, Bangor University, UK. Tel: +44 (0)1248 38 2078, email: m.tamburelli@bangor.ac.uk <br /> The contact person for Bangor University's Governance Services is <i>Lauren Roberts</i> who can be reached at the following address: Lauren Roberts, Governance Services, Bangor University, Bangor, Gwynedd, LL57 2DG, UK or via email: l.roberts@bangor.ac.uk"
+    },
+    "confirmation": {
+        "confirm": "Confirm consent",
+        "confirmTxt": "Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you.",
+        "confirmWarn": "Please confirm that you consent to the above before beginning your participation in the study, thank you.",
+        "btnTxt": "Confirm"
+    },
+    "eligibilityCriteria": {
+        "lang": "I am a speaker of English and Welsh",
+        "age": "I am between 25 and 35 years old",
+        "hearing": "I do not suffer from hearing impairments",
+        "vision": "I do not have any visual impairments (defined as a loss of sight that is not corrected by glasses or contact",
+        "injury": "I have never suffered a serious head injury",
+        "neuro": "I have never been diagnosed with any neurological impairments",
+        "meds": "I am not currently under heavy medical treatment for a neurological condition"
+    },
+    "eligibilityConfirm": {
+        "eligConfirmLabel": "Confirm eligibility:",
+        "eligConfirmTxt": "I confirm that I meet the criteria above",
+        "eligConfirmWarn": "Please confirm that you are eligible to take part in this study, thank you."
+    }    
+
+} 
+
+ 

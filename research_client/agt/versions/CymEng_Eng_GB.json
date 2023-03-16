@@ -1,0 +1,69 @@
+{
+    "meta": {
+        "versionId": "CymEng_Eng_GB",
+        "versionName": "Welsh – English (United Kingdom)",
+        "versionNumber": "0.3.4",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2022-05-29"
+    },
+    "base": {
+        "appTitle": [
+            "AGT: Voice Rating"
+        ],
+        "next": [
+            "Next"
+        ],
+        "sliderFeedback": [
+            "Please move the slider at least once."
+        ]
+    },
+    "audioMsg": {
+        "load": [
+            "Loading audio..."
+        ],
+        "loaded": [
+            "Audio loaded."
+        ],
+        "play": [
+            "Playing audio..."
+        ],
+        "complete": [
+            "Audio playback complete."
+        ],
+        "playbackError": [
+            "Audio could not be played. Click to try again."
+        ],
+        "abortedError": [
+            "Error: Playback aborted."
+        ],
+        "networkError": [
+            "Error: Audio couldn't be loaded due to a network error."
+        ],
+        "decodeError": [
+            "Error: Audio could not be decoded."
+        ],
+        "formatError": [
+            "Error: Audio file not found or format not supported."
+        ],
+        "unknownError": [
+            "Error: An unknown error occurred."
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Voice Rating Task!"
+        ],
+        "feedback": [
+            "Well done!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the memory task. Your data has been saved."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue."
+        ],
+        "continue": [
+            "Continue"
+        ]
+    }
+}
