@@ -31,20 +31,20 @@ Example:
 from __future__ import annotations
 import json
 import logging
-from appdirs import AppDirs
+from platformdirs import PlatformDirs
 from copy import copy
 from dataclasses import MISSING, dataclass, field, fields, asdict, is_dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Final, Callable, ClassVar, Optional, Union, get_type_hints
 
-__all__ = ["config", "Config", "_default_dirs"]
+__all__ = ["config", "Config", "_default_paths"]
 
 logger = logging.getLogger(__name__)
 
 _appname: str = "Research Client"
 _appauthor: str = "LART"
-_default_dirs: AppDirs = AppDirs(_appname, _appauthor, roaming=True)
+_default_paths = PlatformDirs(_appname, _appauthor, roaming=True)
 
 
 class JSONPathEncoder(json.JSONEncoder):
@@ -175,7 +175,7 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
     """Class for configuration of App paths."""
 
     config: Path = field(
-        default=Path(_default_dirs.user_config_dir),
+        default=_default_paths.user_config_path,
         init=False,
         metadata={
             "doc_label": "Path for configuration files",
@@ -187,7 +187,7 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
         }
     )
     data: Path = field(
-        default=Path(_default_dirs.user_data_dir) / "data",
+        default=_default_paths.user_data_path / "data",
         metadata={
             "doc_label": "Path for data files",
             "doc_help": (
@@ -197,7 +197,7 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
         }
     )
     logs: Path = field(
-        default=Path(_default_dirs.user_log_dir),
+        default=_default_paths.user_log_path,
         metadata={
             "doc_label": "Path for log files",
             "doc_help": (
@@ -207,7 +207,7 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
         }
     )
     cache: Path = field(
-        default=Path(_default_dirs.user_cache_dir),
+        default=_default_paths.user_cache_path,
         metadata={
             "doc_label": "Path for temporarily cached data and files",
             "doc_help": (
@@ -457,7 +457,7 @@ class Config(DataclassDictMixin, DataclassDocMixin):
     @classmethod
     def load(cls, filename: str = "settings.json") -> Config:
         """Load configuration from a file or return default Config()."""
-        path = Path(_default_dirs.user_config_dir) / filename
+        path = _default_paths.user_config_path / filename
         if path.exists():
             try:
                 with path.open("r") as fp:
