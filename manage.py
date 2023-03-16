@@ -275,7 +275,7 @@ def build() -> bool:                                                            
         archive_format = "gztar"
     print(f"Packaging distributable {archive_format.upper()} from PyInstaller distribution...")
     archive_file = Path(shutil.make_archive(str(pyi_dist_dir), archive_format))
-    archive_file.replace(dist_dir / archive_file.name)
+    archive_file = archive_file.replace(dist_dir / archive_file.name)
     print(f"{INDENT}ZIP distributable moved to '{archive_file}'.")
     print("Done.")
 
@@ -312,7 +312,7 @@ def build() -> bool:                                                            
                 f"{INDENT}ERROR: Expected installer file '{installer_file}' not found."
             )
             return False
-        installer_file.replace(dist_dir / installer_file.name)
+        installer_file = installer_file.replace(dist_dir / installer_file.name)
         print(f"{INDENT}EXE installer distributable moved to '{archive_file}'.")
         print(child)
         print("Done.")
