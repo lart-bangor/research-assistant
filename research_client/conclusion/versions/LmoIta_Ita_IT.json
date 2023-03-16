@@ -15,7 +15,7 @@
     "end": {
         "secTitle": [
             "All tasks completed!",
-            "Tutti i compiti sono stati completati!"
+            "Ha completato tutte le attività!"
         ],
         "feedback": [
             "Well done!",
@@ -23,15 +23,15 @@
         ],
         "thankYouMessage": [
             "You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
-            "Ora hai completato tutte le attività. I tuoi dati sono stati salvati automaticamente, ma non chiudere ancora l'app."
+            "Ha completato tutte le attività. I Suoi dati sono stati salvati automaticamente, ma non chiuda ancora l'app."
         ],
         "followOnInstructions": [
             "Please let the researcher know that you've finished with the app tasks. They will check that we have everything we need and give you any further instructions if needed.",
-            "Comunica ai ricercatori che hai terminato le attività nell'app. Verificherà quindi che abbiamo tutto ciò di cui abbiamo bisogno e ti darà ulteriori istruzioni."
+            "La preghiamo di comunicare al ricercatore che ha terminato le attività nell'app. Il ricercatore verificherà che abbiamo tutto ciò di cui abbiamo bisogno e Le darà ulteriori istruzioni."
         ],
         "close": [
-            "Close",
-            "Vicino"
+            "Close this message",
+            "Chiudi questo messaggio"
         ]
     }
 }

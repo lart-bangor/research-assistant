@@ -4,9 +4,9 @@ import shutil
 import logging
 import json
 from pathlib import Path
-from tkinter import Tk, Label, Button, filedialog, messagebox
+from tkinter import Tk, Label, filedialog, messagebox
 from typing import Any, Literal
-from .config import config, Config, _default_dirs                               # type: ignore
+from .config import config, Config, _default_paths                               # type: ignore
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,7 @@ def manage_settings(command: Literal["update", "reset", "clear"] | str) -> bool:
                     useful in cases where the user wants to revert to the apps
                     default settings, without the intent to make manual changes.
     """
-    config_file = Path(_default_dirs.user_config_dir) / "settings.json"
+    config_file = _default_paths.user_config_path / "settings.json"
     if command == "clear":
         logger.debug("Clearing the settings file...")
         if config_file.is_file():

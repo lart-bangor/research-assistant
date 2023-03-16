@@ -15,7 +15,7 @@
     "end": {
         "secTitle": [
             "All tasks completed!",
-            "Pob tasg wedi ei wneud!"
+            "Pob tasg wedi ei gwblhau!"
         ],
         "feedback": [
             "Well done!",
@@ -27,11 +27,11 @@
         ],
         "followOnInstructions": [
             "Please let the researcher know that you've finished with the app tasks. They will check that we have everything we need and give you any further instructions if needed.",
-            "Dywedwch wrth yr ymchwilwyr eich bod wedi gorffen gyda'r tasgau yn yr ap. Yna bydd yn gwirio bod gennym bopeth sydd ei angen arnom ac yn rhoi cyfarwyddiadau pellach i chi."
+            "Dywedwch wrth yr ymchwilydd eich bod wedi gorffen gyda thasgau'r ap. Bydd yr ymchwilydd yn gwirio bod gennym bopeth sydd ei angen arnom ac yn rhoi cyfarwyddiadau pellach i chi."
         ],
         "close": [
-            "Close",
-            "Cau"
+            "Close this message",
+            "Cau'r neges hon"
         ]
     }
 }
