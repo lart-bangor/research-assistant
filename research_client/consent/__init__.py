@@ -116,8 +116,8 @@ def record_consent(data: dict[Any, Any]):
     print(data)
     if config.sequences.consent:
         query = booteel.buildquery({
-            "selectSurveyVersion": data["surveyVersion"],
-            "confirmConsent": int(data["informedConsent"]),
+            "selectSurveyVersion": data["surveyVersion"].split(".", 1)[0],
+            "confirmConsent": str(int(data["informedConsent"])),
             "participantId": data["participantId"],
             "surveyDataForm.submit": "false",
         })
