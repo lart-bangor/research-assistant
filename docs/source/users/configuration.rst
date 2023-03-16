@@ -1,16 +1,16 @@
-Configuring the app for your needs
-==================================
+Settings: configuring the app
+=============================
 
 The app’s settings can be accessed via the app side menu. There are numerous aspects of the app that 
 can be changed on the settings page. The various options are discussed in some detail below. 
 
 Remember to click :guilabel:`Save changes` and restart the app in order for the changes you make to take effect. 
 
-.. figure:: figures/figure21.png
+.. figure:: figures/figure40.png
       :width: 400
       :alt: Screenshot of completing the L'ART Research Client menu
 
-      Figure 21 - Open the sidebar to enter settings
+      Figure 40 - Open the sidebar to enter settings
 
 Shutdown delay
 --------------
@@ -25,11 +25,11 @@ delay when using an underpowered device e.g., a 4GB Surface Tab Go or some other
 Problems with limited system resources can lead to the app freezing or becoming unresponsive. Increasing the shutdown
 delay means that the app will wait longer in case the system temporarily delays the processing of expected signals and information. 
 
-.. figure:: figures/figure22.png
+.. figure:: figures/figure41.png
       :width: 400
       :alt: Screenshot of shutdown delay section in general app settings
 
-      Figure 22 - Editing shutdown delay
+      Figure 41 - Editing shutdown delay
 
 Logging settings
 ----------------

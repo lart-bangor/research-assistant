@@ -23,12 +23,10 @@ However, if you close the terminal, the main app window will not close automatic
 
 On the app home screen, you will see the list of available tasks in the centre of your app, and a side menu containing
 several options, some of which are context-dependent. For example, the side menu contains options for `discarding attempts <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/discarding-attempts.html>`_,
-`collecting electronic informed consent <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/collecting-data.html#commencing-data-collection-and-gaining-consent>`_, 
-`unlocking the app <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/collecting-data.html#locking-and-unlocking-the-app>`_, `exporting data <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html>`_,
-app settings (1.4.4) and a dialog providing information about the app.
+`collecting electronic informed consent <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/data-setup.html>`_, 
+`unlocking the app <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/locking-app.html>`_, `exporting data <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html>`_,
+`app settings <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/configuration.html#>`_ and a dialog providing information about the app.
 
 These options are described in the linked sub-sections of the documentation.  
 
-.. // add link to app settings
-
-.. ask whether they want section numbers along with the title 
+.. NO section numbers 

@@ -9,20 +9,23 @@ collected on various devices, you can do this straightforwardly on the app.
 
 For the simplest way to do this, open the side menu, and click on :guilabel:`Export Data`.  
 
-.. figure:: figures/figure18.png
+.. figure:: figures/figure33.png
       :width: 400
       :alt:  Screenshot of L'ART Research Client menu
 
-      Figure 18- Open the side bar to export data
+      Figure 33- Open the side bar to export data
 
 Once you have clicked on export data, a dialog will appear which allows you to save a ZIP archive containing
 all the responses currently stored on the computer in a location of your choice. 
 
-.. figure:: figures/figure19.png
+.. note::
+      Identify and remember your file path before saving, so that you know where to find your ZIP archive containing the exported data.
+
+.. figure:: figures/figure34.png
       :width: 400
       :alt: Screenshot of saving exported data
 
-      Figure 19 - Saving the exported data
+      Figure 34 - Saving the exported data
 
 For advanced users who want to automate export or backup of the responses, or monitor and integrate these files
 with some other system, the files can be accessed directly on the system. 

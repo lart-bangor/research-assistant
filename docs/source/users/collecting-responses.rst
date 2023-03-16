@@ -34,7 +34,7 @@ While all tasks within the L'ART Research Client can be completed with a touch i
 with access to both a keyboard and a pointing device (e.g., a mouse or trackpad), as this ensures the best user experience and the sliders used to collect
 continuous data are more accurate when used with a pointing device rather than a keyboard.
 
-A significant portion of the tasks available on the L’ART Research Client make use of sliders. Sliders are displayed in a lighter hue with their indicator displayed
+A significant portion of the tasks available on the L’ART Research Client make use of sliders. Sliders are displayed in a lighter shade with their indicator displayed
 in the middle by default, and they must be moved at least once for the answer to be valid.
 
 Once moved, the slider will turn a darker shade of blue to show that the slider is active and has been moved by the participant. Should the participant want to keep the slider in the middle of the bar,

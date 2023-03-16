@@ -35,7 +35,7 @@ System requirements
 Required Software
 -----------------
 
-You must have a current version of the `Google Chrome browser <https://www.google.co.uk/chrome/>`_` installed. The L’ART Research Client relies on this to provide its User Interface. 
+You must have a current version of the `Google Chrome browser <https://www.google.co.uk/chrome/>`_ installed. The L’ART Research Client relies on this to provide its User Interface. 
 
 
 Tested System Configurations
