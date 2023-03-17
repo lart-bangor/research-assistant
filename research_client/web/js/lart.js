@@ -1,5 +1,5 @@
 /**
- * @file LART Research Client JavaScript Library.
+ * @file L'ART Research Client JavaScript Library.
  * 
  * This library implements interfaces and utility functions designed to simplify
  * common tasks for the LART Research Client frontend. It's designed to work
@@ -13,9 +13,20 @@
 booteel.logger.debug("lart.js loaded.");
 
 /**
- * The LART Research Client JavaScript Library.
+ * Namespace for the L'ART Research Client JavaScript Library.
  * 
- * @namespace
+ * This is a meta-namespace for the L'ART Research Client JavaScript Library.
+ * The functionality provided by the library is grouped into severl subordinate
+ * namespaces, viz.
+ * 
+ *  - {@link lart.appLock} - App locking state management
+ *  - {@link lart.forms} - Form management
+ *  - {@link lart.utils} - General utility functions
+ *  - {@link lart.utils.UUID} - Utilities for handling UUIDs
+ *  - {@link lart.tr} - On-the-fly UI translation management
+ * 
+ * @summary General namespace for the library.
+ * @namespace {object} lart
  */
 const lart = {};
 
@@ -26,12 +37,45 @@ const lart = {};
 /**
  * App locking state management.
  * 
- * @namespace
+ * The `lart.appLock` namespace provides functionality for the management
+ * of the app's global lock state. The lock state is used to optionally enable
+ * or disable certain functionality in the UI, such as the user's ability to
+ * open the right-click context menu. Generally, the functionality that is made
+ * dependent on the lock state should only include that functionality which may
+ * be inadvertently used by a user during a task that could corrupt the responses
+ * collected for that task (e.g. by right clicking they could reload, resubmit,
+ * inspect the source logic, etc.). 
+ * 
+ * @summary App locking state management
+ * @namespace {object} lart.appLock
+ * @memberof lart
  */
 lart.appLock = {};
 
+/**
+ * Set holding references to HTMLElements that should reflect the
+ * app's global lock state.
+ * 
+ * Use {@link lart.appLock.registerSwitch} to register HTMLElements
+ * that should be switched along with the app's global lock state.
+ * 
+ * @protected
+ * @type {Set}
+ */
 lart.appLock.switches = new Set();
 
+/**
+ * The app's current global lock state.
+ *
+ * This will be either the string 'locked' or the string 'unlocked'.
+ * 
+ * You should never set the app's lock state manually by manipulating this
+ * variable. Instead use the {@link lart.appLock.lock} and
+ * {@link lart.appLock.unlock} functions to set the app's lock state.
+ *
+ * @protected
+ * @type {string}
+ */
 lart.appLock.state = 'locked';
 
 setTimeout(
@@ -44,6 +88,11 @@ setTimeout(
     }
 );
 
+/**
+ * Set app's lock state to *locked*.
+ * 
+ * @returns {null}
+ */
 lart.appLock.lock = function() {
     console.log("Locking app...")
     lart.appLock.state = 'locked';
@@ -54,6 +103,11 @@ lart.appLock.lock = function() {
     document.querySelector('html').addEventListener('contextmenu', lart.appLock._contextMenuHandler);
 }
 
+/**
+ * Set app's global state to *unlocked*.
+ * 
+ * @returns {null}
+ */
 lart.appLock.unlock = function() {
     console.log("Unlocking app...")
     lart.appLock.state = 'unlocked';
@@ -64,10 +118,25 @@ lart.appLock.unlock = function() {
     document.querySelector('html').removeEventListener('contextmenu', lart.appLock._contextMenuHandler);
 }
 
+/**
+ * Simple event handler to prevent default behaviour when the context menu is triggered.
+ * 
+ * @private
+ * @param {Event} event The context menu triggering event.
+ */
 lart.appLock._contextMenuHandler = function(event) {
     event.preventDefault();
 }
 
+/**
+ * Toggle the app's lock status, irrespective of its current state.
+ * 
+ * Calling this function will set the app's global lock state to *unlocked*
+ * if it is currently *locked*, and it will set it to *locked* if it is
+ * currently *unlocked*.
+ * 
+ * @returns {null}
+ */
 lart.appLock.toggleState = function() {
     if (lart.appLock.state == 'locked') {
         lart.appLock.unlock();
@@ -76,6 +145,13 @@ lart.appLock.toggleState = function() {
     }
 }
 
+/**
+ * Register an HTMLElement to be switched over on changes to the app's global lock state.
+ * 
+ * @param {HTMLElement|string} switchElementOrId 
+ * @param {string} eventType 
+ * @returns {null}
+ */
 lart.appLock.registerSwitch = function (switchElementOrId, eventType = 'click') {
     const element = lart.forms.getElementByGreed(switchElementOrId);
     lart.appLock.switches.add(element);
@@ -88,6 +164,12 @@ lart.appLock.registerSwitch = function (switchElementOrId, eventType = 'click') 
     lart.appLock._setSwitchState(element);
 }
 
+/**
+ * Sets the innerHTML of an HTMLElement according to the current switch state.
+ * 
+ * @private
+ * @param {HTMLElement} element 
+ */
 lart.appLock._setSwitchState = function(element) {
     if (lart.appLock.state == 'unlocked') {
         element.innerHTML = '<i class="bi bi-unlock"></i> Lock app';
@@ -101,23 +183,30 @@ lart.appLock._setSwitchState = function(element) {
 //
 
 /**
- * LART utilities.
+ * General utilities for the L'ART Research Client.
  * 
- * @namespace
+ * This namespace provides various general utility functions needed either by other
+ * parts of the library or otherwise useful in the implementation of the L'ART
+ * Research Client's frontend.
+ * 
+ * @summary General utility functions
+ * @namespace lart.utils
+ * @memberof lart
  */
-
 lart.utils = {};
 
 /**
- * Extract ISO 639-2 3-letter language code from a version string.
+ * Extract ISO 639-2/3 alpha-3 language code from a version string.
  * 
  * Given an input of the form "XxxYyy_Zzz_CC" where Xxx, Yyy, and Zzz are three-letter
- * ISO 639-2 language codes, and CC and country code, will return the string Zzz, which
- * is used in the LART app to identify the primary langauage of a test version.
+ * ISO 639-2 or ISO 639-3 alpha-3 language codes, and CC is a two-letter country code,
+ * this function will return the string Zzz, which is used in the L'ART Research Client
+ * to identify the primary display langauage of a test version.
  * 
- * @param {String} version - LART test version string of the form "XxxYyy_Zzz_CC".
- * @returns {String|null} Returns three letter language code representing the primary language
- *      of a LART test version, or null if the supplied string doesn't validly encode one.
+ * @param {string} version - L'ART test version string of the form "XxxYyy_Zzz_CC".
+ * @returns {string|null} Returns three character alpha-3 language code representing the
+ *      primary display languageof a L'ART test version, or *null* if the supplied string
+ *      doesn't validly encode one.
  */
 lart.utils.extractLanguageFromVersion = function (version) {
     const parts = version.split("_")
@@ -128,24 +217,32 @@ lart.utils.extractLanguageFromVersion = function (version) {
 }
 
 /**
- * Shortcut to the URLSearchParams for the current page.
+ * Shortcut to the URLSearchParams for the current window location.
  * 
  * @readonly
  * @type {URLSearchParams}
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams MDN Documentation for `URLSearchParams`}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams MDN Documentation for URLSearchParams}
  */
 lart.utils.searchParams = new URLSearchParams(window.location.search);
 
 /**
- * LART utilities for working with UUIDs.
+ * Utilities for working with UUIDs.
  * 
- * @namespace
+ * This namespace provides utility functions and constants which help
+ * in the management of UUIDs, which are used by the L'ART Research Client
+ * to uniquely identify responses to individual tasks.
+ * 
+ * @summary Utilities for handling UUIDs
+ * @namespace {object} lart.utils.UUID
+ * @memberof lart.utils
  */
 lart.utils.UUID = {};
 
 /**
  * RegEx pattern for identifying valid hex-format UUIDs.
  * 
+ * @readonly
+ * @constant
  * @type {RegExp}
  */
 lart.utils.UUID.pattern = /^[0-9a-f]{8}-?(?:[0-9a-f]{4}-?){3}[0-9a-f]{12}$/i;
@@ -155,7 +252,8 @@ lart.utils.UUID.pattern = /^[0-9a-f]{8}-?(?:[0-9a-f]{4}-?){3}[0-9a-f]{12}$/i;
  * 
  * @readonly
  * @default
- * @type {String}
+ * @constant
+ * @type {string}
  */
 lart.utils.UUID.nilUUID = '00000000-0000-0000-0000-000000000000';
 
@@ -164,16 +262,18 @@ lart.utils.UUID.nilUUID = '00000000-0000-0000-0000-000000000000';
  * 
  * @readonly
  * @default
- * @type {String}
+ * @constant
+ * @type {string}
  */
 lart.utils.UUID.plainNilUUID = '00000000000000000000000000000000';
 
 /**
  * Check whether a string is a valid UUID in hex format.
  * 
- * @param {String} identifier 
- * @returns {Boolean} Boolean indicating whether the provided identifier is a valid
- *          hex-formated UUID or not, with or without separators.
+ * @param {string} identifier 
+ * @returns {boolean} Returns *true* if the provided identifier is a
+ *      valid hex-formated UUID string (with or without separators),
+ *      *false* otherwise.
  */
 lart.utils.UUID.isUUID = function(identifier) {
     return lart.utils.UUID.pattern.test(identifier);
@@ -182,9 +282,10 @@ lart.utils.UUID.isUUID = function(identifier) {
 /**
  * Check whether a UUID in hex format is the Nil UUID.
  * 
- * @param {String} identifier 
- * @returns {Boolean} Boolean indicating whether the provided identifier is the *Nil
- *          UUID* (~UUID equivalent of *null*), with or without separators.
+ * @param {string} identifier 
+ * @returns {boolean} Returns true if the provided identifier is the *Nil
+ *      UUID* (~UUID equivalent of *null*), with or without separators,
+ *      *false* otherwise..
  */
 lart.utils.UUID.isNilUUID = function(identifier) {
     return (identifier == lart.utils.UUID.nilUUID || identifier == lart.utils.UUID.plainNilUUID);
@@ -195,9 +296,14 @@ lart.utils.UUID.isNilUUID = function(identifier) {
 //
 
 /**
- * LART utilities for working with HTML forms.
+ * Form management utilities for the L'ART Research Client
  * 
- * @namespace
+ * This namespace implements an extensive set of utility and helper functions
+ * which facilitate the implementation of forms for the L'ART Research Client.
+ * 
+ * @summary Form management
+ * @namespace {object} lart.forms
+ * @memberof lart
  */
 lart.forms = {};
 
@@ -211,6 +317,7 @@ lart.forms = {};
  * or RadioNodeList, or by its `id` or `name` attribute.
  * 
  * The procedure followed to find an element is as follows:
+ * 
  * - If the passed argument is a HTMLElement or RadioNodeList, return it unchanged.
  * - If the passed argument is a string:
  *      - If *root* implements *.getElementById*, call `root.getElementById(ref)` and return the
@@ -225,19 +332,21 @@ lart.forms = {};
  *        satisfies the *ref* passed to *querySelector*.
  * - If no HTMLElement or RadioNodeList could be found following the above procedure, return `null`.
  * 
- * The *root* argument is optional, and can be either a {@link Document} root or a {@link HTMLElement}
+ * The *root* argument is optional, and can be either a Document root or a HTMLElement
  * node to be used as the root. Note that *HTMLElements* don't implement all the supported query methods
- * and will typically default to the {@link HTMLElement.querySelector} method. Where *root* is not
- * specified, it defaults to the global {@link document} object. The *root* is not used where the *ref*
+ * and will typically default to the HTMLElement.querySelector method. Where *root* is not
+ * specified, it defaults to the global `document` object. The *root* is not used where the *ref*
  * argument already is a *HTMLElement* or *RadioNodeList*.
  * 
- * @param {(HTMLElement|RadioNodeList|String)} ref - A reference to the HTMLElement which should be
+ * @param {(HTMLElement|RadioNodeList|string)} ref - A reference to the HTMLElement which should be
  *          obtained from the DOM. Can be either a JavaScript object directly representing it, or a
  *          string which identifies the element via its `id` or `name` attribute, or a string which
  *          identifies the element using the *querySelector* syntax. 
  * @param {(Document|HTMLElement)} [root=document] - A Document or HTMLElement to be used as the root
  *          for querying. Ignored if *ref* already is a HTMLElement or RadioNodeList.
- * @returns {(HTMLElement|RadioNodeList|null)}
+ * @returns {(HTMLElement|RadioNodeList|null)} Returns a single *HTMLElement*, a *RadioNodeList*, or
+ *      *null*, depending on the first suitable item found in the DOM according to the algorithm
+ *      described above.
  */
 lart.forms.getElementByGreed = function (ref, root = null) {
     if (!root) {
@@ -287,16 +396,17 @@ lart.forms.getElementByGreed = function (ref, root = null) {
  * 
  * @see {@link lart.forms.HTMLFormControlElementTypes}
  * @see {@link lart.forms.isHTMLFormControlElement}
- * @typedef {(HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|RadioNodeList|HTMLMeterElement|HTMLProgressElement|HTMLOutputElement)} HTMLFormControlElement
+ * @typedef {(HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|RadioNodeList|HTMLMeterElement|HTMLProgressElement|HTMLOutputElement)} lart.forms.HTMLFormControlElement
  */
 
 /**
- * Set containing all the types recognised as {@link HTMLFormControlElement}.
+ * Set containing all the types recognised as {@link lart.forms.HTMLFormControlElement}.
  * 
- * @see {@link HTMLFormControlElement}
+ * @see {@link lart.forms.HTMLFormControlElement}
  * @see {@link lart.forms.isHTMLFormControlElement}
  * @readonly
  * @default
+ * @constant
  * @type {Set}
  */
 lart.forms.HTMLFormControlElementTypes = new Set([
@@ -310,12 +420,13 @@ lart.forms.HTMLFormControlElementTypes = new Set([
 ]);
 
 /**
- * Check whether an element is a {@link HTMLFormControlElement}.
+ * Check whether an element is a {@link lart.forms.HTMLFormControlElement}.
  * 
- * @see {@link HTMLFormControlElement}
+ * @see {@link lart.formsHTMLFormControlElement}
  * @see {@link lart.forms.HTMLFormControlElementTypes}
- * @param {Object} element - The object to be checked for implementation of a relevant prototype.
- * @returns {Boolean} Whether the object is a {@link lart.forms.HTMLFormControlElementTypes HTMLFormControlElement}
+ * @param {object} element - The object to be checked for implementation of a relevant prototype.
+ * @returns {boolean} Returns *true* if the object is a {@link lart.forms.HTMLFormControlElement},
+ *      *false* otherwise.
  */
 lart.forms.isHTMLFormControlElement = function (element) {
     for (const controlElementType of lart.forms.HTMLFormControlElementTypes) {
@@ -329,9 +440,10 @@ lart.forms.isHTMLFormControlElement = function (element) {
 /**
  * Obtain the selected option values of an HTMLSelectElement.
  * 
- * @param {(HTMLSelectElement|String)} selectElement The HTMLSelectElement whose values shall be optained,
+ * @param {(HTMLSelectElement|string)} selectElement - The HTMLSelectElement whose values shall be optained,
  *          or a string with the HTMLSelectElement's id or name.
- * @returns {Array<String>} A list of values of all selected options inside the select element.
+ * @returns {Array.<string>} A list of values of all selected options inside the select element.
+ * @throws {TypeError} Throws a TypeError if *elementOrId* does not refer to an HTMLSelectElement.
  */
 lart.forms.getSelectValues = function (elementOrId) {
     const selectElement = lart.forms.getElementByGreed(elementOrId);
@@ -353,11 +465,15 @@ lart.forms.getSelectValues = function (elementOrId) {
 }
 
 /**
- * Obtain the value of an {@link HTMLFormControlElement}.
+ * Obtain the value of any {@link lart.forms.HTMLFormControlElement}.
  * 
- * @param {HTMLFormControlElement} controlElement The form control element
+ * @param {lart.forms.HTMLFormControlElement} controlElement - The form control element
  *          for which the value should be optained.
- * @returns {(String|Array<String>|null)} The value of the passed form control element, if any.
+ * @returns {(string|Array.<string>|null)} The value of the passed form control element,
+ *      if any. This will be a string for control elements with a single value (e.g. 
+ *      text input), an array of strings for those with multiple
+ *      values (e.g. multiselect, checkboxes), or *null* if no value is set for the
+ *      targeted {@link lart.forms.HTMLFormControlElement}.
  */
 lart.forms.getControlValue = function(elementOrId) {
     const controlElement = lart.forms.getElementByGreed(elementOrId);
@@ -393,14 +509,14 @@ lart.forms.getControlValue = function(elementOrId) {
  * Enum of conditions for {@link lart.forms.conditionMatcherFactory}.
  * 
  * Five *condition* values are supported:
- *  - EQUAL is equivaluent to `actualValue == comparisonValue`.
- *  - NOT_EQUAL is equivalent to `actualValue != comparisonValue`.
- *  - SMALLER is equivalent to `actualValue < comparisonValue`.
- *  - GREATER is equivalent to `actualValue > comparisonValue`.
- *  - MATCH is equivalent to `actualValue.match(comparisonValue)`, where *comparisonValue* is a `RegExp`.
+ *  - `EQUAL` is equivaluent to `actualValue == comparisonValue`.
+ *  - `NOT_EQUAL` is equivalent to `actualValue != comparisonValue`.
+ *  - `SMALLER` is equivalent to `actualValue < comparisonValue`.
+ *  - `GREATER` is equivalent to `actualValue > comparisonValue`.
+ *  - `MATCH` is equivalent to `actualValue.match(comparisonValue)`, where *comparisonValue* is a `RegExp`.
  * 
  * @readonly
- * @enum {String}
+ * @enum {string}
  */
 lart.forms.conditionMatcherCondition = {
     /** Compare values with the `==` operator. */
@@ -419,7 +535,8 @@ lart.forms.conditionMatcherCondition = {
  * Check whether a HTMLElement is a radio input control.
  * 
  * @param {HTMLElement} element - The Element to be checked.
- * @returns {Boolean} Whether the element is a HTMLInputElement of type 'radio'.
+ * @returns {boolean} Returns *true* if the element is a HTMLInputElement of type 'radio',
+ *      *false* otherwise.
  */
 lart.forms.isHTMLRadioInputElement = function(element) {
     return (element instanceof HTMLInputElement && element.type == 'radio');
@@ -446,16 +563,19 @@ lart.forms.getRadioNodeList = function (radioElement) {
 }
 
 /**
- * Get a pre-processed collection of a form's control elements.
+ * Get a pre-processed Set of a form's control elements.
  * 
- * Convenience function, which obtains a {@link HTMLFormElement}'s {@link HTMLFormControlElement HTMLFormControlElements}.
- * In contrast to a `HTMLFormControlsCollection`, this function returns a `Set` in which each control is only present
- * once, and where `HTMLInputElements` of type *radio* are represented by a `RadioNodeList`, rather
- * than the `HTMLInputElements` themselves. Further, `HTMLFieldSetElements` have been removed.
+ * Convenience function, which obtains a HTMLFormElement's {@link lart.forms.HTMLFormControlElement}s.
+ * In contrast to a HTMLFormControlsCollection, this function returns a *Set* in which each
+ * control is only present once, and where HTMLInputElements of type *radio* are represented by
+ * a RadioNodeList, rather than the individual HTMLInputElements themselves.
+ * Additionallly, HTMLFieldSetElements have been removed.
  * 
- * @param {(HTMLFormElement|String)} formOrId - The HTMLFormElement (or a string with it's `id` attribute)
- *          for which the HTMLFormControlCollection should be obtained.
- * @returns {Set<HTMLFormControlElement>}
+ * @param {(HTMLFormElement|string)} formOrId - The HTMLFormElement (or a string with its
+ *      `id` attribute) for which the HTMLFormControlCollection should be obtained.
+ * @returns {Set.<lart.forms.HTMLFormControlElement>} Returns a Set of form control elements
+ *      representing unique instances of form control elements in the targeted form.
+ * @throws {TypeError} Throws a TypeError if *formOrId* does not refer to a HTMLFormElement.
  */
 lart.forms.getFormControlElements = function (formOrId) {
     const formElement = lart.forms.getElementByGreed(formOrId);
@@ -486,25 +606,31 @@ lart.forms.getFormControlElements = function (formOrId) {
  * Condition matching function factory.
  * 
  * Generates a function which checks whether the value of one or more form fields (specified by
- * the *nodes* argument) evaluates to true or false compared to *comparisonValue* under *condition*.
+ * the *nodes* argument) evaluates to *true* or *false* compared to *comparisonValue* under *condition*.
  * 
- * *comparisonValue* should be a string or number for all *condition* types *except
- * {@linkcode lart.forms.conditionMatcherCondition.MATCH MATCH}*, for which a {@link RegExp} object
- * should be supplied. If the *condition* is `MATCH` and the *comparisonValue* is not a *RegExp*
- * object, it will be implicitly converted (i.e. `comparisonValue = RegExp(comparisonValue);`).
+ * *comparisonValue* should be a string or number for all *condition* types *except*
+ * {@linkcode lart.forms.conditionMatcherCondition.MATCH MATCH}, for which a RegExp object
+ * should be supplied.
+ * 
+ * If the *condition* is {@linkcode lart.forms.conditionMatcherCondition.MATCH MATCH} and the
+ * *comparisonValue* is not a *RegExp* object, it will be implicitly converted
+ * (i.e. `comparisonValue = RegExp(comparisonValue);`).
  * 
  * For the supported *condition* types, see {@link lart.forms.conditionMatcherCondition}.
  * 
  * Where *controls* is a HTMLForm or an iterable of more than a single HTMLElement, the functions is true
  * whenever *any* of the HTMLFormControlElement elements in *nodes* satisfy the test condition.
  * 
- * @param {(HTMLFormElement|HTMLFormControlElement|Array<HTMLFormControlElement>|Set<HTMLFormControlElement>|HTMLCollection|NodeList)} controls -
- *          The HTMLElement or NodeList of HTMLElement targets for which the generated function should check the provided condition.
- * @param {(String|Number|RegExp)} comparisonValue The value to which the target should be compared.
- * @param {lart.forms.conditionMatcherCondition} condition The type of condition to be applied in comparing
- *          the actual value of the node(s) to *comparisonValue*.
- * @returns {lart.forms.conditionMatcherFactory~conditionMatcher} A function which returns true when the condition is met,
- *          false otherwise.
+ * @param {(HTMLFormElement|HTMLFormControlElement|Array.<HTMLFormControlElement>|Set.<HTMLFormControlElement>|HTMLCollection|NodeList)} controls -
+ *      The HTMLElement or NodeList of HTMLElement targets for which the generated function should
+ *      check the provided condition.
+ * @param {(String|Number|RegExp)} comparisonValue - The value to which the target should be compared.
+ * @param {lart.forms.conditionMatcherCondition} condition The type of condition to be applied in
+ *      comparing the actual value of the node(s) to *comparisonValue*.
+ * @returns {lart.forms.conditionMatcherFactory~conditionMatcher} Returns a function taking no arguments,
+ *      which returns *true* when the specified *condition* is met on at least one of the *controls*,
+ *      and *false* otherwise.
+ * @see {@link lart.forms.conditionMatcherCondition}
  */
 
 lart.forms.conditionMatcherFactory = function (controls, comparisonValue, condition) {
@@ -584,17 +710,18 @@ lart.forms.conditionMatcherFactory = function (controls, comparisonValue, condit
     /**
      * Form control condition matcher.
      * 
-     * A closure generated by {@link lart.forms.conditionMatcherFactory} which returns `true` whenever the
-     * conditions specified on the *conditionMatcherFactory* are true for any of the
-     * {@link HTMLFormControlElement HTMLFormControlElements} supplied to the *conditionMatcherFactory*,
-     * `false` otherwise.
+     * A closure generated by {@link lart.forms.conditionMatcherFactory} which returns *true* whenever the
+     * conditions specified on the conditionMatcherFactory are true for any of the
+     * {@link lart.forms.HTMLFormControlElements} supplied to the conditionMatcherFactory,
+     * *false* otherwise.
      * 
      * The returned closure function evaluates the truth across the set of controls each time it is called, meaning
      * it can be checked repeatedly to monitor whether the state of the controls has changes such that the condition's
      * truth has changed.
      * 
      * @inner
-     * @returns {Boolean} Whether the condition is met on at least one of the form control elements or not.
+     * @returns {boolean} Returns *true* if the condition is met on at least one of the form control elements,
+     *      *false* otherwise.
      */
     function conditionMatcher() {
         // Collect the values to test against
@@ -617,20 +744,21 @@ lart.forms.conditionMatcherFactory = function (controls, comparisonValue, condit
 /**
  * Auto-fill a form with data from the URL's query string/search params.
  * 
- * This function will wait for *delay* ms before attempting to fill all
+ * This function will wait for *delay* (in ms) before attempting to fill all
  * HTMLInputElement, HTMLSelectElement, and HTMLTextAreaElement elements
  * attached to the HTMLForm specified by *formOrId*.
  * 
  * If the query string/search params include a field called `${formId}.submit`
  * (where *formId* is the HTMLFormElement's `id` attribute) and its value is
- * either the string `true` or `1`, then the wait again for *delay* ms before
- * simulating a click on the first HTMLElement with a `type="submit"` attribute
- * attached to the HTMLForm.
+ * either the string `true` or `1`, then following another wait for *delay* ms
+ * an Event of type `click` is triggered on the first HTMLElement with a
+ * `type="submit"` attribute attached to the HTMLForm.
  * 
- * @param {(HTMLFormElement|String)} formOrId - A HTMLFormElement or a string which
+ * @param {(HTMLFormElement|string)} formOrId - A HTMLFormElement or a string which
  *          identifies a HTMLFormElement by its `id` attribute.
- * @param {Number} [delay=500] - The delay in milliseconds before autoFilling the form,
+ * @param {number} [delay=500] - The delay in milliseconds before autoFilling the form,
  *      and if applicable, again before submitting it.
+ * @returns {null}
  */
 lart.forms.autoFill = function(formOrId, delay=500) {
     const form = lart.forms.getElementByGreed(formOrId);
@@ -702,14 +830,18 @@ lart.forms.autoFill = function(formOrId, delay=500) {
 /**
  * Conditionally require a form control depending on the value of a different control.
  * 
- * Observe and conditionally set the required attribute on a HTMLFieldControlElement depending on
+ * Observe and conditionally set the `required` attribute on a HTMLFieldControlElement depending on
  * the value of a different HTMLFieldControlElement.
  * 
- * @param {String} observedControlName - The name of the HTMLFormControlElement whose value shall be observed.
- * @param {String} targetControlName - The name of the HTMLFormControlElement which shall be conditionally required.
- * @param {String} value - The value of the observed field at which the target element shall be marked required.
- * @param {lart.forms.conditionMatcherCondition} condition - The condition used to compare *value* with the
- *          observed field's value.
+ * @param {string} observedControlName - The name of the {@link lart.forms.HTMLFormControlElement}
+ *      whose value shall be observed.
+ * @param {string} targetControlName - The name of the {@link lart.forms.HTMLFormControlElement}
+ *      which shall be conditionally required.
+ * @param {string} value - The value of the observed field at which the target element shall be
+ *      marked as `required`.
+ * @param {lart.forms.conditionMatcherCondition} condition - The condition used to compare *value*
+ *      with the observed field's value.
+ * @returns {null}
  */
 lart.forms.conditionalRequire = function (observedControlName, targetControlName, value, condition = lart.forms.conditionMatcherCondition.EQUAL) {
     const collection = document.getElementsByName(observedControlName);
@@ -753,14 +885,18 @@ lart.forms.conditionalRequire = function (observedControlName, targetControlName
 /**
  * Conditionally display an element depending on the value of a form control.
  * 
- * Observe and conditionally set the display property on a HTMLElement depending on
- * the value of a HTMLFieldControlElement.
+ * Observe and conditionally set the display property on an HTMLElement depending on
+ * the value of an {@link lart.forms.HTMLFormControlElement}.
  * 
- * @param {String} observedControlName - The name of the HTMLFormControlElement whose value shall be observed.
- * @param {String} targetElementOrId - The HTMLElement (or a string with its `id` attribute) which shall be conditionally displayed.
- * @param {String} value - The value of the observed field at which the target element shall be displayed.
- * @param {lart.forms.conditionMatcherCondition} condition - The condition used to compare *value* with the
- *          observed field's value.
+ * @param {string} observedControlName - The name of the {@link lart.forms.HTMLFormControlElement}
+ *      whose value shall be observed.
+ * @param {string} targetElementOrId - The HTMLElement (or a string with its `id` attribute)
+ *      which shall be conditionally displayed.
+ * @param {string} value - The value of the observed field at which the target element shall
+ *      be displayed.
+ * @param {lart.forms.conditionMatcherCondition} condition - The condition used to compare *value*
+ *      with the observed field's value.
+ * @returns {null}
  */
 lart.forms.conditionalDisplay = function (observedControlName, targetElementOrId, value, condition = lart.forms.conditionMatcherCondition.EQUAL) {
     const collection = document.getElementsByName(observedControlName);
@@ -790,11 +926,15 @@ lart.forms.conditionalDisplay = function (observedControlName, targetElementOrId
  * Observe and conditionally set the disabled attribute on a HTMLElement depending on
  * the value of a HTMLFieldControlElement.
  * 
- * @param {String} observedControlName - The name of the HTMLFormControlElement whose value shall be observed.
- * @param {String} targetElementOrId - The HTMLElement (or a string with its `id` attribute) which shall be conditionally disabled.
- * @param {String} value - The value of the observed field at which the target element shall be disabled.
- * @param {lart.forms.conditionMatcherCondition} condition - The condition used to compare *value* with the
- *          observed field's value.
+ * @param {string} observedControlName - The name of the {@link lart.forms.HTMLFormControlElement}
+ *      whose value shall be observed.
+ * @param {string} targetElementOrId - The HTMLElement (or a string with its `id` attribute) which
+ *      shall be conditionally disabled.
+ * @param {string} value - The value of the observed field at which the target element shall be
+ *      disabled.
+ * @param {lart.forms.conditionMatcherCondition} condition - The condition used to compare *value*
+ *      with the observed field's value.
+ * @returns {null}
  */
 lart.forms.conditionalDisable = function (observedControlName, targetElementOrId, value, condition = lart.forms.conditionMatcherCondition.EQUAL) {
     const collection = document.getElementsByName(observedControlName);
@@ -825,18 +965,28 @@ lart.forms.conditionalDisable = function (observedControlName, targetElementOrId
 /**
  * Counter to keep track of the number of repeats of a block.
  * 
+ * This counter is used internally by {@link lart.forms.repeatBlock} to keep track of the number
+ * of repetitions for a repeated block.
+ * 
  * @private
+ * @type {object}
  */
 lart.forms._repeatBlockCounter = {}
 
 /**
  * Repeat a HTMLElement and use a regular expression to replace strings inside with a running counter.
  * 
- * @param {(HTMLElement|String)} elementOrId A HTMLElement or a string with an id or unique name attribute
+ * *Note*: This function is now deprecated and should not be used in implementing any new functionality.
+ * Instead use the HTMLTemplateElement together with a slot and then insert copies of the template
+ * dynamically as required. This function will be removed from the library once all currently implemented
+ * functionality has been transitioned to the use of HTML templates.
+ * 
+ * @deprecated It's better to use HTMLTemplateElements for this functionality.
+ * @param {(HTMLElement|string)} elementOrId A HTMLElement or a string with an id or unique name attribute
  *          to identify a HTMLElement which shall be repeated. Usually this is a block-level element.
  * @param {RegExp} pattern A regular expression pattern to match which will be appended with a counter
  *          for each repetition of the block.
- * @deprecated It's better to use HTMLTemplateElements for this functionality.
+ * @returns {null}
  */
 lart.forms.repeatBlock = function(elementOrId, pattern) {
     const root = lart.forms.getElementByGreed(elementOrId);
@@ -867,16 +1017,21 @@ lart.forms.repeatBlock = function(elementOrId, pattern) {
 }
 
 /**
- * Require all forms marked .needs-validation to pass client-side validation before submitting.
+ * Require all forms marked `.needs-validation` to pass client-side validation before submitting.
  * 
- * This function will register an event on all forms with the CSS class .needs-validation to prevent
- * submission if there are invalid fields according to the JavaScript Validation API. Forms will be marked
- * by adding the class .was-validated after the first attempt to submit, which will enable Bootstrap to
- * show custom user feedback messages. If the option novalidate is set to true (default false) then the
- * function will automatically set the attribute 'novalidate' on all the forms it attaches to. This is
- * needed to display Bootstrap form validation feedback instead of the browser's built-in feedback.
+ * This function will register an event on all forms with the CSS class `.needs-validation` which prevents
+ * submission if there are any invalid fields according to the JavaScript Validation API. Forms will be
+ * marked by adding the class `.was-validated` after the first attempt to submit, which will enable
+ * Bootstrap to show custom user feedback messages.
  * 
- * @param {bool} novalidate - Whether to mark affected forms 'novalidate' to suppress browsers' built-in feedback.
+ * If the option `novalidate` is set to *true* (default *false*) then the function will automatically set
+ * the attribute `novalidate` on all the forms it attaches to. This is needed to display Bootstrap form
+ * validation feedback instead of the browser's built-in feedback, so should usually be specified *true*
+ * where Bootstrap-type user feedback messages are provided.
+ * 
+ * @param {bool} novalidate - Whether to mark affected forms 'novalidate' to suppress browsers' built-in
+ *      feedback.
+ * @returns {null}
  */
 lart.forms.requireValidation = function (novalidate = false) {
     // Fetch all the forms that need validation
@@ -930,6 +1085,7 @@ lart.forms.requireValidation = function (novalidate = false) {
  * @param {(HTMLElement|String)} targetZoneElementOrId - A HTMLElement, or a string
  *          refering to an `id` or `name` attribute identifying an HTMLElement which
  *          is the parent of the range input controls to be validated.
+ * @returns {null}
  */
 lart.forms.validateRangeInputs = function (targetZoneElementOrId) {
     const targetZone = lart.forms.getElementByGreed(targetZoneElementOrId);
@@ -999,27 +1155,37 @@ lart.forms.validateRangeInputs = function (targetZoneElementOrId) {
 }
 
 /**
- * Register a pipeline to submit a form's data to a JavaScript function instead of a HTTP request.
+ * Register a pipeline to submit a form's data to a JavaScript function instead of an HTTP request.
  * 
- * Registers an event handler on the form specified by `formElementOrId` so that the data inside the form
- * will be piped to the function specified by `receiver` and the further propagation of the
+ * Registers an event handler on the form specified by *formElementOrId* so that the data inside the
+ * form will be piped to the function specified by *receiver* and the further propagation of the
  * submission event will be halted. Thus, no HTTP request will be issued and the page with the
  * form won't advance to the specified target or reload; if this is desired then the receiver of the
  * data should manually direct the user to the new page.
  * 
- * Data will only be piped to the receiver if the form passes client-side validation via the JavaScript
+ * Data will only be piped to the *receiver* if the form passes client-side validation via the JavaScript
  * validation API. If you intend to also register a custom function to the submit event of the form to
- * validate (e.g. `requireValidation`), then you should register the validation function *before*
+ * validate (e.g. *requireValidation*), then you should register the validation function **before**
  * registering the pipeline, so that a failure to pipe an invalid form won't block the validation
  * function callback.
  * 
  * Normally the function as written here will be used to pipe data to a function exposed via Python's
- * eel module (marked @eel.expose in Python) via a JS wrapper, but it could of course also be used in
- * other scenarios where it is desirable to simply process the submitted data client-side in JS.
+ * `eel` module (marked `@eel.expose` in Python) via a JavaScript wrapper, but it could of course also
+ * be used in other scenarios where it is desirable to simply process the submitted data client-side.
  * 
- * @param {(HTMLFormElement|String)} formElementOrId - A HTMLFormElement or it's `id` for which
+ * After registering a pipeline callback, roughly the following behaviour ensues:
+ * 
+ * - A `submit` EvenListener is registered on the form.
+ * - Following a `submit` event on the form, the default submittion/event's default behaviour is
+ *   prevented and propagation of the event is stopped.
+ * - If the form fails to validate (i.e. if `form.checkValidity() == false`), then nothing happens.
+ * - If the form validates, the form's data is obtained via {@lart.forms.getData}.
+ * - *receiver* is called with this data as the only argument.
+ * 
+ * @param {(HTMLFormElement|String)} formElementOrId - A HTMLFormElement or its `id` for which
  *          data is to be piped to *receiver*.
- * @param {Callback} receiver - The callback function that should receive the the form data upon submission.
+ * @param {function(object)} receiver - The callback function that should receive the the form data upon
+ *  submission and passed validation.
  */
 lart.forms.registerPipeline = function (formElementOrId, receiver) {
     const form = lart.forms.getElementByGreed(formElementOrId);
@@ -1040,10 +1206,18 @@ lart.forms.registerPipeline = function (formElementOrId, receiver) {
 /**
  * Form submission event callback to validate a form and pipe data to another function.
  * 
+ * Implements the functionality of {@link lart.forms.registerPipeline} following the triggering of a `submit` Event
+ * on the targeted form. See the documentation there for details of the behaviour.
+ * 
+ * Can also be called directly rather than as an Event callback to simulate the submission of a form. To do this
+ * you should create a new Event (typically of type `submit`) attached to a HTMLFormElement, and pass this along
+ * with the *receiver*. Note that doing this without actually triggering the event might bypass other registered
+ * event listeners.
+ * 
  * @param {Event} event - An event (typically 'submit') on a form element, e.g. as issued by .addEventListener().
- * @param {Callback} receiver - A callable to which the form data will be passed as a dictionary.
- * @returns {Boolean} Returns `true` if the receiver function returns a truthy value, false if validation fails or the receiver
- *                   function returns a falsy value.
+ * @param {function(object)} receiver - A callable to which the form data will be passed as a dictionary.
+ * @returns {boolean} Returns *true* if the receiver function returns a truthy value, *false* if validation
+ *      fails or the receiver function returns a falsy value.
  */
 lart.forms.pipeData = function (event, receiver) {
     // Retrieve form element
@@ -1067,11 +1241,12 @@ lart.forms.pipeData = function (event, receiver) {
 }
 
 /**
- * Assemble all data from a specified form into a dictionary of key-value pairs.
+ * Assemble all data from a specified form into an object of key-value pairs.
  * 
- * @param {(HTMLFormElement|String)} formElementOrId - A form element to extract data from.
- * @returns {object} - Returns a dictionary of key-value pairs, where key is the name (or id as fallback) and value the
- *                     value of each data field within the specified form.
+ * @param {(HTMLFormElement|string)} formElementOrId - A form element to extract data from.
+ * @returns {object} - Returns a dictionary-like object of key-value pairs, where key is
+ *      the name (or `id` as fallback) and value the value of each data field within the
+ *      specified form.
  * @todo Re-implement with {@link lart.forms.getFormControlElements}.
  */
 lart.forms.getFormData = function (formElementOrId) {
@@ -1119,34 +1294,56 @@ lart.forms.getFormData = function (formElementOrId) {
 //
 
 /**
- * LART utilities for client-side content translation.
+ * On-the-fly client-side translation management for the L'ART Research Client.
  * 
- * @namespace
+ * This namespace implements functionality to facilitate the on-the-fly translation
+ * of user interface elements with strings loaded on-demand from the backend.
+ * 
+ * @summary On-the-fly UI translation management
+ * @namespace lart.tr
+ * @memberof lart
  */
 lart.tr = {};
 
 
 /**
- * Associative array holding translation identifiers and translations.
+ * Dictionary-like object holding translation identifiers and translations.
+ * 
+ * You should not normally access the translation strings directly, but rather
+ * call {@link lart.tr.get} to access the translation strings, as this implements
+ * additional logic and will be stable even if the internal structure of the
+ * string object should change in the future.
  * 
  * @readonly
- * @type {Object<String,Object<String,Object<String,String>>>}
+ * @protected
+ * @type {object.<string,object.<string,object.<string,string>>>}
+ * @see {@link lart.tr.get}
  */
 lart.tr.strings = {};
 
 /**
- * Associative array of trId's and innerHTML for missing translation items.
+ * Dictionary-like object of translation IDs and innerHTML content for missing translation items.
+ * 
+ * You should not normally access the missing translation objects directly, but rather
+ * call {@link lart.tr.getMissing} to obtain the missing translation IDs and associated
+ * innerHTML for a specific translation namespace. To add missing translation objects use
+ * {@link lart.tr.addMissing}
  * 
  * @readonly
- * @type {Object<String,Object<String,String>>}
+ * @type {object.<string,object.<string,string>>}
+ * @see {@link lart.tr.getMissing}
+ * @see {@link lart.tr.addMissing}
  */
 lart.tr.missing = {};
 
 /**
- * Get the missing trId's and associated innerHTML for missing translation items.
+ * Get the missing translation IDs and associated innerHTML for missing translation items.
  * 
- * @param {String} ns - The translation namespace to get missing strings for.
- * @returns {String} A JSON template of the missing trId's with their innerHTML.
+ * Results are returned as a JSON template, so that they can be copied easily into existing
+ * JSON task version translation files (or indeed used as the basis for a new one).
+ * 
+ * @param {string} ns - The translation namespace to get missing strings for.
+ * @returns {string} Returns a JSON template of the missing translation IDs with their innerHTML.
  */
 lart.tr.getMissing = function(ns) {
     buf = {};
@@ -1165,11 +1362,12 @@ lart.tr.getMissing = function(ns) {
 }
 
 /**
- * Add a missing trId and associated innerHTML to the missing trId cache.
+ * Add a missing translation IDs and associated innerHTML to the missing trId cache.
  * 
- * @param {String} ns - The translation namespace to add the missing trId to. 
- * @param {String} trId - The translation string identifier.
- * @param {String} [innerHTML='???'] - The associated innerHTML, default is `'???'`.
+ * @param {string} ns - The translation namespace to add the missing trId to. 
+ * @param {string} trId - The translation string identifier.
+ * @param {string} [innerHTML='???'] - The associated innerHTML, default is `'???'`.
+ * @returns {null}
  */
 lart.tr.addMissing = function(ns, trId, innerHTML = '???') {
     if (!(ns in lart.tr.missing)) {
@@ -1183,11 +1381,11 @@ lart.tr.addMissing = function(ns, trId, innerHTML = '???') {
 }
 
 /**
- * Get a translation string by its trId.
+ * Get a translation string by its translation ID.
  * 
- * @param {String} ns - The translation namespace to get the translation string from.
- * @param {String} trId - The translation identifier string.
- * @returns {?String} - The translated string for the identifier, or null if no string for the
+ * @param {string} ns - The translation namespace to get the translation string from.
+ * @param {string} trId - The translation identifier string.
+ * @returns {?string} - The translated string for the identifier, or *null* if no string for the
  *          *trId* could be found in *ns*.
  */
 lart.tr.get = function(ns, trId) {
@@ -1209,17 +1407,20 @@ lart.tr.get = function(ns, trId) {
     booteel.logger.debug(`No translation with trId '${ns}:${trId}' found.`);
     return null;
 }
+
 /**
  * Load translation/adaptation strings into a translation namespace.
  * 
- * @example <caption>Loads the LSBQe sections 'meta', 'base' and 'lsb' into the *lsbq* namespace:</caption>
+ * @example <caption>Loads the LSBQe sections 'meta', 'base' and 'lsb' into the 'lsbq' namespace:</caption>
  * const instanceId = lart.utils.searchParams.get('instance');
  * lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'lsb']]);
  * 
- * @param {String} ns - The translation namespace to be used.
- * @param {Function} eelLoader - The Python eel function (from eel.js) implementing the
- *          translation loader on the backend.
- * @param {Array} [loaderParams=[]] - The parameters that the *eelLoader* should be called with.
+ * @param {string} ns - The translation namespace to be used.
+ * @param {function(...any)} eelLoader - The Python eel function (from eel.js) implementing the
+ *      translation loader on the backend.
+ * @param {Array.<any>} [loaderParams=[]] - The parameters that the *eelLoader*
+ *      should be called with.
+ * @returns {null}
  */
 lart.tr.loadFromEel = function(ns, eelLoader, loaderParams = null) {
     if (!loaderParams) {
@@ -1237,11 +1438,12 @@ lart.tr.loadFromEel = function(ns, eelLoader, loaderParams = null) {
  * Add translation strings from array to {@link lart.tr.strings}.
  * 
  * @private
- * @param {String} ns - The translation namespace to add the strings to.
- * @param {Object<String,String>} strings - An associative array with translation
+ * @param {string} ns - The translation namespace to add the strings to.
+ * @param {object<string,string>} strings - An associative array with translation
  *          strings labelled by section. Each section contains an associative array
  *          with a translation-string id, and a list of [1] the original untranslated
  *          string, and [2] the version-specific translation/adaptation.
+ * @returns {null}
  */
 lart.tr._addStrings = function(ns, strings) {
     booteel.logger.debug(`Adding strings to namespace ${ns}:`, strings);
@@ -1273,7 +1475,7 @@ lart.tr._addStrings = function(ns, strings) {
  * Queue of callbacks waiting to be called once a certain translation namespace becomes available.
  * 
  * @private
- * @type {Object<String,Array<Function>>}
+ * @type {object.<string,Array.<function>>}
  */
 lart.tr._callbackQueue = {};
 
@@ -1281,7 +1483,7 @@ lart.tr._callbackQueue = {};
  * List of Node Id's that should be observed for string translation after loading strings for a namespace.
  * 
  * @private
- * @type {Object<String,Set<String>>}
+ * @type {object<string,Set.<string>>}
  */
 lart.tr._observerQueue = {};
 
@@ -1289,23 +1491,25 @@ lart.tr._observerQueue = {};
  * List of Node Id's that are being actively observed for string translation.
  * 
  * @private
- * @type {Object<String,Set<String>>}
+ * @type {object.<string,Set.<string>>}
  */
 lart.tr._activeObservers = {};
 
 /**
  * Register a Node for translation observation for a specific namespace by a Node's Id.
  *
- * This will add an observer running translation on any `HTMLElement` / `Node` that is a
+ * This will add an observer running translation on any `HTMLElement` or `Node` that is a
  * child of the Node specified by *nodeId*. Any child node with a `data-*ns*-tr` attribute
  * specifying the *trId* will be subject to translation from its namespace where a string
  * with a matching *trId* is available.
  * 
  * Observers will automatically delay observation until the relevant namespace has been
- * loaded. There is no need to (or point in) registering them separately as a callback.
+ * loaded. There is no need to (or point in) registering them separately as a callback with
+ * {@link lart.tr.registerCallback}.
  * 
- * @param {String} ns - The namespace that should be observed for translation. 
- * @param {String} nodeId - The Id of the Node (and its children) to be observed.
+ * @param {string} ns - The namespace that should be observed for translation. 
+ * @param {string} nodeId - The Id of the Node (and its children) to be observed.
+ * @returns {null}
  */
 lart.tr.registerObserver = function(ns, nodeId) {
     booteel.logger.debug(`Registering translation observer for node with id '${nodeId}' in namespace '${ns}'.`);
@@ -1332,8 +1536,9 @@ lart.tr.registerObserver = function(ns, nodeId) {
  * is done once the translation strings have been loaded.
  * 
  * @private
- * @param {String} ns - The namespace for which observers should be
+ * @param {string} ns - The namespace for which observers should be
  *          activated.
+ * @returns {null}
  */
 lart.tr._activateObservers = function(ns) {
     booteel.logger.debug(`Activating queued translation observers for namespace '${ns}'`);
@@ -1387,8 +1592,15 @@ lart.tr._activateObservers = function(ns) {
 /**
  * Traverse through a DOM Node and translate all applicable HTMLElements.
  * 
- * @param {String} ns - The translation namespace to be translated on the nodes.
- * @param {Node} node - A DOM Node to be traversed and translated. 
+ * Normally this will be called automatically after an observer has been registered
+ * for a Node or HTMLElement with {@link lart.tr.registerObserver}. However, you
+ * can call this manually passing a Node or HTMLElement to trigger a single pass
+ * of the string replacement algorithm for the namespace *ns* on that *node* and
+ * its children.
+ * 
+ * @param {string} ns - The translation namespace to be translated on the nodes.
+ * @param {Node|HTMLElement} node - A DOM Node to be traversed and translated.
+ * @returns {null}
  */
 lart.tr.translateNode = function(ns, node) {
     booteel.logger.debug('Translating node:', node);
@@ -1403,8 +1615,9 @@ lart.tr.translateNode = function(ns, node) {
  * Check, and if applicable, substitute a HTMLElement's innerHTML with version-specific string.
  * 
  * @private
- * @param {String} ns - The translation namespace to be used.
+ * @param {string} ns - The translation namespace to be used.
  * @param {HTMLElement} element - the HTMLElement to apply translation to.
+ * @returns {null}
  */
 lart.tr._translateElement = function(ns, element) {
     const attrName = `${ns}Tr`;
@@ -1430,10 +1643,11 @@ lart.tr._translateElement = function(ns, element) {
  * If namespace *ns* has not been loaded yet, then translation will automatically
  * be postponed until it is loaded. There is no need to manually register a callback.
  * 
- * @param {String} ns - The translation namespace to be used.
- * @param {Object<String,Array<String,String>} attrs - An associative array
- * with Element Ids as key, and a two-member list as values, where the first
- * is the attribute name and the second the trId.
+ * @param {string} ns - The translation namespace to be used.
+ * @param {object.<string, Array.<string, string>>} attrs - An associative array
+ *      with Element Ids as key, and a two-member list as values, where the first
+ *      is the attribute name and the second the translation ID.
+ * @returns {null}
  */
 lart.tr.translateAttrs = function(ns, attrs) {
     if(ns in lart.tr.strings) {
@@ -1459,6 +1673,23 @@ lart.tr.translateAttrs = function(ns, attrs) {
     );
 }
 
+/**
+ * Register a callback to be triggered when translations for a namespace become available.
+ * 
+ * This can be useful if certain UI functionality should be delayed until the translations
+ * for a specific namespace (specified by *ns*) have been loaded from the backend.
+ * 
+ * If the information depending on the translation is encodable as regular HTML content,
+ * it is often preferable to insert the HTML with a `data-*ns*-tr` attribute and use
+ * the regular {@lart.tr.registerObserver} method instead, as this will add less overhead
+ * where the targeted element or its parent might already be observed for changes.
+ * 
+ * @param {string} ns - The translation namespace to monitor.
+ * @param {function(...any)} callback - The callback function to call once the specified
+ *      translation namespace is available.
+ * @param {any} callbackParams - The parameters to pass back to *callback* when calling it.
+ * @returns {null}
+ */
 lart.tr.registerCallback = function (ns, callback, callbackParams = null) {
     if (!callbackParams) {
         callbackParams = [];
@@ -1472,6 +1703,12 @@ lart.tr.registerCallback = function (ns, callback, callbackParams = null) {
     }
 }
 
+/**
+ * Trigger waiting callbacks once a translation space has become available.
+ * 
+ * @private
+ * @returns {null}
+ */
 lart.tr._triggerCallbacks = function () {
     for (const ns in lart.tr.strings) {
         if (ns in lart.tr._callbackQueue) {
@@ -1487,25 +1724,47 @@ lart.tr._triggerCallbacks = function () {
 // LEGACY ALIASES FROM BEFORE REFACTOR OF LIBRARY
 //
 
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.utils.searchParams} instead.
+ */
 lart.forms.searchParams = lart.utils.searchParams;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.utils} instead.
+ */
 lart.forms.util = {};
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.utils.UUID.pattern} instead.
+ */
 lart.forms.util.patternForUUID = lart.utils.UUID.pattern;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.utils.UUID.nilUUID} instead.
+ */
 lart.forms.util.nilUUID = lart.utils.UUID.nilUUID;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.utils.isUUID} instead.
+ */
 lart.forms.util.isUUID = lart.utils.UUID.isUUID;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.froms.getSelectValues} instead.
+ */
 lart.forms.util.getSelectValues = lart.forms.getSelectValues;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.forms.getControlValue} instead.
+ */
 lart.forms.util.getFormFieldValue = lart.forms.getControlValue;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.forms.conditionMatcherFactory} instead.
+ */
 lart.forms.util.inputConditionMatcher = lart.forms.conditionMatcherFactory;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.forms.autoFill} instead.
+ */
 lart.forms.util.autofillForm = lart.forms.autoFill;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.forms.validateRangeInputs} instead.
+ */
 lart.forms.monitorRangeInputs = lart.forms.validateRangeInputs;
-/** @deprecated */
+/**
+ * @deprecated Use {@link lart.forms.getFormData} instead.
+ */
 lart.forms.getData = lart.forms.getFormData
