@@ -63,7 +63,7 @@ Both licenses allow you to:
    users/index
    tutorials/index
    developers/index
-   api
+   api/index
    references
 
 

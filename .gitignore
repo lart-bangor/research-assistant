@@ -19,6 +19,7 @@ build/
 # Documentation
 docs/build/
 docs/source/generated/
+docs/source/api/generated/
 
 # Pipenv
 # Pipfile.lock

@@ -67,10 +67,14 @@ extensions = [
     'sphinx_toolbox.more_autodoc.typevars',
     # 'sphinx_toolbox.more_autodoc.sourcelink',
     'sphinx_autodoc_typehints',
+    'sphinx_js'
 ]
 
+js_source_path = '../../research_client/web/js'
+jsdoc_config_path = './jsdoc_conf.json'
+
 github_username = 'lart-bangor'
-github_repository = 'lart-research-client'
+github_repository = 'research-client'
 
 autoapi_dirs = ['../../research_client']
 
