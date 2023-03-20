@@ -39,19 +39,19 @@ To load your own recordings for the AGT, firstly, open the folder :file:`[mgt]` 
 Create a new folder which follows the ISO standard code sequence (see XX for standard code sequence generating) to store the sound files for your AGT. For example, for an AGT set-up to work with Chinese-English bilinguals in Singapore
 and use English as the language of presentation, you would create a folder called :file:`“ZhoEng_Eng_SG”`, as follows: 
 
-.. figure:: figures/figure26.png
+.. figure:: figures/agtfigure26.png
       :width: 400
       :alt: Screenshot of new folder following the ISO standard code sequence
 
-      Figure 26 - New folder **ZhoEng_Eng_SG** created following the ISO standard code sequence
+      Figure 47 - New folder **ZhoEng_Eng_SG** created following the ISO standard code sequence
 
 Inside your folder, paste your own sound files but copy the standard code sequence described as above for file names for naming your sound files. 
 
-.. figure:: figures/figure27.png
+.. figure:: figures/agtfigure27.png
       :width: 400
       :alt: Screenshot of sound file names for AGT 
 
-      Figure 27 - Sound file names for AGT following the standard code sequence
+      Figure 48 - Sound file names for AGT following the standard code sequence
 
 Your files should now be played when you start the AGT and select the desired AGT version on the start menu.
 
@@ -60,14 +60,14 @@ Your files should now be played when you start the AGT and select the desired AG
 Loading a generic version of the AGT
 ------------------------------------
 
-similar to the LSBQe (link to 1.5.1) and AToL (link 1.6.1) an "English-generic" version of the AGT is made available.
+Similarly to the LSBQe (link to 1.5.1) and AToL (link 1.6.1) an "English-generic" version of the AGT is made available.
 Select the generic version of the AGT by selecting the “English – generic (United Kingdom)” version from the LSBQe version drop down list.
 
-.. figure:: figures/figure28.png
+.. figure:: figures/agtfigure28.png
       :width: 400
       :alt: Screenshot of loading a generic version of the AGT
 
-      Figure 28 - Loading a generic version of the AGT
+      Figure 49 - Loading a generic version of the AGT
 
 Customizing a generic version of the AGT
 ----------------------------------------
@@ -80,23 +80,23 @@ In order to customize a version of the AGT, open the file :file:`[EngZzz_Eng_GB]
 
 .. the file path above might need changing 
 
-.. figure:: figures/figure29.png
+.. figure:: figures/agtfigure29.png
       :width: 400
       :alt: Screenshot of file path and AGT version files
 
-      Figure 29 - File path and AGT version files
+      Figure 50 - File path and AGT version files
 
 Firstly, you must **save your file as**, following the ISO standard code sequence (see **XX for standard code sequence generating**).
 
 Secondly, you must change the **“versionID”** and **“versionName”** to reflect your customization. Your **“versionID”** should match your file name. 
 
-Figure 29 follows the same example presented in 1.7.1. (link or add numbers to each title)
+Figure 29 follows the same example presented in `Figure 17 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id5>`_.
 
-.. figure:: figures/figure30.png
+.. figure:: figures/agtfigure30.png
       :width: 400
       :alt: Screenshot of new AGT file ZhoEng_Eng_SG
 
-      Figure 30 -  New AGT file ZhoEng_Eng_SG 
+      Figure 51 -  New AGT file ZhoEng_Eng_SG 
 
 It is not mandatory to include English as one of the languages on the “English – generic” AGT version. For example, if you are a dialectologist who requires a VGT to study Ulster Scots and Irish in Northern Ireland,
 you would call your file :file:`[ScoGle_Eng_GB]` and apply the changes to versionName and VersionID as above.

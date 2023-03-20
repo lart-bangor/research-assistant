@@ -9,11 +9,11 @@ collected on various devices, you can do this straightforwardly on the app.
 
 For the simplest way to do this, open the side menu, and click on :guilabel:`Export Data`.  
 
-.. figure:: figures/figure33.png
+.. figure:: figures/edfigure33.png
       :width: 400
       :alt:  Screenshot of L'ART Research Client menu
 
-      Figure 33- Open the side bar to export data
+      Figure 54- Open the side bar to export data
 
 Once you have clicked on export data, a dialog will appear which allows you to save a ZIP archive containing
 all the responses currently stored on the computer in a location of your choice. 
@@ -21,11 +21,58 @@ all the responses currently stored on the computer in a location of your choice.
 .. note::
       Identify and remember your file path before saving, so that you know where to find your ZIP archive containing the exported data.
 
-.. figure:: figures/figure34.png
+.. figure:: figures/edfigure34.png
       :width: 400
       :alt: Screenshot of saving exported data
 
-      Figure 34 - Saving the exported data
+      Figure 55 - Saving the exported data
+
+Your next step will be to verify that all the data collected appears as it should in your exported ZIP Archive file.
+
+To find your data in order to verify that the data has been backed up correctly, firstly, follow the file path that your ZIP Archive file is located in.
+
+In order to follow the file path, you must show hidden items in the :guilabel:`“view”` section your **“file explorer”**.  
+
+.. figure:: figures/edfigure35.png
+      :width: 400
+      :alt: Screenshot of view section in File Explorer
+
+      Figure 56 - Tick the "hidden items" box in order to display all of your file path
+
+Next, discover your ZIP Archive exported data file via the following path: 
+
+
+:guilabel:`C:\Users\username\AppData\Local\Programs\LART\ResearchClient\`
+
+
+Open up your ZIP Archive back up and open the folder that corresponds to the task used in your study. 
+
+For instance, if you’re verifying data that you collected from the AToL, open :file:`“AToL-C”` (Figure 52).  
+
+.. figure:: figures/edfigure36.png
+      :width: 400
+      :alt: Screenshot of task folders located in your exported ZIP Archive
+
+      Figure 57 - Task folders located in your exported ZIP Archive
+
+
+Located inside the file will be your **.json data** files, labelled in **“participant_date_time”** format (see Figure 54).
+
+.. figure:: figures/edfigure37.png
+      :width: 400
+      :alt: Screenshot of  .json data file in participant_date_time format
+
+      Figure 58 - .json data file in participant_date_time format
+
+File name accuracy should indicate if your data has been collected and exported properly, but you can open the file to verify completely that data was collected and exported accurately.
+
+For instance, in the example below (Figure 54), by observing that each AToL adjective pair, per language, equates to a **number** (how your participant rated the language for the trait via the slider mechanism). 
+
+.. figure:: figures/edfigure38.png
+      :width: 400
+      :alt: Screenshot of open .json data file 
+
+      Figure 59 - Check that your data file contains data inputed by your participant 
 
 For advanced users who want to automate export or backup of the responses, or monitor and integrate these files
 with some other system, the files can be accessed directly on the system. 

@@ -13,11 +13,11 @@ researchers who develop new localisations of a task (see **[INSERT LINK]**).
 
 .. // once localisation link is available
 
-.. figure:: figures/figure31.png
+.. figure:: figures/lafigure31.png
       :width: 400
       :alt: Screenshot of LART Research Client menu
 
-      Figure 31 - Open the sidebar to unlock the app
+      Figure 52 - Open the sidebar to unlock the app
 
 To unlock the app, open the side menu and click :guilabel:`Unlock app`. After unlocking the app, right click and these options (as well as a few more) will be available to you.
 If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. 
@@ -27,8 +27,8 @@ If intervening during data collection, it is good practice to lock the app again
 To unlock the app, open the side menu and click ‘Unlock app’. After unlocking the app, right click and these options (as well as a few more) will be available to you.
 If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. Do this by following the same steps as for unlocking.
 
-.. figure:: figures/figure32.png
+.. figure:: figures/lafigure32.png
       :width: 400
       :alt: Screenshot of right click options 
 
-      Figure 32 - Right click will reveal options available after unlocking app
+      Figure 53 - Right click will reveal options available after unlocking app

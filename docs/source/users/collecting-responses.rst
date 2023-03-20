@@ -24,29 +24,31 @@ Upon starting the LSBQe, you are first asked to enter the relevant information f
       :width: 400
       :alt: Screenshot of the first screen of the LSBQe
 
-      Figure 12 - The first screen, using the LSBQe as an example
+      Figure 18 - The first screen, using the LSBQe as an example
 
 
 User input
 ----------
 
 While all tasks within the L'ART Research Client can be completed with a touch interface or keyboard-only input, we strongly recommend that users are provided
-with access to both a keyboard and a pointing device (e.g., a mouse or trackpad), as this ensures the best user experience and the sliders used to collect
-continuous data are more accurate when used with a pointing device rather than a keyboard.
+with access to both a keyboard and a pointing device (e.g., a mouse or trackpad). 
+
+This ensures the best user experience and the sliders used to collect continuous data are more accurate when used with a pointing device rather than a keyboard.
 
 A significant portion of the tasks available on the L’ART Research Client make use of sliders. Sliders are displayed in a lighter shade with their indicator displayed
 in the middle by default, and they must be moved at least once for the answer to be valid.
 
-Once moved, the slider will turn a darker shade of blue to show that the slider is active and has been moved by the participant. Should the participant want to keep the slider in the middle of the bar,
-the slider will need to be moved once and then moved back to the middle point of the bar.
+Once moved, the slider will turn a darker shade of blue to show that the slider is active and has been moved by the participant.
 
-If the participant fails to move the slider, a red flag will appear **(see Figure 13)** and the participant will not be able to advance 
+Should the participant want to keep the slider in the middle of the bar, the slider will need to be moved once and then moved back to the middle point of the bar.
+
+If the participant fails to move the slider, a red flag will appear **(see Figure 19)** and the participant will not be able to advance 
 
 .. note::
-    Some sliders provide a **‘not applicable’** tickbox, which negates the need for the user to interact with that slider.
+    Some sliders provide a **"not applicable"** tickbox, which negates the need for the user to interact with that slider.
 
 .. figure:: figures/uifigure13.png
       :width: 600
       :alt: Screenshot of the slider function, using the LSBQe as an example.
 
-      Figure 13 - The slider function, using the LSBQe as an example.
+      Figure 19 - The slider function, using the LSBQe as an example.
