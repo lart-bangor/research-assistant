@@ -5,4 +5,4 @@ Quick Tutorials
    :maxdepth: 2
    :caption: Contents
 
-   translating-tasks
+   localisation-translations

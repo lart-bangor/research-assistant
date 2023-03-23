@@ -1,2 +1,0 @@
-Translating an app task
-=======================

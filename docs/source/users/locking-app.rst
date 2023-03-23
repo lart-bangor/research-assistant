@@ -22,7 +22,7 @@ researchers who develop new localisations of a task (see **[INSERT LINK]**).
 To unlock the app, open the side menu and click :guilabel:`Unlock app`. After unlocking the app, right click and these options (as well as a few more) will be available to you.
 If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. 
 
-**Do this by following the same steps as for unlocking.**
+**Do this by following the same steps as for unlocking.** 
 
 To unlock the app, open the side menu and click "Unlock app". After unlocking the app, right click and these options (as well as a few more) will be available to you.
 If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. Do this by following the same steps as for unlocking.

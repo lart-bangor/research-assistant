@@ -31,7 +31,7 @@ Your next step will be to verify that all the data collected appears as it shoul
 
 To find your data in order to verify that the data has been backed up correctly, firstly, follow the file path that your ZIP Archive file is located in.
 
-In order to follow the file path, you must show hidden items in the :guilabel:`“view”` section your **“file explorer”**.  
+In order to follow the file path, you must show hidden items in the :guilabel:`“view”` section your **“File Explorer”**.  
 
 .. figure:: figures/edfigure35.png
       :width: 700
