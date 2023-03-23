@@ -17,15 +17,13 @@ For researchers using the app, or a specific localisation of the LSBQe for the f
 the LSBQe and purposely leave all fields blank before trying to submit so they can read through and familiarise themselves
 with the user-feedback provided for each field.  
 
-.. see comment to reword
-
 .. figure:: figures/lsbqefigure14.png
       :width: 600
       :alt: Screenshot of unanswered mandatory fields flagged in red.
 
       Figure 20 - Mandatory fields that remain unanswered or contain invalid input will be flagged in red
 
-.. figure 15 will be merged with app presentation
+.. figure "15" will be merged with app presentation
 
 
 Loading a generic version of the LSBQe
@@ -57,10 +55,10 @@ In order to customize a version of the LSBQe, open the file :file:`[EngZzz_Eng_G
 
 .. insert screenshot of folder once available
 
-Firstly, you **must "save as"**, following the ISO standard code sequence (see **XX** for standard code sequence generating) (see Figure 22).
+Firstly, you **must "save as"**, following the ISO standard code sequence (see here for standard code sequence generating) **(see Figure 22)**.
 
 For example, if you wish to customize a version for English and Irish for use in Ireland through the medium of English, you will create a file called
-:file:`[EngGle_Eng_IE]` (see Figure 23).  
+:file:`[EngGle_Eng_IE]` **(see Figure 23)**.  
 
 Your **“versionID”** should match your file name.
 
@@ -96,7 +94,7 @@ For example, if you require an LSBQe version to study Ulster Scots and Irish in 
 and apply the relevant changes in Figure 22 and Figure 23.
 
 Additionally, in order to change the default **"English"** in the LSBQe, you would have to search **“MajorityLanguage”** and change each instance of English to Ulster Scots 
-(see Figure 25)
+**(see Figure 25)**
 
 .. figure:: figures/lsbqefigure20.png
       :width: 600
@@ -106,4 +104,7 @@ Additionally, in order to change the default **"English"** in the LSBQe, you wou
 
 .. note::
     Note that, however, the third label in the file name :file:`[ScoGle_Eng_GB]` remains **“Eng”**, as this refers to the language in which the LSBQe is presented, which in this case is still English. 
-    See section **XX** for details on file naming and ISO codes.
+    See here for details on file naming and ISO codes.
+
+.. link to the relevant localisation section 
+

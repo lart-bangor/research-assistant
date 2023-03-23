@@ -1,10 +1,10 @@
 Research task: AToL
 ===================
 
-The AToL begins with a start screen akin to the one in **(1.4)** where you must select a version, input Researcher ID, Location, Participant ID
+The AToL begins with a start screen akin to the one `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#loading-a-generic-version-of-the-lsbqe>`_ where you must select a version, input Researcher ID, Location, Participant ID
 and confirm that consent has been obtained by ticking the relevant box.
 
-You will not be able to advance without completing each respective part of the start screen (see Figure 42).  
+You will not be able to advance without completing each respective part of the start screen **(see Figure 42)**.  
 
 .. figure:: figures/atolfigure21.png
       :width: 600
@@ -22,7 +22,7 @@ which are rated by using the sliders as seen in Figure 43 below.
 
 The AToL is a task that involves exclusively using sliders, and the order of the adjective pairs is randomised for each participant. 
 
-For ease of analysis, your result file for a given participant (see section ???) reports the order in which the adjectives were presented for that participant. 
+For ease of analysis, your result file for a given participant **(see Figure 59** `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html#id8>`_) reports the order in which the adjectives were presented for that participant. 
 
 .. figure:: figures/atolfigure22.png
       :width: 600
@@ -52,12 +52,15 @@ This is due to the fact that while the LSBQe may refer to “the other language�
 
       Figure 45 - Generic AToL file EngZzz_Eng_GB
 
-Firstly, as seen in `Figure 22 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id3>`_ you must open the generic file and “save as” in order to make a copy ready for customisation.
+Firstly, as seen in `Figure 22 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id3>`_ you must open the generic file and **“save as”** in order to make a copy ready for customisation.
 
 After that, change the “versionID” and “versionName” to reflect your customization. Following the English and Scots example presented `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id8>`_, this would be :file:`[report name and ID]`
 
-Your file name should match your “versionID”, which must follow the ISO standard code sequence (see XX for standard code sequence generating). In order to produce a customized version of the AToL,
-you must also change both “rml” and “rml_header” to indicate the language(s) pertinent to your AToL version. 
+Your file name should match your “versionID”, which must follow the ISO standard code sequence. 
+
+.. (see XX for standard code sequence generating > add in localisation link once section has been completed). 
+
+In order to produce a customized version of the AToL, you must also change both “rml” and “rml_header” to indicate the language(s) pertinent to your AToL version. 
 
 .. figure:: figures/atolfigure24.png
       :width: 600

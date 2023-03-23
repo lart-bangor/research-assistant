@@ -58,7 +58,7 @@ where they learned each of them, when they learned them, and if there were signi
 By default, the LSBQe  requires a minimum of two required language names, by presenting participants with two blank lines that must be filled before continuing.
 
 While participants have with the option of adding more language varieties via the :guilabel:`Add Line` button (i.e. for participants who are tri or polylingual),
-only two lines will appear as default (see Figure 30 below). 
+only two lines will appear as default **(see Figure 30 below)**. 
 
 .. figure:: figures/mrlfigure25.png
       :width: 400
@@ -148,7 +148,7 @@ If you wish to change it back to including “reading” and “writing”, you 
 Show code-switching
 -------------------
 
-The LSBQe’s Community Language Use Behaviour section contains a final section on code-switching where participants are asked how often they code-switch in different contexts (see Figure 38). 
+The LSBQe’s Community Language Use Behaviour section contains a final section on code-switching where participants are asked how often they code-switch in different contexts **(see Figure 38)**. 
 
 .. figure:: figures/csfigure33.png
       :width: 400
@@ -162,7 +162,7 @@ To remove the code-switching question, firstly, open your LSBQe version file fro
 
 :guilabel:`C:\Users\username\AppData\Local\Programs\LART\ResearchClient\lart_research_client\lsbq\versions`
 
-With the file open, you will see that below the section :file:`“options”` the line labelled :file:`“club_show_codeswitching”`` is set to :file:`“true”` (see Figure 39)
+With the file open, you will see that below the section :file:`“options”` the line labelled :file:`“club_show_codeswitching”`` is set to :file:`“true”` **(see Figure 39)**
 
 .. figure:: figures/csfigure34.png
       :width: 400
@@ -170,7 +170,7 @@ With the file open, you will see that below the section :file:`“options”` th
 
       Figure 39 - The feature “club_show_codeswitching” is set to “true” by default
 
-To exclude the code-switching question from your version of the LSBQe, simply change the value to :file:`“false”` (see figure 40)
+To exclude the code-switching question from your version of the LSBQe, simply change the value to :file:`“false”` **(see Figure 40)**
 
 .. figure:: figures/csfigure35.png
       :width: 400
@@ -183,7 +183,7 @@ To exclude the code-switching question from your version of the LSBQe, simply ch
       Make sure to restart the app so that the change can take effect.
 
 After removing the code-switching section, the CLUB section finishes on the question prior to the code-switching question that asks participants to indicate
-which language or dialect they generally use for various activities (see Figure 41).  
+which language or dialect they generally use for various activities **(see Figure 41)**.  
 
 If you wish to change it back to including the code-switching question, you must reverse the process and change the value back to :file:`“true”`.
 

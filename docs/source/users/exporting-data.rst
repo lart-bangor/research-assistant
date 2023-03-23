@@ -22,7 +22,7 @@ all the responses currently stored on the computer in a location of your choice.
       Identify and remember your file path before saving, so that you know where to find your ZIP archive containing the exported data.
 
 .. figure:: figures/edfigure34.png
-      :width: 400
+      :width: 600
       :alt: Screenshot of saving exported data
 
       Figure 55 - Saving the exported data
@@ -34,7 +34,7 @@ To find your data in order to verify that the data has been backed up correctly,
 In order to follow the file path, you must show hidden items in the :guilabel:`“view”` section your **“file explorer”**.  
 
 .. figure:: figures/edfigure35.png
-      :width: 400
+      :width: 700
       :alt: Screenshot of view section in File Explorer
 
       Figure 56 - Tick the "hidden items" box in order to display all of your file path
@@ -47,16 +47,16 @@ Next, discover your ZIP Archive exported data file via the following path:
 
 Open up your ZIP Archive back up and open the folder that corresponds to the task used in your study. 
 
-For instance, if you’re verifying data that you collected from the AToL, open :file:`“AToL-C”` (Figure 52).  
+For instance, if you’re verifying data that you collected from the AToL, open :file:`“AToL-C”` **(see Figure 57)**.  
 
 .. figure:: figures/edfigure36.png
-      :width: 400
+      :width: 700
       :alt: Screenshot of task folders located in your exported ZIP Archive
 
       Figure 57 - Task folders located in your exported ZIP Archive
 
 
-Located inside the file will be your **.json data** files, labelled in **“participant_date_time”** format (see Figure 54).
+Located inside the file will be your **.json data** files, labelled in **“participant_date_time”** format **(see Figure 58)**.
 
 .. figure:: figures/edfigure37.png
       :width: 400
@@ -66,10 +66,10 @@ Located inside the file will be your **.json data** files, labelled in **“part
 
 File name accuracy should indicate if your data has been collected and exported properly, but you can open the file to verify completely that data was collected and exported accurately.
 
-For instance, in the example below (Figure 54), by observing that each AToL adjective pair, per language, equates to a **number** (how your participant rated the language for the trait via the slider mechanism). 
+For instance, in the example below **(Figure 59)**, by observing that each AToL adjective pair, per language, equates to a **number** (how your participant rated the language for the trait via the slider mechanism). 
 
 .. figure:: figures/edfigure38.png
-      :width: 400
+      :width: 850
       :alt: Screenshot of open .json data file 
 
       Figure 59 - Check that your data file contains data inputed by your participant 

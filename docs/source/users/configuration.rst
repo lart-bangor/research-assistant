@@ -66,7 +66,7 @@ preferred analysis tools. If you are not sure what this is or how it works, ther
 
 For details on the formatting see the documentation of the :py:mod:`logging` package in the Python standard library.
 
-.. figure:: figures/figure23.png
+.. figure:: figures/lsfigure42.png
       :width: 400
       :alt: Screenshot of Logging settings
 
@@ -84,7 +84,7 @@ This negates the need to re-enter participant details at the start of each task.
 .. See section XX in (Breit et al. 2023).   
 
 For example, with the default settings, when the informed consent task is completed the participant will be automatically advanced to the LSBQe,
-and when the LSBQe is complete they will be sent back to the app home screen (see Figure 24)
+and when the LSBQe is complete they will be sent back to the app home screen **(see Figure 12)**
 
 .. figure:: figures/ts43.png
       :width: 400
@@ -95,7 +95,7 @@ and when the LSBQe is complete they will be sent back to the app home screen (se
 You could decide to use any possible sequence consisting of available tasks.
 
 For example, you may not want to require an electronic consent form for your study, thus removing the consent form from the sequence, and may want
-the LSBQe to advance into the AGT as is typical in linguistic studies where a background questionnaire precedes the main research method (see Figure 13). 
+the LSBQe to advance into the AGT as is typical in linguistic studies where a background questionnaire precedes the main research method **(see Figure 13)*8. 
 
 .. figure:: figures/tsfigure44.png
       :width: 400
@@ -103,7 +103,7 @@ the LSBQe to advance into the AGT as is typical in linguistic studies where a ba
 
       Figure 13 - LSBQe > MGT > App Start Screen sequencing 
 
-Should you require every available task to be sequenced, you may also do so (see Figure 14)
+Should you require every available task to be sequenced, you may also do so **(see Figure 14)**
 
 .. figure:: figures/ts45.png
       :width: 400

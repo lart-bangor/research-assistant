@@ -5,7 +5,7 @@ Upon starting the app on your device, both the L’ART Research Client app and a
 
 .. [ADD SCREENSHOT of FINAL home screen] 
 
-Figure 14: L’ART Research Client home screen
+Figure 14 - L’ART Research Client home screen
 
 
 .. figure:: figures/figure9.png
@@ -26,6 +26,6 @@ On the app home screen, you will see the list of available tasks in the centre o
 several options, some of which are context-dependent. For example, the side menu contains options for `Discarding Attempts <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/discarding-attempts.html>`_,
 `Collecting Consent <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/data-setup.html>`_, 
 `Unlocking the App <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/locking-app.html>`_, `Exporting Data <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html>`_,
-`App Settings <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/configuration.html#>`_ and a dialog providing information about the app.
+`App Settings <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/configuration.html#>`_ and a dialogue providing information about the app.
 
 These options are described in the linked sub-sections of the documentation.  

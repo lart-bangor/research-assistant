@@ -31,7 +31,7 @@ User input
 ----------
 
 While all tasks within the L'ART Research Client can be completed with a touch interface or keyboard-only input, we strongly recommend that users are provided
-with access to both a keyboard and a pointing device (e.g., a mouse or trackpad). 
+with access to both a keyboard and a pointing device (e.g. a mouse or trackpad). 
 
 This ensures the best user experience and the sliders used to collect continuous data are more accurate when used with a pointing device rather than a keyboard.
 
