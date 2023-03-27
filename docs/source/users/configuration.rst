@@ -20,7 +20,7 @@ waits before closing after you close the main app window.
 
 Under normal circumstances there should be no need to adjust this. However, it can be beneficial to increase the shutdown
 delay when using an underpowered device e.g., a 4GB Surface Tab Go or some other device not meeting the recommended system requirements
-(see `System Requirements <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/system-requirements.html>`_ for more information). 
+(click `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/system-requirements.html>`_ for more information). 
 
 Problems with limited system resources can lead to the app freezing or becoming unresponsive.
 Increasing the shutdown delay means that the app will wait longer in case the system temporarily delays the processing of expected signals and information. 
@@ -38,7 +38,7 @@ Logging settings involves the app’s debug and error logging functionality. Whi
 they can contain useful information for researchers developing an extension for the app, those creating a new localisation of a task,
 or generally for diagnostic information if an unexpected error occurs. 
 
-You may be asked for information from the log files if you report a bug, which will help us to reconstruct what happened when the error
+You may be asked for information from the log files if you report a bug which will help us to reconstruct what happened when the error
 occurred on your computer. 
 
 .. warning::
@@ -95,7 +95,7 @@ and when the LSBQe is complete they will be sent back to the app home screen **(
 You could decide to use any possible sequence consisting of available tasks.
 
 For example, you may not want to require an electronic consent form for your study, thus removing the consent form from the sequence, and may want
-the LSBQe to advance into the AGT as is typical in linguistic studies where a background questionnaire precedes the main research method **(see Figure 13)*8. 
+the LSBQe to advance into the AGT as is typical in linguistic studies where a background questionnaire precedes the main research method **(see Figure 13)**. 
 
 .. figure:: figures/tsfigure44.png
       :width: 400
