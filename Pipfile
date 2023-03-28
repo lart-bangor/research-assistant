@@ -23,6 +23,7 @@ sphinx-rtd-theme = "*"
 sphinx-inline-tabs = "*"
 pylint = "*"
 sphinx-toolbox = "*"
+sphinx-js = "*"
 
 [requires]
 python_version = "3.10"
