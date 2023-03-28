@@ -229,6 +229,7 @@
                 function (event) {
                     audioLabel.innerHTML = '<span data-agt-tr="audioMsg.play">Playing audio...</span>';
                     updateAudioProgressBar.intervalId = setInterval(updateAudioProgressBar, 20);
+                    setTimeout(enableFormSubmission, 30000); // Enable submit button after 30s at the latest...
                 }
             );
 
