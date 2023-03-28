@@ -102,12 +102,23 @@ Both licenses allow you to:
 Contributors
 ^^^^^^^^^^^^
 
-List of contributors and their contributions...
+The L'ART Research Client core developers are :github:user:`Florian Breit <thatfloflo>` (Lead) and :github:user:`Marco Tamburelli <dakrismeno>`.
 
+We would like to thank the following for contributing (in alphabetical order):
+
+* :github:user:`Chloe Cheung <cwyc8>` (Documentation)
+* Lissander Brasca (Translation, Documentation)
+* :github:user:`Ianto Gruffydd <iantogruff>` (User testing, Translation, Documentation)
+* Athanasia Papastergiou (Translation)
 
 Acknowledgements
 ^^^^^^^^^^^^^^^^
 
-Blah...
+The L'ART Research Client was developed by the `Language Attitudes Research Team <https://bangor.ac.uk/lart>`_ (:github:org:`GitHub <lart-bangor>`)
+in the `School of Arts, Culture and Language <https://bangor.ac.uk/arts-culture-language>`_
+at `Bangor University <https://bangor.ac.uk>`_.
+Development of the app was supported by the `Economic and Social Research Council <https://ukri.org/councils/esrc/>`_ [grant number `ES/V016377/1 <https://gtr.ukri.org/projects?ref=ES%2FV016377%2F1>`_].
+
+.. TODO: Add logos for BU and ESRC
 
 

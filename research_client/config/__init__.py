@@ -187,7 +187,7 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
         }
     )
     data: Path = field(
-        default=_default_paths.user_data_path / "data",
+        default=_default_paths.user_data_path / "Data",
         metadata={
             "doc_label": "Path for data files",
             "doc_help": (

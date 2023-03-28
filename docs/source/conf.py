@@ -60,12 +60,19 @@ extensions = [
     'sphinx_toolbox',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
+    'sphinx_toolbox.collapse',
+    'sphinx_toolbox.confval',
+    'sphinx_toolbox.github',
+    'sphinx_toolbox.sidebar_links',
     'sphinx_toolbox.more_autodoc.no_docstring',
     'sphinx_toolbox.more_autodoc.generic_bases',
     'sphinx_toolbox.more_autodoc.genericalias',
     'sphinx_toolbox.more_autodoc.regex',
-    'sphinx_toolbox.more_autodoc.typevars',
     # 'sphinx_toolbox.more_autodoc.sourcelink',
+    # 'sphinx_toolbox.more_autodoc.typehints',
+    'sphinx_toolbox.more_autodoc.typevars',
+    'sphinx_toolbox.more_autodoc.variables',
+    'sphinx_toolbox.tweaks.param_dash',
     'sphinx_autodoc_typehints',
     'sphinx_js'
 ]
@@ -124,6 +131,8 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'body_max_width': 'none',
     'style_external_links': True,
+    'prev_next_buttons_location': 'both',
+    'style_nav_header_background': '#2980B9',  # Default: #2980B9
 }
 html_css_files = [
     'style.css',
@@ -131,7 +140,7 @@ html_css_files = [
 html_context = {
     "display_github": True,
     "github_user": "lart-bangor",
-    "github_repo": "lart-survey-client",
+    "github_repo": "research-client",
     "github_version": "master",
     "conf_py_path": "/docs/source/",
 }
