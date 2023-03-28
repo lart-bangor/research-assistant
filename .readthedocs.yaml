@@ -20,8 +20,9 @@ build:
       # - pwd
       # - python -m pipenv requirements --dev > requirements-generated.txt
       # - ls -la
+    post_install:
       - python -m pipenv install --dev
-      - python -m pipenv shell
+      # - python -m pipenv shell
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
