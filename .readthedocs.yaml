@@ -17,13 +17,15 @@ build:
   jobs:
     pre_install:
       - python -m pip install pipenv
-      # - pwd
-      # - python -m pipenv requirements --dev > requirements-generated.txt
+      - pwd
+      - python -m pipenv requirements --dev > requirements-generated.txt
+      - sed -i 's/markupsafe==2.1.2/markupsafe/g' requirements-generated.txt
+      - cat requirements-generated.txt
       # - ls -la
     post_install:
-      - export VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH
-      - echo $VIRTUAL_ENV
-      - python -m pipenv install --dev
+      # - export VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH
+      # - echo $VIRTUAL_ENV
+      # - python -m pipenv install --dev
       # - python -m pipenv shell
 
 # Build documentation in the docs/ directory with Sphinx
