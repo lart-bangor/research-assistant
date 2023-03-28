@@ -37,9 +37,9 @@ formats:
   - pdf
 
 # Optionally declare the Python requirements required to build your docs
-# python:
-#   install:
-#     - requirements: requirements-generated.txt
+python:
+  install:
+    - requirements: requirements-generated.txt
     # - method: pip
     #  path: 
   # system_packages: true
