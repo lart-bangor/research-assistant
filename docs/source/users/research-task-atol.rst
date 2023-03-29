@@ -1,7 +1,7 @@
 Research task: AToL
 ===================
 
-The AToL begins with a start screen akin to the one `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#loading-a-generic-version-of-the-lsbqe>`_ where you must select a version, input Researcher ID, Location, Participant ID
+The AToL begins with a start screen where you must select a version, input Researcher ID, Location, Participant ID
 and confirm that consent has been obtained by ticking the relevant box.
 
 You will not be able to advance without completing each respective part of the start screen **(see Figure 42)**.  
@@ -12,14 +12,15 @@ You will not be able to advance without completing each respective part of the s
 
       Figure 42 - AToL Start Screen
 
-The next screen asks the participant to rate the relevant languages, depending on the AToL version selected.
+The next screen begins the AToL proper, asking the participant to rate the relevant languages, depending on the AToL version selected.
 
 The majority language always appears first due to sociolinguistic plausibility, for instance, because all
-instructions appear in the majority language in the original AToL versions for the LART research client app.
+instructions appear in the majority language in the original AToL versions for the L'ART research client app.
 
-The bipolar adjective pairs are always generated in a random order. The AToL presents the statement **“The language is…”** followed by the AToL’s bipolar adjective pairs
+The bipolar adjective pairs are always generated in a random order (the specific order for each participant is recorded in that participant's the data file). The AToL presents the statement **“The X language is…”** followed by the AToL’s bipolar adjective pairs
 which are rated by using the sliders as seen in Figure 43 below.
 
+.. note::
 The AToL is a task that involves exclusively using sliders, and the order of the adjective pairs is randomised for each participant. 
 
 For ease of analysis, your result file for a given participant **(see Figure 59** `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html#id8>`_) reports the order in which the adjectives were presented for that participant. 
@@ -42,9 +43,9 @@ Loading and customizing a generic version of the AToL
 -----------------------------------------------------
 
 As for the `LSBQe, <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html>`_ an "English-generic" version of the AToL is made available. 
-Unlike the LSBQe however, it is not possible to load a generic version of the AToL without customizing it.
+Unlike the LSBQe, however, it is not possible to load a generic version of the AToL without customizing it.
 
-This is due to the fact that while the LSBQe may refer to “the other language”, the AToL is dependent on naming each language under investigation at the top of every page (see, for example, `Figure 43 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-atol.html#id2>`_).
+This is due to the fact that while the LSBQe may refer to “the other language”, the AToL is dependent on naming each language under investigation at the top of every page (see `Figure 43 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-atol.html#id2>`_).
 
 .. figure:: figures/atolfigure24.png
       :width: 600
@@ -54,7 +55,7 @@ This is due to the fact that while the LSBQe may refer to “the other language�
 
 Firstly, as seen in `Figure 22 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id3>`_ you must open the generic file and **“save as”** in order to make a copy ready for customisation.
 
-After that, change the “versionID” and “versionName” to reflect your customization. Following the English and Scots example presented `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id8>`_, this would be :file:`[report name and ID]`
+After that, change the “versionID” and “versionName” to reflect your customization. Following the English and Scots example presented `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id8>`_, this would be :file:`[EngSco_Eng_GB]`
 
 Your file name should match your “versionID”, which must follow the ISO standard code sequence. 
 
