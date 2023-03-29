@@ -14,11 +14,9 @@ regional/minority/minoritized languages. This documentation is for version |vers
 
 .. rubric:: Features
 
-* **Fieldwork-ready** --- use the included standard versions of the LSBQe, AToL, MGT, or make your own.
+* **Fieldwork-ready** --- use the included versions of the LSBQe, AToL, AGT, or make your own.
 
-* **Usable** --- a modern, professional, and easy-to-use graphical user interface.
-
-* **Reproducible** --- making your research reproducible could be as simple as sharing version information.
+* **Reproducible** --- make your research reproducible by simply sharing version information.
 
 * **Extensible** --- contribute with JSON, Python, HTML and JavaScript or import the backend in your own Python project.
 
@@ -29,21 +27,21 @@ regional/minority/minoritized languages. This documentation is for version |vers
 
 .. rubric:: Citing
 
-If you use the L’ART Research Client (or parts of it) in your research, please use the following
-citation to reference the app:
+If you use the L’ART Research Client (or parts of it), please cite the following document:
 
 .. epigraph::
 
-   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). *The L’ART Research Client app: An electronic tool for bilingual research* [Software, version |version|]. Bangor University.
-
+   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2022). *The L’ART Research Client app: A digital toolkit for bilingualism and language attitude research * [Software, version |version|]. Bangor University. 
+   
 
 .. .. rubric:: License
 
-   The L’ART Research Client and its implementation of the LSBQe are free and open source. The app is
+   The L’ART Research Client and the tools implemented within it are free and open source. The app is 
    dual licensed under the terms of the `Affero General Public License <https://www.gnu.org/licenses/agpl-3.0.en.html>`_
    (the AGPL) and the `European Union Public License <https://commission.europa.eu/content/european-union-public-licence_en>`_
-   (the EUPL). Dual licensing means that you are free to choose under which of the two license’s
-   terms you want to use it.
+   (the EUPL).
+   Dual licensing means that you are free to choose under which of the two licence’s terms you want to use it. 
+    
 
 
 .. toctree::
