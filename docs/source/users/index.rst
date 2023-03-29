@@ -34,7 +34,6 @@ Research Client or build additional tasks, a technical documentation can be foun
 
    system-requirements
    installation
-   configuration
    getting-started
    data-setup
    collecting-responses
@@ -46,3 +45,4 @@ Research Client or build additional tasks, a technical documentation can be foun
    exporting-data
    discarding-attempts
    sequencing
+   configuration
