@@ -3,78 +3,63 @@ About the Research Client
 
 Introduction
 ^^^^^^^^^^^^
-The LART Research Client is a freely available open-source app that aims to make research in the
-areas of bilingualism, sociolinguistics, language attitudes, regional/minority/minoritized
-languages and related fields both easier and more comparable, standardised and reproducible.
-
-The current version (LART Research Client |version|) implements a digital informed consent form and
-two implementations of the Language and Social Background Questionnaire (LSBQ)
-[Anderson-Mak-EtAl-2018]_.
-
-The main version of the LSBQ includes all the material from the standard
-LSBQ but makes some slight adaptations for greater flexibility in use across a variety of settings
-and populations (e.g. educational levels, which are specific to the Canadian/North American system
-in the original LSBQ; see Section 3.1 below).
-
-The other version, which we termed the LSBQ-RML, is a strict subset
-of the standard LSBQ which retains all the most informative sections from the standard LSBQ but
-includes adaptations that make the questionnaire suitable for use
+The L’ART Research Client is a freely available open-source app to aid researchers in the collection, 
+storage and transfer of data for research in bilingualism and language attitudes, with a particular focus
+on bilingual populations who speak a majority language and a regional / minority / minoritized language. 
+The app aims to make research in bilingualism easier, more comparable and reproduceable. 
+For a detailed discussion of the specific methodological choices, see Breit et al., 2023.
 
 
-with some adaptations geared specifically towards the study of bilingual populations who speak a
-majority language and a regional / minority / heritage or otherwise minoritized language.
-
-While it retains all the most informative sections from the original LSBQ, it also includes
-adaptations that aim at making the questionnaire more flexible (e.g., for use outside of Canada,
-which the original LSBQ was based in) as well as allowing more standardised comparison across
-bilingual populations (particularly in relation to educational level. See section 3.1 below).
-
-The main functionality of LSBQe resides in its format as a stand-alone app that can run on desktop
-and laptop computers without the need for web connectivity. This makes it highly usable both in a
-lab environment as well as in the field, for example when collecting data in remote areas with
-inconsistent internet access.
-
-
-Who/what the Reserch Client is for
+What the L'ART Reserch Client can do
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The current version (L'ART Research Client |version|) implements four tools (for a detailed discussion of methodological adaptations, please see Breit et al., 2023).
 
-The app was developed to ease the collection, storage and transfer of data from commonly employed
-tasks such as the collection of informed consent and linguistic background questionnaires, while
-at the same time increasing standardisation, comparability and reproducibility of the administered
-tasks.
+* **Participant consent**: A digital informed consent process, including participant information sheets & consent forms.
 
-At present the Research Client (version |version|) implements an informed consent facility and two
-variants of the Language and Social Background Questionnaire (one very close to the standard LSBQ,
-the other adapted for use with potentially unwritten regional- and/or minority languages).
-However, we're actively working on adding further tasks to the Research Client and it has been
+* **LSBQe**: A digital adaptation of the **Language and Social Background Questionnaire**, or LSBQ ([Anderson-Mak-EtAl-2018]_), which we term the LSBQe (“e” for electronic).
+
+* **AToL**: A digital implementation of the **Attitudes towards Languages Questionnaire** or AToL ([Schoel-Roessel-EtAl-2013]_). 
+
+* **MGT** and **VGT**: A digital tool for measuring language attitudes via the speaker evaluation paradigm. This tool enables users to run several evaluations of audio guises such as the **Matched Guise Technique** ([Lambert-Hodsgon-EtAl-1960]_) and the **Verbal Guise test** (e.g., [Markel-EtAl-1967]_). Due to its flexibility as either MGT or VGT, we named this tool **‘Audio Guise Test’**, or **AGT** for short. 
+
+ 
+The main functionality of the L’ART Research Client resides in its format as a stand-alone app 
+that can run on a large variety of desktop and laptop computers without the need for internet connectivity. 
+This makes it highly usable both in lab environments and in the field, for example when collecting data 
+in remote areas with inconsistent internet access. 
+
+
+The L'ART Research Client has been
 designed in such a way that it can be easily extended by researchers (or research groups)
 with just a basic knowledge of Python, JavaScript and HTML needed to implement additional tasks
 (see the :doc:`developers/index` for more info). Translating an existing task for a new language or
 language pair is even easier and can be done by just editing a simple
 `JSON <https://en.wikipedia.org/wiki/JSON>`_ file in a text editor (see :doc:`tutorials/translating-tasks`).
 
-Who/what it isn't for
-^^^^^^^^^^^^^^^^^^^^^
-
-Blubb ...
 
 
 Reasons to use the Research Client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Blah ...
+* **Less work for the researcher:** With research tasks pre-implemented, preparation for a new study only involves translation/localisation of the interface where a suitable one is not yet available for the target population. There is also no need to manage forms and manually enter data after collecting responses. 
 
+* **Enhanced consistency and comparability within and across studies:** The translation/localisation of tasks is the only thing that varies within tasks. The presentation, data types and validation, coding, and output format stay constant across different use instances, whether as part of the same study or across different studies and research teams. 
+
+* **Improved transparency and reproducibility:** Because the entire source code for the L’ART Research Client is publicly available and version-controlled, it’s easy to reference the specific version and task that was used, which allows other researchers to easily view and reconstruct the tasks exactly as they were administered at the time the research was carried out. 
+
+For detailed examples and more concrete illustrations of these advantages, see Breit et al., 2023. 
 
 Citing the Research Client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. epigraph::
 
-\*cough\*
+Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2022). *The L’ART Research Client app: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
 
 
 Licensing
 ^^^^^^^^^
 
-The L’ART Research Client and its implementation of the LSBQe are free and open source. The app is
+The L’ART Research Client and all the tools implemented within it are free and open source. The app is
 dual licensed under the terms of the `Affero General Public License <https://www.gnu.org/licenses/agpl-3.0.en.html>`_
 (the AGPL) and the `European Union Public License <https://commission.europa.eu/content/european-union-public-licence_en>`_
 (the EUPL). Dual licensing means that you are free to choose under which of the two license’s
