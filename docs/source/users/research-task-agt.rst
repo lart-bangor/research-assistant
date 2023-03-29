@@ -8,7 +8,7 @@ Differentiation between MGT or VGT is executed via your audio recordings, and it
 Loading recordings for the AGT
 ------------------------------
 
-Firstly, the AGT requires **thirteen** recordings in order to function. Eight recordings are classed as experimental recordings, four are classed as filler recordings and one is a practice recording.
+The AGT requires **thirteen** recordings in order to function. Eight recordings are classed as experimental recordings, four are classed as filler recordings and one is a practice recording.
 
 For an MGT setup, you **must** load eight experimental recordings from four speakers, with each speaker providing a recording in either language variety.
 
@@ -29,7 +29,7 @@ In the example below in Figure 26, :file:`“maj”` indicates Chinese recording
       
       All sound files must be in mp3 format for the AGT to function. 
 
-To load your own recordings for the AGT, firstly, open the folder :file:`[mgt]` by following the path below: 
+To load your own recordings for the AGT, open the folder :file:`[mgt]` by following the path below: 
 
 :guilabel:`C:\Users\username\AppData\Local\Programs\LART\ResearchClient\lart_research_client\web\audio\agt`
 
