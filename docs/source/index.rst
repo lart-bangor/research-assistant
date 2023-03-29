@@ -13,7 +13,7 @@ This documentation is for version |version|.
 
 .. rubric:: Features
 
-* **Fieldwork-ready** --- use the included versions of the LSBQe, AToL, AGT, or make your own.
+* **Fieldwork-ready** --- use the included versions of the LSBQe, AToL, MGT, and digital informed consent forms, or make your own versions.
 
 * **Reproducible** --- make your research reproducible by simply sharing version information.
 
