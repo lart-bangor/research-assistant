@@ -141,7 +141,7 @@ html_context = {
     "display_github": True,
     "github_user": "lart-bangor",
     "github_repo": "research-client",
-    "github_version": "master",
+    "github_version": "docs",
     "conf_py_path": "/docs/source/",
 }
 html_show_sphinx = False
