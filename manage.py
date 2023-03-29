@@ -21,6 +21,13 @@ from pathlib import Path
 from typing import Final, Iterable
 
 
+# Utilitie required from startup
+def safe_str(string: str) -> str:
+    """Removes characters from strings that would be unsuitable as paths, handles, etc."""
+    allowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-'
+    return ''.join(c for c in string.replace(' ', '_') if c in allowed)
+
+
 # Define constant values for project
 WORKSPACE_PATH: Final[Path] = Path(__file__).parent
 config = ConfigParser()
@@ -157,12 +164,12 @@ def docs() -> bool:                                                             
             subprocess.run(["make.bat", "html"])
         except FileNotFoundError:
             print(
-                f"{INDENT}ERROR: The script 'docs/make.bat' was not found. Is Sphinx set up correctly?"
+                f"{INDENT}ERROR: './docs/make.bat' was not found. Is Sphinx set up correctly?"
             )
             os.chdir(oldwd)
             return False
     else:
-        print("Sorry, this script cannot currently build the documentation on non-Windows platforms.")
+        print("Sorry, this script can currently only build the documentation on Windows :-(")
     os.chdir(oldwd)
 
     # Move documentation to dist dir
@@ -170,10 +177,15 @@ def docs() -> bool:                                                             
     if html_docs_dir.exists():
         print(f"Moving HTML documentation to '{dist_dir}'..")
         if not _copy_dir_clean(html_docs_dir, dist_dir / "html"):
-            print(f"{INDENT}ERROR: Could not copy directory '{html_docs_dir}' to '{dist_dir}/html'.")
+            print(
+                f"{INDENT}ERROR: Could not copy directory "
+                f"'{html_docs_dir}' to '{dist_dir}/html'."
+            )
             print("Failed.")
             return False
         print("Success.")
+
+    return True
 
 
 def build() -> bool:                                                            # noqa: C901
@@ -190,7 +202,7 @@ def build() -> bool:                                                            
         dist_dir.mkdir(parents=True)
 
     # Installer name
-    installer_name: str = f"{APP_AUTHOR} {APP_NAME} v{APP_VERSION}-{M_PLATFORM_STRING}"
+    installer_name: str = safe_str(f"{APP_AUTHOR} {APP_NAME} v{APP_VERSION}-{M_PLATFORM_STRING}")
 
     # Clean the source directory
     if not clean("src"):
@@ -207,12 +219,12 @@ def build() -> bool:                                                            
 
     # Create PyInstaller runner file..
     print("Creating runner file for PyInstaller...")
-    runner_path: Path = pyi_dir / f"{APP_NAME}.py"
+    runner_path: Path = pyi_dir / f"{safe_str(APP_NAME)}.py"
     with runner_path.open("w") as fp:
         fp.writelines(
             [
-                f"'''Runner for {APP_NAME}.\n\n",
-                f"This is a wrapper/runner for {APP_NAME} to run with PyInstaller builds.\n",
+                f"'''Runner for {safe_str(APP_AUTHOR)}_{safe_str(APP_NAME)}.\n\n",
+                f"This is a wrapper/runner for `{QUALIFIED_PKG_NAME}` to run with PyInstaller.\n",
                 "It has been automatically generated and changes will not persist across\n",
                 "fresh builds.\n",
                 "'''\n\n",
@@ -235,7 +247,7 @@ def build() -> bool:                                                            
     pyi_args: list[str] = [
         "--noconfirm", "--log-level=WARN",
         f"--workpath=artifacts/{M_PLATFORM_STRING}", f"--distpath=dist/{installer_name}",
-        "--clean", f"{APP_NAME}.py",
+        "--clean", f"{safe_str(APP_NAME)}.py",
         "--hidden-import", "bottle_websocket",
         "--add-data", f"{str(resources.path('eel', 'eel.js'))}{os.pathsep}eel",
         "--collect-data", QUALIFIED_PKG_NAME,
@@ -291,6 +303,10 @@ def build() -> bool:                                                            
                 "APP_VERSION": APP_VERSION,
                 "APP_AUTHOR": APP_AUTHOR,
                 "APP_LONG_AUTHOR": APP_LONG_AUTHOR,
+                "SAFE_APP_NAME": safe_str(APP_NAME),
+                "SAFE_APP_VERSION": safe_str(APP_VERSION),
+                "SAFE_APP_AUTHOR": safe_str(APP_AUTHOR),
+                "SAFE_APP_LONG_AUTHOR": safe_str(APP_LONG_AUTHOR),
                 "APP_URL": APP_URL,
                 "PLATFORM_STRING": M_PLATFORM_STRING,
                 "WORKSPACE_PATH": str(WORKSPACE_PATH),

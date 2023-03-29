@@ -1,4 +1,4 @@
-"""Configuration handler for LART Research Client.
+"""Configuration handler for L'ART Research Client.
 
 This package provides an API to read, modify, and store app configuration. The
 configuration is stored in a JSON file and relevant paths (unless explicitly
@@ -43,8 +43,10 @@ __all__ = ["config", "Config", "_default_paths"]
 logger = logging.getLogger(__name__)
 
 _appname: str = "Research Client"
-_appauthor: str = "LART"
-_default_paths = PlatformDirs(_appname, _appauthor, roaming=True)
+_appauthor: str = "L’ART"
+_safeappname: str = "Research_Client"
+_safeappauthor: str = "LART"
+_default_paths = PlatformDirs(_safeappname, _safeappauthor, roaming=True)
 
 
 class JSONPathEncoder(json.JSONEncoder):

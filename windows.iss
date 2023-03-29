@@ -1,15 +1,19 @@
-; INNO SETUP Script for the LART Research Client
+﻿; INNO SETUP Script for the LART Research Client
 ; Normally this script will be run automatically from `manage.py build`.
 
 #define MyAppName "[[APP_NAME]]"
 #define MyAppVersion "[[APP_VERSION]]"
 #define MyAppAuthor "[[APP_AUTHOR]]"
 #define MyAppLongAuthor "[[APP_LONG_AUTHOR]]"
+#define MySafeAppName "[[SAFE_APP_NAME]]"
+#define MySafeAppVersion "[[SAFE_APP_VERSION]]"
+#define MySafeAppAuthor "[[SAFE_APP_AUTHOR]]"
+#define MySafeAppLongAuthor "[[SAFE_APP_LONG_AUTHOR]]"
 #define MyAppURL "[[APP_URL]]"
 #define MyAppPlatformString "[[PLATFORM_STRING]]"
 #define MyAppDevDir "[[WORKSPACE_PATH]]"
-#define MyAppDistributableName MyAppAuthor + " " + MyAppName + " v" + MyAppVersion + "-"  + MyAppPlatformString
-#define MyAppExeName MyAppName + ".exe"
+#define MyAppDistributableName MySafeAppAuthor + "_" + MySafeAppName + "_v" + MySafeAppVersion + "-"  + MyAppPlatformString
+#define MyAppExeName MySafeAppName + ".exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications. This is a GUID/UUID.
@@ -22,7 +26,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 AppCopyright=Copyright (C) 2022 {#MyAppLongAuthor}
-DefaultDirName={autopf}\{#MyAppAuthor}\{#MyAppName}
+DefaultDirName={autopf}\{#MySafeAppAuthor}\{#MySafeAppName}
 DisableProgramGroupPage=yes
 LicenseFile={#MyAppDevDir}\LICENSE
 PrivilegesRequired=lowest
@@ -55,8 +59,8 @@ Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyAppDevDir}\build\pyinstaller\dist\{#MyAppDistributableName}\Research Client\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDevDir}\build\pyinstaller\dist\{#MyAppDistributableName}\Research Client\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyAppDevDir}\build\pyinstaller\dist\{#MyAppDistributableName}\{#MySafeAppName}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppDevDir}\build\pyinstaller\dist\{#MyAppDistributableName}\{#MySafeAppName}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
