@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 project_root_path = Path(__file__).parent.parent.parent
 
 setup_cfg = ConfigParser()
-setup_cfg.read(project_root_path / "setup.cfg")
+setup_cfg.read(project_root_path / "setup.cfg", encoding='utf-8')
 
 project = " ".join([
         setup_cfg.get("app.options", "author"),
