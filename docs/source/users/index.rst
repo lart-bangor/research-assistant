@@ -3,12 +3,12 @@
 Users' Guide
 ============
 
-In the L'ART Research Client Users' Guide we cover everything you need to know to install
-the Research Client, set it up for your experiment, and get going with collecting data.
+The L'ART Research Client Users' Guide covers everything you need to know to install the Research Client, 
+set it up and begin data collection.
 
-More information on how to adapt tasks is provided in the **Quick Tutorials**, and technical
-documentation for developing additional tasks or customising the Research Client is
-contained in the **Developer's Guide**.
+For users who wish to customise any of the tasks or add new translations, there are **Quick Tutorials** to help you through the process.
+For developers who may want to contrribute further developments to the Research Client or build additional tasks, a technical documentation
+can be found in the **Developer's Guide**.
 
 If you are looking for something specific, you can also **search** the Users' Guide.
 
