@@ -60,8 +60,6 @@ Firstly, you **must "save as"**, following the ISO standard code sequence (see h
 For example, if you wish to customize a version for English and Irish for use in Ireland through the medium of English, you will create a file called
 :file:`[EngGle_Eng_IE]` **(see Figure 23)**.  
 
-Your **“versionID”** should match your file name.
-
 .. figure:: figures/lsbqefigure17.png
       :width: 600
       :alt: Screenshot of saving generic files as
@@ -69,7 +67,7 @@ Your **“versionID”** should match your file name.
       Figure 22 - Save the generic files as and follow the ISO code sequence
 
 After your new version is saved, you must change the **“versionID”** and **“versionName”**
-to reflect your customization.
+to reflect your customization. Your **“versionID”** should match your file name.
 
 .. figure:: figures/lsbqefigure18.png
       :width: 600
@@ -88,12 +86,10 @@ In our current example that would be **“Irish”** as shown in Figure 24 below
 
       Figure 24 - Customizing inside your LSBQe file.
 
-It is not mandatory to include English as one of the languages on your LSBQe version.
-
-For example, if you require an LSBQe version to study Ulster Scots and Irish in Northern Ireland, you would call the file :file:`[ScoGle_Eng_GB]`
+It is not mandatory to include English as one of the languages on your LSBQe version. For example, if you require an LSBQe version to study Ulster Scots and Irish in Northern Ireland, you would call the file :file:`[ScoGle_Eng_GB]`
 and apply the relevant changes in Figure 22 and Figure 23.
 
-Additionally, in order to change the default **"English"** in the LSBQe, you would have to search **“MajorityLanguage”** and change each instance of English to Ulster Scots 
+Additionally, in order to change the default **"English"** in the LSBQe, you would have to search **“MajorityLanguage”** and change each instance of "English" to "Ulster Scots" 
 **(see Figure 25)**
 
 .. figure:: figures/lsbqefigure20.png
@@ -103,7 +99,7 @@ Additionally, in order to change the default **"English"** in the LSBQe, you wou
       Figure 25 - Customizing both languages in your generic LSBQe file
 
 .. note::
-    Note that, however, the third label in the file name :file:`[ScoGle_Eng_GB]` remains **“Eng”**, as this refers to the language in which the LSBQe is presented, which in this case is still English. 
+    Note that the third label in the file name :file:`[ScoGle_Eng_GB]` remains **“Eng”**, as this refers to the language in which the LSBQe is presented, which in this case is still English. 
     See here for details on file naming and ISO codes.
 
 .. link to the relevant localisation section 
