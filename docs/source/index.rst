@@ -8,7 +8,7 @@ This documentation is for version |version|.
 .. only:: html
 
    +--------------------------------------------------------------------------+--------------------------------+---------------------------------------+-----------------------------------------------------------------------+
-   | `📥 Download <https://github.com/lart-bangor/research-client/releases>`_ | :ref:`🧭 Users' Guide <users>` | :ref:`📜 Quick Tutorials <tutorials>` | `🛟 Support <https://github.com/lart-bangor/research-client/issues>`_ |
+   | `📥 Download <https://github.com/lart-bangor/research-client/releases>`_ | :ref:`🧭 User Guide <users>` | :ref:`📜 Quick Tutorials <tutorials>` | `🛟 Support <https://github.com/lart-bangor/research-client/issues>`_ |
    +--------------------------------------------------------------------------+--------------------------------+---------------------------------------+-----------------------------------------------------------------------+
 
 
