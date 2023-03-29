@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Script to automate common project management tasks.
 
 The goal is to eventually implement the following functionality:
@@ -169,7 +170,15 @@ def docs() -> bool:                                                             
             os.chdir(oldwd)
             return False
     else:
-        print("Sorry, this script can currently only build the documentation on Windows :-(")
+        try:
+            subprocess.run(["make", "clean"])
+            subprocess.run(["make", "html"])
+        except FileNotFoundError:
+            print(
+                f"{INDENT}ERROR: could not run 'make ./docs/Makefile'. Is Sphinx set up correctly?"
+            )
+            os.chdir(oldwd)
+            return False
     os.chdir(oldwd)
 
     # Move documentation to dist dir
