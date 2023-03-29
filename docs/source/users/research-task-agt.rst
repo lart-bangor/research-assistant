@@ -3,7 +3,7 @@ Research task: AGT
 
 The Audio Guise Tool (AGT) allows users to run either a Matched Guise Technique (MGT; Lambert, Hodsgon, Gardner & Fillenbaum 1960) or a Verbal Guise Technique (VGT; Markel, Eisler & Reese 1967) (see Breit et al., 2023 for detail). 
 
-Differentiation between MGT or VGT is executed via your audio recordings.
+Differentiation between MGT or VGT is executed via your audio recordings, and it is explained in some detail below.
 
 Loading recordings for the AGT
 ------------------------------
@@ -14,18 +14,15 @@ For an MGT setup, you **must** load eight experimental recordings from four spea
 
 For a VGT setup, you would load eight experimental recordings from eight speakers, with four speakers providing a recording in one language variety, and the other four speakers providing a recording in the other language variety.
 
-What to do with the four fillers are left up to the researcher. For instance, in an MGT setup, continuity with experimental stimuli may be preferred, so the four fillers could be recorded by two speakers, with both speakers providing
-a recording in each language variety.
+What to do with the four fillers is left up to you. For instance, in an MGT setup, continuity with experimental stimuli may be preferred, so the four fillers could be recorded by two speakers, with both speakers providing a recording in each language variety.
 
 The practice guise is presented first during an AGT and allows the participant to familiarise themselves with an AGT without testing experimental stimuli. Practice stimulus design is decided by the researcher, for instance,
 you may wish to produce a recording of yourself talking about a neutral topic for the same length as the experimental and filler recordings.
 
-Sounds files must be labelled appropriately in order for the AGT to execute the audio correctly. The audio recording for the practice guise must be named “practice.mp3”; audio files for fillers must be named beginning with “f”  plus the number of the filler (i.e., );
-and experimental guises must be marked “s” plus number to denote your speaker, then underscored before either “maj” or “rml” denoting the language variety.
+Sound files must be labelled appropriately in order for the AGT to execute the audio correctly. The audio recording for the practice guise ***must*** be named “practice.mp3”; audio files for fillers ***must*** be named beginning with “f”  plus the number of the filler (i.e., f1.mp3 to f4.mp3);
+and experimental guises ***must*** be marked “s” plus number to denote your speaker, then underscored before either “maj” or “rml” to mark the different language varieties (see figure 48 for examples). These labels must be assigned ***consistently*** to the file names, but it does not matter which variety you choose to label "maj" and which "rml" (though if working with a majority language and a regional/minority language it may help analysis if you use "maj" for majority and "rml" for minority language). What matters for app functionality is that you assign the “maj” label to one language/variety and the “rml” label to the other, keeping it consistent throughout your set-up.
 
-These are labels that must be assigned on the file names relating to the respective language varieties of AGT recordings. It is the researcher’s decision which language they assign the “maj” label to, and which language they assign the “rml” label to.
-
-Language variety should be consistent for all speaker recordings. In the example below in Figure 26, :file:`“maj”` should indicate Chinese recordings and :file:`“rml”` should indicate English recordings **consistently**.
+In the example below in Figure 26, :file:`“maj”` indicates Chinese recordings and :file:`“rml”` indicates English recordings. Do note that this is done **consistently** for all recordings.
 
 .. warning::
       File names are **case-sensitive** and **must** be written identically to how they appear here in order for the AGT to function.  
@@ -45,7 +42,7 @@ and use English as the language of presentation, you would create a folder calle
 
       Figure 47 - New folder **ZhoEng_Eng_SG** created following the ISO standard code sequence
 
-Inside your folder, paste your own sound files but copy the standard code sequence described as above for file names for naming your sound files. 
+Inside your folder, paste your own sound files but copy the standard code sequence described as above for file names when naming your sound files. 
 
 .. figure:: figures/agtfigure27.png
       :width: 400
@@ -53,7 +50,7 @@ Inside your folder, paste your own sound files but copy the standard code sequen
 
       Figure 48 - Sound file names for AGT following the standard code sequence
 
-Your files should now be played when you start the AGT and select the desired AGT version on the start menu.
+Your files will now play when you start the AGT and select your AGT version on the start menu.
 
 **insert screenshot once agt version has been implemented in the app**
 
@@ -72,7 +69,7 @@ Select the generic version of the AGT by selecting the “English – generic (U
 Customizing a generic version of the AGT
 ----------------------------------------
 
-You may wish to customize a generic version of the AGT if you would like the AGT to present a specific language pair to use during your study.
+You may wish to customize a generic version of the AGT if you would like the AGT home screen to list a specific language pair to use during your study.
 
 In order to customize a version of the AGT, open the file :file:`[EngZzz_Eng_GB]` by following the path below: 
 
@@ -86,11 +83,11 @@ In order to customize a version of the AGT, open the file :file:`[EngZzz_Eng_GB]
 
       Figure 50 - File path and AGT version files
 
-Firstly, you must **save your file as**, following the ISO standard code sequence (see **XX for standard code sequence generating**).
+Firstly, you **must** ensure that you **save as**, following the ISO standard code sequence (see **XX for standard code sequence generating**).
 
 Secondly, you must change the **“versionID”** and **“versionName”** to reflect your customization. Your **“versionID”** should match your file name. 
 
-Figure 29 follows the same example presented in `Figure 17 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id5>`_.
+Figure 51 follows the same example presented in `Figure 17 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id5>`_.
 
 .. figure:: figures/agtfigure30.png
       :width: 400
@@ -98,8 +95,11 @@ Figure 29 follows the same example presented in `Figure 17 <file:///C:/Users/adm
 
       Figure 51 -  New AGT file ZhoEng_Eng_SG 
 
-It is not mandatory to include English as one of the languages on the “English – generic” AGT version. For example, if you are a dialectologist who requires a VGT to study Ulster Scots and Irish in Northern Ireland,
-you would call your file :file:`[ScoGle_Eng_GB]` and apply the changes to versionName and VersionID as above.
+It is not mandatory to include English as one of the languages on the “English – generic” AGT version. For example, if you are a dialectologist who requires a VGT to study Ulster Scots and Irish in Northern Ireland, you would call your file :file:`[ScoGle_Eng_GB]` and apply the changes to versionName and VersionID as above.
+
+.. note::
+    Note that the third label in the file name :file:`[ScoGle_Eng_GB]` remains **“Eng”**, as this refers to the language in which the AGT is presented, which in this case is still English. 
+
 
 Seeing as no language names are mentioned anywhere in the AGT, the only other component where the languages you choose to study are important is the recordings you load onto the AGT (see section 1.8.1). 
 Everything else can remain the same as in the “English – generic” version. 
