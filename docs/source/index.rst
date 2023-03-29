@@ -31,7 +31,7 @@ If you use the L’ART Research Client (or parts of it), please cite the followi
 
 .. epigraph::
 
-   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2022). *The L’ART Research Client app: A digital toolkit for bilingualism and language attitude research * [Software, version |version|]. Bangor University. 
+   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2022). *The L’ART Research Client app: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
    
 
 .. .. rubric:: License
