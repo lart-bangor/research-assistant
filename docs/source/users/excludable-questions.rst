@@ -57,7 +57,7 @@ where they learned each of them, when they learned them, and if there were signi
 
 By default, the LSBQe  requires a minimum of two required language names, by presenting participants with two blank lines that must be filled before continuing.
 
-While participants have with the option of adding more language varieties via the :guilabel:`Add Line` button (i.e. for participants who are tri or polylingual),
+While participants have the option of adding more language varieties via the :guilabel:`Add Line` button (i.e. for participants who are multilingual),
 only two lines will appear as default **(see Figure 30 below)**. 
 
 .. figure:: figures/mrlfigure25.png
