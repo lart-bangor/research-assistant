@@ -1,9 +1,9 @@
 Welcome to the L’ART Research Client documentation!
 ===================================================
 
-The L’ART Research Client is a freely available open-source app that aims to make life easier for
-researchers working on bilingualism, sociolinguistics, language attitudes, and
-regional/minority/minoritized languages. This documentation is for version |version|.
+The L’ART Research Client is a freely available open-source app that aims to make it easier for researchers to collect, store and transfer data 
+for research on bilingualism, especially in cases of bilinguals who speak a majority language and a regional / minority / minoritized language. 
+This documentation is for version |version|.
 
 .. only:: html
 
