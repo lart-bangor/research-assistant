@@ -1,8 +1,6 @@
 Installation
 ============
 
-.. //double check before adding 1.1.1, 1.1.1.1, etc
-
 Installing on Windows 10/11
 ---------------------------
 
@@ -14,14 +12,12 @@ Installing on Windows 10/11
 #. Once downloaded to your device, open the *Downloads* dialogue in the browser and click :guilabel:`Open file`.
    Alternatively, navigate to your :file:`Downloads` folder in File Explorer and double click on the installer file.
 
-   .. figure:: figures/figure1.png
+   .. figure:: figures/users_install_open_from_downloads.png
       :name: users_install_open_from_downloads
       :width: 400
       :alt: Screenshot of Windows download dialogue showing the downloaded installer file.
 
       Open file from downloads
-
-   This text now links to :numref:`users_install_open_from_downloads`, which is straight above. (CHLOE: DELETE THIS LINE)
 
    .. note::
 
@@ -34,11 +30,11 @@ Installing on Windows 10/11
       
       Click :guilabel:`Run anyway` to continue with the installation.
 
-      .. figure:: figures/figure2.png
+      .. figure:: figures/microsoft_defender_smartscreen.png
          :width: 400
          :alt: An image of protection message from Windows taken from Microsoft Defender Smartscreen.
 
-         Figure 2 - Microsoft Defender SmartScreen
+         Microsoft Defender SmartScreen
 
 #. Select you preferred install mode.
 
@@ -51,30 +47,30 @@ Installing on Windows 10/11
 
    If in any doubt, choose :guilabel:`Install for me only`.
 
-   .. figure:: figures/figure3.png
+   .. figure:: figures/user_install_mode_setup.png
       :width: 400
       :alt: Screenshot of selecting an install mode for users
 
-      Figure 3 - Install mode setup
+      Install mode setup
 
 #. Click :guilabel:`Yes` to allow L'ART Research Client to make changes to your device
    (namely, to install the app).
 
-   .. figure:: figures/figure4.png
+   .. figure:: figures/user_account_control_screen.png
       :width: 400
       :alt: Screenshot of User Account Control Screen.
 
-      Figure 4 - User account control screen
+      User account control screen
 
 #. Read and accept the licence agreement.
 
    You must accept the agreement before installation can begin.
 
-   .. figure:: figures/figure5.png
+   .. figure:: figures/user_install_license_agreement.png
       :width: 400
       :alt: Screenshot of setup screen for the License agreement.
 
-      Figure 5 - License agreement
+      License agreement
 
 #. Select the destination location for your app.
 
@@ -86,27 +82,27 @@ Installing on Windows 10/11
    
    Click :guilabel:`Browse...` if you wish to change the installation path of the app.  
 
-   .. figure:: figures/figure6.png
+   .. figure:: figures/user_install_destination_location.png
       :width: 400
       :alt: Screenshot of setup screen requesting the user to select a destination location
 
-      Figure 6 - Select destination location
+      Select destination location
 
 #. Click :guilabel:`Install` to install the L’ART Research Client app on your device. 
 
-   .. figure:: figures/figure7.png
+   .. figure:: figures/user_install_research_client.png
       :width: 400
       :alt: Screenshot of application ready for installation.
 
-      Figure 7 - Install Research Client app
+      Install Research Client app
 
 #. Complete setup by clicking :guilabel:`Finish` and enjoy!
 
-   .. figure:: figures/figure8.png
+   .. figure:: figures/complete_setup_research_client.png
       :width: 400
       :alt: Screenshot of completing the L'ART Research Client Setup Wizard
 
-      Figure 8 - Complete setup of Research Client app
+      Complete setup of Research Client app
 
 
 Installing on Linux

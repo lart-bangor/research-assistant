@@ -19,4 +19,4 @@ manually ensure that data is deleted where that might be required.
     :width: 400
     :alt: Screenshot of LART research client menu
 
-    Figure 60 - Open sidebar to discard attempt 
+    Open sidebar to discard attempt 

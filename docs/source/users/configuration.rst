@@ -8,7 +8,7 @@ can be changed on the settings page. The various options are discussed in some d
       :width: 200
       :alt: Screenshot of completing the L'ART Research Client menu
 
-      Figure 9 - Open the sidebar to enter settings
+      Open the sidebar to enter settings
 
 Remember to click :guilabel:`Save changes` and restart the app in order for the changes you make to take effect. 
 
@@ -17,13 +17,13 @@ Remember to click :guilabel:`Save changes` and restart the app in order for the 
    If you modify a setting, it will show up in gold.
    Pressing the red :guilabel:`Reset` button will revert to the previous setting.
    Pressing the green :guilabel:`Default` button will revert to the default setting.
-   This is illustrated in Figure 15:
+   This is illustrated in Figure 10:
 
    .. figure:: figures/ts46.png
       :width: 400
       :alt: Screenshot of modified task sequencing
 
-      Figure 15 - Settings interface with modified task sequencing
+      Settings interface with modified task sequencing
 
 
 General settings
@@ -35,7 +35,7 @@ The general settings section is used to configure basic running parameters of th
       :width: 400
       :alt: Screenshot of shutdown delay section in general app settings
 
-      Figure 10 - Editing shutdown delay in the *general settings*
+      Editing shutdown delay in the *general settings*
 
 .. confval:: Shutdown delay
       :type: Real number
@@ -66,7 +66,7 @@ occurred on your computer.
       :width: 400
       :alt: Screenshot of Logging settings
 
-      Figure 11 - Logging settings
+      Logging settings
 
 .. warning::
 
@@ -190,9 +190,9 @@ and when the LSBQe is complete they will be sent to the conclusion screen before
       :width: 400
       :alt: Screenshot of default sequencing
 
-      Figure 12 -  Default sequencing: *Consent Form* > *LSBQe* > *Conclusion Screen* > *App start screen*
+      Default sequencing: *Consent Form* > *LSBQe* > *Conclusion Screen* > *App start screen*
 
-.. Update Figure 12 above!
+.. Update Figure 13 above!
 
 Note also that the sequencing doesn't rely on the entry point. If the participant is starting directly with the *LSBQe* in the default sequence,
 they will then still follow the remainder of that sequence, i.e. the *Conclusion Screen* followed by the *App start screen*.
@@ -211,7 +211,7 @@ sequencing is demonstrated in Figure 13:
       :width: 400
       :alt: Screenshot of task sequencing screen
 
-      Figure 13 - Customised sequence: *LSBQe* > *AGT* > *Conclusion Screen* > *App start screen* 
+      Customised sequence: *LSBQe* > *AGT* > *Conclusion Screen* > *App start screen* 
 
 Should you require every available task to be sequenced, you may also do so, as shown in Figure 14:
 
@@ -219,4 +219,4 @@ Should you require every available task to be sequenced, you may also do so, as 
       :width: 400
       :alt: Screenshot of task sequencing screen
 
-      Figure 14 -  *Consent Form* > *LSBQe* > *AToL-C* > *Memory Task* > *AGT* > *Conslusion Screen* > *App Start screen*
+      *Consent Form* > *LSBQe* > *AToL-C* > *Memory Task* > *AGT* > *Conslusion Screen* > *App Start screen*

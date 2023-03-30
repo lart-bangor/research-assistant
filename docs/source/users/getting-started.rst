@@ -5,14 +5,14 @@ Upon starting the app on your device, both the L’ART Research Client app and a
 
 .. [ADD SCREENSHOT of FINAL home screen] 
 
-Figure 14 - L’ART Research Client home screen
+Figure XX - L’ART Research Client home screen
 
 
 .. figure:: figures/figure9.png
       :width: 400
       :alt: Screenshot of completing the L'ART Research Client Terminal
 
-      Figure 15 - L'ART Research Client Terminal
+      L'ART Research Client Terminal
 
 The terminal window prints out information that might be helpful with troubleshooting and should not be closed 
 (the app will freeze/become unresponsive if the terminal window is closed). 

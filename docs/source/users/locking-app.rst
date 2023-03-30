@@ -9,15 +9,13 @@ that the researchers might not want them to have (at the point of data collectio
 
 Researchers might find it useful however to unlock the app and access such functionality from time to time. For example, to go back to the previous screen if
 an error was inadvertently made, or to reload the current screen if for any reason something isn’t rendered correctly. Unlocking the app is also useful for
-researchers who develop new localisations of a task (see **[INSERT LINK]**). 
-
-.. // once localisation link is available
+researchers who develop new localisations of a task (see `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/tutorials/localisation-translations.html#localisation-and-adding-translations>`_). 
 
 .. figure:: figures/lafigure31.png
       :width: 400
       :alt: Screenshot of LART Research Client menu
 
-      Figure 52 - Open the sidebar to unlock the app
+      Open the sidebar to unlock the app
 
 To unlock the app, open the side menu and click :guilabel:`Unlock app`. After unlocking the app, right click and these options (as well as a few more) will be available to you.
 If intervening during data collection, it is good practice to lock the app again once the necessary intervention has been carried out. 
@@ -31,4 +29,4 @@ If intervening during data collection, it is good practice to lock the app again
       :width: 400
       :alt: Screenshot of right click options 
 
-      Figure 53 - Right click will reveal options available after unlocking app
+      Right click will reveal options available after unlocking app
