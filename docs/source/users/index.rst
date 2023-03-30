@@ -28,6 +28,7 @@ Research Client or build additional tasks, a technical documentation can be foun
 .. toctree::
    :hidden:
    :maxdepth: 2
+   :numbered:
    :caption: Contents
 
    system-requirements

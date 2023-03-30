@@ -12,6 +12,7 @@ for the backend and the JavaScript APIs for the frontend.
 
 .. toctree::
    :maxdepth: 2
+   :numbered:
    :caption: Contents
 
    contributing
