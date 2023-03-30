@@ -7,9 +7,12 @@ data for research in bilingualism and language attitudes, especially
 in cases of bilinguals who speak a majority language and a regional
 / minority / minoritized language.
 
-+---------------------------------------------------------------------------+--------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
-| 📥 `Download <https://github.com/lart-bangor/research-client/releases>`_  | 🧭 `User Guide <https://research-client.readthedocs.io/en/latest/users/index.html>`_ | 📜 `Quick Tutorials <https://research-client.readthedocs.io/en/latest/tutorials/index.html>`_ | 🛟 `Support <https://github.com/lart-bangor/research-client/discussions>`_ |
-+---------------------------------------------------------------------------+--------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+
+* 📥 `Download <https://github.com/lart-bangor/research-client/releases>`_
+* 🧭 `User Guide <https://research-client.readthedocs.io/en/latest/users/index.html>`_
+* 📜 `Quick Tutorials <https://research-client.readthedocs.io/en/latest/tutorials/index.html>`_
+* 🛟 `Support <https://github.com/lart-bangor/research-client/discussions>`_
+
 
 Features
 --------
