@@ -15,10 +15,13 @@ Installing on Windows 10/11
    Alternatively, navigate to your :file:`Downloads` folder in File Explorer and double click on the installer file.
 
    .. figure:: figures/figure1.png
+      :name: users_install_open_from_downloads
       :width: 400
       :alt: Screenshot of Windows download dialogue showing the downloaded installer file.
 
-      Figure 1 - Open file from downloads
+      Open file from downloads
+
+   This text now links to :numref:`users_install_open_from_downloads`, which is straight above. (CHLOE: DELETE THIS LINE)
 
    .. note::
 
@@ -73,7 +76,6 @@ Installing on Windows 10/11
 
       Figure 5 - License agreement
 
-
 #. Select the destination location for your app.
 
    Normally you should be able to leave this at the path already suggested by the installer,
@@ -90,7 +92,6 @@ Installing on Windows 10/11
 
       Figure 6 - Select destination location
 
-
 #. Click :guilabel:`Install` to install the L’ART Research Client app on your device. 
 
    .. figure:: figures/figure7.png
@@ -98,7 +99,6 @@ Installing on Windows 10/11
       :alt: Screenshot of application ready for installation.
 
       Figure 7 - Install Research Client app
-
 
 #. Complete setup by clicking :guilabel:`Finish` and enjoy!
 

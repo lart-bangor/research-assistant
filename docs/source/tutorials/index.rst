@@ -1,5 +1,3 @@
-.. _tutorials:
-
 Quick Tutorials
 ===============
 

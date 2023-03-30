@@ -6,9 +6,14 @@ This documentation is for version |version|.
 
 .. only:: html
 
-   +--------------------------------------------------------------------------+-----------------------------------+---------------------------------------+----------------------------------------------------------------------------+
-   | `📥 Download <https://github.com/lart-bangor/research-client/releases>`_ | :ref:`🧭 User Guide <user_guide>` | :ref:`📜 Quick Tutorials <tutorials>` | `🛟 Support <https://github.com/lart-bangor/research-client/discussions>`_ |
-   +--------------------------------------------------------------------------+-----------------------------------+---------------------------------------+----------------------------------------------------------------------------+
+   .. raw:: html
+
+      <p>
+         <a class="btn btn-info" href="https://github.com/lart-bangor/research-client/releases">📥 Download</a>
+         <a class="btn btn-info" href="users/index.html">🧭 User Guide</a>
+         <a class="btn btn-info" href="tutorials/index.html">📜 Quick Tutorials</a>
+         <a class="btn btn-info" href="https://github.com/lart-bangor/research-client/discussions">🛟 Support</a>
+      </p>
 
 
 .. rubric:: Features
@@ -61,7 +66,6 @@ If you use the L’ART Research Client (or parts of it), please cite the followi
    :maxdepth: 1
    :caption: Indices
 
-   Table of Contents <modindex>
    references
    genindex
 

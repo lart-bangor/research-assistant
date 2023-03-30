@@ -2,7 +2,8 @@ About the Research Client
 =========================
 
 Introduction
-^^^^^^^^^^^^
+------------
+
 The L’ART Research Client is a freely available open-source app to aid researchers in the collection, 
 storage and transfer of data for research in bilingualism and language attitudes, with a particular focus
 on bilingual populations who speak a majority language and a regional / minority / minoritized language. 
@@ -11,16 +12,22 @@ For a detailed discussion of the specific methodological choices, see Breit et a
 
 
 What the L'ART Reserch Client can do
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The current version (L'ART Research Client |version|) implements four tools (for a detailed discussion of methodological adaptations, please see Breit et al., 2023).
+------------------------------------
+
+The current version (L'ART Research Client |version|) implements four tools (for a detailed discussion of
+methodological adaptations, please see Breit et al., 2023).
 
 * **Participant consent**: A digital informed consent process, including participant information sheets & consent forms.
 
-* **LSBQe**: A digital adaptation of the **Language and Social Background Questionnaire**, or LSBQ ([Anderson-Mak-EtAl-2018]_), which we term the LSBQe (“e” for electronic).
+* **LSBQe**: A digital adaptation of the **Language and Social Background Questionnaire**, or LSBQ [Anderson-Mak-EtAl-2018]_,
+  which we term the LSBQe (“e” for electronic).
 
-* **AToL**: A digital implementation of the **Attitudes towards Languages Questionnaire** or AToL ([Schoel-Roessel-EtAl-2013]_). 
+* **AToL**: A digital implementation of the **Attitudes towards Languages Questionnaire** or AToL [Schoel-Roessel-EtAl-2013]_. 
 
-* **MGT** and **VGT**: A digital tool for measuring language attitudes via the speaker evaluation paradigm. This tool enables users to run several evaluations of audio guises such as the **Matched Guise Technique** ([Lambert-Hodsgon-EtAl-1960]_) and the **Verbal Guise test** (e.g., [Markel-EtAl-1967]_). Due to its flexibility as either MGT or VGT, we named this tool **‘Audio Guise Test’**, or **AGT** for short. 
+* **MGT** and **VGT**: A digital tool for measuring language attitudes via the speaker evaluation paradigm.
+  This tool enables users to run several evaluations of audio guises such as the **Matched Guise Technique**
+  [Lambert-Hodsgon-EtAl-1960]_ and the **Verbal Guise test** (e.g., [Markel-EtAl-1967]_). Due to its
+  flexibility as either MGT or VGT, we named this tool **‘Audio Guise Test’**, or **AGT** for short.
 
  
 The main functionality of the L’ART Research Client resides in its format as a stand-alone app 
@@ -37,27 +44,35 @@ language pair is even easier and can be done by just editing a simple
 `JSON <https://en.wikipedia.org/wiki/JSON>`_ file in a text editor (see :doc:`tutorials/translating-tasks`).
 
 
-
 Reasons to use the Research Client
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
-* **Less work for the researcher:** With research tasks pre-implemented, preparation for a new study only involves translation/localisation of the interface where a suitable one is not yet available for the target population. There is also no need to manage forms and manually enter data after collecting responses. 
+* **Less work for the researcher:** With research tasks pre-implemented, preparation for a new study only
+  involves translation/localisation of the interface where a suitable one is not yet available for the target
+  population. There is also no need to manage forms and manually enter data after collecting responses. 
 
-* **Enhanced consistency and comparability within and across studies:** The translation/localisation of tasks is the only thing that varies within tasks. The presentation, data types and validation, coding, and output format stay constant across different use instances, whether as part of the same study or across different studies and research teams. 
+* **Enhanced consistency and comparability within and across studies:** The translation/localisation of
+  tasks is the only thing that varies within tasks. The presentation, data types and validation, coding,
+  and output format stay constant across different use instances, whether as part of the same study or
+  across different studies and research teams. 
 
-* **Improved transparency and reproducibility:** Because the entire source code for the L’ART Research Client is publicly available and version-controlled, it’s easy to reference the specific version and task that was used, which allows other researchers to easily view and reconstruct the tasks exactly as they were administered at the time the research was carried out. 
+* **Improved transparency and reproducibility:** Because the entire source code for the L’ART Research
+  Client is publicly available and version-controlled, it’s easy to reference the specific version and
+  task that was used, which allows other researchers to easily view and reconstruct the tasks exactly as
+  they were administered at the time the research was carried out. 
 
 For detailed examples and more concrete illustrations of these advantages, see Breit et al., 2023. 
 
 Citing the Research Client
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
+
 .. epigraph::
 
 Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2022). *The L’ART Research Client app: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
 
 
 Licensing
-^^^^^^^^^
+---------
 
 The L’ART Research Client and all the tools implemented within it are free and open source. The app is
 dual licensed under the terms of the `Affero General Public License <https://www.gnu.org/licenses/agpl-3.0.en.html>`_
@@ -85,7 +100,7 @@ Both licenses allow you to:
 
 
 Contributors
-^^^^^^^^^^^^
+------------
 
 The L'ART Research Client core developers are :github:user:`Florian Breit <thatfloflo>` (Lead) and :github:user:`Marco Tamburelli <dakrismeno>`.
 
@@ -96,8 +111,9 @@ We would like to thank the following for contributing (in alphabetical order):
 * :github:user:`Ianto Gruffydd <iantogruff>` (User testing, Translation, Documentation)
 * Athanasia Papastergiou (Translation)
 
+
 Acknowledgements
-^^^^^^^^^^^^^^^^
+----------------
 
 The L'ART Research Client was developed by the `Language Attitudes Research Team <https://bangor.ac.uk/lart>`_ (:github:org:`GitHub <lart-bangor>`)
 in the `School of Arts, Culture and Language <https://bangor.ac.uk/arts-culture-language>`_
