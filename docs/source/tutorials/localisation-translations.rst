@@ -32,7 +32,7 @@ Below is an example of the path when the app is installed for **a single user**:
 
     Finding the “versions” folder if you installed L'ART Research Client for a single user
 
-Sometimes Windows hides the folder :file:`AppData`` from view. To make it visible, click on the :guilabel:`View` tab and ticking the box labelled :guilabel:`Hidden items` as follows: 
+Sometimes Windows hides the folder :file:`AppData` from view. To make it visible, click on the :guilabel:`View` tab and ticking the box labelled :guilabel:`Hidden items` as follows: 
 
 .. figure:: tutfigures/tutfigure3.png
     :width: 400

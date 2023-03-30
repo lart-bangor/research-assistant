@@ -24,7 +24,7 @@ Upon starting the LSBQe, you are first asked to enter the relevant information f
       :width: 400
       :alt: Screenshot of the first screen of the LSBQe
 
-      Figure 18 - The first screen, using the LSBQe as an example
+       The first screen, using the LSBQe as an example
 
 
 User input
@@ -51,4 +51,4 @@ If the participant fails to move the slider, a red flag will appear **(see Figur
       :width: 600
       :alt: Screenshot of the slider function, using the LSBQe as an example.
 
-      Figure 19 - The slider function, using the LSBQe as an example.
+      The slider function, using the LSBQe as an example.

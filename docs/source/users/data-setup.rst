@@ -30,14 +30,14 @@ To obtain consent digitally, open the side menu on the top left-handby clicking 
       :width: 350
       :alt: Screenshot of the L'ART Research Clients' side menu
 
-      Figure 16 - The side menu of the L'ART app
+      The side menu of the L'ART app
 
 
 .. figure:: figures/figure11.png
       :width: 600
       :alt: Screenshot of Participant consent start screen
 
-      Figure 17 - Participant consent start screen
+      Participant consent start screen
 
 After selecting the required language version and entering a unique participant ID, your study’s consent form,
 information sheet and eligibility criteria will appear below. 
