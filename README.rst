@@ -1,4 +1,4 @@
-The L’ART Research Client |appicon|
+|appicon| The L’ART Research Client
 ===================================
 
 The L’ART Research Client is a freely available open-source app
@@ -7,15 +7,9 @@ data for research in bilingualism and language attitudes, especially
 in cases of bilinguals who speak a majority language and a regional
 / minority / minoritized language.
 
-.. raw :: html
-
-   <form style="text-align:center;font-size:120%">
-      <button formaction="https://github.com/lart-bangor/research-client/releases">📥 Download</button>
-      <button formaction="https://research-client.readthedocs.io/en/latest/users/index.html">🧭 User Guide</button>
-      <button formaction="https://research-client.readthedocs.io/en/latest/tutorials/index.html">📜 Quick Tutorials</button>
-      <button formaction="https://github.com/lart-bangor/research-client/discussions">🛟 Support</button>
-   </form>
-
++---------------------------------------------------------------------------+--------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| 📥 `Download <https://github.com/lart-bangor/research-client/releases>`_  | 🧭 `User Guide <https://research-client.readthedocs.io/en/latest/users/index.html>`_ | 📜 `Quick Tutorials <https://research-client.readthedocs.io/en/latest/tutorials/index.html>`_ | 🛟 `Support <https://github.com/lart-bangor/research-client/discussions>`_ |
++---------------------------------------------------------------------------+--------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
 
 Features
 --------
@@ -79,5 +73,5 @@ To report issues/bugs, please use  `GitHub Issues <https://github.com/lart-bango
 
 
 .. |appicon| image:: https://raw.githubusercontent.com/lart-bangor/research-client/main/research_client/web/img/appicon.png
-   :height: 22
+   :height: 26
    :align: bottom
