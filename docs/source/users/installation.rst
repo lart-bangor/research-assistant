@@ -115,9 +115,84 @@ Installing on Linux
 This currently requires building from source or running as a Python package (requires Python 3.10),
 but should run if you have Chrome or Chromium installed.
 
+.. note:: Help wanted!
+
+   We would welcome help for developing a sustainable workflow to build distributables for Linux.
+   If you have any experience with packaging for one or more Linux distributions (e.g. as flatpaks,
+   \*.debs, snaps, etc.) and would be willing to help with that please do get in touch!
+
+
+
+Running as a Python package
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The easiest way is to run directly from source. On Ubuntu 22.04, follow the steps below the get
+the source code and all the dependencies installed. The last line will run the Research Client.
+
+.. parsed-literal::
+
+   $ sudo apt install chromium-browser
+   $ pip install pipenv
+   $ cd ~/
+   $ wget https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz
+   $ tar -xf ./v\ |version|\ .tar.gz
+   $ rm ./v\ |version|\ .tar.gz
+   $ cd research-client-|version|
+   $ python3.10 -m pipenv install
+   $ python3.10 -m pipenv run python ./manage.py run
+
+.. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-client/archive/refs/tags/v
+
+If you want to make an executable shortcut, create a file with the executable flag (+x) in your
+:file:`~/.local/bin` directory. You can do this by following these steps:
+
+.. code-block:: console
+
+   $ cd ~/.local/bin
+   $ echo > research-client
+   $ chmod +x research-client
+   $ gedit research-client
+
+In the editor that pops up, enter the following text and then save the file:
+
+.. parsed-literal::
+
+   #!/usr/bin/env bash
+
+   cd ~/research-client-|version|
+   python3.10 -m pipenv run python manage.py
+
+
+After savin the above, you can now launch the Research Client from the terminal by
+just typing in :code:`research-client` and hitting :kbd:`Enter`. (You may need to
+log out and log back in if this doesn't work straight away...)
+
+
+Building from source
+^^^^^^^^^^^^^^^^^^^^
+
+Alternatively, if you want to build the app properly for your system, you can
+follow the steps for :doc:`../developers/setup` from the :doc:`../developers/index`,
+and then just run :code:`python3.10 -m pipenv run python manage.py build` from
+inside the project's root directory.
+
+This will produce a tarball (:file:`*.tar.gz`) in the :file:`./dist/linux/`
+directory containing the full set of binaries for the application, which can then
+be installed in the appropriate way for you system or run directly from the
+executable therein.
+
+The only real advantage this might offer is if you want to install the
+Research Client on several machines, as you can just copy over the tarball,
+exctract it and run the app, without needing to worry about any dependencies
+(they are all packaged together when the executable is built). There is no
+real additional advantage over running as a Python package.
+
+
 
 Installing on MacOS
 -------------------
 
 This currently requires building from source or running as a Python package (requires Python 3.10),
-but should run if you have Chrome or Chromium installed.
+but should run if you have Chrome or Chromium installed. You should be able to largely
+follow the steps for Linux above, though you will need to adjust the commands to install
+dependencies, as :command:`apt` is of course not available on MacOS.
