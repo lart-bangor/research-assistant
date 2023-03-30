@@ -11,6 +11,8 @@ relatively little previous experience of software development.
    the repo, and run ``pipenv install --dev`` in the root of the source tree to get going.
 
 
+.. _install_pre-requirements:
+
 Installing the pre-requirements
 -------------------------------
 
@@ -212,7 +214,9 @@ directory (see the last step above).
       but not for the version the end-user gets).
 
 
-Test that everything is working
+.. _run_from_source:
+
+Running the app from the source
 -------------------------------
 
 Now let's test that things are working as they should. Open a terminal and go to the directory to which

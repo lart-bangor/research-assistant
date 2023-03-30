@@ -98,6 +98,7 @@ Both licenses allow you to:
   believe this ensures maximal adoptability and reusability across a large variety of potential
   users in different parts of the world.
 
+.. _contributors_list:
 
 Contributors
 ------------
