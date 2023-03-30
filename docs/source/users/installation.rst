@@ -159,7 +159,7 @@ In the editor that pops up, enter the following text and then save the file:
    python3.10 -m pipenv run python manage.py
 
 
-After savin the above, you can now launch the Research Client from the terminal by
+After saving the above, you can now launch the Research Client from the terminal by
 just typing in :code:`research-client` and hitting :kbd:`Enter`. (You may need to
 log out and log back in if this doesn't work straight away...)
 
