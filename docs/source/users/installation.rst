@@ -127,15 +127,15 @@ the source code and all the dependencies installed. The last line will run the R
 
 .. parsed-literal::
 
-   $ sudo apt install chromium-browser
-   $ pip install pipenv
-   $ cd ~/
-   $ wget https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz
-   $ tar -xf ./v\ |version|\ .tar.gz
-   $ rm ./v\ |version|\ .tar.gz
-   $ cd research-client-|version|
-   $ python3.10 -m pipenv install
-   $ python3.10 -m pipenv run python ./manage.py run
+   sudo apt install chromium-browser python3-pip python3-tk -y
+   python3.10 -m pip install pipenv
+   cd ~/
+   wget https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz
+   tar -xf ./v\ |version|\ .tar.gz
+   rm ./v\ |version|\ .tar.gz
+   cd research-client-|version|
+   python3.10 -m pipenv install
+   python3.10 -m pipenv run python ./manage.py run
 
 .. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-client/archive/refs/tags/v
 

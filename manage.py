@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Script to automate common project management tasks.
 
 The goal is to eventually implement the following functionality:
