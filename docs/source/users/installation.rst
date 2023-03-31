@@ -244,7 +244,7 @@ To run as a Python package, follow these instructions:
       python3 -m pipenv run python3 ./manage.py run
 
 
-Obviously, you will not have to open a Terminal, do :code:`cd ~/research/client` and then
+Obviously, you will not want to open a Terminal, do :code:`cd ~/research/client` and then
 type :code:`python3 -m pipenv run python3 ./manage.py run` every time. You can create
 a shortcut which can be clicked to launch the app by following these additional steps:
 
