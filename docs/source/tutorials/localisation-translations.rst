@@ -1,6 +1,5 @@
 Localisation and Adding Translations
 ====================================
-
 The LSBQe is designed to allow easy implementation of interfaces in any language you choose.
 
 At the moment, the languages available are **English, German, Greek, Italian,** and **Welsh**. 
@@ -18,7 +17,6 @@ To do this, you will need to create a new file, provide a translation for each i
 
 Creating and Naming your file
 -----------------------------
-
 To create a new file for your translation, go to the location where the L'ART app is installed, and open the :file:`Versions` folder.
 
 Below is the path you need to follow in order to find it. The path your app is located in depends on whether you installed the app for a single user or for all users (you will have made this choice on installation).
@@ -53,7 +51,7 @@ Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name
 .. note::
     Naming **must** be done in a specific manner so that the app can find and read the translation you provide.
 
-    The naming convention adopted in the L’ART Research Client is based on `ISO 639 codes <https://www.iso.org/iso-639-language-codes.html>`_ for the languages (found `here <https://iso639-3.sil.org/code_tables/639/data>`_)
+    The naming convention adopted in the L’ART Research Client is based on `ISO 639 codes <https://www.iso.org/iso-639-language-codes.html>`_ for the languages (a full list is found `here <https://iso639-3.sil.org/code_tables/639/data>`_)
     and on ISO 3166-1 alpha-2 codes for the countries (click `here <https://www.nationsonline.org/oneworld/country_code_list.htm>`_ for a list), but uses capital letters
     for the language codes in keeping with CamelCase (see `here <https://legacy.python.org/dev/peps/pep-0008/#naming-conventions>`_) as follows:
 
@@ -71,7 +69,6 @@ whose native languages are Galician **(glg)** and Spanish **(spa)**, you would l
 
 Adding your translation
 -----------------------
-
 Your newly created file will now be identical to the original British-English file (except for its name)!
 Now it’s time to add your translation. The translation file involves **two** main pieces of information: a **set of labels** and a **language output**.
 The labels are what the L’ART Research Client needs in order to function, while the language output is what you will see in your interface.
@@ -85,10 +82,13 @@ With your new file open in a text editor, begin by highlighting the language out
 .. figure:: tutfigures/tutfigure6.png
     :width: 400
 
+
 Then, replace it with the code for your translation. Using our Galician-Spanish example above, this will look as follows: 
+
 
 .. figure:: tutfigures/tutfigure7.png
     :width: 400
+
 
 Now go through each item and provide the relevant information for the header **“meta”**, namely:
 
