@@ -13,18 +13,17 @@
         "instruction": "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen.",
         "language_header": "Die deutsche Sprache ist...",
         "rml_header": "Das Eifeler Platt ist...",
-        "atol_header": "AToL Fragebogen (RML)",
+        "atol_header": "AToL Fragebogen",
         "btn_text": "Weiter",
         "thank_you": "Vielen Dank für das Ausfüllen des Fragebogens!",
-        "next_task": "Bitte klicken Sie auf [Weiter] wenn Sie fertig sind"
+        "next_task": "Bitte klicken Sie auf <i>Weiter</i> wenn Sie fertig sind"
     },
-
     "adjectives": {
-        "logic":        ["logisch",         "unlogisch"],         
+        "logic":        ["logisch",         "unlogisch"],
         "elegance":     ["stillos",         "stilvoll"],
         "fluency":      ["stockend",        "fließend"],
         "ambiguity":    ["eindeutig",       "missverständlich"],
-        "appeal":       ["anziehend",         "abstoßend"],
+        "appeal":       ["anziehend",       "abstoßend"],
         "structure":    ["stukturlos",      "sturkturiert"],
         "precision":    ["genau",           "ungenau"],
         "harshness":    ["hart",            "weich"],
@@ -36,5 +35,4 @@
         "grace":        ["plump",           "anmutig"],
         "angularity":   ["eckig",           "rund"]
     }
-    
 }

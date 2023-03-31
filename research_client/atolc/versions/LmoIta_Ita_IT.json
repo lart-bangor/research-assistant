@@ -16,24 +16,23 @@
         "atol_header": "Questionario sulle varietà linguistiche",
         "btn_text": "Avanti",
         "thank_you": "Grazie per aver completato il questionario!",
-        "next_task": "Si prega di cliccare [continua] appena possibile"
-},
-
+        "next_task": "Si prega di cliccare <i>Continua</i> appena possibile"
+    },
     "adjectives": {
-        "logic":        ["logico",         "illogico"],
-        "elegance":     ["elegante",       "non elegante"],
-        "fluency":      ["frammentato",     "scorrevole"],
-        "ambiguity":    ["chiaro",          "ambiguo"],
-        "appeal":       ["attraente",       "ripugnante"],
-        "structure":    ["non strutturato",  "strutturato"],
-        "precision":    ["preciso",         "vago"],
-        "harshness":    ["duro",           "morbido"],
-        "flow":         ["fluido",         "brusco"],
-        "beauty":       ["bello",           "brutto"],
-        "sistem":       ["sistematico",      "non sistematico"],
-        "pleasure":     ["piacevole",        "spiacevole"],
-        "smoothness":   ["liscio",          "ruvido"],
-        "grace":        ["goffo",          "aggraziato"],
-        "angularity":   ["spigoloso",         "arrotondato"]
+        "logic":        ["logico",              "illogico"],
+        "elegance":     ["non elegante",        "elegante"],
+        "fluency":      ["frammentato",         "scorrevole"],
+        "ambiguity":    ["chiaro",              "ambiguo"],
+        "appeal":       ["attraente",           "ripugnante"],
+        "structure":    ["non strutturato",     "strutturato"],
+        "precision":    ["preciso",             "vago"],
+        "harshness":    ["duro",                "morbido"],
+        "flow":         ["fluido",              "brusco"],
+        "beauty":       ["bello",               "brutto"],
+        "sistem":       ["sistematico",         "non sistematico"],
+        "pleasure":     ["piacevole",           "spiacevole"],
+        "smoothness":   ["liscio",              "ruvido"],
+        "grace":        ["goffo",               "aggraziato"],
+        "angularity":   ["spigoloso",           "arrotondato"]
     }
-    }
+}

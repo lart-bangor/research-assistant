@@ -13,10 +13,10 @@
      "instruction": "Please move the slider to record your choice.",
      "language_header": "The English language is...",
      "rml_header": "[ENTER language name HERE] language is...",
-     "atol_header": "AToL Questionnaire (RML)",
+     "atol_header": "AToL Questionnaire",
      "btn_text": "Next",
      "thank_you": "Thank you for completing the questionnaire!",
-     "next_task": "Please click [continue] when you're ready"
+     "next_task": "Please click <i>Continue</i> when you're ready"
 },
 
     "adjectives": {
