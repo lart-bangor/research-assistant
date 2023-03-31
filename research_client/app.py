@@ -9,6 +9,7 @@ import gevent                                                           # type: 
 import logging
 import multiprocessing
 import sys
+from gevent import signal
 from pathlib import Path
 from typing import Any, Sequence
 from . import atolc                                                     # type: ignore  # noqa: F401
@@ -194,11 +195,10 @@ def main():                                                                     
         f"Now running on "
         f"http://{eel._start_args['host']}:{eel._start_args['port']}"           # type: ignore
     )
+    gevent.signal.signal(signal.SIGTERM, shutdown)
+    gevent.signal.signal(signal.SIGQUIT, shutdown)
+    gevent.signal.signal(signal.SIGINT,  shutdown)
     gevent.get_hub().join()                                                     # type: ignore
-
-    # Gracefully exit program execution
-    logger.info("Exiting app...")
-    sys.exit(0)
 
 
 # Timer for close() function internal callbacks, do not modify outside close() method.
@@ -218,9 +218,7 @@ def close(page: str, opensockets: list[Any]):
             if len(eel._websockets) == 0 and _close_countdown_timer < 1.0:      # type: ignore
                 logger.debug("Still no websockets found.")
                 logger.debug(f"Shutdown delay timeout remaining is {_close_countdown_timer}.")
-                logger.debug("Destroying gevent event loop...")
-                ghub = gevent.get_hub()                                         # type: ignore
-                ghub.loop.destroy()                                             # type: ignore
+                shutdown()
             elif len(eel._websockets) > 0:                                      # type: ignore
                 _close_countdown_timer = config.shutdown_delay
                 logger.debug("New websockets found, cancelling shutdown...")
@@ -234,6 +232,22 @@ def close(page: str, opensockets: list[Any]):
         logger.debug(f"No websockets left, registering shutodwn after {config.shutdown_delay}s.")
         gevent.spawn_later(1.0, conditional_shutdown)         # type: ignore
 
+
+def shutdown(sig=None, frame=None):
+    """Shut down the app."""
+    if sig is not None:
+        signames = {int(signal.SIGTERM): "SIGTERM", int(signal.SIGQUIT): "SIGQUIT", int(signal.SIGINT): "SIGINT"}
+        signame = signames.get(sig, str(sig))
+        logger.critical(f"Signal '{signame}' received. Shutdown initiated.")
+    logger.info("App shutdown triggered...")
+    logger.debug("Destroying gevent event loop...")
+    ghub = gevent.get_hub()                                         # type: ignore
+    ghub.destroy()
+    # Test whether above is sufficient on Windows, if so, loose the next line
+    ghub.loop.destroy()                                             # type: ignore
+    # Make sure we exit gracefully in case destroying the gevent event loop was not sufficient...
+    logger.debug("Execution survived event loop destruction, hard exiting...")
+    sys.exit(1)
 
 # Expose export_backup to spawn self --backup
 @eel.expose
