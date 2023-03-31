@@ -4,7 +4,7 @@ Localisation and Adding Translations
 The LSBQe is designed to allow easy implementation of interfaces in any language you choose.
 
 At the moment, the languages available are **English, German, Greek, Italian,** and **Welsh**. 
-The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, Moselle Franconian-German**, and **Greek-ENglish:**
+The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, Moselle Franconian-German**, and **Greek-English:**
 
 .. figure:: tutfigures/tutfigure1.png
       :width: 500
@@ -53,7 +53,7 @@ Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name
 .. note::
     Naming **must** be done in a specific manner so that the app can find and read the translation you provide.
 
-    The naming convention adopted in the L’ART Research Client is based on `ISO 639 codes <https://www.iso.org/iso-639-language-codes.html>` for the languages (found `here <https://iso639-3.sil.org/code_tables/639/data>`_)
+    The naming convention adopted in the L’ART Research Client is based on `ISO 639 codes <https://www.iso.org/iso-639-language-codes.html>`_ for the languages (found `here <https://iso639-3.sil.org/code_tables/639/data>`_)
     and on ISO 3166-1 alpha-2 codes for the countries (click `here <https://www.nationsonline.org/oneworld/country_code_list.htm>`_ for a list), but uses capital letters
     for the language codes in keeping with CamelCase (see `here <https://legacy.python.org/dev/peps/pep-0008/#naming-conventions>`_) as follows:
 
