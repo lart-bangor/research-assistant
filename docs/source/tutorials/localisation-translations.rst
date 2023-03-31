@@ -34,7 +34,9 @@ Sometimes Windows hides the folder :file:`AppData` from view. To make it visible
 .. figure:: tutfigures/tutfigure3.png
     :width: 400
 
+
 However, if you installed the app **for all users**, you will find the :file:`Versions` folder by following a different path, as below: 
+
 
 .. figure:: tutfigures/tutfigure4.png
     :width: 500
