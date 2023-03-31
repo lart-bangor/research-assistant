@@ -3,9 +3,8 @@ Localisation and Adding Translations
 
 The LSBQe is designed to allow easy implementation of interfaces in any language you choose.
 
-At the moment, the languages available are **English, German, Italian,** and **Welsh**. 
-
-The setup is for three bilingual communities: **Welsh-English, Lombard-Italian** and **Moselle Franconian-German:**
+At the moment, the languages available are **English, German, Greek, Italian,** and **Welsh**. 
+The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, Moselle Franconian-German**, and **Greek-ENglish:**
 
 .. figure:: tutfigures/tutfigure1.png
       :width: 500
@@ -52,11 +51,11 @@ You can open this in **Notepad**, or any text editor of your choice.
 Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name that includes the **language** and a **label** for the bilingual community you plan to study.
 
 .. note::
-    Naming needs to be done in a specific manner so that the app can find and read the translation you provide.
+    Naming **must** be done in a specific manner so that the app can find and read the translation you provide.
 
-    The naming convention adopted in the L’ART Research Client is based on ISO 639 codes for the languages (found `here <https://iso639-3.sil.org/code_tables/639/data>`_)
-    and on ISO 3166-1 alpha-2 codes for the countries (click `here <https://www.nationsonline.org/oneworld/country_code_list.htm>`_ for example), but uses capital letters
-    for the language codes in keeping with CamelCase (click `here <https://legacy.python.org/dev/peps/pep-0008/#naming-conventions>`_) as follows:
+    The naming convention adopted in the L’ART Research Client is based on `ISO 639 codes <https://www.iso.org/iso-639-language-codes.html>` for the languages (found `here <https://iso639-3.sil.org/code_tables/639/data>`_)
+    and on ISO 3166-1 alpha-2 codes for the countries (click `here <https://www.nationsonline.org/oneworld/country_code_list.htm>`_ for a list), but uses capital letters
+    for the language codes in keeping with CamelCase (see `here <https://legacy.python.org/dev/peps/pep-0008/#naming-conventions>`_) as follows:
 
 
     .. figure:: tutfigures/conventions.png
@@ -74,19 +73,13 @@ Adding your translation
 -----------------------
 
 Your newly created file will now be identical to the original British-English file (except for its name)!
-
-Now it’s time to add your translation. 
-
-The translation file involves **two** main pieces of information: a **set of labels** and a **language output**.
-
+Now it’s time to add your translation. The translation file involves **two** main pieces of information: a **set of labels** and a **language output**.
 The labels are what the L’ART Research Client needs in order to function, while the language output is what you will see in your interface.
 
 To provide your translated version, you need to highlight each bit of language output and replace it with your translation.
-
 Make sure you **do not** change the labels though, otherwise the app will not find your translation and instead, will output the default English version. 
 
 First, you will need to provide some basic information about the file. This is the information under the header **“meta”**.
-
 With your new file open in a text editor, begin by highlighting the language output for the label :file:`versionId`, as follows: 
 
 .. figure:: tutfigures/tutfigure6.png
@@ -108,7 +101,6 @@ Now go through each item and provide the relevant information for the header **�
 Once you’ve completed that, you may begin the translation properly. 
 
 Ensure that you highlight each language output for each item and provide your translation!
-
 For example, under the label :guilabel:`“yes”`, you would replace the output “yes” with **“Sí”**, taking care not to change the label, which **must remain “yes”**, as follows:
 
 .. figure:: tutfigures/tutfigure8.png
