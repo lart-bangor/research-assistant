@@ -163,20 +163,33 @@ def main():                                                                     
     try:
         eel.start(
             "app/index.html",
+            mode="chrome",
             jinja_templates="app",
             close_callback=close,
             block=False,
             cmdline_args=cmdline_args
         )
     except OSError as exc:
-        logger.critical(str(exc))
-        show_error_dialog(
-            "Chrome not installed",
-            (
-                "Can't find Google Chrome/Chromium installation.\n\n"
-                "Please install Google Chrome/Chromium before running the Research Client."
+        logger.warning("Chrome not found... attempting fallback to Edge.")
+        try:
+            eel.start(
+                "app/index.html",
+                mode="edge",
+                jinja_templates="app",
+                close_callback=close,
+                block=False,
+                cmdline_args=cmdline_args
             )
-        )
+        except OSError as exc2:
+            logger.critical(str(exc2))
+            show_error_dialog(
+                "Missing Chrome or Edge installation",
+                (
+                    "Can't find Google Chrome/Chromium or Microsoft Edge installation.\n\n"
+                    "Please install either Google Chrome/Chromium or Microsoft Edge before running the Research Client."
+                )
+            )
+            raise
     logger.info(
         f"Now running on "
         f"http://{eel._start_args['host']}:{eel._start_args['port']}"           # type: ignore
