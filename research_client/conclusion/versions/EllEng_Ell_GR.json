@@ -3,7 +3,7 @@
         "versionId": "EllEng_Ell_GR",
         "versionName": "Ελληνικά – Αγγλικά (Ελλάδα)",
         "versionNumber": "0.3.5",
-        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>, Athanasia Papastergiou <a.papastergious@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2023-03-15"
     },
     "base": {
@@ -27,7 +27,7 @@
         ],
         "followOnInstructions": [
             "Please let the researcher know that you've finished with the app tasks. They will check that we have everything we need and give you any further instructions if needed.",
-            "Ενημερώστε τους ερευνητές ότι έχετε τελειώσει με τις εργασίες στην εφαρμογή. Στη συνέχεια θα ελέγξει ότι έχουμε όλα όσα χρειαζόμαστε και θα σας δώσει περαιτέρω οδηγίες."
+            "Ενημερώστε τους ερευνητές ότι έχετε τελειώσει με τις εργασίες στην εφαρμογή. Στη συνέχεια θα ελέγξουν ότι έχουμε όλα όσα χρειαζόμαστε και θα σας δώσουν περαιτέρω οδηγίες."
         ],
         "close": [
             "Close this message",
