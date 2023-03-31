@@ -114,6 +114,16 @@ def main():                                                                     
         )
     )
 
+    argparser.add_argument(
+        "--disable-gpu",
+        dest="disable_gpu",
+        action="store_true",
+        help=(
+            "Pass the --disable-gpu flag to created chrome "
+            "instances.\nCan be useful when running in a VM."
+        )
+    )
+
     args = argparser.parse_args()
     logger.debug("Starting with command line arguments: %s", args)
     try:
@@ -137,17 +147,26 @@ def main():                                                                     
         else:
             sys.exit(1)
 
+    # Check args.disable_gpu
+    if args.disable_gpu:
+        logger.info("Running with --disable-gpu flag.")
+
     # Run app using eel
     eel.init(
         str(Path(__file__).parent / "web"),
         allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png", ".mp3"]
     )
+    # Further arguments for the eel/chrome launch
+    cmdline_args: list[str] = []
+    if args.disable_gpu:
+        cmdline_args.append("--disable-gpu")
     try:
         eel.start(
             "app/index.html",
             jinja_templates="app",
             close_callback=close,
-            block=False
+            block=False,
+            cmdline_args=cmdline_args
         )
     except OSError as exc:
         logger.critical(str(exc))

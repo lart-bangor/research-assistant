@@ -119,6 +119,15 @@ def main():
         )
     )
     parser_debug.set_defaults(command="debug")
+    parser_debug.add_argument(
+        "--disable-gpu",
+        dest="disable_gpu",
+        action="store_true",
+        help=(
+            "Pass the --disable-gpu flag to created chrome "
+            "instances.\nCan be useful when running in a VM."
+        )
+    )
     parser_docs = subparsers.add_parser(
         "docs",
         help=(
@@ -131,6 +140,15 @@ def main():
         help="run the app from the development environment"
     )
     parser_run.set_defaults(command="run")
+    parser_run.add_argument(
+        "--disable-gpu",
+        dest="disable_gpu",
+        action="store_true",
+        help=(
+            "Pass the --disable-gpu flag to created chrome "
+            "instances.\nCan be useful when running in a VM."
+        )
+    )
     args = parser.parse_args()
     print(f"Workspace path: {WORKSPACE_PATH}.")
     if args.command == "build":
@@ -138,9 +156,9 @@ def main():
     elif args.command == "clean":
         clean(args.clean_env)
     elif args.command == "run":
-        run()
+        run(disable_gpu=args.disable_gpu)
     elif args.command == "debug":
-        debug()
+        debug(disable_gpu=args.disable_gpu)
     elif args.command == "docs":
         docs()
 
@@ -389,28 +407,44 @@ def clean(env: str) -> bool:                                                    
     return not errors
 
 
-def debug() -> bool:
+def debug(disable_gpu: bool = False) -> bool:
     """Debug the app from the development environment and continue in Python interpreter."""
     oldwd: Path = Path.cwd()
     os.chdir(WORKSPACE_PATH)
+    command: list[str] = [
+        M_COMMAND_PYTHON,
+        "-m",
+        QUALIFIED_PKG_NAME,
+        "--debug",
+        "debug"
+    ]
+    if disable_gpu:
+        command.append("--disable-gpu")
     print("Running app...")
     print(f"{INDENT}Working directory is now '{Path.cwd()!s}'.")
-    print(f"{INDENT}Running command: {M_COMMAND_PYTHON} -im {QUALIFIED_PKG_NAME} --debug debug")
-    child = subprocess.run([M_COMMAND_PYTHON, "-im", QUALIFIED_PKG_NAME, "--debug", "debug"])
+    print(f"{INDENT}Running command: {' '.join(command)}")
+    child = subprocess.run(command)
     print(f"{INDENT}Process returned with code '{child.returncode}'.")
     os.chdir(oldwd)
     print("Done.")
     return child.returncode == 0
 
 
-def run() -> bool:
+def run(disable_gpu: bool = False) -> bool:
     """Run the app from the development environment."""
     oldwd: Path = Path.cwd()
     os.chdir(WORKSPACE_PATH)
+    command: list[str] = [
+        M_COMMAND_PYTHON,
+        "-m",
+        QUALIFIED_PKG_NAME
+    ]
+    if disable_gpu:
+        command.append("--disable-gpu")
     print("Running app...")
     print(f"{INDENT}Working directory is now '{Path.cwd()!s}'.")
-    print(f"{INDENT}Running command: {M_COMMAND_PYTHON} -m {QUALIFIED_PKG_NAME}")
-    child = subprocess.run([M_COMMAND_PYTHON, "-m", QUALIFIED_PKG_NAME])
+    print(f"{INDENT}Running command: {' '.join(command)}")
+    child = subprocess.run(command)
     print(f"{INDENT}Process returned with code '{child.returncode}'.")
     os.chdir(oldwd)
     print("Done.")
