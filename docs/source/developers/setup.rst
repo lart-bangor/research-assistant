@@ -220,7 +220,7 @@ Running the app from the source
 -------------------------------
 
 Now let's test that things are working as they should. Open a terminal and go to the directory to which
-you've cloned the source code, e.g. :file:`C:\\Users\florian\Development\research-client` (Windows)
+you've cloned the source code, e.g. :file:`C:\\Users\\florian\\Development\\research-client` (Windows)
 or :file:`/home/florian/development/research-client` (Linux). You know that you are in the right
 directory if you type ``ls`` (Linux) or ``dir`` (Windows) and the list shown contains a file
 named :file:`manage.py`.
