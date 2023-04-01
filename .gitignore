@@ -14,7 +14,7 @@ __pypackages__/
 dist/
 build/
 .whl
-*.egg-info/*
+*.egg-info
 
 # Documentation
 docs/build/

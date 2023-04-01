@@ -67,11 +67,15 @@ the respective software (linked above) and just follow their installation instru
       $ # !! You should only run the next command if your python version is below 3.10.x !!
       $ sudo apt install software-properties-common
       $ sudo add-apt-repository ppa:deadsnakes/ppa
-      $ sudo apt update && sudo install python3.10 -y
+      $ sudo apt update
+      $ sudo apt install python3.10 -y
       $ # Now check that you have python3.10 running:
       $ python3.10 --version
       Python 3.10.5
-      $ # Install pipenv (if you already had python 3.10 show above, just use "python3" instead of "python3.10")
+      $ # Install pip and tkinter for Python3.10
+      $ # (Ff you already had python 3.10 show above, just use "python3" instead of "python3.10")
+      $ sudo apt install python3.10-pip and python3.10-tk
+      $ # Install pipenv
       $ python3.10 -m pip install pipenv
       $ # Optional: Install jsdoc (only needed to generate documentation)
       $ sudo apt install npm -y
@@ -95,6 +99,8 @@ the respective software (linked above) and just follow their installation instru
       $ # Check your current python version is >= 3.10.0
       $ python3 --version
       Python 3.10.5
+      $ # Install pip and tkinter for Python3
+      $ sudo apt install python3-pip python3-tk -y
       $ # Install pipenv
       $ python3 -m pip install pipenv
       $ # Optional: Install jsdoc (only needed to generate documentation)
@@ -220,7 +226,7 @@ Running the app from the source
 -------------------------------
 
 Now let's test that things are working as they should. Open a terminal and go to the directory to which
-you've cloned the source code, e.g. :file:`C:\\Users\florian\Development\research-client` (Windows)
+you've cloned the source code, e.g. :file:`C:\\Users\\florian\\Development\\research-client` (Windows)
 or :file:`/home/florian/development/research-client` (Linux). You know that you are in the right
 directory if you type ``ls`` (Linux) or ``dir`` (Windows) and the list shown contains a file
 named :file:`manage.py`.
