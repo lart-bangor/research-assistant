@@ -31,7 +31,7 @@ DisableProgramGroupPage=yes
 LicenseFile={#MyAppDevDir}\LICENSE.AGPL-3.0
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir={#MyAppDevDir}\build\pyinstaller\dist
+OutputDir={#MyAppDevDir}\build\{#MyAppPlatformString}\pyinstaller\dist
 OutputBaseFilename={#MyAppDistributableName}
 OutputManifestFile={#MyAppDistributableName}.manifest
 SetupIconFile={#MyAppDevDir}\research_client\web\img\setupicon.ico
@@ -59,8 +59,8 @@ Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyAppDevDir}\build\pyinstaller\dist\{#MyAppDistributableName}\{#MySafeAppName}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDevDir}\build\pyinstaller\dist\{#MyAppDistributableName}\{#MySafeAppName}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyAppDevDir}\build\{#MyAppPlatformString}\pyinstaller\dist\{#MyAppDistributableName}\{#MySafeAppName}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppDevDir}\build\{#MyAppPlatformString}\pyinstaller\dist\{#MyAppDistributableName}\{#MySafeAppName}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

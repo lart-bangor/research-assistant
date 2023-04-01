@@ -170,7 +170,7 @@ def main():                                                                     
             block=False,
             cmdline_args=cmdline_args
         )
-    except OSError as exc:
+    except OSError:
         logger.warning("Chrome not found... attempting fallback to Edge.")
         try:
             eel.start(
@@ -187,7 +187,8 @@ def main():                                                                     
                 "Missing Chrome or Edge installation",
                 (
                     "Can't find Google Chrome/Chromium or Microsoft Edge installation.\n\n"
-                    "Please install either Google Chrome/Chromium or Microsoft Edge before running the Research Client."
+                    "Please install either Google Chrome/Chromium or Microsoft Edge before "
+                    "running the Research Client."
                 )
             )
             raise
@@ -195,9 +196,10 @@ def main():                                                                     
         f"Now running on "
         f"http://{eel._start_args['host']}:{eel._start_args['port']}"           # type: ignore
     )
-    gevent.signal.signal(signal.SIGTERM, shutdown)
-    gevent.signal.signal(signal.SIGQUIT, shutdown)
-    gevent.signal.signal(signal.SIGINT,  shutdown)
+    if sys.platform not in ("win32", "win64"):
+        gevent.signal.signal(signal.SIGTERM, shutdown)
+        gevent.signal.signal(signal.SIGQUIT, shutdown)
+        gevent.signal.signal(signal.SIGINT,  shutdown)
     gevent.get_hub().join()                                                     # type: ignore
 
 
@@ -236,18 +238,25 @@ def close(page: str, opensockets: list[Any]):
 def shutdown(sig=None, frame=None):
     """Shut down the app."""
     if sig is not None:
-        signames = {int(signal.SIGTERM): "SIGTERM", int(signal.SIGQUIT): "SIGQUIT", int(signal.SIGINT): "SIGINT"}
+        signames = {
+            int(signal.SIGTERM): "SIGTERM",
+            int(signal.SIGQUIT): "SIGQUIT",
+            int(signal.SIGINT): "SIGINT"
+        }
         signame = signames.get(sig, str(sig))
         logger.critical(f"Signal '{signame}' received. Shutdown initiated.")
     logger.info("App shutdown triggered...")
     logger.debug("Destroying gevent event loop...")
     ghub = gevent.get_hub()                                         # type: ignore
-    ghub.destroy()
-    # Test whether above is sufficient on Windows, if so, loose the next line
-    ghub.loop.destroy()                                             # type: ignore
-    # Make sure we exit gracefully in case destroying the gevent event loop was not sufficient...
-    logger.debug("Execution survived event loop destruction, hard exiting...")
-    sys.exit(1)
+    if sys.platform in ("win32", "win64"):
+        gevent.kill(ghub)  # Worth trying to see whether this works on Linux/Mac!?
+        sys.exit(0)
+    else:
+        ghub.destroy()                                   # type: ignore
+        # This should not have survived and already returned 0...
+        logger.debug("Execution survived event loop destruction, hard exiting...")
+        sys.exit(1)
+
 
 # Expose export_backup to spawn self --backup
 @eel.expose
