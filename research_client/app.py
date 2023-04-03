@@ -9,6 +9,7 @@ import gevent                                                           # type: 
 import logging
 import multiprocessing
 import sys
+from gevent import signal
 from pathlib import Path
 from typing import Any, Sequence
 from . import atolc                                                     # type: ignore  # noqa: F401
@@ -114,6 +115,16 @@ def main():                                                                     
         )
     )
 
+    argparser.add_argument(
+        "--disable-gpu",
+        dest="disable_gpu",
+        action="store_true",
+        help=(
+            "Pass the --disable-gpu flag to created chrome "
+            "instances.\nCan be useful when running in a VM."
+        )
+    )
+
     args = argparser.parse_args()
     logger.debug("Starting with command line arguments: %s", args)
     try:
@@ -137,36 +148,59 @@ def main():                                                                     
         else:
             sys.exit(1)
 
+    # Check args.disable_gpu
+    if args.disable_gpu:
+        logger.info("Running with --disable-gpu flag.")
+
     # Run app using eel
     eel.init(
         str(Path(__file__).parent / "web"),
         allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png", ".mp3"]
     )
+    # Further arguments for the eel/chrome launch
+    cmdline_args: list[str] = []
+    if args.disable_gpu:
+        cmdline_args.append("--disable-gpu")
     try:
         eel.start(
             "app/index.html",
+            mode="chrome",
             jinja_templates="app",
             close_callback=close,
-            block=False
+            block=False,
+            cmdline_args=cmdline_args
         )
-    except OSError as exc:
-        logger.critical(str(exc))
-        show_error_dialog(
-            "Chrome not installed",
-            (
-                "Can't find Google Chrome/Chromium installation.\n\n"
-                "Please install Google Chrome/Chromium before running the Research Client."
+    except OSError:
+        logger.warning("Chrome not found... attempting fallback to Edge.")
+        try:
+            eel.start(
+                "app/index.html",
+                mode="edge",
+                jinja_templates="app",
+                close_callback=close,
+                block=False,
+                cmdline_args=cmdline_args
             )
-        )
+        except OSError as exc2:
+            logger.critical(str(exc2))
+            show_error_dialog(
+                "Missing Chrome or Edge installation",
+                (
+                    "Can't find Google Chrome/Chromium or Microsoft Edge installation.\n\n"
+                    "Please install either Google Chrome/Chromium or Microsoft Edge before "
+                    "running the Research Client."
+                )
+            )
+            raise
     logger.info(
         f"Now running on "
         f"http://{eel._start_args['host']}:{eel._start_args['port']}"           # type: ignore
     )
+    if sys.platform not in ("win32", "win64"):
+        gevent.signal.signal(signal.SIGTERM, shutdown)
+        gevent.signal.signal(signal.SIGQUIT, shutdown)
+        gevent.signal.signal(signal.SIGINT,  shutdown)
     gevent.get_hub().join()                                                     # type: ignore
-
-    # Gracefully exit program execution
-    logger.info("Exiting app...")
-    sys.exit(0)
 
 
 # Timer for close() function internal callbacks, do not modify outside close() method.
@@ -186,9 +220,7 @@ def close(page: str, opensockets: list[Any]):
             if len(eel._websockets) == 0 and _close_countdown_timer < 1.0:      # type: ignore
                 logger.debug("Still no websockets found.")
                 logger.debug(f"Shutdown delay timeout remaining is {_close_countdown_timer}.")
-                logger.debug("Destroying gevent event loop...")
-                ghub = gevent.get_hub()                                         # type: ignore
-                ghub.loop.destroy()                                             # type: ignore
+                shutdown()
             elif len(eel._websockets) > 0:                                      # type: ignore
                 _close_countdown_timer = config.shutdown_delay
                 logger.debug("New websockets found, cancelling shutdown...")
@@ -201,6 +233,29 @@ def close(page: str, opensockets: list[Any]):
 
         logger.debug(f"No websockets left, registering shutodwn after {config.shutdown_delay}s.")
         gevent.spawn_later(1.0, conditional_shutdown)         # type: ignore
+
+
+def shutdown(sig=None, frame=None):
+    """Shut down the app."""
+    if sig is not None:
+        signames = {
+            int(signal.SIGTERM): "SIGTERM",
+            int(signal.SIGQUIT): "SIGQUIT",
+            int(signal.SIGINT): "SIGINT"
+        }
+        signame = signames.get(sig, str(sig))
+        logger.critical(f"Signal '{signame}' received. Shutdown initiated.")
+    logger.info("App shutdown triggered...")
+    logger.debug("Destroying gevent event loop...")
+    ghub = gevent.get_hub()                                         # type: ignore
+    if sys.platform in ("win32", "win64"):
+        gevent.kill(ghub)  # Worth trying to see whether this works on Linux/Mac!?
+        sys.exit(0)
+    else:
+        ghub.destroy()                                   # type: ignore
+        # This should not have survived and already returned 0...
+        logger.debug("Execution survived event loop destruction, hard exiting...")
+        sys.exit(1)
 
 
 # Expose export_backup to spawn self --backup

@@ -127,15 +127,15 @@ the source code and all the dependencies installed. The last line will run the R
 
 .. parsed-literal::
 
-   $ sudo apt install chromium-browser
-   $ pip install pipenv
-   $ cd ~/
-   $ wget https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz
-   $ tar -xf ./v\ |version|\ .tar.gz
-   $ rm ./v\ |version|\ .tar.gz
-   $ cd research-client-|version|
-   $ python3.10 -m pipenv install
-   $ python3.10 -m pipenv run python ./manage.py run
+   sudo apt install chromium-browser python3-pip python3-tk -y
+   python3.10 -m pip install pipenv
+   cd ~/
+   wget https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz
+   tar -xf ./v\ |version|\ .tar.gz
+   rm ./v\ |version|\ .tar.gz
+   cd research-client-|version|
+   python3.10 -m pipenv install
+   python3.10 -m pipenv run python ./manage.py run
 
 .. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-client/archive/refs/tags/v
 
@@ -189,6 +189,89 @@ Installing on MacOS
 -------------------
 
 This currently requires building from source or running as a Python package (requires Python 3.10),
-but should run if you have Chrome or Chromium installed. You should be able to largely
-follow the steps for Linux above, though you will need to adjust the commands to install
-dependencies, as :command:`apt` is of course not available on MacOS.
+but should run if you have Chrome or Chromium installed.
+
+.. caution:: App termination issue on MacOS
+
+   There is currently an issue where the app may not terminate correctly on MacOS after the main
+   window has been closed. If the background Terminal window remains open after a few seconds, this
+   may have to be closed manually and the user may have to confirm that they want to really terminate
+   the process.
+
+   This is not harmful beyond the annoyance value, as long as the user does not close the Terminal
+   window *before* they have finished the data collection.
+
+   For more information see :github:issue:`37`.
+
+
+To build from source follow the same instructions as for Linux above, with some adjustments necessary
+(such as using :command:`port` instead of :command:`apt`). Since we don't currently have full
+instructions that have been tested on MacOS for this, it will be preferable to run as a Python
+package unless you want to actively figure out any problems you might encounter during the build.
+
+To run as a Python package, follow these instructions:
+
+#. Install Chrome from the app store (or install Chromium using your preferred method).
+
+#. Install the latest version of Python 3.10x (that is version 3.10.10 as of the time of
+   writing not 3.11.x!) from `the official Python releases for MacOS <https://www.python.org/downloads/macos/>`_.
+
+   After runnin the installer, open a Terminal and check that :code:`python3 --version`
+   prints something like "Python 3.10.10". This means python has installed correctly and
+   you're ready to continue.
+
+#. Install :command:`pipenv` with the command :code:`pip3 install pipenv`. This should
+   print out a success message at the end of the process. You can ignore any messages it
+   might print about updating pip itself (or follow the instructions it provides if you like).
+
+#. Now run the following commands in your terminal to set up the package from source:
+
+   .. parsed-literal::
+
+      cd ~
+      curl -L https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz -o research-client.tar.gz
+      tar -xf ./research-client.tar.gz
+      rm research-client.tar.gz
+      mv research-client-|version| research-client
+      cd research-client
+      python3 -m pipenv install
+
+#. You can now launch the app from within a terminal, provided you are in the directory
+   :file:`~/research-client`, using the following command:
+   
+   .. parsed-literal::
+
+      python3 -m pipenv run python3 ./manage.py run
+
+
+Obviously, you will not want to open a Terminal, do :code:`cd ~/research/client` and then
+type :code:`python3 -m pipenv run python3 ./manage.py run` every time. You can create
+a shortcut which can be clicked to launch the app by following these additional steps:
+
+#. Make an executable :file:`.command` file inside the :file:`~/research-client` directory
+   by running the following in a Terminal:
+
+   .. parsed-literal::
+
+      cd ~/research-client
+      echo > research-client.command
+      chmod +x ./research-client.command
+      open -a TextEdit ./research-client.command
+
+#. In the editor that popped up with the last command above, copy and paste the following
+   code, then save and close the file.
+
+   .. code-block:: bash
+
+      #!/usr/bin/env bash
+
+      cd ~/research-client
+      python3 -m pipenv run python3 ./manage.py run
+
+#. Once you've created the :file:`research-client.command` file as per the two steps above,
+   you can just locate it in Finder (e.g. launch Finder, then in the top click on
+   :menuselection:`Go -> Home`, and open the :file:`research-client` folder) and then drag
+   and drop the :file:`research-client.command` onto your dock.
+
+   When you click on the file in the dock now, it should launch a Terminal window together
+   with the app.

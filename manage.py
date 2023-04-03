@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Script to automate common project management tasks.
 
 The goal is to eventually implement the following functionality:
@@ -119,6 +119,15 @@ def main():
         )
     )
     parser_debug.set_defaults(command="debug")
+    parser_debug.add_argument(
+        "--disable-gpu",
+        dest="disable_gpu",
+        action="store_true",
+        help=(
+            "Pass the --disable-gpu flag to created chrome "
+            "instances.\nCan be useful when running in a VM."
+        )
+    )
     parser_docs = subparsers.add_parser(
         "docs",
         help=(
@@ -131,6 +140,15 @@ def main():
         help="run the app from the development environment"
     )
     parser_run.set_defaults(command="run")
+    parser_run.add_argument(
+        "--disable-gpu",
+        dest="disable_gpu",
+        action="store_true",
+        help=(
+            "Pass the --disable-gpu flag to created chrome "
+            "instances.\nCan be useful when running in a VM."
+        )
+    )
     args = parser.parse_args()
     print(f"Workspace path: {WORKSPACE_PATH}.")
     if args.command == "build":
@@ -138,9 +156,9 @@ def main():
     elif args.command == "clean":
         clean(args.clean_env)
     elif args.command == "run":
-        run()
+        run(disable_gpu=args.disable_gpu)
     elif args.command == "debug":
-        debug()
+        debug(disable_gpu=args.disable_gpu)
     elif args.command == "docs":
         docs()
 
@@ -202,33 +220,163 @@ def build() -> bool:                                                            
     # Set up paths
     oldwd: Path = Path.cwd()
     src_dir: Path = WORKSPACE_PATH / QUALIFIED_PKG_NAME
-    pyi_dir: Path = WORKSPACE_PATH / "build" / "pyinstaller"
-    pyi_pkg_dir: Path = pyi_dir / QUALIFIED_PKG_NAME
+    build_dir: Path = WORKSPACE_PATH / "build" / M_PLATFORM_STRING
+    dist_dir: Path = WORKSPACE_PATH / "dist" / M_PLATFORM_STRING
+    pyi_pkg_dir: Path = build_dir / QUALIFIED_PKG_NAME
 
     # Make sure dist dir exists..
-    dist_dir: Path = WORKSPACE_PATH / "dist" / M_PLATFORM_STRING
     if not dist_dir.is_dir():
         dist_dir.mkdir(parents=True)
 
     # Installer name
-    installer_name: str = safe_str(f"{APP_AUTHOR} {APP_NAME} v{APP_VERSION}-{M_PLATFORM_STRING}")
+    pkg_name: str = safe_str(f"{APP_AUTHOR} {APP_NAME} v{APP_VERSION}-{M_PLATFORM_STRING}")
 
     # Clean the source directory
     if not clean("src"):
         return False
 
-    # Make clean copy of source for pyinstaller
-    print("Setting up files for building...")
-    print(f"{INDENT}Creating package directory for pyinstaller...")
-    if not _copy_dir_clean(src_dir, pyi_pkg_dir):
-        print(f"{INDENT}ERROR: Could not copy directory '{src_dir}' to '{pyi_pkg_dir}'.")
-        print("Failed.")
+    # Build with PyInstaller
+    result = _build_pyinstaller(src_dir, build_dir / "pyinstaller", dist_dir, pkg_name)
+    os.chdir(oldwd)
+    if not result:
         return False
+
+    # Make Inno Setup installer if on Windows
+    if M_PLATFORM_SYSTEM == "Windows":
+        result = _build_inno_installer(build_dir / "pyinstaller", dist_dir, pkg_name)
+        os.chdir(oldwd)
+        if not result:
+            return False
+
+    # Build Wheel with Setuptools...
+    result = _build_setuptools_package(src_dir, build_dir / "setuptools", dist_dir)
+    os.chdir(oldwd)
+    if not result:
+        return False
+
+    return True
+
+
+def _build_setuptools_package(src_dir, build_dir: str, dist_dir: str) -> bool:
+    # Make wheel with setuptools
+    print("Running setuptools to build Python wheel...")
+
+    # Make clean copy of package...
+    print(f"{INDENT}Setting up clean copy of source...")
+    if not _copy_dir_clean(src_dir, build_dir / QUALIFIED_PKG_NAME):
+        print(f"{INDENT*2}ERROR: Could not copy directory '{src_dir}' to '{build_dir}'.")
+        print(f"{INDENT*2}!! Failed !!")
+        return False
+    files_to_copy: tuple[str, ...] = (
+        'setup.cfg',
+        'pyproject.toml',
+        'LICENSE',
+        'LICENSE.AGPL-3.0',
+        'LICENSE.EUPL-1.2',
+        'README.rst'
+    )
+    for file in files_to_copy:
+        print(f"{INDENT*2}Copying file {file}.")
+        shutil.copy(src_dir.parent / file, build_dir / file)
+
+    # Set working directory for setuptools
+    os.chdir(build_dir)
+    print(f"{INDENT}Changed current working directory to '{Path.cwd()}'.")
+
+    # Run build
+    print(f"{INDENT}Running 'python -m build'...")
+    try:
+        child = subprocess.run([M_COMMAND_PYTHON, "-m", "build"])
+    except FileNotFoundError:
+        print(
+            f"{INDENT*2}ERROR: Command '{M_COMMAND_PYTHON}' not found. Is the pipenv virtualenv set up correctly?"
+        )
+        print(f"{INDENT*2}!! Failed !!")
+        return False
+    if child.returncode > 0:
+        print(
+            f"{INDENT*2}ERROR: Python returned an error (code: {child.returncode}). "
+            "Are the setuptools and build packages installed?"
+        )
+        print(f"{INDENT*2}!! Failed !!")
+        return False
+
+    # Check that build produced a dist dir
+    if not Path("dist").is_dir():
+        print(f"{INDENT*2}ERROR: Setuptools dist dir at '{build_dir}/dist' not found.")
+        print(f"{INDENT*2} !! Failed !!")
+        return False
+
+    # Move wheel and sdist archive to dist_dir
+    for file in Path("dist").iterdir():
+        print(f"{INDENT*2}Moving file {file}.")
+        file = file.replace(dist_dir / file.name)
+    print(f"{INDENT}Distributables moved to {dist_dir}.")
+
+    return True
+
+
+def _build_inno_installer(pyinstaller_dir: str, dist_dir: str, pkg_name: str) -> bool:
+    # Make Inno Setup installer
+    print("Running Windows installer build with Inno Setup...")
+
+    # Make installer script...
+    print(f"{INDENT}Making installer script...")
+    with open(WORKSPACE_PATH / "windows.iss", "r") as fp:
+        inno_tpl: str = fp.read()
+    inno_tpl = _str_replace_all(
+        inno_tpl,
+        {
+            "APP_NAME": APP_NAME,
+            "APP_VERSION": APP_VERSION,
+            "APP_AUTHOR": APP_AUTHOR,
+            "APP_LONG_AUTHOR": APP_LONG_AUTHOR,
+            "SAFE_APP_NAME": safe_str(APP_NAME),
+            "SAFE_APP_VERSION": safe_str(APP_VERSION),
+            "SAFE_APP_AUTHOR": safe_str(APP_AUTHOR),
+            "SAFE_APP_LONG_AUTHOR": safe_str(APP_LONG_AUTHOR),
+            "APP_URL": APP_URL,
+            "PLATFORM_STRING": M_PLATFORM_STRING,
+            "WORKSPACE_PATH": str(WORKSPACE_PATH),
+        }
+    )
+    inno_script: Path = pyinstaller_dir / "artifacts" / M_PLATFORM_STRING / "windows.iss"
+    with inno_script.open("w+") as fp:
+        fp.write(inno_tpl)
+    try:
+        child = subprocess.run(["iscc", inno_script])
+    except FileNotFoundError:
+        print(
+            f"{INDENT*2}ERROR: Command 'iscc' not found. Is Inno Setup installed an on the path?"
+        )
+        print(f"{INDENT*2}!! Failed !!")
+        return False
+    installer_file = pyinstaller_dir / "dist" / f"{pkg_name}.exe"
+    if not installer_file.exists():
+        print(
+            f"{INDENT}ERROR: Expected installer file '{installer_file}' not found."
+        )
+        return False
+    installer_file = installer_file.replace(dist_dir / installer_file.name)
+    print(f"{INDENT}EXE installer distributable moved to '{installer_file}'.")
+    print(child)
     print("Done.")
+    return True
+
+
+def _build_pyinstaller(src_dir: Path, build_dir: Path, dist_dir: Path, pkg_name: str) -> bool:  # noqa: C901
+    # Make clean copy of source for pyinstaller
+    print("Running PyInstaller build...")
+    print(f"{INDENT}Setting up files for pyinstaller build...")
+    print(f"{INDENT*2}Creating package directory for pyinstaller...")
+    if not _copy_dir_clean(src_dir, build_dir / QUALIFIED_PKG_NAME):
+        print(f"{INDENT*2}ERROR: Could not copy directory '{src_dir}' to '{build_dir}'.")
+        print(f"{INDENT*2}!! Failed !!")
+        return False
 
     # Create PyInstaller runner file..
-    print("Creating runner file for PyInstaller...")
-    runner_path: Path = pyi_dir / f"{safe_str(APP_NAME)}.py"
+    print(f"{INDENT}Creating runner file...")
+    runner_path: Path = build_dir / f"{safe_str(APP_NAME)}.py"
     with runner_path.open("w") as fp:
         fp.writelines(
             [
@@ -243,26 +391,25 @@ def build() -> bool:                                                            
             ]
         )
     if not runner_path.is_file():
-        print("Failed.")
+        print(f"{INDENT*2}!! Failed !!")
         return False
-    print("Done.")
 
     # Set working directory for PyInstaller...
-    os.chdir(pyi_dir)
-    print(f"Changed current working directory to '{Path.cwd()}'.")
+    os.chdir(build_dir)
+    print(f"{INDENT}Changed current working directory to '{Path.cwd()}'.")
 
     # Run PyInstaller...
     import PyInstaller.__main__ as pyi                                          # type: ignore
     pyi_args: list[str] = [
         "--noconfirm", "--log-level=WARN",
-        f"--workpath=artifacts/{M_PLATFORM_STRING}", f"--distpath=dist/{installer_name}",
+        f"--workpath=artifacts/{M_PLATFORM_STRING}", f"--distpath=dist/{pkg_name}",
         "--clean", f"{safe_str(APP_NAME)}.py",
         "--hidden-import", "bottle_websocket",
         "--add-data", f"{str(resources.path('eel', 'eel.js'))}{os.pathsep}eel",
         "--collect-data", QUALIFIED_PKG_NAME,
     ]
     # if SPLASH_IMAGE:
-    #     CURRENTLY BROKEN IN PyInstaller (tcl/tk lib dependency with vcruntime)
+    #     # CURRENTLY BROKEN IN PyInstaller (tcl/tk lib dependency with vcruntime)
     #     pyi_args.append("--splash")
     #     pyi_args.append(SPLASH_IMAGE)
     if platform.system() == "Windows" or platform.system() == "Darwin":
@@ -270,79 +417,41 @@ def build() -> bool:                                                            
             pyi_args.append("-i")
             pyi_args.append(SPLASH_IMAGE)
         # pyi_args.append("--windowed")
-    print("Running PyInstaller...")
-    print(f"{INDENT}Arguments:")
+    print(f"{INDENT}Running PyInstaller...")
+    print(f"{INDENT*2}Arguments:")
     for i in range(0, len(pyi_args), 2):
-        print(f"{INDENT}{INDENT}{pyi_args[i]}", end="")
+        print(f"{INDENT*3}{pyi_args[i]}", end="")
         if i+1 < len(pyi_args):
             print(f" {pyi_args[i+1]}", end="")
         print("")
     pyi.run(pyi_args)                                                           # type: ignore
-    pyi_dist_dir: Path = pyi_dir / "dist" / f"{installer_name}"
-    if not pyi_dist_dir.is_dir():
-        print(f"{INDENT}ERROR: PyInstaller dist dir at '{pyi_dist_dir}' not found.")
-        print("Failed.")
+    if not Path(f"dist/{pkg_name}").is_dir():
+        print(f"{INDENT*2}ERROR: PyInstaller dist dir at 'dist/{pkg_name}' not found.")
+        print(f"{INDENT*2} !! Failed !!")
         return False
-    print(f"{INDENT}Success: PyInstaller distribution at '{pyi_dist_dir}'.")
-    print("Done.")
-
-    # Set working directory for archiving...
-    os.chdir(pyi_dist_dir)
-    print(f"Changed current working directory to '{Path.cwd()}'.")
+    print(f"{INDENT*2}Success: PyInstaller distribution at 'dist/{pkg_name}'.")
 
     # Make distributable archive
+    print(f"{INDENT}Making archive from PyInstaller build...")
+
+    # Set working directory for archiving...
+    os.chdir(f"dist")
+    print(f"{INDENT*2}Changed current working directory to '{Path.cwd()}'.")
+
+    # Make the archive
     archive_format: str = "zip"
     if platform.system() == "Linux":
         archive_format = "gztar"
-    print(f"Packaging distributable {archive_format.upper()} from PyInstaller distribution...")
-    archive_file = Path(shutil.make_archive(str(pyi_dist_dir), archive_format))
+    print(f"{INDENT*2}Packaging distributable {archive_format.upper()} from PyInstaller distribution...")
+    archive_file = Path(shutil.make_archive(
+        base_name=pkg_name,
+        format=archive_format,
+        root_dir=pkg_name,
+        base_dir=safe_str(APP_NAME)
+    ))
     archive_file = archive_file.replace(dist_dir / archive_file.name)
-    print(f"{INDENT}ZIP distributable moved to '{archive_file}'.")
-    print("Done.")
+    print(f"{INDENT}Archive with distributable moved to '{archive_file}'.")
 
-    # Make Inno Setup installer
-    if M_PLATFORM_SYSTEM == "Windows":
-        print("Building Windows installer with Inno Setup...")
-        with open(WORKSPACE_PATH / "windows.iss", "r") as fp:
-            inno_tpl: str = fp.read()
-        inno_tpl = _str_replace_all(
-            inno_tpl,
-            {
-                "APP_NAME": APP_NAME,
-                "APP_VERSION": APP_VERSION,
-                "APP_AUTHOR": APP_AUTHOR,
-                "APP_LONG_AUTHOR": APP_LONG_AUTHOR,
-                "SAFE_APP_NAME": safe_str(APP_NAME),
-                "SAFE_APP_VERSION": safe_str(APP_VERSION),
-                "SAFE_APP_AUTHOR": safe_str(APP_AUTHOR),
-                "SAFE_APP_LONG_AUTHOR": safe_str(APP_LONG_AUTHOR),
-                "APP_URL": APP_URL,
-                "PLATFORM_STRING": M_PLATFORM_STRING,
-                "WORKSPACE_PATH": str(WORKSPACE_PATH),
-            }
-        )
-        inno_script: Path = pyi_dir / "artifacts" / M_PLATFORM_STRING / "windows.iss"
-        with inno_script.open("w+") as fp:
-            fp.write(inno_tpl)
-        try:
-            child = subprocess.run(["iscc", inno_script])
-        except FileNotFoundError:
-            print(
-                f"{INDENT}ERROR: Command 'iscc' not found. Is Inno Setup installed an on the path?"
-            )
-            return False
-        installer_file = pyi_dist_dir.with_suffix(pyi_dist_dir.suffix + ".exe")
-        if not installer_file.exists():
-            print(
-                f"{INDENT}ERROR: Expected installer file '{installer_file}' not found."
-            )
-            return False
-        installer_file = installer_file.replace(dist_dir / installer_file.name)
-        print(f"{INDENT}EXE installer distributable moved to '{archive_file}'.")
-        print(child)
-        print("Done.")
-
-    os.chdir(oldwd)
     return True
 
 
@@ -358,16 +467,16 @@ def _str_replace_all(
 
 
 def _copy_dir_clean(source: Path, dest: Path):
-    print(f"{INDENT}Copying contents of source directory...")
-    print(f"{INDENT}{INDENT}Source: '{source}'.")
-    print(f"{INDENT}{INDENT}Destination: '{dest}'.")
+    print(f"{INDENT*2}Copying contents of source directory...")
+    print(f"{INDENT*3}Source: '{source}'.")
+    print(f"{INDENT*3}Destination: '{dest}'.")
     _recursively_delete_dir(dest)
     try:
         shutil.copytree(source, dest)
     except OSError as exc:
-        print(f"{INDENT}ERROR: {exc}.")
+        print(f"{INDENT*3}ERROR: {exc}.")
+        print(f"{INDENT*3}!! Failed !!")
         return False
-    print(f"{INDENT}Done.")
     return True
 
 
@@ -389,28 +498,44 @@ def clean(env: str) -> bool:                                                    
     return not errors
 
 
-def debug() -> bool:
+def debug(disable_gpu: bool = False) -> bool:
     """Debug the app from the development environment and continue in Python interpreter."""
     oldwd: Path = Path.cwd()
     os.chdir(WORKSPACE_PATH)
+    command: list[str] = [
+        M_COMMAND_PYTHON,
+        "-m",
+        QUALIFIED_PKG_NAME,
+        "--debug",
+        "debug"
+    ]
+    if disable_gpu:
+        command.append("--disable-gpu")
     print("Running app...")
     print(f"{INDENT}Working directory is now '{Path.cwd()!s}'.")
-    print(f"{INDENT}Running command: {M_COMMAND_PYTHON} -im {QUALIFIED_PKG_NAME} --debug debug")
-    child = subprocess.run([M_COMMAND_PYTHON, "-im", QUALIFIED_PKG_NAME, "--debug", "debug"])
+    print(f"{INDENT}Running command: {' '.join(command)}")
+    child = subprocess.run(command)
     print(f"{INDENT}Process returned with code '{child.returncode}'.")
     os.chdir(oldwd)
     print("Done.")
     return child.returncode == 0
 
 
-def run() -> bool:
+def run(disable_gpu: bool = False) -> bool:
     """Run the app from the development environment."""
     oldwd: Path = Path.cwd()
     os.chdir(WORKSPACE_PATH)
+    command: list[str] = [
+        M_COMMAND_PYTHON,
+        "-m",
+        QUALIFIED_PKG_NAME
+    ]
+    if disable_gpu:
+        command.append("--disable-gpu")
     print("Running app...")
     print(f"{INDENT}Working directory is now '{Path.cwd()!s}'.")
-    print(f"{INDENT}Running command: {M_COMMAND_PYTHON} -m {QUALIFIED_PKG_NAME}")
-    child = subprocess.run([M_COMMAND_PYTHON, "-m", QUALIFIED_PKG_NAME])
+    print(f"{INDENT}Running command: {' '.join(command)}")
+    child = subprocess.run(command)
     print(f"{INDENT}Process returned with code '{child.returncode}'.")
     os.chdir(oldwd)
     print("Done.")
