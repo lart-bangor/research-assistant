@@ -74,7 +74,6 @@ the app, use the `GitHub Discussions <https://github.com/lart-bangor/research-cl
 
 To report issues/bugs, please use  `GitHub Issues <https://github.com/lart-bangor/research-client/discussions>`_.
 
-TEST
 .. |appicon| image:: https://raw.githubusercontent.com/lart-bangor/research-client/main/research_client/web/img/appicon.png
    :height: 26
    :align: bottom
