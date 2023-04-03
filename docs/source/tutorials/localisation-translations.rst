@@ -61,7 +61,7 @@ Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name
     .. figure:: tutfigures/conventions.png
         :width: 600
 
-    Therefore, the Italian language file to be used for research with the Lombard-Italian bilingual community based in Italy is named: :file:`lmoIta_Ita_IT.json`. 
+    Therefore, the Italian language file to be used for research with the Lombard-Italian bilingual community based in Italy is named: :file:`LmoIta_Ita_IT.json`. 
 
 In the instance where you would like to provide a Modern Standard Arabic translation **(Iso code: arb)** to study a bilingual community in Morocco **(ISO code: MA)**
 whose native languages are Moroccan Arabic **(ary)** and Berber **(ber)** you would label your file :file:`“BerAry_Arb_MA.json”`.
