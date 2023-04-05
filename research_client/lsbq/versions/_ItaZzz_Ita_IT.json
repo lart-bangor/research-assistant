@@ -1,7 +1,7 @@
 {
     "meta": {
-        "versionId": "LmoIta_Ita_IT",
-        "versionName": "Lombard – Italiano (Italia)",
+        "versionId": "ItaZzz_Ita_IT",
+        "versionName": "Italiano – generico (Italia)",
         "versionNumber": "0.3.5",
         "author": "Alessandro Arioli <a.arioli@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2023-03-14",
@@ -212,7 +212,7 @@
         ],
         "languagesInstructions": [
             "List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:",
-            "Elenchi tutte le varietà linguistiche che sa parlare e comprendere, incluso l’italiano e il lombardo (bergamasco, comasco, ecc.), in ordine di padronanza:"
+            "Elenchi tutte le varietà linguistiche che sa parlare e comprendere, in ordine di padronanza:"
         ],
         "languageName": [
             "Language or dialect",
@@ -426,14 +426,14 @@
             "Si prega di selezionare questa opzione <i>solo</i> se non può rispondere alle domande riguardanti Suo padre (per es. perché non lo conosce)."
         ],
         "languageListOptions": [
-            "Lombardo",
             "Italiano",
-            "Occitano",
             "Francese",
             "Tedesco",
             "Spagnolo",
             "Lingua italiana dei segni",
+            "Lombardo",
             "Sardo",
+            "Occitano",
             "Irlandese",
             "Polacco",
             "Arabo",
@@ -460,7 +460,7 @@
         ],
         "onlyRML": [
             "Only [RML]",
-            "Soltanto lombardo"
+            "Soltanto l'altra lingua"
         ],
         "onlyMajorityLanguage": [
             "Only [MajorityLanguage]",

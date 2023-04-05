@@ -28,10 +28,11 @@ with the user-feedback provided for each field.
 Loading a generic version of the LSBQe
 --------------------------------------
 
-An “English – generic” version of the LSBQe is available for you to use if the languages pertinent to your research location are not available amongst our
+Several generic versions of the LSBQe (e.g., English, German, Italian) are available for you to use if the languages pertinent to your research location are not available amongst our
 four LSBQe versions, or if you prefer a generic or customisable version of the LSBQe.
 
-To select the generic version of the LSBQe, choose "English-generic (United Kingdom)" from the LSBQe version drop down list.
+You can select a generic version of teh LSBQe from the dropdown list. For example, if you wish to use the generic version for British English, 
+you would choose "English-generic (United Kingdom)".
 
 .. figure:: figures/lsbqefigure16.png
       :width: 600
@@ -48,13 +49,18 @@ Customizing a generic version of the LSBQe
 
 You may wish to customize a generic version of the LSBQe if you would like the LSBQe to present a specific language pair to use during your study.
 
-In order to customize a version of the LSBQe, open the file :file:`[EngZzz_Eng_GB]` by following the path below:
+Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language" (for example, 
+the file for the generic version for British English is called :file:`[EngZzz_Eng_GB]`).
+
+If you wish to customise a generic version of the LSBQe, open the relevant file (e.g. :file:`[EngZzz_Eng_GB]` for British English, or :file:`[GerZzz_Ger_DE]` for German, and so on)
+by following the path below:
+
 
 :guilabel:`C:\Users\username\AppData\Local\Programs\LART\ResearchClient\lart_research_client\lsbq\versions`
 
 .. insert screenshot of folder once available
 
-Firstly, you **must "save as"**, following the ISO standard code sequence (see the note `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/tutorials/localisation-translations.html#id5>`_ for standard code sequence generating) **(see Figure 22)**.
+Firstly, you **must "save as"**, following the `ISO standard code sequence <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/tutorials/localisation-translations.html#id5>`_ for standard code sequence generating) **(see Figure 22)**.
 
 For example, if you wish to customize a version for English and Irish for use in Ireland through the medium of English, you will create a file called
 :file:`[EngGle_Eng_IE]` **(see Figure 23)**.  

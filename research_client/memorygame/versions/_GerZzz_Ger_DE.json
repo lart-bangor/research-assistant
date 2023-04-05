@@ -1,0 +1,91 @@
+{
+    "meta": {
+        "versionId": "GerZzz_Ger_DE",
+        "versionName": "Deutsch – generisch (Deutschland)",
+        "versionNumber": "0.3.5",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-04-05"
+    },
+    "base": {
+        "appTitle": [
+            "Memory Task",
+            "Gedächtnisaufgabe"
+        ]
+    },
+    "game": {
+        "secTitle": [
+            "Memory Task",
+            "Gedächtnisaufgabe"
+        ],
+        "round": [
+            "Round",
+            "Runde"
+        ],
+        "xofy": [
+            "<!-- x --> of <!-- y -->",
+            "<!-- x --> von <!-- y -->"
+        ],
+        "cardsTurned": [
+            "Cards turned:",
+            "Kärtchen gedreht:"
+        ],
+        "timeElapsed": [
+            "Time:",
+            "Zeit:"
+        ],
+        "resultsModalTitle": [
+            "Memory Task Results",
+            "Ergebnisse der Gedächtnisaufgabe"
+        ],
+        "completeCongratulations": [
+            "Well done, you've matched all the cards!",
+            "Sehr gut, Sie haben alle Pärchen gefunden!"
+        ],
+        "yourScore": [
+            "Your score:",
+            "Ihr Ergebnis:"
+        ],
+        "numberOfTries": [
+            "Number of tries:",
+            "Anzahl Versuche:"
+        ],
+        "timeNeeded": [
+            "Time needed:",
+            "Zeit:"
+        ],
+        "continueNextGame": [
+            "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
+            "Klicken Sie auf „Weiter“ für einen weiteren Versuch.<br /> Versuchen Sie Ihr Ergebnis nochmal zu verbessern!"
+        ],
+        "continueFinished": [
+            "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
+            "Sie haben diese Aufgabe nun erfolgreich erledigt!<br /> Bitte klicken Sie zum Beenden auf „Weiter“."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Memory Task!",
+            "Danke für das Erledigen der Gedächstnisaufgabe!"
+        ],
+        "feedback": [
+            "Well done!",
+            "Gut gemacht!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the memory task. Your data has been saved.",
+            "Sie haben die Gedächstnisaufgabe jetzt erledigt. Ihre Daten wurden gespreichert."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Bitte klicken Sie auf „Weiter“, wenn Sie bereit sind weiter zu machen."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
+        ]
+    }
+}
