@@ -11,7 +11,7 @@ def _get_versions() -> dict[str, dict[str, Any]]:
     """Loads all available AToL versions into memory."""
     versions: dict[str, dict[str, Any]] = {}
     for item in resources.contents(__name__):
-        if resources.is_resource(__name__, item) and item[-5:] == ".json":
+        if resources.is_resource(__name__, item) and item[-5:] == ".json" and item[0] != "_":
             with resources.open_text(__name__, item) as fp:
                 buf = json.load(fp)
                 if "meta" in buf and "versionId" in buf["meta"]:

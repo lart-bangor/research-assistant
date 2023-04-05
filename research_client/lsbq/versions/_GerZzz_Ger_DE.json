@@ -1,7 +1,7 @@
 {
     "meta": {
         "versionId": "GerZzz_Ger_DE",
-        "versionName": "Deutsch – generic (Deutschland)",
+        "versionName": "Deutsch – generisch (Deutschland)",
         "versionNumber": "0.3.5",
         "author": "Florian Breit <f.breit@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
         "date": "2023-03-14",
@@ -35,23 +35,23 @@
         ],
         "levelOfEducation1": [
             "EQF Level 1",
-            "Abschluss der Grund&ndash; oder Primarschule, <abbr title=\"Certificat d’études de base\">CEB</abbr>, getuigschrift basisonderwijs, oder weniger."
+            "weniger als Hauptschulabschluss."
         ],
         "levelOfEducation2": [
             "EQF Level 2-3",
-            "Befähigungsnachweis/Abschluss der Unterstufe, zertifizierte Teilqualifikation der mittelständischen Lehre, <abbr title=\"Certificat d’enseignement secondaire inférieure\">CESI</abbr>, <abbr title=\"Certificat d’études du 1er degré\">CE1D</abbr>, <abbr title=\"Certificat d’enseignement secondaire du deuxième degré\">CESDD</abbr>, getuigschrift van de eerste/tweede graad."
+            "Hauptschulabschluss, Berufsfachschule, 2-jährige Berufsausbildung, Realschulabschluss."
         ],
         "levelOfEducation3": [
             "EQF Level 4",
-            "Abschluss der Oberstufe, Abitur, Abschluss einer mittelständischen Lehre mit Gesellenzeugnis, <abbr title=\"Certificat de qualification\">CQ</abbr>, <abbr title=\"Certificat d’études de sixième année de l’enseignement secondaire professionnel\">CE6P</abbr>, <abbr title=\"Certificat d’enseignement secondaire supérieur\">CESS</abbr>, Diploma van secondair onderwijs, studiegetuigschrift."
+            "Hochschulreife/Fachhochschulreife oder 3-jährige Berufsausbildung."
         ],
         "levelOfEducation4": [
             "EQF Level 5-6",
-            "Bachelor, Abschluss einer Meisterausbildung mit Meisterbrief, Abschluss einer Ausbildung im ergänzenden beruflichen Sekundarunterricht."
+            "Bachelor, Diplom (FH), 1. Staatsexamen, Fachwirt, Meister/Techniker."
         ],
         "levelOfEducation5": [
             "EQF Level 7-8",
-            "Master, Promotion/Doktorgrad, Habilitation."
+            "Master, Diplom (Univ.), Magister, 2. Staatsexamen, Promotion/Doktorgrad, Habilitation."
         ],
         "notApplicableFull": [
             "not applicable",
@@ -415,28 +415,33 @@
         ],
         "languageListOptions": [
             "Deutsch",
-            "Französisch",
-            "Niederländisch",
-            "Wallonisch",
-            "Picardisch",
-            "Champenois",
-            "Romanisches Lothringisch",
-            "Limburgisch",
-            "Jiddisch",
             "Deutsche Gebärdensprache (DGS)",
-            "Belgisch-französische Gebärdensprache (LSFB)",
-            "Eifeler Platt (Moselfränkisch)",
-            "Flämische Gebärdensprache (VGT)",
+            "Dänisch",
+            "Sorbisch",
+            "Friesisch",
+            "Romani",
             "Englisch",
+            "Französisch",
+            "Russisch",
+            "Spanisch",
+            "Italienisch",
+            "Türkisch",
+            "Polnisch",
+            "Niederländisch",
             "Berber",
             "Maghrebinisches Arabisch (Darija)",
-            "Spanisch",
-            "Türkisch",
-            "Portugiesisch",
-            "Italienisch",
+            "Chinesisch",
+            "Rumänisch",
+            "Ungarisch",
             "Griechisch",
-            "Polnisch",
-            "Modernes Standard-Arabisch"
+            "Japanisch",
+            "Schwedisch",
+            "Tschechisch",
+            "Portugiesisch",
+            "Norwegisch",
+            "Modernes Standard-Arabisch",
+            "Jenisch",
+            "Jiddisch"
         ],
         "repeatedLanguageErrorTitle": [
             "Repeated language",

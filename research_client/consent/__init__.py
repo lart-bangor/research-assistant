@@ -36,22 +36,24 @@ def fetch_file_info(file: str):
 
 @eel.expose
 def consent_getversions():
-     """loops through the folder [versions] inside [consent] and finds all unique language versions, regardless of test type. 
-     Returns a list of lists in the form: [versionId, languageInfo]"""
-     versions = []
-     versionsTracker = []
-     for file_name in versionsDirList:
-          fileInfo = fetch_file_info(os.path.join(versions_dir, file_name))
-          languageInfo = fileInfo[2]
-          versionId = fileInfo[0]
-          #print("\n Version found:")
-          #print("\t version languages: " + languageInfo)
-          #print("\t version ID: " + versionId)
-          if versionsTracker.count(languageInfo) == 0:
-               versionsTracker.append(languageInfo)  #keep track of the fact that you found a language version, regardless of task type
-               versions.append([versionId, languageInfo])
-     print(f"\nDigital consent: {len(versions)} language versions found.")
-     return versions
+    """loops through the folder [versions] inside [consent] and finds all unique language versions, regardless of test type. 
+    Returns a list of lists in the form: [versionId, languageInfo]"""
+    versions = []
+    versionsTracker = []
+    for file_name in versionsDirList:
+        if file_name[-5:] != ".json" or file_name[0] == "_":
+            continue
+        fileInfo = fetch_file_info(os.path.join(versions_dir, file_name))
+        languageInfo = fileInfo[2]
+        versionId = fileInfo[0]
+        #print("\n Version found:")
+        #print("\t version languages: " + languageInfo)
+        #print("\t version ID: " + versionId)
+        if versionsTracker.count(languageInfo) == 0:
+            versionsTracker.append(languageInfo)  #keep track of the fact that you found a language version, regardless of task type
+            versions.append([versionId, languageInfo])
+    print(f"\nDigital consent: {len(versions)} language versions found.")
+    return versions
 
 
 
