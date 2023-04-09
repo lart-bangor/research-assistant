@@ -4,9 +4,9 @@ Research task: AToL
 The AToL begins with a start screen where you must select a version, input Researcher ID, Location, Participant ID
 and confirm that consent has been obtained by ticking the relevant box.
 
-You will not be able to advance without completing each respective part of the start screen **(see Figure 42)**.  
+You will not be able to advance without completing each respective part of the start screen **(see Figure ////)**.  
 
-.. figure:: figures/atolfigure21.png
+.. figure:: figures/atol-start-screen.png
       :width: 600
       :alt: Screenshot of AToL Start Screen
 
@@ -23,9 +23,9 @@ which are rated by using the sliders as seen in Figure 43 below.
 .. note::
 The AToL is a task that involves exclusively using sliders, and the order of the adjective pairs is randomised for each participant. 
 
-For ease of analysis, your result file for a given participant **(see Figure 59** `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html#id8>`_) reports the order in which the adjectives were presented for that participant. 
+For ease of analysis, your result file for a given participant **(see Figure //** `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html#id8>`_) reports the order in which the adjectives were presented for that participant. 
 
-.. figure:: figures/atolfigure22.png
+.. figure:: figures/atol-rating.png
       :width: 600
       :alt: Screenshot of AToL rating
 
@@ -33,7 +33,7 @@ For ease of analysis, your result file for a given participant **(see Figure 59*
 
 After activating each slider and providing a rating along each bipolar adjective pair, the next button activates in a darker shade of blue, indicating that you may advance to the next part of the AToL.
 
-.. figure:: figures/atolfigure23.png
+.. figure:: figures/atol-completed-section.png
       :width: 600
       :alt: Screenshot of completed AToL section
 
@@ -48,13 +48,13 @@ Unlike the LSBQe, however, it is not possible to load a generic version of the A
 
 This is due to the fact that while the LSBQe may refer to “the other language”, the AToL is dependent on naming each language under investigation at the top of every page (see `Figure 43 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-atol.html#id2>`_ "the **English** Language is...")
 
-.. figure:: figures/atolfigure24.png
+.. figure:: figures/atol-generic-file.png
       :width: 600
       :alt: Screenshot of a generic AToL file 
 
       Generic AToL file EngZzz_Eng_GB
 
-Firstly, as seen in `Figure 22 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id3>`_ you must open the generic file and **“save as”** in order to make a copy ready for customisation.
+Firstly, as seen in `Figure /// <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id3>`_ you must open the generic file and **“save as”** in order to make a copy ready for customisation.
 
 .. note::
       Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"
@@ -68,7 +68,7 @@ Your file name should match your “versionID”, which must follow the ISO stan
 
 In order to produce a customized version of the AToL, you must also change both “rml” and “rml_header” to indicate the language(s) pertinent to your AToL version. 
 
-.. figure:: figures/atolfigure24.png
+.. figure:: figures/atol-new-customized-file.png
       :width: 600
       :alt: Screenshot of a customized AToL file 
 

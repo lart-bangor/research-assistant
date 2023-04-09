@@ -16,7 +16,7 @@ For researchers using the app, or a specific localisation of the LSBQe for the f
 the LSBQe and purposely leave all fields blank before trying to submit so they can read through and familiarise themselves
 with the user-feedback provided for each field.  
 
-.. figure:: figures/lsbqefigure14.png
+.. figure:: figures/lsbqe-mandatory-fields-red.png
       :width: 600
       :alt: Screenshot of unanswered mandatory fields flagged in red.
 
@@ -34,7 +34,7 @@ four LSBQe versions, or if you prefer a generic or customisable version of the L
 You can select a generic version of teh LSBQe from the dropdown list. For example, if you wish to use the generic version for British English, 
 you would choose "English-generic (United Kingdom)".
 
-.. figure:: figures/lsbqefigure16.png
+.. figure:: figures/lsbqe-loading-generic-version.png
       :width: 600
       :alt: Screenshot of loading a generic version of the LSBQe.
 
@@ -56,16 +56,16 @@ If you wish to customise a generic version of the LSBQe, open the relevant file 
 by following the path below:
 
 
-:guilabel:`C:\Users\username\AppData\Local\Programs\LART\ResearchClient\lart_research_client\lsbq\versions`
+:guilabel:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
 .. insert screenshot of folder once available
 
-Firstly, you **must "save as"**, following the `ISO standard code sequence <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/tutorials/localisation-translations.html#id5>`_ for standard code sequence generating) **(see Figure 22)**.
+Firstly, you **must "save as"**, following the `ISO standard code sequence <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/tutorials/localisation-translations.html#id5>`_ for standard code sequence generating) **(see Figure /////)**.
 
 For example, if you wish to customize a version for English and Irish for use in Ireland through the medium of English, you will create a file called
 :file:`[EngGle_Eng_IE]` **(see Figure 23)**.  
 
-.. figure:: figures/lsbqefigure17.png
+.. figure:: figures/lsbqe-saving-generic-files.png
       :width: 600
       :alt: Screenshot of saving generic files as
 
@@ -74,7 +74,7 @@ For example, if you wish to customize a version for English and Irish for use in
 After your new version is saved, you must change the **“versionID”** and **“versionName”**
 to reflect your customization. Your **“versionID”** should match your file name.
 
-.. figure:: figures/lsbqefigure18.png
+.. figure:: figures/lsbqe-new-file-EngGle.png
       :width: 600
       :alt: Screenshot of new LSBQe file
 
@@ -83,9 +83,9 @@ to reflect your customization. Your **“versionID”** should match your file n
 A further customization that you can make inside the file relates to how your LSBQe version will refer to the language you wish to include. 
 
 To do this, you must search for **"RML”** in your :guilabel:`[EngGle_Eng_IE]` and change **“the other language”** to the language name you wish to be displayed.
-In our current example that would be **“Irish”** as shown in Figure 24 below.
+In our current example that would be **“Irish”** as shown in Figure //// below.
 
-.. figure:: figures/lsbqefigure19.png
+.. figure:: figures/lsbqe-customizing-file.png
       :width: 600
       :alt: Screenshot of saving generic files as
 
@@ -95,9 +95,9 @@ It is not mandatory to include English as one of the languages on your LSBQe ver
 and apply the relevant changes in Figure 22 and Figure 23.
 
 Additionally, in order to change the default **"English"** in the LSBQe, you would have to search **“MajorityLanguage”** and change each instance of "English" to "Ulster Scots" 
-**(see Figure 25)**
+**(see Figure ////)**
 
-.. figure:: figures/lsbqefigure20.png
+.. figure:: figures/lsbqe-customizing-both-languages.png
       :width: 600
       :alt: Screenshot of customizing both languages in your generic LSBQe file 
 
@@ -121,7 +121,7 @@ Below you’ll find instructions on which questions allow this option and how to
 
 As default, the LSBQe contains three options that a participant may select as their sex: “Female”; “Male”; “Other”. 
 
-.. figure:: figures/eqfigure21.png
+.. figure:: figures/lsbqe-default-options-sex.png
       :width: 400
       :alt: Screenshot of default options for sex on LSBQe
 
@@ -135,7 +135,7 @@ To do this, open your LSBQe version file from the following path:
 
 With the file open, you will see that below the section “options” the line labelled :file:`“lsb_show_other_sex”`` is set to :file:`true`:
 
-.. figure:: figures/eqfigure22.png
+.. figure:: figures/lsbqe-show-other-sex-true.png
       :width: 400
       :alt: Screenshot of the feature 'lsb_show_other_sex' set to "true"
 
@@ -143,7 +143,7 @@ With the file open, you will see that below the section “options” the line l
 
 To exclude the **“Other”** option in your version of the LSBQe you simply need to set that option to :file:`“false”`.
 
-.. figure:: figures/eqfigure23.png
+.. figure:: figures/lsbqe-show-other-sex-false.png
       :width: 400
       :alt: Screenshot of the feature 'lsb_show_other_sex' set to "false"
 
@@ -152,7 +152,7 @@ To exclude the **“Other”** option in your version of the LSBQe you simply ne
 .. note::
       Make sure to restart the app so that the change can take effect.
 
-.. figure:: figures/eqfigure24.png
+.. figure:: figures/lsbqe-other-sex-removed.png
       :width: 400
       :alt: Screenshot of how the question appears in the app after removing "Other"
 
@@ -169,9 +169,9 @@ where they learned each of them, when they learned them, and if there were signi
 By default, the LSBQe  requires a minimum of two required language names, by presenting participants with two blank lines that must be filled before continuing.
 
 While participants have the option of adding more language varieties via the :guilabel:`Add Line` button (i.e. for participants who are multilingual),
-only two lines will appear as default **(see Figure 30 below)**. 
+only two lines will appear as default **(see Figure //// below)**. 
 
-.. figure:: figures/mrlfigure25.png
+.. figure:: figures/ldb-two-min-lang.png
       :width: 400
       :alt: Screenshot of Language and Dialect Background section
 
@@ -186,7 +186,7 @@ To do this, firstly, open your LSBQe version file from the following path:
 
 With the file open, you will see that below the section :file:`“options”` the line labelled :file:`“ldb_minimum_required_languages”` is set to **“2”**: 
 
-.. figure:: figures/mrlfigure26.png
+.. figure:: figures/ldb-min-lang-set-to-2.png
       :width: 400
       :alt: Screenshot of the feature “ldb_minimum_required_languages” set to “2”.   
 
@@ -194,7 +194,7 @@ With the file open, you will see that below the section :file:`“options”` th
 
 To change this to a different number, e.g., 3, you simply type “3” in place of “2”: 
 
-.. figure:: figures/mrlfigure27.png
+.. figure:: figures/ldb-changing-min-lang-3.png
       :width: 400
       :alt: Screenshot of changing the minimum required languages
 
@@ -203,7 +203,7 @@ To change this to a different number, e.g., 3, you simply type “3” in place 
 .. note:: 
       Make sure to restart the app so that the change can take effect.
 
-.. figure:: figures/mrlfigure28.png
+.. figure:: figures/app-appearance-three-req-lang.png
       :width: 400
       :alt: Screenshot of how the question appears in the app with a minimum of three required languages
 
@@ -216,7 +216,7 @@ Reading and Writing:
 
 In the “Language and Dialect Background” section, participants are asked how much time they spend engaged in speaking, listening, reading, and writing in each of their languages.
 
-.. figure:: figures/rawfigure29.png
+.. figure:: figures/app-appearance-reading-writing.png
       :width: 400
       :alt: Screenshot of how the question appears in the app with "Reading" and "Writing" options
 
@@ -231,7 +231,7 @@ To remove the “reading” and “writing” options, firstly, open your LSBQe 
 
 With the file open, you will see that below the section :file:`“options”` the lines labelled :file:`“ldb_show_reading”` and :file:`“ldb_show_writing”` are set to :file:`“true”``: 
 
-.. figure:: figures/rawfigure30.png
+.. figure:: figures/ldb-read-write-true-default.png
       :width: 400
       :alt: Screenshot of the features “ldb_show_reading” and “ldb_show_writing” set to “true” by default  
 
@@ -239,7 +239,7 @@ With the file open, you will see that below the section :file:`“options”` th
 
 To exclude these options from your version of the LSBQe, simply change the values to :file:`“false”`: 
 
-.. figure:: figures/rawfigure31.png
+.. figure:: figures/ldb-read-write-false.png
       :width: 400
       :alt: Screenshot of user setting the "reading" and "writing" options to “false”
 
@@ -250,7 +250,7 @@ To exclude these options from your version of the LSBQe, simply change the value
 
 If you wish to change it back to including “reading” and “writing”, you must reverse the process and change the values back to :file:`“false”`.
 
-.. figure:: figures/rawfigure32.png
+.. figure:: figures/appearance-read-write-removed.png
       :width: 400
       :alt: Screenshot of how the question appears in the app with "Reading" and "Writing" options removed
 
@@ -259,9 +259,9 @@ If you wish to change it back to including “reading” and “writing”, you 
 Show code-switching
 *******************
 
-The LSBQe’s Community Language Use Behaviour section contains a final section on code-switching where participants are asked how often they code-switch in different contexts **(see Figure 38)**. 
+The LSBQe’s Community Language Use Behaviour section contains a final section on code-switching where participants are asked how often they code-switch in different contexts **(see Figure ///)**. 
 
-.. figure:: figures/csfigure33.png
+.. figure:: figures/club-code-switching-incl.png
       :width: 400
       :alt: Screenshot of - CLUB section with code-switching question included
 
@@ -273,17 +273,17 @@ To remove the code-switching question, firstly, open your LSBQe version file fro
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
-With the file open, you will see that below the section :file:`“options”` the line labelled :file:`“club_show_codeswitching”`` is set to :file:`“true”` **(see Figure 39)**
+With the file open, you will see that below the section :file:`“options”` the line labelled :file:`“club_show_codeswitching”`` is set to :file:`“true”` **(see Figure ///)**
 
-.. figure:: figures/csfigure34.png
+.. figure:: figures/club-code-switching-true-default.png
       :width: 400
       :alt: Screenshot of the feature “club_show_codeswitching” set to “true” by default
 
       The feature “club_show_codeswitching” is set to “true” by default
 
-To exclude the code-switching question from your version of the LSBQe, simply change the value to :file:`“false”` **(see Figure 40)**
+To exclude the code-switching question from your version of the LSBQe, simply change the value to :file:`“false”` **(see Figure ///)**
 
-.. figure:: figures/csfigure35.png
+.. figure:: figures/raw-code-switch-false.png
       :width: 400
       :alt: Screenshot of setting the codeswitching option to “false”
 
@@ -293,11 +293,11 @@ To exclude the code-switching question from your version of the LSBQe, simply ch
       Make sure to restart the app so that the change can take effect.
 
 After removing the code-switching section, the CLUB section finishes on the question prior to the code-switching question that asks participants to indicate
-which language or dialect they generally use for various activities **(see Figure 41)**.  
+which language or dialect they generally use for various activities **(see Figure ///)**.  
 
 If you wish to change it back to including the code-switching question, you must reverse the process and change the value back to :file:`“true”`.
 
-.. figure:: figures/csfigure36.png
+.. figure:: figures/code-switching-read-write-removed.png
       :width: 400
       :alt: Screenshot of how the question appears in the app with "Reading" and "Writing" options removed
 

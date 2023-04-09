@@ -15,7 +15,7 @@ Discarding an attempt will usually be the appropriate choice where a participant
 ethical procedures in place for your research. If a response has already been submitted successfully and consent is withdrawn retrospectively, the researcher **must**
 manually ensure that data is deleted where that might be required.
 
-.. figure:: figures/dafigure39.png
+.. figure:: figures/discarding-attempts.png
     :width: 400
     :alt: Screenshot of LART research client menu
 

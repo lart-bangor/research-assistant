@@ -20,11 +20,11 @@ Upon starting the LSBQe, you are first asked to enter the relevant information f
     on this page using the information entered previously on the informed consent form.
 
 
-.. figure:: figures/figure12.png
+.. figure:: figures/lsbqe-first-screen.png
       :width: 400
       :alt: Screenshot of the first screen of the LSBQe
-
-       The first screen, using the LSBQe as an example
+      
+      The first screen, using the LSBQe as an example
 
 
 User input
@@ -42,12 +42,12 @@ Once moved, the slider will turn a darker shade of blue to show that the slider 
 
 Should the participant want to keep the slider in the middle of the bar, the slider will need to be moved once and then moved back to the middle point of the bar.
 
-If the participant fails to move the slider, a red flag will appear **(see Figure 19)** and the participant will not be able to advance 
+If the participant fails to move the slider, a red flag will appear **(see Figure //)** and the participant will not be able to advance 
 
 .. note::
     Some sliders provide a **"not applicable"** tickbox, which negates the need for the user to interact with that slider.
 
-.. figure:: figures/uifigure13.png
+.. figure:: figures/lsbqe-slider-function.png
       :width: 600
       :alt: Screenshot of the slider function, using the LSBQe as an example.
 

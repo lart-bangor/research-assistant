@@ -9,7 +9,7 @@ collected on various devices, you can do this straightforwardly on the app.
 
 For the simplest way to do this, open the side menu, and click on :guilabel:`Export Data`.  
 
-.. figure:: figures/edfigure33.png
+.. figure:: figures/exporting-data-side-bar.png
       :width: 400
       :alt:  Screenshot of L'ART Research Client menu
 
@@ -21,7 +21,7 @@ all the responses currently stored on the computer in a location of your choice.
 .. note::
       Identify and remember your file path before saving, so that you know where to find your ZIP archive containing the exported data.
 
-.. figure:: figures/edfigure34.png
+.. figure:: figures/saving-exported-data.png
       :width: 600
       :alt: Screenshot of saving exported data
 
@@ -33,7 +33,7 @@ To find your data in order to verify that the data has been backed up correctly,
 
 In order to follow the file path, you must show hidden items in the :guilabel:`“view”` section your **“File Explorer”**.  
 
-.. figure:: figures/edfigure35.png
+.. figure:: figures/exporting-data-hidden-items.png
       :width: 700
       :alt: Screenshot of view section in File Explorer
 
@@ -45,18 +45,18 @@ Next, discover your ZIP Archive exported data file via the following path:
 
 Open up your ZIP Archive back up and open the folder that corresponds to the task used in your study. 
 
-For instance, if you’re verifying data that you collected from the AToL, open :file:`“AToL-C”` **(see Figure 57)**.  
+For instance, if you’re verifying data that you collected from the AToL, open :file:`“AToL-C”` **(see Figure ///)**.  
 
-.. figure:: figures/edfigure36.png
+.. figure:: figures/exportinf-data-zip-task-folders.png
       :width: 700
       :alt: Screenshot of task folders located in your exported ZIP Archive
 
       Task folders located in your exported ZIP Archive
 
 
-Located inside the file will be your **.json data** files, labelled in **“participant_date_time”** format **(see Figure 58)**.
+Located inside the file will be your **.json data** files, labelled in **“participant_date_time”** format **(see Figure ///)**.
 
-.. figure:: figures/edfigure37.png
+.. figure:: figures/exporting-data-json-data-file.png
       :width: 400
       :alt: Screenshot of  .json data file in participant_date_time format
 
@@ -64,9 +64,9 @@ Located inside the file will be your **.json data** files, labelled in **“part
 
 File name accuracy should indicate if your data has been collected and exported properly, but you can open the file to verify completely that data was collected and exported accurately.
 
-For instance, in the example below **(Figure 59)**, by observing that each AToL adjective pair, per language, equates to a **number** (how your participant rated the language for the trait via the slider mechanism). 
+For instance, in the example below **(Figure ////)**, by observing that each AToL adjective pair, per language, equates to a **number** (how your participant rated the language for the trait via the slider mechanism). 
 
-.. figure:: figures/edfigure38.png
+.. figure:: figures/exporting-data-file-partic-input.png
       :width: 850
       :alt: Screenshot of open .json data file 
 
