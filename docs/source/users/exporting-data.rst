@@ -13,7 +13,7 @@ For the simplest way to do this, open the side menu, and click on :guilabel:`Exp
       :width: 400
       :alt:  Screenshot of L'ART Research Client menu
 
-      Figure 54- Open the side bar to export data
+      Open the side bar to export data
 
 Once you have clicked on export data, a dialogue will appear which allows you to save a ZIP archive containing
 all the responses currently stored on the computer in a location of your choice. 
@@ -25,13 +25,13 @@ all the responses currently stored on the computer in a location of your choice.
       :width: 600
       :alt: Screenshot of saving exported data
 
-      Figure 55 - Saving the exported data
+      Saving the exported data
 
 Your next step will be to verify that all the data collected appears as it should in your exported ZIP Archive file.
 
 To find your data in order to verify that the data has been backed up correctly, firstly, follow the file path that your ZIP Archive file is located in.
 
-In order to follow the file path, you must show hidden items in the :guilabel:`“view”` section your **“File Explorer”**.  
+In order to follow the file path, you must show hidden items in the :guilabel:`“view”` section in your **File Explorer**.  
 
 .. figure:: figures/exporting-data-hidden-items.png
       :width: 700
@@ -47,14 +47,14 @@ Open up your ZIP Archive back up and open the folder that corresponds to the tas
 
 For instance, if you’re verifying data that you collected from the AToL, open :file:`“AToL-C”` **(see Figure ///)**.  
 
-.. figure:: figures/exportinf-data-zip-task-folders.png
+.. figure:: figures/exporting-data-zip-task-folders.png
       :width: 700
       :alt: Screenshot of task folders located in your exported ZIP Archive
 
       Task folders located in your exported ZIP Archive
 
 
-Located inside the file will be your **.json data** files, labelled in **“participant_date_time”** format **(see Figure ///)**.
+Located inside the file will be your :file:`.json data` files, labelled in **“participant_date_time”** format **(see Figure ///)**.
 
 .. figure:: figures/exporting-data-json-data-file.png
       :width: 400
@@ -75,11 +75,11 @@ For instance, in the example below **(Figure ////)**, by observing that each ATo
 For advanced users who want to automate export or backup of the responses, or monitor and integrate these files
 with some other system, the files can be accessed directly on the system. 
 
-On Windows these are stored in the Roaming profile by default, identified by the path :file:`%AppData%\LART\Research Client\data.`
+On Windows these are stored in the Roaming profile by default, identified by the path :file:`%AppData%\\LART\\Research Client\\data.`
 
-On Mac OS X the default path will be :file:`~/Library/Application Support/Research Client/data.`
+On Mac OS X the default path will be :file:`~//Library//Application Support/Research Client//data.`
 
-For most Linux distributions the default path will be :file:`~/.local/share/Research Client/data.`
+For most Linux distributions the default path will be :file:`~//.local//share//Research Client//data.`
 
 .. note::
 

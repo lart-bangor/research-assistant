@@ -25,7 +25,7 @@ and experimental guises **must** be marked “s” plus number to denote your sp
 These labels must be assigned **consistently** to the file names, but it does not matter which variety you choose to label "maj" and which "rml" (though if working with a majority language and a regional/minority language it may help analysis if you use "maj" for majority and "rml" for minority language).
 What matters for app functionality is that you assign the “maj” label to one language/variety and the “rml” label to the other, keeping it consistent throughout your set-up.
 
-In the example below in Figure 47, :file:`“maj”` indicates Chinese recordings and :file:`“rml”` indicates English recordings. Do note that this is done **consistently** for all recordings.
+In the example below in Figure **//**, :file:`“maj”` indicates Chinese recordings and :file:`“rml”` indicates English recordings. Do note that this is done **consistently** for all recordings.
 
 .. warning::
       File names are **case-sensitive** and **must** be written identically to how they appear here in order for the AGT to function.  

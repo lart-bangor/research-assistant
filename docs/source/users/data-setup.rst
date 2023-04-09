@@ -13,12 +13,11 @@ the research tool you require under *Choose a task* on the app’s home screen.
 In the current version (|version|), the tasks available are: :guilabel:`LSBQe`,
 :guilabel:`AToL`, :guilabel:`AGT`, and :guilabel:`Memory Game`.
 
-.. insert screenshot?
 
 The second option offers the researcher an integrated digital avenue to obtain informed consent,
 which negates the need to handle physical information sheets, consent forms and signatures. 
 
-This can be done by using the generic consent form provided **(see Figures 16 & 17 below)** or
+This can be done by using the generic consent form provided **(see Figures // & // below)** or
 by linking it to your own digital consent form.
 
 .. (see section **[insert link]** for instructions on how to add a custom consent form). << Ask where this is on the doc<<
@@ -31,7 +30,6 @@ To obtain consent digitally, open the side menu on the top left-handby clicking 
       :alt: Screenshot of the L'ART Research Clients' side menu
 
       The side menu of the L'ART app
-
 
 .. figure:: figures/figure11.png
       :width: 600
@@ -46,6 +44,3 @@ If the participant gives their consent and confirms their eligibility through ma
 automatically advanced to the start screen for the first task (see `Task Sequencing <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/configuration.html#task-sequencing>`_ on how to set this).  
 
 The task start screen is the same start screen that researchers who opt for the LSBQe without digital informed consent will see after they select a task from the app's home screen. 
-
-.. The next section discusses how to collect responses for each task available in the L'ART Research Client: **LSBQe, AToL,** and **AGT**.
-

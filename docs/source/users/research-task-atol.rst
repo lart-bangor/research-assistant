@@ -46,7 +46,7 @@ As for the `LSBQe, <file:///C:/Users/admin/Documents/lart-research-client/docs/b
 (e.g., English, German, Italian).
 Unlike the LSBQe, however, it is not possible to load a generic version of the AToL without customizing it.
 
-This is due to the fact that while the LSBQe may refer to “the other language”, the AToL is dependent on naming each language under investigation at the top of every page (see `Figure 43 <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-atol.html#id2>`_ "the **English** Language is...")
+This is due to the fact that while the LSBQe may refer to “the other language”, the AToL is dependent on naming each language under investigation at the top of every page (see `Figure //// <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-atol.html#id2>`_ "the **English** Language is...")
 
 .. figure:: figures/atol-generic-file.png
       :width: 600

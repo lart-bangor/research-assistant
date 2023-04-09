@@ -7,7 +7,7 @@ Discarding an attempt in progress
     Please ensure that you read this information carefully and understand the ramifications of discarding an attempt before making use of this functionality.
 
 Discarding a participant’s attempt at a task can be done straightforwardly at any stage of the data collection process, including during the consent stage.
-To do so, open the side menu and click **"Discard attempt"**. Once the attempt has been discarded, the app will return to the app home screen. 
+To do so, open the side menu and click :guilabel:`Discard attempt`. Once the attempt has been discarded, the app will return to the app home screen. 
 
 **Note that** discarded responses will **not** be saved on the device and any information a participant may already have entered for that task will be irretrievably lost.
 
