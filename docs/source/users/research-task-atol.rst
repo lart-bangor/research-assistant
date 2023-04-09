@@ -44,6 +44,7 @@ Loading and customizing a generic version of the AToL
 
 As for the `LSBQe, <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html>`_ several generic versions of the AToL are available 
 (e.g., English, German, Italian).
+
 Unlike the LSBQe, however, it is not possible to load a generic version of the AToL without customizing it.
 
 This is due to the fact that while the LSBQe may refer to “the other language”, the AToL is dependent on naming each language under investigation at the top of every page (see `Figure //// <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-atol.html#id2>`_ "the **English** Language is...")
@@ -54,19 +55,19 @@ This is due to the fact that while the LSBQe may refer to “the other language�
 
       Generic AToL file EngZzz_Eng_GB
 
-Firstly, as seen in `Figure /// <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id3>`_ you must open the generic file and **“save as”** in order to make a copy ready for customisation.
+Firstly, as seen in `Figure /// <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id3>`_ you must open the generic file and click :guilabel:`Save as`` in order to make a copy ready for customisation.
 
 .. note::
       Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"
       (for example, the file for the generic version for British English is called :file:`[EngZzz_Eng_GB]`).
 
-After that, change the “versionID” and “versionName” to reflect your customization. Following the English and Scots example presented `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id8>`_, this would be :file:`[EngSco_Eng_GB]`
+After that, change the :code:`versionID`` and :code:`versionName` to reflect your customization. Following the English and Scots example presented `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id8>`_, this would be :file:`[EngSco_Eng_GB]`
 
-Your file name should match your “versionID”, which must follow the ISO standard code sequence (see the note )
+Your file name should match your :code:`versionID`, which must follow the ISO standard code sequence (see the note )
 
 .. (see XX for standard code sequence generating > add in localisation link once section has been completed). 
 
-In order to produce a customized version of the AToL, you must also change both “rml” and “rml_header” to indicate the language(s) pertinent to your AToL version. 
+In order to produce a customized version of the AToL, you must also change both :py:mod:`rml` and :py:mod:`rml_header` to indicate the language(s) pertinent to your AToL version. 
 
 .. figure:: figures/atol-new-customized-file.png
       :width: 600

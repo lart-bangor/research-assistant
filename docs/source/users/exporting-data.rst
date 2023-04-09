@@ -31,13 +31,13 @@ Your next step will be to verify that all the data collected appears as it shoul
 
 To find your data in order to verify that the data has been backed up correctly, firstly, follow the file path that your ZIP Archive file is located in.
 
-In order to follow the file path, you must show hidden items in the :guilabel:`“view”` section in your **File Explorer**.  
+In order to follow the file path, you must show hidden items in the :guilabel:`view` section in your **File Explorer**.  
 
 .. figure:: figures/exporting-data-hidden-items.png
       :width: 700
       :alt: Screenshot of view section in File Explorer
 
-      Tick the "hidden items" box in order to display all of your file path
+      Tick the :guilabel:`hidden items` box in order to display all of your file path
 
 Next, discover your ZIP Archive exported data file via the following path: 
 
@@ -45,7 +45,7 @@ Next, discover your ZIP Archive exported data file via the following path:
 
 Open up your ZIP Archive back up and open the folder that corresponds to the task used in your study. 
 
-For instance, if you’re verifying data that you collected from the AToL, open :file:`“AToL-C”` **(see Figure ///)**.  
+For instance, if you’re verifying data that you collected from the AToL, open :file:`AToL-C` **(see Figure ///)**.  
 
 .. figure:: figures/exporting-data-zip-task-folders.png
       :width: 700

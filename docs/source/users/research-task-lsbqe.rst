@@ -71,8 +71,8 @@ For example, if you wish to customize a version for English and Irish for use in
 
       Save the generic files as and follow the ISO code sequence
 
-After your new version is saved, you must change the **“versionID”** and **“versionName”**
-to reflect your customization. Your **“versionID”** should match your file name.
+After your new version is saved, you must change the :code:`versionID` and :code:`versionName`
+to reflect your customization. Your :code:`versionID` should match your file name.
 
 .. figure:: figures/lsbqe-new-file-EngGle.png
       :width: 600
@@ -82,7 +82,7 @@ to reflect your customization. Your **“versionID”** should match your file n
 
 A further customization that you can make inside the file relates to how your LSBQe version will refer to the language you wish to include. 
 
-To do this, you must search for **"RML”** in your :guilabel:`[EngGle_Eng_IE]` and change **“the other language”** to the language name you wish to be displayed.
+To do this, you must search for **"RML”** in your :file:`[EngGle_Eng_IE]` and change **“the other language”** to the language name you wish to be displayed.
 In our current example that would be **“Irish”** as shown in Figure //// below.
 
 .. figure:: figures/lsbqe-customizing-file.png
@@ -92,9 +92,11 @@ In our current example that would be **“Irish”** as shown in Figure //// bel
       Customizing inside your LSBQe file.
 
 It is not mandatory to include English as one of the languages on your LSBQe version. For example, if you require an LSBQe version to study Ulster Scots and Irish in Northern Ireland, you would call the file :file:`[ScoGle_Eng_GB]`
-and apply the relevant changes in Figure 22 and Figure 23.
+and apply the relevant changes in Figure ///// and Figure /////.
 
-Additionally, in order to change the default **"English"** in the LSBQe, you would have to search **“MajorityLanguage”** and change each instance of "English" to "Ulster Scots" 
+.. 22 and 23 
+
+Additionally, in order to change the default **"English"** in the LSBQe, you would have to search :code:`MajorityLanguage` and change each instance of "English" to "Ulster Scots" 
 **(see Figure ////)**
 
 .. figure:: figures/lsbqe-customizing-both-languages.png
@@ -133,7 +135,7 @@ To do this, open your LSBQe version file from the following path:
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
-With the file open, you will see that below the section “options” the line labelled :file:`“lsb_show_other_sex”`` is set to :py:mod:`true`:
+With the file open, you will see that below the section :py:mod:`options` the line labelled :file:`lsb_show_other_sex`` is set to :py:mod:`true`:
 
 .. figure:: figures/lsbqe-show-other-sex-true.png
       :width: 400
@@ -141,7 +143,7 @@ With the file open, you will see that below the section “options” the line l
 
       The feature "lsb_show_other_sex" set to "true"
 
-To exclude the **“Other”** option in your version of the LSBQe you simply need to set that option to :py:mod:`“false”`.
+To exclude the :py:mod:`Other` option in your version of the LSBQe you simply need to set that option to :py:mod:`false`.
 
 .. figure:: figures/lsbqe-show-other-sex-false.png
       :width: 400
@@ -156,9 +158,9 @@ To exclude the **“Other”** option in your version of the LSBQe you simply ne
       :width: 400
       :alt: Screenshot of how the question appears in the app after removing "Other"
 
-      How the question appears in the app after removing "Other"
+      How the question appears in the app after removing :py:mod:`Other`
 
-If you wish to change it back to including **"Other"**, you must reverse the above procedure and change the setting back to :py:mod:`"true"`.
+If you wish to change it back to including :py:mod:`Other`, you must reverse the above procedure and change the setting back to :py:mod:`true`.
 
 Minimum required languages
 **************************
@@ -184,7 +186,7 @@ To do this, firstly, open your LSBQe version file from the following path:
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
-With the file open, you will see that below the section :py:mod:`“options”` the line labelled :file:`“ldb_minimum_required_languages”` is set to **“2”**: 
+With the file open, you will see that below the section :py:mod:`options` the line labelled :file:`ldb_minimum_required_languages` is set to **“2”**: 
 
 .. figure:: figures/ldb-min-lang-set-to-2.png
       :width: 400
@@ -229,7 +231,7 @@ To remove the “reading” and “writing” options, firstly, open your LSBQe 
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
-With the file open, you will see that below the section :py:mod:`“options”` the lines labelled :file:`“ldb_show_reading”` and :file:`“ldb_show_writing”` are set to :py:mod:`“true”``: 
+With the file open, you will see that below the section :py:mod:`options` the lines labelled :file:`ldb_show_reading` and :file:`ldb_show_writing` are set to :py:mod:`true``: 
 
 .. figure:: figures/ldb-read-write-true-default.png
       :width: 400
@@ -237,7 +239,7 @@ With the file open, you will see that below the section :py:mod:`“options”` 
 
       The features “ldb_show_reading” and “ldb_show_writing” are set to “true” by default 
 
-To exclude these options from your version of the LSBQe, simply change the values to :py:mod:`“false”`: 
+To exclude these options from your version of the LSBQe, simply change the values to :py:mod:`false`: 
 
 .. figure:: figures/ldb-read-write-false.png
       :width: 400
@@ -248,13 +250,13 @@ To exclude these options from your version of the LSBQe, simply change the value
 .. note::
       Make sure to restart the app so that the change can take effect.
 
-If you wish to change it back to including “reading” and “writing”, you must reverse the process and change the values back to :py:mod:`“false”`.
+If you wish to change it back to including “reading” and “writing”, you must reverse the process and change the values back to :py:mod:`false`.
 
 .. figure:: figures/appearance-read-write-removed.png
       :width: 400
-      :alt: Screenshot of how the question appears in the app with "Reading" and "Writing" options removed
+      :alt: Screenshot of how the question appears in the app with "reading" and "writing" options removed
 
-      How the question appears in the app with "Reading" and "Writing" options removed 
+      How the question appears in the app with "reading" and "writing" options removed 
 
 Show code-switching
 *******************
@@ -273,7 +275,7 @@ To remove the code-switching question, firstly, open your LSBQe version file fro
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
-With the file open, you will see that below the section :py:mod:`“options”` the line labelled :file:`“club_show_codeswitching”`` is set to :py:mod:`“true”` **(see Figure ///)**
+With the file open, you will see that below the section :py:mod:`options` the line labelled :file:`club_show_codeswitching`` is set to :py:mod:`true` **(see Figure ///)**
 
 .. figure:: figures/club-code-switching-true-default.png
       :width: 400
@@ -281,7 +283,7 @@ With the file open, you will see that below the section :py:mod:`“options”` 
 
       The feature “club_show_codeswitching” is set to “true” by default
 
-To exclude the code-switching question from your version of the LSBQe, simply change the value to :py:mod:`“false”` **(see Figure ///)**
+To exclude the code-switching question from your version of the LSBQe, simply change the value to :py:mod:`false` **(see Figure ///)**
 
 .. figure:: figures/raw-code-switch-false.png
       :width: 400
@@ -295,11 +297,11 @@ To exclude the code-switching question from your version of the LSBQe, simply ch
 After removing the code-switching section, the CLUB section finishes on the question prior to the code-switching question that asks participants to indicate
 which language or dialect they generally use for various activities **(see Figure ///)**.  
 
-If you wish to change it back to including the code-switching question, you must reverse the process and change the value back to :py:mod:`“true”`.
+If you wish to change it back to including the code-switching question, you must reverse the process and change the value back to :py:mod:`true`.
 
 .. figure:: figures/code-switching-read-write-removed.png
       :width: 400
-      :alt: Screenshot of how the question appears in the app with "Reading" and "Writing" options removed
+      :alt: Screenshot of how the question appears in the app with "reading" and "writing" options removed
 
-      How the question appears in the app with "Reading" and "Writing" options removed 
+      How the question appears in the app with "reading" and "writing" options removed 
 
