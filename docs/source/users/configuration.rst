@@ -179,7 +179,6 @@ This facilitates a more convenient data collection process where the user is aut
 the need for researcher intervention. This also negates the need to re-enter participant details (and the associated margin
 for error) at the start of each task, as these are transferred across tasks automatically.
 
-.. See section XX in (Breit et al. 2023).   
 
 .. rubric:: Example: The deafault LSBQe sequence
 

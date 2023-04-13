@@ -15,8 +15,9 @@ References
    *Journal of Verbal Learning and Verbal Behavior* 6(1), 33--35. 
 
 .. [Schoel-Roessel-EtAl-2013] Schoel, C., Roessel, J., Eck, J., Janssen, J., Petrovic, B., Rothe, A., Rudert, S.C. and Stahlberg, D. (2013).
-   "Attitudes To wards Languages" (AToL) Scale: A Global Instrument.
+   Attitudes To wards Languages" (AToL) Scale: A Global Instrument.
    *Journal of Language and Social Psychology*, 32(1), 21--45.
 
-.. [Breit-Tamburelli-EtAl-2023] Breit, F., Tamburelli, M., Gruffydd, I., Brasca, L. (2023).
-   *to be confirmed*
+.. [Breit-Tamburelli-EtAl-2023] Breit, F., Tamburelli, M., Gruffydd, I., Brasca, L. (2023). 
+   The L’ART Research Client: A digital toolkit for bilingualism and language attitude research.
+   Bangor University.

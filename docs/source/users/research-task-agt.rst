@@ -1,7 +1,7 @@
 Research task: AGT
 ===================
 
-The Audio Guise Tool (AGT) allows users to run either a Matched Guise Technique (MGT; Lambert, Hodsgon, Gardner & Fillenbaum 1960) or a Verbal Guise Technique (VGT; Markel, Eisler & Reese 1967) (see Breit et al., 2023 for detail). 
+The Audio Guise Tool (AGT) allows users to run either a Matched Guise Technique (MGT; [Lambert-Hodsgon-EtAl-1960]_) or a Verbal Guise Technique (VGT; [Markel-EtAl-1967]_) (see [Breit-Tamburelli-EtAl-2023]_ for details).
 
 Differentiation between MGT or VGT is executed via your audio recordings, and it is explained in some detail below.
 
