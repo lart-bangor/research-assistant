@@ -35,18 +35,8 @@ If you use the L’ART Research Client (or parts of it), please cite the followi
 
 .. epigraph::
 
-   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2022). *The L’ART Research Client app: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
+   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). *The L’ART Research Client: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University.
    
-
-.. .. rubric:: License
-
-   The L’ART Research Client and the tools implemented within it are free and open source. The app is 
-   dual licensed under the terms of the `Affero General Public License <https://www.gnu.org/licenses/agpl-3.0.en.html>`_
-   (the AGPL) and the `European Union Public License <https://commission.europa.eu/content/european-union-public-licence_en>`_
-   (the EUPL).
-   Dual licensing means that you are free to choose under which of the two licence’s terms you want to use it. 
-    
-
 
 .. toctree::
    :hidden:
