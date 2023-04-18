@@ -8,7 +8,7 @@ The L’ART Research Client is a freely available open-source app to aid researc
 storage and transfer of data for research in bilingualism and language attitudes, with a particular focus
 on bilingual populations who speak a majority language and a regional / minority / minoritized language. 
 The app aims to make research in bilingualism easier, more comparable and reproduceable. 
-For a detailed discussion of the specific methodological choices, see Breit et al., 2023.
+For a detailed discussion of the specific methodological choices, see [Breit-Tamburelli-EtAl-2023]_.
 
 
 What the L'ART Reserch Client can do
@@ -29,6 +29,7 @@ methodological adaptations, please see Breit et al., 2023).
   [Lambert-Hodsgon-EtAl-1960]_ and the **Verbal Guise test** (e.g., [Markel-EtAl-1967]_). Due to its
   flexibility as either MGT or VGT, we named this tool **‘Audio Guise Test’**, or **AGT** for short.
 
+*	A simple memory game which can be employed as a general **distractor** in a series of tasks.
  
 The main functionality of the L’ART Research Client resides in its format as a stand-alone app 
 that can run on a large variety of desktop and laptop computers without the need for internet connectivity. 
@@ -61,14 +62,14 @@ Reasons to use the Research Client
   task that was used, which allows other researchers to easily view and reconstruct the tasks exactly as
   they were administered at the time the research was carried out. 
 
-For detailed examples and more concrete illustrations of these advantages, see Breit et al., 2023. 
+For detailed examples and more concrete illustrations of these advantages, see [Breit-Tamburelli-EtAl-2023]_. 
 
 Citing the Research Client
 --------------------------
 
 .. epigraph::
 
-Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2022). *The L’ART Research Client app: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
+Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). *The L’ART Research Client: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
 
 
 Licensing
@@ -87,16 +88,16 @@ Both licenses allow you to:
 - Modify or otherwise make adaptations to the app and its source code, as long as you yourself make
   those changes available to others under the same license terms (or the terms of another compatible
   license where this is expressly permitted by the AGPL or EUPL). 
-- Allow you to add yourself to the credits/copyright notice when you modify the software, as long as
-  you do not remove, materially change, or misrepresent in any way the copyright and author attribution
-  notes as they appear in the app, its source code, documentation, distributions (e.g. installers), etc.
-  This means that: 
-- Naturally, if you intend on modifying and/or improving the Research Client, we would appreciate it
-  if you would share those developments with us so we can incorporate any improvements and enhancements
-  into the official version of the app. 
-- Where possible we would also strongly encourage you to retain the dual licensing model, as we
-  believe this ensures maximal adoptability and reusability across a large variety of potential
-  users in different parts of the world.
+- Add yourself to the credits/copyright notice when you modify the software, as long as you do not remove, 
+  materially change, or misrepresent in any way the copyright and author attribution notes as they appear 
+  in the app, its source code, documentation, distributions (e.g. installers), etc.
+  
+Naturally, if you intend on modifying and/or improving the Research Client, we would appreciate it
+if you would share those developments with us so we can incorporate any improvements and enhancements
+into the official version of the app. 
+
+Where possible we would also strongly encourage you to retain the dual licensing model, as we believe this ensures 
+maximal adoptability and reusability across a large variety of potential users in different parts of the world.
 
 .. _contributors_list:
 

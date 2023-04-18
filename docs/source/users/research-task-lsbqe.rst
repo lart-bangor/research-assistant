@@ -3,7 +3,7 @@ Research task: LSBQe
 
 In the LSBQe, the task start screen is followed by the three main sections of the LSBQe on Language and Social Background, Language and Dialect Background, and Community Language Use Behaviour respectively. 
 
-For more details on the contents of the LSBQe and how this differs from the standard version of the LSBQ, see Breit et al. (2023) [INSERT LINK].  
+For more details on the contents of the LSBQe and how this differs from the standard version of the LSBQ, see [Breit-Tamburelli-EtAl-2023]_.
 
 
 Any mandatory fields that haven’t been completed by the participant will be flagged up if the user attempts to continue
