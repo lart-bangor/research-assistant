@@ -26,6 +26,6 @@ keywords:
   - VGT
   - AGT
 license: AGPL-3.0
-commit: 986dae297fef46a187a81b6f457c0db50f05f98f
-version: 0.4.0
-date-released: '2023-04-01'
+commit: ab79fd8084c452b14c5007cd63fe1315f7c6d580
+version: 0.4.1
+date-released: '2023-04-18'
