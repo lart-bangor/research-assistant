@@ -4,9 +4,10 @@ Research task: AToL
 The AToL begins with a start screen where you must select a version, input Researcher ID, Location, Participant ID
 and confirm that consent has been obtained by ticking the relevant box.
 
-You will not be able to advance without completing each respective part of the start screen **(see Figure ////)**.  
+You will not be able to advance without completing each respective part of the start screen (see :numref:`atol_start_screen`).  
 
-.. figure:: figures/atol-start-screen.png
+.. figure:: figures/atol_start_screen.png
+      :name: atol_start_screen
       :width: 600
       :alt: Screenshot of AToL Start Screen
 
@@ -18,14 +19,15 @@ The majority language always appears first due to sociolinguistic plausibility, 
 instructions appear in the majority language in the original AToL versions for the L'ART research client app.
 
 The bipolar adjective pairs are always generated in a random order (the specific order for each participant is recorded in that participant's the data file). The AToL presents the statement **“The X language is…”** followed by the AToL’s bipolar adjective pairs
-which are rated by using the sliders as seen in Figure 43 below.
+which are rated by using the sliders as seen in :numref:`atol_rating` below.
 
 .. note::
 The AToL is a task that involves exclusively using sliders, and the order of the adjective pairs is randomised for each participant. 
 
-For ease of analysis, your result file for a given participant **(see Figure //** `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html#id8>`_) reports the order in which the adjectives were presented for that participant. 
+For ease of analysis, your result file for a given participant (see :numref:`exporting_data_file_partic_input`) reports the order in which the adjectives were presented for that participant. 
 
-.. figure:: figures/atol-rating.png
+.. figure:: figures/atol_rating.png
+      :name: atol_rating
       :width: 600
       :alt: Screenshot of AToL rating
 
@@ -33,7 +35,8 @@ For ease of analysis, your result file for a given participant **(see Figure //*
 
 After activating each slider and providing a rating along each bipolar adjective pair, the next button activates in a darker shade of blue, indicating that you may advance to the next part of the AToL.
 
-.. figure:: figures/atol-completed-section.png
+.. figure:: figures/atol_completed_section.png
+      :name: atol_completed_section
       :width: 600
       :alt: Screenshot of completed AToL section
 
@@ -42,20 +45,22 @@ After activating each slider and providing a rating along each bipolar adjective
 Loading and customizing a generic version of the AToL
 -----------------------------------------------------
 
-As for the `LSBQe, <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html>`_ several generic versions of the AToL are available 
-(e.g., English, German, Italian).
+As for the LSBQe, several generic versions of the AToL are available (e.g., English, German, Italian).
+
+.. possibly add link to lsbqe? ^^
 
 Unlike the LSBQe, however, it is not possible to load a generic version of the AToL without customizing it.
 
-This is due to the fact that while the LSBQe may refer to “the other language”, the AToL is dependent on naming each language under investigation at the top of every page (see `Figure //// <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-atol.html#id2>`_ "the **English** Language is...")
+This is due to the fact that while the LSBQe may refer to “the other language”, the AToL is dependent on naming each language under investigation at the top of every page (see :numref:`atol_rating`"the English Language is...")
 
-.. figure:: figures/atol-generic-file.png
+.. figure:: figures/atol_generic_file.png
+      :name: atol_generic_file
       :width: 600
       :alt: Screenshot of a generic AToL file 
 
       Generic AToL file EngZzz_Eng_GB
 
-Firstly, as seen in `Figure /// <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html#id3>`_ you must open the generic file and click :guilabel:`Save as`` in order to make a copy ready for customisation.
+Firstly, as seen in :numref:`lsbqe_saving_generic_files` you must open the generic file and click :guilabel:`Save as`` in order to make a copy ready for customisation.
 
 .. note::
       Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"
@@ -69,7 +74,8 @@ Your file name should match your :code:`versionID`, which must follow the ISO st
 
 In order to produce a customized version of the AToL, you must also change both :py:mod:`rml` and :py:mod:`rml_header` to indicate the language(s) pertinent to your AToL version. 
 
-.. figure:: figures/atol-new-customized-file.png
+.. figure:: figures/atol_new_customized_file.png
+      :name: atol_new_customized_file
       :width: 600
       :alt: Screenshot of a customized AToL file 
 

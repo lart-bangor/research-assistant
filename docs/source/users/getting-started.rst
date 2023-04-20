@@ -8,7 +8,8 @@ Upon starting the app on your device, both the L’ART Research Client app and a
 Figure XX - L’ART Research Client home screen
 
 
-.. figure:: figures/figure9.png
+.. figure:: figures/research_client_terminal.png
+      :name: research_client_terminal
       :width: 400
       :alt: Screenshot of completing the L'ART Research Client Terminal
 

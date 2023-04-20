@@ -17,7 +17,7 @@ In the current version (|version|), the tasks available are: :guilabel:`LSBQe`,
 The second option offers the researcher an integrated digital avenue to obtain informed consent,
 which negates the need to handle physical information sheets, consent forms and signatures. 
 
-This can be done by using the generic consent form provided **(see Figures // & // below)** or
+This can be done by using the generic consent form provided (see :numref:`data_setup_rc_side_menu` & :numref:`data_setup_participant_consent_screen`) or
 by linking it to your own digital consent form.
 
 .. (see section **[insert link]** for instructions on how to add a custom consent form). << Ask where this is on the doc<<
@@ -25,13 +25,15 @@ by linking it to your own digital consent form.
 To obtain consent digitally, open the side menu on the top left-handby clicking on the
 "burger menu" icon. Then click on :guilabel:`Informed Consent`.
 
-.. figure:: figures/figure10.png
+.. figure:: figures/data_setup_rc_side_menu.png
+      :name: data_setup_rc_side_menu
       :width: 350
       :alt: Screenshot of the L'ART Research Clients' side menu
 
       The side menu of the L'ART app
 
-.. figure:: figures/figure11.png
+.. figure:: figures/data_setup_participant_consent_screen.png
+      :name: data_setup_participant_consent_screen
       :width: 600
       :alt: Screenshot of Participant consent start screen
 

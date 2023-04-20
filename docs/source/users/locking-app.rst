@@ -11,7 +11,8 @@ Researchers might find it useful however to unlock the app and access such funct
 an error was inadvertently made, or to reload the current screen if for any reason something isn’t rendered correctly. Unlocking the app is also useful for
 researchers who develop new localisations of a task (see `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/tutorials/localisation-translations.html#localisation-and-adding-translations>`_). 
 
-.. figure:: figures/lafigure31.png
+.. figure:: figures/unlockingapp_research_client_menu.png
+      :name: unlockingapp_research_client_menu
       :width: 400
       :alt: Screenshot of LART Research Client menu
 
@@ -22,7 +23,8 @@ If intervening during data collection, it is good practice to lock the app again
 
 **Do this by following the same steps as for unlocking.** 
 
-.. figure:: figures/lafigure32.png
+.. figure:: figures/unlockingapp_right_click_options.png
+      :name: unlockingapp_right_click_options
       :width: 400
       :alt: Screenshot of right click options 
 
