@@ -15,7 +15,7 @@ What the L'ART Reserch Client can do
 ------------------------------------
 
 The current version (L'ART Research Client |version|) implements four tools (for a detailed discussion of
-methodological adaptations, please see Breit et al., 2023).
+methodological adaptations, please see  [Breit-Tamburelli-EtAl-2023]_).
 
 * **Participant consent**: A digital informed consent process, including participant information sheets & consent forms.
 
