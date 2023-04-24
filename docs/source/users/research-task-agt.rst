@@ -61,7 +61,7 @@ Loading a generic version of the AGT
 ------------------------------------
 
 Similarly to the LSBQe (`here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-lsbqe.html>`_) and AToL (`here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/research-task-atol.html>`_) an "English-generic" version of the AGT is made available.
-Select the generic version of the AGT by selecting the “English – generic (United Kingdom)” version from the LSBQe version drop down list.
+Select the generic version of the AGT by selecting the “English – generic (United Kingdom)” version from the AGT version drop down list.
 
 .. figure:: figures/agtfigure28.png
       :width: 400
