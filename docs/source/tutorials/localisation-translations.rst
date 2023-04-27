@@ -1,8 +1,8 @@
 Localisation and Adding Translations
 ====================================
-The LSBQe is designed to allow easy implementation of interfaces in any language you choose.
+All tasks in the L'ART Research Client are designed to allow easy implementation of interfaces in any language you choose.
 
-At the moment, the languages available are **English, German, Greek, Italian,** and **Welsh**. 
+At the moment, the languages available depend on the specific task. The LSBQe, for example, is available in **English, German, Greek, Italian,** and **Welsh**. 
 The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, Moselle Franconian-German**, and **Greek-English:**
 
 .. figure:: tutfigures/tutfigure1.png
@@ -11,9 +11,11 @@ The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, M
 
       Selecting a version of the LSBQe 
 
-However, both the working languages and the setup for specific bilingual communities can be easily changed by providing a translated version to suit your own research settings.
+However, both the working languages and the setup for specific bilingual communities can be easily changed by providing a translated version of teh task you require to suit your
+own research settings. Below we provide instructions on how to do this using the LSBQe as example, though the same procedures can also be applied to the AToL-C and AGT.
 
-To do this, you will need to create a new file, provide a translation for each interface item and then save it with a specific naming convention. Each step is outlined below.
+To adapt a task for a new language community, you will need to create a new file, provide a translation for each interface item and then save it with a specific naming convention. 
+Each step is outlined below.
 
 Creating and Naming your file
 -----------------------------

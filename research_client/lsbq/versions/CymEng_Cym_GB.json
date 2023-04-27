@@ -303,6 +303,12 @@
         "understanding": [
             "Deall"
         ],
+        "reading": [
+            "Darllen"
+        ],
+        "writing": [
+            "Ysgrifennu"
+        ],
         "timeOfActivity": [
             "O'r amser rydych yn ei dreulio yn gwneud pob un o'r gweithgareddau canlynol, dros faint o'r amser hwnnw fyddwch chi'n defnyddio <!-- ...[IaithX]? -->"
         ],
@@ -426,7 +432,7 @@
             "religion":     ["Crefydd"],
             "leisure":      ["Gweithgareddau hamdden",  "(hobïau, chwaraeon, gwirfoddoli, gemau cyfrifiadurol, …)"],
             "commercial":   ["Masnachol",          "(siopau, bwytai …)"],
-            "public":       ["Public affairs",      "(gwasanaethau gofal iechyd, banciau, llywodraeth, cyngor …)"]
+            "public":       ["Materion cyhoeddus",  "(gwasanaethau gofal iechyd, banciau, llywodraeth, cyngor …)"]
         },
         "activityInstructions": [
             "Nodwch pa iaith rydych yn ei defnyddio'n gyffredinol yn y sefyllfaoedd canlynol."

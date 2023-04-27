@@ -388,6 +388,14 @@
             "Understanding",
             "Verstehen"
         ],
+        "reading": [
+            "Reading",
+            "Lektüre"
+        ],
+        "writing": [
+            "Writing",
+            "Schreiben"
+        ],
         "timeOfActivity": [
             "Of the time you spend engaged in each of the following activities, how much of that time is carried out in <!-- ...[LanguageX]? -->",
             "Welcher Anteil der Zeit, die Sie mit folgenden Aktivitäten verbringen, findet statt auf <!-- ...[LanguageX]? -->"

@@ -303,6 +303,12 @@
         "understanding": [
             "Understanding"
         ],
+        "reading": [
+            "Reading"
+        ],
+        "writing": [
+            "Writing"
+        ],
         "timeOfActivity": [
             "Of the time you spend engaged in each of the following activities, how much of that time is carried out in <!-- ...[LanguageX]? -->"
         ],
