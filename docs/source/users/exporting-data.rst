@@ -33,7 +33,7 @@ Your next step will be to verify that all the data collected appears as it shoul
 
 To find your data in order to verify that the data has been backed up correctly, firstly, follow the file path that your ZIP Archive file is located in.
 
-In order to follow the file path, you must show hidden items in the :guilabel:`view` section in your **File Explorer**.  
+In order to follow the file path, you must show hidden items in the :guilabel:`view` section in your File Explorer.  
 
 .. figure:: figures/exporting_data_hidden_items.png
       :name: exporting_data_hidden_items
@@ -58,7 +58,7 @@ For instance, if you’re verifying data that you collected from the AToL, open 
       Task folders located in your exported ZIP Archive
 
 
-Located inside the file will be your :file:`.json data` files, labelled in **“participant_date_time”** format (see :numref:`exporting_data_json_data_file`).
+Located inside the file will be your :file:`.json data` files, labelled in “participant_date_time” format (see :numref:`exporting_data_json_data_file`).
 
 .. figure:: figures/exporting_data_json_data_file.png
       :name: exporting_data_json_data_file
@@ -67,9 +67,11 @@ Located inside the file will be your :file:`.json data` files, labelled in **“
 
       .json data file in participant_date_time format
 
-File name accuracy should indicate if your data has been collected and exported properly, but you can open the file to verify completely that data was collected and exported accurately.
+File name accuracy should indicate if your data has been collected and exported properly, but you can open the file to verify completely that
+data was collected and exported accurately.
 
-For instance, in the example below (:numref:`exporting_data_file_partic_input`), by observing that each AToL adjective pair, per language, equates to a number (how your participant rated the language for the trait via the slider mechanism). 
+For instance, in the example below (:numref:`exporting_data_file_partic_input`), by observing that each AToL adjective pair, per language,
+equates to a number (how your participant rated the language for the trait via the slider mechanism). 
 
 .. figure:: figures/exporting_data_file_partic_input.png
       :name: exporting_data_file_partic_input

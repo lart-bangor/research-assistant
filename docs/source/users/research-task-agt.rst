@@ -84,8 +84,10 @@ Customizing a generic version of the AGT
 ----------------------------------------
 
 You may wish to customize a generic version of the AGT if you would like the AGT home screen to list a specific language pair to use during your study.
-There are several generic versions available (e.g., English, German, Italian), all of which can be customized. Generic versions can be identified by the fact that 
-the file name contains the sequence [Zzz], a placeholder code for "unknown language" (for example, the file for the generic version for British English is called :file:`[EngZzz_Eng_GB]`).
+There are several generic versions available (e.g., English, German, Italian), all of which can be customized.
+
+Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"
+(for example, the file for the generic version for British English is called :file:`[EngZzz_Eng_GB]`).
 
 If you wish to customise a generic version of the AGT, open the relevant file (e.g. :file:`[EngZzz_Eng_GB]` for British English, or :file:`[GerZzz_Ger_DE]` for German, and so on)
 by following the path below:
@@ -103,7 +105,7 @@ by following the path below:
 
 Firstly, you **must** ensure that you **save as**, following the ISO standard code sequence (see also :ref:`localisation` for more details)
 
-Secondly, you must change the **“versionID”** and **“versionName”** to reflect your customization. Your **“versionID”** should match your file name. 
+Secondly, you must change the “version_id” and “version_name” to reflect your customization. Your “version_id” should match your file name. 
 
 :numref:`agt_new_file_ZhoEng` follows the same example presented in :numref:`lsbqe_new_file_EngGle`
 
@@ -114,11 +116,15 @@ Secondly, you must change the **“versionID”** and **“versionName”** to r
 
       New AGT file ZhoEng_Eng_SG 
 
-It is not mandatory to include English as one of the languages on the “English – generic” AGT version. For example, if you are a dialectologist who requires a VGT to study Ulster Scots and Irish in Northern Ireland, you would call your file :file:`[ScoGle_Eng_GB]` and apply the changes to versionName and VersionID as above.
+It is not mandatory to include English as one of the languages on the “English – generic” AGT version. For example, if you are a dialectologist
+who requires a VGT to study Ulster Scots and Irish in Northern Ireland, you would call your file :file:`[ScoGle_Eng_GB]` and apply the changes
+to version_name and version_id as above.
 
 .. note::
-    Note that the third label in the file name :file:`[ScoGle_Eng_GB]` remains “Eng”, as this refers to the language in which the AGT is presented, which in this case is still English. 
+    Note that the third label in the file name :file:`[ScoGle_Eng_GB]` remains “Eng”, as this refers to the language in which the AGT is presented,
+    which in this case is still English. 
 
 
-Seeing as no language names are mentioned anywhere in the AGT, the only other component where the languages you choose to study are important is the recordings you load onto the AGT (see :ref:`recordings-agt` for more details). 
-Everything else can remain the same as in the “English – generic” version. 
+Seeing as no language names are mentioned anywhere in the AGT, the only other component where the languages you choose to study are
+important is the recordings you load onto the AGT (see :ref:`recordings-agt` for more details). 
+verything else can remain the same as in the “English – generic” version. 

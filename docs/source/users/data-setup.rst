@@ -9,7 +9,7 @@ consent from your participants.
 Should you wish to obtain your participants’ consent on paper for any reason (e.g., you
 require your participant’s signature, or you prefer to work with physical copies of
 ethics-related documentation) then you will start data collection by clicking directly on
-the research tool you require under **Choose a task** on the app’s home screen.
+the research tool you require under Choose a task on the app’s home screen.
 
 In the current version (|version|), the tasks available are: :guilabel:`LSBQe`,
 :guilabel:`AToL`, :guilabel:`AGT`, and :guilabel:`Memory Game`.

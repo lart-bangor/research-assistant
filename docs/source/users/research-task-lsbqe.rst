@@ -2,10 +2,10 @@
 Research task: LSBQe
 ====================
 
-In the LSBQe, the task start screen is followed by the three main sections of the LSBQe on Language and Social Background, Language and Dialect Background, and Community Language Use Behaviour respectively. 
+In the LSBQe, the task start screen is followed by the three main sections of the LSBQe on Language and Social Background,
+Language and Dialect Background, and Community Language Use Behaviour respectively. 
 
 For more details on the contents of the LSBQe and how this differs from the standard version of the LSBQ, see [Breit-Tamburelli-EtAl-2023]_.
-
 
 Any mandatory fields that haven’t been completed by the participant will be flagged up if the user attempts to continue
 to the next page without having fully completed any section of the LSBQe or the response entered in a field is invalid 
@@ -30,8 +30,8 @@ with the user-feedback provided for each field.
 Loading a generic version of the LSBQe
 --------------------------------------
 
-Several generic versions of the LSBQe (e.g., English, German, Italian) are available for you to use if the languages pertinent to your research location are not available amongst our
-four LSBQe versions, or if you prefer a generic or customisable version of the LSBQe.
+Several generic versions of the LSBQe (e.g., English, German, Italian) are available for you to use if the languages pertinent to your research
+location are not available amongst our four LSBQe versions, or if you prefer a generic or customisable version of the LSBQe.
 
 You can select a generic version of teh LSBQe from the dropdown list. For example, if you wish to use the generic version for British English, 
 you would choose "English-generic (United Kingdom)".
@@ -58,10 +58,14 @@ the file for the generic version for British English is called :file:`[EngZzz_En
 If you wish to customise a generic version of the LSBQe, open the relevant file (e.g. :file:`[EngZzz_Eng_GB]` for British English, or :file:`[GerZzz_Ger_DE]` for German, and so on)
 by following the path below:
 
-
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
-.. insert screenshot of folder once available
+.. figure:: figures/lsbq_versions_folder.png
+      :name: lsbqe_saving_generic_files
+      :width: 600
+      :alt: Screenshot of saving generic files as
+
+      Opening versions folder
 
 Firstly, you **must "save as"**, following the ISO standard code sequence (see :ref:`localisation` for standard code sequence generating) (See :numref:`tutorial_naming_conventions`)
 
@@ -75,8 +79,8 @@ For example, if you wish to customize a version for English and Irish for use in
 
       Save the generic files as and follow the ISO code sequence
 
-After your new version is saved, you must change the :code:`versionID` and :code:`versionName`
-to reflect your customization. Your :code:`versionID` should match your file name.
+After your new version is saved, you must change the :code:`version_id` and :code:`version_name`
+to reflect your customization. Your :code:`version_id` should match your file name.
 
 .. figure:: figures/lsbqe_new_file_EngGle.png
       :name: lsbqe_new_file_EngGle
@@ -101,8 +105,8 @@ It is not mandatory to include English as one of the languages on your LSBQe ver
 Ulster Scots and Irish in Northern Ireland, you would call the file :file:`[ScoGle_Eng_GB]` and apply the relevant changes in :numref:`lsbqe_saving_generic_files`
 and :numref:`lsbqe_new_file_EngGle` .
 
-Additionally, in order to change the default **"English"** in the LSBQe, you would have to search :code:`MajorityLanguage` and change each instance of "English" to "Ulster Scots" 
-(see :numref:`lsbqe_customizing_file`)
+Additionally, in order to change the default **"English"** in the LSBQe, you would have to search :code:`MajorityLanguage`
+and change each instance of "English" to "Ulster Scots" (see :numref:`lsbqe_customizing_file`)
 
 .. figure:: figures/lsbqe_customizing_both_languages.png
       :name: lsbqe_customizing_both_languages
@@ -112,7 +116,8 @@ Additionally, in order to change the default **"English"** in the LSBQe, you wou
       Customizing both languages in your generic LSBQe file
 
 .. note::
-    Note that the third label in the file name :file:`[ScoGle_Eng_GB]` remains **“Eng”**, as this refers to the language in which the LSBQe is presented, which in this case is still English. 
+    Note that the third label in the file name :file:`[ScoGle_Eng_GB]` remains **“Eng”**, as this refers to the language in which the
+    LSBQe is presented, which in this case is still English. 
     
     See :ref:`localisation` for more details on file naming and ISO codes.
 
@@ -137,7 +142,8 @@ As default, the LSBQe contains three options that a participant may select as th
 
       Default options for sex on LSBQe
 
-However, some researchers may prefer to use a binary choice (e.g., where biological sex is a research variable) and therefore exclude “Other” from the available options. 
+However, some researchers may prefer to use a binary choice (e.g., where biological sex is a research variable) and therefore exclude
+“Other” from the available options. 
 
 To do this, open your LSBQe version file from the following path:
 
@@ -180,7 +186,8 @@ In the “Language and Dialect Background” section, the opening question asks 
 that they speak and give information regarding where they learned each of them, when they learned them, and if there were significant
 periods where the participant did not use any of them.
 
-By default, the LSBQe requires a minimum of two required language names, by presenting participants with two blank lines that must be filled before continuing.
+By default, the LSBQe requires a minimum of two required language names, by presenting participants with two blank lines that must be filled
+before continuing.
 
 While participants have the option of adding more language varieties via the :guilabel:`Add Line` button (i.e. for participants who are multilingual),
 only two lines will appear as default (see :numref:`ldb_two_min_lang`) 
@@ -192,14 +199,14 @@ only two lines will appear as default (see :numref:`ldb_two_min_lang`)
 
       The opening question on the Language and Dialect Background section set to two minimum required languages
 
-Should you wish to make three or more languages the default without having to add more lines, for instance if you’re researching trilingualism within a community,
-you may set the minimum required languages to three.
+Should you wish to make three or more languages the default without having to add more lines, for instance if you’re researching trilingualism
+within a community, you may set the minimum required languages to three.
 
 To do this, firstly, open your LSBQe version file from the following path:
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
-With the file open, you will see that below the section :py:mod:`options` the line labelled :file:`ldb_minimum_required_languages` is set to **“2”**: 
+With the file open, you will see that below the section :py:mod:`options` the line labelled :file:`ldb_minimum_required_languages` is set to “2”: 
 
 .. figure:: figures/ldb_min_lang_set_to_2.png
       :name: ldb_min_lang_set_to_2
@@ -249,7 +256,8 @@ To remove the “reading” and “writing” options, firstly, open your LSBQe 
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
-With the file open, you will see that below the section :py:mod:`options` the lines labelled :file:`ldb_show_reading` and :file:`ldb_show_writing` are set to :py:mod:`true``: 
+With the file open, you will see that below the section :py:mod:`options` the lines labelled :file:`ldb_show_reading` and :file:`ldb_show_writing`
+are set to :py:mod:`true`: 
 
 .. figure:: figures/ldb_read_write_true_default.png
       :name: ldb_read_write_true_default

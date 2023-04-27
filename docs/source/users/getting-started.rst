@@ -3,9 +3,12 @@ Getting started
 
 Upon starting the app on your device, both the L’ART Research Client app and a terminal window will open. 
 
-.. [ADD SCREENSHOT of FINAL home screen] 
-
-Figure XX - L’ART Research Client home screen
+.. figure:: figures/final_home_screen.png
+      :name: final_home_screen
+      :width: 400
+      :alt: Screenshot of L'ART Research Client home screen
+      
+      L’ART Research Client home screen
 
 
 .. figure:: figures/research_client_terminal.png

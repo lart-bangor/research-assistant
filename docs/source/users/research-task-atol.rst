@@ -65,9 +65,9 @@ Firstly, as seen in :numref:`lsbqe_saving_generic_files` you must open the gener
       Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"
       (for example, the file for the generic version for British English is called :file:`[EngZzz_Eng_GB]`).
 
-After that, change the :code:`versionID`` and :code:`versionName` to reflect your customization. Following the English and Scots example presented in the :ref:`LSBQe <LSBQe>`, this would be :file:`[EngSco_Eng_GB]`
+After that, change the :code:`version_id`` and :code:`version_name` to reflect your customization. Following the English and Scots example presented in the :ref:`LSBQe <LSBQe>`, this would be :file:`[EngSco_Eng_GB]`
 
-Your file name should match your :code:`versionID`, which must follow the ISO standard code sequence (see :ref:`localisation` for standard code sequencing)
+Your file name should match your :code:`version_id`, which must follow the ISO standard code sequence (see :ref:`localisation` for standard code sequencing)
 
 In order to produce a customized version of the AToL, you must also change both :py:mod:`rml` and :py:mod:`rml_header` to indicate the language(s) pertinent to your AToL version. 
 
