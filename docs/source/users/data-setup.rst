@@ -1,3 +1,4 @@
+.. _collecting-consent:
 Setting up data collection and obtaining consent 
 ================================================
 
@@ -20,7 +21,7 @@ which negates the need to handle physical information sheets, consent forms and 
 This can be done by using the generic consent form provided (see :numref:`data_setup_rc_side_menu` & :numref:`data_setup_participant_consent_screen`) or
 by linking it to your own digital consent form.
 
-.. (see section **[insert link]** for instructions on how to add a custom consent form). << Ask where this is on the doc<<
+.. (see section **[insert link]** for instructions on how to add a custom consent form). << Ask where custom consent form is on the doc
 
 To obtain consent digitally, open the side menu on the top left-handby clicking on the
 "burger menu" icon. Then click on :guilabel:`Informed Consent`.
@@ -43,6 +44,7 @@ After selecting the required language version and entering a unique participant 
 information sheet and eligibility criteria will appear below. 
 
 If the participant gives their consent and confirms their eligibility through marking their respective boxes, they will be
-automatically advanced to the start screen for the first task (see `Task Sequencing <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/configuration.html#task-sequencing>`_ on how to set this).  
+automatically advanced to the start screen for the first task (see :ref:`task-sequencing` on how to set this).  
 
 The task start screen is the same start screen that researchers who opt for the LSBQe without digital informed consent will see after they select a task from the app's home screen. 
+

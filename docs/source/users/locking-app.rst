@@ -9,7 +9,7 @@ that the researchers might not want them to have (at the point of data collectio
 
 Researchers might find it useful however to unlock the app and access such functionality from time to time. For example, to go back to the previous screen if
 an error was inadvertently made, or to reload the current screen if for any reason something isn’t rendered correctly. Unlocking the app is also useful for
-researchers who develop new localisations of a task (see `here <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/tutorials/localisation-translations.html#localisation-and-adding-translations>`_). 
+researchers who develop new localisations of a task (see :ref:`localisation`). 
 
 .. figure:: figures/unlockingapp_research_client_menu.png
       :name: unlockingapp_research_client_menu

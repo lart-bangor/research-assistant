@@ -24,9 +24,7 @@ However, if you close the terminal, the main app window will not close automatic
       
 
 On the app home screen, you will see the list of available tasks in the centre of your app, and a side menu containing
-several options, some of which are context-dependent. For example, the side menu contains options for `Discarding Attempts <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/discarding-attempts.html>`_,
-`Collecting Consent <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/data-setup.html>`_, 
-`Unlocking the App <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/locking-app.html>`_, `Exporting Data <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/exporting-data.html>`_,
-`App Settings <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/users/configuration.html#>`_ and a dialogue providing information about the app.
+several options, some of which are context-dependent. For example, the side menu contains options for
+:doc:`data-setup`, :doc:`locking-app`, :doc:`exporting-data`, :doc:`discarding-attempts`, :doc:`configuration` and a dialogue providing information about the app.
 
-These options are described in the linked sub-sections of the documentation.  
+These options are described in the linked sub-sections of the documentation.

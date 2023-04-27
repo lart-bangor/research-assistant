@@ -172,7 +172,7 @@ own backups and not overly relying on system backup features --- those should be
 
       This is the path to a directory where the app may temporarily cache (sore, modify, delete) various filed during operation.
 
-
+.. _task-sequencing:
 Task sequencing
 ---------------
 
@@ -192,7 +192,7 @@ and when the LSBQe is complete they will be sent to the conclusion screen before
       :width: 400
       :alt: Screenshot of default sequencing
 
-      Default sequencing: *Consent Form* > *LSBQe* > *Conclusion Screen* > *App start screen*
+      Default sequencing: *Consent Form* > *LSBQe* > *Conclusion Screen* > *App start screen* 
 
 Note also that the sequencing doesn't rely on the entry point. If the participant is starting directly with the *LSBQe* in the default sequence,
 they will then still follow the remainder of that sequence, i.e. the *Conclusion Screen* followed by the *App start screen*.

@@ -1,3 +1,4 @@
+.. _localisation:
 Localisation and Adding Translations
 ====================================
 The LSBQe is designed to allow easy implementation of interfaces in any language you choose.
@@ -40,7 +41,6 @@ Sometimes Windows hides the folder :file:`AppData` from view. To make it visible
 
     Unhiding the AppData folder
 
-
 However, if you installed the app **for all users**, you will find the :file:`Versions` folder by following a different path, as below: 
 
 
@@ -60,9 +60,9 @@ Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name
 .. note::
     Naming **must** be done in a specific manner so that the app can find and read the translation you provide.
 
-    The naming convention adopted in the L’ART Research Client is based on `ISO 639 codes <https://www.iso.org/iso-639-language-codes.html>`_ for the languages (a full list is found `here <https://iso639-3.sil.org/code_tables/639/data>`_)
-    and on ISO 3166-1 alpha-2 codes for the countries (click `here <https://www.nationsonline.org/oneworld/country_code_list.htm>`_ for a list), but uses capital letters
-    for the language codes in keeping with CamelCase (see `here <https://legacy.python.org/dev/peps/pep-0008/#naming-conventions>`_) as follows:
+    The naming convention adopted in the L’ART Research Client is based on `ISO 639 codes <https://www.iso.org/iso-639-language-codes.html>`_ for the languages (a full list can be found `here <https://iso639-3.sil.org/code_tables/639/data>`_)
+    and on `ISO 3166-1 alpha-2 codes for the countries <https://www.nationsonline.org/oneworld/country_code_list.htm>`_, but uses capital letters
+    for the language codes in keeping with `CamelCase <https://legacy.python.org/dev/peps/pep-0008/#naming-conventions>`_ as follows:
 
 
     .. figure:: tutfigures/tutorial_naming_conventions.png
