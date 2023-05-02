@@ -2,6 +2,7 @@ Discarding an attempt in progress
 =================================
 
 .. warning::
+
     The procedure described below might lead to the irretrievable loss of data.
     
     Please ensure that you read this information carefully and understand the ramifications of discarding an attempt before making use of this
@@ -23,4 +24,4 @@ manually ensure that data is deleted where that might be required.
     :width: 400
     :alt: Screenshot of LART research client menu
 
-    Open sidebar to discard attempt 
+    Open sidebar to discard attempt

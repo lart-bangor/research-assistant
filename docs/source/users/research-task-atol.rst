@@ -1,4 +1,5 @@
 .. _AToL:
+
 Research task: AToL
 ===================
 
@@ -23,7 +24,8 @@ The bipolar adjective pairs are always generated in a random order (the specific
 The AToL presents the statement **“The X language is…”** followed by the AToL’s bipolar adjective pairs which are rated by using the sliders as seen in :numref:`atol_rating` below.
 
 .. note::
-The AToL is a task that involves exclusively using sliders, and the order of the adjective pairs is randomised for each participant. 
+
+      The AToL is a task that involves exclusively using sliders, and the order of the adjective pairs is randomised for each participant. 
 
 For ease of analysis, your result file for a given participant (see :numref:`exporting_data_file_partic_input`) reports the order in which the adjectives were presented for that participant. 
 
@@ -62,7 +64,7 @@ This is due to the fact that while the LSBQe may refer to “the other language�
 
       Generic AToL file EngZzz_Eng_GB
 
-Firstly, as seen in :numref:`lsbqe_saving_generic_files` you must open the generic file and click :guilabel:`Save as`` in order to make a copy ready for customisation.
+Firstly, as with the :doc:`LSBQe <research-task-lsbqe>`, you must open the generic file and click :guilabel:`Save as`` in order to make a copy ready for customisation.
 
 .. note::
       Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"

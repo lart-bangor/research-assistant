@@ -129,22 +129,28 @@ but should run if you have Chrome or Chromium installed.
 Running as a Python package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The easiest way is to run directly from source. On Ubuntu 22.04, follow the steps below the get
-the source code and all the dependencies installed. The last line will run the Research Client.
+The easiest way is to run the app as a Python package. On Ubuntu 22.04, follow the steps below to
+install the Python package and all its dependencies. The last line will run the Research Client.
 
-.. parsed-literal::
+.. code-block:: console
 
-   sudo apt install chromium-browser python3-pip python3-tk -y
-   python3.10 -m pip install pipenv
-   cd ~/
-   wget https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz
-   tar -xf ./v\ |version|\ .tar.gz
-   rm ./v\ |version|\ .tar.gz
-   cd research-client-|version|
-   python3.10 -m pipenv install
-   python3.10 -m pipenv run python ./manage.py run
+   $ python3.10 -m pip install research-client
+   $ python3.10 -m research-client
 
-.. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-client/archive/refs/tags/v
+.. The easiest way is to run directly from source. On Ubuntu 22.04, follow the steps below the get
+   the source code and all the dependencies installed. The last line will run the Research Client.
+
+   .. parsed-literal::
+
+      sudo apt install chromium-browser python3-pip python3-tk -y
+      python3.10 -m pip install pipenv
+      cd ~/
+      wget https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz
+      tar -xf ./v\ |version|\ .tar.gz
+      rm ./v\ |version|\ .tar.gz
+      cd research-client-|version|
+      python3.10 -m pipenv install
+      python3.10 -m pipenv run python ./manage.py run
 
 If you want to make an executable shortcut, create a file with the executable flag (+x) in your
 :file:`~/.local/bin` directory. You can do this by following these steps:
@@ -162,9 +168,7 @@ In the editor that pops up, enter the following text and then save the file:
 
    #!/usr/bin/env bash
 
-   cd ~/research-client-|version|
-   python3.10 -m pipenv run python manage.py
-
+   python3.10 -m research-client
 
 After saving the above, you can now launch the Research Client from the terminal by
 just typing in :code:`research-client` and hitting :kbd:`Enter`. (You may need to
@@ -174,10 +178,11 @@ log out and log back in if this doesn't work straight away...)
 Building from source
 ^^^^^^^^^^^^^^^^^^^^
 
-Alternatively, if you want to build the app properly for your system, you can
-follow the steps for :doc:`../developers/setup` from the :doc:`../developers/index`,
-and then just run :code:`python3.10 -m pipenv run python manage.py build` from
-inside the project's root directory.
+Alternatively, if you want to build the app as a proper binary for your system,
+you can follow the steps for :doc:`../developers/setup` from the
+:doc:`../developers/index`, and then just run
+:code:`python3.10 -m pipenv run python manage.py build` from inside the
+project's root directory.
 
 This will produce a tarball (:file:`*.tar.gz`) in the :file:`./dist/linux/`
 directory containing the full set of binaries for the application, which can then
@@ -242,6 +247,8 @@ To run as a Python package, follow these instructions:
       mv research-client-|version| research-client
       cd research-client
       python3 -m pipenv install
+
+.. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-client/archive/refs/tags/v
 
 #. You can now launch the app from within a terminal, provided you are in the directory
    :file:`~/research-client`, using the following command:

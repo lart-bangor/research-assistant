@@ -1,4 +1,4 @@
-"""Data structures for the AToL Questionnaire (RML)."""
+"""Data structures for the AToL Questionnaire."""
 import eel
 import json
 import random
@@ -47,7 +47,7 @@ def arrange_data(data):
 
 
 def get_id(dict):
-    """Returns a participant ID"""
+    """Returns a participant ID."""
     id = dict["participantId"] + "_" + dt_filename
     return id
 
@@ -88,8 +88,9 @@ def init_atol(myData: dict[str, str]) -> None:
     print(data)
     booteel.setlocation("atolRatingsMaj.html")
 
+
 def arrange_order(dict, source):
-    """Records order in which traits were presented for a given trial, then orders them alphabetically for write readability"""
+    """Records order in which traits were presented for a given trial, then orders them alphabetically for write readability."""
     presentation_order = key_list(dict) #record order in which data was presented
     print("presentable type is")
     print(type(presentation_order))
@@ -98,14 +99,14 @@ def arrange_order(dict, source):
     ratingsLabel = "Ratings_" + source
     finalDict = {
         presOrderLabel: presentation_order,
-        ratingsLabel : presentable
+        ratingsLabel: presentable
     }
     return finalDict
-             
+
 
 @eel.expose
 def grab_atol_ratings(myData: dict[Any, Any], source: str, version_id: str, partId: str, versN: str):
-    """Does the same as init_atol, but for ratings"""
+    """Does the same as init_atol, but for ratings."""
     location = fetch_location(source, version_id)
     file_name = partId + "_" + dt_filename + ".json"
     data_file = data_path / version_id / file_name
@@ -150,7 +151,6 @@ def atol_end(data: dict[str, str]) -> str:
     return data["version_id"]
 
 
-
 def fetch_location(source_file: str, version: str) -> Optional[str]:
     """Finds which html page to load next."""
     if 'Maj' in source_file:
@@ -191,6 +191,7 @@ def key_list(dic: dict[str, Any]) -> Iterable[Any]:
         list_of_keys.append(clean)
     return list_of_keys
 
+
 _rating_adjectives = (
     "logical",
     "elegant",
@@ -209,6 +210,7 @@ _rating_adjectives = (
     "round",
     "ballsy"
 )
+
 
 @eel.expose  # type: ignore
 def atol_c_get_items(version: str) -> Optional[dict[str, tuple[str, str]]]:

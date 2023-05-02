@@ -2,7 +2,7 @@ Contributing
 ============
 
 What do I need to know to help?
-------------------------------
+-------------------------------
 
 If you are looking to helo with a code contribution, our project uses `Python 3.10 <https://python.org>`_ and
 `Eel <https://github.com/python-eel/Eel>`_ for the backend,

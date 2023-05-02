@@ -1,7 +1,7 @@
 User Guide
 ============
 
-The L'ART Research Client User Guide covers everything you need to know to install the Research Client, 
+The L’ART Research Client User Guide covers everything you need to know to install the Research Client, 
 set it up and begin data collection.
 
 For users who wish to customise any of the tasks or add new translations, there are :doc:`../tutorials/index`

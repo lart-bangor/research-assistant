@@ -20,7 +20,7 @@ Remember to click :guilabel:`Save changes` and restart the app in order for the 
    Pressing the green :guilabel:`Default` button will revert to the default setting.
    This is illustrated in Figure 10:
 
-   .. figure:: figures/task_sequencing_modified.png
+   .. figure:: figures/task-sequencing-modified.png
       :name: task_sequencing_modified
       :width: 400
       :alt: Screenshot of modified task sequencing
@@ -172,7 +172,9 @@ own backups and not overly relying on system backup features --- those should be
 
       This is the path to a directory where the app may temporarily cache (sore, modify, delete) various filed during operation.
 
+
 .. _task-sequencing:
+
 Task sequencing
 ---------------
 

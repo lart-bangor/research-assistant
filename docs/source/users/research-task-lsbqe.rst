@@ -1,4 +1,5 @@
 .. _LSBQe:
+
 Research task: LSBQe
 ====================
 
@@ -27,6 +28,7 @@ with the user-feedback provided for each field.
 .. figure "15" will be merged with app presentation
 
 .. _making-generic-versions-visible:
+
 Loading a generic version of the LSBQe
 --------------------------------------
 
@@ -37,8 +39,9 @@ The generic versions that are currently visible are English and Welsh. If you wi
 
 :file:`C:\\Users\\admin\\Documents\\lart-research-client\\research_client\\lsbq\\versions`
 
-Next, choose the generic version you wish to make visible. Using the German generic version as an example, right-click the file and remove the initial underscore (_) by selecting the
-:guilabel:`Rename` option as seen in :numref:`generic_versions_renaming`below:
+Next, choose the generic version you wish to make visible. Using the German generic version as an example,
+right-click the file and remove the initial underscore (_) by selecting the :guilabel:`Rename` option as
+seen in :numref:`generic_versions_renaming` below:
 
 .. figure:: figures/generic_versions_renaming.png
       :name: generic_versions_renaming
@@ -84,13 +87,14 @@ by following the path below:
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\lart_research_client\\lsbq\\versions`
 
 .. figure:: figures/lsbq_versions_folder.png
-      :name: lsbqe_saving_generic_files
+      :name: lsbqe_versions_folder
       :width: 600
       :alt: Screenshot of saving generic files as
 
       Opening versions folder
 
-Firstly, you **must "save as"**, following the ISO standard code sequence (see :ref:`localisation` for standard code sequence generating) (See :numref:`tutorial_naming_conventions`)
+Firstly, you **must "save as"**, following the ISO standard code sequence (see :ref:`localisation`
+for standard code sequence generating) (See :numref:`tutorial_naming_conventions`)
 
 For example, if you wish to customize a version for English and Irish for use in Ireland through the medium of English, you will create a file called
 :file:`[EngGle_Eng_IE]` (see :numref:`lsbqe_saving_generic_files`).  

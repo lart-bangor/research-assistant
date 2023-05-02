@@ -1,4 +1,5 @@
 .. _localisation:
+
 Localisation and Adding Translations
 ====================================
 All tasks in the L'ART Research Client are designed to allow easy implementation of interfaces in any language you choose.
@@ -8,10 +9,10 @@ The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, M
 
 .. figure:: tutfigures/tutorial_selecting_version_of_lsbqe.png
     :name: tutorial_selecting_version_of_lsbqe
-      :width: 500
-      :alt: Screenshot of selecting a version of the LSBQe 
+    :width: 500
+    :alt: Screenshot of selecting a version of the LSBQe 
 
-      Selecting a version of the LSBQe 
+    Selecting a version of the LSBQe 
 
 However, both the working languages and the setup for specific bilingual communities can be easily changed by providing a translated version of teh task you require to suit your
 own research settings. Below we provide instructions on how to do this using the LSBQe as example, though the same procedures can also be applied to the AToL-C and AGT.

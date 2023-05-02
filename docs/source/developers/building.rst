@@ -29,7 +29,7 @@ MacOS you can just ignore anything to do with Inno Setup.
 On Windows, Inno Setup needs to be installed on your system or the build process will
 fail. Follow these simple steps to install it:
 
-#. Download the latest version of Inno Setup from `https://jrsoftware.org/isdl.php`_.
+#. Download the latest version of Inno Setup from `<https://jrsoftware.org/isdl.php>`_.
 
 #. Run the Inno Setup installer on your system to install it.
 

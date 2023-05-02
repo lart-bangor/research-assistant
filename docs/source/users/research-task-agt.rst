@@ -7,6 +7,7 @@ The Audio Guise Tool (AGT) allows users to run either a Matched Guise Technique 
 Differentiation between MGT or VGT is executed via your audio recordings, and it is explained in some detail below.
 
 .. _recordings-agt:
+
 Loading recordings for the AGT
 ------------------------------
 

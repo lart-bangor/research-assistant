@@ -17,14 +17,14 @@ What the L'ART Reserch Client can do
 The current version (L'ART Research Client |version|) implements four tools (for a detailed discussion of
 methodological adaptations, please see  [Breit-Tamburelli-EtAl-2023]_).
 
-* :doc:`Participant Consent <data-setup>`: A digital informed consent process, including participant information sheets & consent forms.
+* :doc:`Participant Consent </users/data-setup>`: A digital informed consent process, including participant information sheets & consent forms.
 
-* :doc:`LSBQe <research-task-lsbqe>`: A digital adaptation of the **Language and Social Background Questionnaire**, or LSBQ [Anderson-Mak-EtAl-2018]_,
+* :doc:`LSBQe </users/research-task-lsbqe>`: A digital adaptation of the **Language and Social Background Questionnaire**, or LSBQ [Anderson-Mak-EtAl-2018]_,
   which we term the LSBQe (“e” for electronic).
 
-* :doc:`AToL <research-task-atol>`: A digital implementation of the **Attitudes towards Languages Questionnaire** or AToL [Schoel-Roessel-EtAl-2013]_. 
+* :doc:`AToL </users/research-task-atol>`: A digital implementation of the **Attitudes towards Languages Questionnaire** or AToL [Schoel-Roessel-EtAl-2013]_. 
 
-* :doc:`MGT and VGT <research-task-agt>`: A digital tool for measuring language attitudes via the speaker evaluation paradigm.
+* :doc:`MGT and VGT </users/research-task-agt>`: A digital tool for measuring language attitudes via the speaker evaluation paradigm.
   This tool enables users to run several evaluations of audio guises such as the **Matched Guise Technique**
   [Lambert-Hodsgon-EtAl-1960]_ and the **Verbal Guise test** (e.g., [Markel-EtAl-1967]_). Due to its
   flexibility as either MGT or VGT, we named this tool **‘Audio Guise Test’**, or **AGT** for short.
@@ -37,12 +37,11 @@ This makes it highly usable both in lab environments and in the field, for examp
 in remote areas with inconsistent internet access. 
 
 
-The L'ART Research Client has been
-designed in such a way that it can be easily extended by researchers (or research groups)
-with just a basic knowledge of Python, JavaScript and HTML needed to implement additional tasks
-(see the :doc:`developers/index` for more info). Translating an existing task for a new language or
-language pair is even easier and can be done by just editing a simple
-`JSON <https://en.wikipedia.org/wiki/JSON>`_ file in a text editor (see :doc:`tutorials/translating-tasks`).
+The L'ART Research Client has been designed in such a way that it can be easily extended by researchers
+(or research groups) with just a basic knowledge of Python, JavaScript and HTML needed to implement
+additional tasks (see the :doc:`/developers/index` for more info). Translating an existing task for
+a new language or language pair is even easier and can be done by just editing a simple
+`JSON <https://en.wikipedia.org/wiki/JSON>`_ file in a text editor (see :doc:`/tutorials/localisation-translations`).
 
 
 Reasons to use the Research Client
@@ -69,7 +68,7 @@ Citing the Research Client
 
 .. epigraph::
 
-Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). *The L’ART Research Client: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
+   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). *The L’ART Research Client: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
 
 
 Licensing
