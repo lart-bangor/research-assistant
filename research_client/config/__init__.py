@@ -381,7 +381,7 @@ class Config(DataclassDictMixin, DataclassDocMixin):
     appauthor: str = field(default=_appauthor, init=False)
     appversion: str = field(default="0.3.4", init=False)
     logging: Logging = field(
-        default=Logging(),
+        default_factory=lambda: Logging(),
         metadata={
             "doc_label": "Logging settings",
             "doc_help": (
@@ -395,7 +395,7 @@ class Config(DataclassDictMixin, DataclassDocMixin):
         }
     )
     paths: Paths = field(
-        default=Paths(),
+        default_factory=lambda: Paths(),
         metadata={
             "doc_label": "Path and directory settings",
             "doc_help": (
@@ -414,7 +414,7 @@ class Config(DataclassDictMixin, DataclassDocMixin):
         }
     )
     sequences: Sequences = field(
-        default=Sequences(),
+        default_factory=lambda: Sequences(),
         metadata={
             "doc_label": "Task sequencing",
             "doc_help": (
