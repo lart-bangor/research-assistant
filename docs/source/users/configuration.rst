@@ -4,7 +4,8 @@ App Settings
 The app’s settings can be accessed via the app side menu. There are numerous aspects of the app that 
 can be changed on the settings page. The various options are discussed in some detail below. 
 
-.. figure:: figures/figure40.png
+.. figure:: figures/app_settings_menu.png
+      :name: app_settings_menu
       :width: 200
       :alt: Screenshot of completing the L'ART Research Client menu
 
@@ -19,7 +20,8 @@ Remember to click :guilabel:`Save changes` and restart the app in order for the 
    Pressing the green :guilabel:`Default` button will revert to the default setting.
    This is illustrated in Figure 10:
 
-   .. figure:: figures/ts46.png
+   .. figure:: figures/task_sequencing_modified.png
+      :name: task_sequencing_modified
       :width: 400
       :alt: Screenshot of modified task sequencing
 
@@ -31,7 +33,8 @@ General settings
 
 The general settings section is used to configure basic running parameters of the app. These typically do not need to be adjusted.
 
-.. figure:: figures/figure41.png
+.. figure:: figures/general_settings_shutdown_delay.png
+      :name: general_settings_shutdown_delay
       :width: 400
       :alt: Screenshot of shutdown delay section in general app settings
 
@@ -62,7 +65,8 @@ or generally for diagnostic information if an unexpected error occurs.
 You may be asked for information from the log files if you report a bug which will help us to reconstruct what happened when the error
 occurred on your computer.
 
-.. figure:: figures/lsfigure42.png
+.. figure:: figures/logging_settings.png
+      :name: logging_settings
       :width: 400
       :alt: Screenshot of Logging settings
 
@@ -86,8 +90,8 @@ occurred on your computer.
       :type: Integer
       :default: :code:`10`
 
-      The maximum number of log files to keep determines how many logs from previous runs of the app are kept, and once this number is reached old logs are deleted.
-      By default, the app keeps logs files for the last 10 times it was started. 
+      The maximum number of log files to keep determines how many logs from previous runs of the app are kept, and once this number
+      is reached old logs are deleted. By default, the app keeps logs files for the last 10 times it was started. 
 
 .. confval:: Default log level
       :type: Integer
@@ -130,8 +134,6 @@ the app settings, and the log files.
 If paths are modified it is best to always restart the app and fully test that everything is working as expected, including inspecting the
 stored data files after running a task.
 
-.. Insert screenshot?
-
 On Windows, the app by default uses paths in the so-called *roaming* profile to store settings and data. This means that if you install the app on a
 networked domain computer, it's settings and data will transfer across to other computers in the domain where you log in with the same credentials.
 This is of course provided your system administrators have not modified the behaviour for roaming profiles on the domain, so it's a good idea to check
@@ -170,7 +172,7 @@ own backups and not overly relying on system backup features --- those should be
 
       This is the path to a directory where the app may temporarily cache (sore, modify, delete) various filed during operation.
 
-
+.. _task-sequencing:
 Task sequencing
 ---------------
 
@@ -180,18 +182,17 @@ the need for researcher intervention. This also negates the need to re-enter par
 for error) at the start of each task, as these are transferred across tasks automatically.
 
 
-.. rubric:: Example: The deafault LSBQe sequence
+.. rubric:: Example: The default LSBQe sequence
 
 For example, with the default settings, when the informed consent task is completed the participant will be automatically advanced to the LSBQe,
-and when the LSBQe is complete they will be sent to the conclusion screen before then being redirected to the app home screen (see Figure 12).
+and when the LSBQe is complete they will be sent to the conclusion screen before then being redirected to the app home screen (see :numref:`ts_default_lsbqe_sequencing`).
 
-.. figure:: figures/ts43.png
+.. figure:: figures/ts_default_lsbqe_sequencing.png
+      :name: ts_default_lsbqe_sequencing
       :width: 400
       :alt: Screenshot of default sequencing
 
-      Default sequencing: *Consent Form* > *LSBQe* > *Conclusion Screen* > *App start screen*
-
-.. Update Figure 13 above!
+      Default sequencing: *Consent Form* > *LSBQe* > *Conclusion Screen* > *App start screen* 
 
 Note also that the sequencing doesn't rely on the entry point. If the participant is starting directly with the *LSBQe* in the default sequence,
 they will then still follow the remainder of that sequence, i.e. the *Conclusion Screen* followed by the *App start screen*.
@@ -204,17 +205,19 @@ the end of the sequence.
 For instance, you may not want to require an electronic consent form for your study, thus removing the consent form from the sequence, and may want
 the LSBQe to advance into the AGT as is typical in linguistic studies where a background questionnaire precedes the main research method, followed by
 a conclusion screen to inform the participant they have completed all tasks and that they should await further instruction from the researcher. This
-sequencing is demonstrated in Figure 13:
+sequencing is demonstrated in :numref:`ts_custom_sequence`
 
-.. figure:: figures/tsfigure44.png
+.. figure:: figures/ts_custom_sequence.png
+      :name: ts_custom_sequence
       :width: 400
       :alt: Screenshot of task sequencing screen
 
       Customised sequence: *LSBQe* > *AGT* > *Conclusion Screen* > *App start screen* 
 
-Should you require every available task to be sequenced, you may also do so, as shown in Figure 14:
+Should you require every available task to be sequenced, you may also do so, as shown in :numref:`ts_all_tasks_sequenced`:
 
-.. figure:: figures/ts45.png
+.. figure:: figures/ts_all_tasks_sequenced.png
+      :name: ts_all_tasks_sequenced
       :width: 400
       :alt: Screenshot of task sequencing screen
 

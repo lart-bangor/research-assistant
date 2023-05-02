@@ -8,7 +8,7 @@ The L’ART Research Client has been developed and tested primarily on Windows 1
 
 The installer and app will probably also work on 64-bit versions of Windows 8, but we do not officially support this. 
 The app is in principle compatible with current versions of MacOS, Linux, and BSD, but this currently requires 
-installation/building from source (see `Developer’s Guide <file:///C:/Users/admin/Documents/lart-research-client/docs/build/html/developers/index.html>`_). 
+installation/building from source (see :ref:`developer-guide`). 
 
 We have plans to officially support these platforms with the version 1.0 stable release in the near future.
 

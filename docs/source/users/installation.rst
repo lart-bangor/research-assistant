@@ -30,7 +30,8 @@ Installing on Windows 10/11
       
       Click :guilabel:`Run anyway` to continue with the installation.
 
-      .. figure:: figures/microsoft_defender_smartscreen.png
+   .. figure:: figures/microsoft_defender_smartscreen.png
+         :name: microsoft_defender_smartscreen
          :width: 400
          :alt: An image of protection message from Windows taken from Microsoft Defender Smartscreen.
 
@@ -48,6 +49,7 @@ Installing on Windows 10/11
    If in any doubt, choose :guilabel:`Install for me only`.
 
    .. figure:: figures/user_install_mode_setup.png
+      :name: user_install_mode_setup
       :width: 400
       :alt: Screenshot of selecting an install mode for users
 
@@ -57,6 +59,7 @@ Installing on Windows 10/11
    (namely, to install the app).
 
    .. figure:: figures/user_account_control_screen.png
+      :name: user_account_control_screen
       :width: 400
       :alt: Screenshot of User Account Control Screen.
 
@@ -67,6 +70,7 @@ Installing on Windows 10/11
    You must accept the agreement before installation can begin.
 
    .. figure:: figures/user_install_license_agreement.png
+      :name: user_install_license_agreement
       :width: 400
       :alt: Screenshot of setup screen for the License agreement.
 
@@ -83,6 +87,7 @@ Installing on Windows 10/11
    Click :guilabel:`Browse...` if you wish to change the installation path of the app.  
 
    .. figure:: figures/user_install_destination_location.png
+      :name: user_install_destination_location
       :width: 400
       :alt: Screenshot of setup screen requesting the user to select a destination location
 
@@ -91,6 +96,7 @@ Installing on Windows 10/11
 #. Click :guilabel:`Install` to install the L’ART Research Client app on your device. 
 
    .. figure:: figures/user_install_research_client.png
+      :name: user_install_research_client
       :width: 400
       :alt: Screenshot of application ready for installation.
 
@@ -99,6 +105,7 @@ Installing on Windows 10/11
 #. Complete setup by clicking :guilabel:`Finish` and enjoy!
 
    .. figure:: figures/complete_setup_research_client.png
+      :name: complete_setup_research_client
       :width: 400
       :alt: Screenshot of completing the L'ART Research Client Setup Wizard
 
