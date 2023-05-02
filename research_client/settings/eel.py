@@ -65,13 +65,12 @@ def load() -> dict[str, dict[str, Any]]:
         "help": "General app settings.",
         "fields": fields,
     }
-    # Add sub-configuration sections
     for dataclass in dataclasses:
         settings[dataclass["name"]] = dataclass
         # Remove irrelevant/redundant attributes
-        del settings[dataclass["name"]]["value"]
-        del settings[dataclass["name"]]["type"]
-        del settings[dataclass["name"]]["default"]
+        for key in ("value", "type", "default"):
+            if key in settings[dataclass["name"]]:
+                del settings[dataclass["name"]][key]
         # Remove sub-dataclasses from fields attribute
         settings[dataclass["name"]]["fields"] = settings[dataclass["name"]]["fields"][1]
         # For Path type arguments, convert default and value to string
