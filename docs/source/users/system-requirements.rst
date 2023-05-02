@@ -50,6 +50,6 @@ Dell          Inspiron 7620 2-in-1  Intel i7-1260P   16GB  Windows 11 64-bit
 Dell          Latitude 5520         Intel i7-1165G7  16GB  Windows 11 64-bit
 Dell          Latitude 5520         Intel i7-1165G7  16GB  Windows 10 64-bit
 Dell          XPS 9520              Intel i7-9750H   16GB  Windows 10 64-bit
-Lenovo        ThinkPad                                8GB  Windows 10 64-bit
+Lenovo        ThinkPad Yoga 260     Intel i5-6200U    8GB  Windows 10 64-bit
 ============  ====================  ===============  ====  =================
 

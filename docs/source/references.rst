@@ -20,4 +20,4 @@ References
 
 .. [Breit-Tamburelli-EtAl-2023] Breit, F., Tamburelli, M., Gruffydd, I., Brasca, L. (2023). 
    The L’ART Research Client: A digital toolkit for bilingualism and language attitude research.
-   Bangor University.
+   Bangor University. http://doi.org/10.13140/RG.2.2.18801.35686
