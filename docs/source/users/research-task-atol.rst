@@ -46,7 +46,10 @@ After activating each slider and providing a rating along each bipolar adjective
 Loading and customizing a generic version of the AToL
 -----------------------------------------------------
 
-As for the :ref:`LSBQe`, several generic versions of the AToL are available (e.g., English, German, Italian).
+As for the :ref:`LSBQe`, several generic versions of the AToL are available (e.g., English, German, Italian). 
+
+The generic versions that are currently visible are English and Welsh. If you wish to make the German and Italian generic versions visible,
+repeat the same steps as found under :ref:`making-generic-versions-visible`.
 
 Unlike the LSBQe, however, it is not possible to load a generic version of the AToL without customizing it.
 

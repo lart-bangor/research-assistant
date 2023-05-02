@@ -25,21 +25,12 @@ Below is the path you need to follow in order to find it. The path your app is l
 
 Below is an example of the path when the app is installed for **a single user**: 
 
-.. figure:: tutfigures/tutorial_finding_versions_folder.png
-    :name: tutorial_finding_versions_folder
+.. figure:: tutfigures/finding_versions_folder_single_user.png
+    :name: tutorial_finding_versions_folder_single_user
     :width: 500
     :alt: Screenshot of finding the “versions” folder if you installed L'ART Research Client for a single user.
 
     Finding the “versions” folder if you installed L'ART Research Client for a single user
-
-Sometimes Windows hides the folder :file:`AppData` from view. To make it visible, click on the :guilabel:`View` tab and ticking the box labelled :guilabel:`Hidden items` as follows: 
-
-.. figure:: tutfigures/tutorial_unhiding_appdata.png
-    :name: tutorial_unhiding_appdata
-    :width: 400
-    :alt: Screenshot of unhiding the folder "AppData"
-
-    Unhiding the AppData folder
 
 However, if you installed the app **for all users**, you will find the :file:`Versions` folder by following a different path, as below: 
 

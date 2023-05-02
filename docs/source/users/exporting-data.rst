@@ -2,12 +2,12 @@ Exporting data
 ===============
 
 Data for each task (e.g., informed consent, LSBQe) will be automatically stored in a JSON file on the computer
-running the app once the participant has submitted  their response. 
+running the app once the participant has submitted their response. 
 
 However, if you want to export the data manually, e.g., to make a backup to a different location or collate data 
 collected on various devices, you can do this straightforwardly on the app.
 
-For the simplest way to do this, open the side menu, and click on :guilabel:`Export Data`.  
+For the simplest way to do this, open the side menu, and click on :guilabel:`Export Data`. 
 
 .. figure:: figures/exporting_data_side_bar.png
       :name: exporting_data_side_bar

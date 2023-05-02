@@ -12,7 +12,7 @@ ethics-related documentation) then you will start data collection by clicking di
 the research tool you require under Choose a task on the app’s home screen.
 
 In the current version (|version|), the tasks available are: :guilabel:`LSBQe`,
-:guilabel:`AToL`, :guilabel:`AGT`, and :guilabel:`Memory Game`.
+:guilabel:`AToL`, :guilabel:`AGT`, and :guilabel:`Memory Task`.
 
 
 The second option offers the researcher an integrated digital avenue to obtain informed consent,
@@ -46,5 +46,5 @@ information sheet and eligibility criteria will appear below.
 If the participant gives their consent and confirms their eligibility through marking their respective boxes, they will be
 automatically advanced to the start screen for the first task (see :ref:`task-sequencing` on how to set this).  
 
-The task start screen is the same start screen that researchers who opt for the LSBQe without digital informed consent will see after they select a task from the app's home screen. 
+The task start screen is the same start screen that researchers who opt for the LSBQe task without digital informed consent will see after they select a task from the app's home screen. 
 

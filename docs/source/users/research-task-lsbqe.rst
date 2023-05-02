@@ -26,14 +26,37 @@ with the user-feedback provided for each field.
 
 .. figure "15" will be merged with app presentation
 
-
+.. _making-generic-versions-visible:
 Loading a generic version of the LSBQe
 --------------------------------------
 
 Several generic versions of the LSBQe (e.g., English, German, Italian) are available for you to use if the languages pertinent to your research
 location are not available amongst our four LSBQe versions, or if you prefer a generic or customisable version of the LSBQe.
 
-You can select a generic version of teh LSBQe from the dropdown list. For example, if you wish to use the generic version for British English, 
+The generic versions that are currently visible are English and Welsh. If you wish to make the German and Italian generic versions visible, this can be done by following the path below:
+
+:file:`C:\\Users\\admin\\Documents\\lart-research-client\\research_client\\lsbq\\versions`
+
+Next, choose the generic version you wish to make visible. Using the German generic version as an example, right-click the file and remove the initial underscore (_) by selecting the
+:guilabel:`Rename` option as seen in :numref:`generic_versions_renaming`below:
+
+.. figure:: figures/generic_versions_renaming.png
+      :name: generic_versions_renaming
+      :width: 600
+      :alt: Screenshot of renaming German generic version in folder
+
+      Locating and renaming the German generic version
+
+Once the app has been restarted, the generic version will appear in the dropdown list.
+
+.. figure:: figures/generic_german_visible.png
+      :name: generic_german_visible
+      :width: 600
+      :alt: Screenshot of German generic version included in dropdown list
+
+      German generic version as an available option 
+
+You can select a generic version of the LSBQe from the dropdown list. For example, if you wish to use the generic version for British English, 
 you would choose "English-generic (United Kingdom)".
 
 .. figure:: figures/lsbqe_loading_generic_version.png

@@ -1,7 +1,8 @@
 Research task: AGT
 ===================
 
-The Audio Guise Tool (AGT) allows users to run either a Matched Guise Technique (MGT; [Lambert-Hodsgon-EtAl-1960]_) or a Verbal Guise Technique (VGT; [Markel-EtAl-1967]_) (see [Breit-Tamburelli-EtAl-2023]_ for details).
+The Audio Guise Tool (AGT) allows users to run either a Matched Guise Technique (MGT; [Lambert-Hodsgon-EtAl-1960]_) or a Verbal Guise Technique
+(VGT; [Markel-EtAl-1967]_) (see [Breit-Tamburelli-EtAl-2023]_ for details).
 
 Differentiation between MGT or VGT is executed via your audio recordings, and it is explained in some detail below.
 
@@ -9,33 +10,35 @@ Differentiation between MGT or VGT is executed via your audio recordings, and it
 Loading recordings for the AGT
 ------------------------------
 
-The AGT requires **thirteen** recordings in order to function. Eight recordings are classed as experimental recordings, four are classed as filler recordings and one is a practice recording.
+The AGT requires thirteen recordings in order to function. Eight recordings are classed as experimental recordings, four are classed as filler
+recordings and one is a practice recording.
 
-For an MGT setup, you **must** load eight experimental recordings from four speakers, with each speaker providing a recording in either language variety.
+For an MGT setup, you must load eight experimental recordings from four speakers, with each speaker providing a recording in either language variety.
 
 For a VGT setup, you would load eight experimental recordings from eight speakers, with four speakers providing a recording in one language variety, 
 and the other four speakers providing a recording in the other language variety.
 
-What to do with the four fillers is left up to you. For instance, in an MGT setup, continuity with experimental stimuli may be preferred, so the four fillers
-could be recorded by two speakers, with both speakers providing a recording in each language variety.
+What to do with the four fillers is left up to you. For instance, in an MGT setup, continuity with experimental stimuli may be preferred,
+so the four fillers could be recorded by two speakers, with both speakers providing a recording in each language variety.
 
 The practice guise is presented first during an AGT and allows the participant to familiarise themselves with an AGT without testing experimental stimuli.
 Practice stimulus design is decided by the researcher, for instance, you may wish to produce a recording of yourself talking about a neutral topic for the
 same length as the experimental and filler recordings.
 
-Sound files must be labelled appropriately in order for the AGT to execute the audio correctly. The audio recording for the practice guise must be named “practice.mp3”;
-audio files for fillers must be named beginning with “f”  plus the number of the filler (i.e., f1.mp3 to f4.mp3); and experimental guises must be marked “s” plus number
-to denote your speaker, then underscored before either “maj” or “rml” to mark the different language varieties (see :numref:`agt_sound_file_names`).
+Sound files must be labelled appropriately in order for the AGT to execute the audio correctly. The audio recording for the practice guise must be named
+“practice.mp3”; audio files for fillers must be named beginning with “f”  plus the number of the filler (i.e., f1.mp3 to f4.mp3); and experimental guises
+must be marked “s” plus number to denote your speaker, then underscored before either “maj” or “rml” to mark the different language varieties
+(see :numref:`agt_sound_file_names`).
 
 These labels must be assigned consistently to the file names, but it does not matter which variety you choose to label "maj" and which "rml"
 (though if working with a majority language and a regional/minority language it may help analysis if you use "maj" for majority and "rml" for minority language).
 What matters for app functionality is that you assign the “maj” label to one language/variety and the “rml” label to the other, keeping it consistent throughout your set-up.
 
 In the example below in :numref:`agt_folder_iso_standard_code_sequence`, :file:`“maj”` indicates Chinese recordings and :file:`“rml”` indicates English recordings.
-Do note that this is done **consistently** for all recordings.
+Do note that this is done consistently for all recordings.
 
 .. warning::
-      File names are **case-sensitive** and **must** be written identically to how they appear here in order for the AGT to function.  
+      File names are case-sensitive and must be written identically to how they appear here in order for the AGT to function.  
       
       All sound files must be in mp3 format for the AGT to function. 
 
@@ -71,6 +74,10 @@ Loading a generic version of the AGT
 ------------------------------------
 
 Similarly to the :ref:`LSBQe <LSBQe>` and :ref:`AToL <AToL>`, an "English-generic" version of the AGT is made available.
+
+The generic versions that are currently visible are English and Welsh. If you wish to other generic versions visible,
+repeat the same steps as found under :ref:`making-generic-versions-visible`.
+
 Select the generic version of the AGT by selecting the “English – generic (United Kingdom)” version from the LSBQe version drop down list.
 
 .. figure:: figures/agt_loading_generic_version.png
@@ -92,9 +99,9 @@ Generic versions can be identified by the fact that the file name contains the s
 If you wish to customise a generic version of the AGT, open the relevant file (e.g. :file:`[EngZzz_Eng_GB]` for British English, or :file:`[GerZzz_Ger_DE]` for German, and so on)
 by following the path below:
 
-:guilabel:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\Research Client\\research_client\\agt\\versions`
+:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\Research Client\\research_client\\agt\\versions`
 
-.. the file path above might need changing 
+.. the file path above might need changing
 
 .. figure:: figures/agt_version_files.png
       :name: agt_version_files
@@ -127,4 +134,4 @@ to version_name and version_id as above.
 
 Seeing as no language names are mentioned anywhere in the AGT, the only other component where the languages you choose to study are
 important is the recordings you load onto the AGT (see :ref:`recordings-agt` for more details). 
-verything else can remain the same as in the “English – generic” version. 
+Everything else can remain the same as in the “English – generic” version. 

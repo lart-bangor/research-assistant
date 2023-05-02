@@ -90,8 +90,8 @@ occurred on your computer.
       :type: Integer
       :default: :code:`10`
 
-      The maximum number of log files to keep determines how many logs from previous runs of the app are kept, and once this number is reached old logs are deleted.
-      By default, the app keeps logs files for the last 10 times it was started. 
+      The maximum number of log files to keep determines how many logs from previous runs of the app are kept, and once this number
+      is reached old logs are deleted. By default, the app keeps logs files for the last 10 times it was started. 
 
 .. confval:: Default log level
       :type: Integer
