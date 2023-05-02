@@ -129,14 +129,20 @@ but should run if you have Chrome or Chromium installed.
 Running as a Python package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The easiest way is to run the app as a Python package. On Ubuntu 22.04, follow the steps below to
-install the Python package and all its dependencies. The last line will run the Research Client.
+The easiest way is to run the app as a Python package. On Ubuntu 22.04 or newer, follow the steps
+below to install the Python package and all its dependencies:
 
 .. code-block:: console
 
-   $ sudo apt-get install chromium
-   $ python3.10 -m pip install research-client
-   $ python3.10 -m research-client
+   $ sudo snap install chromium
+   $ sudo apt update && sudo apt upgrade -y
+   $ sudo apt install pipx -y
+   $ pipx install research-client
+   $ research-client
+
+You can now launch the app by simply running the command :code:`research-client` from a terminal. If
+this doesn't work straight away, you might need to log out and log back in before launching the app
+for the first time.
 
 .. The easiest way is to run directly from source. On Ubuntu 22.04, follow the steps below the get
    the source code and all the dependencies installed. The last line will run the Research Client.
