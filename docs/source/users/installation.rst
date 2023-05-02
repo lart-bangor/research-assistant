@@ -134,6 +134,7 @@ install the Python package and all its dependencies. The last line will run the 
 
 .. code-block:: console
 
+   $ sudo apt-get install chromium
    $ python3.10 -m pip install research-client
    $ python3.10 -m research-client
 
@@ -232,60 +233,64 @@ To run as a Python package, follow these instructions:
    prints something like "Python 3.10.10". This means python has installed correctly and
    you're ready to continue.
 
-#. Install :command:`pipenv` with the command :code:`pip3 install pipenv`. This should
-   print out a success message at the end of the process. You can ignore any messages it
-   might print about updating pip itself (or follow the instructions it provides if you like).
+#. From the Terminal, install the Research Client with the command
+   :code:`pip3 install research-client`.
 
-#. Now run the following commands in your terminal to set up the package from source:
+   This will download and install the research-client and all its dependencies (other than Chrome,
+   which you should have installed from the app store already).
 
-   .. parsed-literal::
+.. #. Install :command:`pipenv` with the command :code:`pip3 install pipenv`. This should
+      print out a success message at the end of the process. You can ignore any messages it
+      might print about updating pip itself (or follow the instructions it provides if you like).
 
-      cd ~
-      curl -L https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz -o research-client.tar.gz
-      tar -xf ./research-client.tar.gz
-      rm research-client.tar.gz
-      mv research-client-|version| research-client
-      cd research-client
-      python3 -m pipenv install
+   #. Now run the following commands in your terminal to set up the package from source:
 
-.. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-client/archive/refs/tags/v
+      .. parsed-literal::
 
-#. You can now launch the app from within a terminal, provided you are in the directory
-   :file:`~/research-client`, using the following command:
+         cd ~
+         curl -L https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz -o research-client.tar.gz
+         tar -xf ./research-client.tar.gz
+         rm research-client.tar.gz
+         mv research-client-|version| research-client
+         cd research-client
+         python3 -m pipenv install
+
+   .. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-client/archive/refs/tags/v
+
+#. You can now launch the app from within a Terminal using the following command:
    
-   .. parsed-literal::
+   .. code-block:: console
 
-      python3 -m pipenv run python3 ./manage.py run
+      $ python3 -m research-client
 
 
-Obviously, you will not want to open a Terminal, do :code:`cd ~/research/client` and then
-type :code:`python3 -m pipenv run python3 ./manage.py run` every time. You can create
+Obviously, you may not want to open a Terminal, do :code:`cd ~/research/client` and then
+type :code:`python3 -m research-client` every time. You can create
 a shortcut which can be clicked to launch the app by following these additional steps:
 
-#. Make an executable :file:`.command` file inside the :file:`~/research-client` directory
+#. Make an executable :file:`.command` file on your Desktop directory (:file:`~/Desktop`)
    by running the following in a Terminal:
 
-   .. parsed-literal::
+   .. code-block:: console
 
-      cd ~/research-client
-      echo > research-client.command
-      chmod +x ./research-client.command
-      open -a TextEdit ./research-client.command
+      $ cd ~/Desktop/
+      $ echo > Research-Client.command
+      $ chmod +x ./Research-Client.command
+      $ open -a TextEdit ./Research-Client.command
 
 #. In the editor that popped up with the last command above, copy and paste the following
    code, then save and close the file.
 
    .. code-block:: bash
 
-      #!/usr/bin/env bash
+      #!/bin/bash
 
-      cd ~/research-client
-      python3 -m pipenv run python3 ./manage.py run
+      python3 -m research-client
 
-#. Once you've created the :file:`research-client.command` file as per the two steps above,
-   you can just locate it in Finder (e.g. launch Finder, then in the top click on
-   :menuselection:`Go -> Home`, and open the :file:`research-client` folder) and then drag
-   and drop the :file:`research-client.command` onto your dock.
+#. Once you've created the :file:`Research-Client.command` file as per the two steps above,
+   you can just locate it on your Desktop or in Finder (e.g. launch Finder, then in the top
+   click on :menuselection:`Go -> Home`, and open the :file:`Desktop` folder) and then drag
+   and drop the :file:`Research-Client.command` onto your dock.
 
-   When you click on the file in the dock now, it should launch a Terminal window together
-   with the app.
+   When you click on the file in the dock or on the Desktop now, it should launch a Terminal
+   window together with the app.
