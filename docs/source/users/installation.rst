@@ -159,27 +159,27 @@ for the first time.
       python3.10 -m pipenv install
       python3.10 -m pipenv run python ./manage.py run
 
-If you want to make an executable shortcut, create a file with the executable flag (+x) in your
-:file:`~/.local/bin` directory. You can do this by following these steps:
+.. If you want to make an executable shortcut, create a file with the executable flag (+x) in your
+   :file:`~/.local/bin` directory. You can do this by following these steps:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ cd ~/.local/bin
-   $ echo > research-client
-   $ chmod +x research-client
-   $ gedit research-client
+      $ cd ~/.local/bin
+      $ echo > research-client
+      $ chmod +x research-client
+      $ gedit research-client
 
-In the editor that pops up, enter the following text and then save the file:
+   In the editor that pops up, enter the following text and then save the file:
 
-.. parsed-literal::
+   .. parsed-literal::
 
-   #!/usr/bin/env bash
+      #!/usr/bin/env bash
 
-   python3.10 -m research-client
+      python3.10 -m research-client
 
-After saving the above, you can now launch the Research Client from the terminal by
-just typing in :code:`research-client` and hitting :kbd:`Enter`. (You may need to
-log out and log back in if this doesn't work straight away...)
+   After saving the above, you can now launch the Research Client from the terminal by
+   just typing in :code:`research-client` and hitting :kbd:`Enter`. (You may need to
+   log out and log back in if this doesn't work straight away...)
 
 
 Building from source
