@@ -16,7 +16,8 @@
         "atol_header": "AToL Fragebogen (RML)",
         "btn_text": "Weiter",
         "thank_you": "Vielen Dank für das Ausfüllen des Fragebogens!",
-        "next_task": "Bitte klicken Sie auf [Weiter] wenn Sie fertig sind"
+        "next_task": "Bitte klicken Sie auf [Weiter] wenn Sie fertig sind",
+        "btn_continue": "Weiter"
     },
 
     "adjectives": {

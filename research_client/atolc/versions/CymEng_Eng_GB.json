@@ -16,7 +16,8 @@
         "atol_header": "AToL Questionnaire",
         "btn_text": "Next",
         "thank_you": "Thank you for completing the questionnaire!",
-        "next_task": "Please click <i>Continue</i> when you're ready"
+        "next_task": "Please click <i>Continue</i> when you're ready",
+        "btn_continue": "Continue"
     },
     "adjectives": {
         "logic":        ["logical",         "illogical"],

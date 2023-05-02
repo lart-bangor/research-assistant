@@ -16,7 +16,8 @@
         "atol_header": "AToL Fragebogen",
         "btn_text": "Weiter",
         "thank_you": "Vielen Dank für das Ausfüllen des Fragebogens!",
-        "next_task": "Bitte klicken Sie auf <i>Weiter</i> wenn Sie fertig sind"
+        "next_task": "Bitte klicken Sie auf <i>Weiter</i> wenn Sie fertig sind",
+        "btn_continue": "Weiter"
     },
     "adjectives": {
         "logic":        ["logisch",         "unlogisch"],

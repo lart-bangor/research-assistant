@@ -16,7 +16,8 @@
              "atol_header": "Holiadur AToL",
              "btn_text": "Nesaf",
              "thank_you": "Diolch am lenwi'r holiadur!",
-             "next_task": "Cliciwch <i>Parhau</i> pan fyddwch yn barod"
+             "next_task": "Cliciwch <i>Parhau</i> pan fyddwch yn barod",
+             "btn_continue": "Parhau"
              
  },
     "adjectives": {

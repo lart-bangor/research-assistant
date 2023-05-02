@@ -6,8 +6,10 @@
 <script type="text/javascript">
     const thanks = sessionStorage.getItem("thankyou");
     const next = sessionStorage.getItem("next");
+    const continue_btn = sessionStorage.getItem("continue");
     console.log("THANKS " + thanks);
     console.log("NEXT " + next);
+    console.log("CONTINUE " + continue_btn);
     //document.getElementById("thank_you").innerHTML = thanks;
     //document.getElementById("next").innerHTML = next;
 </script>
@@ -26,7 +28,7 @@
             <p></p>
         </div>
         <div class="container-fluid text-center p-2">
-            <a id="nextUrlButton" class="btn btn-primary fs-5 p-2" style="min-width:50%">Continue</a>
+            <a id="nextUrlButton" class="btn btn-primary fs-5 p-2" style="min-width:50%"><script type="text/javascript">document.write(continue_btn)</script></a>
             <script type="text/javascript">
                 function endAtol() {
                     const data = {

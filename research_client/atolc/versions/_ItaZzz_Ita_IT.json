@@ -16,7 +16,9 @@
         "atol_header": "Questionario sulle varietà linguistiche",
         "btn_text": "Avanti",
         "thank_you": "Grazie per aver completato il questionario!",
-        "next_task": "Si prega di cliccare [continua] appena possibile"
+        "next_task": "Si prega di cliccare [continua] appena possibile",
+        "btn_continue": "Continua"
+        
 },
 
     "adjectives": {
