@@ -1,4 +1,4 @@
-"""Utility functions for the LART Research Client app."""
+"""Utility functions for the LART Research Assistant app."""
 import os
 import shutil
 import logging
@@ -117,7 +117,7 @@ def export_backup(filename: Path | str | None = None) -> bool:
     logger.debug("Exporting data backup...")
     if filename is None:
         tkroot = Tk()
-        tkroot.title("LART Research Client data backup")
+        tkroot.title("LART Research Assistant data backup")
         if os.name == "nt":
             tkroot.iconbitmap(  # type: ignore
                 str(Path(__file__).parent / "web" / "img" / "appicon.ico")

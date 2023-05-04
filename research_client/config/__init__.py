@@ -1,4 +1,4 @@
-"""Configuration handler for L'ART Research Client.
+"""Configuration handler for L'ART Research Assistant.
 
 This package provides an API to read, modify, and store app configuration. The
 configuration is stored in a JSON file and relevant paths (unless explicitly
@@ -13,7 +13,7 @@ To access and/or modify the configuration of the running app, you should import
 only `config`. The other classes and objects in the package will not typically
 be needed, perhaps with the exceptions of functions that deal with system updates
 and the like (as for instance the functionality in the
-`research_client.utils` module).
+`research_assistant.utils` module).
 
 Example:
     Let's imagine you want to ensure that the *shutdown_delay* setting is always
@@ -42,9 +42,9 @@ __all__ = ["config", "Config", "_default_paths"]
 
 logger = logging.getLogger(__name__)
 
-_appname: str = "Research Client"
+_appname: str = "Research Assistant"
 _appauthor: str = "L’ART"
-_safeappname: str = "Research_Client"
+_safeappname: str = "Research_Assistant"
 _safeappauthor: str = "LART"
 _default_paths = PlatformDirs(_safeappname, _safeappauthor, roaming=True)
 

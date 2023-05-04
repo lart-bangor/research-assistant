@@ -1,4 +1,4 @@
-"""LART Research Client App.
+"""LART Research Assistant app.
 
 An app to collect survey-type data for research on regional and minority languages,
 developed by the Language Attitudes Research Team at Bangor University.
@@ -53,7 +53,7 @@ def main():                                                                     
     """App main function called on app launch."""
     # Parse command line arguments
     argparser = argparse.ArgumentParser(
-        description="Launch the LART Research Client App."
+        description="Launch the LART Research Assistant App."
     )
 
     class StoreOptionalAction(argparse.Action):
@@ -188,7 +188,7 @@ def main():                                                                     
                 (
                     "Can't find Google Chrome/Chromium or Microsoft Edge installation.\n\n"
                     "Please install either Google Chrome/Chromium or Microsoft Edge before "
-                    "running the Research Client."
+                    "running the Research Assistant."
                 )
             )
             raise

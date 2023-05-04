@@ -1,7 +1,7 @@
 """Conclusion screen for end of task series.
 
 This module implements a configurable screen for the conclusion of a task
-or series of tasks in the Research Client app.
+or series of tasks in the Research Assistant app.
 
 The functionality provided does not implement any data models, but simply
 provides text in different language versions which can be used to indicate

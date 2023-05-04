@@ -1,8 +1,8 @@
 /**
- * @file L'ART Research Client JavaScript Library.
+ * @file L'ART Research Assistant JavaScript Library.
  * 
  * This library implements interfaces and utility functions designed to simplify
- * common tasks for the LART Research Client frontend. It's designed to work
+ * common tasks for the LART Research Assistant frontend. It's designed to work
  * together with Python eel and booteel.js.
  * 
  * @author Florian Breit <f.breit@bangor.ac.uk>
@@ -13,9 +13,9 @@
 booteel.logger.debug("lart.js loaded.");
 
 /**
- * Namespace for the L'ART Research Client JavaScript Library.
+ * Namespace for the L'ART Research Assistant JavaScript Library.
  * 
- * This is a meta-namespace for the L'ART Research Client JavaScript Library.
+ * This is a meta-namespace for the L'ART Research Assistant JavaScript Library.
  * The functionality provided by the library is grouped into severl subordinate
  * namespaces, viz.
  * 
@@ -183,11 +183,11 @@ lart.appLock._setSwitchState = function(element) {
 //
 
 /**
- * General utilities for the L'ART Research Client.
+ * General utilities for the L'ART Research Assistant.
  * 
  * This namespace provides various general utility functions needed either by other
  * parts of the library or otherwise useful in the implementation of the L'ART
- * Research Client's frontend.
+ * Research Assistant's frontend.
  * 
  * @summary General utility functions
  * @namespace lart.utils
@@ -200,7 +200,7 @@ lart.utils = {};
  * 
  * Given an input of the form "XxxYyy_Zzz_CC" where Xxx, Yyy, and Zzz are three-letter
  * ISO 639-2 or ISO 639-3 alpha-3 language codes, and CC is a two-letter country code,
- * this function will return the string Zzz, which is used in the L'ART Research Client
+ * this function will return the string Zzz, which is used in the L'ART Research Assistant
  * to identify the primary display langauage of a test version.
  * 
  * @param {string} version - L'ART test version string of the form "XxxYyy_Zzz_CC".
@@ -229,7 +229,7 @@ lart.utils.searchParams = new URLSearchParams(window.location.search);
  * Utilities for working with UUIDs.
  * 
  * This namespace provides utility functions and constants which help
- * in the management of UUIDs, which are used by the L'ART Research Client
+ * in the management of UUIDs, which are used by the L'ART Research Assistant
  * to uniquely identify responses to individual tasks.
  * 
  * @summary Utilities for handling UUIDs
@@ -296,10 +296,10 @@ lart.utils.UUID.isNilUUID = function(identifier) {
 //
 
 /**
- * Form management utilities for the L'ART Research Client
+ * Form management utilities for the L'ART Research Assistant
  * 
  * This namespace implements an extensive set of utility and helper functions
- * which facilitate the implementation of forms for the L'ART Research Client.
+ * which facilitate the implementation of forms for the L'ART Research Assistant.
  * 
  * @summary Form management
  * @namespace {object} lart.forms
@@ -1294,7 +1294,7 @@ lart.forms.getFormData = function (formElementOrId) {
 //
 
 /**
- * On-the-fly client-side translation management for the L'ART Research Client.
+ * On-the-fly client-side translation management for the L'ART Research Assistant.
  * 
  * This namespace implements functionality to facilitate the on-the-fly translation
  * of user interface elements with strings loaded on-demand from the backend.

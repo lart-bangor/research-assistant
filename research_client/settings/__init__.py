@@ -1,4 +1,4 @@
-"""Package implementing the Settings UI for the LART Research Client."""
+"""Package implementing the Settings UI for the LART Research Assistant."""
 
 
 def expose_to_eel():

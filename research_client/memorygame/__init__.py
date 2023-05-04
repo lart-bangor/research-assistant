@@ -1,4 +1,4 @@
-"""Package implementing the Memory Game for the LART Research Client."""
+"""Package implementing the Memory Game for the LART Research Assistant."""
 
 
 def expose_to_eel():
