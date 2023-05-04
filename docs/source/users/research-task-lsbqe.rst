@@ -84,7 +84,7 @@ the file for the generic version for British English is called :file:`[EngZzz_En
 If you wish to customise a generic version of the LSBQe, open the relevant file (e.g. :file:`[EngZzz_Eng_GB]` for British English, or :file:`[GerZzz_Ger_DE]` for German, and so on)
 by following the path below:
 
-:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\lart_research_assistant\\lsbq\\versions`
+:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\research_assistant\\lsbq\\versions`
 
 .. figure:: figures/lsbq_versions_folder.png
       :name: lsbqe_versions_folder
@@ -174,7 +174,7 @@ However, some researchers may prefer to use a binary choice (e.g., where biologi
 
 To do this, open your LSBQe version file from the following path:
 
-:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\lart_research_assistant\\lsbq\\versions`
+:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\research_assistant\\lsbq\\versions`
 
 With the file open, you will see that below the section :py:mod:`options` the line labelled :file:`lsb_show_other_sex`` is set to :py:mod:`true`:
 
@@ -231,7 +231,7 @@ within a community, you may set the minimum required languages to three.
 
 To do this, firstly, open your LSBQe version file from the following path:
 
-:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\lart_research_assistant\\lsbq\\versions`
+:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\research_assistant\\lsbq\\versions`
 
 With the file open, you will see that below the section :py:mod:`options` the line labelled :file:`ldb_minimum_required_languages` is set to “2”: 
 
@@ -281,7 +281,7 @@ is only/mostly oral or doesn’t have an accepted orthographic system, making th
 
 To remove the “reading” and “writing” options, firstly, open your LSBQe version file from the following path:
 
-:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\lart_research_assistant\\lsbq\\versions`
+:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\research_assistant\\lsbq\\versions`
 
 With the file open, you will see that below the section :py:mod:`options` the lines labelled :file:`ldb_show_reading` and :file:`ldb_show_writing`
 are set to :py:mod:`true`: 
@@ -331,7 +331,7 @@ The code-switching question can be removed if this information is not required i
 
 To remove the code-switching question, firstly, open your LSBQe version file from the following path: 
 
-:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\lart_research_assistant\\lsbq\\versions`
+:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\research_assistant\\lsbq\\versions`
 
 With the file open, you will see that below the section :py:mod:`options` the line labelled :file:`club_show_codeswitching`` is set to
 :py:mod:`true` (see :numref:`club_code_switching_true_default`)

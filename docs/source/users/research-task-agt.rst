@@ -45,7 +45,7 @@ Do note that this is done consistently for all recordings.
 
 To load your own recordings for the AGT, open the folder :file:`[mgt]` by following the path below: 
 
-:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\lart_research_assistant\\web\\audio\\agt`
+:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\research_assistant\\web\\audio\\agt`
 
 Create a new folder which follows the ISO standard code sequence (see the note under :ref:`localisation` for more details on standard code sequence generating)
 to store the sound files for your AGT. For example, for an AGT set-up to work with Chinese-English bilinguals in Singapore and use English as the language of presentation,

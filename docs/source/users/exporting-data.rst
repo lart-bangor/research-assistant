@@ -83,7 +83,7 @@ equates to a number (how your participant rated the language for the trait via t
 For advanced users who want to automate export or backup of the responses, or monitor and integrate these files
 with some other system, the files can be accessed directly on the system. 
 
-On Windows these are stored in the Roaming profile by default, identified by the path :file:`%AppData%\\LART\\Research Assistant\\data.`
+On Windows these are stored in the Roaming profile by default, identified by the path :file:`%AppData%\\Roaming\\LART\\Research Assistant\\data.`
 
 On Mac OS X the default path will be :file:`~//Library//Application Support/Research Assistant//data.`
 
@@ -91,7 +91,7 @@ For most Linux distributions the default path will be :file:`~//.local//share//R
 
 .. note::
 
-      **It is best practice to not modify or work with the original data files where this is avoidable.**
+      It is best practice to **not** modify or work with the original data files where this is avoidable.
       
       This is expected behaviour for unsigned software downloaded from the internet. It is meant to get you to
       check that you've downloaded the Software from a reputable source before running it.
