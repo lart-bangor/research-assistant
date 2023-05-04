@@ -154,3 +154,20 @@ html_show_sphinx = False
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# Add redirection/warning to every page from old docs to redirect to new docs
+rst_prolog = """.. attention::
+    You're viewing an old version of the L'ART Research Assistant documentation.
+    The project has moved to
+    https://lart.readthedocs.io/projects/research-assistant.
+
+.. only:: html
+
+   .. raw:: html
+
+      <script type="text/javascript">
+        const currentURL = window.location.href;
+        const newURL = currentURL.replace(/research-client.readthedocs.io/i, 'lart.readthedocs.io/projects/research-assistant');
+        window.location.replace(newURL);
+      </script>
+"""
