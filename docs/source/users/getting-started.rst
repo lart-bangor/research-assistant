@@ -11,8 +11,8 @@ Upon starting the app on your device, both the L’ART Research Assistant app an
       L’ART Research Assistant home screen
 
 
-.. figure:: figures/research_client_terminal.png
-      :name: research_client_terminal
+.. figure:: figures/research_assistant_terminal.png
+      :name: research_assistant_terminal
       :width: 400
       :alt: Screenshot of completing the L'ART Research Assistant Terminal
 

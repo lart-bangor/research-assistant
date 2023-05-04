@@ -58,12 +58,13 @@ for all you need to know to get going.
 Citing
 ------
 
-If you use the L’ART Research Client (or parts of it), please cite the following document or directly
+If you use the L’ART Research Assistant (or parts of it), please cite the following document or directly
 import the project's
 `citation metadata <https://raw.githubusercontent.com/lart-bangor/research-assistant/main/CITATION.cff>`_
 into your reference manager.
 
-   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2022). The L’ART Research Assistant app: A digital toolkit for bilingualism and language attitude research [Software, version 0.5.0]. Bangor University.
+   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). The L’ART Research Assistant app: A digital toolkit for bilingualism and language attitude research [Software, version 0.5.0]. Bangor University.
+    `DOI: <http://dx.doi.org/10.13140/RG.2.2.18801.35686>`_.
 
 
 Questions, issues, ...

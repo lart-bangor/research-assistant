@@ -7,7 +7,7 @@ Installing on Windows 10/11
 #. Download the official Windows installer for the L'ART Research Assistant on Windows.
 
    You can find the latest release (as well as earlier versions) at
-   `github.com/lart-bangor/research-client/releases <https://github.com/lart-bangor/research-client/releases>`_.
+   `github.com/lart-bangor/research-assistant/releases <https://github.com/lart-bangor/research-assistant/releases>`_.
 
 #. Once downloaded to your device, open the *Downloads* dialogue in the browser and click :guilabel:`Open file`.
    Alternatively, navigate to your :file:`Downloads` folder in File Explorer and double click on the installer file.
@@ -95,8 +95,8 @@ Installing on Windows 10/11
 
 #. Click :guilabel:`Install` to install the L’ART Research Assistant app on your device. 
 
-   .. figure:: figures/user_install_research_client.png
-      :name: user_install_research_client
+   .. figure:: figures/user_install_research_assistant.png
+      :name: user_install_research_assistant
       :width: 400
       :alt: Screenshot of application ready for installation.
 
@@ -104,8 +104,8 @@ Installing on Windows 10/11
 
 #. Complete setup by clicking :guilabel:`Finish` and enjoy!
 
-   .. figure:: figures/complete_setup_research_client.png
-      :name: complete_setup_research_client
+   .. figure:: figures/complete_setup_research_assistant.png
+      :name: complete_setup_research_assistant
       :width: 400
       :alt: Screenshot of completing the L'ART Research Assistant Setup Wizard
 
@@ -137,10 +137,10 @@ below to install the Python package and all its dependencies:
    $ sudo snap install chromium
    $ sudo apt update && sudo apt upgrade -y
    $ sudo apt install pipx -y
-   $ pipx install research-client
-   $ research-client
+   $ pipx install research-assistant
+   $ research-assistant
 
-You can now launch the app by simply running the command :code:`research-client` from a terminal. If
+You can now launch the app by simply running the command :code:`research-assistant` from a terminal. If
 this doesn't work straight away, you might need to log out and log back in before launching the app
 for the first time.
 
@@ -155,7 +155,7 @@ for the first time.
       wget https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz
       tar -xf ./v\ |version|\ .tar.gz
       rm ./v\ |version|\ .tar.gz
-      cd research-client-|version|
+      cd research-assistant-|version|
       python3.10 -m pipenv install
       python3.10 -m pipenv run python ./manage.py run
 
@@ -165,9 +165,9 @@ for the first time.
    .. code-block:: console
 
       $ cd ~/.local/bin
-      $ echo > research-client
-      $ chmod +x research-client
-      $ gedit research-client
+      $ echo > research-assistant
+      $ chmod +x research-assistant
+      $ gedit research-assistant
 
    In the editor that pops up, enter the following text and then save the file:
 
@@ -175,10 +175,10 @@ for the first time.
 
       #!/usr/bin/env bash
 
-      python3.10 -m research-client
+      python3.10 -m research-assistant
 
    After saving the above, you can now launch the Research Assistant from the terminal by
-   just typing in :code:`research-client` and hitting :kbd:`Enter`. (You may need to
+   just typing in :code:`research-assistant` and hitting :kbd:`Enter`. (You may need to
    log out and log back in if this doesn't work straight away...)
 
 
@@ -240,9 +240,9 @@ To run as a Python package, follow these instructions:
    you're ready to continue.
 
 #. From the Terminal, install the Research Assistant with the command
-   :code:`pip3 install research-client`.
+   :code:`pip3 install research-assistant`.
 
-   This will download and install the research-client and all its dependencies (other than Chrome,
+   This will download and install the research-assistant and all its dependencies (other than Chrome,
    which you should have installed from the app store already).
 
 .. #. Install :command:`pipenv` with the command :code:`pip3 install pipenv`. This should
@@ -254,24 +254,24 @@ To run as a Python package, follow these instructions:
       .. parsed-literal::
 
          cd ~
-         curl -L https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz -o research-client.tar.gz
-         tar -xf ./research-client.tar.gz
-         rm research-client.tar.gz
-         mv research-client-|version| research-client
-         cd research-client
+         curl -L https\ :/\ |github_refs_tags_url|\ |version|\ .tar.gz -o research-assistant.tar.gz
+         tar -xf ./research-assistant.tar.gz
+         rm research-assistant.tar.gz
+         mv research-assistant-|version| research-assistant
+         cd research-assistant
          python3 -m pipenv install
 
-   .. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-client/archive/refs/tags/v
+   .. |github_refs_tags_url| replace:: /github.com/lart-bangor/research-assistant/archive/refs/tags/v
 
 #. You can now launch the app from within a Terminal using the following command:
    
    .. code-block:: console
 
-      $ python3 -m research-client
+      $ python3 -m research-assistant
 
 
-Obviously, you may not want to open a Terminal, do :code:`cd ~/research/client` and then
-type :code:`python3 -m research-client` every time. You can create
+Obviously, you may not want to open a Terminal, do :code:`cd ~/research/assistant` and then
+type :code:`python3 -m research-assistant` every time. You can create
 a shortcut which can be clicked to launch the app by following these additional steps:
 
 #. Make an executable :file:`.command` file on your Desktop directory (:file:`~/Desktop`)
@@ -291,7 +291,7 @@ a shortcut which can be clicked to launch the app by following these additional 
 
       #!/bin/bash
 
-      python3 -m research-client
+      python3 -m research-assistant
 
 #. Once you've created the :file:`Research-Assistant.command` file as per the two steps above,
    you can just locate it on your Desktop or in Finder (e.g. launch Finder, then in the top

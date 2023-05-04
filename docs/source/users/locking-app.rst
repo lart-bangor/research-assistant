@@ -11,8 +11,8 @@ Researchers might find it useful however to unlock the app and access such funct
 screen if an error was inadvertently made, or to reload the current screen if for any reason something isn’t rendered correctly.
 Unlocking the app is also useful for researchers who develop new localisations of a task (see :ref:`localisation`).
 
-.. figure:: figures/unlockingapp_research_client_menu.png
-      :name: unlockingapp_research_client_menu
+.. figure:: figures/unlockingapp_research_assistant_menu.png
+      :name: unlockingapp_research_assistant_menu
       :width: 400
       :alt: Screenshot of LART Research Assistant menu
 

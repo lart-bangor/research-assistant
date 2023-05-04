@@ -9,10 +9,10 @@ This documentation is for version |version|.
    .. raw:: html
 
       <p>
-         <a class="btn btn-info" href="https://github.com/lart-bangor/research-client/releases">📥 Download</a>
+         <a class="btn btn-info" href="https://github.com/lart-bangor/research-assistant/releases">📥 Download</a>
          <a class="btn btn-info" href="users/index.html">🧭 User Guide</a>
          <a class="btn btn-info" href="tutorials/index.html">📜 Quick Tutorials</a>
-         <a class="btn btn-info" href="https://github.com/lart-bangor/research-client/discussions">🛟 Support</a>
+         <a class="btn btn-info" href="https://github.com/lart-bangor/research-assistant/discussions">🛟 Support</a>
       </p>
 
 

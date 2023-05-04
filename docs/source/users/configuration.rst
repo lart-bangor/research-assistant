@@ -147,7 +147,7 @@ own backups and not overly relying on system backup features --- those should be
 
 .. confval:: Path for configuration files
       :type: Path to a directory
-      :default: :code:`%AppData%\\LART\\Research Client` (on Windows)
+      :default: :code:`%AppData%\\LART\\Research Assistant` (on Windows)
 
       This is the path where the app will look for configuration files (such as :file:`settings.json`, the file in which these settings are stored).
       As opposed to the other paths, changes to the value here will have no discernible effect and will revert automatically upon start-up.
@@ -155,20 +155,20 @@ own backups and not overly relying on system backup features --- those should be
 
 .. confval:: Path for data files
       :type: Path to a directory
-      :default: :code:`%AppData%\\LART\\Research Client\\Data` (on Windows)
+      :default: :code:`%AppData%\\LART\\Research Assistant\\Data` (on Windows)
 
       This is the path where data files, i.e. the participants' responses, from the app tasks are stored.
 
 .. confval:: Path for log files
       :type: Path to a directory
-      :default: :code:`%AppData%\\LART\\Research Client\\Logs` (on Windows)
+      :default: :code:`%AppData%\\LART\\Research Assistant\\Logs` (on Windows)
 
       This is the path where the app's log files are stored and will be handy to know if you ever have to debug or report an error. However,
       note the potential data security policy implications noted in the `Logging settings`_ section above.
 
 .. confval:: Path for temporarily cached data and files
       :type: Path to a directory
-      :default: :code:`%LocalAppData%\\LART\\Research Client\\Cache` (on Windows)
+      :default: :code:`%LocalAppData%\\LART\\Research Assistant\\Cache` (on Windows)
 
       This is the path to a directory where the app may temporarily cache (sore, modify, delete) various filed during operation.
 

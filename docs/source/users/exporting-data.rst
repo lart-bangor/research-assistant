@@ -44,7 +44,7 @@ In order to follow the file path, you must show hidden items in the :guilabel:`v
 
 Next, discover your ZIP Archive exported data file via the following path: 
 
-:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchClient\\`
+:file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\`
 
 Open up your ZIP Archive back up and open the folder that corresponds to the task used in your study. 
 
@@ -83,11 +83,11 @@ equates to a number (how your participant rated the language for the trait via t
 For advanced users who want to automate export or backup of the responses, or monitor and integrate these files
 with some other system, the files can be accessed directly on the system. 
 
-On Windows these are stored in the Roaming profile by default, identified by the path :file:`%AppData%\\LART\\Research Client\\data.`
+On Windows these are stored in the Roaming profile by default, identified by the path :file:`%AppData%\\LART\\Research Assistant\\data.`
 
-On Mac OS X the default path will be :file:`~//Library//Application Support/Research Client//data.`
+On Mac OS X the default path will be :file:`~//Library//Application Support/Research Assistant//data.`
 
-For most Linux distributions the default path will be :file:`~//.local//share//Research Client//data.`
+For most Linux distributions the default path will be :file:`~//.local//share//Research Assistant//data.`
 
 .. note::
 
