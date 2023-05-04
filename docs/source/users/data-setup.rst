@@ -4,7 +4,7 @@ Setting up data collection and obtaining consent
 ================================================
 
 There are two possible paths available to the researcher to collect data with the
-L’ART Research Client. Your preference will depend on how you wish to obtain informed
+L’ART Research Assistant. Your preference will depend on how you wish to obtain informed
 consent from your participants. 
 
 Should you wish to obtain your participants’ consent on paper for any reason (e.g., you
@@ -31,7 +31,7 @@ To obtain consent digitally, open the side menu on the top left-handby clicking 
 .. figure:: figures/data_setup_rc_side_menu.png
       :name: data_setup_rc_side_menu
       :width: 350
-      :alt: Screenshot of the L'ART Research Clients' side menu
+      :alt: Screenshot of the L'ART Research Assistant's side menu
 
       The side menu of the L'ART app
 

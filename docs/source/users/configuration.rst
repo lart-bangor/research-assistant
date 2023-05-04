@@ -7,7 +7,7 @@ can be changed on the settings page. The various options are discussed in some d
 .. figure:: figures/app_settings_menu.png
       :name: app_settings_menu
       :width: 200
-      :alt: Screenshot of completing the L'ART Research Client menu
+      :alt: Screenshot of completing the L'ART Research Assistant menu
 
       Open the sidebar to enter settings
 

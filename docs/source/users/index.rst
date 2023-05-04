@@ -1,12 +1,12 @@
 User Guide
 ============
 
-The L’ART Research Client User Guide covers everything you need to know to install the Research Client, 
+The L’ART Research Assistant User Guide covers everything you need to know to install the Research Assistant, 
 set it up and begin data collection.
 
 For users who wish to customise any of the tasks or add new translations, there are :doc:`../tutorials/index`
 to help you through the process. For developers who may want to contrribute further developments to the
-Research Client or build additional tasks, a technical documentation can be found in the
+Research Assistant or build additional tasks, a technical documentation can be found in the
 :doc:`../developers/index`.
 
 

@@ -4,7 +4,7 @@ Installation
 Installing on Windows 10/11
 ---------------------------
 
-#. Download the official Windows installer for the L'ART Research Client on Windows.
+#. Download the official Windows installer for the L'ART Research Assistant on Windows.
 
    You can find the latest release (as well as earlier versions) at
    `github.com/lart-bangor/research-client/releases <https://github.com/lart-bangor/research-client/releases>`_.
@@ -55,7 +55,7 @@ Installing on Windows 10/11
 
       Install mode setup
 
-#. Click :guilabel:`Yes` to allow L'ART Research Client to make changes to your device
+#. Click :guilabel:`Yes` to allow L'ART Research Assistant to make changes to your device
    (namely, to install the app).
 
    .. figure:: figures/user_account_control_screen.png
@@ -93,23 +93,23 @@ Installing on Windows 10/11
 
       Select destination location
 
-#. Click :guilabel:`Install` to install the L’ART Research Client app on your device. 
+#. Click :guilabel:`Install` to install the L’ART Research Assistant app on your device. 
 
    .. figure:: figures/user_install_research_client.png
       :name: user_install_research_client
       :width: 400
       :alt: Screenshot of application ready for installation.
 
-      Install Research Client app
+      Install Research Assistant app
 
 #. Complete setup by clicking :guilabel:`Finish` and enjoy!
 
    .. figure:: figures/complete_setup_research_client.png
       :name: complete_setup_research_client
       :width: 400
-      :alt: Screenshot of completing the L'ART Research Client Setup Wizard
+      :alt: Screenshot of completing the L'ART Research Assistant Setup Wizard
 
-      Complete setup of Research Client app
+      Complete setup of Research Assistant app
 
 
 Installing on Linux
@@ -145,7 +145,7 @@ this doesn't work straight away, you might need to log out and log back in befor
 for the first time.
 
 .. The easiest way is to run directly from source. On Ubuntu 22.04, follow the steps below the get
-   the source code and all the dependencies installed. The last line will run the Research Client.
+   the source code and all the dependencies installed. The last line will run the Research Assistant.
 
    .. parsed-literal::
 
@@ -177,7 +177,7 @@ for the first time.
 
       python3.10 -m research-client
 
-   After saving the above, you can now launch the Research Client from the terminal by
+   After saving the above, you can now launch the Research Assistant from the terminal by
    just typing in :code:`research-client` and hitting :kbd:`Enter`. (You may need to
    log out and log back in if this doesn't work straight away...)
 
@@ -197,7 +197,7 @@ be installed in the appropriate way for you system or run directly from the
 executable therein.
 
 The only real advantage this might offer is if you want to install the
-Research Client on several machines, as you can just copy over the tarball,
+Research Assistant on several machines, as you can just copy over the tarball,
 exctract it and run the app, without needing to worry about any dependencies
 (they are all packaged together when the executable is built). There is no
 real additional advantage over running as a Python package.
@@ -239,7 +239,7 @@ To run as a Python package, follow these instructions:
    prints something like "Python 3.10.10". This means python has installed correctly and
    you're ready to continue.
 
-#. From the Terminal, install the Research Client with the command
+#. From the Terminal, install the Research Assistant with the command
    :code:`pip3 install research-client`.
 
    This will download and install the research-client and all its dependencies (other than Chrome,
@@ -280,9 +280,9 @@ a shortcut which can be clicked to launch the app by following these additional 
    .. code-block:: console
 
       $ cd ~/Desktop/
-      $ echo > Research-Client.command
-      $ chmod +x ./Research-Client.command
-      $ open -a TextEdit ./Research-Client.command
+      $ echo > Research-Assistant.command
+      $ chmod +x ./Research-Assistant.command
+      $ open -a TextEdit ./Research-Assistant.command
 
 #. In the editor that popped up with the last command above, copy and paste the following
    code, then save and close the file.
@@ -293,10 +293,10 @@ a shortcut which can be clicked to launch the app by following these additional 
 
       python3 -m research-client
 
-#. Once you've created the :file:`Research-Client.command` file as per the two steps above,
+#. Once you've created the :file:`Research-Assistant.command` file as per the two steps above,
    you can just locate it on your Desktop or in Finder (e.g. launch Finder, then in the top
    click on :menuselection:`Go -> Home`, and open the :file:`Desktop` folder) and then drag
-   and drop the :file:`Research-Client.command` onto your dock.
+   and drop the :file:`Research-Assistant.command` onto your dock.
 
    When you click on the file in the dock or on the Desktop now, it should launch a Terminal
    window together with the app.

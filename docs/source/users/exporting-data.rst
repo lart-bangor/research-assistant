@@ -12,7 +12,7 @@ For the simplest way to do this, open the side menu, and click on :guilabel:`Exp
 .. figure:: figures/exporting_data_side_bar.png
       :name: exporting_data_side_bar
       :width: 400
-      :alt:  Screenshot of L'ART Research Client menu
+      :alt:  Screenshot of L'ART Research Assistant menu
 
       Open the side bar to export data
 

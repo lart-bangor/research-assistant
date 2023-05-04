@@ -16,7 +16,7 @@ relatively little previous experience of software development.
 Installing the pre-requirements
 -------------------------------
 
-To work on the L'ART Research Client codebase, you need to have at least the following:
+To work on the L'ART Research Assistant codebase, you need to have at least the following:
 
 * `git <https://git-scm.com>`_ -- The version management system we use
 * `python <https://python.org>`_ (version >= 3.10) -- The primary programming language of the app
@@ -166,7 +166,7 @@ These are the steps you need to follow to get a current copy of the sourcecode:
       
       You will also have to make a fork if you want to make a *pull request* later, which is
       what you would do to have your modifications adopted in our official repository and
-      included in future builds of the L'ART Research Client.
+      included in future builds of the L'ART Research Assistant.
 
       For more information, check out how to
       `fork a repo <https://docs.github.com/en/get-started/quickstart/fork-a-repo>`_ in the

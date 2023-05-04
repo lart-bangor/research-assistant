@@ -14,7 +14,7 @@ Unlocking the app is also useful for researchers who develop new localisations o
 .. figure:: figures/unlockingapp_research_client_menu.png
       :name: unlockingapp_research_client_menu
       :width: 400
-      :alt: Screenshot of LART Research Client menu
+      :alt: Screenshot of LART Research Assistant menu
 
       Open the sidebar to unlock the app
 

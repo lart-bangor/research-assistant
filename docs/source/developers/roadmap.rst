@@ -1,7 +1,7 @@
 Roadmap
 =======
 
-The below roadmap should give an idea of what features and enhancements to the L'ART Research Client that we envision and
+The below roadmap should give an idea of what features and enhancements to the L'ART Research Assistant that we envision and
 plan to implement in the future. It also gives some idea of the various stages at which we would like to implement these ---
 though these are not necessarily set in stone and may be adjusted as our available development time (and demand for the
 features) dictates.
