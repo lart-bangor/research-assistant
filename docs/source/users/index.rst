@@ -37,7 +37,6 @@ Research Assistant or build additional tasks, a technical documentation can be f
    data-setup
    collecting-responses
    research-task-lsbqe
-   excludable-questions
    research-task-atol
    research-task-agt
    locking-app
