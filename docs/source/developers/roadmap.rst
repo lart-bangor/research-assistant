@@ -1,7 +1,7 @@
 Roadmap
 =======
 
-The below roadmap should give an idea of what features and enhancements to the L'ART Research Client that we envision and
+The below roadmap should give an idea of what features and enhancements to the L'ART Research Assistant that we envision and
 plan to implement in the future. It also gives some idea of the various stages at which we would like to implement these ---
 though these are not necessarily set in stone and may be adjusted as our available development time (and demand for the
 features) dictates.
@@ -11,7 +11,7 @@ to achieve, and how we might go about that, but we explicitly choose to make it 
 collaborators can get a sense for where things might be heading --- and of course have a chance to influence that.
 
 If you would like to dicuss any of the planned enhancements or additional ideas you have, we would very much welcome your
-input via the `Ideas section on GitHub Discussions <https://github.com/lart-bangor/research-client/discussions/categories/ideas>`_.
+input via the `Ideas section on GitHub Discussions <https://github.com/lart-bangor/research-assistant/discussions/categories/ideas>`_.
 
 =============  ===============================  =================================  ===========================  ================
 **Milestone**  **Research Tasks**               **Usability**                      **Data Management**          **Integrations**

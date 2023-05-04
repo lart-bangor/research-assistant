@@ -1,7 +1,7 @@
 lart.tr
 =======
 
-On-the-fly client-side translation management for the L'ART Research Client.
+On-the-fly client-side translation management for the L'ART Research Assistant.
 
 This namespace implements functionality to facilitate the on-the-fly translation
 of user interface elements with strings loaded on-demand from the backend.

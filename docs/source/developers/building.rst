@@ -10,7 +10,7 @@ followed the steps to :doc:`setup` and :ref:`run_from_source` works already.
 Additional build dependencies
 -----------------------------
 
-The L'ART Research Client app is built with `PyInstaller`_, and `Inno Setup`_ is used on
+The L'ART Research Assistant app is built with `PyInstaller`_, and `Inno Setup`_ is used on
 Windows to package it up as an executable installer.
 
 PyInstaller

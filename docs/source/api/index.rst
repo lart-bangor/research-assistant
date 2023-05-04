@@ -6,7 +6,7 @@ API Documentation
 Backend API (Python)
 ^^^^^^^^^^^^^^^^^^^^
 
-.. currentmodule:: research_client
+.. currentmodule:: research_assistant
 
 .. autosummary::
     :toctree: generated

@@ -1,0 +1,430 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}L’ART Research Assistant - LSBQₑ - Community Language Use Behaviour{% endblock %}
+{% block headline %}<span id="lsbqAppTitle" data-lsbq-tr="base.appTitle">Language and Social Background Questionnaire</span>{% endblock %}
+{% block head_scripts %}{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="container-fluid p-2">
+
+        <div class="progress m-4">
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%"></div>
+        </div>
+
+        <div class="row m-4 text-center">
+            <h2 id="lsbqSectionTitle" data-lsbq-tr="club.secTitle">Community Language Use Behaviour</h2>
+        </div>
+
+        <form id="surveyCLUBForm" class="needs-validation" autocomplete="off">
+
+            <!-- Template for sliders -->
+            <template id="clubSliderTemplate">
+                <div data-template-field-prefix="[FieldPrefix]" data-template-field-name="[FieldName]" data-template-field-label="[FieldLabel]" data-template-field-hint="[FieldHint]" data-template-field-required="true">
+                    <div id="[FieldPrefix]Instance-[FieldName]">
+                        <div class="row mb-1">
+                            <label id="[FieldPrefix]Label-[FieldName]" for="[FieldPrefix]-[FieldName]" class="col-2 col-form-label">
+                                <span>[FieldLabel]</span><br />
+                                <span class="text-muted small" id="[FieldPrefix]Hint-[FieldName]">[FieldHint]</span><br />
+                            </label>
+                            <div class="col-9 mt-2">
+                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="[FieldPrefix]-[FieldName]" required />
+                                <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
+                            </div>
+                            <div class="col-1" id="[FieldPrefix]NotApplicableOption-[FieldName]">
+                                <p  class="text-muted d-inline-block ps-2"
+                                    id="[FieldPrefix]NotApplicableOptionPara-[FieldName]"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="left"
+                                    data-bs-html="true"
+                                    title="Please mark this box <i>only</i> if you do not use either of these languages in the described context."
+                                >
+                                    <input  class="form-check-input align-text-top"
+                                            type="checkbox"
+                                            id="[FieldPrefix]NotApplicable-[FieldName]"
+                                            name="[FieldPrefix]NotApplicable-[FieldName]"
+                                    />
+                                    <label class="form-check-label" for="[FieldPrefix]NotApplicable-[FieldName]" data-lsbq-tr="base.notApplicableAbbr">N/A</label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        activateClubSliderTemplate(document.currentScript.parentElement);
+                    </script>
+                </div>
+            </template>
+            <script type="text/javascript">
+                function activateClubSliderTemplate(templateElement) {
+                    // Get data for the slider
+                    if (!templateElement) {
+                        booteel.logger.error("Template instance could not retreive its container.");
+                    }
+                    const templateData = templateElement.dataset;
+                    const fieldPrefix = templateData.templateFieldPrefix;
+                    const fieldName = templateData.templateFieldName;
+                    const fieldLabel = templateData.templateFieldLabel;
+                    let fieldHint = templateData.templateFieldHint;
+                    let fieldRequired = templateData.templateFieldRequired;
+                    if ( fieldPrefix == "[FieldPrefix]" || fieldName == "[FieldName]" || fieldLabel == "[FieldLabel]" ) {
+                        booteel.logger.error(
+                            "Template instance is missing one or more required data attributes (templateFieldPrefix, templateFieldName, templateFieldLabel)."
+                        );
+                    }
+                    if ( !fieldHint || fieldHint == "[FieldHint]" ) {
+                        fieldHint = "";
+                    }
+                    if ( !fieldRequired || fieldRequired == "false" ) {
+                        fieldRequired = false;
+                    } else {
+                        fieldRequired = true;
+                    }
+                    // Replace placeholder strings in template
+                    booteel.util.replaceInDOM(
+                        templateElement,
+                        {
+                            "[FieldPrefix]": fieldPrefix,
+                            "[FieldName]": fieldName,
+                            "[FieldLabel]": fieldLabel,
+                            "[FieldHint]": fieldHint
+                        }
+                    );
+                    // Remove or activate NA option
+                    const notApplicableOption = document.getElementById(`${fieldPrefix}NotApplicableOption-${fieldName}`);
+                    if (fieldRequired) {
+                        notApplicableOption.parentNode.removeChild(notApplicableOption);
+                    } else {
+                        const tt = new bootstrap.Tooltip(notApplicableOption.firstElementChild);
+                        lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}-${fieldName}`, 'on', 'equal');
+                        lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}Label-${fieldName}`, 'on', 'equal');
+                        let ttTranslationOptions = {};
+                        ttTranslationOptions[notApplicableOption.firstElementChild.id] = ["data-bs-original-title", "club.itemNotApplicableInfo"];  // NB: title attribute is removed by bootstrap tooltip
+                        lart.tr.translateAttrs('lsbq', ttTranslationOptions);
+                    }
+                    // Sync the hint's left edge with the label
+                    //const hintElement = document.getElementById(`${fieldPrefix}Hint-${fieldName}`);
+                    //syncClubSliderHint(hintElement);
+                }
+                function syncClubSliderHint(hintElement) {
+                    const parentElement = hintElement.parentElement;
+                    const siblingElement = parentElement.firstElementChild;
+                    const resizeCallback = function (event) {
+                        const parentWidth = parentElement.getBoundingClientRect().width;
+                        const siblingWidth = siblingElement.getBoundingClientRect().width;
+                        const leftShift = parentWidth - siblingWidth;
+                        const parentStyle = window.getComputedStyle(parentElement);
+                        const parentBoxDiff = parseInt(parentStyle.marginLeft) + parseInt(parentStyle.paddingLeft);
+                        hintElement.style.paddingLeft = `${leftShift - parentBoxDiff*2}px`;
+                    }
+                    resizeCallback(null);
+                    window.addEventListener('resize', resizeCallback);
+                }
+            </script>
+
+            <!-- 13. Language use at various life stages -->
+            <section class="m-4">
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p data-lsbq-tr="club.lifeStageInstructions">
+                            Please indicate which language or dialect you most frequently heard or used
+                            in the following life stages, both inside and outside home.
+                        </p>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-2"></div>
+                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                        Only [MajorityLanguage]
+                    </div>
+                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                        Half/Half
+                    </div>
+                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                        Only [RML]
+                    </div>
+                </div>
+                <div id="lifeStageSlot">
+                    <!-- Placeholder dynamically filled with copies of clubSliderTemplate -->
+                </div>
+            </section>
+
+            <!-- 14. Language use with other people now -->
+            <section class="m-4">
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p data-lsbq-tr="club.withPeopleNowInstructions">
+                            Please indicate which language or dialect you generally use when speaking to the following people.
+                        </p>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-2"></div>
+                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                        Only [MajorityLanguage]
+                    </div>
+                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                        Half/Half
+                    </div>
+                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                        Only [RML]
+                    </div>
+                </div>
+                <div id="withPeopleNowSlot">
+                    <!-- Placeholder dynamically filled with copies of clubSliderTemplate -->
+                </div>
+            </section>
+
+            <!-- 15. Language use with people in early life -->
+            <section class="m-4">
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p data-lsbq-tr="club.withPeopleEarlyLifeInstructions">
+                            Please indicate which language or dialect you generally use when speaking to the following people.
+                        </p>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-2"></div>
+                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                        Only [MajorityLanguage]
+                    </div>
+                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                        Half/Half
+                    </div>
+                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                        Only [RML]
+                    </div>
+                </div>
+                <div id="withPeopleEarlyLifeSlot">
+                    <!-- Placeholder dynamically filled with copies of clubSliderTemplate -->
+                </div>
+            </section>
+
+            <!-- 16. Language use in different situations -->
+            <section class="m-4">
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p data-lsbq-tr="club.situationInstructions">
+                            Please indicate which language or dialect you generally use in the following situations.
+                        </p>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-2"></div>
+                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                        Only [MajorityLanguage]
+                    </div>
+                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                        Half/Half
+                    </div>
+                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                        Only [RML]
+                    </div>
+                </div>
+                <div id="situationSlot">
+                    <!-- Placeholder dynamically filled with copies of clubSliderTemplate -->
+                </div>
+            </section>
+
+            <!-- 17. Language use for different activities -->
+            <section class="m-4">
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p data-lsbq-tr="club.activityInstructions">
+                            Please indicate which language or dialect you generally use for the following activities.
+                        </p>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-2"></div>
+                    <div class="col-3 text-start" data-lsbq-tr="club.onlyMajorityLanguage">
+                        Only [MajorityLanguage]
+                    </div>
+                    <div class="col-3 text-center" data-lsbq-tr="club.halfHalf">
+                        Half/Half
+                    </div>
+                    <div class="col-3 text-end" data-lsbq-tr="club.onlyRML">
+                        Only [RML]
+                    </div>
+                </div>
+                <div id="activitySlot">
+                    <!-- Placeholder dynamically filled with copies of clubSliderTemplate -->
+                </div>
+            </section>
+
+            <!-- 18. Code-switching -->
+            <section class="m-4 codeSwitchingOption">
+                <div class="row mb-1">
+                    <div class="col-auto">
+                        <p class="mb-0" data-lsbq-tr="club.codeSwitchingInstructions">
+                            Some people switch between the languages they know within a single conversation.
+                            For example, while speaking in one language they may use sentences or words from the other language.
+                            This is known as “code-switching”. Please indicate how often you engage in code-switching.
+                        </p>
+                        <p class="help-block p-2 text-muted ps-0 small"><i class="bi-info-circle text-info"></i> <span data-lsbq-tr="club.codeSwitchingHint">If you only know one language, select <i>N/A</i> for all items.</span></p>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-2"></div>
+                    <div class="col-3 text-start" data-lsbq-tr="club.noneOfTheTime">
+                        None of the time
+                    </div>
+                    <div class="col-3 text-center">
+                    </div>
+                    <div class="col-3 text-end" data-lsbq-tr="club.allOfTheTime">
+                        All of the time
+                    </div>
+                </div>
+                <div id="codeSwitchingSlot">
+                    <!-- Placeholder dynamically filled with copies of clubSliderTemplate -->
+                </div>
+            </section>
+
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div clas="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-lsbq-tr="base.next">Next</button>
+                </div>
+            </div>
+
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script type="text/javascript">
+        lart.forms.requireValidation(true);
+        // Translate form for specific version
+        let instanceId = lart.forms.searchParams.get('instance');
+        lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'club']]);
+        lart.tr.registerObserver('lsbq', 'surveyCLUBForm');
+        lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
+        lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
+
+        // Defaults for slider fields
+        const clubDefaults = {
+            "lifeStageFields": {
+                "infancy":      ["Infancy"],
+                "nurseryAge":   ["Nursery age"],
+                "primaryAge":   ["Primary age"],
+                "secondaryAge": ["Secondary age"]
+            },
+            "withPeopleNowFields": {
+                "parents":          ["Parents"],
+                "children":         ["Children"],
+                "siblings":         ["Siblings"],
+                "grandparents":     ["Grandparents"],
+                "otherRelatives":   ["Other relatives"],
+                "partner":          ["Partner"],
+                "friends":          ["Friends"],
+                "flatmates":        ["Flat/housemates"],
+                "neighbours":       ["Neighbours"]
+            },
+            "withPeopleEarlyLifeFields": {
+                "parents":          ["Parents"],
+                "siblings":         ["Siblings"],
+                "grandparents":     ["Grandparents"],
+                "otherRelatives":   ["Other relatives"],
+                "friends":          ["Friends"],
+                "neighbours":       ["Neighbours"]
+            },
+            "situationFields": {
+                "home":         ["Home"],
+                "school":       ["School"],
+                "work":         ["Work"],
+                "socialising":  ["Socialising"],
+                "religion":     ["Religion"],
+                "leisure":      ["Leisure activities", "(hobbies, sports, volunteering, gaming, …)"],
+                "commercial":   ["Commercial", "(shopping, restaurants, …)"],
+                "public":       ["Public affairs", "(healthcare services, banks, government, council, …)"]
+            },
+            "activityFields": {
+                "reading":          ["Reading"],
+                "emailing":         ["Emailing"],
+                "texting":          ["Texting"],
+                "socialMedia":      ["Social media"],
+                "notes":            ["Notes", "(shopping list, memos, notes, …)"],
+                "traditionalMedia": ["TV, films, radio"],
+                "internet":         ["Internet"],
+                "praying":          ["Praying"]
+            },
+            "codeSwitchingFields": {
+                "parentsAndFamily": ["With parents and family"],
+                "friends":          ["With friends"],
+                "socialMedia":      ["On social media"]
+            }
+        }
+        // Dynamically insert rating scales
+        function insertClubSliders(sliderTemplate, sliderSlot, fieldPrefix, sliderFields, fieldsRequired = "false") {
+            for (const fieldName in sliderFields) {
+                const clone = sliderTemplate.content.firstElementChild.cloneNode(true);
+                const fieldLabel = sliderFields[fieldName][0];
+                const fieldHint = sliderFields[fieldName].length > 1 ? sliderFields[fieldName][1] : "";
+                clone.dataset.templateFieldPrefix = fieldPrefix;
+                clone.dataset.templateFieldName = fieldName;
+                clone.dataset.templateFieldLabel = fieldLabel;
+                clone.dataset.templateFieldHint = fieldHint;
+                clone.dataset.templateFieldRequired = fieldsRequired;
+                sliderSlot.appendChild(clone);
+            }
+            lart.forms.monitorRangeInputs(sliderSlot.id);
+        }
+        function fillClubSliders() {
+            if ('lsbq' in lart.tr.strings && 'meta' in lart.tr.strings['lsbq']) {
+                //Merge in translations
+                let clubTranslations = {};
+                for (const key in clubDefaults) {
+                    clubTranslations[key] = {};
+                    const trFields = lart.tr.get('lsbq', `club.${key}`);
+                    for (const subkey in clubDefaults[key]) {
+                        if (trFields && subkey in trFields) {
+                            clubTranslations[key][subkey] = trFields[subkey];
+                        } else {
+                            clubTranslations[key][subkey] = clubDefaults[key][subkey];
+                            lart.tr.addMissing('lsbq', `club.${key}.${subkey}`, clubDefaults[key][subkey]);
+                        }
+                    }
+                }
+                // Insert sliders for each question
+                const clubSliderTemplate = document.getElementById('clubSliderTemplate');
+                const lifeStageSlot = document.getElementById('lifeStageSlot');
+                insertClubSliders(clubSliderTemplate, lifeStageSlot, "lifeStage", clubTranslations.lifeStageFields, "true");
+                const withPeopleNowSlot = document.getElementById('withPeopleNowSlot');
+                insertClubSliders(clubSliderTemplate, withPeopleNowSlot, "withPeopleNow", clubTranslations.withPeopleNowFields, "false");
+                const withPeopleEarlyLifeSlot = document.getElementById('withPeopleEarlyLifeSlot');
+                insertClubSliders(clubSliderTemplate, withPeopleEarlyLifeSlot, "withPeopleEarlyLife", clubTranslations.withPeopleEarlyLifeFields, "false");
+                const situationSlot = document.getElementById('situationSlot');
+                insertClubSliders(clubSliderTemplate, situationSlot, "situation", clubTranslations.situationFields, "false");
+                const activitySlot = document.getElementById('activitySlot');
+                insertClubSliders(clubSliderTemplate, activitySlot, "activity", clubTranslations.activityFields, "false");
+                const codeSwitchingSlot = document.getElementById('codeSwitchingSlot');
+                if (codeSwitchingSlot) {
+                    insertClubSliders(clubSliderTemplate, codeSwitchingSlot, "codeSwitching", clubTranslations.codeSwitchingFields, "false");
+                }
+                return;
+            }
+            setTimeout(fillClubSliders, 100);
+        }
+        setTimeout(fillClubSliders, 250);
+
+        // Implement configuration options for LSB
+        function configureCLUB() {
+            const options = lart.tr.get("lsbq", "meta.options");
+            // club_show_codeswitching - default: true
+            if ('club_show_codeswitching' in options && options.club_show_codeswitching == false) {
+                const nodesToRemove = document.querySelectorAll('.codeSwitchingOption');
+                for (const nodeToRemove of nodesToRemove) {
+                    nodeToRemove.remove();
+                }
+            }
+        }
+        lart.tr.registerCallback("lsbq", configureCLUB);
+    </script>
+    {{ lart_form_pipeline('surveyCLUBForm', '_lsbq_setclub') }}
+{% endblock %}

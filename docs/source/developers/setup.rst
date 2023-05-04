@@ -16,7 +16,7 @@ relatively little previous experience of software development.
 Installing the pre-requirements
 -------------------------------
 
-To work on the L'ART Research Client codebase, you need to have at least the following:
+To work on the L'ART Research Assistant codebase, you need to have at least the following:
 
 * `git <https://git-scm.com>`_ -- The version management system we use
 * `python <https://python.org>`_ (version >= 3.10) -- The primary programming language of the app
@@ -144,37 +144,49 @@ Get a copy of the source code
 
 These are the steps you need to follow to get a current copy of the sourcecode:
 
-#. Open a terminal (console / command-line prompt)
+#. Go to our :github:repo:`lart-bangor/research-assistant` repository and click
+   the :guilabel:`Fork` button on the top to create a fork of the repository.
 
-#. Go to (or make) your prefered directory for development.
+   This means that you will have a copy of the repository under
+   :file:`your-GitHub-username/research-assistant`, where
+   :code:`your-GitHub-username` is of course your GitHub user name, so for
+   this could look like :file:`thatfloflo/research-assistant`.
+
+   This step is important because unless you have been given direct write
+   permission for our repository (which we might give to regular quality
+   contributors), you will not be able to push changes you make.
+
+   It is important that you make a *fork* of our repository on GitHub and work on that fork, so that
+   your own work benefits from the added security of having the version control history in the cloud
+   even if you do not have write permissions to our repository. You will not be able to *push*
+   (upload changes) directly to our repository unless we have explicitly added you as a contributor
+   or maintainer to the project (which we might offer after a number of quality contributions).
+      
+   You will also need this fork if you want to make a *pull request* later, which is what you would
+   do to have your modifications adopted in our official repository and included in future builds of
+   the L'ART Research Assistant.
+
+   For more information on forking, check out how to
+   `fork a repo <https://docs.github.com/en/get-started/quickstart/fork-a-repo>`_ in the
+   `GitHub Quickstart Guide <https://docs.github.com/en/get-started/quickstart>`_.
+
+#. Open a terminal (console / command-line prompt).
+
+#. Go to (or create) your prefered directory for development.
 
    For example ``cd C:\Users\florian\Development`` (Windows) or ``cd /home/florian/development``
    (Linux). If you don't have a directory you use for software development yet, you can use the
    :command:`mkdir` command to create it, then :command:`cd` into it.
 
-#. Clone the repository with ``git clone https://github.com/lart-bangor/research-client.git``.
+#. Clone the repository with ``git clone https://github.com/your-GitHub-username/research-assistant.git``.
 
    This will make a local copy of the remote git repository, to which you can then make local
    changes and which you can sync back and forth with the remote repository (called *pulling*
    and *pushing*).
 
-   .. tip:: Fork the repository before cloning it...
-
-      You might want to make a *fork* of our repository on GitHub and work on that fork, so that
-      your own work benefits from the added security of having the version control history in the
-      cloud even if you do not have write permissions to our repository.
-      
-      You will also have to make a fork if you want to make a *pull request* later, which is
-      what you would do to have your modifications adopted in our official repository and
-      included in future builds of the L'ART Research Client.
-
-      For more information, check out how to
-      `fork a repo <https://docs.github.com/en/get-started/quickstart/fork-a-repo>`_ in the
-      `GitHub Quickstart Guide <https://docs.github.com/en/get-started/quickstart>`_.
-
 #. Enter the project's root directory.
 
-   You can do this with the command ``cd ./research-client``. If you now type
+   You can do this with the command ``cd ./research-assistant``. If you now type
    ``ls`` (Linux) or ``dir`` (Windows), you should see a list of files including one called
    :file:`manage.py` -- if you see that you know that your code has cloned successfully and
    you are in the project's root directory.
@@ -203,7 +215,7 @@ directory (see the last step above).
 
    You now have to actually activate the virtual environment, so your terminal knows to use the isolated copy
    of Python it made for this project instead of the system installation. You activate the environment by
-   typing ``pipenv shell`` (normally, after this you will see something like ``(research-client)`` at the
+   typing ``pipenv shell`` (normally, after this you will see something like ``(research-assistant)`` at the
    start of your command prompt.)
 
    .. important:: Remember pipenv!
@@ -226,8 +238,8 @@ Running the app from the source
 -------------------------------
 
 Now let's test that things are working as they should. Open a terminal and go to the directory to which
-you've cloned the source code, e.g. :file:`C:\\Users\\florian\\Development\\research-client` (Windows)
-or :file:`/home/florian/development/research-client` (Linux). You know that you are in the right
+you've cloned the source code, e.g. :file:`C:\\Users\\florian\\Development\\research-assistant` (Windows)
+or :file:`/home/florian/development/research-assistant` (Linux). You know that you are in the right
 directory if you type ``ls`` (Linux) or ``dir`` (Windows) and the list shown contains a file
 named :file:`manage.py`.
 

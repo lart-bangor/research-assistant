@@ -1,7 +1,7 @@
-Welcome to the L’ART Research Client documentation!
-===================================================
+Welcome to the L’ART Research Assistant documentation!
+======================================================
 
-The L’ART Research Client is a freely available open-source app that aids researchers in the collection, storage and transfer of data for research in bilingualism and language attitudes, especially in cases of bilinguals who speak a majority language and a regional / minority / minoritized language. 
+The L’ART Research Assistant is a freely available open-source app that aids researchers in the collection, storage and transfer of data for research in bilingualism and language attitudes, especially in cases of bilinguals who speak a majority language and a regional / minority / minoritized language. 
 This documentation is for version |version|.
 
 .. only:: html
@@ -9,10 +9,10 @@ This documentation is for version |version|.
    .. raw:: html
 
       <p>
-         <a class="btn btn-info" href="https://github.com/lart-bangor/research-client/releases">📥 Download</a>
+         <a class="btn btn-info" href="https://github.com/lart-bangor/research-assistant/releases">📥 Download</a>
          <a class="btn btn-info" href="users/index.html">🧭 User Guide</a>
          <a class="btn btn-info" href="tutorials/index.html">📜 Quick Tutorials</a>
-         <a class="btn btn-info" href="https://github.com/lart-bangor/research-client/discussions">🛟 Support</a>
+         <a class="btn btn-info" href="https://github.com/lart-bangor/research-assistant/discussions">🛟 Support</a>
       </p>
 
 
@@ -31,11 +31,12 @@ This documentation is for version |version|.
 
 .. rubric:: Citing
 
-If you use the L’ART Research Client (or parts of it), please cite the following document:
+If you use the L’ART Research Assistant (or parts of it), please cite the following document:
 
 .. epigraph::
 
-   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). *The L’ART Research Client: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University.
+   Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). *The L’ART Research Assistant: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University.
+   DOI: `10.13140/RG.2.2.18801.35686 <http://doi.org/10.13140/RG.2.2.18801.35686>`_
    
 
 .. toctree::

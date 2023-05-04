@@ -31,12 +31,12 @@ Upon starting the LSBQe, you are first asked to enter the relevant information f
 User input
 ----------
 
-While all tasks within the L'ART Research Client can be completed with a touch interface or keyboard-only input, we strongly recommend that users are provided
+While all tasks within the L'ART Research Assistant can be completed with a touch interface or keyboard-only input, we strongly recommend that users are provided
 with access to both a keyboard and a pointing device (e.g. a mouse or trackpad).
 
 This ensures the best user experience and the sliders used to collect continuous data are more accurate when used with a pointing device rather than a keyboard.
 
-A significant portion of the tasks available on the L’ART Research Client make use of sliders. Sliders are displayed in a lighter shade with their indicator displayed
+A significant portion of the tasks available on the L’ART Research Assistant make use of sliders. Sliders are displayed in a lighter shade with their indicator displayed
 in the middle by default, and they must be moved at least once for the answer to be valid.
 
 Once moved, the slider will turn a darker shade of blue to show that the slider is active and has been moved by the participant.

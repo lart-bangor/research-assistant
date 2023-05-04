@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: The L’ART Research Client
+title: The L’ART Research Assistant
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -15,7 +15,7 @@ authors:
     email: m.tamburelli@bangor.ac.uk
     affiliation: Bangor University
     orcid: 'https://orcid.org/0000-0002-5472-0850'
-repository-code: 'https://github.com/lart-bangor/research-client'
+repository-code: 'https://github.com/lart-bangor/research-assistant'
 url: 'https://www.bangor.ac.uk/lart'
 keywords:
   - Language attitudes

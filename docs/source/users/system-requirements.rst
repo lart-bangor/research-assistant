@@ -4,7 +4,7 @@ Compatibility and Requirements
 Operating systems
 -----------------
 
-The L’ART Research Client has been developed and tested primarily on Windows 10 and 11 (64-bit Intel and AMD architectures). 
+The L’ART Research Assistant has been developed and tested primarily on Windows 10 and 11 (64-bit Intel and AMD architectures). 
 
 The installer and app will probably also work on 64-bit versions of Windows 8, but we do not officially support this. 
 The app is in principle compatible with current versions of MacOS, Linux, and BSD, but this currently requires 
@@ -35,7 +35,7 @@ System requirements
 Required Software
 -----------------
 
-You must have a current version of the `Google Chrome browser <https://www.google.co.uk/chrome/>`_ installed. The L’ART Research Client relies on this to provide its User Interface. 
+You must have a current version of the `Google Chrome browser <https://www.google.co.uk/chrome/>`_ installed. The L’ART Research Assistant relies on this to provide its User Interface. 
 
 
 Tested System Configurations
