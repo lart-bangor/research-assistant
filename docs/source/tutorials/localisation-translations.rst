@@ -21,7 +21,7 @@ Each step is outlined below.
 
 Creating and Naming your file
 -----------------------------
-To create a new file for your translation, go to the location where the L'ART app is installed, and open the :file:`Versions` folder.
+To create a new file for your translation, go to the location where the L'ART app is installed, and open the :file:`versions` folder.
 
 Below is the path you need to follow in order to find it. The path your app is located in depends on whether you installed the app for a single user or for all users (you will have made this choice on installation).
 
@@ -34,7 +34,7 @@ Below is an example of the path when the app is installed for **a single user**:
 
     Finding the “versions” folder if you installed L'ART Research Client for a single user
 
-However, if you installed the app **for all users**, you will find the :file:`Versions` folder by following a different path, as below: 
+However, if you installed the app for all users, you will find the :file:`versions` folder by following a different path, as below: 
 
 
 .. figure:: tutfigures/tutorial_finding_versions_folder_after_installation.png
@@ -46,9 +46,9 @@ However, if you installed the app **for all users**, you will find the :file:`Ve
 
 To have an interface in the language of your choosing, open the file called :file:`CymEng_Eng_GB.json`. This is the British-English version of the interface built to work with Welsh-English bilinguals.
 
-You can open this in **Notepad**, or any text editor of your choice. 
+You can open this in Notepad, or any text editor of your choice. 
 
-Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name that includes the **language** and a **label** for the bilingual community you plan to study.
+Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name that includes the language and a label for the bilingual community you plan to study.
 
 .. note::
     Naming **must** be done in a specific manner so that the app can find and read the translation you provide.
@@ -73,13 +73,13 @@ whose native languages are Galician **(glg)** and Spanish **(spa)**, you would l
 Adding your translation
 -----------------------
 Your newly created file will now be identical to the original British-English file (except for its name)!
-Now it’s time to add your translation. The translation file involves **two** main pieces of information: a **set of labels** and a **language output**.
+Now it’s time to add your translation. The translation file involves two main pieces of information: a set of labels and a language output.
 The labels are what the L’ART Research Client needs in order to function, while the language output is what you will see in your interface.
 
 To provide your translated version, you need to highlight each bit of language output and replace it with your translation.
-Make sure you **do not** change the labels though, otherwise the app will not find your translation and instead, will output the default English version. 
+Make sure you do not change the labels though, otherwise the app will not find your translation and instead, will output the default English version. 
 
-First, you will need to provide some basic information about the file. This is the information under the header **“meta”**.
+First, you will need to provide some basic information about the file. This is the information under the header “meta”.
 With your new file open in a text editor, begin by highlighting the language output for the label :file:`versionId`, as follows: 
 
 .. figure:: tutfigures/tutorial_highlighting_lang_output_versionid.png
@@ -100,8 +100,7 @@ Then, replace it with the code for your translation. Using our Galician-Spanish 
 
     Replacing the language output
 
-
-Now go through each item and provide the relevant information for the header **“meta”**, namely:
+Now go through each item and provide the relevant information for the header “meta”, namely:
 
 #. The version name
 
@@ -112,7 +111,7 @@ Now go through each item and provide the relevant information for the header **�
 Once you’ve completed that, you may begin the translation properly. 
 
 Ensure that you highlight each language output for each item and provide your translation!
-For example, under the label :guilabel:`“yes”`, you would replace the output “yes” with **“Sí”**, taking care not to change the label, which **must remain “yes”**, as follows:
+For example, under the label “yes”, you would replace the output “yes” with “Sí”, taking care not to change the label, which must remain “yes”, as follows:
 
 .. figure:: tutfigures/tutorial_lang_output_yes.png
     :name: tutorial_lang_output_yes
@@ -128,6 +127,31 @@ And that’s it! Once you have replaced all items with your translations, **rest
     :alt: Screenshot of dropdown list of languages
 
     Dropdown list including Galacian-Spanish version
+
+Translating the conclusion screen
+---------------------------------
+
+After completing the tasks of your choice, a generic conclusion appears on the screen as shown in :numref:`final_conclusion_screen`
+
+.. figure:: tutfigures/final_conclusion_screen.png
+    :name: final_conclusion_screen
+    :width: 500
+    :alt: Screenshot of the generic conclusion screen
+
+    Final conclusion screen
+
+To match the language of your choice, you may wish to translate the conclusion screen. To do so, firstly, follow the path below to locate the :file:`versions`folder:
+
+:file:`C:\\Users\\admin\\Documents\\lart-research-client\\research_assistant\\conclusion\\versions`
+
+Next ....
+
+.. figure:: tutfigures/translating_conclusion_screen.png
+    :name: translating_conclusion_screen
+    :width: 500
+    :alt: Screenshot of locating the conclusions folder 
+
+    Locating the versions folder under conclusions
 
 
 
