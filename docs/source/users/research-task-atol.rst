@@ -68,9 +68,9 @@ Firstly, as with the :doc:`LSBQe <research-task-lsbqe>`, you must open the gener
 
 .. note::
       Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"
-      (for example, the file for the generic version for British English is called :file:`[EngZzz_Eng_GB]`).
+      (for example, the file for the generic version for British English is called :file:`EngZzz_Eng_GB`).
 
-After that, change the :code:`version_id`` and :code:`version_name` to reflect your customization. Following the English and Scots example presented in the :ref:`LSBQe <LSBQe>`, this would be :file:`[EngSco_Eng_GB]`
+After that, change the :code:`version_id`` and :code:`version_name` to reflect your customization. Following the English and Scots example presented in the :ref:`LSBQe <LSBQe>`, this would be :file:`EngSco_Eng_GB`
 
 Your file name should match your :code:`version_id`, which must follow the ISO standard code sequence (see :ref:`localisation` for standard code sequencing)
 

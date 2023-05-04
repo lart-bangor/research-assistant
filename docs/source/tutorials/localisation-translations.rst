@@ -65,10 +65,10 @@ Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name
     Therefore, the Italian language file to be used for research with the Lombard-Italian bilingual community based in Italy is named: :file:`LmoIta_Ita_IT.json`. 
 
 In the instance where you would like to provide a Modern Standard Arabic translation **(Iso code: arb)** to study a bilingual community in Morocco **(ISO code: MA)**
-whose native languages are Moroccan Arabic **(ary)** and Berber **(ber)** you would label your file :file:`“BerAry_Arb_MA.json”`.
+whose native languages are Moroccan Arabic **(ary)** and Berber **(ber)** you would label your file :file:`BerAry_Arb_MA.json`.
 
 Similarly, if you would like to provide a Spanish translation **(Iso code: spa)** to study a bilingual community in Spain **(ISO code: ES)**
-whose native languages are Galician **(glg)** and Spanish **(spa)**, you would label your file :file:`“GlgSpa_Spa_ES.json”`.
+whose native languages are Galician **(glg)** and Spanish **(spa)**, you would label your file :file:`GlgSpa_Spa_ES.json`.
 
 Adding your translation
 -----------------------
@@ -79,8 +79,8 @@ The labels are what the L’ART Research Client needs in order to function, whil
 To provide your translated version, you need to highlight each bit of language output and replace it with your translation.
 Make sure you **do not** change the labels though, otherwise the app will not find your translation and instead, will output the default English version. 
 
-First, you will need to provide some basic information about the file. This is the information under the header **“meta”**.
-With your new file open in a text editor, begin by highlighting the language output for the label :file:`versionId`, as follows: 
+First, you will need to provide some basic information about the file. This is the information under the header :code:`meta`.
+With your new file open in a text editor, begin by highlighting the language output for the label :code:`versionId`, as follows: 
 
 .. figure:: tutfigures/tutorial_highlighting_lang_output_versionid.png
     :name: tutorial_highlighting_lang_output_versionid
