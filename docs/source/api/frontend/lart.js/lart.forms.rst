@@ -1,10 +1,10 @@
 lart.forms
 ==========
 
-Form management utilities for the L'ART Research Client.
+Form management utilities for the L'ART Research Assistant.
 
 This namespace implements an extensive set of utility and helper functions
-which facilitate the implementation of forms for the L'ART Research Client.
+which facilitate the implementation of forms for the L'ART Research Assistant.
 
 
 .. **Namespaces**

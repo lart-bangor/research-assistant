@@ -11,7 +11,7 @@ to achieve, and how we might go about that, but we explicitly choose to make it 
 collaborators can get a sense for where things might be heading --- and of course have a chance to influence that.
 
 If you would like to dicuss any of the planned enhancements or additional ideas you have, we would very much welcome your
-input via the `Ideas section on GitHub Discussions <https://github.com/lart-bangor/research-client/discussions/categories/ideas>`_.
+input via the `Ideas section on GitHub Discussions <https://github.com/lart-bangor/research-assistant/discussions/categories/ideas>`_.
 
 =============  ===============================  =================================  ===========================  ================
 **Milestone**  **Research Tasks**               **Usability**                      **Data Management**          **Integrations**
