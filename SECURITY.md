@@ -19,12 +19,12 @@ relatively short.
 If the vulnerability or security issue can be shared openly without directly
 compromising the security of a user or of the participant data they may be
 collecting with the app, we would encourage you to report this via the public
-[GitHub Issues](https://github.com/lart-bangor/research-client/issues).
+[GitHub Issues](https://github.com/lart-bangor/research-assistant/issues).
 
 However, **if there is any direct risk to a user or participant data** which
 would arise as a direct consequence of publicly sharing the vulnerability,
 please report this as a *private*
-(GitHub Security Advisory)[https://github.com/lart-bangor/research-client/security/advisories].
+(GitHub Security Advisory)[https://github.com/lart-bangor/research-assistant/security/advisories].
 We will aim to at least acknowledge such advisories within one week. If you
 do not receive a reply in that time please feel free to contact the project
 maintainers at <f.breit@bangor.ac.uk> and <m.tamburelli@bangor.ac.uk>,

@@ -1,4 +1,4 @@
-﻿; INNO SETUP Script for the LART Research Client
+﻿; INNO SETUP Script for the LART Research Assistant
 ; Normally this script will be run automatically from `manage.py build`.
 
 #define MyAppName "[[APP_NAME]]"
@@ -34,14 +34,14 @@ PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#MyAppDevDir}\build\{#MyAppPlatformString}\pyinstaller\dist
 OutputBaseFilename={#MyAppDistributableName}
 OutputManifestFile={#MyAppDistributableName}.manifest
-SetupIconFile={#MyAppDevDir}\research_client\web\img\setupicon.ico
-UninstallDisplayIcon={#MyAppDevDir}\research_client\web\img\setupicon.ico
+SetupIconFile={#MyAppDevDir}\research_assistant\web\img\setupicon.ico
+UninstallDisplayIcon={#MyAppDevDir}\research_assistant\web\img\setupicon.ico
 Compression=lzma
 SolidCompression=yes
 ShowLanguageDialog=auto
 LanguageDetectionMethod=uilanguage
 WizardStyle=modern
-WizardSmallImageFile={#MyAppDevDir}\research_client\web\img\appicon.bmp
+WizardSmallImageFile={#MyAppDevDir}\research_assistant\web\img\appicon.bmp
 ; These don't seem to have any effect with WizardStyle=modern
 ; BackColor=$FF0000
 ; BackColor2=$000000
