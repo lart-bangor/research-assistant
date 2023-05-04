@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "program": "${workspaceFolder}/research_client/__init__.py",
+            "program": "${workspaceFolder}/research_assistant/__init__.py",
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -18,7 +18,7 @@
             "type": "python",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "program": "${workspaceFolder}/research_client/__init__.py",
+            "program": "${workspaceFolder}/research_assistant/__init__.py",
             "args": ["--debug", "debug"],
             "console": "integratedTerminal",
             "justMyCode": true

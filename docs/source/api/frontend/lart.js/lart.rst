@@ -1,10 +1,10 @@
 lart.js
 =======
 
-L'ART Research Client JavaScript Library.
+L'ART Research Assistant JavaScript Library.
 
 This library implements interfaces and utility functions designed to simplify
-common tasks for the L'ART Research Client frontend. It's designed to work
+common tasks for the L'ART Research Assistant frontend. It's designed to work
 together with Python eel and booteel.js.
 
 **Namespaces**

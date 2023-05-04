@@ -3,8 +3,8 @@
 Developer Guide
 ===============
 
-Welcome to the L'ART Research Client Developer Guide. This is our "essential reading" for anyone
-who wants to contribute, enhance, integrate or otherwise modify the Research Client. It will
+Welcome to the L'ART Research Assistant Developer Guide. This is our "essential reading" for anyone
+who wants to contribute, enhance, integrate or otherwise modify the Research Assistant. It will
 cover everything from contribution guidelines and setting up the development environment to
 understanding how the code is organised and how to build the app and the documentation from source.
 

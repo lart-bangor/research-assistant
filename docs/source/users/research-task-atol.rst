@@ -18,7 +18,7 @@ You will not be able to advance without completing each respective part of the s
 The next screen begins the AToL proper, asking the participant to rate the relevant languages, depending on the AToL version selected.
 
 The majority language always appears first due to sociolinguistic plausibility, for instance, because all
-instructions appear in the majority language in the original AToL versions for the L'ART research client app.
+instructions appear in the majority language in the original AToL versions for the L'ART research Assistant.
 
 The bipolar adjective pairs are always generated in a random order (the specific order for each participant is recorded in that participant's the data file).
 The AToL presents the statement **“The X language is…”** followed by the AToL’s bipolar adjective pairs which are rated by using the sliders as seen in :numref:`atol_rating` below.
@@ -68,9 +68,9 @@ Firstly, as with the :doc:`LSBQe <research-task-lsbqe>`, you must open the gener
 
 .. note::
       Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"
-      (for example, the file for the generic version for British English is called :file:`[EngZzz_Eng_GB]`).
+      (for example, the file for the generic version for British English is called :file:`EngZzz_Eng_GB`).
 
-After that, change the :code:`version_id`` and :code:`version_name` to reflect your customization. Following the English and Scots example presented in the :ref:`LSBQe <LSBQe>`, this would be :file:`[EngSco_Eng_GB]`
+After that, change the :code:`version_id`` and :code:`version_name` to reflect your customization. Following the English and Scots example presented in the :ref:`LSBQe <LSBQe>`, this would be :file:`EngSco_Eng_GB`
 
 Your file name should match your :code:`version_id`, which must follow the ISO standard code sequence (see :ref:`localisation` for standard code sequencing)
 

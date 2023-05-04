@@ -43,8 +43,8 @@ version = release
 
 github_url = setup_cfg.get("metadata", "url")
 
-html_logo = str(project_root_path / "research_client" / "web" / "img" / "appicon.png")
-html_favicon = str(project_root_path / "research_client" / "web" / "img" / "appicon.png")
+html_logo = str(project_root_path / "research_assistant" / "web" / "img" / "appicon.png")
+html_favicon = str(project_root_path / "research_assistant" / "web" / "img" / "appicon.png")
 
 # -- General configuration ---------------------------------------------------
 
@@ -77,13 +77,13 @@ extensions = [
     'sphinx_js'
 ]
 
-js_source_path = '../../research_client/web/js'
+js_source_path = '../../research_assistant/web/js'
 jsdoc_config_path = './jsdoc_conf.json'
 
 github_username = 'lart-bangor'
-github_repository = 'research-client'
+github_repository = 'research-assistant'
 
-autoapi_dirs = ['../../research_client']
+autoapi_dirs = ['../../research_assistant']
 
 autodoc_default_options = {
     'members': True,
@@ -107,7 +107,7 @@ python_use_unqualified_type_names = True
 default_role = 'py:obj'
 
 add_module_names = False
-modindex_common_prefix = ['research_client']
+modindex_common_prefix = ['research_assistant']
 
 napoleon_google_docstring = True
 napoleon_preprocess_types = True
@@ -144,7 +144,7 @@ html_css_files = [
 html_context = {
     "display_github": True,
     "github_user": "lart-bangor",
-    "github_repo": "research-client",
+    "github_repo": "research-assistant",
     "github_version": "docs",
     "conf_py_path": "/docs/source/",
 }

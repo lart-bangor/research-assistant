@@ -22,6 +22,6 @@ manually ensure that data is deleted where that might be required.
 .. figure:: figures/discarding_attempts.png
     :name: discarding_attempts
     :width: 400
-    :alt: Screenshot of LART research client menu
+    :alt: Screenshot of LART research Assistant menu
 
     Open sidebar to discard attempt

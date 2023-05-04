@@ -1,22 +1,22 @@
 Getting started
 ===============
 
-Upon starting the app on your device, both the L’ART Research Client app and a terminal window will open. 
+Upon starting the app on your device, both the L’ART Research Assistant app and a terminal window will open. 
 
 .. figure:: figures/final_home_screen.png
       :name: final_home_screen
       :width: 400
-      :alt: Screenshot of L'ART Research Client home screen
+      :alt: Screenshot of L'ART Research Assistant home screen
       
-      L’ART Research Client home screen
+      L’ART Research Assistant home screen
 
 
-.. figure:: figures/research_client_terminal.png
-      :name: research_client_terminal
+.. figure:: figures/research_assistant_terminal.png
+      :name: research_assistant_terminal
       :width: 400
-      :alt: Screenshot of completing the L'ART Research Client Terminal
+      :alt: Screenshot of completing the L'ART Research Assistant Terminal
 
-      L'ART Research Client Terminal
+      L'ART Research Assistant Terminal
 
 The terminal window prints out information that might be helpful with troubleshooting and should not be closed 
 (the app will freeze/become unresponsive if the terminal window is closed). 

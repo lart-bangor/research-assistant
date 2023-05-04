@@ -1,23 +1,22 @@
 .. _localisation:
-
 Localisation and Adding Translations
 ====================================
-All tasks in the L'ART Research Client are designed to allow easy implementation of interfaces in any language you choose.
+All tasks in the L'ART Research Assistant are designed to allow easy implementation of interfaces in any language you choose.
 
-At the moment, the languages available depend on the specific task. The LSBQe, for example, is available in **English, German, Greek, Italian,** and **Welsh**. 
+At the moment, the languages available depend on the specific task. The LSBQe, for example, is available in **English, German, Greek, Italian,** and **Welsh**.
 The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, Moselle Franconian-German**, and **Greek-English:**
 
 .. figure:: tutfigures/tutorial_selecting_version_of_lsbqe.png
     :name: tutorial_selecting_version_of_lsbqe
-    :width: 500
-    :alt: Screenshot of selecting a version of the LSBQe 
+      :width: 500
+      :alt: Screenshot of selecting a version of the LSBQe 
 
-    Selecting a version of the LSBQe 
+      Selecting a version of the LSBQe 
 
 However, both the working languages and the setup for specific bilingual communities can be easily changed by providing a translated version of teh task you require to suit your
 own research settings. Below we provide instructions on how to do this using the LSBQe as example, though the same procedures can also be applied to the AToL-C and AGT.
 
-To adapt a task for a new language community, you will need to create a new file, provide a translation for each interface item and then save it with a specific naming convention. 
+To adapt a task for a new language community, you will need to create a new file, provide a translation for each interface item and then save it with a specific naming convention.
 Each step is outlined below.
 
 Creating and Naming your file
@@ -66,10 +65,10 @@ Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name
     Therefore, the Italian language file to be used for research with the Lombard-Italian bilingual community based in Italy is named: :file:`LmoIta_Ita_IT.json`. 
 
 In the instance where you would like to provide a Modern Standard Arabic translation **(Iso code: arb)** to study a bilingual community in Morocco **(ISO code: MA)**
-whose native languages are Moroccan Arabic **(ary)** and Berber **(ber)** you would label your file :file:`“BerAry_Arb_MA.json”`.
+whose native languages are Moroccan Arabic **(ary)** and Berber **(ber)** you would label your file :file:`BerAry_Arb_MA.json`.
 
 Similarly, if you would like to provide a Spanish translation **(Iso code: spa)** to study a bilingual community in Spain **(ISO code: ES)**
-whose native languages are Galician **(glg)** and Spanish **(spa)**, you would label your file :file:`“GlgSpa_Spa_ES.json”`.
+whose native languages are Galician **(glg)** and Spanish **(spa)**, you would label your file :file:`GlgSpa_Spa_ES.json`.
 
 Adding your translation
 -----------------------
@@ -80,12 +79,15 @@ The labels are what the L’ART Research Client needs in order to function, whil
 To provide your translated version, you need to highlight each bit of language output and replace it with your translation.
 Make sure you **do not** change the labels though, otherwise the app will not find your translation and instead, will output the default English version. 
 
-First, you will need to provide some basic information about the file. This is the information under the header **“meta”**.
-With your new file open in a text editor, begin by highlighting the language output for the label :file:`versionId`, as follows: 
+First, you will need to provide some basic information about the file. This is the information under the header :code:`meta`.
+With your new file open in a text editor, begin by highlighting the language output for the label :code:`versionId`, as follows: 
 
 .. figure:: tutfigures/tutorial_highlighting_lang_output_versionid.png
     :name: tutorial_highlighting_lang_output_versionid
     :width: 400
+    :alt: Screenshot of highlighting the language output for versionId
+
+    Highlighting the language output for versionId
 
 
 Then, replace it with the code for your translation. Using our Galician-Spanish example above, this will look as follows: 
@@ -94,6 +96,9 @@ Then, replace it with the code for your translation. Using our Galician-Spanish 
 .. figure:: tutfigures/tutorial_replacing_lang_output.png
     :name: tutorial_replacing_lang_output
     :width: 400
+    :alt: Screenshot of replacing language output
+
+    Replacing the language output
 
 
 Now go through each item and provide the relevant information for the header **“meta”**, namely:
@@ -112,11 +117,17 @@ For example, under the label :guilabel:`“yes”`, you would replace the output
 .. figure:: tutfigures/tutorial_lang_output_yes.png
     :name: tutorial_lang_output_yes
     :width: 400
+    :alt: Screenshot of changing language output 'yes' 
+
+    Changing language output 'yes' to 'sí'
 
 And that’s it! Once you have replaced all items with your translations, **restart the app** and you will see your Galician-Spanish version, like so: 
 
 .. figure:: tutfigures/tutorial_dropdown_list_lang.png
     :width: 500
+    :alt: Screenshot of dropdown list of languages
+
+    Dropdown list including Galacian-Spanish version
 
 
 
