@@ -1,5 +1,5 @@
 Welcome to the L’ART Research Assistant documentation!
-===================================================
+======================================================
 
 The L’ART Research Assistant is a freely available open-source app that aids researchers in the collection, storage and transfer of data for research in bilingualism and language attitudes, especially in cases of bilinguals who speak a majority language and a regional / minority / minoritized language. 
 This documentation is for version |version|.

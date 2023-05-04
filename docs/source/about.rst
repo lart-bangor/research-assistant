@@ -1,5 +1,5 @@
 About the Research Assistant
-=========================
+============================
 
 Introduction
 ------------
@@ -12,7 +12,7 @@ For a detailed discussion of the specific methodological choices, see [Breit-Tam
 
 
 What the L'ART Reserch Assistant can do
-------------------------------------
+---------------------------------------
 
 The current version (L'ART Research Assistant |version|) implements four tools (for a detailed discussion of
 methodological adaptations, please see  [Breit-Tamburelli-EtAl-2023]_).
@@ -45,7 +45,7 @@ a new language or language pair is even easier and can be done by just editing a
 
 
 Reasons to use the Research Assistant
-----------------------------------
+-------------------------------------
 
 * **Less work for the researcher:** With research tasks pre-implemented, preparation for a new study only
   involves translation/localisation of the interface where a suitable one is not yet available for the target
@@ -64,7 +64,7 @@ Reasons to use the Research Assistant
 For detailed examples and more concrete illustrations of these advantages, see [Breit-Tamburelli-EtAl-2023]_. 
 
 Citing the Research Assistant
---------------------------
+-----------------------------
 
 .. epigraph::
 

@@ -10,10 +10,10 @@ If you are looking to helo with a code contribution, our project uses `Python 3.
 `HTML <https://developer.mozilla.org/en-US/docs/Web/HTML>`_ & `CSS <https://developer.mozilla.org/en-US/docs/Web/CSS>`_
 (specifically, `Bootstrap <https://getbootstrap.com/>`_) for the frontend design (i.e., the user interface). If you
 don't feel ready to make a code contribution yet, no problem! You can also checkout
-`Documentation issues <https://github.com/lart-bangor/research-client/issues?q=is%3Aissue+is%3Aopen+label%3Adocumentation>`_,
+`Documentation issues <https://github.com/lart-bangor/research-assistant/issues?q=is%3Aissue+is%3Aopen+label%3Adocumentation>`_,
 help by :doc:`../tutorials/localisation-translations` adding localised/translated versions for the research tasks
 we have already implemented, or thoroughly test the latest release in the app and submit high-quality bug reports to
-our `issue tracker <https://github.com/lart-bangor/research-client/issues>`_.
+our `issue tracker <https://github.com/lart-bangor/research-assistant/issues>`_.
 
 If you are interested in making a code contribution and would like to learn more about the technologies that we use,
 check out the list of free resources below.
@@ -46,12 +46,12 @@ rundown!
 
 #. Find an issue that you are interested in addressing or a featue that you would like to add.
 
-#. Fork our :github:repo:`lart-bangor/research-client` repository.
+#. Fork our :github:repo:`lart-bangor/research-assistant` repository.
 
    This means that you will have a copy of the repository under
-   :file:`your-GitHub-username/research-client`.
+   :file:`your-GitHub-username/research-assistant`.
 
-#. Clone the repository to your local machine using :code:`git clone https://github.com/your-GitHub-username/research-client.git`.
+#. Clone the repository to your local machine using :code:`git clone https://github.com/your-GitHub-username/research-assistant.git`.
 
 #. Create a new branch for your fix using :code:`git checkout -b branch-name-here`.
 
@@ -84,11 +84,11 @@ rundown!
 #. Use :code:`git commit -m "Insert a short summary message of the changes made here"` to store the contents of the
    changes in your "staging area" together with a descriptive message.
 
-#. Push the changes back to your remote repository (:file:`your-GitHub-username/research-client`) by using
+#. Push the changes back to your remote repository (:file:`your-GitHub-username/research-assistant`) by using
    :code:`git push origin branch-name-here` (using the same branch name you decided on above).
 
 #. Submit a `pull request <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`_
-   to our upstream repository (:github:repo:`lart-bangor/research-client`).
+   to our upstream repository (:github:repo:`lart-bangor/research-assitant`).
 
 #. Title the pull request with a short description of the changes made, and if applicable the issue or bug number
    associated with your change.
@@ -124,7 +124,7 @@ For a more detailed guide on getting set up to work on the codebase, including i
 Where can I go for help?
 ------------------------
 
-If you need help, you can ask questions on one of our `GitHub Discussions <https://github.com/lart-bangor/research-client/discussions>`_
+If you need help, you can ask questions on one of our `GitHub Discussions <https://github.com/lart-bangor/research-assistant/discussions>`_
 sections. We'll be happy to help where we can!
 
 
