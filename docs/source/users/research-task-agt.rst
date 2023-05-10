@@ -88,9 +88,9 @@ You can select a generic version of the AGT from the drop down list. Figure :num
 
       Loading a generic version of the AGT
 
+
 Customizing a generic version of the AGT
 ----------------------------------------
-
 You may wish to customize a generic version of the AGT if you would like the AGT home screen to list a specific language pair to use during your study.
 There are several generic versions available (e.g., English, German, Italian), all of which can be customized.
 
