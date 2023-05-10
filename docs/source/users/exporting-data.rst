@@ -103,6 +103,3 @@ For most Linux distributions the default path will be
 .. note::
 
       It is best practice to **not** modify or work with the original data files where this is avoidable.
-      
-      This is expected behaviour for unsigned software downloaded from the internet. It is meant to get you to
-      check that you've downloaded the Software from a reputable source before running it.
