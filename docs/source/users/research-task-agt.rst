@@ -69,7 +69,8 @@ Inside your folder, paste your own sound files but copy the standard code sequen
 
 Your files will now play when you start the AGT and select your AGT version on the start menu.
 
-**insert screenshot once agt version has been implemented in the app**
+.. 
+      **insert screenshot once agt version has been implemented in the app**
 
 Loading a generic version of the AGT
 ------------------------------------
