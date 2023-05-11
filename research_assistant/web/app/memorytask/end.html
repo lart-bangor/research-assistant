@@ -1,7 +1,7 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {%- extends 'base.html' %}
 {% block title %}LART Research Assistant - Memory Task{% endblock %}
-{% block headline %}<span id="memoryGameAppTitle" data-memorygame-tr="base.appTitle">Memory Task</span>{% endblock %}
+{% block headline %}<span id="memoryTaskAppTitle" data-memorytask-tr="base.appTitle">Memory Task</span>{% endblock %}
 {% block head_scripts %}
 {% endblock %}
 {% block head_styles %}{% endblock %}
@@ -9,7 +9,7 @@
 {% block drawer_nav_options %}
 {% endblock %}
 {% block content %}
-    <article class="container-fluid p-2" id="memoryGameEndScreen">
+    <article class="container-fluid p-2" id="memoryTaskEndScreen">
 
         <!--
         <div class="row m-4">
@@ -22,18 +22,18 @@
         -->
 
         <div class="row m-4 text-center">
-            <h2 data-memorygame-tr="end.secTitle">Thank you for completing the Memory Task!</h2>
+            <h2 data-memorytask-tr="end.secTitle">Thank you for completing the Memory Task!</h2>
         </div>
 
         <div class="row m-4">
             <div class="col fw-semi p-0">
-                <p data-memorygame-tr="end.feedback">
+                <p data-memorytask-tr="end.feedback">
                     Well done!
                 </p>
-                <p data-memorygame-tr="end.thankYouMessage">
+                <p data-memorytask-tr="end.thankYouMessage">
                     You have now completed the memory task. Your data has been saved.
                 </p>
-                <p data-memorygame-tr="end.followOnInstructions">
+                <p data-memorytask-tr="end.followOnInstructions">
                     Please click “Continue” when you’re ready to continue.
                 </p>
             </div>
@@ -44,7 +44,7 @@
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-memorygame-tr="end.continue">Continue</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-memorytask-tr="end.continue">Continue</button>
                 </div>
             </div>
         </form>
@@ -55,14 +55,14 @@
     <script  type="text/javascript">
         // Initialise UI translation
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('memorygame', eel._memorygame_load_version, [instanceId, ['meta', 'base', 'end']]);
-        lart.tr.registerObserver('memorygame', 'memoryGameAppTitle');
-        lart.tr.registerObserver('memorygame', 'memoryGameEndScreen');
+        lart.tr.loadFromEel('memorytask', eel._memorytask_load_version, [instanceId, ['meta', 'base', 'end']]);
+        lart.tr.registerObserver('memorytask', 'memoryTaskAppTitle');
+        lart.tr.registerObserver('memorytask', 'memoryTaskEndScreen');
         // Set instanceId value on surveyDataForm
         const instanceIdFields = document.getElementsByName('instanceId');
         for (const instanceIdField of instanceIdFields) {
             instanceIdField.value = instanceId;
         }
     </script>
-    {{ lart_form_pipeline('surveyDataForm', '_memorygame_end') }}
+    {{ lart_form_pipeline('surveyDataForm', '_memorytask_end') }}
 {% endblock %}

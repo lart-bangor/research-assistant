@@ -1,4 +1,4 @@
-The MemoryGame implementation is based on a CodePen by by Jonathan Tarnate (<https://codepen.io/jeytii/pen/QoagLr>),
+The MemoryTask implementation is based on a CodePen by by Jonathan Tarnate (<https://codepen.io/jeytii/pen/QoagLr>),
 and was licensed under the MIT License included below.
 
 The embedded SVG Icons in the game.html file were created by Freepik <https://www.freepik.com/> from <www.flaticon.com>,

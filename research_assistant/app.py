@@ -17,7 +17,7 @@ from . import consent                                                   # type: 
 from .config import config
 from . import booteel
 from .lsbq import expose_to_eel as expose_lsbq
-from .memorygame import expose_to_eel as expose_memorygame
+from .memorytask import expose_to_eel as expose_memorytask
 from .agt import expose_to_eel as expose_agt
 from .settings import expose_to_eel as expose_settings
 from .conclusion import expose_to_eel as expose_conclusion
@@ -37,10 +37,11 @@ logger = logging.getLogger(__name__)
 
 # Expose Eel APIs for subpackages
 expose_lsbq()
-expose_memorygame()
+expose_memorytask()
 expose_agt()
 expose_settings()
 expose_conclusion()
+
 
 @eel.expose
 def atol_rating(data: dict[Any, Any]):
@@ -97,8 +98,8 @@ def main():                                                                     
             "pairs enclosed by curly braces ('{...}'), where each key "
             "represents a configuration attribute and the value the new "
             "value it should be set to. For example '{\"sequences.consent\":"
-            "\"memorygame\"'} will set the follow-on sequence for the consent "
-            "task to the memorygame."
+            "\"memorytask\"'} will set the follow-on sequence for the consent "
+            "task to the memorytask."
         ),
         default=False
     )

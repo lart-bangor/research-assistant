@@ -327,7 +327,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         "Conclusion Screen": "conclusion",
         "Consent Form": "consent",
         "LSBQe": "lsbq",
-        "Memory Task": "memorygame",
+        "Memory Task": "memorytask",
     }
     agt: str = field(
         default="",
@@ -337,7 +337,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         }
     )
     atolc: str = field(
-        default="memorygame",
+        default="memorytask",
         metadata={
             "doc_label": "Task following the AToL-C",
             "doc_values": _sequence_options,
@@ -364,7 +364,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
             "doc_values": _sequence_options,
         }
     )
-    memorygame: str = field(
+    memorytask: str = field(
         default="",
         metadata={
             "doc_label": "Task following the Memory Task",

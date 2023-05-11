@@ -1,6 +1,6 @@
 {%- extends 'base.html' %}
 {% block title %}LART Research Assistant - Memory Task{% endblock %}
-{% block headline %}<span id="memoryGameAppTitle" data-memorygame-tr="base.appTitle">Memory Task</span>{% endblock %}
+{% block headline %}<span id="memoryTaskAppTitle" data-memorytask-tr="base.appTitle">Memory Task</span>{% endblock %}
 {% block head_scripts %}
 {% endblock %}
 {% block head_styles %}
@@ -95,18 +95,18 @@
 		</div>
 		-->
 
-		<section class="row" id="memoryGameHeader">
+		<section class="row" id="memoryTaskHeader">
 			<div class="row m-4 mb-0 text-center">
-				<h2 id="memoryGameSectionTitle">
-					<span data-memorygame-tr="game.round">Round</span>
-					<span id="currentGameCount">0</span> <span data-memorygame-tr="game.xofy">of</span> <span id="totalGameCount">0</span>.
+				<h2 id="memoryTaskSectionTitle">
+					<span data-memorytask-tr="game.round">Round</span>
+					<span id="currentGameCount">0</span> <span data-memorytask-tr="game.xofy">of</span> <span id="totalGameCount">0</span>.
 				</h2>
 			</div>
 			<div class="row m-4 mt-0 mb-0 text-center">
-				<p class="h-3" id="memoryGameSubTitle">
-					<span data-memorygame-tr="game.cardsTurned">Cards turned:</span>
+				<p class="h-3" id="memoryTaskSubTitle">
+					<span data-memorytask-tr="game.cardsTurned">Cards turned:</span>
 					<span id="currentGameScore">0</span>.<br />
-					<span data-memorygame-tr="game.timeElapsed">Time:</span>
+					<span data-memorytask-tr="game.timeElapsed">Time:</span>
 					<span id="currentGameTimer">00:00</span>
 				</p>
 			</div>
@@ -1018,32 +1018,32 @@
 		Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 	</div>
 
-	<div class="modal fade" id="memoryGameScoreModal" tabindex="-1" aria-labelledby="memoryGameScoreModalLabel" aria-hidden="true">
+	<div class="modal fade" id="memoryTaskScoreModal" tabindex="-1" aria-labelledby="memoryTaskScoreModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 		  <div class="modal-content">
 			<div class="modal-header">
-			  <h5 class="modal-title" id="memoryGameScoreModalLabel"><i class="bi bi-trophy text-primary"></i> <span data-memorygame-tr="game.resultsModalTitle">Memory Task Results</span></h5>
+			  <h5 class="modal-title" id="memoryTaskScoreModalLabel"><i class="bi bi-trophy text-primary"></i> <span data-memorytask-tr="game.resultsModalTitle">Memory Task Results</span></h5>
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Continue"></button>
 			</div>
 			<div class="modal-body">
-				<p data-memorygame-tr="game.completeCongratulations">
+				<p data-memorytask-tr="game.completeCongratulations">
 					Well done, you've matched all the cards!
 				</p>
 				<p>
-					<span class="h5" data-memorygame-tr="game.yourScore">Your score:</span><br />
-					<span data-memorygame-tr="game.numberOfTries">Number of tries:</span> <span id="memoryGameScoreModalScore">0</span>.<br />
-					<span data-memorygame-tr="game.timeNeeded">Time needed:</span></span> <span id="memoryGameScoreModalTime">00:00</span>. 
+					<span class="h5" data-memorytask-tr="game.yourScore">Your score:</span><br />
+					<span data-memorytask-tr="game.numberOfTries">Number of tries:</span> <span id="memoryTaskScoreModalScore">0</span>.<br />
+					<span data-memorytask-tr="game.timeNeeded">Time needed:</span></span> <span id="memoryTaskScoreModalTime">00:00</span>. 
 				</p>
-				<p id="memoryGameScoreModalInitial" data-memorygame-tr="game.continueNextGame">
+				<p id="memoryTaskScoreModalInitial" data-memorytask-tr="game.continueNextGame">
 					Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!
 				</p>
-				<p id="memoryGameScoreModalFinal" data-memorygame-tr="game.continueFinished">
+				<p id="memoryTaskScoreModalFinal" data-memorytask-tr="game.continueFinished">
 					You've now successfully completed this task!<br />
 					Please click &ldquo;Continue&rdquo; to finish up.
 				</p>
 			</div>
 			<div class="modal-footer">
-			  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-memorygame-tr="game.continue">Continue</button>
+			  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-memorytask-tr="game.continue">Continue</button>
 			</div>
 		  </div>
 		</div>
@@ -1053,11 +1053,11 @@
 	<script  type="text/javascript">
 		// Initialise UI translation
 		let instanceId = lart.forms.searchParams.get('instance');
-		lart.tr.loadFromEel('memorygame', eel._memorygame_load_version, [instanceId, ['meta', 'base', 'game']]);
-		lart.tr.registerObserver('memorygame', 'memoryGameAppTitle');
-		lart.tr.registerObserver('memorygame', 'memoryGameHeader');
-		lart.tr.registerObserver('memorygame', 'memoryGameScoreModal');
-		// Timer for MemoryGame
+		lart.tr.loadFromEel('memorytask', eel._memorytask_load_version, [instanceId, ['meta', 'base', 'game']]);
+		lart.tr.registerObserver('memorytask', 'memoryTaskAppTitle');
+		lart.tr.registerObserver('memorytask', 'memoryTaskHeader');
+		lart.tr.registerObserver('memorytask', 'memoryTaskScoreModal');
+		// Timer for MemoryTask
 		class GameTimer {
 			constructor() {
 				this.totalTimeElapsed = 0;
@@ -1118,8 +1118,8 @@
 			}
 		}
 
-		// Class for running MemoryGame
-		class MemoryGame {
+		// Class for running MemoryTask
+		class MemoryTask {
 			constructor(nGames = 2) {
 				this.cardsContainer = document.querySelector('.js-cards');
 				this.cards = Array.from(this.cardsContainer.children);
@@ -1183,14 +1183,14 @@
 								this.nGames--;
 								this.scores.push(this.currentScore);
 								this.times.push(this.timer.totalTimeElapsed);
-								reportMemoryGameScore(
+								reportMemoryTaskScore(
 									this.currentScore,
 									this.timer.totalTimeElapsed,
 									() => {
 										this.currentScore = 0;
 										if ( this.nGames < 1 ) {
 											let instanceId = lart.forms.searchParams.get('instance');
-											eel._memorygame_setscores(instanceId, {'score': this.scores, "time": this.times})();
+											eel._memorytask_setscores(instanceId, {'score': this.scores, "time": this.times})();
 										}
 										this.rearrangeCards();
 									}
@@ -1229,40 +1229,40 @@
 			}
 		}
 
-		// Initialise and run Memory Game
-		const game = new MemoryGame();
+		// Initialise and run Memory Task
+		const game = new MemoryTask();
 		game.cards.forEach(
 			card => {
 				card.addEventListener('click', game.flip.bind(game, card));
 			}
 		);
 
-		// Set up Modal for reporting Memory Game scores
-		const memoryGameModal = document.getElementById('memoryGameScoreModal');
-		const memoryGameModalHandler = new bootstrap.Modal(memoryGameModal);
-		const memoryGameScoreModalScore = document.getElementById('memoryGameScoreModalScore');
-		const memoryGameScoreModalTime = document.getElementById('memoryGameScoreModalTime');
-		const memoryGameScoreModalInitial = document.getElementById('memoryGameScoreModalInitial');
-		const memoryGameScoreModalFinal = document.getElementById('memoryGameScoreModalFinal');
+		// Set up Modal for reporting Memory Task scores
+		const memoryTaskModal = document.getElementById('memoryTaskScoreModal');
+		const memoryTaskModalHandler = new bootstrap.Modal(memoryTaskModal);
+		const memoryTaskScoreModalScore = document.getElementById('memoryTaskScoreModalScore');
+		const memoryTaskScoreModalTime = document.getElementById('memoryTaskScoreModalTime');
+		const memoryTaskScoreModalInitial = document.getElementById('memoryTaskScoreModalInitial');
+		const memoryTaskScoreModalFinal = document.getElementById('memoryTaskScoreModalFinal');
 
-		function reportMemoryGameScore(score, time, cb) {
-			memoryGameScoreModalScore.textContent = score;
-			memoryGameScoreModalTime.textContent = game.timer.formatTime(time);
+		function reportMemoryTaskScore(score, time, cb) {
+			memoryTaskScoreModalScore.textContent = score;
+			memoryTaskScoreModalTime.textContent = game.timer.formatTime(time);
 			if ( game.nGames < 1 ) {
-				memoryGameScoreModalInitial.hidden = true;
-				memoryGameScoreModalFinal.hidden = false;
+				memoryTaskScoreModalInitial.hidden = true;
+				memoryTaskScoreModalFinal.hidden = false;
 			} else {
-				memoryGameScoreModalInitial.hidden = false;
-				memoryGameScoreModalFinal.hidden = true;
+				memoryTaskScoreModalInitial.hidden = false;
+				memoryTaskScoreModalFinal.hidden = true;
 			}
-			memoryGameModal.addEventListener(
+			memoryTaskModal.addEventListener(
 				'hide.bs.modal',
 				function (event) {
 					cb();
 				},
 				{once: true}
 			);
-			memoryGameModalHandler.show();
+			memoryTaskModalHandler.show();
 		}
 	</script>
 {% endblock %}
