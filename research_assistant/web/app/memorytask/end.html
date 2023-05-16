@@ -55,7 +55,7 @@
     <script  type="text/javascript">
         // Initialise UI translation
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('memorytask', eel._memorytask_load_version, [instanceId, ['meta', 'base', 'end']]);
+        lart.tr.loadFromEel('memorytask', eel.memorytask_load_localisation, [instanceId, ['meta', 'base', 'end']]);
         lart.tr.registerObserver('memorytask', 'memoryTaskAppTitle');
         lart.tr.registerObserver('memorytask', 'memoryTaskEndScreen');
         // Set instanceId value on surveyDataForm
@@ -64,5 +64,5 @@
             instanceIdField.value = instanceId;
         }
     </script>
-    {{ lart_form_pipeline('surveyDataForm', '_memorytask_end') }}
+    {{ lart_form_pipeline('surveyDataForm', 'memorytask_end') }}
 {% endblock %}

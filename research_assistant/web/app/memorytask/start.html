@@ -1053,7 +1053,7 @@
 	<script  type="text/javascript">
 		// Initialise UI translation
 		let instanceId = lart.forms.searchParams.get('instance');
-		lart.tr.loadFromEel('memorytask', eel._memorytask_load_version, [instanceId, ['meta', 'base', 'game']]);
+		lart.tr.loadFromEel('memorytask', eel.memorytask_load_localisation, [instanceId, ['meta', 'base', 'game']]);
 		lart.tr.registerObserver('memorytask', 'memoryTaskAppTitle');
 		lart.tr.registerObserver('memorytask', 'memoryTaskHeader');
 		lart.tr.registerObserver('memorytask', 'memoryTaskScoreModal');
@@ -1130,7 +1130,6 @@
 				this.totalGames = nGames;
 				this.currentScore = 0;
 				this.scores = [];
-				this.times = [];
 				this.uiCurrentGameCounter = document.getElementById('currentGameCount');
 				this.uiTotalGameCount = document.getElementById('totalGameCount');
 				this.uiTotalGameCount.textContent = this.totalGames;
@@ -1181,8 +1180,7 @@
 							if (allHaveMatches) {
 								this.timer.stop();
 								this.nGames--;
-								this.scores.push(this.currentScore);
-								this.times.push(this.timer.totalTimeElapsed);
+								this.scores.push({'score': this.currentScore, 'time': this.timer.totalTimeElapsed});
 								reportMemoryTaskScore(
 									this.currentScore,
 									this.timer.totalTimeElapsed,
@@ -1190,7 +1188,7 @@
 										this.currentScore = 0;
 										if ( this.nGames < 1 ) {
 											let instanceId = lart.forms.searchParams.get('instance');
-											eel._memorytask_setscores(instanceId, {'score': this.scores, "time": this.times})();
+											eel.memorytask_add_scores(instanceId, {'scores': this.scores})();
 										}
 										this.rearrangeCards();
 									}

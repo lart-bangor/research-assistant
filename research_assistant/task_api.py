@@ -1,11 +1,13 @@
 """API Base implementing typical functionality for a L'ART Research Assistant task."""
 import logging
 import json
+import re
 from typing import Any, Type, Iterable, Literal
 from uuid import UUID, uuid1
 from importlib import resources
 from pathlib import Path
 from pydantic import ValidationError
+from .datamodels.patterns import UUID as UUID_pattern
 from .datamodels.models import ResponseBase, ResponseMetadata
 from .datamodels.utils import validation_error_to_html
 from . import booteel
@@ -22,6 +24,7 @@ class ResearchTaskAPI(EelAPI):
     response_class: Type[ResponseBase]
     task_version: str
     task_data_path: Path
+    _task_package: str
     _response_data: dict[UUID, dict[str, Any]]
     _required_fields: set[str]
     _localisations_available: dict[str, str]
@@ -29,10 +32,15 @@ class ResearchTaskAPI(EelAPI):
 
     def __init__(self):
         """Initialise the EelTaskAPI."""
+        self._task_package = self._find_parent_package()
         self._response_data = {}
         self._required_fields = self._get_required_fields(self.response_class)
         self._localisations_available = {}
         self._localisation_data = {}
+
+    def _find_parent_package(self) -> str:
+        hierarchy = self.__class__.__module__.split(".")
+        return ".".join(hierarchy[:-1])
 
     def _get_required_fields(self, model: Type[ResponseBase]) -> set[str]:
         required_fields: set[str] = set()
@@ -54,6 +62,10 @@ class ResearchTaskAPI(EelAPI):
             booteel.displayexception(exc)
         cls.logger.exception(exc)
 
+    def set_location(self, location: str) -> None:
+        """Set the location for the frontend to the URL *location*."""
+        booteel.setlocation(location)
+
     @EelAPI.exposed
     def get_localisations(self) -> dict[str, str]:
         """Get a dictionary of available task localisations.
@@ -71,7 +83,7 @@ class ResearchTaskAPI(EelAPI):
         if len(self._localisations_available) > 0:
             return self._localisations_available
 
-        resource_target = ".".join((self.__module__, "localisations"))
+        resource_target = ".".join((self._task_package, "localisations"))
         for item in resources.contents(resource_target):
             if not (resources.is_resource(resource_target, item)
                     and item[0] != "_"
@@ -87,24 +99,44 @@ class ResearchTaskAPI(EelAPI):
                         f"Resource '{resource_target}/{item}' is missing one of the required keys "
                         "'meta.versionId' or 'meta.versionName'."
                     )
+        return self._localisations_available
 
     @EelAPI.exposed
     def load_localisation(
         self,
-        label: str,
+        label_or_id: str | UUID,
         sections: list[str]
     ) -> dict[str, dict[str, Any]]:
-        """Load the localisation indicated by *label*, if available.
+        """Load the localisation indicated by *label_or_id*, if available.
+
+        If *label_or_id* is a valid UUID, the localisation label is looked up
+        from responses in progress with the matching UUID, otherwise
+        *label_or_id* is assumed to represent a localisation label such as
+        :code:`"CymEng_Eng_GB"`.
 
         The localisations are lazy-loaded the first time the localisation with
         *label* are loaded using :func:`load_localisation()`. All sections are
         loaded when this happens, irrespective of the value of *sections*.
         """
+        # Determine localisation label
+        if isinstance(label_or_id, UUID) or re.match(UUID_pattern, label_or_id):
+            response_id = self._cast_uuid(label_or_id)
+            if not (response_id in self._response_data and
+                    "meta" in self._response_data[response_id] and
+                    isinstance(self._response_data[response_id]["meta"], ResponseMetadata)):
+                exc = ValueError(
+                    f"Failed to load localisation for {self.__class__.__name__} response with id "
+                    f"{response_id}: no response with this id in progress or response corrupted."
+                )
+                self.logger.error(str(exc))
+                raise exc
+            label = self._response_data[response_id]["meta"].task_localisation
+
         # Lazy-load localisation data if needed
         if label not in self._localisation_data:
-            if self._localisations_available == 0:
+            if len(self._localisations_available) == 0:
                 self.get_localisations()  # Might not have been called yet
-            resource_target = ".".join((self.__module__, "localisations"))
+            resource_target = ".".join((self._task_package, "localisations"))
             if label not in self._localisations_available:
                 self.logger.warning(
                     f"Attempting to load non-existent localistion {label} for "
@@ -191,9 +223,11 @@ class ResearchTaskAPI(EelAPI):
             consent_obtained=data["confirmConsent"]
         )
         self.logger.debug(f"... meta={meta!r}")
+        self._response_data[response_id] = {}
         self._response_data[response_id]["id"] = response_id
         self._response_data[response_id]["meta"] = meta
         self.logger.debug("... success.")
+        self.set_location(f"start.html?instance={response_id!s}")
         return str(response_id)
 
     @EelAPI.exposed
@@ -248,8 +282,9 @@ class ResearchTaskAPI(EelAPI):
                 f"{response_id}: response is incomplete."
             )
             self.logger.error(str(exc))
+            raise exc
         response = self.response_class(**self._response_data[response_id])
-        json = response.json()
+        json = response.json(indent=2)
         self.logger.debug(f"... JSON serialization: {json}")
         path = self.task_data_path / str(response.meta.task_localisation)
         if not path.exists():
@@ -259,6 +294,7 @@ class ResearchTaskAPI(EelAPI):
         with filename.open("w") as fp:
             fp.write(json)
         self.logger.debug("... success.")
+        return True
 
     @EelAPI.exposed
     def end(self, response_id: str | UUID, data: dict[str, Any] | None = None) -> str:
@@ -287,7 +323,8 @@ class ResearchTaskAPI(EelAPI):
             )
             self.logger.error(str(exc))
             raise exc
-        if hasattr(config.sequences, self.__class__.__module__):
+        task_name = self._task_package.split(".")[-1]
+        if hasattr(config.sequences, task_name):
             self.logger.debug("... sequencing information found.")
             response_meta = self._response_data[response_id]["meta"]
             query = booteel.buildquery({
@@ -297,13 +334,13 @@ class ResearchTaskAPI(EelAPI):
                 "confirmConsent": str(response_meta.consent_obtained),
                 "surveyDataForm.submit": "true",
             })
-            href = f"/app/{getattr(config.sequences, self.__class__.__module__)}/index.html?{query}"
+            href = f"/app/{getattr(config.sequences, task_name)}/index.html?{query}"
             self.logger.debug(f"... redirecting to: {href}")
-            booteel.setlocation(href)
+            self.set_location(href)
         else:
             href = "/app/index.html"
-            self.logger.debug("... no sequencing information found.")
+            self.logger.debug(f"... no sequencing information for {task_name!r} found.")
             self.logger.debug(f"... redirecting to: {href}")
-            booteel.setlocation(href)
+            self.set_location(href)
         self.discard(response_id)
         return href

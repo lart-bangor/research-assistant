@@ -17,7 +17,8 @@ from . import consent                                                   # type: 
 from .config import config
 from . import booteel
 from .lsbq import expose_to_eel as expose_lsbq
-from .memorytask import expose_to_eel as expose_memorytask
+#from .memorytask import expose_to_eel as expose_memorytask
+from .memorytask.eel import eel_api as MemoryTaskAPI
 from .agt import expose_to_eel as expose_agt
 from .settings import expose_to_eel as expose_settings
 from .conclusion import expose_to_eel as expose_conclusion
@@ -37,10 +38,19 @@ logger = logging.getLogger(__name__)
 
 # Expose Eel APIs for subpackages
 expose_lsbq()
-expose_memorytask()
 expose_agt()
 expose_settings()
 expose_conclusion()
+
+memory_task_api = MemoryTaskAPI()
+memory_task_api.expose()
+
+# from pprint import pprint
+# pprint(config.sequences)
+# pprint(dir(config.sequences))
+# pprint(hasattr(config.sequences, "memorytask"))
+# pprint(getattr(config.sequences, "memorytask"))
+# exit()
 
 
 @eel.expose
