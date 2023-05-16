@@ -1,6 +1,6 @@
 """Data model for the Memory Task."""
 from pydantic import BaseModel, conint, conlist, Field
-from ..datamodels.models import ResponseBase
+from ...datamodels.models import ResponseBase
 
 
 class MemoryTaskScore(BaseModel):

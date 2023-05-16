@@ -17,7 +17,7 @@ from . import consent                                                   # type: 
 from .config import config
 from . import booteel
 from .lsbq import expose_to_eel as expose_lsbq
-from .memorytask.eel import eel_api as MemoryTaskAPI
+from .tasks.memorytask.eel import eel_api as MemoryTaskAPI
 from .agt import expose_to_eel as expose_agt
 from .settings import expose_to_eel as expose_settings
 from .conclusion import expose_to_eel as expose_conclusion

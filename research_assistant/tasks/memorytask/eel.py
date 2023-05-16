@@ -2,8 +2,8 @@
 import logging
 from uuid import UUID
 from typing import Any
-from ..task_api import ResearchTaskAPI
-from ..config import config
+from ...task_api import ResearchTaskAPI
+from ...config import config
 from .datamodel import MemoryTaskResponse, MemoryTaskScore
 
 logger = logging.getLogger(__name__)
