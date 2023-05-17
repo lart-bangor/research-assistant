@@ -230,8 +230,10 @@ class EelAPI(ABC):
                     logger.warning(
                         f"Attempting to overwrite already exposed method {name!r} "
                         f"({self.eel_api[name]}) with new method ({func}) on "
-                        f"EelAPI instance of {self.__class__.__qualname__}."
+                        f"EelAPI instance of {self.__class__.__qualname__}. "
+                        f"'eel.{name!s}' continues to point to {self.eel_api[name]}."
                     )
+                    continue
             eel._expose(name, func)
             self.eel_api[name] = func
 

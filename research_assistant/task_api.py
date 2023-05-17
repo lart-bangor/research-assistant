@@ -331,7 +331,8 @@ class ResearchTaskAPI(EelAPI):
                 "selectSurveyVersion": str(response_meta.task_localisation),
                 "researcherId": str(response_meta.researcher_id),
                 "researchLocation": str(response_meta.research_location),
-                "confirmConsent": str(response_meta.consent_obtained),
+                "participantId": str(response_meta.participant_id),
+                "confirmConsent": str(int(response_meta.consent_obtained)),
                 "surveyDataForm.submit": "true",
             })
             href = f"/app/{getattr(config.sequences, task_name)}/index.html?{query}"

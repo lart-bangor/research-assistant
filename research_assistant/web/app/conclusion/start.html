@@ -33,7 +33,7 @@
         </div>
 
         <form id="surveyDataForm">
-            <input type="hidden" name="versionId" />
+            <input type="hidden" name="instanceId" />
             <!-- Form submission -->
             <div class="row text-end p-3 m-4">
                 <div class="col">
@@ -47,15 +47,15 @@
 {% block tail_scripts %}
     <script  type="text/javascript">
         // Initialise UI translation
-        let versionId = lart.forms.searchParams.get('versionId');
-        lart.tr.loadFromEel('conclusion', eel._conclusion_load_version, [versionId, ['meta', 'base', 'end']]);
+        let instanceId = lart.forms.searchParams.get('instance');
+        lart.tr.loadFromEel('conclusion', eel.conclusion_load_localisation, [instanceId, ['meta', 'base', 'end']]);
         lart.tr.registerObserver('conclusion', 'conclusionAppTitle');
         lart.tr.registerObserver('conclusion', 'conclusionEndScreen');
-        // Set versionId value on surveyDataForm
-        const versionIdFields = document.getElementsByName('versionId');
-        for (const versionIdField of versionIdFields) {
-            versionIdField.value = versionId;
+        // Set instanceId value on surveyDataForm
+        const instanceIdFields = document.getElementsByName('instanceId');
+        for (const instanceIdField of instanceIdFields) {
+            instanceIdField.value = instanceId;
         }
     </script>
-    {{ lart_form_pipeline('surveyDataForm', '_conclusion_end') }}
+    {{ lart_form_pipeline('surveyDataForm', 'conclusion_end') }}
 {% endblock %}

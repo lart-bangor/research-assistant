@@ -18,9 +18,9 @@ from .config import config
 from . import booteel
 from .lsbq import expose_to_eel as expose_lsbq
 from .tasks.memorytask.eel import eel_api as MemoryTaskAPI
+from .tasks.conclusion.eel import eel_api as ConclusionTaskAPI
 from .agt import expose_to_eel as expose_agt
 from .settings import expose_to_eel as expose_settings
-from .conclusion import expose_to_eel as expose_conclusion
 from .utils import export_backup, manage_settings, show_error_dialog
 
 # Enable multiprocessing in frozen apps (e.g. pyinstaller)
@@ -39,10 +39,11 @@ logger = logging.getLogger(__name__)
 expose_lsbq()
 expose_agt()
 expose_settings()
-expose_conclusion()
 
 memory_task_api = MemoryTaskAPI()
 memory_task_api.expose()
+conclusion_task_api = ConclusionTaskAPI()
+conclusion_task_api.expose()
 
 # from pprint import pprint
 # pprint(config.sequences)
