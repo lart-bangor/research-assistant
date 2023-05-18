@@ -33,7 +33,8 @@ def safe_str(string: str) -> str:
 WORKSPACE_PATH: Final[Path] = Path(__file__).parent
 config = ConfigParser()
 config.read(WORKSPACE_PATH / "setup.cfg")
-QUALIFIED_PKG_NAME: Final[str] = config.get("metadata", "name")
+PYPI_PKG_NAME: Final[str] = config.get("metadata", "name")
+QUALIFIED_PKG_NAME: Final[str] = config.get("app.options", "qualified_pkg_name")
 APP_VERSION: Final[str] = config.get("metadata", "version")
 APP_URL: Final[str] = config.get("metadata", "url")
 APP_NAME: Final[str] = config.get("app.options", "name")
