@@ -59,7 +59,6 @@ Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name
 
 
     .. figure:: tutfigures/tutorial_naming_conventions.png
-        :name: tutorial_naming_conventions
         :width: 600
 
     Therefore, the Italian language file to be used for research with the Lombard-Italian bilingual community based in Italy is named: :file:`LmoIta_Ita_IT.json`. 
@@ -81,8 +80,7 @@ Make sure you do not change the labels though, otherwise the app will not find y
 
 First, you will need to provide some basic information about the file. This is the information under the header :code:`meta`.
 With your new file open in a text editor, begin by highlighting the language output for the label :code:`versionId`, as follows: 
-First, you will need to provide some basic information about the file. This is the information under the header “meta”.
-With your new file open in a text editor, begin by highlighting the language output for the label :file:`versionId`, as follows: 
+
 
 .. figure:: tutfigures/tutorial_highlighting_lang_output_versionid.png
     :name: tutorial_highlighting_lang_output_versionid
@@ -142,11 +140,11 @@ After completing the tasks of your choice, a generic conclusion appears on the s
 
     Final conclusion screen
 
-To match the language of your choice, you may wish to translate the conclusion screen. To do so, firstly, follow the path below to locate the :file:`versions`folder:
+To match the language of your choice, you may wish to translate the conclusion screen. To do so, firstly, follow the path below to locate the :file:`versions` folder:
 
 :file:`C:\\Users\\admin\\Documents\\lart-research-client\\research_assistant\\conclusion\\versions`
 
-Next ....
+Next, 
 
 .. figure:: tutfigures/translating_conclusion_screen.png
     :name: translating_conclusion_screen
