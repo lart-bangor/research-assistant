@@ -69,6 +69,7 @@ Citing the Research Assistant
 .. epigraph::
 
    Breit, F., Tamburelli, M., Gruffydd, I. and Brasca, L. (2023). *The L’ART Research Assistant: A digital toolkit for bilingualism and language attitude research* [Software, version |version|]. Bangor University. 
+   DOI: `10.13140/RG.2.2.18801.35686 <http://doi.org/10.13140/RG.2.2.18801.35686>`_
 
 
 Licensing
