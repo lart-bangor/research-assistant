@@ -23,8 +23,6 @@ This can be done by using the generic consent form provided (see
 :numref:`data_setup_rc_side_menu` & :numref:`data_setup_participant_consent_screen`)
 or by linking it to your own digital consent form.
 
-.. (see section **[insert link]** for instructions on how to add a custom consent form). << Ask where custom consent form is on the doc
-
 To obtain consent digitally, open the side menu on the top left-handby clicking on the
 "burger menu" icon. Then click on :guilabel:`Informed Consent`.
 

@@ -22,7 +22,7 @@ Upon starting the LSBQe, you are first asked to enter the relevant information f
 
 .. figure:: figures/lsbqe_first_screen.png
     :name: lsbqe_first_screen
-    :width: 400
+    :width: 700
     :alt: Screenshot of the first screen of the LSBQe
       
     The first screen, using the LSBQe as an example
@@ -50,7 +50,7 @@ If the participant fails to move the slider, a red flag will appear (see :numref
 
 .. figure:: figures/lsbqe_slider_function.png
     :name: lsbqe_slider_function
-    :width: 600
+    :width: 650
     :alt: Screenshot of the slider function, using the LSBQe as an example.
 
     The slider function, using the LSBQe as an example.
