@@ -45,3 +45,4 @@ Research Assistant or build additional tasks, a technical documentation can be f
    discarding-attempts
    sequencing
    configuration
+   memory-game
