@@ -19,6 +19,7 @@ own research settings. Below we provide instructions on how to do this using the
 To adapt a task for a new language community, you will need to create a new file, provide a translation for each interface item and then save it with a specific naming convention.
 Each step is outlined below.
 
+.. _creating:
 Creating and Naming your file
 -----------------------------
 To create a new file for your translation, go to the location where the L'ART app is installed, and open the :file:`versions` folder.
@@ -57,8 +58,9 @@ Go to :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name
     and on `ISO 3166-1 alpha-2 codes for the countries <https://www.nationsonline.org/oneworld/country_code_list.htm>`_, but uses capital letters
     for the language codes in keeping with `CamelCase <https://legacy.python.org/dev/peps/pep-0008/#naming-conventions>`_ as follows:
 
-
+ 
     .. figure:: tutfigures/tutorial_naming_conventions.png
+        :name: tutorial_naming_conventions
         :width: 600
 
     Therefore, the Italian language file to be used for research with the Lombard-Italian bilingual community based in Italy is named: :file:`LmoIta_Ita_IT.json`. 
@@ -69,6 +71,7 @@ whose native languages are Moroccan Arabic **(ary)** and Berber **(ber)** you wo
 Similarly, if you would like to provide a Spanish translation **(Iso code: spa)** to study a bilingual community in Spain **(ISO code: ES)**
 whose native languages are Galician **(glg)** and Spanish **(spa)**, you would label your file :file:`GlgSpa_Spa_ES.json`.
 
+.. _adding:
 Adding your translation
 -----------------------
 Your newly created file will now be identical to the original British-English file (except for its name)!
@@ -144,14 +147,39 @@ To match the language of your choice, you may wish to translate the conclusion s
 
 :file:`C:\\Users\\admin\\Documents\\lart-research-client\\research_assistant\\conclusion\\versions`
 
-Next, 
+Once you have located the :file:`versions` folder as seen in :numref:`translating_conclusion_screen`, you will need to create and name a new translation file.
+
+To do this, please refer to the previous subsections :ref:`creating` and :ref:`adding` for in-depth instructions. 
+
+.. note::
+    Please ensure that you :guilabel:`File` and then :guilabel:`Save as`, and save it with a new name that includes the language and a label for the bilingual community you plan to study.
+    
+    Naming also **must** be done in a specific manner so that the app can find and read the translation you provide. Please refer to the note found in :ref:`creating` for more details.
 
 .. figure:: tutfigures/translating_conclusion_screen.png
     :name: translating_conclusion_screen
-    :width: 500
+    :width: 600
     :alt: Screenshot of locating the conclusions folder 
 
     Locating the versions folder under conclusions
+
+To provide your translated version, you need to highlight each bit of language output and replace it with your translation.
+
+Simply open any language file, as seen in :numref:`translating_conclusion_screen`, to open in code. From here, you can copy and paste the code (see :numref:`translating_conclusion_screen_code`)
+and replace the language output with your translation. 
+
+Please refer to the :ref:`adding` section above as translating the conclusion screen follows the exact same structure. 
+
+.. figure:: tutfigures/translating_conclusion_screen_code.png 
+    :name: translating_conclusion_screen_code
+    :width: 1100
+    :alt: Screenshot of the English conclusion screen code
+
+    English version of the conclusion screen code
+
+
+
+
 
 
 

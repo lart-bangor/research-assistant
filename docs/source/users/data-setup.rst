@@ -47,3 +47,4 @@ If the participant gives their consent and confirms their eligibility through ma
 automatically advanced to the start screen for the first task (see :ref:`task-sequencing` on how to set this).  
 
 The task start screen is the same start screen that researchers who opt for the LSBQe task without digital informed consent will see after they select a task from the app's home screen. 
+
