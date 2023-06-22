@@ -3,7 +3,8 @@ Localisation and Adding Translations
 ====================================
 All tasks in the L'ART Research Assistant are designed to allow easy implementation of interfaces in any language you choose.
 
-At the moment, the languages available depend on the specific task. The LSBQe, for example, is available in **English, German, Greek, Italian,** and **Welsh**.
+At the moment, the languages available depend on the specific task. The LSBQe, for example, is available in
+**English, German, Greek, Italian,** and **Welsh**. 
 The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, Moselle Franconian-German**, and **Greek-English:**
 
 .. figure:: tutfigures/tutorial_selecting_version_of_lsbqe.png
@@ -13,18 +14,24 @@ The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, M
 
       Selecting a version of the LSBQe 
 
-However, both the working languages and the setup for specific bilingual communities can be easily changed by providing a translated version of teh task you require to suit your
-own research settings. Below we provide instructions on how to do this using the LSBQe as example, though the same procedures can also be applied to the AToL-C and AGT.
+However, both the working languages and the setup for specific bilingual communities can be easily
+changed by providing a translated version of the task you require to suit your own research settings.
+Below we provide instructions on how to do this using the LSBQe as example, though the same procedures
+can also be applied to the AToL-C and AGT.
 
-To adapt a task for a new language community, you will need to create a new file, provide a translation for each interface item and then save it with a specific naming convention.
+To adapt a task for a new language community, you will need to create a new file, provide a translation
+for each interface item and then save it with a specific naming convention.
+
 Each step is outlined below.
 
 .. _creating:
 Creating and Naming your file
 -----------------------------
-To create a new file for your translation, go to the location where the L'ART app is installed, and open the :file:`versions` folder.
+To create a new file for your translation, go to the location where the L'ART app is installed, and open
+the :file:`versions` folder.
 
-Below is the path you need to follow in order to find it. The path your app is located in depends on whether you installed the app for a single user or for all users (you will have made this choice on installation).
+Below is the path you need to follow in order to find it. The path your app is located in depends on
+whether you installed the app for a single user or for all users (you will have made this choice on installation).
 
 Below is an example of the path when the app is installed for **a single user**: 
 
@@ -148,7 +155,6 @@ To match the language of your choice, you may wish to translate the conclusion s
 :file:`C:\\Users\\admin\\Documents\\lart-research-client\\research_assistant\\conclusion\\versions`
 
 Once you have located the :file:`versions` folder as seen in :numref:`translating_conclusion_screen`, you will need to create and name a new translation file.
-
 To do this, please refer to the previous subsections :ref:`creating` and :ref:`adding` for in-depth instructions. 
 
 .. note::
@@ -164,9 +170,9 @@ To do this, please refer to the previous subsections :ref:`creating` and :ref:`a
     Locating the versions folder under conclusions
 
 To provide your translated version, you need to highlight each bit of language output and replace it with your translation.
-
-Simply open any language file, as seen in :numref:`translating_conclusion_screen`, to open in code. From here, you can copy and paste the code (see :numref:`translating_conclusion_screen_code`)
-and replace the language output with your translation. 
+Simply open any language file, as seen in :numref:`translating_conclusion_screen`, to open in code.
+From here, you can copy and paste the code (see :numref:`translating_conclusion_screen_code`) and replace the language output
+with your translation. 
 
 Please refer to the :ref:`adding` section above as translating the conclusion screen follows the exact same structure. 
 
