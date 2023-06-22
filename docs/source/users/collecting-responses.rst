@@ -56,7 +56,7 @@ If the participant fails to move the slider, a red flag will appear (see :numref
 
 .. figure:: figures/lsbqe_flagged.png
     :name: lsbqe_flagged
-    :width: 600
+    :width: 650
     :alt: Screenshot of unanswered questions flagged in red
 
     Unanswered questions flagged in red
