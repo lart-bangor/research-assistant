@@ -396,7 +396,7 @@ and change the value back to :code:`true`.
 
 .. figure:: figures/code_switching_read_write_removed.png
       :name: code_switching_read_write_removed
-      :width: 400
+      :width: 650
       :alt: Screenshot of how the question appears in the app with "reading" and "writing" options removed
 
       How the question appears in the app with "reading" and "writing" options removed 
