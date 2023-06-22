@@ -4,7 +4,7 @@ Contributing
 What do I need to know to help?
 -------------------------------
 
-If you are looking to helo with a code contribution, our project uses `Python 3.10 <https://python.org>`_ and
+If you are looking to help with a code contribution, our project uses `Python 3.10 <https://python.org>`_ and
 `Eel <https://github.com/python-eel/Eel>`_ for the backend,
 `JavaScript <https://developer.mozilla.org/en-US/docs/Web/JavaScript>`_ for the frontend logic, and
 `HTML <https://developer.mozilla.org/en-US/docs/Web/HTML>`_ & `CSS <https://developer.mozilla.org/en-US/docs/Web/CSS>`_
@@ -88,7 +88,7 @@ rundown!
    :code:`git push origin branch-name-here` (using the same branch name you decided on above).
 
 #. Submit a `pull request <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`_
-   to our upstream repository (:github:repo:`lart-bangor/research-assitant`).
+   to our upstream repository (:github:repo:`lart-bangor/research-assistant`).
 
 #. Title the pull request with a short description of the changes made, and if applicable the issue or bug number
    associated with your change.
