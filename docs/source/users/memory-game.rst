@@ -1,8 +1,9 @@
 Memory game
 -----------
 
-For the purpose of not disclosing to participants that language attitudes are being measured, a memory game was implemented to act as a distractor
-after the completion of linguistic tasks such as the LSBQe and AToL.  
+For the purpose of not disclosing to participants that language attitudes are being measured,
+a memory game was implemented to act as a distractor after the completion of linguistic tasks
+such as the LSBQe and AToL.  
 
 .. figure:: figures-mt/memory_task_homescreen.png
     :name: memory_task_homescreen
@@ -11,8 +12,11 @@ after the completion of linguistic tasks such as the LSBQe and AToL.
 
     Research Client homescreen 
 
-The memory game consists of 20 picture cards in which participants are tasked to match each card with its respective pair in the shortest amount of time possible.
-Once a card has been clicked, only then the timer will begin.  
+The memory game consists of 20 picture cards in which participants are tasked to match each card
+with its respective pair in the shortest amount of time possible. Once a card has been clicked,
+only then the timer will begin. As seen in :numref:`memory_task_1`, all cards are faced down and
+only two cards are able to be revealed at a time, therefore the participant must try to memorise
+the card locations. 
 
 .. figure:: figures-mt/memory_task_1.png
     :name: memory_task_1
@@ -20,9 +24,6 @@ Once a card has been clicked, only then the timer will begin.
     :alt: Screenshot of memory game 
 
     Starting screen of memory game 
-
-As seen in :numref:`memory_task_1`, all cards are faced down. Only two cards are able to be revealed at a time,
-therefore the participant has to try and memorise the card locations.
 
 .. figure:: figures-mt/memory_task_matching_pairs.png
     :name: memory_task_matching_pairs
@@ -33,24 +34,19 @@ therefore the participant has to try and memorise the card locations.
 
 There are a total of two rounds in which the participant is given the opportunity to achieve a higher score.
 
-After completing the memory task, a congratulatory results screen will appear on the screen. As this is purely
-a distractor task, results will be displayed after each round as seen in :numref:`memory_task_first_results`
-and :numref:`memory_task_second_results`
+After completing the memory task, a congratulatory results screen will appear.
+Results are displayed after each round as seen in :numref:`memory_task_first_results` and  
+data for the memory task will not be saved.
+
+However, as this is purely a distractor task, participants will be informed that their
+'data has been saved automatically' as seen in :numref:`memory_task_conclusion` before
+continuing on to the next task.
 
 .. figure:: figures-mt/memory_task_first_results.png
     :name: memory_task_first_results
     :width: 600
     :alt: Screenshot of first results of memory task displayed
 
-.. figure:: figures-mt/memory_task_second_results.png
-    :name: memory_task_second_results
-    :width: 600
-    :alt: Screenshot of second results of memory task displayed
-
-    Overall results screen after completing the memory task
-
-After the completion of the memory task, a conclusion screen will appear informing the participant that data has
-been saved (see figure X). 
 
 .. figure:: figures-mt/memory_task_conclusion
     :name: mmemory_task_conclusion
