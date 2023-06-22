@@ -377,7 +377,7 @@ If you wish to change it back to including the code-switching question, you must
 
 .. figure:: figures/code_switching_read_write_removed.png
       :name: code_switching_read_write_removed
-      :width: 400
+      :width: 650
       :alt: Screenshot of how the question appears in the app with "reading" and "writing" options removed
 
       How the question appears in the app with "reading" and "writing" options removed 
