@@ -86,7 +86,7 @@ Now it’s time to add your translation. The translation file involves two main 
 The labels are what the L’ART Research Client needs in order to function, while the language output is what you will see in your interface.
 
 To provide your translated version, you need to highlight each bit of language output and replace it with your translation.
-Make sure you do not change the labels though, otherwise the app will not find your translation and instead, will output the default English version. 
+Make sure you **do not change the labels** though, otherwise the app will not find your translation and instead, will output the default English version. 
 
 First, you will need to provide some basic information about the file. This is the information under the header :code:`meta`.
 With your new file open in a text editor, begin by highlighting the language output for the label :code:`versionId`, as follows: 
