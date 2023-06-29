@@ -1,0 +1,31 @@
+{
+    "meta": {
+        "versionId": "ZhoZzz_Zho_CN",
+        "versionName": "Chinese – Generic (China)",
+        "versionNumber": "0.3.5",
+        "author": "Chloe Cheung <chloewycheung8@gmail.com>",
+        "date": "2023-03-15"
+    },
+    "base": {
+        "appTitle": [
+            "结论屏幕"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "所有的任务都已完成!"
+        ],
+        "feedback": [
+            "做的好"
+        ],
+        "thankYouMessage": [
+            "你现在已经完成了所有的任务。您的数据已被自动保存，但请不要关闭该应用程序。"
+        ],
+        "followOnInstructions": [
+            "请让研究人员知道你已经完成了任务。他们会检查我们是否拥有所需的一切，并在需要时给你任何进一步的指示。"
+        ],
+        "close": [
+            "关闭消息"
+        ]
+    }
+}
