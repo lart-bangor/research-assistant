@@ -1,0 +1,69 @@
+{
+    "meta": {
+        "versionId": "ZhoZzz_Zho_CN",
+        "versionName": "Chinese - generic (China)",
+        "versionNumber": "0.3.4",
+        "author": "Chloe Cheung <chloewycheung8@gmail.com>",
+        "date": "2023-06-28"
+    },
+    "base": {
+        "appTitle": [
+            "AGT: 评级语音"
+        ],
+        "next": [
+            "下一节"
+        ],
+        "sliderFeedback": [
+            "请至少移动滑块一次。"
+        ]
+    },
+    "audioMsg": {
+        "load": [
+            "装载音频......"
+        ],
+        "loaded": [
+            "音频现在已经加载。"
+        ],
+        "play": [
+            "目前正在播放音频......"
+        ],
+        "complete": [
+            "音频已经播放完毕。"
+        ],
+        "playbackError": [
+            "不能播放音频，再试。"
+        ],
+        "abortedError": [
+            "错误: 播放已被取消."
+        ],
+        "networkError": [
+            "错误: 由于网络错误，音频无法播放。"
+        ],
+        "decodeError": [
+            "错误: 无法解码音频。"
+        ],
+        "formatError": [
+            "错误: 无法找到音频文件或不支持该文件。"
+        ],
+        "unknownError": [
+            "错误: 发生了一个未知的错误。"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "感谢你完成了语音评级任务!"
+        ],
+        "feedback": [
+            "做的好！"
+        ],
+        "thankYouMessage": [
+            "你现在已经完成了任务。你的数据已被保存。"
+        ],
+        "followOnInstructions": [
+            "当你准备继续时，请点击 “继续”。"
+        ],
+        "continue": [
+            "继续"
+        ]
+    }
+}
