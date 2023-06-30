@@ -153,12 +153,19 @@ version. For example, if you are a dialectologist who requires a VGT to study Ul
 in Northern Ireland, you would call your file :file:`ScoGle_Eng_GB` and apply the changes to
 :code:`version_name` and :code:`version_id` as above.
 
-.. note::
-    Note that the third label in the file name :file:`ScoGle_Eng_GB` remains “Eng”, as this refers
-    to the language in which the AGT is presented, which in this case is still English. 
+
+Note that the third label in the file name :file:`ScoGle_Eng_GB` remains “Eng”, as this refers
+to the language in which the AGT is presented, which in this case is still English. 
 
 
 Seeing as no language names are mentioned anywhere in the AGT, the only other component where the
 languages you choose to study are important is the recordings you load onto the AGT (see
 :ref:`recordings-agt` for more details). Everything else can remain the same as in the
 “English – generic” version. 
+
+.. note::
+      Currently, when you run the app, the AGT will only play generic recordings such as 'This is speaker 1' and 'This is speaker 2',
+      acting as placeholders for your own recordings. For instructions on how to upload your own recordings, please refer back to
+      :ref:`recordings-agt`.
+      
+      

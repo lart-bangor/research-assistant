@@ -23,8 +23,6 @@ This can be done by using the generic consent form provided (see
 :numref:`data_setup_rc_side_menu` & :numref:`data_setup_participant_consent_screen`)
 or by linking it to your own digital consent form.
 
-.. (see section **[insert link]** for instructions on how to add a custom consent form). << Ask where custom consent form is on the doc
-
 To obtain consent digitally, open the side menu on the top left-handby clicking on the
 "burger menu" icon. Then click on :guilabel:`Informed Consent`.
 
@@ -49,3 +47,4 @@ If the participant gives their consent and confirms their eligibility through ma
 automatically advanced to the start screen for the first task (see :ref:`task-sequencing` on how to set this).  
 
 The task start screen is the same start screen that researchers who opt for the LSBQe task without digital informed consent will see after they select a task from the app's home screen. 
+

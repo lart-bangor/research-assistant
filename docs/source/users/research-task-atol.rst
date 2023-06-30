@@ -18,7 +18,7 @@ You will not be able to advance without completing each respective part of the s
 The next screen begins the AToL proper, asking the participant to rate the relevant languages, depending on the AToL version selected.
 
 The majority language always appears first due to sociolinguistic plausibility, for instance, because all
-instructions appear in the majority language in the original AToL versions for the L'ART research Assistant.
+instructions appear in the majority language in the original AToL versions for the L'ART Research Assistant.
 
 The bipolar adjective pairs are always generated in a random order (the specific order for each participant is recorded in that participant's the data file).
 The AToL presents the statement **“The X language is…”** followed by the AToL’s bipolar adjective pairs which are rated by using the sliders as seen in :numref:`atol_rating` below.
@@ -82,3 +82,5 @@ In order to produce a customized version of the AToL, you must also change both 
       :alt: Screenshot of a customized AToL file 
 
       New customized AToL file EngSco_Eng_GB
+
+

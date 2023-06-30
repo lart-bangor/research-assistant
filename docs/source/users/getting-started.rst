@@ -5,7 +5,7 @@ Upon starting the app on your device, both the L’ART Research Assistant app an
 
 .. figure:: figures/final_home_screen.png
       :name: final_home_screen
-      :width: 400
+      :width: 600
       :alt: Screenshot of L'ART Research Assistant home screen
       
       L’ART Research Assistant home screen
