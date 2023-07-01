@@ -15,8 +15,8 @@
         "rml_header": "[ENTER language name HERE] 是......",
         "atol_header": "关于语言种类的调查问卷",
         "btn_text": "下一节",
-        "thank_you": "感谢你填写问卷！",
-        "next_task": "当你准备好时，请点击 <i>继续</i>",
+        "thank_you": "感谢您填写问卷！",
+        "next_task": "当您准备好时，请点击 <i>继续</i>",
         "btn_continue": "继续"
     },
     "adjectives": {
