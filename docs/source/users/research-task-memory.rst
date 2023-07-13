@@ -1,9 +1,9 @@
-Memory game
+Memory task
 -----------
 
 For the purpose of not disclosing to participants that language attitudes are being measured,
-a memory game was implemented to act as a distractor after the completion of linguistic tasks
-such as the LSBQe and AToL.  
+a task implementing a simple memory card game is provided to act as a distractor after the
+completion of linguistic tasks such as the LSBQe and AToL.  
 
 .. figure:: figures-mt/memory_task_homescreen.png
     :name: memory_task_homescreen
@@ -21,9 +21,9 @@ the card locations.
 .. figure:: figures-mt/memory_task_1.png
     :name: memory_task_1
     :width: 600
-    :alt: Screenshot of memory game 
+    :alt: Screenshot of memory task 
 
-    Starting screen of memory game 
+    Starting screen of memory task 
 
 .. figure:: figures-mt/memory_task_matching_pairs.png
     :name: memory_task_matching_pairs
@@ -38,7 +38,7 @@ After completing the memory task, a congratulatory results screen will appear.
 Results are displayed after each round as seen in :numref:`memory_task_first_results` and  
 data for the memory task will not be saved.
 
-However, as this is purely a distractor task, participants will be informed that their
+As this is purely a distractor task, participants will still be informed that their
 'data has been saved automatically' as seen in :numref:`memory_task_conclusion` before
 continuing on to the next task.
 
@@ -54,8 +54,3 @@ continuing on to the next task.
     :alt: Screenshot of memory task conclusion screen
 
     Memory task conclusion screen
-
-
-
-
-

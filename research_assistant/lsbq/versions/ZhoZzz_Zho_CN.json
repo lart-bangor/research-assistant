@@ -338,14 +338,14 @@
             "德语 - German",
             "西班牙语 - Spanish",
             "意大利语 - Italian",
-            "威尔士语 - Welsh", 
+            "威尔士语 - Welsh" 
 
         ],
         "repeatedLanguageErrorTitle": [
             "重复语言"
         ],
         "repeatedLanguageErrorMessage": [
-            "“<span class=\"languageNameSlot\">[languageName]</span>” 已添加到此列表中.",
+            "“<span class=\"languageNameSlot\">[languageName]</span>” 已添加到此列表中."
         ]
     },
     "club": {
