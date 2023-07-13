@@ -14,8 +14,30 @@
             "下一节"
         ],
         "sliderFeedback": [
-            "请至少移动滑块一次。"
+            "请至少移动滑块一次。" 
         ]
+
+    },
+    "instructions": {
+        "secTitle": [
+            "AGT 指令"
+        ],
+        "begin": [
+            "开始练习"
+        ],
+        "taskDescription": [
+            "在这项任务中，您将听到一个人说话，并看到一系列滑块，要求您仅根据其声音对该人进行评分。"        
+        ],
+        "taskInstruction": [
+            "请使用滑块来记录您对每个陈述的同意或不同意的程度。您只会听到每个声音一次。但是，如果在任务过程中出现任何问题，例如音频不能正常播放，请与研究人员交谈。"       
+        ],
+        "taskPracticeDescription": [
+            "第一个例子将是一个练习项目，以便您可以熟悉这个任务。在您完成练习项目后，您将有机会与研究人员交谈，询问您对任务可能有的任何问题。"
+        ],
+        "taskNextStep": [
+            "当您准备好时，点击 <em>开始练习</em>。"
+        ]
+
     },
     "audioMsg": {
         "load": [
@@ -49,18 +71,55 @@
             "错误: 发生了一个未知的错误。"
         ]
     },
+    "rating": {
+        "secTitle": [
+            "语音评价"
+        ],
+        "statement": [
+            "这段录音中的人听起来......"
+        ],
+        "instructions": [
+            "请使用滑块记录您的回复"
+        ],
+        "stronglyAgree": [
+            "非常同意"
+        ],
+        "stronglyDisagree": [
+            "强烈反对"
+        ]
+    },
+    "trait": {
+        "amusing":      [ "有趣" ],
+        "open-minded":  [ "开明的" ],
+        "attractive":   [ "吸引人的" ],
+        "trustworthy":  [ "值得信赖的" ],
+        "ignorant":     [ "愚昧"],
+        "polite":       [ "有礼貌的"],
+        "ambitious":    [ "雄心勃勃的"],
+        "international": [ "国际的"],
+        "cool":         [ "酷" ],
+        "intelligent":  [ "聪明的" ],
+        "influential":  [ "有影响" ],
+        "likeable":     [ "有人缘儿" ],
+        "educated":     [ "受过教育" ],
+        "friendly":     [ "有好的" ],
+        "honest":       [ "诚实的" ],
+        "competent":    [ "胜任的" ],
+        "natural":      [ "自然的" ],
+        "pretentious":  [ "自命不凡的" ]
+    },
     "end": {
         "secTitle": [
-            "感谢你完成了语音评级任务!"
+            "感谢您完成了语音评级任务!"
         ],
         "feedback": [
             "做的好！"
         ],
         "thankYouMessage": [
-            "你现在已经完成了任务。你的数据已被保存。"
+            "您现在已经完成了任务。您的数据已被保存。"
         ],
         "followOnInstructions": [
-            "当你准备继续时，请点击 “继续”。"
+            "当您准备继续时，请点击 “继续”。"
         ],
         "continue": [
             "继续"
