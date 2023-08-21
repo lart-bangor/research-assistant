@@ -1,0 +1,139 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{% extends 'base.html' %}
+{% block title %}LART Research Assistant - AToL-C - Language 1{% endblock %}
+{% block headline %}<span id="atolcAppTitle" data-atolc-tr="base.appTitle">AToL-C</span>{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+    <li class="nav-item">
+        <a class="nav-link" onClick="discard_attempt()"><i class="bi bi-x-circle"></i>  Discard attempt</a>
+    </li>
+    <li><hr class="nav-divider"></li>
+{% endblock %}
+{% block content %}
+    <article class="container-fluid p-2">
+
+        <!-- <div class="row m-4">
+            <div class="col">
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width:5%"></div>
+                </div>
+            </div>
+        </div> -->
+
+		<section id="atolcTaskHeader">
+			<div class="row m-4 mb-0 text-center">
+				<h2 id="atolcTaskSectionTitle" data-atolc-tr="language1.name">Language 1</h2>
+			</div>
+		</section>
+        
+        <form id="surveyRatingForm" class="needs-validation" autocomplete="off">
+
+            <input type="hidden" name="language" value="language1" />
+
+            <!-- Instructions -->
+            <section class="m-4">
+                <div class="row mb-0">
+                    <h4 class="col" data-atolc-tr="language1.header">Language 1 is...</h4>
+                </div>
+                <div class="row mb-0">
+                    <div class="col">
+                        <p class="help-block text-muted">
+                            <i class="bi-info-circle text-info"></i>
+                            <span data-atolc-tr="base.instructions">Please move the slider to record your choice.</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AToL-C Ratings for Language 1 -->
+            <template id="traitRatingTemplate">
+                <div id="traitRatingInstance-[Trait]">
+                    <div>
+                        <label class="row mb-0" for="trait-[TraitName]">
+                            <div class="col-6 text-start">[TraitLeft]</div>
+                            <div class="col-6 text-end">[TraitRight]</div>
+                        </label>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <input type="range" class="form-range" min="0" max="100" step="any" id="trait-[TraitName]" required />
+                            <div class="invalid-feedback invalid-range" data-atolc-tr="base.instructions">
+                                Please move the slider to record your choice.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <section id="traitRatingSlot" class="m-4">
+                <!-- Placeholder dynamically filled with copies of traitRatingTemplate -->
+            </section>
+
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div clas="col">
+                    <button data-atolc-tr="base.next" type="submit" class="btn btn-primary btn-lg btn-action shadow">
+                        Next
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+<script type="text/javascript">
+    // Require form validation
+    lart.forms.requireValidation(true);
+    lart.forms.monitorRangeInputs('traitRatingSlot');
+
+    // Initialise UI translation
+    let instanceId = lart.forms.searchParams.get('instance');
+    lart.tr.loadFromEel('atolc', eel.atolc_load_localisation, [instanceId, ['meta', 'base', 'language1', 'traits']]);
+    lart.tr.registerObserver('atolc', 'atolcAppTitle');
+    lart.tr.registerObserver('atolc', 'atolcTaskHeader');
+    lart.tr.registerObserver('atolc', 'surveyRatingForm');
+
+    // Set the language form field
+    lart.tr.registerCallback('atolc',
+        function () {
+            document.getElementsByName('language')[0].value = lart.tr.get('atolc', 'language1.name')
+        }
+    );
+
+    // Load and fill the traits to be rated
+    lart.tr.registerCallback('atolc',
+        function () {
+            eel.atolc_get_traits()(fillTraitRatingSection);
+        }
+    );
+
+    function fillTraitRatingSection(traits) {
+        let randomTraits = traits.map(x => [Math.random(), x]).sort(([a], [b]) => a - b).map(([_, x]) => x);
+        for ( trait of randomTraits ) {
+            console.log("Adding trait rating:", trait);
+            addTraitRating(trait);
+        }
+    }
+
+    function addTraitRating(trait) {
+        const template = document.getElementById('traitRatingTemplate');
+        const slot = document.getElementById('traitRatingSlot');
+        const clone = template.content.cloneNode(true);
+        const traitTranslation = lart.tr.get('atolc', `traits.${trait}`);
+
+        booteel.util.replaceInDOM(
+            clone,
+            {
+                '[TraitName]': trait,
+                '[TraitLeft]': traitTranslation[0],
+                '[TraitRight]': traitTranslation[1],
+            }
+        );
+
+        slot.appendChild(clone);
+    }
+</script>
+{{ lart_form_pipeline('surveyRatingForm', 'atolc_add_ratings') }}
+{% endblock %}

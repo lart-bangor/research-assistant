@@ -44,7 +44,7 @@ class MemoryTaskAPI(ResearchTaskAPI):
             missing = self._find_missing_keys(x, ("score", "time"))
             if missing:
                 exc = KeyError(
-                    f"Failed to add scores to {self.__class__.__name__} response: ",
+                    f"Failed to add scores to {self.__class__.__name__} response: "
                     "missing key {missing!r} on at least on score record."
                 )
                 self.logger.error(str(exc))

@@ -5,7 +5,7 @@
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
-            availableVersions = eel._atol_getversions()(populateSurveyVersions); //need a function for AToL. I tried but can't get an ID for options 
+            availableVersions = eel.atolc_get_localisations()(populateSurveyVersions); //need a function for AToL. I tried but can't get an ID for options 
         }
         
         function populateSurveyVersions(versions) {
@@ -17,22 +17,6 @@
                 select.appendChild(option);
             }
         }
-                  
-               // @TODO: Can probably refactor as a loop?
-        function recordData() {
-            
-            const atolVersion = document.getElementById("selectSurveyVersion").value;
-            const atolResId = document.getElementById("researcherId").value;
-            const atolLocation = document.getElementById("researchLocation").value;
-            const atolPartId = document.getElementById("participantId").value;
-            
-            sessionStorage.setItem("atolVersion", atolVersion);
-            sessionStorage.setItem("atolResId", atolResId);
-            sessionStorage.setItem("atolLocation", atolLocation);
-            sessionStorage.setItem("atolPartId", atolPartId);
-            
-        }    
-
     </script>
 {% endblock %}
 {% block head_styles %}{% endblock %}
@@ -46,6 +30,7 @@
 {% block content %}
     <article class="p-2">
 
+        <!--
         <div class="row m-4">
             <div class="col">
                 <div class="progress">
@@ -53,10 +38,11 @@
                 </div>
             </div>
         </div>
+        -->
 
         <div class="row m-4 text-center">
             <div class="col">
-                <h2>AToL-C: Language Questionnaire (RML)</h2>
+                <h2>AToL-C: Language Questionnaire</h2>
             </div>
         </div>
 
@@ -141,15 +127,7 @@
 {% block tail_scripts %}
     <script type="text/javascript">
         lart.forms.requireValidation(true);
-        lart.forms.registerPipeline(
-            'surveyDataForm',
-            async function(data) {
-                let success = await eel.init_atol(data)();
-                console.log("tail script: " + success);
-            }
-        );
-    </script>
-    <script type="text/javascript">
         lart.forms.util.autofillForm('surveyDataForm');
     </script>
+    {{ lart_form_pipeline('surveyDataForm', 'atolc_new') }}
 {% endblock %}

@@ -12,11 +12,12 @@ import sys
 from gevent import signal
 from pathlib import Path
 from typing import Any, Sequence
-from . import atolc                                                     # type: ignore  # noqa: F401
+#from . import atolc                                                     # type: ignore  # noqa: F401
 from . import consent                                                   # type: ignore  # noqa: F401
 from .config import config
 from . import booteel
 from .lsbq import expose_to_eel as expose_lsbq
+from .tasks.atolc.eel import eel_api as AtolcTaskAPI
 from .tasks.memorytask.eel import eel_api as MemoryTaskAPI
 from .tasks.conclusion.eel import eel_api as ConclusionTaskAPI
 from .agt import expose_to_eel as expose_agt
@@ -40,6 +41,8 @@ expose_lsbq()
 expose_agt()
 expose_settings()
 
+atolc_task_api = AtolcTaskAPI()
+atolc_task_api.expose()
 memory_task_api = MemoryTaskAPI()
 memory_task_api.expose()
 conclusion_task_api = ConclusionTaskAPI()
@@ -53,11 +56,11 @@ conclusion_task_api.expose()
 # exit()
 
 
-@eel.expose
-def atol_rating(data: dict[Any, Any]):
-    """Retrieve atol rating and print to screen."""
-    print("ATOL DATA FROM INDEX.HTML:")
-    print(data)
+# @eel.expose
+# def atol_rating(data: dict[Any, Any]):
+#     """Retrieve atol rating and print to screen."""
+#     print("ATOL DATA FROM INDEX.HTML:")
+#     print(data)
 
 
 def main():                                                                     # noqa: C901
