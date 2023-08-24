@@ -303,7 +303,7 @@ class ResearchTaskAPI(EelAPI):
         .. important::
 
             Response data for *response_id* is discarded from memory once :func:`end()` is called.
-            You **must** call :func:`store()` before callind :func:`end()` to store the data.
+            You **must** call :func:`store()` before calling :func:`end()` to store the data.
         """
         response_id = self._cast_uuid(response_id)
         self.logger.info(

@@ -34,6 +34,7 @@ class AtolcTaskAPI(ResearchTaskAPI):
     @ResearchTaskAPI.exposed
     def add_ratings(self, response_id: str | UUID, data: dict[str, Any]) -> None:  # noqa: C901
         """Add AToL-C ratings to the response with id *response_id*."""
+        MAX_TRIALS = 2
         response_id = self._cast_uuid(response_id)
         self.logger.info(
             f"Adding ratings for {self.__class__.__name__} response with id {response_id}.."
@@ -46,19 +47,35 @@ class AtolcTaskAPI(ResearchTaskAPI):
             self.logger.error(str(exc))
             raise exc
         self.logger.debug(f"... ratings data: {data}")
-        if "language" not in data:
+        if "languageTrial" not in data:
             exc = KeyError(
                 f"Failed to add ratings to {self.__class__.__name__} response: "
-                "missing 'language' value."
+                "missing 'languageTrial' value."
             )
             self.logger.error(str(exc))
             raise exc
-        ratings: dict[str, float] = dict()
+        language_trial = int(data["languageTrial"])
+        if language_trial < 0 or language_trial > MAX_TRIALS:
+            exc = ValueError(
+                f"Failed to add ratings to {self.__class__.__name__} response:"
+                f"invalid 'languageTrial' value, must be 1 or 2, {language_trial} given."
+            )
+            self.logger.error(str(exc))
+            raise exc
+        if "languageName" not in data:
+            exc = KeyError(
+                f"Failed to add ratings to {self.__class__.__name__} response: "
+                "missing 'languageName' value."
+            )
+            self.logger.error(str(exc))
+            raise exc
+        language_name = str(data["languageName"])
+        trait_ratings: dict[str, float] = dict()
         for key, value in data.items():
             if key.startswith("trait-"):
-                ratings[key.removeprefix("trait-")] = float(value)
+                trait_ratings[key.removeprefix("trait-")] = float(value)
         missing = self._find_missing_keys(
-            ratings,
+            trait_ratings,
             self.atolc_traits
         )
         if missing:
@@ -68,10 +85,26 @@ class AtolcTaskAPI(ResearchTaskAPI):
             )
             self.logger.error(str(exc))
             raise exc
-        ratings = AtolcTaskLanguageRatings(language=data["language"], **ratings)
+        ratings = AtolcTaskLanguageRatings(
+            language=language_name,
+            trial=language_trial,
+            order=list(trait_ratings.keys()),
+            **trait_ratings
+        )
         if "ratings" not in self._response_data[response_id]:
             self._response_data[response_id]["ratings"] = []
         self._response_data[response_id]["ratings"].append(ratings)
+        if language_trial < MAX_TRIALS:
+            self.set_location(f"start.html?instance={response_id}&trial={language_trial+1}")
+        elif self.store(response_id):
+            self.set_location(f"end.html?instance={response_id}")
+        else:
+            exc = RuntimeError(
+                f"Failed to store {self.response_class.__name__} response with id {response_id}: "
+                " reason not known."
+            )
+            self.logger.error(str(exc))
+            raise exc
 
 
 # Required so importers know which class defines the API

@@ -1,6 +1,6 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
 {% extends 'base.html' %}
-{% block title %}LART Research Assistant - AToL-C - Language 1{% endblock %}
+{% block title %}LART Research Assistant - AToL-C - Language [LanguageTrial]{% endblock %}
 {% block headline %}<span id="atolcAppTitle" data-atolc-tr="base.appTitle">AToL-C</span>{% endblock %}
 {% block head_styles %}{% endblock %}
 {% block drawer_info %}{% endblock %}
@@ -23,18 +23,20 @@
 
 		<section id="atolcTaskHeader">
 			<div class="row m-4 mb-0 text-center">
-				<h2 id="atolcTaskSectionTitle" data-atolc-tr="language1.name">Language 1</h2>
+				<h2 id="atolcTaskSectionTitle">[LanguageName]</h2>
 			</div>
 		</section>
         
         <form id="surveyRatingForm" class="needs-validation" autocomplete="off">
 
-            <input type="hidden" name="language" value="language1" />
+            <input type="hidden" name="languageTrial" value="[LanguageTrial]" />
+            <input type="hidden" name="languageShorthand" value="[LanguageShorthand]" />
+            <input type="hidden" name="languageName" value="[LanguageName]" />
 
             <!-- Instructions -->
             <section class="m-4">
                 <div class="row mb-0">
-                    <h4 class="col" data-atolc-tr="language1.header">Language 1 is...</h4>
+                    <h4 class="col" id="atolcTrialInstructions">[LanguageHeader]</h4>
                 </div>
                 <div class="row mb-0">
                     <div class="col">
@@ -88,9 +90,13 @@
     lart.forms.requireValidation(true);
     lart.forms.monitorRangeInputs('traitRatingSlot');
 
+    // Determine the trial
+    const languageTrial = lart.forms.searchParams.get('trial') || 1;
+    const languageShorthand = `language${languageTrial}`
+
     // Initialise UI translation
     let instanceId = lart.forms.searchParams.get('instance');
-    lart.tr.loadFromEel('atolc', eel.atolc_load_localisation, [instanceId, ['meta', 'base', 'language1', 'traits']]);
+    lart.tr.loadFromEel('atolc', eel.atolc_load_localisation, [instanceId, ['meta', 'base', languageShorthand, 'traits']]);
     lart.tr.registerObserver('atolc', 'atolcAppTitle');
     lart.tr.registerObserver('atolc', 'atolcTaskHeader');
     lart.tr.registerObserver('atolc', 'surveyRatingForm');
@@ -98,7 +104,16 @@
     // Set the language form field
     lart.tr.registerCallback('atolc',
         function () {
-            document.getElementsByName('language')[0].value = lart.tr.get('atolc', 'language1.name')
+            const languageName = lart.tr.get('atolc', `${languageShorthand}.name`);
+            document.getElementsByName('languageTrial')[0].value = languageTrial;
+            document.getElementsByName('languageShorthand')[0].value = languageTrial;
+            document.getElementsByName('languageName')[0].value = languageName;
+            const title = document.getElementsByTagName('title')[0];
+            booteel.util.replaceInDOM(title, {'[LanguageTrial]': languageTrial});
+            const atolcTaskSectionTitle = document.getElementById('atolcTaskSectionTitle');
+            booteel.util.replaceInDOM(atolcTaskSectionTitle, {'[LanguageName]': languageName});
+            const atolcTrialInstructions = document.getElementById('atolcTrialInstructions');
+            booteel.util.replaceInDOM(atolcTrialInstructions, {'[LanguageHeader]': lart.tr.get('atolc', `${languageShorthand}.header`)});
         }
     );
 

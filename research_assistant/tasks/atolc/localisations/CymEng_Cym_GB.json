@@ -2,39 +2,122 @@
     "meta": {
         "versionId": "CymEng_Cym_GB",
         "versionName": "Cymraeg - Saesneg (Y Deyrnas Unedig)",
-        "versionNumber": "0.3.4",
+        "versionNumber": "0.5.0a0",
         "author": "Ianto Gryffudd <ianto.gryffudd@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2023-01-30"
+        "date": "2023-08-24"
     },
-   "intface_info": {
-            "title": "Holiadur Iaith",
-             "language": "Saesneg",
-             "rml": "Cymraeg",
-             "instruction": "Defnyddiwch y llythrydd i ateb",
-             "language_header": "Mae’r Saesneg yn...",
-             "rml_header": "Mae’r Gymraeg yn...",
-             "atol_header": "Holiadur AToL",
-             "btn_text": "Nesaf",
-             "thank_you": "Diolch am lenwi'r holiadur!",
-             "next_task": "Cliciwch <i>Parhau</i> pan fyddwch yn barod",
-             "btn_continue": "Parhau"
-             
- },
-    "adjectives": {
-        "logic":        ["rhesymegol",      "afresymegol"],
-        "elegance":     ["anghywrain",      "cywrain"],
-        "fluency":      ["toredig",         "rhugl"],
-        "ambiguity":    ["diamwys",         "amwys"],
-        "appeal":       ["apelgar",         "atgas"],
-        "structure":    ["distrwythur",     "strwythuredig"],
-        "precision":    ["manwl",           "amhendant"],
-        "harshness":    ["llym",            "meddal"],
-        "flow":         ["llifo",           "swta"],
-        "beauty":       ["prydferth",       "hyll"],
-        "sistem":       ["trefnus",         "di-drefn"],
-        "pleasure":     ["dymunol",         "annymunol"],
-        "smoothness":   ["llyfn",           "cryg"],
-        "grace":        ["trwsgl",          "gosgeiddig"],
-        "angularity":   ["onglog",          "crwn"]
+    "base": {
+        "appTitle": [
+            "AToL Questionnaire",
+            "Holiadur Iaith"
+        ],
+        "instructions": [
+            "Please move the slider to record your choice.",
+            "Defnyddiwch y llythrydd i ateb."
+        ],
+        "next": [
+            "Next",
+            "Nesaf"
+        ]
+    },
+    "language1": {
+        "name": [
+            "Language 1",
+            "Saesneg"
+        ],
+        "header": [
+            "Language 1 is...",
+            "Mae’r Saesneg yn..."
+        ]
+    },
+    "language2": {
+        "name": [
+            "Language 2",
+            "Cymraeg"
+        ],
+        "header": [
+            "Language 2 is...",
+            "Mae’r Gymraeg yn..."
+        ]
+    },
+    "traits": {
+        "logic": [
+            ["logical",    "illogical"],
+            ["rhesymegol", "afresymegol"]
+        ],
+        "elegance": [
+            ["inelegant",  "elegant"],
+            ["anghywrain", "cywrain"]
+        ],
+        "fluency": [
+            ["choppy",  "fluent"],
+            ["toredig", "rhugl"]
+        ],
+        "ambiguity": [
+            ["unambiguous", "ambiguous"],
+            ["diamwys",     "amwys"]
+        ],
+        "appeal": [
+            ["appealing", "abhorrent"],
+            ["apelgar",   "atgas"]
+        ],
+        "structure": [
+            ["unstructured", "structured"],
+            ["distrwythur",  "strwythuredig"]
+        ],
+        "precision": [
+            ["precise", "vague"],
+            ["manwl",   "amhendant"]
+        ],
+        "harshness": [
+            ["harsh", "soft"],
+            ["llym",  "meddal"]
+        ],
+        "flow": [
+            ["flowing", "abrupt"],
+            ["llifo",   "swta"]
+        ],
+        "beauty": [
+            ["beautiful", "ugly"],
+            ["prydferth", "hyll"]
+        ],
+        "sistem": [
+            ["systematic", "unsystematic"],
+            ["trefnus",    "di-drefn"]
+        ],
+        "pleasure": [
+            ["pleasant", "unpleasant"],
+            ["dymunol",  "annymunol"]
+        ],
+        "smoothness": [
+            ["smooth", "raspy"],
+            ["llyfn",  "cryg"]
+        ],
+        "grace": [
+            ["clumsy", "graceful"],
+            ["trwsgl", "gosgeiddig"]
+        ],
+        "angularity": [
+            ["angular", "round"],
+            ["onglog",  "crwn"]
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the questionnaire!",
+            "Diolch am lenwi'r holiadur!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the AToL-C. Your data has been saved.",
+            "Rydych chi bellach wedi cwblhau'r AToL-C. Mae eich data wedi'i gadw."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Cliciwch <i>Parhau</i> pan fyddwch yn barod."
+        ],
+        "continue": [
+            "Continue",
+            "Parhau"
+        ]
     }
 }

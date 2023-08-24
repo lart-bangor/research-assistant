@@ -2,38 +2,122 @@
     "meta": {
         "versionId": "LmoIta_Ita_IT",
         "versionName": "Italian - Lombard (Italy)",
-        "versionNumber": "0.3.4",
+        "versionNumber": "0.5.0a0",
         "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2023-01-30"
+        "date": "2023-08-24"
     },
-    "intface_info": {
-        "title": "AToL - RML",
-        "language": "Italiano",
-        "rml": "lombardo",
-        "instruction": "Si prega di spostare il cursore per registrare la propria scelta.",
-        "language_header": "A mio avviso, l'italiano è...",
-        "rml_header": "A mio avviso, il lombardo è...",
-        "atol_header": "Questionario sulle varietà linguistiche",
-        "btn_text": "Avanti",
-        "thank_you": "Grazie per aver completato il questionario!",
-        "next_task": "Si prega di cliccare <i>Continua</i> appena possibile",
-        "btn_continue": "Continua"
+    "base": {
+        "appTitle": [
+            "AToL Questionnaire",
+            "Questionario sulle varietà linguistiche"
+        ],
+        "instructions": [
+            "Please move the slider to record your choice.",
+            "Si prega di spostare il cursore per registrare la propria scelta."
+        ],
+        "next": [
+            "Next",
+            "Avanti"
+        ]
     },
-    "adjectives": {
-        "logic":        ["logico",              "illogico"],
-        "elegance":     ["non elegante",        "elegante"],
-        "fluency":      ["frammentato",         "scorrevole"],
-        "ambiguity":    ["chiaro",              "ambiguo"],
-        "appeal":       ["attraente",           "ripugnante"],
-        "structure":    ["non strutturato",     "strutturato"],
-        "precision":    ["preciso",             "vago"],
-        "harshness":    ["duro",                "morbido"],
-        "flow":         ["fluido",              "brusco"],
-        "beauty":       ["bello",               "brutto"],
-        "sistem":       ["sistematico",         "non sistematico"],
-        "pleasure":     ["piacevole",           "spiacevole"],
-        "smoothness":   ["liscio",              "ruvido"],
-        "grace":        ["goffo",               "aggraziato"],
-        "angularity":   ["spigoloso",           "arrotondato"]
+    "language1": {
+        "name": [
+            "Language 1",
+            "Italiano"
+        ],
+        "header": [
+            "Language 1 is...",
+            "A mio avviso, l'italiano è..."
+        ]
+    },
+    "language2": {
+        "name": [
+            "Language 2",
+            "Lombardo"
+        ],
+        "header": [
+            "Language 2 is...",
+            "A mio avviso, il lombardo è..."
+        ]
+    },
+    "traits": {
+        "logic": [
+            ["logical", "illogical"],
+            ["logico",  "illogico"]
+        ],
+        "elegance": [
+            ["inelegant",    "elegant"],
+            ["non elegante", "elegante"]
+        ],
+        "fluency": [
+            ["choppy",      "fluent"],
+            ["frammentato", "scorrevole"]
+        ],
+        "ambiguity": [
+            ["unambiguous", "ambiguous"],
+            ["chiaro",      "ambiguo"]
+        ],
+        "appeal": [
+            ["appealing", "abhorrent"],
+            ["attraente", "ripugnante"]
+        ],
+        "structure": [
+            ["unstructured",    "structured"],
+            ["non strutturato", "strutturato"]
+        ],
+        "precision": [
+            ["precise", "vague"],
+            ["preciso", "vago"]
+        ],
+        "harshness": [
+            ["harsh", "soft"],
+            ["duro",  "morbido"]
+        ],
+        "flow": [
+            ["flowing", "abrupt"],
+            ["fluido",  "brusco"]
+        ],
+        "beauty": [
+            ["beautiful", "ugly"],
+            ["bello",     "brutto"]
+        ],
+        "sistem": [
+            ["systematic",  "unsystematic"],
+            ["sistematico", "non sistematico"]
+        ],
+        "pleasure": [
+            ["pleasant",  "unpleasant"],
+            ["piacevole", "spiacevole"]
+        ],
+        "smoothness": [
+            ["smooth", "raspy"],
+            ["liscio", "ruvido"]
+        ],
+        "grace": [
+            ["clumsy", "graceful"],
+            ["goffo",  "aggraziato"]
+        ],
+        "angularity": [
+            ["angular",   "round"],
+            ["spigoloso", "arrotondato"]
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the questionnaire!",
+            "Grazie per aver completato il questionario!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the AToL-C. Your data has been saved.",
+            "Ora hai completato l'AToL-C. I tuoi dati sono stati salvati."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Si prega di cliccare «Continua» appena possibile."
+        ],
+        "continue": [
+            "Continue",
+            "Continua"
+        ]
     }
 }

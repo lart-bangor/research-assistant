@@ -7,6 +7,8 @@ from ...datamodels import patterns as p
 class AtolcTaskLanguageRatings(BaseModel):
     """Single language rating for the AToL-C."""
 
+    trial: int = Field(description="Trial number for this set of language ratings")
+
     language: constr(
         strip_whitespace=True,
         regex=p.SHORT_TEXT
@@ -71,6 +73,13 @@ class AtolcTaskLanguageRatings(BaseModel):
     angularity: confloat(
         ge=0, le=100
         ) = Field(description="Angular-Round rating")
+
+    order: conlist(
+        item_type=str,
+        min_items=15,
+        max_items=15,
+        unique_items=True
+    ) = Field(description="Presentation order of the traits")
 
 
 class AtolcTaskResponse(ResponseBase):
