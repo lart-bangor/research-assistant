@@ -12,7 +12,6 @@ import sys
 from gevent import signal
 from pathlib import Path
 from typing import Any, Sequence
-#from . import atolc                                                     # type: ignore  # noqa: F401
 from . import consent                                                   # type: ignore  # noqa: F401
 from .config import config
 from . import booteel
@@ -36,31 +35,18 @@ root_logger.addHandler(config.logging.get_stream_handler())                 # > 
 root_logger.addHandler(config.logging.get_file_handler(root_logger_name))   # > app log dir
 logger = logging.getLogger(__name__)
 
-# Expose Eel APIs for subpackages
+# Expose Eel APIs for subpackages (LEGACY)
 expose_lsbq()
 expose_agt()
 expose_settings()
 
+# Expose Eel APIs for subpackages (new API)
 atolc_task_api = AtolcTaskAPI()
 atolc_task_api.expose()
 memory_task_api = MemoryTaskAPI()
 memory_task_api.expose()
 conclusion_task_api = ConclusionTaskAPI()
 conclusion_task_api.expose()
-
-# from pprint import pprint
-# pprint(config.sequences)
-# pprint(dir(config.sequences))
-# pprint(hasattr(config.sequences, "memorytask"))
-# pprint(getattr(config.sequences, "memorytask"))
-# exit()
-
-
-# @eel.expose
-# def atol_rating(data: dict[Any, Any]):
-#     """Retrieve atol rating and print to screen."""
-#     print("ATOL DATA FROM INDEX.HTML:")
-#     print(data)
 
 
 def main():                                                                     # noqa: C901
@@ -255,7 +241,7 @@ def shutdown(sig=None, frame=None):
         signames = {
             int(signal.SIGTERM): "SIGTERM",
             int(signal.SIGQUIT): "SIGQUIT",
-            int(signal.SIGINT): "SIGINT"
+            int(signal.SIGINT):  "SIGINT"
         }
         signame = signames.get(sig, str(sig))
         logger.critical(f"Signal '{signame}' received. Shutdown initiated.")
