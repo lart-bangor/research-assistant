@@ -81,7 +81,7 @@ class AtolcTaskAPI(ResearchTaskAPI):
         if missing:
             exc = KeyError(
                 f"Failed to add ratings to {self.__class__.__name__} response: "
-                "missing key {missing!r} for at least one trait."
+                f"missing key(s) {missing!r} for at least one trait."
             )
             self.logger.error(str(exc))
             raise exc
@@ -101,7 +101,7 @@ class AtolcTaskAPI(ResearchTaskAPI):
         else:
             exc = RuntimeError(
                 f"Failed to store {self.response_class.__name__} response with id {response_id}: "
-                " reason not known."
+                "reason unknown."
             )
             self.logger.error(str(exc))
             raise exc

@@ -5,14 +5,13 @@ developed by the Language Attitudes Research Team at Bangor University.
 """
 import argparse
 import eel
-import gevent                                                           # type: ignore
+import gevent                                                                   # type: ignore
 import logging
 import multiprocessing
 import sys
 from gevent import signal
 from pathlib import Path
 from typing import Any, Sequence
-#from . import consent                                                   # type: ignore  # noqa: F401
 from .config import config
 from . import booteel
 from .lsbq import expose_to_eel as expose_lsbq
@@ -32,8 +31,8 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 root_logger_name = __name__.split(".", maxsplit=2)[0]
 root_logger = logging.getLogger(root_logger_name)
 root_logger.setLevel(config.logging.default_level)
-root_logger.addHandler(config.logging.get_stream_handler())                 # > sys.stderr
-root_logger.addHandler(config.logging.get_file_handler(root_logger_name))   # > app log dir
+root_logger.addHandler(config.logging.get_stream_handler())                     # > sys.stderr
+root_logger.addHandler(config.logging.get_file_handler(root_logger_name))       # > app log dir
 logger = logging.getLogger(__name__)
 
 # Expose Eel APIs for subpackages (LEGACY)
