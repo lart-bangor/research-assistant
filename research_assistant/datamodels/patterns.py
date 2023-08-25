@@ -97,7 +97,7 @@ Matches ISO date strings of the form YYYY-MM, with the same limitations as for
 Examples: :code:`0000-01-01`, :code:`2023-05-31`
 """
 
-TASK_LOCALISATION_LABEL: Final[str] = r"^[A-Z][a-z]{2}[A-Z][a-z]{2}_[A-Z][a-z]{2}_[A-Z]{2}$"
+TASK_LOCALISATION_LABEL: Final[str] = r"^[A-Z][a-z]{2}[A-Z][a-z]{2}_[A-Z][a-z]{2}_[A-Z]{2}(\.[a-z]*)?$"
 """Regular expression for task localisation labels.
 
 Example: :code:`ZzzZzz_Zzz_ZZ`
