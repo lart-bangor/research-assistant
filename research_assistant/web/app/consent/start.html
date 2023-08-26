@@ -9,6 +9,9 @@
     #infoSheetParagraphs li:hover, #eligibilityCriteriaParagraphs li:hover {
         background: #fbfbfb;
     }
+    #infoSheetParagraphs .list-group-item, #eligibilityCriteriaParagraphs .list-group-item {
+        border-color:#fbfbfb;
+    }
 </style>
 {% endblock %}
 {% block drawer_info %}{% endblock %}
@@ -43,13 +46,13 @@
             </section>
 
             <section class="row m-4" id="infoSheetConfirmation">
-                <h3 class="fs-6">Confirm consent:</h3>
+                <h3 class="fs-6" data-consent-tr="infoSheet.confirmLabel">Confirm consent:</h3>
                 <div class="form-check ms-3">
                     <input class="form-check-input" type="checkbox" id="confirmInformedConsent" required />
-                    <label class="form-check-label" for="confirmInformedConsent">
+                    <label class="form-check-label" for="confirmInformedConsent" data-consent-tr="infoSheet.confirmStatement">
                         Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you.
                     </label>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" data-consent-tr="infoSheet.confirmFeedback">
                         Please confirm that you consent to the above before beginning your participation in the study.
                     </div>
                 </div>
@@ -67,7 +70,7 @@
             </section>
 
             <section class="row m-4 mb-0" id="eligibilityCriteriaParagraphs">
-                <p class="text-primary fw-semi fs-6">
+                <p class="text-primary fw-semi fs-6" data-consent-tr="eligibilityCriteria.secInfo">
                     Please read the eligibility criteria below and confirm that you qualify. Thank you.
                 </p>
                 <template id="eligibilityCriteriaParagraphTemplate">
@@ -80,13 +83,13 @@
             </section>
 
             <section class="row m-4" id="eligibilityCriteriaConfirmation">
-                <h3 class="fs-6">Confirm eligibility:</h3>
+                <h3 class="fs-6" data-consent-tr="eligibilityCriteria.confirmLabel">Confirm eligibility:</h3>
                 <div class="form-check ms-3">
                     <input class="form-check-input" type="checkbox" id="confirmEligibility" required />
-                    <label class="form-check-label" for="confirmEligibility">
+                    <label class="form-check-label" for="confirmEligibility" data-consent-tr="eligibilityCriteria.confirmStatement">
                         I confirm that I meet the criteria above.
                     </label>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" data-consent-tr="eligibilityCriteria.confirmFeedback">
                         Please confirm that you are eligible to take part in this study.
                     </div>
                 </div>
