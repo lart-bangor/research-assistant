@@ -1,4 +1,4 @@
-"""Exposes the AGT to Python Eel."""
+"""API to expose the AGT Task to Python Eel."""
 import logging
 import datetime
 import eel

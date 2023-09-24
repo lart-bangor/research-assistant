@@ -1,13 +1,13 @@
 {%- from 'lart_macros.html' import lart_form_pipeline %}
-{%- extends 'base.html' %}
-{% block title %}LART Research Assistant - AGT{% endblock %}
+{% extends 'base.html' %}
+{% block title %}LART Research Assistant - AToL-C{% endblock %}
 {% block headline %}AGT: Voice Rating{% endblock %}
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
-            availableVersions = eel._agt_getversions()(populateSurveyVersions);
+            availableVersions = eel.agt_get_localisations()(populateSurveyVersions);
         }
-
+        
         function populateSurveyVersions(versions) {
             select = document.getElementById('selectSurveyVersion');
             for(version in versions) {
@@ -30,13 +30,15 @@
 {% block content %}
     <article class="p-2">
 
-        <!-- <div class="row m-4">
+        <!--
+        <div class="row m-4">
             <div class="col">
                 <div class="progress">
                     <div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
                 </div>
             </div>
-        </div> -->
+        </div>
+        -->
 
         <div class="row m-4 text-center">
             <div class="col">
@@ -127,5 +129,5 @@
         lart.forms.requireValidation(true);
         lart.forms.util.autofillForm('surveyDataForm');
     </script>
-    {{ lart_form_pipeline('surveyDataForm', '_agt_init') }}
+    {{ lart_form_pipeline('surveyDataForm', 'agt_new') }}
 {% endblock %}

@@ -19,7 +19,7 @@ from .tasks.atolc.eel import eel_api as AtolcTaskAPI
 from .tasks.memorytask.eel import eel_api as MemoryTaskAPI
 from .tasks.conclusion.eel import eel_api as ConclusionTaskAPI
 from .tasks.consent.eel import eel_api as ConsentTaskAPI
-from .agt import expose_to_eel as expose_agt
+from .tasks.agt.eel import eel_api as AgtTaskAPI
 from .settings import expose_to_eel as expose_settings
 from .utils import export_backup, manage_settings, show_error_dialog
 
@@ -37,7 +37,6 @@ logger = logging.getLogger(__name__)
 
 # Expose Eel APIs for subpackages (LEGACY)
 expose_lsbq()
-expose_agt()
 expose_settings()
 
 # Expose Eel APIs for subpackages (new API)
@@ -49,6 +48,8 @@ conclusion_task_api = ConclusionTaskAPI()
 conclusion_task_api.expose()
 consent_task_api = ConsentTaskAPI()
 consent_task_api.expose()
+agt_task_api = AgtTaskAPI()
+agt_task_api.expose()
 
 
 def main():                                                                     # noqa: C901

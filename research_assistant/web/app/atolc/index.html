@@ -5,7 +5,7 @@
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
-            availableVersions = eel.atolc_get_localisations()(populateSurveyVersions); //need a function for AToL. I tried but can't get an ID for options 
+            availableVersions = eel.atolc_get_localisations()(populateSurveyVersions); 
         }
         
         function populateSurveyVersions(versions) {
@@ -46,19 +46,19 @@
             </div>
         </div>
 
-        <form id="surveyDataForm" class="needs-validation" onsubmit="recordData();">
+        <form id="surveyDataForm" class="needs-validation">
 
             <!-- Survey version -->
             <section class="m-4">
                 <div class="mb-3">
-                    <label for="selectSurveyVersion" class="form-label">Select AToL-RML version:</label>
+                    <label for="selectSurveyVersion" class="form-label">Select AToL-C version:</label>
                     <select id="selectSurveyVersion" class="form-select" required>
                     </select>
                     <script type="text/javascript">
                         loadSurveyVersions();
                     </script>
                     <div class="invalid-feedback">
-                        <p>Please select one of the available versions of the AToL-RML.</p>
+                        <p>Please select one of the available versions of the AToL-C.</p>
                     </div>
                 </div>
             </section>
