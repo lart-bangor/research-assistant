@@ -9,7 +9,7 @@
     "base": {
         "appTitle": [
             "Informed Consent",
-            "Informed Consent - IAT"
+            "Informed Consent - Generic"
         ],
         "confirm": [
             "Confirm",
@@ -42,10 +42,10 @@
             ["What are the possible disadvantages and risks of taking part?", "Participating in the research is not anticipated to cause you any disadvantages or discomfort beyond what you might experience in everyday life."],
             ["What if something goes wrong?", "If you have any complaints about the project in the first instance you can contact any member of the research team."],
             ["Will my taking part in this project be kept confidential?", "All the information that we collect about you during the course of the research will be kept strictly confidential. <br />You will not be identified or identifiable in any reports or publications. Any data collected about you in the electronic questionnaire will be stored in a Bangor University computer protected by passwords and by other relevant security processes and technologies.<br /> Data may be shared in an anonymised form to allow reuse by other researchers. These anonymised data will not allow you to be identified or identifiable."],
-            ["What type of information will be sought from me and why is the collection of this information relevant for achieving the research project's objectives?", "The questionnaire will ask you about your language background and linguistic habits.<br /> Your experience as a bilingual speaker is what we are interested in exploring."],
+            ["What type of information will be sought from me and why is the collection of this information relevant for achieving the research project’s objectives?", "The questionnaire will ask you about your language background and linguistic habits.<br /> Your experience as a bilingual speaker is what we are interested in exploring."],
             ["What will happen to the results of the research project?", "Results of the research will be published as quantitative data, which means that no single individual will be identified in any report or publication."],
             ["Who is organising and funding the research?", "The project is organised by [INSERT UNIVERSITY], and is funded by [INSERT FUNDER, if any]."],
-            ["Who has ethically reviewed the project?", "This project has been ethically approved by the Research Ethics Committee at [INSERT UNIVERSITY].<br /> This is the body that carries out the ethics review procedure and monitors the application and delivery of the University's Research Ethics Guidelines and Ethics Approval Procedures."],
+            ["Who has ethically reviewed the project?", "This project has been ethically approved by the Research Ethics Committee at [INSERT UNIVERSITY].<br /> This is the body that carries out the ethics review procedure and monitors the application and delivery of the University’s Research Ethics Guidelines and Ethics Approval Procedures."],
             ["Contacts for further information", "[INSERT CONTACT INFORMATION]"]
         ]
     },
@@ -74,7 +74,7 @@
             ["I am a speaker of English."],
             ["I am between [INSERT MINIMUM AGE] and [INSERT MAXIMUM AGE] years old."],
             ["I do not suffer from hearing impairments."],
-            ["I do not have any visual impairments (defined as a loss of sight that is not corrected by glasses or contact."],
+            ["I do not have any visual impairments (defined as a loss of sight that is not corrected by glasses or contacts)."],
             ["I have never suffered a serious head injury."],
             ["I have never been diagnosed with any neurological impairments."],
             ["I am not currently under heavy medical treatment for a neurological condition."]
