@@ -1,0 +1,65 @@
+{
+    "meta": {
+        "versionId": "LtzGer_Ger_BE.gnat.erp",
+        "versionType": "ERP-GNAT",
+        "versionLanguages": "Moselfränkisch – Deutsch (Belgien)",
+        "versionName": "IAT: Moselfränkisch – Deutsch (Belgien)",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2023-12-09"
+    },
+
+    "base": {
+        "consentHeader": "Teilnehmerinformationen",
+        "eligibilityHeader": "Teilnahmevoraussetzungen",
+        "eligibilityLabel": "Bitte lesen Sie die Teilnahmevoraussetzungen (unten) und bestätigen Sie, dass Sie die Voraussetzungen erfüllen. Danke."
+    },
+    "versionInfo" : {
+        "titleLabel":"Name der Forschungsstudie", 
+        "titleInfo":"Reaktionszeiten und EEG-Aufzeichnung bei mehrsprachigen Sprechern.",
+        "purposeLabel": "Was ist das Ziel der Forschung?",
+        "purposeInfo": "Diese Studie ist Teil eines größeren Forschungsprojektes zur Untersuchung der Reaktionszeiten und EEG-Aufzeichnungen von zweisprachigen Sprechern in Bevölkerungsgruppen in ganz Europa. Das Projekt zielt darauf ab, mehr über die Reaktion von zweisprachigen Sprechern auf audiovisuelle Reize in verschiedenen Teilen Europas zu erlangen, unter anderem in der Deutschsprachigen Gemeinschaft Belgiens.",
+        "whyLabel": "Warum wurde ich eingeladen an der Studie teilzunehmen?",
+        "whyInfo": "Sie wurden ausgewählt, weil Sie als zweisprachige Person in der Lage sind audiovisuelle Reize in mehr als einer Sprache wahrzunehmen und somit Stimmen auf Deutsch als auch auf Eifeler Platt bewerten können.",
+        "commitLabel": "Muss ich an der Studie teilnehmen?",
+        "commitInfo": "Sie können frei entscheiden, ob Sie an der Studie teilnehmen möchten oder nicht. Wenn Sie sich dafür entscheiden an der Studie teilzunehmen, dann sollten Sie dies auf der Einverständniserklärung bestätigen. Sie können sich auch danach noch umentscheiden und müssen dafür keine Gründe angeben.",
+        "whatLabel": "Was wird von mir in der Studie erwartet?",
+        "whatInfo": "Sie werden in der Studie darum gebeten sowohl auf visuelle als auch auditive Reize in beiden Sprachen, die Sie sprechen, zu reagieren, indem Sie Tasten auf einer Computertastatur drücken. Während Sie mit dieser Aufgabe beschäftigt sind, wird ein Elektroenzephalografiesystem Ihre Hirnaktivität aufzeichnen. Das passiert über Elektroden die auf Ihrer Kopfhaut angebracht werden. Wir schätzen, dass die Teilnahme insgesamt etwa 1,5 bis 2 Stunden beansprucht. Sie gehen keine sonstigen Verpflichtungen ein und unterliegen durch Ihre Teilnahme keine Einschränkungen.",
+        "concernLabel": "Welche möglichen Nachteile oder Risiken entstehen durch die Teilnahme?",
+        "concernInfo": "Es ist nicht zu erwarten, dass durch Ihre Teilnahme irgendwelche Nachteile oder Risiken für Sie entstehen, die nicht auch sonst mit dem Alltagsleben einhergehen. Bitte beachten Sie, dass einige visuelle Reize potenziell schockierende Bilder beinhalten können, die möglicherweise für manche Probanden unangenehm wirken. Bitte lassen Sie den/die Forscher/in wissen, wenn dies für Sie ein Problem darstellt.", 
+        "concern1Label": "Was passiert, wenn etwas schiefgeht?",
+        "concern1Info": "Sollten Sie Beanstandungen oder Beschwerden bezüglich der Studie haben, dann können Sie sich in der Erstinstanz an jedes Mitglied des Forschungsteams wenden. Falls Sie das Gefühl haben, dass Ihr Anliegen nicht zufriedenstellend gehandhabt wurde, können Sie sich an den Kontrollausschuss der Universität wenden, deren Kontaktinformationen Sie am Ende dieses Dokuments finden können.",
+        "confidentialLabel": "Bleibt meine Teilnahme an dieser Studie vertraulich?",
+        "confidentialInfo": "Alle Informationen, die wir während der Studie über Sie erlangen, werden streng vertraulich behandelt. Sie werden in Veröffentlichungen von Studienergebnissen weder direkt identifiziert noch von der Beschreibung oder den Datensätzen identifizierbar sein. <br /> Daten die wir über Sie aufnehmen werden auf Computersystemen der Universität mit Passwortschutz und weitreichenden Schutz- und Sicherheitsmaßnahmen gespeichert. <br /> Anonymisierte Datensätze werden möglicherweise anderen Forschern für wissenschaftliche Zwecke zur Verfügung gestellt. Es ist nicht möglich Sie von solchen anonymisierten Datensätzen zu identifizieren. <br /> Wir bitten Sie auch darum nichts über den Inhalt oder die Aufgaben die Sie als Teil dieser Studie erledigen preiszugeben. Es ist für die Aussagekraft der Studie äußerst wichtig, dass Informationen zum Inhalt, den Zielen und den Methoden der Studie bis zum vollständigen Ende der Studie geheim gehalten werden.",
+        "taskTypeLabel": "Welche Art von Informationen werden über mich erhoben, und welche Relevanz haben die erhobenen Informationen für die Ziele des Forschungsprojektes?",
+        "taskTypeInfo": "Für die Aufgabe müssen Sie auf verschiedene audiovisuelle Reize reagieren, während Ihr EEG aufgenommen wird. Das Forschungsprojekt untersucht Ihre Reaktionszeiten auf diese Art von Reizen und Ihre Hirnaktivität während der Reaktion. ",
+        "dataUseLabel": "Was passiert mit den Ergebnissen des Forschungsprojekts?",
+        "dataUseInfo": "Die Ergebnisse des Forschungsprojekts werden in Form von quantitativen Daten (hauptsächlich kategorisch-nummerische Daten) veröffentlicht. Das bedeutet, dass keine einzelnen Teilnehmer in Berichten und Veröffentlichungen identifizierbar sind oder von uns identifiziert werden.",
+        "whoLabel": "Wer ist für das Forschungsprojekt verantwortlich und wie wird es finanziert?",
+        "whoInfo": "Das Forschungsprojekt ist eine Zusammenarbeit von Dr. Marco Tamburelli und Prof. Guillaume Thierry von der Universität Bangor. Das Forschungsprojekt wird durch Mittel des Forschungsausschusses für Wirtschafts- und Sozialwissenschaften des Vereinigten Königreichs (die ‚Economic and Social Research Council‘) gefördert. ",
+        "ethicsLabel": "Von wem wurde dieses Forschungsprojekt ethisch geprüft?",
+        "ethicsInfo": "Dieses Forschungsprojekt wurde durch die Ethikkommission der Fakultät für Geistes- und Wirtschaftswissenschaften der Universität Bangor zugelassen. Die Ethikkommission hat die Aufgabe, Forschungsvorhaben in ethischer Hinsicht zu überprüfen. Sie kontrolliert und beaufsichtigt die Anwendung und Ausführung der Richtlinien für ethische Forschung und der ethischen Prüfvorschriften der Fakultät und der Universität.",
+        "contactsLabel": "Kontakte für weitere Informationen",
+        "contactsInfo": "<i>Dr. Marco Tamburelli</i> (Projektleiter),<br />School of Arts, Culture and Language,<br />39 College Road,<br />Bangor University, UK.<br />Tel: +44 (0)1248 38 2078, E-Mail: m.tamburelli@bangor.ac.uk <br /> Die Kontaktperson des Kontrollausschusses der Universität Bangor ist Frau Lauren Roberts. Schriftlich zu erreichen unter: <i>Ms Lauren Roberts</i>, Governance Services, Bangor University, Bangor LL57 2DG, United Kingdom; oder per E-Mail an l.roberts@bangor.ac.uk."
+    },
+    "confirmation": {
+        "confirm": "Einverständnisbestätigung",
+        "confirmTxt": "Ich bestätige, dass ich die oben stehenden Teilnehmerinformationen gelesen und verstandend haben, und dass ich an der Studie teilnehmen will.",
+        "confirmWarn": "Bitte geben Sie Ihr Einverständnis zu den Teilnehmerinformationen vor Studienbeginn. Danke.",
+        "btnTxt": "Bestätigen"
+    },
+    "eligibilityCriteria": {
+        "lang": "Ich spreche sowohl Deutsch als auch Eifeler Platt.",
+        "age": "Ich bin zwischen 25 und 35 Jahren alt.",
+        "hearing": "Meine Hörfähigkeit ist nicht eingeschränkt.",
+        "vision": "Ich habe keine Sehbehinderung (d.h. keine Beeinträchtigung des Sehvermögens, die nicht durch eine Brille oder Kontaktlinsen korrigiert ist).",
+        "injury": "Ich habe noch nie eine ernsthafte Kopfverletzung erlitten.",
+        "neuro": "Bei mir wurde noch nie eine neurologischen Erkrankung diagnostiziert.",
+        "meds": "Ich bin aktuell nicht in medizinischer oder medikatmentöser Behandlung wegen eines neurologischen Leidens."
+    },
+    "eligibilityConfirm": {
+        "eligConfirmLabel": "Bestätigung der Teilnahmevoraussetzungen",
+        "eligConfirmTxt": "Ich bestätige, dass ich die oben genannten Kriterien erfülle.",
+        "eligConfirmWarn": "Bitte bestätigen Sie, dass Sie die Teilnahmevoraussetzungen erfüllen. Danke."
+    }
+}
+
