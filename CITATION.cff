@@ -27,5 +27,5 @@ keywords:
   - AGT
 license: AGPL-3.0
 commit: 8979b9ccb8134c443c072c0b3315fb1fb4d12ef1
-version: 0.5.0
-date-released: '2023-05-04'
+version: 0.5.1
+date-released: '2023-12-09'
