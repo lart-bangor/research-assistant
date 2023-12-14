@@ -79,33 +79,35 @@ class AgtTaskAPI(ResearchTaskAPI):
         produce a presentation order for Matched Guise Task,
         based on the following grid:
 
-        +---------+----------+-----------------------+
-        | Speaker | Language | Example               |
-        +=========+==========+=======================+
-        | F1      | Either   | Filler 1              |
-        +---------+----------+-----------------------+
-        | S1      | L1       | Speaker 1, Language 1 |
-        +---------+----------+-----------------------+
-        | S2      | L2       | Speaker 2, Language 2 |
-        +---------+----------+-----------------------+
-        | F2      | Either   | Filler 2              |
-        +---------+----------+-----------------------+
-        | S3      | L2       | Speaker 3, Language 2 |
-        +---------+----------+-----------------------+
-        | S4      | L1       | Speaker 4, Language 1 |
-        +---------+----------+-----------------------+
-        | F3      | Either   | Filler 3              |
-        +---------+----------+-----------------------+
-        | S1      | L2       | Speaker 1, Language 2 |
-        +---------+----------+-----------------------+
-        | S2      | L1       | Speaker 2, Language 1 |
-        +---------+----------+-----------------------+
-        | F4      | Either   | Filler 4              |
-        +---------+----------+-----------------------+
-        | S3      | L1       | Speaker 3, Language 1 |
-        +---------+----------+-----------------------+
-        | S4      | L2       | Speaker 4, Language 2 |
-        +---------+----------+-----------------------+
+        +----------+----------+-----------------------+
+        | Speaker  | Language | Example               |
+        +==========+==========+=======================+
+        | Practice | n/a      | Practice item         |
+        +----------+----------+-----------------------+
+        | F1       | Either   | Filler 1              |
+        +----------+----------+-----------------------+
+        | S1       | L1       | Speaker 1, Language 1 |
+        +----------+----------+-----------------------+
+        | S2       | L2       | Speaker 2, Language 2 |
+        +----------+----------+-----------------------+
+        | F2       | Either   | Filler 2              |
+        +----------+----------+-----------------------+
+        | S3       | L2       | Speaker 3, Language 2 |
+        +----------+----------+-----------------------+
+        | S4       | L1       | Speaker 4, Language 1 |
+        +----------+----------+-----------------------+
+        | F3       | Either   | Filler 3              |
+        +----------+----------+-----------------------+
+        | S1       | L2       | Speaker 1, Language 2 |
+        +----------+----------+-----------------------+
+        | S2       | L1       | Speaker 2, Language 1 |
+        +----------+----------+-----------------------+
+        | F4       | Either   | Filler 4              |
+        +----------+----------+-----------------------+
+        | S3       | L1       | Speaker 3, Language 1 |
+        +----------+----------+-----------------------+
+        | S4       | L2       | Speaker 4, Language 2 |
+        +----------+----------+-----------------------+
 
         The function randomises:
             (a) the order of the fillers (regardless of filler language),
@@ -132,6 +134,7 @@ class AgtTaskAPI(ResearchTaskAPI):
 
         # Build order
         order: tuple[str, ...] = (
+            "practice",
             fillers[0],
             f"{speakers[0]}{sep}{languages[0]}",
             f"{speakers[1]}{sep}{languages[1]}",
@@ -151,6 +154,7 @@ class AgtTaskAPI(ResearchTaskAPI):
     @ResearchTaskAPI.exposed
     def add_ratings(self, response_id: str | UUID, data: dict[str, Any]):
         """Add AGT ratings for one trial to the response with id *response_id*."""
+        MAX_TRIALS = 13 # 1 practice + 12 regular trials
         response_id = self._cast_uuid(response_id)
         self.logger.info(
             f"Adding ratings for {self.__class__.__name__} response with id {response_id}.."
@@ -184,9 +188,47 @@ class AgtTaskAPI(ResearchTaskAPI):
         for key, trait in trait_keys.items():
             trait_ratings.append(AgtTaskTraitRating(trait=trait, rating=float(data[key])))
         trial_ratings = AgtTaskTrialRatings(trial=trial, ratings=trait_ratings)
-        print(trial_ratings)
-
-
+        print("Trial ratings:", trial_ratings)
+        if "ratings_dict" not in self._response_data[response_id]:
+            # @TODO: MAKE THIS A DICT TO AVOID DUPLICATES!
+            self._response_data[response_id]["ratings_dict"] = dict()
+        if trial in self._response_data[response_id]["ratings_dict"]:
+            self.logger.warning(
+                f"... {self.__class__.__name__} response with id {response_id} "
+                f"already contains trial ratings for {trial} - the old trial "
+                "ratings will be overwritten."
+            )
+        self._response_data[response_id]["ratings_dict"][trial] = trial_ratings
+        # Redirect to next trial or end (if all 13 collected)
+        n_trials = len(self._response_data[response_id]["ratings_dict"])
+        if n_trials < MAX_TRIALS:
+            # Don't add +1 to n_trials, because with 'practice' it will already be 1 extra
+            self.set_location(f"rating.html?instance={response_id}&trial={n_trials}")
+        else:
+            # Should be complete, but check for missing trials anyways
+            missing = self._find_missing_keys(
+                self._response_data[response_id]["ratings_dict"],
+                self.get_trials()
+            )
+            if missing:
+                exc = KeyError(
+                    f"Failed to complete {self.__class__.__name__} response "
+                    f"with id {response_id}: missing ratings for "
+                    f"stimulus/stimuli {missing!r}."
+                )
+                self.logger.error(str(exc))
+                raise exc
+            self._response_data[response_id]["stimulus_ratings"] = list(self._response_data[response_id]["ratings_dict"].values())
+            del self._response_data[response_id]["ratings_dict"]
+            if self.store(response_id):
+                self.set_location(f"end.html?instance={response_id}")
+            else:
+                exc = RuntimeError(
+                    f"Failed to store {self.response_class.__name__} response with id {response_id}: "
+                    "reason unknown."
+                )
+                self.logger.error(str(exc))
+                raise exc
 
 
 # Required so importers know which class defines the API

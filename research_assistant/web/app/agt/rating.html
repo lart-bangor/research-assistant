@@ -136,7 +136,8 @@
 
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        let trialId = lart.forms.searchParams.get('trial');
+        let trialNo = parseInt(lart.forms.searchParams.get('trial'));
+        let trialId = agt_trials[trialNo];
         lart.tr.loadFromEel('agt', eel.agt_load_localisation, [instanceId, ['meta', 'base', 'rating', 'audioMsg', 'trait', 'practice']]);
         lart.tr.registerObserver('agt', 'surveyRatingForm');
         lart.tr.registerObserver('agt', 'practiceFeedbackModal');

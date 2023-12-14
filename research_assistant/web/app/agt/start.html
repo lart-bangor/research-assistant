@@ -91,7 +91,7 @@
         document.getElementById('surveyInstructionsForm').addEventListener(
             'submit',
             function (event) {
-                location.assign(`rating.html?instance=${instanceId}&trial=practice`);
+                location.assign(`rating.html?instance=${instanceId}&trial=0`);
                 console.log(window.location);
                 event.preventDefault();
             }

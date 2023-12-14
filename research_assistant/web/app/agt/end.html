@@ -48,15 +48,15 @@
         lart.forms.requireValidation(true);
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('agt', eel._agt_load_version, [instanceId, ['meta', 'base', 'end']]);
-        lart.tr.registerObserver('agt', 'agtEndScreen');
+        lart.tr.loadFromEel('agt', eel.agt_load_localisation, [instanceId, ['meta', 'base', 'end']]);
         lart.tr.registerObserver('agt', 'agtAppTitle');
+        lart.tr.registerObserver('agt', 'agtEndScreen');
         // Set instanceId value on surveyDataForm
         const instanceIdFields = document.getElementsByName('instanceId');
         for (const instanceIdField of instanceIdFields) {
             instanceIdField.value = instanceId;
         }
     </script>
-    {{ lart_form_pipeline('surveyDataForm', '_agt_end') }}
+    {{ lart_form_pipeline('surveyDataForm', 'agt_end') }}
     </script>
 {% endblock %}
