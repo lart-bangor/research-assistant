@@ -337,7 +337,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         }
     )
     atolc: str = field(
-        default="memorygame",
+        default="",
         metadata={
             "doc_label": "Task following the AToL-C",
             "doc_values": _sequence_options,
@@ -351,14 +351,14 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         }
     )
     consent: str = field(
-        default="lsbq",
+        default="",
         metadata={
             "doc_label": "Task following the Consent Form",
             "doc_values": _sequence_options,
         }
     )
     lsbq: str = field(
-        default="atolc",
+        default="",
         metadata={
             "doc_label": "Task following the LSBQe",
             "doc_values": _sequence_options,
