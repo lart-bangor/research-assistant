@@ -5,7 +5,7 @@ The L’ART Research Assistant User Guide covers everything you need to know to 
 set it up and begin data collection.
 
 For users who wish to customise any of the tasks or add new translations, there are :doc:`../tutorials/index`
-to help you through the process. For developers who may want to contrribute further developments to the
+to help you through the process. For developers who may want to contribute further developments to the
 Research Assistant or build additional tasks, a technical documentation can be found in the
 :doc:`../developers/index`.
 
@@ -37,7 +37,6 @@ Research Assistant or build additional tasks, a technical documentation can be f
    data-setup
    collecting-responses
    research-task-lsbqe
-   excludable-questions
    research-task-atol
    research-task-agt
    locking-app
@@ -45,3 +44,4 @@ Research Assistant or build additional tasks, a technical documentation can be f
    discarding-attempts
    sequencing
    configuration
+   memory-game

@@ -37,7 +37,7 @@ fail. Follow these simple steps to install it:
    by opening a terminal window (:kbd:`Windows+R`, type :code:`cmd`, hit :kbd:`Enter`)
    and then entering the command :code:`iscc` followed by :kbd:`Enter`.
 
-#. If you see soem text starting with something like "Inno Setup 6 Command-Line
+#. If you see some text starting with something like "Inno Setup 6 Command-Line
    Compiler" followed by instructions, you're good to know and can skip to the next
    section. In the (very likely) event that you get an error instead, continue
    with the next step here.

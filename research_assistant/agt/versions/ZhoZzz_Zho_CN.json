@@ -1,0 +1,128 @@
+{
+    "meta": {
+        "versionId": "ZhoZzz_Zho_CN",
+        "versionName": "Chinese - generic (China)",
+        "versionNumber": "0.3.4",
+        "author": "Chloe Cheung <chloewycheung8@gmail.com>",
+        "date": "2023-06-28"
+    },
+    "base": {
+        "appTitle": [
+            "AGT: 评级语音"
+        ],
+        "next": [
+            "下一节"
+        ],
+        "sliderFeedback": [
+            "请至少移动滑块一次。" 
+        ]
+
+    },
+    "instructions": {
+        "secTitle": [
+            "AGT 指令"
+        ],
+        "begin": [
+            "开始练习"
+        ],
+        "taskDescription": [
+            "在这项任务中，您将听到一个人说话，并看到一系列滑块，要求您仅根据其声音对该人进行评分。"        
+        ],
+        "taskInstruction": [
+            "请使用滑块来记录您对每个陈述的同意或不同意的程度。您只会听到每个声音一次。但是，如果在任务过程中出现任何问题，例如音频不能正常播放，请与研究人员交谈。"       
+        ],
+        "taskPracticeDescription": [
+            "第一个例子将是一个练习项目，以便您可以熟悉这个任务。在您完成练习项目后，您将有机会与研究人员交谈，询问您对任务可能有的任何问题。"
+        ],
+        "taskNextStep": [
+            "当您准备好时，点击 <em>开始练习</em>。"
+        ]
+
+    },
+    "audioMsg": {
+        "load": [
+            "装载音频......"
+        ],
+        "loaded": [
+            "音频现在已经加载。"
+        ],
+        "play": [
+            "目前正在播放音频......"
+        ],
+        "complete": [
+            "音频已经播放完毕。"
+        ],
+        "playbackError": [
+            "不能播放音频，再试。"
+        ],
+        "abortedError": [
+            "错误: 播放已被取消."
+        ],
+        "networkError": [
+            "错误: 由于网络错误，音频无法播放。"
+        ],
+        "decodeError": [
+            "错误: 无法解码音频。"
+        ],
+        "formatError": [
+            "错误: 无法找到音频文件或不支持该文件。"
+        ],
+        "unknownError": [
+            "错误: 发生了一个未知的错误。"
+        ]
+    },
+    "rating": {
+        "secTitle": [
+            "语音评价"
+        ],
+        "statement": [
+            "这段录音中的人听起来......"
+        ],
+        "instructions": [
+            "请使用滑块记录您的回复"
+        ],
+        "stronglyAgree": [
+            "非常同意"
+        ],
+        "stronglyDisagree": [
+            "强烈反对"
+        ]
+    },
+    "trait": {
+        "amusing":      [ "有趣" ],
+        "open-minded":  [ "开明的" ],
+        "attractive":   [ "吸引人的" ],
+        "trustworthy":  [ "值得信赖的" ],
+        "ignorant":     [ "愚昧"],
+        "polite":       [ "有礼貌的"],
+        "ambitious":    [ "雄心勃勃的"],
+        "international": [ "国际的"],
+        "cool":         [ "酷" ],
+        "intelligent":  [ "聪明的" ],
+        "influential":  [ "有影响" ],
+        "likeable":     [ "有人缘儿" ],
+        "educated":     [ "受过教育" ],
+        "friendly":     [ "有好的" ],
+        "honest":       [ "诚实的" ],
+        "competent":    [ "胜任的" ],
+        "natural":      [ "自然的" ],
+        "pretentious":  [ "自命不凡的" ]
+    },
+    "end": {
+        "secTitle": [
+            "感谢您完成了语音评级任务!"
+        ],
+        "feedback": [
+            "做的好！"
+        ],
+        "thankYouMessage": [
+            "您现在已经完成了任务。您的数据已被保存。"
+        ],
+        "followOnInstructions": [
+            "当您准备继续时，请点击 “继续”。"
+        ],
+        "continue": [
+            "继续"
+        ]
+    }
+}
