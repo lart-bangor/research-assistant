@@ -44,15 +44,15 @@
         ],
         "levelOfEducation3": [
             "EQF 4",
-            "高中毕业证书，高级技工院校资质，3年职业培训证书，学徒制..."
+            "高中毕业证书，高级技工院校资质，3年职业培训证书，学徒制......"
         ],
         "levelOfEducation4": [
             "EQF 5-6",
-            "学士学位， 基础课程..."
+            "学士学位， 基础课程......"
         ],
         "levelOfEducation5": [
             "EQF 7-8",
-            "硕士学位， 博士学位， 研究生学位, 高级文凭..."
+            "硕士学位， 博士学位， 研究生学位, 高级文凭......"
         ],
         "notApplicableFull": [
             "not applicable",
@@ -106,7 +106,7 @@
         ],
         "occupationFeedback": [
             "Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, …",
-            "请说出或简要描述您的职业， 例： <b>学生</b>， <b>理发师</b>， <b>服务员</b>， ..."
+            "请说出或简要描述您的职业， 例： <b>学生</b>， <b>理发师</b>， <b>服务员</b>， ......"
         ],
         "handedness": [
             "Handedness:",
@@ -276,7 +276,7 @@
         ],
         "learnedWhereOtherLabel": [
             "<i>Please specify…</i>",
-            "<b>请注明...</b>"
+            "<b>请注明......</b>"
         ],
         "learnedWhereOtherFeedback": [
             "Please give a brief indication of where you learned the language or dialect.",
@@ -332,7 +332,7 @@
         ],
         "occupationFeedbackMother": [
             "Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
-            "请说出或简要描述您母亲的职业， 如：<b>学生，理发师，服务员...</b>"
+            "请说出或简要描述您母亲的职业， 如：<b>学生，理发师，服务员......</b>"
         ],
         "firstLanguage": [
             "First language:",
@@ -360,7 +360,7 @@
         ],
         "occupationFeedbackFather": [
             "Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
-            "请说出或简要描述您父亲的职业， 如： <b>学生，理发师，服务员...</b>"
+            "请说出或简要描述您父亲的职业， 如： <b>学生，理发师，服务员......</b>"
         ],
         "aboutLanguageX": [
             "About <!-- ...[LanguageX] -->",
