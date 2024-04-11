@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any, Sequence
 from .config import config
 from . import booteel
-from .lsbq import expose_to_eel as expose_lsbq
+from .tasks.lsbqe.eel import eel_api as LsbqeTaskAPI
 from .tasks.atolc.eel import eel_api as AtolcTaskAPI
 from .tasks.memorytask.eel import eel_api as MemoryTaskAPI
 from .tasks.conclusion.eel import eel_api as ConclusionTaskAPI
@@ -40,6 +40,8 @@ expose_lsbq()
 expose_settings()
 
 # Expose Eel APIs for subpackages (new API)
+lsbqe_task_api = LsbqeTaskAPI()
+lsbqe_task_api.expose()
 atolc_task_api = AtolcTaskAPI()
 atolc_task_api.expose()
 memory_task_api = MemoryTaskAPI()

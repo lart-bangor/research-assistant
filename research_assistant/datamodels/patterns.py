@@ -138,3 +138,6 @@ LOCATION_NAME: Final[str] = r"^[\w,' \(\)\.\-]{1,50}$"
 
 Examples: :code:`Stoke-on-Trent`, :code:`Freiburg (Brsg.)`, :code:`Nürnberg`
 """
+
+LANGUAGE_NAME: Final[str] = r"^[\w][\w\-_ \(\)]{1,50}$"
+"""Regular expression for language names."""
