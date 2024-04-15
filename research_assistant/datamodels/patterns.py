@@ -4,7 +4,7 @@ from typing import Final
 UUID: Final[str] = r"^(?:[0-9]{39})|(?:(?:(?:urn:)?uuid:|{)?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}}?)$"  # noqa: E501
 """Regular expression for UUIDs.
 
-Matches UUIDs in hexadecimal, URN and GUID formats.
+Matches UUIDs in hexadecimal, URN and Windows GUID formats.
 
 Examples: :code:`123e4567-e89b-12d3-a456-426614174000`,
     :code:`urn:uuid:123e4567-e89b-12d3-a456-426614174000`,
@@ -52,12 +52,12 @@ Windows GUIDs are hexadecimal UUIDs enclosed by two curly brackets.
 Example: :code:`{123e4567-e89b-12d3-a456-426652340000}`
 """
 
-ISO_DAY: Final[str] = r"^(0?[1-9]|[12][0-9]|3[01])$"
+ISO_DAY: Final[str] = r"^(0[1-9]|[12][0-9]|3[01])$"
 """Regular expression matching ISO numeric day strings.
 
-Matches any number string from :code:`1` through :code:`31`.
+Matches any number string from :code:`01` through :code:`31`.
 
-Examples: :code:`1`, :code:`7`, :code:`12`, :code:`31`
+Examples: :code:`01`, :code:`07`, :code:`12`, :code:`31`
 """
 
 ISO_MONTH: Final[str] = r"^(0[1-9]|1[0-2])$"
@@ -97,10 +97,31 @@ Matches ISO date strings of the form YYYY-MM, with the same limitations as for
 Examples: :code:`0000-01-01`, :code:`2023-05-31`
 """
 
-TASK_LOCALISATION_LABEL: Final[str] = r"^[A-Z][a-z]{2}[A-Z][a-z]{2}_[A-Z][a-z]{2}_[A-Z]{2}(\.[a-z]*)?$"
+TASK_LOCALISATION_LABEL: Final[str] = r"^([A-Z][a-z]{2}){2,}_[A-Z][a-z]{2}_[A-Z]{2}(\.\w*)?"
 """Regular expression for task localisation labels.
 
-Example: :code:`ZzzZzz_Zzz_ZZ`
+Localisation labels consist of three obligatory and one optional parts:
+
+1. Two or more ISO 639 Alpha-3 codes for the language(s) targeted by the localisation.
+   These should have the initial letter capitalised, the remaining letters in lower case.
+   Use :code:`Und` for *undetermined* languages (e.g. a partially generic localisation).
+   The code :code:`Mis` can be used for a language which does not have a code assigned yet,
+   but in principle could be assigned a code (though it will be preferable to code a relevant
+   macrolanguage where possible). The Codes :code:`Mul` (multiple languages where a single code
+   cannot be applied sensibly) and :code:`zxx` (non-linguistic content/language code not
+   applicable) should probably be avoided altogether.
+2. One ISO 639 Alpha-3 code for the display language of the localisation.
+   Follow the same coding guideline as for (1) above.
+3. An all-uppercase ISO 3166 Alpha-2 code to indicate the (approximate) location for which
+   the localisation is applicable.
+4. Optionally a full stop followed by an alphanumeric (A-Za-z0-9_) descriptor, which can be
+   used to further specify otherwise similarly labelled localisations (e.g. multiple options
+   for a consent form). Note that these are currently ignored for task localisation
+   transitions (so a task with localisation AaaBbb_Aaa_AA.foo will simply propagate AaaBbb_Aaa_AA
+   as a localisation) - this is so duplicate localisations are not needed for all possible
+   task sequences, but may be subject to change in future.
+
+Examples: :code:`ZzzZzz_Zzz_ZZ`, :code:`XxxYyyZzz_Yyy_AA.foo`
 """
 
 SOFTWARE_VERSION_NUMBER: Final[str] = r"^(?:\d+.)*\d+\w?\w?\d*$"
