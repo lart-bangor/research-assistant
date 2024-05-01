@@ -2,9 +2,9 @@
     "meta": {
         "versionId": "CmnZho_Zho_CN",
         "versionName": "Chinese - Generic (China)",
-        "versionNumber": "0.3.5",
-        "author": "Chloe Cheung <chloewycheung8@gmail.com>",
-        "date": "2023-06-26",
+        "versionNumber": "0.3.6",
+        "author": "Chloe Cheung <chloewycheung8@gmail.com>, Xinyan Wan <xinyuan.wan@helsinki.fi>",
+        "date": "2024-05-01",
         "options": {
             "lsb_show_other_sex": true,
             "ldb_minimum_required_languages": 2,
@@ -36,23 +36,23 @@
         ],
         "levelOfEducation1": [
             "EQF 1",
-            "没有正式资格。"
+            "小学未毕业。"
         ],
         "levelOfEducation2": [
             "EQF 2-3",
-            "中学毕业证书， 职业学校， 2年职业培训证书"
+            "初中毕业证书"
         ],
         "levelOfEducation3": [
             "EQF 4",
-            "高中毕业证书，高级技工院校资质，3年职业培训证书，学徒制......"
+            "高中或职业高中毕业证书，高级技工院校资质"
         ],
         "levelOfEducation4": [
             "EQF 5-6",
-            "学士学位， 基础课程......"
+            "大专学历，大学本科毕业无学位"
         ],
         "levelOfEducation5": [
             "EQF 7-8",
-            "硕士学位， 博士学位， 研究生学位, 高级文凭......"
+            "学士学位，硕士学位，博士学位"
         ],
         "notApplicableFull": [
             "not applicable",
@@ -122,7 +122,7 @@
         ],
         "handednessFeedback": [
             "Please indicate whether you are <i>left-</i> or <i>righthanded</i>.",
-            "请说明您是 <b>左撇子-</b> 还是 <b>右撇子</b>。"
+            "请说明您是 <b>左利手-</b> 还是 <b>右利手</b>。"
         ],
         "dateOfBirth": [
             "Date of birth:",
@@ -280,7 +280,7 @@
         ],
         "learnedWhereOtherFeedback": [
             "Please give a brief indication of where you learned the language or dialect.",
-            "请简要说明您在哪里学习语言或方言。"
+            "请简要说明您在哪里学习的该语言或方言。"
         ],
         "learnedAgeLabel": [
             "Learned from age",
@@ -324,7 +324,7 @@
         ],
         "levelOfEducationFeedbackMother": [
             "Please indicate the highest level of education from the list that your <i>mother</i> has achieved (or the approximate equivalent).",
-            "请从您 <b>母亲</b> 的名单中注明最高教育水平（或大致相当水平）。"
+            "请从选项里选择您 <b>母亲</b> 的最高教育水平（或大致相当水平）。"
         ],
         "occupation": [
             "Occupation:",
@@ -332,7 +332,7 @@
         ],
         "occupationFeedbackMother": [
             "Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
-            "请说出或简要描述您母亲的职业， 如：<b>学生，理发师，服务员......</b>"
+            "请填写或简要描述您母亲的职业， 如：<b>学生，理发师，服务员......</b>"
         ],
         "firstLanguage": [
             "First language:",
@@ -356,11 +356,11 @@
         ],
         "levelOfEducationFeedbackFather": [
             "Please indicate the highest level of education from the list that your <i>father</i> has achieved (or the approximate equivalent).",
-            "请从您 <b>父亲</b> 的名单中注明最高教育水平（或大致相当水平）。"
+            "请从选项里选择您 <b>父亲</b> 的最高教育水平（或大致相当水平）。"
         ],
         "occupationFeedbackFather": [
             "Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
-            "请说出或简要描述您父亲的职业， 如： <b>学生，理发师，服务员......</b>"
+            "请填写或简要描述您父亲的职业， 如： <b>学生，理发师，服务员......</b>"
         ],
         "aboutLanguageX": [
             "About <!-- ...[LanguageX] -->",
@@ -368,11 +368,11 @@
         ],
         "aboutLanguageXInstr1": [
             "Relative to the performance of a highly proficient speaker of <!-- ... [LanguageX], -->",
-            "FIXME: 相对于高度熟练的 <!-- ... [LanguageX], --> 演讲者的表现"
+            "相对于该语言高度熟练的使用者，该语言为 <!-- ... [LanguageX], -->"
         ],
         "aboutLanguageXInstr2": [
             "rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. -->",
-            "FIXME: 评价您以下用 <!-- ... [LanguageX]. --> 进行的活动的熟练程度"
+            "评价您进行以下活动时，使用该语言的熟练程度，该语言为 <!-- ... [LanguageX]. --> "
         ],
         "noProficiency": [
             "No Proficiency",
@@ -392,15 +392,15 @@
         ],
         "reading": [
             "Reading",
-            "FIXME: READING"
+            "阅读"
         ],
         "writing": [
             "Writing",
-            "FIXME: WRITING"
+            "写作"
         ],
         "timeOfActivity": [
             "Of the time you spend engaged in each of the following activities, how much of that time is carried out in <!-- ...[LanguageX]? -->",
-            "FIXME: 在您花在以下每项活动上的时间中，有多少时间是用 <!-- ...[LanguageX]? --> 进行的？"
+            "在以下每项活动上，您有多少时间用的是 <!-- ...[LanguageX]? -->"
         ],
         "noneOfTheTime": [
             "None of the time",
@@ -457,12 +457,12 @@
         ],
         "onlyRML": [
             "Only [RML]",
-            "FIXME: 只有 [RML] (?區域或少數民族語?)"
+            "只有 方言/少数民族语言"
     
         ],
         "onlyMajorityLanguage": [
             "Only [MajorityLanguage]",
-            "FIXME: 只有 [MajorityLanguage] (?普通话?)"
+            "只有 普通话"
     
         ],
         "halfHalf": [
@@ -483,7 +483,7 @@
         ],
         "lifeStageInstructions": [
             "Please indicate which language or dialect you most frequently heard or used in the following life stages, both inside and outside home.",
-            "请说明您在家庭内外的以下人生阶段最常听到或使用的语言或方言。"
+            "请说明以下人生阶段中，您在家庭内外的最常听到或使用的语言或方言。"
         ],
         "lifeStageFields": {
             "infancy":      ["婴儿期"],
@@ -497,9 +497,9 @@
         ],
         "withPeopleNowFields": {
             "parents":          ["父母"],
-            "children":         ["孩子们"],
+            "children":         ["子女"],
             "siblings":         ["兄弟姐妹"],
-            "grandparents":     ["祖父母"],
+            "grandparents":     ["外/祖父母"],
             "otherRelatives":   ["其他亲戚"],
             "partner":          ["男/女朋友/配偶"],
             "friends":          ["朋友"],
@@ -520,7 +520,7 @@
         },
         "situationInstructions": [
             "Please indicate which language or dialect you generally use in the following situations.",
-            "请说明在以下情况下您通常使用哪种语言或方言："
+            "请说明在以下场合中您通常使用的语言或方言："
         ],
         "situationFields": {
             "home":         ["家里"],
@@ -548,16 +548,16 @@
         },
         "codeSwitchingHint": [
             "If you only know one language, select <i>N/A</i> for all items.",
-            "FIXME: If you only know one language, select <b>N/A</b> for all items."
+            "如果您只会一种语言，请一直选择<b>不适用</b>为答案。"
         ],
         "codeSwitchingInstructions": [
             "Some people switch between the languages they know within a single conversation. For example, while speaking in one language they may use sentences or words from the other language. This is known as “code-switching”. Please indicate how often you engage in code-switching.",
-            "FIXME: Some people switch between the languages they know within a single conversation. For example, while speaking in one language they may use sentences or words from the other language. This is known as “code-switching”. Please indicate how often you engage in code-switching."
+            "一些人在同一次对话或交谈中会切换他们所掌握的不同语言。使用两种或多种不同的语言或方言的现象。例如，在用单一语言交流时，他们会使用来自其他语言的句子或词汇。这种现象被称为“语码转换”。请说明您进行语码转换的频率。"
         ],
         "codeSwitchingFields": {
-            "friends":          ["FIXME: With friends"],
-            "parentsAndFamily": ["FIXME: With parents and family"],
-            "socialMedia":      ["FIXME: On social media"]
+            "friends":          ["和朋友"],
+            "parentsAndFamily": ["和父母及家人"],
+            "socialMedia":      ["在社交平台"]
         }
     },
     "notes": {
@@ -567,11 +567,11 @@
         ],
         "participantNoteInstructions": [
             "Is there anything else that you think is important for us to know about you?",
-            "您认为我们还需要了解您吗？"
+            "还有其他方面您认为我们需要了解您的吗？"
         ],
         "thankYouMessage": [
             "Thank you for completing the background questionnaire! If you think there's anything else we should know about you or your background then you can use the box below to tell us about this. Then just click on the &ldquo;submit and continue&rdquo; button to save your data and continue with the next task.",
-            "感谢您填写问卷！如果您认为我们还应该了解您或您的背景，那么您可以在下面的框中写信告诉我们。然后只需单 &ldquo;击提交并继续&rdquo; 按钮即可保存您的数据并继续下一个任务。"
+            "感谢您填写问卷！如果您认为我们还应该更多地了解您或您的背景，您可以在下面的框中留言告诉我们。然后只需单「击提交并继续」点击按钮即可保存您的数据并继续下一个任务。"
         ],
         "submitAndContinue": [
             "Submit and Continue",

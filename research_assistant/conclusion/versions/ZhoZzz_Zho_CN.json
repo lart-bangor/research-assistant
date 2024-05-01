@@ -2,30 +2,36 @@
     "meta": {
         "versionId": "ZhoZzz_Zho_CN",
         "versionName": "Chinese – Generic (China)",
-        "versionNumber": "0.3.5",
-        "author": "Chloe Cheung <chloewycheung8@gmail.com>",
-        "date": "2023-03-15"
+        "versionNumber": "0.3.6",
+        "author": "Chloe Cheung <chloewycheung8@gmail.com>, Xinyuan Wan <xinyuan.wan@helsinki.fi>",
+        "date": "2024-05-01"
     },
     "base": {
         "appTitle": [
-            "结论屏幕"
+            "Conclusion Screen",
+            "完成页"
         ]
     },
     "end": {
         "secTitle": [
-            "所有的任务都已完成!"
+            "All tasks completed!",
+            "所有任务已完成!"
         ],
         "feedback": [
-            "做的好"
+            "Well done!",
+            "干得漂亮!"
         ],
         "thankYouMessage": [
-            "您现在已经完成了所有的任务。您的数据已被自动保存，但请不要关闭该应用程序。"
+            "You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
+            "您已完成这部分的所有任务。您的数据已自动存储，但请不要关闭此应用程序。"
         ],
         "followOnInstructions": [
-            "请让研究人员知道您已经完成了任务。他们会检查我们是否拥有所需的一切，并在需要时给您任何进一步的指示。"
+            "Please let the researcher know that you've finished with the app tasks. They will check that we have everything we need and give you any further instructions if needed.",
+            "请告知实验人员您已经完成此应用程序上的的全部任务。他们会检查是否所有数据填写无误并存储妥当，并指导您完成接下来的任务。"
         ],
         "close": [
-            "关闭消息"
+            "Close this message",
+            "关闭该消息"
         ]
     }
 }

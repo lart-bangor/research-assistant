@@ -26,7 +26,7 @@ Features
 Screenshot
 ----------
 
-.. image:: https://repository-images.githubusercontent.com/458875402/562a6dea-f501-4086-a192-63ab34d5823d
+.. image:: https://repository-images.githubusercontent.com/458875402/7ab744f2-6331-4c55-bf38-172a4a3486e4
 
 Installation
 ------------
