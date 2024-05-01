@@ -42,4 +42,5 @@ Research Assistant or build additional tasks, a technical documentation can be f
    research-task-memory
    locking-app
    exporting-data
+   discarding-attempts
    configuration

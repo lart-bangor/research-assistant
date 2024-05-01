@@ -1,6 +1,8 @@
 .. _localisation:
+
 Localisation and Adding Translations
 ====================================
+
 All tasks in the L'ART Research Assistant are designed to allow easy implementation of interfaces in any language you choose.
 
 At the moment, the languages available depend on the specific task. The LSBQe, for example, is available in
@@ -25,8 +27,10 @@ for each interface item and then save it with a specific naming convention.
 Each step is outlined below.
 
 .. _creating:
+
 Creating and Naming your file
 -----------------------------
+
 To create a new file for your translation, go to the location where the L'ART app is installed, and open
 the :file:`versions` folder.
 
@@ -79,8 +83,10 @@ Similarly, if you would like to provide a Spanish translation **(Iso code: spa)*
 whose native languages are Galician **(glg)** and Spanish **(spa)**, you would label your file :file:`GlgSpa_Spa_ES.json`.
 
 .. _adding:
+
 Adding your translation
 -----------------------
+
 Your newly created file will now be identical to the original British-English file (except for its name)!
 Now it’s time to add your translation. The translation file involves two main pieces of information: a set of labels and a language output.
 The labels are what the L’ART Research Client needs in order to function, while the language output is what you will see in your interface.
@@ -182,11 +188,3 @@ Please refer to the :ref:`adding` section above as translating the conclusion sc
     :alt: Screenshot of the English conclusion screen code
 
     English version of the conclusion screen code
-
-
-
-
-
-
-
-
