@@ -20,7 +20,7 @@ build:
       - python -m pip install pipenv
       - pwd
       - python -m pipenv requirements --dev > requirements-generated.txt
-      - sed -i 's/markupsafe==2.1.5/markupsafe/g' requirements-generated.txt
+      - sed -i 's/markupsafe==[0-9\.]*/markupsafe/g' requirements-generated.txt
       - cat requirements-generated.txt
       # - ls -la
     # post_install:
@@ -34,8 +34,8 @@ sphinx:
    configuration: docs/source/conf.py
 
 # If using Sphinx, optionally build your docs in additional formats such as PDF
-formats:
-  - pdf
+# formats:
+#   - pdf
 
 # Optionally declare the Python requirements required to build your docs
 python:
