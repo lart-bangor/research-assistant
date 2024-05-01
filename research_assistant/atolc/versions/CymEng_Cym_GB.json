@@ -2,15 +2,15 @@
     "meta": {
         "versionId": "CymEng_Cym_GB",
         "versionName": "Cymraeg - Saesneg (Y Deyrnas Unedig)",
-        "versionNumber": "0.3.4",
+        "versionNumber": "0.3.5",
         "author": "Ianto Gryffudd <ianto.gryffudd@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2023-01-30"
+        "date": "2024-05-01"
     },
    "intface_info": {
             "title": "Holiadur Iaith",
              "language": "Saesneg",
              "rml": "Cymraeg",
-             "instruction": "Defnyddiwch y llythrydd i ateb",
+             "instruction": "Defnyddiwch y llithrydd i ateb",
              "language_header": "Mae’r Saesneg yn...",
              "rml_header": "Mae’r Gymraeg yn...",
              "atol_header": "Holiadur AToL",
