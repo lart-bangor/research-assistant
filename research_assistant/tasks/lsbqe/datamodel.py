@@ -1,5 +1,5 @@
 """Data model for the LSBQe Task."""
-from pydantic import BaseModel, Field, constr, conlist, conint, confloat
+from pydantic import BaseModel, Field, constr, conlist, conint, confloat, PastDate
 from datetime import date
 from typing import Optional
 from ...datamodels.models import ResponseBase
@@ -13,7 +13,7 @@ class LsbqeTaskResidency(BaseModel):
         regex=p.LOCATION_NAME
     ) = Field("Location (approx.) of residency.")
 
-    start: date = Field("Start date of residency.")
+    start: PastDate = Field("Start date of residency.")
 
     end: date = Field("End date of residency.")
 
@@ -47,7 +47,7 @@ class LsbqeTaskLsb(BaseModel):
         regex=r"^[rl]$"
     ) = Field(description="Respondent's handedness.")
 
-    date_of_birth: date = Field(description="Respondent's date of birth.")
+    date_of_birth: PastDate = Field(description="Respondent's date of birth.")
 
     hearing_impairment: bool = Field("Whether respondent has a hearing impairment or not.")
 
@@ -176,10 +176,195 @@ class LsbqeTaskLdb(BaseModel):
     ) = Field("Information about respondent's parents.")
 
 
+class LsbqeTaskClubLifeStages(BaseModel):
+    """Language use during different (early) life stages."""
+
+    infancy_age: confloat(
+        ge=0.0, le=100.0
+    ) = Field("Proportion of language use in infancy age.")
+
+    nursery_age: confloat(
+        ge=0.0, le=100.0
+    ) = Field("Proportion of language use in nursery age.")
+
+    primary_age: confloat(
+        ge=0.0, le=100.0
+    ) = Field("Proportion of language use in primary school age.")
+
+    secondary_age: confloat(
+        ge=0.0, le=100.0
+    ) = Field("Proportion of language use in secondary school age.")
+
+
+class LsbqeTaskClubPeopleCurrent(BaseModel):
+    """Language use with different groups of people, currently."""
+
+    parents: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with parents.")
+
+    children: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with children.")
+
+    siblings: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with siblings.")
+
+    grandparents: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with grandparents.")
+
+    other_relatives: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with other relatives.")
+
+    partner: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with partner.")
+
+    friends: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with friends.")
+
+    flatmates: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with flatmates/roommates.")
+
+    neighbours: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with neighbours.")
+
+
+class LsbqeTaskClubPeopleChildhood(BaseModel):
+    """Language use with different groups of people during childhood."""
+
+    parents: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with parents during childhood.")
+
+    siblings: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with siblings during childhood.")
+
+    grandparents: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with grandparents during childhood.")
+
+    other_relatives: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with other relatives during childhood.")
+
+    friends: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with friends during childhood.")
+
+    neighbours: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with neighbours during childhood.")
+
+
+class LsbqeTaskClubSituations(BaseModel):
+    """Language use in different situations/settings."""
+
+    home: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use at home.")
+
+    school: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use in school.")
+
+    work: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use at work.")
+
+    socialising: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use when socialising.")
+
+    religion: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for religious activities.")
+
+    leisure: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for leisure activities.")
+
+    commercial: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for commercial activities.")
+
+    public: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for public affairs.")
+
+
+class LsbqeTaskClubActivities(BaseModel):
+    """Language use for different activities."""
+
+    reading: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for reading.")
+
+    emailing: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for emailing.")
+
+    texting: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for texting (SMS, WhatsApp, ...).")
+
+    social_media: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with social media.")
+
+    notes: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for notes/memos.")
+
+    traditional_media: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use with traditional media.")
+
+    internet: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use on the internet.")
+
+    praying: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Proportion of language use for praying.")
+
+
+class LsbqeTaskClubCodeSwitching(BaseModel):
+    """Code-switching in different situations/with different groups of people."""
+
+    parents_and_family: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Amount of code-switching with parents and family.")
+
+    friends: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Amount of code-swithcing with friends.")
+
+    social_media: Optional[confloat(
+        ge=0.0, le=100.0
+    )] = Field("Amount of code-switching with social media.")
+
 class LsbqeTaskClub(BaseModel):
     """Community Language Use Behaviour portion of the LSBQe."""
 
-    ...
+    life_stages: LsbqeTaskClubLifeStages
+
+    people_current: LsbqeTaskClubPeopleCurrent
+
+    people_childhood: LsbqeTaskClubPeopleChildhood
+
+    situations: LsbqeTaskClubSituations
+
+    activities: LsbqeTaskClubActivities
+
+    code_switching: LsbqeTaskClubCodeSwitching
 
 
 class LsbqeTaskResponse(ResponseBase):
