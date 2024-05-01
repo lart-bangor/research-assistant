@@ -9,10 +9,10 @@ The setup is for four bilingual communities: **Welsh-English, Lombard-Italian, M
 
 .. figure:: tutfigures/tutorial_selecting_version_of_lsbqe.png
     :name: tutorial_selecting_version_of_lsbqe
-      :width: 500
-      :alt: Screenshot of selecting a version of the LSBQe 
+    :width: 500
+    :alt: Screenshot of selecting a version of the LSBQe 
 
-      Selecting a version of the LSBQe 
+    Selecting a version of the LSBQe
 
 However, both the working languages and the setup for specific bilingual communities can be easily
 changed by providing a translated version of the task you require to suit your own research settings.
