@@ -20,7 +20,7 @@ build:
       - python -m pip install pipenv
       - pwd
       - python -m pipenv requirements --dev > requirements-generated.txt
-      - sed -i 's/markupsafe==2.1.2/markupsafe/g' requirements-generated.txt
+      - sed -i 's/markupsafe==2.1.5/markupsafe/g' requirements-generated.txt
       - cat requirements-generated.txt
       # - ls -la
     # post_install:
