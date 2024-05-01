@@ -25,13 +25,13 @@ def _build_finished_handler(app, exception):
     rtd_dir = os.getenv("READTHEDOCS_OUTPUT")
     print("Current directory:", os.getcwd())
     ls = subprocess.run(["ls", "-la"], capture_output=True)
-    print(ls, "\n")
+    print(f"ls -la:\n{ls.stdout!s}{ls.stderr!s}\n")
     print("Build dir for html:", f"{rtd_dir}html")
     ls = subprocess.run(["ls", "-la", f"{os.getenv}html"], capture_output=True)
-    print(ls, "\n")
+    print(f"ls -la $READTHEDOCS_OUTPUT/html:\n{ls.stdout!s}{ls.stderr!s}\n")
     print("Build dir for pdf:", f"{rtd_dir}pdf")
     ls = subprocess.run(["ls", "-la", f"{os.getenv}pdf"], capture_output=True)
-    print(ls, "\n")
+    print(f"ls -la $READTHEDOCS_OUTPUT/pdf:\n{ls.stdout!s}{ls.stderr!s}\n")
 
 
 def setup(app):
