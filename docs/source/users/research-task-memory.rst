@@ -49,7 +49,7 @@ continuing on to the next task.
 
 
 .. figure:: figures-mt/memory_task_conclusion
-    :name: mmemory_task_conclusion
+    :name: memory_task_conclusion
     :width: 600
     :alt: Screenshot of memory task conclusion screen
 

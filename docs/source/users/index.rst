@@ -39,9 +39,7 @@ Research Assistant or build additional tasks, a technical documentation can be f
    research-task-lsbqe
    research-task-atol
    research-task-agt
+   research-task-memory
    locking-app
    exporting-data
-   discarding-attempts
-   sequencing
    configuration
-   memory-game
