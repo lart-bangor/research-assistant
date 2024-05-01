@@ -1,0 +1,86 @@
+{
+    "meta": {
+        "versionId": "ZhoFin_Zho_CN.lsbq",
+        "versionName": "LSBQe: Chinese – Finnish (China)",
+        "versionNumber": "0.5.0a0",
+        "author": "Xinyan Wan <xinyuan.wan@helsinki.fi>",
+        "date": "2024-05-01"
+    },
+    "base": {
+        "appTitle": [
+            "Informed Consent",
+            "知情同意书"
+        ],
+        "confirm": [
+            "Confirm",
+            "确定"
+        ]
+    },
+    "infoSheet": {
+        "secTitle": [
+            "Participant Information Sheet",
+            "被试信息单"
+        ],
+        "confirmLabel": [
+            "Confirm consent:",
+            "确认同意："
+        ],
+        "confirmStatement": [
+            "Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you.",
+            "请确定您已阅读并理解上述所有内容，并且您自愿参与此项研究。谢谢。"
+        ],
+        "confirmFeedback": [
+            "Please confirm that you consent to the above before beginning your participation in the study.",
+            "在开始参与研究之前，请确认您同意上述内容，谢谢。"
+        ],
+        "paragraphs": [
+            ["Name der Forschungsstudie", "Exekutive Funktionen in zweisprachigen Personen."],
+            ["Was ist das Ziel der Forschung?", "Diese Studie ist Teil eines größeren Forschungsprojektes zur Untersuchung von Zweisprachigkeit in Europa. Das Projekt zielt darauf ab, neue Erkenntnisse über zweisprachige Personen in verschiedenen Teilen Europas zu erlangen, unter anderem in der Deutschsprachigen Gemeinschaft Belgiens."],
+            ["Warum wurde ich eingeladen an der Studie teilzunehmen?", "Sie wurden ausgewählt, weil Sie zweisprachig sind und sowohl Deutsch als auch Eifeler Platt sprechen."],
+            ["研究题目", "汉语母语者芬兰语语音习得研究"],
+            ["研究的目的是什么？", "此研究希望通过单一的语音感知练习或语音产出练习，能否帮助母语为汉语普通话的芬兰语初学者更好地掌握芬兰语的语音。"],
+            ["我为什么被邀请参与这项研究？", "你被邀请参与这项研究是因为你是母语为汉语普通话的的芬兰语初学者，且你的年龄在18～35周岁之间，无听力及言语障碍，并且没有语言类相关专业背景。"],
+            ["我必须参加吗？", "是否参加本项研究完全取决于你的决定。如果你决定参加本项研究，请同意并签署此线上知情同意书。<br />当然，你可以随时无理由退出实验。"],
+            ["我被邀请参与什么任务？", "你将需要填写一份有关你语言背景的线上调查问卷。<br />我们预计这份调查问卷会占用你大约十分钟的时间。<br />除此之外没有任何其它与参与实验相关的承诺和限制。"],
+            ["参与本项研究的潜在副作用和危害有哪些？", "参与本项研究预计不会给您带来日常生活中可能遇到的任何不利或不适。"],
+            ["出现问题怎么办？", "如果您对本项实验有任何不满或意见，请第一时间联系研究团队的任何人员。"],
+            ["我参与这项研究会被保密吗？", "我们在研究过程中收集的所有有关您的信息都将严格保密。<br />您不会在任何报告或出版物中被识别出或可能被识别出。在电子问卷中收集的有关您的任何数据都将存储在赫尔辛基大学的计算机中，并受密码和其他相关安全流程和技术的保护。<br />数据可能以匿名形式共享，以便其他研究人员重复使用。这些匿名数据不会让您承担被识别或可能被识别的风险。"],
+            ["我将被采集什么类型的信息？为什么收集这些信息与实现研究项目的目标相关？", "此调查问卷会询问你有关你语言背景和语言习惯以及和芬兰语学习经历的问题。<br />你作为母语为汉语普通话的初级芬兰语学习者的发音特征和你的语言背景经历是我们感兴趣的研究点。"],
+            ["此研究项目的结果将会被如何使用？", "研究结果将以定量数据的形式发布，这意味着任何报告或出版物都不会识别任何个人的身份。"],
+            ["谁在组织和资助这项研究？", "该研究的组织者为赫尔辛基大学，资助者为芬兰研究委员会（Research Council of Finland）。"],
+            ["谁对该研究进行了道德审查？", "该研究通过了 <b>赫尔辛基大学</b>研究道德委员会的审查。<br />该机构负责执行伦理审查程序并监督大学和各学院的研究遵循伦理指南和伦理批准程序的应用和实施。"],
+            ["如需更多信息，请联系：", "xinyuan.wan@helsinki.fi"]
+        ]
+    },
+    "eligibilityCriteria": {
+        "secTitle": [
+            "Eligibility Criteria",
+            "参与标准"
+        ],
+        "secInfo": [
+            "Please read the eligibility criteria below and confirm that you qualify. Thank you.",
+            "请阅读下列参与标准并确定你满足参与实验的要求，谢谢。"
+        ],
+        "confirmLabel": [
+            "Confirm eligibility:",
+            "确认参与资格:"
+        ],
+        "confirmStatement": [
+            "I confirm that I meet the criteria above.",
+            "我确认我符合上述要求"
+        ],
+        "confirmFeedback": [
+            "Please confirm that you are eligible to take part in this study.",
+            "请确认您符合上述要求，谢谢。"
+        ],
+        "paragraphs": [
+            ["我是汉语普通话母语者，且我现在是芬兰语初学者"],
+            ["我的年龄介于 18 至 35 之间"],
+            ["我没有任何听力障碍"],
+            ["我没有任何言语障碍"],
+            ["我从没有受到过严重的头部损伤"],
+            ["我从来没有被确诊过神经性障碍"],
+            ["我目前没有因神经系统疾病而接受重症治疗"]
+        ]
+    }
+}
