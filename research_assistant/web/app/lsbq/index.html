@@ -5,7 +5,7 @@
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
-            availableVersions = eel._lsbq_getversions()(populateSurveyVersions);
+            availableVersions = eel.lsbqe_get_localisations()(populateSurveyVersions);
         }
 
         function populateSurveyVersions(versions) {
@@ -127,5 +127,5 @@
         lart.forms.requireValidation(true);
         lart.forms.util.autofillForm('surveyDataForm');
     </script>
-    {{ lart_form_pipeline('surveyDataForm', '_lsbq_init') }}
+    {{ lart_form_pipeline('surveyDataForm', 'lsbqe_new') }}
 {% endblock %}

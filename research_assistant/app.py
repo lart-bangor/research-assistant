@@ -36,7 +36,6 @@ root_logger.addHandler(config.logging.get_file_handler(root_logger_name))       
 logger = logging.getLogger(__name__)
 
 # Expose Eel APIs for subpackages (LEGACY)
-expose_lsbq()
 expose_settings()
 
 # Expose Eel APIs for subpackages (new API)

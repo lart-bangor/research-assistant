@@ -130,7 +130,7 @@ class LsbqeLanguagesSpoken(BaseModel):
 
 class LsbqeParentInformation(BaseModel):
     """Background information about a parent."""
-    parent = constr(
+    parent: constr(
         strip_whitespace=True,
         regex=r"^(?:mother|father)$"
     ) = Field("Is this for 'mother' or 'father'?")
@@ -350,6 +350,7 @@ class LsbqeTaskClubCodeSwitching(BaseModel):
     social_media: Optional[confloat(
         ge=0.0, le=100.0
     )] = Field("Amount of code-switching with social media.")
+
 
 class LsbqeTaskClub(BaseModel):
     """Community Language Use Behaviour portion of the LSBQe."""
