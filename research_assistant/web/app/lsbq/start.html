@@ -208,29 +208,29 @@
             <!-- 8. Where else have you lived -->
             <section class="m-4">
                 <div class="row mb-1">
-                    <p class="col-form-label col-auto" data-lsbq-tr="lsb.otherPlaces">Where else have you lived for any significant period of time (&gt; 6 months)?</p>
+                    <p class="col-form-label col-auto" data-lsbq-tr="lsb.residencies">Where else have you lived for any significant period of time (&gt; 6 months)?</p>
                 </div>
-                <template id="otherPlacesTemplate">
-                    <div class="row mb-1" id="otherPlaces-[PlaceNumber]">
+                <template id="residenciesTemplate">
+                    <div class="row mb-1" id="residencies-[PlaceNumber]">
                         <div class="col-1 d-flex align-items-center justify-content-end pe-1">
-                            <a class="btn btn-outline-secondary opacity-75" id="otherPlacesDelete-[PlaceNumber]"><i class="bi bi-trash"></i></a>
+                            <a class="btn btn-outline-secondary opacity-75" id="residenciesDelete-[PlaceNumber]"><i class="bi bi-trash"></i></a>
                         </div>
                         <div class="col form-floating">
-                            <input type="text" class="form-control" id="otherPlacesName-[PlaceNumber]" name="otherPlacesName-[PlaceNumber]" />
-                            <label for="otherPlacesName-[PlaceNumber]" data-lsbq-tr="lsb.placeName">Place name</label>
+                            <input type="text" class="form-control" id="residenciesName-[PlaceNumber]" name="residenciesName-[PlaceNumber]" />
+                            <label for="residenciesName-[PlaceNumber]" data-lsbq-tr="lsb.placeName">Place name</label>
                         </div>
                         <div class="col form-floating">
-                            <input type="month" class="form-control" id="otherPlacesFrom-[PlaceNumber]" name="otherPlacesFrom-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
-                            <label for="otherPlacesFrom-0" data-lsbq-tr="lsb.from">From</label>
+                            <input type="month" class="form-control" id="residenciesFrom-[PlaceNumber]" name="residenciesFrom-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
+                            <label for="residenciesFrom-0" data-lsbq-tr="lsb.from">From</label>
                         </div>
                         <div class="col form-floating">
-                            <input type="month" class="form-control" id="otherPlacesTo-[PlaceNumber]" name="otherPlacesTo-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
-                            <label for="otherPlacesTo-0" data-lsbq-tr="lsb.until">Until</label>
+                            <input type="month" class="form-control" id="residenciesTo-[PlaceNumber]" name="residenciesTo-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
+                            <label for="residenciesTo-0" data-lsbq-tr="lsb.until">Until</label>
                         </div>
                     </div>
                 </template>
-                <div id="otherPlacesSlot">
-                    <!-- Placeholder dynamically filled with copies of otherPlacesTemplate -->
+                <div id="residenciesSlot">
+                    <!-- Placeholder dynamically filled with copies of residenciesTemplate -->
                 </div>
                 <div class="row mt-1 mb-3 ms-1">
                     <div class="col-1"></div>
@@ -238,7 +238,7 @@
                         <p class="help-block p-2 text-muted ps-0"><i class="bi-info-circle text-info"></i> <span data-lsbq-tr="lsb.approximateAreaSufficient">Approximate area is sufficient.</span></p>
                     </div>
                     <div class="col text-end">
-                        <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="insertOtherPlacesLine()"><i class="bi-plus-circle-dotted"></i> <span data-lsbq-tr="base.addLine">Add line</span></a>
+                        <a class="btn btn-outline-secondary shadow-sm col-auto" onclick="insertResidenciesLine()"><i class="bi-plus-circle-dotted"></i> <span data-lsbq-tr="base.addLine">Add line</span></a>
                     </div>
                 </div>
             </section>
@@ -294,10 +294,10 @@
 
         // Initialise UI translation
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'lsb']]);
-        lart.tr.registerObserver('lsbq', 'surveyLSBForm');
-        lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
+        lart.tr.loadFromEel('lsbq', eel.lsbqe_load_localisation, [instanceId, ['meta', 'base', 'lsb']]);
         lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
+        lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
+        lart.tr.registerObserver('lsbq', 'surveyLSBForm');
 
         // Implement configuration options for LSB
         function configureLSB() {
@@ -313,11 +313,11 @@
         lart.tr.registerCallback("lsbq", configureLSB);
 
         // Set up repeats for "other places" fields
-        let otherPlacesCounter = 0;
-        function insertOtherPlacesLine() {
-            const placeNumber = otherPlacesCounter++;
-            const template = document.getElementById('otherPlacesTemplate');
-            const slot = document.getElementById('otherPlacesSlot');
+        let residenciesCounter = 0;
+        function insertResidenciesLine() {
+            const placeNumber = residenciesCounter++;
+            const template = document.getElementById('residenciesTemplate');
+            const slot = document.getElementById('residenciesSlot');
             const clone = template.content.cloneNode(true);
             // Replaces [PlaceNumber] in 'id', 'for', and 'name' attrs
             function numberReplacer(node) {
@@ -335,29 +335,29 @@
             numberReplacer(clone);
             // Append to slot
             slot.appendChild(clone);
-            // Make input required dependent on otherPlacesName presence
-            lart.forms.conditionalRequire(`otherPlacesName-${placeNumber}`, `otherPlacesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            lart.forms.conditionalRequire(`otherPlacesName-${placeNumber}`, `otherPlacesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            // Make input required dependent on otherPlacesFrom presence
-            lart.forms.conditionalRequire(`otherPlacesFrom-${placeNumber}`, `otherPlacesName-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            lart.forms.conditionalRequire(`otherPlacesFrom-${placeNumber}`, `otherPlacesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            // Make input required dependent on otherPlacesTo presence
-            lart.forms.conditionalRequire(`otherPlacesTo-${placeNumber}`, `otherPlacesName-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            lart.forms.conditionalRequire(`otherPlacesTo-${placeNumber}`, `otherPlacesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            // Make otherPlaces lines deletable
-            const deleteButton = document.getElementById(`otherPlacesDelete-${placeNumber}`);
+            // Make input required dependent on residenciesName presence
+            lart.forms.conditionalRequire(`residenciesName-${placeNumber}`, `residenciesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residenciesName-${placeNumber}`, `residenciesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            // Make input required dependent on residenciesFrom presence
+            lart.forms.conditionalRequire(`residenciesFrom-${placeNumber}`, `residenciesName-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residenciesFrom-${placeNumber}`, `residenciesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            // Make input required dependent on residenciesTo presence
+            lart.forms.conditionalRequire(`residenciesTo-${placeNumber}`, `residenciesName-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residenciesTo-${placeNumber}`, `residenciesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            // Make residencies lines deletable
+            const deleteButton = document.getElementById(`residenciesDelete-${placeNumber}`);
             if ( placeNumber ) {
                 deleteButton.addEventListener(
                     'click',
                     function () {
-                        document.getElementById(`otherPlaces-${placeNumber}`).remove();
+                        document.getElementById(`residencies-${placeNumber}`).remove();
                     }
                 );
             } else {
                 deleteButton.remove();
             }
         }
-        insertOtherPlacesLine();
+        insertResidenciesLine();
     </script>
-    {{ lart_form_pipeline('surveyLSBForm', '_lsbq_setlsb') }}
+    {{ lart_form_pipeline('surveyLSBForm', 'lsbqe_add_lsb') }}
 {% endblock %}
