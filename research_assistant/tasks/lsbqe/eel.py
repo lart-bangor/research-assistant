@@ -84,7 +84,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             self.logger.error(str(exc))
             raise exc
         # Extract residencies
-        residencies_d = dict()
+        residencies_d: dict[int, tuple[str, str, str]] = dict()
         for key, value in data.copy().items():
             if key.startswith("residenciesName-"):
                 i = key.removeprefix("residenciesName-")
@@ -106,13 +106,35 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     )
                     self.logger.error(str(exc))
                     raise exc
-                residencies_d[int(i)] = data[key], data[f"residenciesFrom-{i}"], data[f"residenciesTo-{i}"]
+                if (data[key].strip()
+                        and data[f"residenciesFrom-{i}"].strip()
+                        and data[f"residenciesTo-{i}"].strip()):
+                    # Only add if it's not actually an empty row
+                    residencies_d[int(i)] = (
+                        data[key],
+                        data[f"residenciesFrom-{i}"] + "-01",
+                        data[f"residenciesTo-{i}"] + "-01"
+                    )
                 del data[key]
                 del data[f"residenciesFrom-{i}"]
                 del data[f"residenciesTo-{i}"]
         residencies = []
         for _, (_location, _start, _end) in sorted(residencies_d.items()):
             residencies.append(LsbqeTaskResidency(location=_location, start=_start, end=_end))
+        # Remove dependent fields that ought to be left blank based on given answers
+        print("Sex:", data["sex"])
+        if data["sex_other"] and data["sex"].lower() in ("m", "f"):
+            data["sex_other"] = None
+        if "hearing_aid" in data and not data["hearing_impairment"]:
+            del data["hearing_aid"]
+        if not data["vision_impairment"]:
+            if "vision_aid" in data:
+                del data["vision_aid"]
+            if "vision_fully_corrected" in data:
+                del data["vision_fully_corrected"]
+        if "vision_fully_corrected" in data and "vision_aid" in data and not data["vision_aid"]:
+            del data["vision_fully_corrected"]
+        # Construct the LSB response object
         lsb = LsbqeTaskLsb(
             sex=data["sex"],
             sex_other=(data["sex_other"] if data["sex_other"] else None),
@@ -125,10 +147,13 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             vision_aid=(data["vision_aid"] if "vision_aid" in data else None),
             vision_fully_corrected=(data["vision_fully_corrected"] if "vision_fully_corrected" in data else None),
             place_of_birth=data["place_of_birth"],
-            residencies=residencies
+            residencies=residencies,
+            education_level=data["education_level"]
         )
-        print("Parsed LSB Data:")
-        pprint(lsb)
+        print("Stored LSB Data:")
+        self._response_data[response_id]["lsb"] = lsb
+        pprint(self._response_data)
+        self.set_location(f"ldb.html?instance={response_id}")
 
 
 # Required so importers know which class defines the API
