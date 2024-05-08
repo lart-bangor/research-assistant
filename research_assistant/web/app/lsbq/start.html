@@ -220,11 +220,11 @@
                             <label for="residenciesName-[PlaceNumber]" data-lsbq-tr="lsb.placeName">Place name</label>
                         </div>
                         <div class="col form-floating">
-                            <input type="month" class="form-control" id="residenciesFrom-[PlaceNumber]" name="residenciesFrom-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
+                            <input type="month" class="form-control" id="residenciesFrom-[PlaceNumber]" name="residenciesFrom-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" min="1922-01-01"  />
                             <label for="residenciesFrom-0" data-lsbq-tr="lsb.from">From</label>
                         </div>
                         <div class="col form-floating">
-                            <input type="month" class="form-control" id="residenciesTo-[PlaceNumber]" name="residenciesTo-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" />
+                            <input type="month" class="form-control" id="residenciesTo-[PlaceNumber]" name="residenciesTo-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" min="1922-01-01"  />
                             <label for="residenciesTo-0" data-lsbq-tr="lsb.until">Until</label>
                         </div>
                     </div>
@@ -356,6 +356,26 @@
             } else {
                 deleteButton.remove();
             }
+            // Set max value for residencies time-fields to today's date
+            booteel.DOM.setAttribute(`residenciesFrom-${placeNumber}`, 'max', booteel.today.iso.YEAR_MONTH);
+            booteel.DOM.setAttribute(`residenciesTo-${placeNumber}`, 'max', booteel.today.iso.YEAR_MONTH);
+            // Dynamically make residenciesFrom max value be before residenciesTo
+            const residenciesToNode = lart.forms.getElementByGreed(`residenciesTo-${placeNumber}`);
+            const residenciesFromNode = lart.forms.getElementByGreed(`residenciesFrom-${placeNumber}`);
+            residenciesToNode.addEventListener(
+                'input',
+                function (event) {
+                    if( !residenciesToNode.checkValidity() ) {
+                        residenciesFromNode.max = booteel.today.iso.YEAR_MONTH;
+                        return;
+                    }
+                    const maxFromDate = new Date(residenciesToNode.value);
+                    maxFromDate.setMonth(maxFromDate.getMonth() - 1);
+                    const maxFromYear = booteel.util.lpad(maxFromDate.getFullYear().toString(), "0", 4);
+                    const maxFromMonth = booteel.util.lpad((maxFromDate.getMonth()+1).toString(), "0", 2);
+                    residenciesFromNode.max = `${maxFromYear}-${maxFromMonth}`;
+                }
+            )
         }
         insertResidenciesLine();
     </script>

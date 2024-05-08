@@ -63,8 +63,8 @@ booteel.today = {}
 booteel.today.date = new Date();
 booteel.today.iso = {}
 booteel.today.iso.YEAR = booteel.util.lpad(booteel.today.date.getFullYear().toString(), "0", 4);
-booteel.today.iso.MONTH = booteel.util.lpad(booteel.today.date.getMonth().toString(), "0", 2);
-booteel.today.iso.DAY = booteel.util.lpad(booteel.today.date.getDay().toString(), "0", 2);
+booteel.today.iso.MONTH = booteel.util.lpad((booteel.today.date.getMonth()+1).toString(), "0", 2);
+booteel.today.iso.DAY = booteel.util.lpad(booteel.today.date.getDate().toString(), "0", 2);
 booteel.today.iso.YEAR_MONTH = `${booteel.today.iso.YEAR}-${booteel.today.iso.MONTH}`;
 booteel.today.iso.YEAR_MONTH_DAY = `${booteel.today.iso.YEAR_MONTH}-${booteel.today.iso.DAY}`;
 
