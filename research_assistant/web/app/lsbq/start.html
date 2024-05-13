@@ -216,15 +216,15 @@
                             <a class="btn btn-outline-secondary opacity-75" id="residenciesDelete-[PlaceNumber]"><i class="bi bi-trash"></i></a>
                         </div>
                         <div class="col form-floating">
-                            <input type="text" class="form-control" id="residenciesName-[PlaceNumber]" name="residenciesName-[PlaceNumber]" />
+                            <input type="text" class="form-control" id="residenciesName-[PlaceNumber]" name="residencies-[PlaceNumber]-name" />
                             <label for="residenciesName-[PlaceNumber]" data-lsbq-tr="lsb.placeName">Place name</label>
                         </div>
                         <div class="col form-floating">
-                            <input type="month" class="form-control" id="residenciesFrom-[PlaceNumber]" name="residenciesFrom-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" min="1922-01-01"  />
+                            <input type="month" class="form-control" id="residenciesFrom-[PlaceNumber]" name="residencies-[PlaceNumber]-from" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" min="1922-01-01"  />
                             <label for="residenciesFrom-0" data-lsbq-tr="lsb.from">From</label>
                         </div>
                         <div class="col form-floating">
-                            <input type="month" class="form-control" id="residenciesTo-[PlaceNumber]" name="residenciesTo-[PlaceNumber]" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" min="1922-01-01"  />
+                            <input type="month" class="form-control" id="residenciesTo-[PlaceNumber]" name="residencies-[PlaceNumber]-to" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" min="1922-01-01"  />
                             <label for="residenciesTo-0" data-lsbq-tr="lsb.until">Until</label>
                         </div>
                     </div>
@@ -336,14 +336,14 @@
             // Append to slot
             slot.appendChild(clone);
             // Make input required dependent on residenciesName presence
-            lart.forms.conditionalRequire(`residenciesName-${placeNumber}`, `residenciesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            lart.forms.conditionalRequire(`residenciesName-${placeNumber}`, `residenciesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residencies-${placeNumber}-name`, `residencies-${placeNumber}-from`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residencies-${placeNumber}-name`, `residencies-${placeNumber}-to`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
             // Make input required dependent on residenciesFrom presence
-            lart.forms.conditionalRequire(`residenciesFrom-${placeNumber}`, `residenciesName-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            lart.forms.conditionalRequire(`residenciesFrom-${placeNumber}`, `residenciesTo-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residencies-${placeNumber}-from`, `residencies-${placeNumber}-name`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residencies-${placeNumber}-from`, `residencies-${placeNumber}-to`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
             // Make input required dependent on residenciesTo presence
-            lart.forms.conditionalRequire(`residenciesTo-${placeNumber}`, `residenciesName-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
-            lart.forms.conditionalRequire(`residenciesTo-${placeNumber}`, `residenciesFrom-${placeNumber}`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residencies-${placeNumber}-to`, `residencies-${placeNumber}-name`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
+            lart.forms.conditionalRequire(`residencies-${placeNumber}-to`, `residencies-${placeNumber}-from`, '', lart.forms.conditionMatcherCondition.NOT_EQUAL);
             // Make residencies lines deletable
             const deleteButton = document.getElementById(`residenciesDelete-${placeNumber}`);
             if ( placeNumber ) {

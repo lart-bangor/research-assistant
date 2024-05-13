@@ -98,14 +98,14 @@
                             <a class="btn btn-outline-secondary opacity-75 mt-2" id="languagesSpokenDelete-[LanguageNumber]"><i class="bi bi-trash"></i></a>
                         </div>
                         <div class="col-3 form-floating">
-                            <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-[LanguageNumber]" name="languagesSpokenLanguage-[LanguageNumber]" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
+                            <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-name" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
                             <label for="languagesSpokenLanguage-[LanguageNumber]" class="col-form-label col-auto pt-2 ms-2" data-lsbq-tr="ldb.languageNameLabel">Language name</label>
-                            <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters). You <i>must</i> list at least <i>two</i> languages/dialects.</div>
+                            <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters). You <i>must</i> list at least <i>two</i> languages/dialects.</div>
                         </div>
                         <!-- fields: languagesSpokenSource-[LanguageNumber] and languagesSpokenSourceSpecifyBlock-[LanguageNumber] -->
                         <div class="col-3">
                             <div class="form-floating">
-                                <select class="form-select" id="languagesSpokenSource-[LanguageNumber]" name="languagesSpokenSource-[LanguageNumber]" multiple style="min-height:2em">
+                                <select class="form-select" id="languagesSpokenSource-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-source" multiple style="min-height:2em">
                                     <option value="h" data-lsbq-tr="ldb.atHome">At home</option>
                                     <option value="s" data-lsbq-tr="ldb.atSchool">At school</option>
                                     <option value="c" data-lsbq-tr="ldb.inCommunity">In the community</option>
@@ -115,14 +115,14 @@
                                 <div class="invalid-feedback" data-lsbq-tr="ldb.learnedWhereFeedback">Please select an option.</div>
                             </div>
                             <div class="form-floating mt-1" id="languagesSpokenSourceSpecifyBlock-[LanguageNumber]">
-                                <input type="text" class="form-control" id="languagesSpokenSourceSpecify-[LanguageNumber]" name="languagesSpokenSourceSpecify-[LanguageNumber]" />
+                                <input type="text" class="form-control" id="languagesSpokenSourceSpecify-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-source_other" />
                                 <label for="languagesSpokenSourceSpecify-[LanguageNumber]" data-lsbq-tr="ldb.learnedWhereOtherLabel"><i>Please specify...</i></label>
                                 <div class="invalid-feedback" data-lsbq-tr="ldb.learnedWhereOtherFeedback">Please give a brief indication of where you learned the language or dialect.</div>
                             </div>
                         </div>
                         <!-- field: languagesSpokenAge-[LanguageNumber] -->
                         <div class="col-2 form-floating">
-                            <input type="number" class="form-control" id="languagesSpokenAge-[LanguageNumber]" name="languagesSpokenAge-[LanguageNumber]" min="0" max="100" />
+                            <input type="number" class="form-control" id="languagesSpokenAge-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-age" min="0" max="100" />
                             <label for="languagesSpokenAge-[LanguageNumber]" class="col-form-label col-auto pt-2 ms-2" data-lsbq-tr="ldb.learnedAgeLabel">Learned from age</label>
                             <div class="invalid-feedback" data-lsbq-tr="ldb.learnedAgeFeedback">Please indicate how old you were (in years) when you started to learn this language.</div>
                         </div>
@@ -130,12 +130,12 @@
                         <div class="col-3">
                             <div class="row">
                                 <div class="col-6 form-floating d-inline-block">
-                                    <input type="number" class="form-control" id="languagesSpokenBreakYears-[LanguageNumber]" name="languagesSpokenBreakYears-[LanguageNumber]" min="0" max="100" value="0" />
+                                    <input type="number" class="form-control" id="languagesSpokenBreakYears-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-break_years" min="0" max="100" value="0" />
                                     <label for="languagesSpokenBreakYears-[LanguageNumber]" class="col-form-label col-auto pt-2 ms-2" data-lsbq-tr="ldb.learnedBreaksYearsLabel">years</label>
                                     <div class="invalid-feedback" data-lsbq-tr="ldb.learnedBreaksYearsFeedback">Value must be between 0-100.</div>
                                 </div>
                                 <div class="col-6 form-floating d-inline-block">
-                                    <input type="number" class="form-control" id="languagesSpokenBreakMonths-[LanguageNumber]" name="languagesSpokenBreakMonths-[LanguageNumber]" min="0" max="12" value="0" />
+                                    <input type="number" class="form-control" id="languagesSpokenBreakMonths-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-break_months" min="0" max="12" value="0" />
                                     <label for="languagesSpokenBreakMonths-[LanguageNumber]" class="col-form-label col-auto pt-2 ms-2" data-lsbq-tr="ldb.learnedBreaksMonthsLabel">months</label>
                                     <div class="invalid-feedback" data-lsbq-tr="ldb.learnedBreaksMonthsFeedback">Value must be between 0-12.</div>
                                 </div>
@@ -170,7 +170,7 @@
                             <div class="col-auto">
                                 <p class="h6 d-inline-block" data-lsbq-tr="ldb.mother">Mother</p>
                                 <p id="motherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your mother (e.g. because you don't know them).">
-                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="motherNotApplicable" name="motherNotApplicable"> <label class="form-check-label" for="motherNotApplicable" data-lsbq-tr="ldb.notApplicableFull">not applicable</label>&thinsp;)
+                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="motherNotApplicable" name="mother_not_applicable"> <label class="form-check-label" for="motherNotApplicable" data-lsbq-tr="ldb.notApplicableFull">not applicable</label>&thinsp;)
                                 </p>
                             </div>
                         </div>
@@ -215,16 +215,16 @@
                             <div class="row mb-1">
                                 <label for="motherLanguage1" class="col-3 col-form-label" data-lsbq-tr="ldb.firstLanguage">First language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
-                                    <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
+                                    <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                                    <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters).</div>
                                 </div>
                             </div>
                             <!-- field: motherLanguage2 -->
                             <div class="row mb-1">
                                 <label for="motherLanguage2" class="col-3 col-form-label" data-lsbq-tr="ldb.secondLanguage">Second language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
-                                    <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
+                                    <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                                    <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters).</div>
                                 </div>
                             </div>
                             <!-- field: motherLanguageN -->
@@ -239,7 +239,7 @@
                     </div>
                     <script type="text/javascript">
                         var tt = new bootstrap.Tooltip(document.getElementById('motherNotApplicableOption'));
-                        lart.forms.conditionalDisable('motherNotApplicable', 'motherDetails', 'on', 'equal');
+                        lart.forms.conditionalDisable('mother_not_applicable', 'motherDetails', 'on', 'equal');
                     </script>
                     <!-- Father -->
                     <div class="col-md-6 mb-3">
@@ -247,7 +247,7 @@
                             <div class="col-auto">
                                 <p class="h6 d-inline-block" data-lsbq-tr="ldb.father">Father</p>
                                 <p id="fatherNotApplicableOption" class="text-muted small d-inline-block ps-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Please mark this box <i>only</i> if you cannot answer questions about your father (e.g. because you don't know them).">
-                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="fatherNotApplicable" name="fatherNotApplicable"> <label class="form-check-label" for="fatherNotApplicable" data-lsbq-tr="ldb.notApplicableFull">not applicable</label>&thinsp;)
+                                    (&thinsp;<input class="form-check-input align-text-top" type="checkbox" id="fatherNotApplicable" name="father_not_applicable"> <label class="form-check-label" for="fatherNotApplicable" data-lsbq-tr="ldb.notApplicableFull">not applicable</label>&thinsp;)
                                 </p>
                             </div>
                         </div>
@@ -292,16 +292,16 @@
                             <div class="row mb-1">
                                 <label for="fatherLanguage1" class="col-3 col-form-label" data-lsbq-tr="ldb.firstLanguage">First language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
-                                    <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
+                                    <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                                    <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters).</div>
                                 </div>
                             </div>
                             <!-- field: fatherLanguage2 -->
                             <div class="row mb-1">
                                 <label for="fatherLanguage2" class="col-3 col-form-label" data-lsbq-tr="ldb.secondLanguage">Second language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{2,50}" />
-                                    <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 3 and 50 characters).</div>
+                                    <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                                    <div class="invalid-feedback" data-lsbq-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters).</div>
                                 </div>
                             </div>
                             <!-- field: fatherLanguageN -->
@@ -316,7 +316,7 @@
                     </div>
                     <script type="text/javascript">
                         var tt = new bootstrap.Tooltip(document.getElementById('fatherNotApplicableOption'));
-                        lart.forms.conditionalDisable('fatherNotApplicable', 'fatherDetails', 'on', 'equal');
+                        lart.forms.conditionalDisable('father_not_applicable', 'fatherDetails', 'on', 'equal');
                     </script>
                 </div>
             </section>
@@ -351,28 +351,28 @@
                         <div class="row mb-1">
                             <label for="proficiencySpeakingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.speaking">Speaking</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="proficiencySpeakingLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="proficiencySpeakingLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-proficiency_speaking" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
                         <div class="row mb-1">
                             <label for="proficiencyUnderstandingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.understanding">Understanding</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyUnderstandingLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyUnderstandingLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-proficiency_understanding" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
                         <div class="row mb-1 readingOption">
                             <label for="proficiencyReadingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.reading">Reading</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="proficiencyReadingLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range d-block" min="0" max="100" step="any" id="proficiencyReadingLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-proficiency_reading" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
                         <div class="row mb-1 writingOption">
                             <label for="proficiencyWritingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.writing">Writing</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyWritingLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="proficiencyWritingLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-proficiency_writing" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
@@ -398,28 +398,28 @@
                         <div class="row mb-1">
                             <label for="usageSpeakingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.speaking">Speaking</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageSpeakingLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageSpeakingLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-usage_speaking" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
                         <div class="row mb-1">
                             <label for="usageListeningLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.listening">Listening</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageListeningLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-usage_listening" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
                         <div class="row mb-1 readingOption">
                             <label for="usageReadingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.reading">Reading</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageReadingLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageReadingLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-usage_reading" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
                         <div class="row mb-1 writingOption">
                             <label for="usageWritingLanguage-[LanguageNumber]" class="col-2 col-form-label" data-lsbq-tr="ldb.writing">Writing</label>
                             <div class="col-10 mt-2">
-                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageWritingLanguage-[LanguageNumber]" required />
+                                <input type="range" class="form-range" min="0" max="100" step="any" id="usageWritingLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-usage_writing" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
                         </div>
@@ -448,7 +448,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="repeatedLanguageModal">
+                  <h5 class="modal-title" id="repeatedLanguageModalLabel">
                     <i class="bi bi-exclamation-square text-warning"></i>
                     <span data-lsbq-tr="ldb.repeatedLanguageErrorTitle">Repeated language</span>
                   </h5>
@@ -586,7 +586,7 @@
 
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'ldb']]);
+        lart.tr.loadFromEel('lsbq', eel.lsbqe_load_localisation, [instanceId, ['meta', 'base', 'ldb']]);
         lart.tr.registerObserver('lsbq', 'surveyLDBForm');
         lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
         lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
@@ -606,7 +606,6 @@
                 if (langListData) {
                     const langListElement = document.getElementById('languageListOptions');
                     langListElement.innerHTML = '';
-                    // langListElement.appendChild(document.createElement("option")); // Have an empty one first
                     for (const language of langListData) {
                         const optionElement = document.createElement('option');
                         optionElement.setAttribute('value', language);
@@ -615,9 +614,7 @@
                 }
                 return;
             }
-            //setTimeout(fillLanguageListOptions, 250);
         }
-        //fillLanguageListOptions();
         lart.tr.registerCallback("lsbq", fillLanguageListOptions);
 
         // Sync language use ratings
@@ -731,13 +728,13 @@
             // Append to slot
             slot.appendChild(clone);
             // Require the other fields if they enter a language name
-            lart.forms.conditionalRequire(`languagesSpokenLanguage-${languageNumber}`, `languagesSpokenSource-${languageNumber}`, '', 'not-equal');
-            lart.forms.conditionalRequire(`languagesSpokenLanguage-${languageNumber}`, `languagesSpokenAge-${languageNumber}`, '', 'not-equal');
-            lart.forms.conditionalRequire(`languagesSpokenLanguage-${languageNumber}`, `languagesSpokenBreakYears-${languageNumber}`, '', 'not-equal');
-            lart.forms.conditionalRequire(`languagesSpokenLanguage-${languageNumber}`, `languagesSpokenBreakMonths-${languageNumber}`, '', 'not-equal');
+            lart.forms.conditionalRequire(`languages_spoken-${languageNumber}-name`, `languages_spoken-${languageNumber}-source`, '', 'not-equal');
+            lart.forms.conditionalRequire(`languages_spoken-${languageNumber}-name`, `languages_spoken-${languageNumber}-age`, '', 'not-equal');
+            lart.forms.conditionalRequire(`languages_spoken-${languageNumber}-name`, `languages_spoken-${languageNumber}-break_years`, '', 'not-equal');
+            lart.forms.conditionalRequire(`languages_spoken-${languageNumber}-name`, `languages_spoken-${languageNumber}-break_months`, '', 'not-equal');
             // Require the "specify" field if they select "other" on source
-            lart.forms.conditionalRequire(`languagesSpokenSource-${languageNumber}`, `languagesSpokenSourceSpecify-${languageNumber}`, 'o');
-            lart.forms.conditionalDisplay(`languagesSpokenSource-${languageNumber}`, `languagesSpokenSourceSpecifyBlock-${languageNumber}`, 'o');
+            lart.forms.conditionalRequire(`languages_spoken-${languageNumber}-source`, `languages_spoken-${languageNumber}-source_other`, 'o');
+            lart.forms.conditionalDisplay(`languages_spoken-${languageNumber}-source`, `languagesSpokenSourceSpecifyBlock-${languageNumber}`, 'o');
             // Insert corresponding language rating slider
             insertLanguageRating(languageNumber);
             // Make delete option functional for all but required languages
@@ -848,5 +845,5 @@
         lart.tr.registerCallback("lsbq", configureLDB);
         
     </script>
-    {{ lart_form_pipeline('surveyLDBForm', '_lsbq_setldb') }}
+    {{ lart_form_pipeline('surveyLDBForm', 'lsbqe_add_ldb') }}
 {% endblock %}
