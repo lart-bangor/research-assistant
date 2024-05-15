@@ -4,7 +4,7 @@ from uuid import UUID
 from typing import Any, Iterable
 from ...task_api import ResearchTaskAPI
 from ...config import config
-from .datamodel import LsbqeTaskResponse, LsbqeTaskLsb, LsbqeTaskResidency
+from .datamodel import LsbqeTaskResponse, LsbqeTaskLsb, LsbqeTaskLdb, LsbqeTaskResidency, LsbqeParentInformation, LsbqeLanguageSpoken
 
 logger = logging.getLogger(__name__)
 
@@ -86,8 +86,8 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             raise exc
         # Extract residencies
         residencies_d: dict[int, tuple[str, str, str]] = dict()
-        for key, value in data.copy().items():
-            if key.startswith("residencies-"):
+        for key in data.keys():
+            if key.startswith("residencies-") and key.endswith("-name"):
                 try:
                     i = key.split("-")[1]
                     int(i)
@@ -106,15 +106,16 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     self.logger.error(str(exc))
                     raise exc
                 required_fields = (
-                    f"residencies-{i}-name",
                     f"residencies-{i}-from",
-                    f"residencies-{i}-to"
+                    f"residencies-{i}-to",
                 )
                 missing = self._find_missing_keys(data, required_fields)
                 if missing:
                     exc = KeyError(
-                        f"Failed to add ratings to {self.__class__.__name__} response: "
+                        f"Failed to add resiency data to {self.__class__.__name__} response: "
                         f"missing key(s): {missing!s} for LSB response."
+                        f"\nDATA:\n"
+                        f"{data!r}"
                     )
                     self.logger.error(str(exc))
                     raise exc
@@ -127,9 +128,6 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                         data[f"residencies-{i}-from"] + "-01",
                         data[f"residencies-{i}-to"] + "-01"
                     )
-                del data[key]
-                del data[f"residencies-{i}-from"]
-                del data[f"residencies-{i}-to"]
         residencies = []
         for _, (_location, _start, _end) in sorted(residencies_d.items()):
             residencies.append(LsbqeTaskResidency(location=_location, start=_start, end=_end))
@@ -193,7 +191,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             )
             self.logger.error(exc)
             raise exc
-        # Supply defaults for father/mother NA
+        # Supply defaults for father/mother_not_applicable
         if "father_not_applicable" not in data:
             data["father_not_applicable"] = False
         if "mother_not_applicable" not in data:
@@ -206,7 +204,6 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                 "father_occupation",
                 "father_first_language",
                 "father_second_language",
-                "father_occupation",
                 "father_other_languages"
             ))
         if not data["mother_not_applicable"]:
@@ -215,7 +212,6 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                 "mother_occupation",
                 "mother_first_language",
                 "mother_second_language",
-                "mother_occupation",
                 "mother_other_languages"
             ))
         missing = self._find_missing_keys(data, required_fields)
@@ -226,44 +222,158 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             )
             self.logger.error(str(exc))
             raise exc
-        # ...
-        from pprint import pprint
-        pprint(data)
-
-        _sample_data = {
-            'father_education_level': '5',
-            'father_first_language': 'Deutsche Gebärdensprache (DGS)',
-            'father_not_applicable': False,
-            'father_occupation': 'fgfdgfd',
-            'father_other_languages': 'xzcvz',
-            'father_second_language': 'Belgisch-französische Gebärdensprache (LSFB)',
-            'languages_spoken-0-age': '0',
-            'languages_spoken-0-break_months': '0',
-            'languages_spoken-0-break_years': '0',
-            'languages_spoken-0-name': 'Niederländisch',
-            'languages_spoken-0-proficiency_speaking': '43.0022419693023',
-            'languages_spoken-0-proficiency_understanding': '67.6321354984524',
-            'languages_spoken-0-source': ['s'],
-            'languages_spoken-0-source_other': '',
-            'languages_spoken-0-usage_listening': '59.6745059952256',
-            'languages_spoken-0-usage_speaking': '33.6495084913453',
-            'languages_spoken-1-age': '0',
-            'languages_spoken-1-break_months': '0',
-            'languages_spoken-1-break_years': '0',
-            'languages_spoken-1-name': 'Romanisches Lothringisch',
-            'languages_spoken-1-proficiency_speaking': '37.9482804004684',
-            'languages_spoken-1-proficiency_understanding': '65.3084750070345',
-            'languages_spoken-1-source': ['s'],
-            'languages_spoken-1-source_other': '',
-            'languages_spoken-1-usage_listening': '66.7616704940502',
-            'languages_spoken-1-usage_speaking': '35.6827114213359',
-            'mother_education_level': '2',
-            'mother_first_language': 'x',
-            'mother_not_applicable': True,
-            'mother_occupation': 'l;k;',
-            'mother_other_languages': '',
-            'mother_second_language': ''
-        }
+        # Prepare parental information
+        parent_info: list[LsbqeParentInformation] = []
+        if not data["father_not_applicable"]:
+            father = LsbqeParentInformation(
+                parent="father",
+                occupation=data["father_occupation"],
+                first_language=data["father_first_language"],
+                second_language=data["father_second_language"].strip() or None,
+                other_languages=data["father_other_languages"].strip() or None
+            )
+            parent_info.append(father)
+        if not data["mother_not_applicable"]:
+            mother = LsbqeParentInformation(
+                parent="mother",
+                occupation=data["mother_occupation"],
+                first_language=data["mother_first_language"],
+                second_language=data["mother_second_language"].strip() or None,
+                other_languages=data["mother_other_languages"].strip() or None
+            )
+            parent_info.append(mother)
+        # Extract languages_spoken-X data
+        languages_spoken: list[LsbqeLanguageSpoken] = []
+        for key in data.keys():
+            if key.startswith("languages_spoken-") and key.endswith("-name"):
+                try:
+                    i = key.split("-")[1]
+                    int(i)
+                except IndexError:
+                    exc = KeyError(
+                        f"Failed to add LDB data to {self.__class__.__name__} response: "
+                        f"invalid, non-indexed key '{key}' for languages_spoken field on LDB response."
+                    )
+                    self.logger.error(str(exc))
+                    raise exc
+                except ValueError:
+                    exc = KeyError(
+                        f"Failed to add LDB data to {self.__class__.__name__} response: "
+                        f"invalid, non-integer index '{i}' for languages_spoken field on LDB response."
+                    )
+                    self.logger.error(str(exc))
+                    raise exc
+                required_fields = [
+                    f"languages_spoken-{i}-source",
+                    f"languages_spoken-{i}-age",
+                    f"languages_spoken-{i}-break_years",
+                    f"languages_spoken-{i}-break_months",
+                    f"languages_spoken-{i}-proficiency_speaking",
+                    f"languages_spoken-{i}-proficiency_understanding",
+                    f"languages_spoken-{i}-usage_listening",
+                    f"languages_spoken-{i}-usage_speaking",
+                ]
+                if f"languages_spoken-{i}-source" in data and "o" in data[f"languages_spoken-{i}-source"]:
+                    required_fields.append(f"languages_spoken-{i}-source_other")
+                missing = self._find_missing_keys(data, required_fields)
+                if missing:
+                    exc = KeyError(
+                        f"Failed to add LDB data to {self.__class__.__name__} response: "
+                        f"missing key(s): {missing!s} for LDB response."
+                    )
+                    self.logger.error(str(exc))
+                    raise exc
+                source_other = None
+                if "o" in data[f"languages_spoken-{i}-source"]:
+                    source_other = data[f"languages_spoken-{i}-source_other"].strip()
+                    if not source_other:
+                        exc = ValueError(
+                            f"Failed to add LDB data to {self.__class__.__name__} response: "
+                            f"required field `languages_spoken-{i}-source_other` is empty."
+                        )
+                breaks = 0
+                try:
+                    breaks += int(data[f"languages_spoken-{i}-break_years"]) * 12
+                    breaks += int(data[f"languages_spoken-{i}-break_months"])
+                except ValueError:
+                    years = data[f"languages_spoken-{i}-break_years"]
+                    months = data[f"languages_spoken-{i}-break_months"]
+                    exc = ValueError(
+                        f"Failed to add LDB data to {self.__class__.__name__} response: "
+                        f"fields `languages_spoken-{i}-break_years` and/or "
+                        "`languages_spoken-{i}-break_months` contain a value that cannot "
+                        f"be cast to type *int* (values: {years!r}, {months!r})."
+                    )
+                    self.logger.error(str(exc))
+                    raise exc
+                try:
+                    v_speak = data[f"languages_spoken-{i}-proficiency_speaking"]
+                    v_under = data[f"languages_spoken-{i}-proficiency_understanding"]
+                    prof_speak = float(v_speak)
+                    prof_under = float(v_under)
+                    prof_read = v_read = None
+                    prof_write = v_write = None
+                    if f"languages_spoken-{i}-proficiency_reading" in data:
+                        v_read = data[f"languages_spoken-{i}-proficiency_reading"]
+                        prof_read  = float(v_read)
+                    if f"languages_spoken-{i}-proficiency_writing" in data:
+                        v_write = data[f"languages_spoken-{i}-proficiency_writing"]
+                        prof_write  = float(v_write)
+                except ValueError:
+                    exc = ValueError(
+                        f"Failed to add LDB data to {self.__class__.__name__} response: "
+                        f"one or more of the `languages_spoken-{i}-proficiency_*` fields "
+                        "contain a value that cannot be cast to type *int* "
+                        f"(values: {v_speak!r}, {v_under!r}, {v_read}, {v_write})."
+                    )
+                    self.logger.error(str(exc))
+                    raise exc
+                try:
+                    v_speak = data[f"languages_spoken-{i}-usage_speaking"]
+                    v_listn = data[f"languages_spoken-{i}-usage_listening"]
+                    usage_speak = float(v_speak)
+                    usage_listn = float(v_listn)
+                    usage_read = v_read = None
+                    usage_write = v_write = None
+                    if f"languages_spoken-{i}-usage_reading" in data:
+                        v_read = data[f"languages_spoken-{i}-usage_reading"]
+                        usage_read  = float(v_read)
+                    if f"languages_spoken-{i}-usage_writing" in data:
+                        v_write = data[f"languages_spoken-{i}-usage_writing"]
+                        usage_write  = float(v_write)
+                except ValueError:
+                    exc = ValueError(
+                        f"Failed to add LDB data to {self.__class__.__name__} response: "
+                        f"one or more of the `languages_spoken-{i}-usage_*` fields "
+                        "contain a value that cannot be cast to type *int* "
+                        f"(values: {v_speak!r}, {v_listn!r}, {v_read}, {v_write})."
+                    )
+                    self.logger.error(str(exc))
+                    raise exc
+                language_spoken = LsbqeLanguageSpoken(
+                    name=data[f"languages_spoken-{i}-name"],
+                    source_home=("h" in data[f"languages_spoken-{i}-source"]),
+                    source_school=("s" in data[f"languages_spoken-{i}-source"]),
+                    source_community=("c" in data[f"languages_spoken-{i}-source"]),
+                    source_other=source_other,
+                    age=data[f"languages_spoken-{i}-age"],
+                    breaks=breaks,
+                    proficiency_speaking=prof_speak,
+                    proficiency_understanding=prof_under,
+                    proficiency_reading=prof_read,
+                    proficiency_writing=prof_write,
+                    usage_speaking=usage_speak,
+                    usage_listening=usage_listn,
+                    usage_reading=usage_read,
+                    usage_writing=usage_write
+                )
+                languages_spoken.append(language_spoken)
+        ldb = LsbqeTaskLdb(
+            languages_spoken=languages_spoken,
+            parents=parent_info
+        )
+        self._response_data[response_id]["ldb"] = ldb
+        self.set_location(f"club.html?instance={response_id}")
 
 
 # Required so importers know which class defines the API

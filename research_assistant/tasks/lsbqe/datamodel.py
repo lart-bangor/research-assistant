@@ -74,8 +74,8 @@ class LsbqeTaskLsb(BaseModel):
     ) = Field(description="Respondent's education level.")
 
 
-class LsbqeLanguagesSpoken(BaseModel):
-    """Languages spoken by an LSBQe respondent."""
+class LsbqeLanguageSpoken(BaseModel):
+    """Language spoken by an LSBQe respondent."""
     name: constr(
         strip_whitespace=True,
         regex=p.LANGUAGE_NAME
@@ -99,7 +99,7 @@ class LsbqeLanguagesSpoken(BaseModel):
 
     breaks: conint(
         ge=0
-    ) = Field(description="Total duration for which language was not used (?in days?).")
+    ) = Field(description="Total duration for which language was not used in months.")
 
     proficiency_speaking: confloat(
         ge=0.0, le=100.0
@@ -115,10 +115,10 @@ class LsbqeLanguagesSpoken(BaseModel):
     )] = Field(description="Proficiency in writing language.")
 
     usage_speaking: confloat(
-        ge=0.0, le=0.0
+        ge=0.0, le=100.0
     ) = Field(description="Proporition of use when speaking.")
     usage_listening: confloat(
-        ge=0.0, le=0.0
+        ge=0.0, le=100.0
     ) = Field(description="Proportion of use when listening.")
     usage_reading: Optional[confloat(
         ge=0.0, le=100.0
@@ -163,7 +163,7 @@ class LsbqeTaskLdb(BaseModel):
     """Language and Dialect Background portion of the LSBQe."""
 
     languages_spoken: conlist(
-        item_type=LsbqeLanguagesSpoken,
+        item_type=LsbqeLanguageSpoken,
         min_items=1,
         unique_items=True
     ) = Field(description="Languages spoken by the respondent.")
