@@ -29,14 +29,17 @@ Example:
             config.save()
 """
 from __future__ import annotations
+
 import json
 import logging
-from platformdirs import PlatformDirs
 from copy import copy
-from dataclasses import MISSING, dataclass, field, fields, asdict, is_dataclass
+from dataclasses import MISSING, asdict, dataclass, field, fields, is_dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Final, Callable, ClassVar, Optional, Union, get_type_hints
+from typing import (Any, Callable, ClassVar, Final, Optional, Union,
+                    get_type_hints)
+
+from platformdirs import PlatformDirs
 
 __all__ = ["config", "Config", "_default_paths"]
 
@@ -118,17 +121,14 @@ class DataclassDocMixin:
     field's *metadata* property. The following metadata properties are read by
     the DataclassDocMixin:
 
-    * doc_label: A human-friendly label/short description of a field.
-    * doc_help: A human-friendly explanation of what a field does / why it's there.
-    * doc_values: A dictionary of label-value pairs, which can be used to give
+    * *doc_label*: A human-friendly label/short description of a field.
+    * *doc_help*: A human-friendly explanation of what a field does / why it's there.
+    * *doc_values*: A dictionary of label-value pairs, which can be used to give
       an indication of specific values the field can take and what they mean.
     """
 
-    def getdocs(                                                                # noqa: C901
-        self,
-        /,
-        recurse: bool = True,
-        include_undocumented: bool = False
+    def getdocs(  # noqa: C901
+        self, /, recurse: bool = True, include_undocumented: bool = False
     ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
         """Return a dictionary with documentation for the dataclass's fields.
 
@@ -148,7 +148,7 @@ class DataclassDocMixin:
             field_doc = {
                 "value": getattr(self, field_.name),
                 "name": field_.name,
-                "type": field_.type
+                "type": field_.type,
             }
             if "doc_label" in field_.metadata or include_undocumented:
                 field_doc["label"] = field_.metadata["doc_label"]
@@ -163,8 +163,7 @@ class DataclassDocMixin:
             if is_dataclass(field_doc["value"]):
                 if recurse and isinstance(field_doc["value"], DataclassDocMixin):
                     field_doc["fields"] = field_doc["value"].getdocs(
-                        recurse=recurse,
-                        include_undocumented=include_undocumented
+                        recurse=recurse, include_undocumented=include_undocumented
                     )
                 dataclasses.append(field_doc)
             else:
@@ -185,8 +184,8 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
                 "Note that changes to the configuration file path have no effect "
                 "and will automatically revert to the default path. The path "
                 "shown here is primarily of informational value."
-            )
-        }
+            ),
+        },
     )
     data: Path = field(
         default=_default_paths.user_data_path / "Data",
@@ -195,8 +194,8 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
             "doc_help": (
                 "This is the path where data files (responses) from the app's "
                 "tasks are stored."
-            )
-        }
+            ),
+        },
     )
     logs: Path = field(
         default=_default_paths.user_log_path,
@@ -205,8 +204,8 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
             "doc_help": (
                 "This is the path where the app stores log files, which may "
                 "contain useful information for debugging and error reporting. "
-            )
-        }
+            ),
+        },
     )
     cache: Path = field(
         default=_default_paths.user_cache_path,
@@ -215,8 +214,8 @@ class Paths(DataclassDictMixin, DataclassDocMixin):
             "doc_help": (
                 "This is a path where the app may temporarily cache "
                 "(store, modify, delete) various files during operation."
-            )
-        }
+            ),
+        },
     )
 
     def __post_init__(self):
@@ -241,7 +240,7 @@ class Logging(DataclassDictMixin, DataclassDocMixin):
                 "If more log files are present on app startup, "
                 "the oldest log files are deleted."
             ),
-        }
+        },
     )
     default_level: int = field(
         default=logging.WARNING,
@@ -257,23 +256,23 @@ class Logging(DataclassDictMixin, DataclassDocMixin):
                 "Info": 20,
                 "Warning": 30,
                 "Error": 40,
-                "Critical": 50.
+                "Critical": 50.0,
             },
-        }
+        },
     )
     stream_format: str = field(
         default="{levelname}:{name}: {message}",
         metadata={
             "doc_label": "Console log message format",
             "doc_help": "Format for log and error messages displayed on the console.",
-        }
+        },
     )
     file_format: str = field(
         default="[{asctime} {levelname:<8} {name}] {message}",
         metadata={
             "doc_label": "File log message format",
             "doc_help": "Format for log and error messages in the log files.",
-        }
+        },
     )
 
     def get_stream_handler(self, stream: Any = None) -> logging.StreamHandler[Any]:
@@ -283,9 +282,7 @@ class Logging(DataclassDictMixin, DataclassDocMixin):
         return sh
 
     def get_file_handler(
-        self,
-        name: str,
-        path: Optional[Union[Path, str]] = None
+        self, name: str, path: Optional[Union[Path, str]] = None
     ) -> logging.FileHandler:
         """Return a `logging.FileHandler` object for logging."""
         if path is None:
@@ -295,7 +292,9 @@ class Logging(DataclassDictMixin, DataclassDocMixin):
         if not path.exists():
             path.mkdir(parents=True, exist_ok=True)
         if not path.is_dir():
-            raise ValueError(f"The specified path '{path}' is not a valid directory name.")
+            raise ValueError(
+                f"The specified path '{path}' is not a valid directory name."
+            )
         filepath = self._get_file_path(name, path)
         fh = logging.FileHandler(filepath, mode="w", delay=True)
         fh.setFormatter(logging.Formatter(self.file_format, style="{"))
@@ -334,42 +333,42 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         metadata={
             "doc_label": "Task following the AGT",
             "doc_values": _sequence_options,
-        }
+        },
     )
     atolc: str = field(
         default="",
         metadata={
             "doc_label": "Task following the AToL-C",
             "doc_values": _sequence_options,
-        }
+        },
     )
     conclusion: str = field(
         default="",
         metadata={
             "doc_label": "Task following the Conclusion Screen",
-            "doc_values": _sequence_options
-        }
+            "doc_values": _sequence_options,
+        },
     )
     consent: str = field(
         default="",
         metadata={
             "doc_label": "Task following the Consent Form",
             "doc_values": _sequence_options,
-        }
+        },
     )
     lsbq: str = field(
         default="",
         metadata={
             "doc_label": "Task following the LSBQe",
             "doc_values": _sequence_options,
-        }
+        },
     )
     memorytask: str = field(
         default="",
         metadata={
             "doc_label": "Task following the Memory Task",
             "doc_values": _sequence_options,
-        }
+        },
     )
 
 
@@ -391,8 +390,8 @@ class Config(DataclassDictMixin, DataclassDocMixin):
                 "errors you encounter or when developing new tasks using the "
                 "app. Be mindful that it is easy to get 'too much information' "
                 "if the logging levels are set to report very high detail."
-            )
-        }
+            ),
+        },
     )
     paths: Paths = field(
         default_factory=lambda: Paths(),
@@ -410,8 +409,8 @@ class Config(DataclassDictMixin, DataclassDocMixin):
                 "If paths are modified it is best to always restart the app and "
                 "fully test that everything is working as expected, including "
                 "inspecting the stored data files after running a task."
-            )
-        }
+            ),
+        },
     )
     sequences: Sequences = field(
         default_factory=lambda: Sequences(),
@@ -423,8 +422,8 @@ class Config(DataclassDictMixin, DataclassDocMixin):
                 "If a task is "
                 "assigned a follow-up task, the user will be automatically "
                 "redirected to the follow-up task upon completion."
-            )
-        }
+            ),
+        },
     )
     shutdown_delay: float = field(
         default=2.0,
@@ -435,8 +434,8 @@ class Config(DataclassDictMixin, DataclassDocMixin):
                 "backend process after the last window has been closed.\n"
                 "Increasing this number slightly can help if you are running "
                 "on slow/underpowered hardware and experience crashes."
-            )
-        }
+            ),
+        },
     )
 
     def save(self, filename: str = "settings.json"):
@@ -473,7 +472,9 @@ class Config(DataclassDictMixin, DataclassDocMixin):
             except (IOError, json.JSONDecodeError) as e:
                 logging.error(f"Failed to load config file: {e}.")
                 return Config()
-        logging.debug("No configuration file found. Issuing hard-coded default settings.")
+        logging.debug(
+            "No configuration file found. Issuing hard-coded default settings."
+        )
         return Config()
 
 

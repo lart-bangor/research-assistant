@@ -1,8 +1,9 @@
 """API to expose the Consent Task to Python Eel."""
 import logging
-from uuid import UUID
 from typing import Any
-from ...task_api import ResearchTaskAPI
+from uuid import UUID
+
+from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
 from .datamodel import ConsentTaskResponse
 
@@ -34,7 +35,9 @@ class ConsentTaskAPI(ResearchTaskAPI):
             self.logger.error(str(exc))
             raise exc
         self.logger.debug(f"... consent/eligibility data: {data}")
-        missing = self._find_missing_keys(data, ("confirmInformedConsent", "confirmEligibility"))
+        missing = self._find_missing_keys(
+            data, ("confirmInformedConsent", "confirmEligibility")
+        )
         if missing:
             exc = KeyError(
                 f"Failed to add consent/eligibility to {self.__class__.__name__} response: "
@@ -45,7 +48,9 @@ class ConsentTaskAPI(ResearchTaskAPI):
         informed_consent = bool(data["confirmInformedConsent"])
         eligibility_confirmed = bool(data["confirmEligibility"])
         self._response_data[response_id]["informed_consent"] = informed_consent
-        self._response_data[response_id]["eligibility_confirmed"] = eligibility_confirmed
+        self._response_data[response_id][
+            "eligibility_confirmed"
+        ] = eligibility_confirmed
         # Fix task_localisation (includes ".xyz" for a task group, which needs to be split off)
         response_meta = self._response_data[response_id]["meta"]
         localisation_string: str = response_meta.task_localisation

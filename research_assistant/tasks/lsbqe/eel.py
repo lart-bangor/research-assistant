@@ -1,10 +1,13 @@
 """API to exposes the LSBQe to Python Eel."""
 import logging
-from uuid import UUID
-from typing import Any, Iterable
-from ...task_api import ResearchTaskAPI
+from typing import Any
+
+from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
-from .datamodel import LsbqeTaskResponse, LsbqeTaskLsb, LsbqeTaskLdb, LsbqeTaskResidency, LsbqeParentInformation, LsbqeLanguageSpoken
+from ...datamodels.types import AnyUUID
+from .datamodel import (LsbqeLanguageSpoken, LsbqeParentInformation,
+                        LsbqeTaskLdb, LsbqeTaskLsb, LsbqeTaskResidency,
+                        LsbqeTaskResponse)
 
 logger = logging.getLogger(__name__)
 
@@ -18,55 +21,46 @@ class LsbqeTaskAPI(ResearchTaskAPI):
     task_data_path = config.paths.data / "LSBQe"
     eel_namespace = "lsbqe"
 
-    def _make_bools(self, target_fields: Iterable[str], data: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
-        invalid_fields: list[str] = []
-        for field in target_fields:
-            if field in data:
-                if isinstance(data[field], bool):
-                    pass
-                elif isinstance(data[field], str) and data[field].lower() in ("yes", "true", "no", "false"):
-                    data[field] = True if data[field].lower() in ("yes", "true") else False
-                elif isinstance(data[field], int) and data[field] in (0, 1):
-                    data[field] = bool(data[field])
-                else:
-                    invalid_fields.append(field)
-        return (data, invalid_fields)
-
     @ResearchTaskAPI.exposed
-    def add_lsb(self, response_id: str | UUID, data: dict[str, Any]) -> None:
+    def add_lsb(self, response_id: AnyUUID, data: dict[str, Any]) -> None:  # noqa: C901
         """Add LSB data to the response with id *response_id*."""
         response_id = self._cast_uuid(response_id)
         self.logger.info(
             f"Adding LSB data for {self.__class__.__name__} response with id {response_id}.."
         )
         if response_id not in self._response_data:
-            exc = ValueError(
+            raise ValueError(
                 f"Failed to add LSB data to {self.__class__.__name__} response with id "
                 f"{response_id}: no response with this id in progress."
             )
-            self.logger.error(str(exc))
-            raise exc
         self.logger.debug(f"... lsb data: {data}")
         # Make booleans
-        data, invalid_bools = self._make_bools(
+        data, invalid_bools = self._cast_bools(
+            data,
             (
-                "vision_impairment", "vision_aid", "vision_fully_corrected",
-                "hearing_impairment", "hearing_aid"
+                "vision_impairment",
+                "vision_aid",
+                "vision_fully_corrected",
+                "hearing_impairment",
+                "hearing_aid",
             ),
-            data
         )
         if invalid_bools:
-            exc = ValueError(
+            raise ValueError(
                 f"Failed to add LSB data to {self.__class__.__name__} response: "
                 "one or more boolean fields for the LSB response contain "
                 f"values other than ('yes', 'no', 'true', 'false', 0, 1): {invalid_bools!s}."
             )
-            self.logger.error(exc)
-            raise exc
         # Check for missing required fields
         required_fields = [
-            "sex", "occupation", "handedness", "date_of_birth", "hearing_impairment",
-            "vision_impairment", "place_of_birth", "education_level"
+            "sex",
+            "occupation",
+            "handedness",
+            "date_of_birth",
+            "hearing_impairment",
+            "vision_impairment",
+            "place_of_birth",
+            "education_level",
         ]
         if "sex" in data and data["sex"] == "o":
             required_fields.append("sex_other")
@@ -78,12 +72,10 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             required_fields.append("vision_fully_corrected")
         missing = self._find_missing_keys(data, required_fields)
         if missing:
-            exc = KeyError(
+            raise KeyError(
                 f"Failed to add LSB data to {self.__class__.__name__} response: "
                 f"missing key(s): {missing!s} for LSB response."
             )
-            self.logger.error(str(exc))
-            raise exc
         # Extract residencies
         residencies_d: dict[int, tuple[str, str, str]] = dict()
         for key in data.keys():
@@ -92,45 +84,43 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     i = key.split("-")[1]
                     int(i)
                 except IndexError:
-                    exc = KeyError(
+                    raise KeyError(
                         f"Failed to add LSB data to {self.__class__.__name__} response: "
                         f"invalid, non-indexed key '{key}' for residencies field on LSB response."
                     )
-                    self.logger.error(str(exc))
-                    raise exc
                 except ValueError:
-                    exc = KeyError(
+                    raise KeyError(
                         f"Failed to add LSB data to {self.__class__.__name__} response: "
                         f"invalid, non-integer index '{i}' for residencies field on LSB response."
                     )
-                    self.logger.error(str(exc))
-                    raise exc
                 required_fields = (
                     f"residencies-{i}-from",
                     f"residencies-{i}-to",
                 )
                 missing = self._find_missing_keys(data, required_fields)
                 if missing:
-                    exc = KeyError(
+                    raise KeyError(
                         f"Failed to add resiency data to {self.__class__.__name__} response: "
                         f"missing key(s): {missing!s} for LSB response."
                         f"\nDATA:\n"
                         f"{data!r}"
                     )
-                    self.logger.error(str(exc))
-                    raise exc
-                if (data[key].strip()
-                        and data[f"residencies-{i}-from"].strip()
-                        and data[f"residencies-{i}-to"].strip()):
+                if (
+                    data[key].strip()
+                    and data[f"residencies-{i}-from"].strip()
+                    and data[f"residencies-{i}-to"].strip()
+                ):
                     # Only add if it's not actually an empty row
                     residencies_d[int(i)] = (
                         data[key],
                         data[f"residencies-{i}-from"] + "-01",
-                        data[f"residencies-{i}-to"] + "-01"
+                        data[f"residencies-{i}-to"] + "-01",
                     )
         residencies = []
         for _, (_location, _start, _end) in sorted(residencies_d.items()):
-            residencies.append(LsbqeTaskResidency(location=_location, start=_start, end=_end))
+            residencies.append(
+                LsbqeTaskResidency(location=_location, start=_start, end=_end)
+            )
         # Remove dependent fields that ought to be left blank based on given answers
         if data["sex_other"] and data["sex"].lower() in ("m", "f"):
             data["sex_other"] = None
@@ -141,7 +131,11 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                 del data["vision_aid"]
             if "vision_fully_corrected" in data:
                 del data["vision_fully_corrected"]
-        if "vision_fully_corrected" in data and "vision_aid" in data and not data["vision_aid"]:
+        if (
+            "vision_fully_corrected" in data
+            and "vision_aid" in data
+            and not data["vision_aid"]
+        ):
             del data["vision_fully_corrected"]
         self.logger.debug(f"... cleaned data: {data}")
         # Construct the LSB response object
@@ -155,42 +149,42 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             hearing_aid=(data["hearing_aid"] if "hearing_aid" in data else None),
             vision_impairment=data["vision_impairment"],
             vision_aid=(data["vision_aid"] if "vision_aid" in data else None),
-            vision_fully_corrected=(data["vision_fully_corrected"] if "vision_fully_corrected" in data else None),
+            vision_fully_corrected=(
+                data["vision_fully_corrected"]
+                if "vision_fully_corrected" in data
+                else None
+            ),
             place_of_birth=data["place_of_birth"],
             residencies=residencies,
-            education_level=data["education_level"]
+            education_level=data["education_level"],
         )
         self._response_data[response_id]["lsb"] = lsb
         self.set_location(f"ldb.html?instance={response_id}")
 
     @ResearchTaskAPI.exposed
-    def add_ldb(self, response_id: str | UUID, data: dict[str, Any]) -> None:
+    def add_ldb(self, response_id: AnyUUID, data: dict[str, Any]) -> None:  # noqa: C901
         """Add LDB data to the response with id *response_id*."""
         response_id = self._cast_uuid(response_id)
         self.logger.info(
             f"Adding LDB data for {self.__class__.__name__} response with id {response_id}.."
         )
         if response_id not in self._response_data:
-            exc = ValueError(
+            raise ValueError(
                 f"Failed to add LDB data to {self.__class__.__name__} response with id "
                 f"{response_id}: no response with this id in progress."
             )
-            self.logger.error(str(exc))
-            raise exc
         self.logger.debug(f"... ldb data: {data}")
         # Make booleans
-        data, invalid_bools = self._make_bools(
+        data, invalid_bools = self._cast_bools(
+            data,
             ("father_not_applicable", "mother_not_applicable"),
-            data
         )
         if invalid_bools:
-            exc = ValueError(
+            raise ValueError(
                 f"Failed to add LDB data to {self.__class__.__name__} response: "
                 "one or more boolean fields for the LDB response contain "
                 f"values other than ('yes', 'no', 'true', 'false', 0, 1): {invalid_bools!s}"
             )
-            self.logger.error(exc)
-            raise exc
         # Supply defaults for father/mother_not_applicable
         if "father_not_applicable" not in data:
             data["father_not_applicable"] = False
@@ -199,29 +193,31 @@ class LsbqeTaskAPI(ResearchTaskAPI):
         # Check for missing required fields
         required_fields = []
         if not data["father_not_applicable"]:
-            required_fields.extend((
-                "father_education_level",
-                "father_occupation",
-                "father_first_language",
-                "father_second_language",
-                "father_other_languages"
-            ))
+            required_fields.extend(
+                (
+                    "father_education_level",
+                    "father_occupation",
+                    "father_first_language",
+                    "father_second_language",
+                    "father_other_languages",
+                )
+            )
         if not data["mother_not_applicable"]:
-            required_fields.extend((
-                "mother_education_level",
-                "mother_occupation",
-                "mother_first_language",
-                "mother_second_language",
-                "mother_other_languages"
-            ))
+            required_fields.extend(
+                (
+                    "mother_education_level",
+                    "mother_occupation",
+                    "mother_first_language",
+                    "mother_second_language",
+                    "mother_other_languages",
+                )
+            )
         missing = self._find_missing_keys(data, required_fields)
         if missing:
-            exc = KeyError(
+            raise KeyError(
                 f"Failed to add LDB data to {self.__class__.__name__} response: "
                 f"missing key(s): {missing!s} for LDB response."
             )
-            self.logger.error(str(exc))
-            raise exc
         # Prepare parental information
         parent_info: list[LsbqeParentInformation] = []
         if not data["father_not_applicable"]:
@@ -230,7 +226,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                 occupation=data["father_occupation"],
                 first_language=data["father_first_language"],
                 second_language=data["father_second_language"].strip() or None,
-                other_languages=data["father_other_languages"].strip() or None
+                other_languages=data["father_other_languages"].strip() or None,
             )
             parent_info.append(father)
         if not data["mother_not_applicable"]:
@@ -239,7 +235,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                 occupation=data["mother_occupation"],
                 first_language=data["mother_first_language"],
                 second_language=data["mother_second_language"].strip() or None,
-                other_languages=data["mother_other_languages"].strip() or None
+                other_languages=data["mother_other_languages"].strip() or None,
             )
             parent_info.append(mother)
         # Extract languages_spoken-X data
@@ -250,19 +246,17 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     i = key.split("-")[1]
                     int(i)
                 except IndexError:
-                    exc = KeyError(
+                    raise KeyError(
                         f"Failed to add LDB data to {self.__class__.__name__} response: "
-                        f"invalid, non-indexed key '{key}' for languages_spoken field on LDB response."
+                        f"invalid, non-indexed key '{key}' for languages_spoken field on "
+                        "LDB response."
                     )
-                    self.logger.error(str(exc))
-                    raise exc
                 except ValueError:
-                    exc = KeyError(
+                    raise KeyError(
                         f"Failed to add LDB data to {self.__class__.__name__} response: "
-                        f"invalid, non-integer index '{i}' for languages_spoken field on LDB response."
+                        f"invalid, non-integer index '{i}' for languages_spoken field on "
+                        "LDB response."
                     )
-                    self.logger.error(str(exc))
-                    raise exc
                 required_fields = [
                     f"languages_spoken-{i}-source",
                     f"languages_spoken-{i}-age",
@@ -273,16 +267,17 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     f"languages_spoken-{i}-usage_listening",
                     f"languages_spoken-{i}-usage_speaking",
                 ]
-                if f"languages_spoken-{i}-source" in data and "o" in data[f"languages_spoken-{i}-source"]:
+                if (
+                    f"languages_spoken-{i}-source" in data
+                    and "o" in data[f"languages_spoken-{i}-source"]
+                ):
                     required_fields.append(f"languages_spoken-{i}-source_other")
                 missing = self._find_missing_keys(data, required_fields)
                 if missing:
-                    exc = KeyError(
+                    raise KeyError(
                         f"Failed to add LDB data to {self.__class__.__name__} response: "
                         f"missing key(s): {missing!s} for LDB response."
                     )
-                    self.logger.error(str(exc))
-                    raise exc
                 source_other = None
                 if "o" in data[f"languages_spoken-{i}-source"]:
                     source_other = data[f"languages_spoken-{i}-source_other"].strip()
@@ -298,14 +293,12 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                 except ValueError:
                     years = data[f"languages_spoken-{i}-break_years"]
                     months = data[f"languages_spoken-{i}-break_months"]
-                    exc = ValueError(
+                    raise ValueError(
                         f"Failed to add LDB data to {self.__class__.__name__} response: "
                         f"fields `languages_spoken-{i}-break_years` and/or "
                         "`languages_spoken-{i}-break_months` contain a value that cannot "
                         f"be cast to type *int* (values: {years!r}, {months!r})."
                     )
-                    self.logger.error(str(exc))
-                    raise exc
                 try:
                     v_speak = data[f"languages_spoken-{i}-proficiency_speaking"]
                     v_under = data[f"languages_spoken-{i}-proficiency_understanding"]
@@ -315,10 +308,10 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     prof_write = v_write = None
                     if f"languages_spoken-{i}-proficiency_reading" in data:
                         v_read = data[f"languages_spoken-{i}-proficiency_reading"]
-                        prof_read  = float(v_read)
+                        prof_read = float(v_read)
                     if f"languages_spoken-{i}-proficiency_writing" in data:
                         v_write = data[f"languages_spoken-{i}-proficiency_writing"]
-                        prof_write  = float(v_write)
+                        prof_write = float(v_write)
                 except ValueError:
                     exc = ValueError(
                         f"Failed to add LDB data to {self.__class__.__name__} response: "
@@ -337,19 +330,17 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     usage_write = v_write = None
                     if f"languages_spoken-{i}-usage_reading" in data:
                         v_read = data[f"languages_spoken-{i}-usage_reading"]
-                        usage_read  = float(v_read)
+                        usage_read = float(v_read)
                     if f"languages_spoken-{i}-usage_writing" in data:
                         v_write = data[f"languages_spoken-{i}-usage_writing"]
-                        usage_write  = float(v_write)
+                        usage_write = float(v_write)
                 except ValueError:
-                    exc = ValueError(
+                    raise ValueError(
                         f"Failed to add LDB data to {self.__class__.__name__} response: "
                         f"one or more of the `languages_spoken-{i}-usage_*` fields "
                         "contain a value that cannot be cast to type *int* "
                         f"(values: {v_speak!r}, {v_listn!r}, {v_read}, {v_write})."
                     )
-                    self.logger.error(str(exc))
-                    raise exc
                 language_spoken = LsbqeLanguageSpoken(
                     name=data[f"languages_spoken-{i}-name"],
                     source_home=("h" in data[f"languages_spoken-{i}-source"]),
@@ -365,15 +356,17 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     usage_speaking=usage_speak,
                     usage_listening=usage_listn,
                     usage_reading=usage_read,
-                    usage_writing=usage_write
+                    usage_writing=usage_write,
                 )
                 languages_spoken.append(language_spoken)
-        ldb = LsbqeTaskLdb(
-            languages_spoken=languages_spoken,
-            parents=parent_info
-        )
+        ldb = LsbqeTaskLdb(languages_spoken=languages_spoken, parents=parent_info)
         self._response_data[response_id]["ldb"] = ldb
         self.set_location(f"club.html?instance={response_id}")
+
+    @ResearchTaskAPI.exposed
+    def add_club(self, response_id: AnyUUID, data: dict[str, Any]) -> None:
+        """Add CLUB data to the response with id *response_id*."""
+        ...
 
 
 # Required so importers know which class defines the API

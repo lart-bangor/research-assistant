@@ -1,7 +1,7 @@
 """Patterns/ranges/enums/etc. for validating different common data input types."""
 import sys
-from .types import PatternT, EnumT, PolarT, RangeT
 
+from .types import EnumT, PatternT, PolarT, RangeT
 
 UUID: PatternT = r"(?:[0-9]{39})|(?:(?:(?:urn:)?uuid:|{)?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}}?)"  # noqa: E501
 
@@ -13,17 +13,17 @@ UUID_URN: PatternT = r"(?:urn:)?uuid:[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9
 
 GUID: PatternT = r"{?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}}?"
 
-ISO_MONTH: PatternT = r"(0?[1-9]|1[0-2])"                        # MM
+ISO_MONTH: PatternT = r"(0?[1-9]|1[0-2])"  # MM
 
-ISO_DAY: PatternT = r"(0?[1-9]|[12][0-9]|3[01])"                 # DD
+ISO_DAY: PatternT = r"(0?[1-9]|[12][0-9]|3[01])"  # DD
 
-ISO_YEAR: PatternT = r"[0-9]{1,4}"                               # YYYY
+ISO_YEAR: PatternT = r"[0-9]{1,4}"  # YYYY
 
-ISO_YEAR_MONTH: PatternT = ISO_YEAR + r"\-" + ISO_MONTH          # YYYY-MM
+ISO_YEAR_MONTH: PatternT = ISO_YEAR + r"\-" + ISO_MONTH  # YYYY-MM
 
 ISO_YEAR_MONTH_DAY: PatternT = ISO_YEAR_MONTH + r"\-" + ISO_DAY  # YYYY-MM-DD
 
-VERSION_NUMBER: PatternT = r"(?:\d+.)*\d+\w?\w?\d*" # 3, 0.4, 1.0a, 24.2.4rc45 etc.
+VERSION_NUMBER: PatternT = r"(?:\d+.)*\d+\w?\w?\d*"  # 3, 0.4, 1.0a, 24.2.4rc45 etc.
 
 MONTH_NAME: EnumT = {
     "January": 1,
@@ -56,31 +56,31 @@ MONTH_NAME_ABBR: EnumT = {
 }
 
 BOOLEAN: PolarT = (
-    {True, "true", "on", "yes", 1, "1"},    # positive/true
+    {True, "true", "on", "yes", 1, "1"},  # positive/true
     {False, "false", "off", "no", 0, "0"},  # negative/false
 )
 
 SEX_BINARY: EnumT = {
-    "male":   "m",
-    "m":      "m",
-    "he":     "m",
-    "mr":     "m",
+    "male": "m",
+    "m": "m",
+    "he": "m",
+    "mr": "m",
     "mister": "m",
     "female": "f",
-    "f":      "f",
-    "she":    "f",
-    "ms":     "f",
-    "mrs":    "f",
-    "miss":   "f",
+    "f": "f",
+    "she": "f",
+    "ms": "f",
+    "mrs": "f",
+    "miss": "f",
     "missus": "f",
 }
 
 SEX_TERNARY: EnumT = SEX_BINARY | {
-    "other":  "o",
-    "o":      "o",
-    "x":      "o",
-    "they":   "o",
-    "mx":     "o",
+    "other": "o",
+    "o": "o",
+    "x": "o",
+    "they": "o",
+    "mx": "o",
 }
 
 SHORT_TEXT: PatternT = r".{0,255}"

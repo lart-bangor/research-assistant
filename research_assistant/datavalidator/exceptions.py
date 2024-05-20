@@ -2,7 +2,7 @@
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .validation import Validator, ValidationResult
+    from .validation import ValidationResult, Validator
 
 
 class DataValidationError(Exception):

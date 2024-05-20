@@ -1,8 +1,9 @@
 """API to expose the AToL-C Task to Python Eel."""
 import logging
-from uuid import UUID
 from typing import Any
-from ...task_api import ResearchTaskAPI
+from uuid import UUID
+
+from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
 from .datamodel import AtolcTaskLanguageRatings, AtolcTaskResponse
 
@@ -19,11 +20,21 @@ class AtolcTaskAPI(ResearchTaskAPI):
     eel_namespace = "atolc"
 
     atolc_traits = (
-        "logic",      "elegance",  "fluency",
-        "ambiguity",  "appeal",    "structure",
-        "precision",  "harshness", "flow",
-        "beauty",     "sistem",    "pleasure",
-        "smoothness", "grace",     "angularity"
+        "logic",
+        "elegance",
+        "fluency",
+        "ambiguity",
+        "appeal",
+        "structure",
+        "precision",
+        "harshness",
+        "flow",
+        "beauty",
+        "sistem",
+        "pleasure",
+        "smoothness",
+        "grace",
+        "angularity",
     )
 
     @ResearchTaskAPI.exposed
@@ -32,7 +43,9 @@ class AtolcTaskAPI(ResearchTaskAPI):
         return list(self.atolc_traits)
 
     @ResearchTaskAPI.exposed
-    def add_ratings(self, response_id: str | UUID, data: dict[str, Any]) -> None:  # noqa: C901
+    def add_ratings(
+        self, response_id: str | UUID, data: dict[str, Any]
+    ) -> None:  # noqa: C901
         """Add AToL-C ratings to the response with id *response_id*."""
         MAX_TRIALS = 2
         response_id = self._cast_uuid(response_id)
@@ -74,10 +87,7 @@ class AtolcTaskAPI(ResearchTaskAPI):
         for key, value in data.items():
             if key.startswith("trait-"):
                 trait_ratings[key.removeprefix("trait-")] = float(value)
-        missing = self._find_missing_keys(
-            trait_ratings,
-            self.atolc_traits
-        )
+        missing = self._find_missing_keys(trait_ratings, self.atolc_traits)
         if missing:
             exc = KeyError(
                 f"Failed to add ratings to {self.__class__.__name__} response: "
@@ -89,13 +99,15 @@ class AtolcTaskAPI(ResearchTaskAPI):
             language=language_name,
             trial=language_trial,
             order=list(trait_ratings.keys()),
-            **trait_ratings
+            **trait_ratings,
         )
         if "ratings" not in self._response_data[response_id]:
             self._response_data[response_id]["ratings"] = []
         self._response_data[response_id]["ratings"].append(ratings)
         if language_trial < MAX_TRIALS:
-            self.set_location(f"start.html?instance={response_id}&trial={language_trial+1}")
+            self.set_location(
+                f"start.html?instance={response_id}&trial={language_trial+1}"
+            )
         elif self.store(response_id):
             self.set_location(f"end.html?instance={response_id}")
         else:

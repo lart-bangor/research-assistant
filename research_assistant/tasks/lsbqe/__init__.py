@@ -3,4 +3,4 @@
 
 def expose_to_eel():
     """Expose the LSBQe API to Python Eel."""
-    from . import eel                                                    # type: ignore # noqa: F401
+    from . import eel  # type: ignore # noqa: F401

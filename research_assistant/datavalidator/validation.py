@@ -1,10 +1,11 @@
 """Validation tools for the datavalidator package."""
+import html
 import json
 import re
-import html
-from typing import Any, Callable, Union, Optional
-from .types import RangeT, SetT, PolarT, PatternT, EnumT, XT, YT
+from typing import Any, Callable, Optional, Union
+
 from .exceptions import DataValidationError
+from .types import XT, YT, EnumT, PatternT, PolarT, RangeT, SetT
 
 
 class ValidationResult:
@@ -281,7 +282,9 @@ class Validator:
                 cdata = str(data)
             flags = re.IGNORECASE | flags if self.__ignorecase(ignorecase) else flags
             cmp = bool(
-                re.match(r"\A{pattern}\Z".format(pattern=constraint), cdata, flags=flags)
+                re.match(
+                    r"\A{pattern}\Z".format(pattern=constraint), cdata, flags=flags
+                )
             )
         except TypeError:
             cmp = False
@@ -400,7 +403,7 @@ class Validator:
                 cdata = bool(data)
             cmp = True
             if constraint is not None:
-                cmp = (cdata == constraint)
+                cmp = cdata == constraint
         except TypeError:
             cmp = False
         validation = ValidationResult(

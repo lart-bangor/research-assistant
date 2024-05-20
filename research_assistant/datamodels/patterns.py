@@ -1,7 +1,9 @@
 """Regular expressions for various data types used by the L'ART Research Assistant."""
 from typing import Final
 
-UUID: Final[str] = r"^(?:[0-9]{39})|(?:(?:(?:urn:)?uuid:|{)?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}}?)$"  # noqa: E501
+UUID: Final[
+    str
+] = r"^(?:[0-9]{39})|(?:(?:(?:urn:)?uuid:|{)?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}}?)$"  # noqa: E501
 """Regular expression for UUIDs.
 
 Matches UUIDs in hexadecimal, URN and Windows GUID formats.
@@ -38,7 +40,9 @@ Does not allow any separators.
 Examples: :code:`000088962710306127702866241727433142015`
 """
 
-UUID_URN: Final[str] = r"^(?:urn:)?uuid:[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}$"  # noqa: E501
+UUID_URN: Final[
+    str
+] = r"^(?:urn:)?uuid:[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}$"  # noqa: E501
 """Regular expression for UUIDs in URN format.
 
 Example: :code:`urn:uuid:123e4567-e89b-12d3-a456-426614174000`
@@ -88,7 +92,9 @@ Matches ISO date strings of the form YYYY-MM, with the same limitations as for
 Examples: :code:`0000-01`, :code:`2023-05`
 """
 
-ISO_YEAR_MONTH_DAY: Final[str] = r"^[0-9]{1,4}\-(0[1-9]|1[0-2])\-(0[1-9]|[12][0-9]|3[01])$"
+ISO_YEAR_MONTH_DAY: Final[
+    str
+] = r"^[0-9]{1,4}\-(0[1-9]|1[0-2])\-(0[1-9]|[12][0-9]|3[01])$"
 """Regular expression matching ISO year-month strings.
 
 Matches ISO date strings of the form YYYY-MM, with the same limitations as for
@@ -97,7 +103,9 @@ Matches ISO date strings of the form YYYY-MM, with the same limitations as for
 Examples: :code:`0000-01-01`, :code:`2023-05-31`
 """
 
-TASK_LOCALISATION_LABEL: Final[str] = r"^([A-Z][a-z]{2}){2,}_[A-Z][a-z]{2}_[A-Z]{2}(\.\w*)?"
+TASK_LOCALISATION_LABEL: Final[
+    str
+] = r"^([A-Z][a-z]{2}){2,}_[A-Z][a-z]{2}_[A-Z]{2}(\.\w*)?"
 """Regular expression for task localisation labels.
 
 Localisation labels consist of three obligatory and one optional parts:

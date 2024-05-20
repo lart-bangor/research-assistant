@@ -4,23 +4,25 @@ An app to collect survey-type data for research on regional and minority languag
 developed by the Language Attitudes Research Team at Bangor University.
 """
 import argparse
-import eel
-import gevent                                                                   # type: ignore
 import logging
 import multiprocessing
 import sys
-from gevent import signal
 from pathlib import Path
 from typing import Any, Sequence
+
+import eel
+import gevent  # type: ignore
+from gevent import signal
+
+from .booteel import utils
 from .config import config
-from . import booteel
-from .tasks.lsbqe.eel import eel_api as LsbqeTaskAPI
+from .settings import expose_to_eel as expose_settings
+from .tasks.agt.eel import eel_api as AgtTaskAPI
 from .tasks.atolc.eel import eel_api as AtolcTaskAPI
-from .tasks.memorytask.eel import eel_api as MemoryTaskAPI
 from .tasks.conclusion.eel import eel_api as ConclusionTaskAPI
 from .tasks.consent.eel import eel_api as ConsentTaskAPI
-from .tasks.agt.eel import eel_api as AgtTaskAPI
-from .settings import expose_to_eel as expose_settings
+from .tasks.lsbqe.eel import eel_api as LsbqeTaskAPI
+from .tasks.memorytask.eel import eel_api as MemoryTaskAPI
 from .utils import export_backup, manage_settings, show_error_dialog
 
 # Enable multiprocessing in frozen apps (e.g. pyinstaller)
@@ -31,8 +33,10 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 root_logger_name = __name__.split(".", maxsplit=2)[0]
 root_logger = logging.getLogger(root_logger_name)
 root_logger.setLevel(config.logging.default_level)
-root_logger.addHandler(config.logging.get_stream_handler())                     # > sys.stderr
-root_logger.addHandler(config.logging.get_file_handler(root_logger_name))       # > app log dir
+root_logger.addHandler(config.logging.get_stream_handler())  # > sys.stderr
+root_logger.addHandler(
+    config.logging.get_file_handler(root_logger_name)
+)  # > app log dir
 logger = logging.getLogger(__name__)
 
 # Expose Eel APIs for subpackages (LEGACY)
@@ -53,7 +57,7 @@ agt_task_api = AgtTaskAPI()
 agt_task_api.expose()
 
 
-def main():                                                                     # noqa: C901
+def main():  # noqa: C901
     """App main function called on app launch."""
     # Parse command line arguments
     argparser = argparse.ArgumentParser(
@@ -66,7 +70,7 @@ def main():                                                                     
             parser: argparse.ArgumentParser,
             namespace: argparse.Namespace,
             values: str | Sequence[Any] | None,
-            option_string: str | None = ...
+            option_string: str | None = ...,
         ) -> None:
             setattr(namespace, self.dest, values)
 
@@ -80,7 +84,7 @@ def main():                                                                     
             "backup data as ZIP archive to FILE if given,\n"
             "otherwise display a save as ... dialog."
         ),
-        default=False
+        default=False,
     )
 
     argparser.add_argument(
@@ -100,11 +104,11 @@ def main():                                                                     
             "Alternatively, CMD may be a JSON string of key-value "
             "pairs enclosed by curly braces ('{...}'), where each key "
             "represents a configuration attribute and the value the new "
-            "value it should be set to. For example '{\"sequences.consent\":"
-            "\"memorytask\"'} will set the follow-on sequence for the consent "
+            'value it should be set to. For example \'{"sequences.consent":'
+            '"memorytask"\'} will set the follow-on sequence for the consent '
             "task to the memorytask."
         ),
-        default=False
+        default=False,
     )
 
     argparser.add_argument(
@@ -116,7 +120,7 @@ def main():                                                                     
             "set the debug level,\n"
             "choices = {debug, info, warning, error, critical},\n"
             "default = warning"
-        )
+        ),
     )
 
     argparser.add_argument(
@@ -126,7 +130,7 @@ def main():                                                                     
         help=(
             "Pass the --disable-gpu flag to created chrome "
             "instances.\nCan be useful when running in a VM."
-        )
+        ),
     )
 
     args = argparser.parse_args()
@@ -136,7 +140,7 @@ def main():                                                                     
     except AttributeError:
         loglevel = config.logging.default_level
     root_logger.setLevel(loglevel)
-    booteel.setloglevel(loglevel)
+    utils.setloglevel(loglevel)
 
     # Run backup exporter and exit if --backup supplied
     if args.backup is not False:
@@ -159,7 +163,16 @@ def main():                                                                     
     # Run app using eel
     eel.init(
         str(Path(__file__).parent / "web"),
-        allowed_extensions=[".html", ".js", ".css", ".woff", ".svg", ".svgz", ".png", ".mp3"]
+        allowed_extensions=[
+            ".html",
+            ".js",
+            ".css",
+            ".woff",
+            ".svg",
+            ".svgz",
+            ".png",
+            ".mp3",
+        ],
     )
     # Further arguments for the eel/chrome launch
     cmdline_args: list[str] = []
@@ -172,7 +185,7 @@ def main():                                                                     
             jinja_templates="app",
             close_callback=close,
             block=False,
-            cmdline_args=cmdline_args
+            cmdline_args=cmdline_args,
         )
     except OSError:
         logger.warning("Chrome not found... attempting fallback to Edge.")
@@ -183,7 +196,7 @@ def main():                                                                     
                 jinja_templates="app",
                 close_callback=close,
                 block=False,
-                cmdline_args=cmdline_args
+                cmdline_args=cmdline_args,
             )
         except OSError as exc2:
             logger.critical(str(exc2))
@@ -193,18 +206,18 @@ def main():                                                                     
                     "Can't find Google Chrome/Chromium or Microsoft Edge installation.\n\n"
                     "Please install either Google Chrome/Chromium or Microsoft Edge before "
                     "running the Research Assistant."
-                )
+                ),
             )
             raise
     logger.info(
         f"Now running on "
-        f"http://{eel._start_args['host']}:{eel._start_args['port']}"           # type: ignore
+        f"http://{eel._start_args['host']}:{eel._start_args['port']}"  # type: ignore
     )
     if sys.platform not in ("win32", "win64"):
         gevent.signal.signal(signal.SIGTERM, shutdown)
         gevent.signal.signal(signal.SIGQUIT, shutdown)
-        gevent.signal.signal(signal.SIGINT,  shutdown)
-    gevent.get_hub().join()                                                     # type: ignore
+        gevent.signal.signal(signal.SIGINT, shutdown)
+    gevent.get_hub().join()  # type: ignore
 
 
 # Timer for close() function internal callbacks, do not modify outside close() method.
@@ -213,7 +226,7 @@ _close_countdown_timer: float = config.shutdown_delay
 
 def close(page: str, opensockets: list[Any]):
     """Callback when an app socket is closed."""
-    logger.info("Socket closed: %s", page)
+    logger.debug("Socket closed: %s", page)
     logger.debug("Remaining sockets: %s", len(opensockets))
 
     # Exit gevent event loop if no further sockets open after config.shutdown_delay seconds delay
@@ -221,22 +234,28 @@ def close(page: str, opensockets: list[Any]):
 
         def conditional_shutdown():
             global _close_countdown_timer
-            if len(eel._websockets) == 0 and _close_countdown_timer < 1.0:      # type: ignore
+            if len(eel._websockets) == 0 and _close_countdown_timer < 1.0:  # type: ignore
                 logger.debug("Still no websockets found.")
-                logger.debug(f"Shutdown delay timeout remaining is {_close_countdown_timer}.")
+                logger.debug(
+                    f"Shutdown delay timeout remaining is {_close_countdown_timer}."
+                )
                 shutdown()
-            elif len(eel._websockets) > 0:                                      # type: ignore
+            elif len(eel._websockets) > 0:  # type: ignore
                 _close_countdown_timer = config.shutdown_delay
                 logger.debug("New websockets found, cancelling shutdown...")
-                gevent.getcurrent().kill()                                      # type: ignore
+                gevent.getcurrent().kill()  # type: ignore
             else:
                 _close_countdown_timer -= 1.0
                 logger.debug("Still no websockets found.")
-                logger.debug(f"Shutdown delay timeout remaining is {_close_countdown_timer}.")
+                logger.debug(
+                    f"Shutdown delay timeout remaining is {_close_countdown_timer}."
+                )
                 gevent.spawn_later(1.0, conditional_shutdown)  # type: ignore
 
-        logger.debug(f"No websockets left, registering shutodwn after {config.shutdown_delay}s.")
-        gevent.spawn_later(1.0, conditional_shutdown)         # type: ignore
+        logger.debug(
+            f"No websockets left, registering shutodwn after {config.shutdown_delay}s."
+        )
+        gevent.spawn_later(1.0, conditional_shutdown)  # type: ignore
 
 
 def shutdown(sig=None, frame=None):
@@ -245,18 +264,18 @@ def shutdown(sig=None, frame=None):
         signames = {
             int(signal.SIGTERM): "SIGTERM",
             int(signal.SIGQUIT): "SIGQUIT",
-            int(signal.SIGINT):  "SIGINT"
+            int(signal.SIGINT): "SIGINT",
         }
         signame = signames.get(sig, str(sig))
         logger.critical(f"Signal '{signame}' received. Shutdown initiated.")
     logger.info("App shutdown triggered...")
     logger.debug("Destroying gevent event loop...")
-    ghub = gevent.get_hub()                                         # type: ignore
+    ghub = gevent.get_hub()  # type: ignore
     if sys.platform in ("win32", "win64"):
         gevent.kill(ghub)  # Worth trying to see whether this works on Linux/Mac!?
         sys.exit(0)
     else:
-        ghub.destroy()                                   # type: ignore
+        ghub.destroy()  # type: ignore
         # This should not have survived and already returned 0...
         logger.debug("Execution survived event loop destruction, hard exiting...")
         sys.exit(1)

@@ -1,13 +1,10 @@
 """Type definitions for the datavalidator package."""
-from typing import Any, Iterable, Union, TypeVar
+from typing import Any, Iterable, TypeVar, Union
 
 XT = TypeVar("XT")
 YT = TypeVar("YT")
 
-RangeT = Union[
-    tuple[int, int], tuple[float, float],
-    list[int], list[float]
-]
+RangeT = Union[tuple[int, int], tuple[float, float], list[int], list[float]]
 """Type for inclusive numeric ranges (int or float).
 
 Examples:
@@ -28,10 +25,7 @@ Examples:
     - {"A", "b", 3} checks whether a given value equals "A", "b", or the int 3.
 """
 
-PolarT = Union[
-    tuple[Iterable[Any], Iterable[Any]],
-    list[Iterable[Any]]
-]
+PolarT = Union[tuple[Iterable[Any], Iterable[Any]], list[Iterable[Any]]]
 """Type for checking whether value falls within a set of polar items.
 
 Examples:

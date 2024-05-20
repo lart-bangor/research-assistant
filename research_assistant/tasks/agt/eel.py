@@ -1,11 +1,12 @@
 """API to expose the AGT Task to Python Eel."""
 import logging
-from uuid import UUID
 from random import sample, shuffle
-from typing import Final, Any
-from ...task_api import ResearchTaskAPI
+from typing import Any, Final
+from uuid import UUID
+
+from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
-from .datamodel import AgtTaskTraitRating, AgtTaskTrialRatings, AgtTaskResponse
+from .datamodel import AgtTaskResponse, AgtTaskTraitRating, AgtTaskTrialRatings
 
 logger = logging.getLogger(__name__)
 
@@ -154,7 +155,7 @@ class AgtTaskAPI(ResearchTaskAPI):
     @ResearchTaskAPI.exposed
     def add_ratings(self, response_id: str | UUID, data: dict[str, Any]):
         """Add AGT ratings for one trial to the response with id *response_id*."""
-        MAX_TRIALS = 13 # 1 practice + 12 regular trials
+        MAX_TRIALS = 13  # 1 practice + 12 regular trials
         response_id = self._cast_uuid(response_id)
         self.logger.info(
             f"Adding ratings for {self.__class__.__name__} response with id {response_id}.."
@@ -186,7 +187,9 @@ class AgtTaskAPI(ResearchTaskAPI):
             raise exc
         trait_ratings: list[AgtTaskTraitRating] = []
         for key, trait in trait_keys.items():
-            trait_ratings.append(AgtTaskTraitRating(trait=trait, rating=float(data[key])))
+            trait_ratings.append(
+                AgtTaskTraitRating(trait=trait, rating=float(data[key]))
+            )
         trial_ratings = AgtTaskTrialRatings(trial=trial, ratings=trait_ratings)
         print("Trial ratings:", trial_ratings)
         if "ratings_dict" not in self._response_data[response_id]:
@@ -207,8 +210,7 @@ class AgtTaskAPI(ResearchTaskAPI):
         else:
             # Should be complete, but check for missing trials anyways
             missing = self._find_missing_keys(
-                self._response_data[response_id]["ratings_dict"],
-                self.get_trials()
+                self._response_data[response_id]["ratings_dict"], self.get_trials()
             )
             if missing:
                 exc = KeyError(
@@ -218,7 +220,9 @@ class AgtTaskAPI(ResearchTaskAPI):
                 )
                 self.logger.error(str(exc))
                 raise exc
-            self._response_data[response_id]["stimulus_ratings"] = list(self._response_data[response_id]["ratings_dict"].values())
+            self._response_data[response_id]["stimulus_ratings"] = list(
+                self._response_data[response_id]["ratings_dict"].values()
+            )
             del self._response_data[response_id]["ratings_dict"]
             if self.store(response_id):
                 self.set_location(f"end.html?instance={response_id}")

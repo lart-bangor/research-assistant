@@ -1,8 +1,9 @@
 """API to expose the Memory Task to Python Eel."""
 import logging
-from uuid import UUID
 from typing import Any
-from ...task_api import ResearchTaskAPI
+from uuid import UUID
+
+from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
 from .datamodel import MemoryTaskResponse, MemoryTaskScore
 
@@ -32,10 +33,10 @@ class MemoryTaskAPI(ResearchTaskAPI):
             )
             self.logger.error(str(exc))
             raise exc
-        if 'scores' not in data or not isinstance(data['scores'], list):
+        if "scores" not in data or not isinstance(data["scores"], list):
             exc = KeyError(
                 f"Failed to add scores to {self.__class__.__name__} response: ",
-                "key 'scores' missing or not a list."
+                "key 'scores' missing or not a list.",
             )
             self.logger.error(str(exc))
             raise exc

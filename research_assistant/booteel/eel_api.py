@@ -1,8 +1,10 @@
 """API Base to expose data models via eel."""
+
 import logging
 from abc import ABC, abstractmethod
-from functools import wraps, partial
-from typing import TypeVar, Callable, Any, cast, overload
+from functools import partial, wraps
+from typing import Any, Callable, TypeVar, cast, overload
+
 import eel
 
 # TypeVar for function wrappers
@@ -180,7 +182,6 @@ class EelAPI(ABC):
 
     def _handle_exception(self, exc: Exception) -> None:
         """Passes exception to exceptionhandler if defined, otherwise continues raising."""
-        logger.exception(exc)
         if hasattr(self, "exception_handler"):
             getattr(self, "exception_handler")(exc)
         else:
@@ -205,10 +206,7 @@ class EelAPI(ABC):
         partial_func = partial(func, self)
 
         @wraps(func)
-        def eel_api_wrapper(
-                *args: list[Any],
-                **kwargs: dict[str, Any]
-        ) -> Any:
+        def eel_api_wrapper(*args: list[Any], **kwargs: dict[str, Any]) -> Any:
             try:
                 return partial_func(*args, **kwargs)
             except Exception as exc:
@@ -227,8 +225,8 @@ class EelAPI(ABC):
                 if self.eel_api is func:
                     continue  # already exposed, do nothing
                 else:
-                    logger.warning(
-                        f"Attempting to overwrite already exposed method {name!r} "
+                    logger.info(
+                        f"Overwriting already exposed method {name!r} "
                         f"({self.eel_api[name]}) with new method ({func}) on "
                         f"EelAPI instance of {self.__class__.__qualname__}. "
                         f"'eel.{name!s}' continues to point to {self.eel_api[name]}."

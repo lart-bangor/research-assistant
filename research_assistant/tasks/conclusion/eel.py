@@ -1,8 +1,9 @@
 """Exposes the Conclusion screen to Python Eel."""
 import logging
-from uuid import UUID
 from typing import Literal
-from ...task_api import ResearchTaskAPI
+from uuid import UUID
+
+from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
 from .datamodel import ConclusionTaskResponse
 

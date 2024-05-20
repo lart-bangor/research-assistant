@@ -1,17 +1,18 @@
 """Prototypes to conveniently define data classes with built-in validation."""
 from __future__ import annotations
-from typing import Union, Optional, Any, Callable
+
+import re
 from collections import Counter
 from copy import copy, deepcopy
-import re
-from . import types as dvtypes
-from .validation import ValidationResult, Validator
-from .exceptions import DataValidationError
+from typing import Any, Callable, Optional, Union
 
+from . import types as dvtypes
+from .exceptions import DataValidationError
+from .validation import ValidationResult, Validator
 
 DataFieldDescT = Union[
-    "DataField",        # Fully instantiated DataField
-    dict[str, Any],     # For shorthand constructor notations
+    "DataField",  # Fully instantiated DataField
+    dict[str, Any],  # For shorthand constructor notations
 ]
 
 DataGroupDataT = dict[str, DataFieldDescT]
@@ -279,7 +280,7 @@ class DataSchema:
     __data: SchemaDataT
     __keys: list[str]
 
-    def __new__(cls, *args: Any, **kwargs: Any):                                # noqa: C901
+    def __new__(cls, *args: Any, **kwargs: Any):  # noqa: C901
         """Constructs a new DataSchema instance."""
         privateref = f"_{cls.__name__}__schema"
         if not hasattr(cls, privateref):
@@ -309,7 +310,7 @@ class DataSchema:
         self.ignorecase = ignorecase
 
     @classmethod
-    def __schematize(                                                           # noqa: C901
+    def __schematize(  # noqa: C901
         cls, schema: Union[DataGroupDescT, DataFieldDescT], schemaname: str
     ) -> Union[DataGroup, DataField]:
         # Is it an already instantiated DataField?
@@ -368,7 +369,7 @@ class DataSchema:
         )
 
     @classmethod
-    def __index(cls) -> list[str]:                                              # noqa: C901
+    def __index(cls) -> list[str]:  # noqa: C901
         """Creates a flat list of index keys, separating groups and fields with "/"."""
         indices: list[str] = []
         groups: set[str] = set()
@@ -399,7 +400,7 @@ class DataSchema:
         return indices
 
     @staticmethod
-    def __setgroupfactory(                                                      # noqa: C901
+    def __setgroupfactory(  # noqa: C901
         gname: str, fieldspecs: dict[str, dict[str, Any]]
     ) -> Callable[[DataSchema, dict[str, Any]], None]:
         def setgroup(self: DataSchema, data: dict[str, Any]) -> None:
@@ -558,14 +559,14 @@ class DataSchema:
         fieldname: str, fieldspec: dict[str, Any]
     ) -> Callable[[DataSchema], list[Any]]:
         def getfieldlist(self: DataSchema) -> list[Any]:
-            return copy(self.__data[fieldname])                                 # type: ignore
+            return copy(self.__data[fieldname])  # type: ignore
 
         getfieldlist.__doc__ = f"Retrieves all values of the field list `{fieldname}`."
         getfieldlist.__name__ = f"get{fieldname}"
         return getfieldlist
 
     @classmethod
-    def __functionalize(cls) -> None:                                           # noqa: C901
+    def __functionalize(cls) -> None:  # noqa: C901
         """Dynamically creates and attaches methods to get/set values."""
         groups: dict[str, list[str]] = {}
         fields: list[str] = []
@@ -617,7 +618,7 @@ class DataSchema:
                 )
 
     @classmethod
-    def __materialize(cls) -> SchemaDataT:                                      # noqa: C901
+    def __materialize(cls) -> SchemaDataT:  # noqa: C901
         """Creates an empty __data store pre-populated with DataGroups/DataFieldLists."""
         data: SchemaDataT = {}
         for field in cls.__schema.values():
@@ -634,7 +635,7 @@ class DataSchema:
                 data[field.name] = None
         return data
 
-    def _customvalidate(                                                        # noqa: C901
+    def _customvalidate(  # noqa: C901
         self, vr: Validator, fieldspec: dict[str, Any], value: Any
     ) -> ValidationResult:
         """Calls a custom validation method on value and appends result to vr."""
@@ -647,7 +648,7 @@ class DataSchema:
         if forcecast:
             try:
                 result = fieldspec["type_"](result)
-            except Exception:                                                   # noqa: S110
+            except Exception:  # noqa: S110
                 pass
         try:
             result = fieldspec["vmethod"](fieldspec["type_"], value)
@@ -670,7 +671,7 @@ class DataSchema:
             vr.failed.append(vresult)
         return vresult
 
-    def _autovalidate(                                                          # noqa: C901
+    def _autovalidate(  # noqa: C901
         self, vr: Validator, fieldspec: dict[str, Any], value: Any
     ) -> ValidationResult:
         """Calls the appropriate validation method for fieldspec and value."""
@@ -725,22 +726,22 @@ class DataSchema:
         )
 
     @classmethod
-    def __getfieldspecs(cls, key: str) -> dict[str, dict[str, Any]]:            # noqa: C901
+    def __getfieldspecs(cls, key: str) -> dict[str, dict[str, Any]]:  # noqa: C901
         """Get the specifications for a single DataField or fields in a DataGroup."""
         if key not in cls.__keys and key not in cls.__schema:
             raise KeyError(f"No field or group with key `{key}`.")
         if "/" in key:
             key0, key1 = key.split("/")
-            field = cls.__schema[key0].fields[key1]                             # type: ignore
+            field = cls.__schema[key0].fields[key1]  # type: ignore
         else:
             field = cls.__schema[key]
         if isinstance(field, DataField):
-            return {field.name: field.fieldspecs()}                             # type: ignore
+            return {field.name: field.fieldspecs()}  # type: ignore
         if isinstance(field, DataGroup):
             fieldspecs: dict[str, dict[str, Any]] = {}
-            for subfield in field.fields.values():                              # type: ignore
+            for subfield in field.fields.values():  # type: ignore
                 if isinstance(subfield, DataField):
-                    fieldspecs[subfield.name] = subfield.fieldspecs()           # type: ignore
+                    fieldspecs[subfield.name] = subfield.fieldspecs()  # type: ignore
                 else:
                     raise AttributeError("The __schema appears to be inconsistent.")
             return fieldspecs
@@ -762,7 +763,7 @@ class DataSchema:
             key0, key1 = key.split("/")
             self.__data[key0][key1] = value
         if isinstance(field, DataField) and key in self.__data:
-            self.__data[key] = value                                            # type: ignore
+            self.__data[key] = value  # type: ignore
         raise KeyError(
             f"No field matching key `{key}` found in __schema (may be a group)."
         )
@@ -786,11 +787,11 @@ class DataSchema:
             if (
                 key0 in self.__schema
                 and isinstance(self.__schema[key0], DataGroup)
-                and key1 in self.__schema[key0].fields                          # type: ignore
+                and key1 in self.__schema[key0].fields  # type: ignore
             ):
-                return self.__schema[key0].fields[key1]               # type: ignore (no idea why!?)
+                return self.__schema[key0].fields[key1]  # type: ignore (no idea why!?)
         if key in self.__schema:
-            return self.__schema[key]                                           # type: ignore
+            return self.__schema[key]  # type: ignore
         raise KeyError(f"No group or field matching key `{key}` found in __schema.")
 
     def keys(

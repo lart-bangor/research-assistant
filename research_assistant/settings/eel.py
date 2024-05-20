@@ -1,13 +1,16 @@
 """Exposes app configuration to Python Eel as Settings."""
-import eel
 import logging
 from dataclasses import is_dataclass
 from functools import wraps
 from pathlib import Path
-from typing import Optional, Union, Callable, Any, TypeVar, cast
-from .. import booteel
+from typing import Any, Callable, Optional, TypeVar, Union, cast
+
+import eel
+
+from ..booteel import utils
 from ..config import config
 from ..datavalidator.exceptions import DataValidationError
+
 # from .dataschema import Response
 
 logger = logging.getLogger(__name__)
@@ -30,24 +33,24 @@ def _handleexception(exc: Exception) -> None:
 
 def _expose(func: F) -> F:
     """Wraps, renames and exposes a function to eel."""
+
     @wraps(func)
     def api_wrapper(
-        *args: list[Any],
-        **kwargs: dict[str, Any]
+        *args: list[Any], **kwargs: dict[str, Any]
     ) -> Optional[Union[F, bool]]:
         try:
             return func(*args, **kwargs)
         except Exception as exc:
             if isinstance(exc, DataValidationError):
-                booteel.modal(
-                    "Data Validation Error",
-                    exc.validator.tohtml(errorsonly=True)
+                utils.modal(
+                    "Data Validation Error", exc.validator.tohtml(errorsonly=True)
                 )
                 _handleexception(exc)
             else:
-                booteel.displayexception(exc)
+                utils.displayexception(exc)
                 _handleexception(exc)
             return False
+
     eel._expose("_settings_" + func.__name__, api_wrapper)  # type: ignore
     return cast(F, api_wrapper)
 
@@ -75,18 +78,27 @@ def load() -> dict[str, dict[str, Any]]:
         settings[dataclass["name"]]["fields"] = settings[dataclass["name"]]["fields"][1]
         # For Path type arguments, convert default and value to string
         for fieldindex in range(0, len(settings[dataclass["name"]]["fields"])):
-            if isinstance(settings[dataclass["name"]]["fields"][fieldindex]["default"], Path):
-                settings[dataclass["name"]]["fields"][fieldindex]["default"] = str(settings[dataclass["name"]]["fields"][fieldindex]["default"])
-            if isinstance(settings[dataclass["name"]]["fields"][fieldindex]["value"], Path):
-                settings[dataclass["name"]]["fields"][fieldindex]["value"] = str(settings[dataclass["name"]]["fields"][fieldindex]["value"])
+            if isinstance(
+                settings[dataclass["name"]]["fields"][fieldindex]["default"], Path
+            ):
+                settings[dataclass["name"]]["fields"][fieldindex]["default"] = str(
+                    settings[dataclass["name"]]["fields"][fieldindex]["default"]
+                )
+            if isinstance(
+                settings[dataclass["name"]]["fields"][fieldindex]["value"], Path
+            ):
+                settings[dataclass["name"]]["fields"][fieldindex]["value"] = str(
+                    settings[dataclass["name"]]["fields"][fieldindex]["value"]
+                )
     logger.debug(f"    Settings: {settings}")
     return settings
 
 
 @_expose
-def store(settings: dict[str, dict[str, Any]]) -> bool:                         # noqa: C901
+def store(settings: dict[str, dict[str, Any]]) -> bool:  # noqa: C901
     """Validate settings, store in config, and save.."""
     from pprint import pprint
+
     pprint(config.asdict())
     logger.info("Updating app settings...")
     logger.debug(f"Data received: {settings}")
@@ -122,5 +134,5 @@ def store(settings: dict[str, dict[str, Any]]) -> bool:                         
     config.save()
     logger.info(f"Settings successfully updated to {config.asdict()}.")
     pprint(config.asdict())
-    eel._settings_notify_successful_update()                                    # type: ignore
+    eel._settings_notify_successful_update()  # type: ignore
     return True
