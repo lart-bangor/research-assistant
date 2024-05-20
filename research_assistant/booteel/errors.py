@@ -68,6 +68,10 @@ class InvalidValueError(ArgumentError):
     """Error indicating that the value of an argument was not acceptable."""
 
 
+class InvalidKeyError(ArgumentError):
+    """Error indicating that the name of an expected parameter is invalid."""
+
+
 class MissingKeysError(ArgumentError):
     """Error indicating that one or more required keys are missing."""
 

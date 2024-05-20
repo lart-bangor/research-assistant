@@ -367,7 +367,7 @@ class LsbqeTaskClub(BaseModel):
 
     activities: LsbqeTaskClubActivities
 
-    code_switching: LsbqeTaskClubCodeSwitching
+    code_switching: Optional[LsbqeTaskClubCodeSwitching]
 
 
 class LsbqeTaskResponse(ResponseBase):

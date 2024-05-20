@@ -27,19 +27,19 @@
             <!-- Template for sliders -->
             <template id="clubSliderTemplate">
                 <div data-template-field-prefix="[FieldPrefix]" data-template-field-name="[FieldName]" data-template-field-label="[FieldLabel]" data-template-field-hint="[FieldHint]" data-template-field-required="true">
-                    <div id="[FieldPrefix]Instance-[FieldName]">
+                    <div id="[FieldPrefix]-[FieldName]-Instance">
                         <div class="row mb-1">
-                            <label id="[FieldPrefix]Label-[FieldName]" for="[FieldPrefix]-[FieldName]" class="col-2 col-form-label">
+                            <label id="[FieldPrefix]-[FieldName]-Label" for="[FieldPrefix]-[FieldName]" class="col-2 col-form-label">
                                 <span>[FieldLabel]</span><br />
-                                <span class="text-muted small" id="[FieldPrefix]Hint-[FieldName]">[FieldHint]</span><br />
+                                <span class="text-muted small" id="[FieldPrefix]-[FieldName]-Hint">[FieldHint]</span><br />
                             </label>
                             <div class="col-9 mt-2">
                                 <input type="range" class="form-range d-block" min="0" max="100" step="any" id="[FieldPrefix]-[FieldName]" required />
                                 <div class="invalid-feedback invalid-range" data-lsbq-tr="base.sliderFeedback">Please move the slider at least once.</div>
                             </div>
-                            <div class="col-1" id="[FieldPrefix]NotApplicableOption-[FieldName]">
+                            <div class="col-1" id="[FieldPrefix]-[FieldName]-NotApplicableOption">
                                 <p  class="text-muted d-inline-block ps-2"
-                                    id="[FieldPrefix]NotApplicableOptionPara-[FieldName]"
+                                    id="[FieldPrefix]-[FieldName]-NotApplicableOptionPara"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="left"
                                     data-bs-html="true"
@@ -47,10 +47,10 @@
                                 >
                                     <input  class="form-check-input align-text-top"
                                             type="checkbox"
-                                            id="[FieldPrefix]NotApplicable-[FieldName]"
-                                            name="[FieldPrefix]NotApplicable-[FieldName]"
+                                            id="[FieldPrefix]-[FieldName]-NotApplicable"
+                                            name="[FieldPrefix]-[FieldName]-not_applicable"
                                     />
-                                    <label class="form-check-label" for="[FieldPrefix]NotApplicable-[FieldName]" data-lsbq-tr="base.notApplicableAbbr">N/A</label>
+                                    <label class="form-check-label" for="[FieldPrefix]-[FieldName]-not_applicable" data-lsbq-tr="base.notApplicableAbbr">N/A</label>
                                 </p>
                             </div>
                         </div>
@@ -96,18 +96,18 @@
                         }
                     );
                     // Remove or activate NA option
-                    const notApplicableOption = document.getElementById(`${fieldPrefix}NotApplicableOption-${fieldName}`);
+                    const notApplicableOption = document.getElementById(`${fieldPrefix}-${fieldName}-NotApplicableOption`);
                     if (fieldRequired) {
                         notApplicableOption.parentNode.removeChild(notApplicableOption);
                     } else {
                         const tt = new bootstrap.Tooltip(notApplicableOption.firstElementChild);
-                        lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}-${fieldName}`, 'on', 'equal');
-                        lart.forms.conditionalDisable(`${fieldPrefix}NotApplicable-${fieldName}`, `${fieldPrefix}Label-${fieldName}`, 'on', 'equal');
+                        lart.forms.conditionalDisable(`${fieldPrefix}-${fieldName}-not_applicable`, `${fieldPrefix}-${fieldName}`, 'on', 'equal');
+                        lart.forms.conditionalDisable(`${fieldPrefix}-${fieldName}-not_applicable`, `${fieldPrefix}-${fieldName}-Label`, 'on', 'equal');
                         let ttTranslationOptions = {};
                         ttTranslationOptions[notApplicableOption.firstElementChild.id] = ["data-bs-original-title", "club.itemNotApplicableInfo"];  // NB: title attribute is removed by bootstrap tooltip
                         lart.tr.translateAttrs('lsbq', ttTranslationOptions);
                     }
-                    // Sync the hint's left edge with the label
+                    //Sync the hint's left edge with the label
                     //const hintElement = document.getElementById(`${fieldPrefix}Hint-${fieldName}`);
                     //syncClubSliderHint(hintElement);
                 }
@@ -154,11 +154,11 @@
                 </div>
             </section>
 
-            <!-- 14. Language use with other people now -->
+            <!-- 14. Language use with other people currently -->
             <section class="m-4">
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p data-lsbq-tr="club.withPeopleNowInstructions">
+                        <p data-lsbq-tr="club.peopleCurrentInstructions">
                             Please indicate which language or dialect you generally use when speaking to the following people.
                         </p>
                     </div>
@@ -175,17 +175,17 @@
                         Only [RML]
                     </div>
                 </div>
-                <div id="withPeopleNowSlot">
+                <div id="peopleCurrentSlot">
                     <!-- Placeholder dynamically filled with copies of clubSliderTemplate -->
                 </div>
             </section>
 
-            <!-- 15. Language use with people in early life -->
+            <!-- 15. Language use with people in childhood -->
             <section class="m-4">
                 <div class="row mb-1">
                     <div class="col-auto">
-                        <p data-lsbq-tr="club.withPeopleEarlyLifeInstructions">
-                            Please indicate which language or dialect you generally use when speaking to the following people.
+                        <p data-lsbq-tr="club.peopleChildhoodInstructions">
+                            Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people.
                         </p>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                         Only [RML]
                     </div>
                 </div>
-                <div id="withPeopleEarlyLifeSlot">
+                <div id="peopleChildhoodSlot">
                     <!-- Placeholder dynamically filled with copies of clubSliderTemplate -->
                 </div>
             </section>
@@ -302,7 +302,7 @@
         lart.forms.requireValidation(true);
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'club']]);
+        lart.tr.loadFromEel('lsbq', eel.lsbqe_load_localisation, [instanceId, ['meta', 'base', 'club']]);
         lart.tr.registerObserver('lsbq', 'surveyCLUBForm');
         lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
         lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
@@ -310,27 +310,27 @@
         // Defaults for slider fields
         const clubDefaults = {
             "lifeStageFields": {
-                "infancy":      ["Infancy"],
-                "nurseryAge":   ["Nursery age"],
-                "primaryAge":   ["Primary age"],
-                "secondaryAge": ["Secondary age"]
+                "infancy_age":   ["Infancy"],
+                "nursery_age":   ["Nursery age"],
+                "primary_age":   ["Primary age"],
+                "secondary_age": ["Secondary age"]
             },
-            "withPeopleNowFields": {
+            "peopleCurrentFields": {
                 "parents":          ["Parents"],
                 "children":         ["Children"],
                 "siblings":         ["Siblings"],
                 "grandparents":     ["Grandparents"],
-                "otherRelatives":   ["Other relatives"],
+                "other_relatives":  ["Other relatives"],
                 "partner":          ["Partner"],
                 "friends":          ["Friends"],
                 "flatmates":        ["Flat/housemates"],
                 "neighbours":       ["Neighbours"]
             },
-            "withPeopleEarlyLifeFields": {
+            "peopleChildhoodFields": {
                 "parents":          ["Parents"],
                 "siblings":         ["Siblings"],
                 "grandparents":     ["Grandparents"],
-                "otherRelatives":   ["Other relatives"],
+                "other_relatives":  ["Other relatives"],
                 "friends":          ["Friends"],
                 "neighbours":       ["Neighbours"]
             },
@@ -345,19 +345,19 @@
                 "public":       ["Public affairs", "(healthcare services, banks, government, council, …)"]
             },
             "activityFields": {
-                "reading":          ["Reading"],
-                "emailing":         ["Emailing"],
-                "texting":          ["Texting"],
-                "socialMedia":      ["Social media"],
-                "notes":            ["Notes", "(shopping list, memos, notes, …)"],
-                "traditionalMedia": ["TV, films, radio"],
-                "internet":         ["Internet"],
-                "praying":          ["Praying"]
+                "reading":           ["Reading"],
+                "emailing":          ["Emailing"],
+                "texting":           ["Texting"],
+                "social_media":      ["Social media"],
+                "notes":             ["Notes", "(shopping list, memos, notes, …)"],
+                "traditional_media": ["TV, films, radio"],
+                "internet":          ["Internet"],
+                "praying":           ["Praying"]
             },
             "codeSwitchingFields": {
-                "parentsAndFamily": ["With parents and family"],
-                "friends":          ["With friends"],
-                "socialMedia":      ["On social media"]
+                "parents_and_family": ["With parents and family"],
+                "friends":            ["With friends"],
+                "social_media":       ["On social media"]
             }
         }
         // Dynamically insert rating scales
@@ -394,18 +394,18 @@
                 // Insert sliders for each question
                 const clubSliderTemplate = document.getElementById('clubSliderTemplate');
                 const lifeStageSlot = document.getElementById('lifeStageSlot');
-                insertClubSliders(clubSliderTemplate, lifeStageSlot, "lifeStage", clubTranslations.lifeStageFields, "true");
-                const withPeopleNowSlot = document.getElementById('withPeopleNowSlot');
-                insertClubSliders(clubSliderTemplate, withPeopleNowSlot, "withPeopleNow", clubTranslations.withPeopleNowFields, "false");
-                const withPeopleEarlyLifeSlot = document.getElementById('withPeopleEarlyLifeSlot');
-                insertClubSliders(clubSliderTemplate, withPeopleEarlyLifeSlot, "withPeopleEarlyLife", clubTranslations.withPeopleEarlyLifeFields, "false");
+                insertClubSliders(clubSliderTemplate, lifeStageSlot, "life_stage", clubTranslations.lifeStageFields, "true");
+                const peopleCurrentSlot = document.getElementById('peopleCurrentSlot');
+                insertClubSliders(clubSliderTemplate, peopleCurrentSlot, "people_current", clubTranslations.peopleCurrentFields, "false");
+                const peopleChildhoodSlot = document.getElementById('peopleChildhoodSlot');
+                insertClubSliders(clubSliderTemplate, peopleChildhoodSlot, "people_childhood", clubTranslations.peopleChildhoodFields, "false");
                 const situationSlot = document.getElementById('situationSlot');
                 insertClubSliders(clubSliderTemplate, situationSlot, "situation", clubTranslations.situationFields, "false");
                 const activitySlot = document.getElementById('activitySlot');
                 insertClubSliders(clubSliderTemplate, activitySlot, "activity", clubTranslations.activityFields, "false");
                 const codeSwitchingSlot = document.getElementById('codeSwitchingSlot');
                 if (codeSwitchingSlot) {
-                    insertClubSliders(clubSliderTemplate, codeSwitchingSlot, "codeSwitching", clubTranslations.codeSwitchingFields, "false");
+                    insertClubSliders(clubSliderTemplate, codeSwitchingSlot, "code_switching", clubTranslations.codeSwitchingFields, "false");
                 }
                 return;
             }

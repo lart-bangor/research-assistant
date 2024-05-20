@@ -484,35 +484,35 @@
             "Bitte geben Sie an, welche Sprache bzw. Dialekt Sie am häufigsten im folgenden Lebensstadium gehört oder benutzt haben, sowohl zuhause als auch außerhalb."
         ],
         "lifeStageFields": {
-            "infancy":      ["Frühe Kindheit"],
-            "nurseryAge":   ["Vorschulalter"],
-            "primaryAge":   ["Grundschulalter"],
-            "secondaryAge": ["Alter Klasse 5-10"]
+            "infancy_age":   ["Frühe Kindheit"],
+            "nursery_age":   ["Vorschulalter"],
+            "primary_age":   ["Grundschulalter"],
+            "secondary_age": ["Alter Klasse 5-10"]
         },
-        "withPeopleNowInstructions": [
+        "peopleCurrentInstructions": [
             "Please indicate which language or dialect you generally use when speaking to the following people.",
             "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen benutzen wenn Sie mit folgenden Personengruppen sprechen."
         ],
-        "withPeopleNowFields": {
+        "peopleCurrentFields": {
             "parents":          ["Eltern"],
             "children":         ["Kinder"],
             "siblings":         ["Geschwister"],
             "grandparents":     ["Großeltern"],
-            "otherRelatives":   ["Sonstige Verwandte"],
+            "other_relatives":  ["Sonstige Verwandte"],
             "partner":          ["Partner/Lebensgefährte"],
             "friends":          ["Freunde"],
             "flatmates":        ["Mitbewohner"],
             "neighbours":       ["Nachbarn"]
         },
-        "withPeopleEarlyLifeInstructions": [
+        "peopleChildhoodInstructions": [
             "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people.",
             "Bitte geben Sie Ihrem besten Wissen nach an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen im Alter von 6-12 Jahren benutzt haben, wenn Sie mit folgenden Personengruppen sprachen."
         ],
-        "withPeopleEarlyLifeFields": {
+        "peopleChildhoodFields": {
             "parents":          ["Eltern"],
             "siblings":         ["Geschwister"],
             "grandparents":     ["Großeltern"],
-            "otherRelatives":   ["Sonstige Verwandte"],
+            "other_relatives":  ["Sonstige Verwandte"],
             "friends":          ["Freunde"],
             "neighbours":       ["Nachbarn"]
         },
@@ -533,14 +533,14 @@
             "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen für folgende Aktivitäten verwenden."
         ],
         "activityFields": {
-            "reading":          ["Lesen"],
-            "emailing":         ["Emails"],
-            "texting":          ["SMS/WhatsApp/usw."],
-            "socialMedia":      ["Soziale Medien"],
-            "notes":            ["Notizen",                     "(Einkaufslisten, Vermerke, Notizen)"],
-            "traditionalMedia": ["Fernseh, Filme, Radio"],
-            "internet":         ["Internet"],
-            "praying":          ["Beten"]
+            "reading":           ["Lesen"],
+            "emailing":          ["Emails"],
+            "texting":           ["SMS/WhatsApp/usw."],
+            "social_media":      ["Soziale Medien"],
+            "notes":             ["Notizen",                    "(Einkaufslisten, Vermerke, Notizen)"],
+            "traditional_media": ["Fernseh, Filme, Radio"],
+            "internet":          ["Internet"],
+            "praying":           ["Beten"]
         }
     },
     "notes": {

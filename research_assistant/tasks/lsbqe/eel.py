@@ -1,13 +1,27 @@
 """API to exposes the LSBQe to Python Eel."""
+
 import logging
 from typing import Any
 
 from ...booteel.task_api import ResearchTaskAPI
+from ...booteel import errors
 from ...config import config
 from ...datamodels.types import AnyUUID
-from .datamodel import (LsbqeLanguageSpoken, LsbqeParentInformation,
-                        LsbqeTaskLdb, LsbqeTaskLsb, LsbqeTaskResidency,
-                        LsbqeTaskResponse)
+from .datamodel import (
+    LsbqeLanguageSpoken,
+    LsbqeParentInformation,
+    LsbqeTaskLdb,
+    LsbqeTaskLsb,
+    LsbqeTaskResidency,
+    LsbqeTaskResponse,
+    LsbqeTaskClub,
+    LsbqeTaskClubActivities,
+    LsbqeTaskClubCodeSwitching,
+    LsbqeTaskClubLifeStages,
+    LsbqeTaskClubPeopleChildhood,
+    LsbqeTaskClubPeopleCurrent,
+    LsbqeTaskClubSituations,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -25,31 +39,28 @@ class LsbqeTaskAPI(ResearchTaskAPI):
     def add_lsb(self, response_id: AnyUUID, data: dict[str, Any]) -> None:  # noqa: C901
         """Add LSB data to the response with id *response_id*."""
         response_id = self._cast_uuid(response_id)
+        self._response_exists_or_fail(response_id)
         self.logger.info(
-            f"Adding LSB data for {self.__class__.__name__} response with id {response_id}.."
+            f"Adding {self._task_name}.lsb data to response with id {response_id}.."
         )
-        if response_id not in self._response_data:
-            raise ValueError(
-                f"Failed to add LSB data to {self.__class__.__name__} response with id "
-                f"{response_id}: no response with this id in progress."
-            )
-        self.logger.debug(f"... lsb data: {data}")
+        self.logger.debug(f"... data={data}")
         # Make booleans
-        data, invalid_bools = self._cast_bools(
-            data,
-            (
-                "vision_impairment",
-                "vision_aid",
-                "vision_fully_corrected",
-                "hearing_impairment",
-                "hearing_aid",
-            ),
+        fields_to_cast = (
+            "vision_impairment",
+            "vision_aid",
+            "vision_fully_corrected",
+            "hearing_impairment",
+            "hearing_aid",
         )
+        data, invalid_bools = self._cast_bools(data, fields_to_cast)
         if invalid_bools:
-            raise ValueError(
-                f"Failed to add LSB data to {self.__class__.__name__} response: "
-                "one or more boolean fields for the LSB response contain "
-                f"values other than ('yes', 'no', 'true', 'false', 0, 1): {invalid_bools!s}."
+            raise errors.InvalidValueError(
+                (
+                    f"One or more boolean fields for {self._task_name}.lsb data contain "
+                    f"values other than ('yes', 'no', 'true', 'false', 0, 1): {invalid_bools!r}"
+                ),
+                task=self._task_name,
+                response_id=response_id,
             )
         # Check for missing required fields
         required_fields = [
@@ -70,11 +81,15 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             required_fields.append("vision_aid")
         if "vision_aid" in data and data["vision_aid"]:
             required_fields.append("vision_fully_corrected")
-        missing = self._find_missing_keys(data, required_fields)
-        if missing:
-            raise KeyError(
-                f"Failed to add LSB data to {self.__class__.__name__} response: "
-                f"missing key(s): {missing!s} for LSB response."
+        if missing := self._find_missing_keys(data, required_fields):
+            raise errors.MissingKeysError(
+                (
+                    f"Failed to add {self._task_name}.lsb data: "
+                    f"missing key(s) {missing!r}"
+                ),
+                task=self._task_name,
+                missing_keys=missing,
+                response_id=response_id,
             )
         # Extract residencies
         residencies_d: dict[int, tuple[str, str, str]] = dict()
@@ -84,33 +99,44 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     i = key.split("-")[1]
                     int(i)
                 except IndexError:
-                    raise KeyError(
-                        f"Failed to add LSB data to {self.__class__.__name__} response: "
-                        f"invalid, non-indexed key '{key}' for residencies field on LSB response."
+                    raise errors.InvalidKeyError(
+                        (
+                            f"Failed to add {self._task_name}.lsb data: invalid, non-indexed "
+                            f"key '{key}' for 'residencies-' field"
+                        ),
+                        task=self._task_name,
+                        response_id=response_id,
                     )
                 except ValueError:
-                    raise KeyError(
-                        f"Failed to add LSB data to {self.__class__.__name__} response: "
-                        f"invalid, non-integer index '{i}' for residencies field on LSB response."
+                    raise errors.InvalidKeyError(
+                        (
+                            f"Failed to add {self._task_name}.lsb data: invalid, non-integer "
+                            f"index '{i}' for 'residencies-' field"
+                        ),
+                        task=self._task_name,
+                        response_id=response_id,
                     )
                 required_fields = (
                     f"residencies-{i}-from",
                     f"residencies-{i}-to",
                 )
-                missing = self._find_missing_keys(data, required_fields)
-                if missing:
-                    raise KeyError(
-                        f"Failed to add resiency data to {self.__class__.__name__} response: "
-                        f"missing key(s): {missing!s} for LSB response."
-                        f"\nDATA:\n"
-                        f"{data!r}"
+                if missing := self._find_missing_keys(data, required_fields):
+                    raise errors.MissingKeysError(
+                        (
+                            f"Failed to add {self._task_name}.lsb.residencies data: "
+                            f"missing key(s) {missing!s}"
+                        ),
+                        task=self._task_name,
+                        response_id=response_id,
                     )
                 if (
                     data[key].strip()
-                    and data[f"residencies-{i}-from"].strip()
-                    and data[f"residencies-{i}-to"].strip()
+                    or data[f"residencies-{i}-from"].strip()
+                    or data[f"residencies-{i}-to"].strip()
                 ):
-                    # Only add if it's not actually an empty row
+                    # Only add if it's not actually an empty row, but be happy
+                    # enough here with at least one of them being non-empty so
+                    # that we hit validation errors later if applicable.
                     residencies_d[int(i)] = (
                         data[key],
                         data[f"residencies-{i}-from"] + "-01",
@@ -137,7 +163,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             and not data["vision_aid"]
         ):
             del data["vision_fully_corrected"]
-        self.logger.debug(f"... cleaned data: {data}")
+        self.logger.debug(f"... cleaned data={data!r}")
         # Construct the LSB response object
         lsb = LsbqeTaskLsb(
             sex=data["sex"],
@@ -165,25 +191,25 @@ class LsbqeTaskAPI(ResearchTaskAPI):
     def add_ldb(self, response_id: AnyUUID, data: dict[str, Any]) -> None:  # noqa: C901
         """Add LDB data to the response with id *response_id*."""
         response_id = self._cast_uuid(response_id)
+        self._response_exists_or_fail(response_id)
         self.logger.info(
-            f"Adding LDB data for {self.__class__.__name__} response with id {response_id}.."
+            f"Adding {self._task_name}.ldb response with id {response_id}.."
         )
-        if response_id not in self._response_data:
-            raise ValueError(
-                f"Failed to add LDB data to {self.__class__.__name__} response with id "
-                f"{response_id}: no response with this id in progress."
-            )
-        self.logger.debug(f"... ldb data: {data}")
+        self.logger.debug(f"... data={data!r}")
         # Make booleans
-        data, invalid_bools = self._cast_bools(
-            data,
-            ("father_not_applicable", "mother_not_applicable"),
+        fields_to_cast = (
+            "father_not_applicable",
+            "mother_not_applicable",
         )
+        data, invalid_bools = self._cast_bools(data, fields_to_cast)
         if invalid_bools:
-            raise ValueError(
-                f"Failed to add LDB data to {self.__class__.__name__} response: "
-                "one or more boolean fields for the LDB response contain "
-                f"values other than ('yes', 'no', 'true', 'false', 0, 1): {invalid_bools!s}"
+            raise errors.InvalidValueError(
+                (
+                    f"One or more boolean fields for {self._task_name}.ldb data contain "
+                    f"values other than ('yes', 'no', 'true', 'false', 0, 1): {invalid_bools!r}"
+                ),
+                task=self._task_name,
+                response_id=response_id,
             )
         # Supply defaults for father/mother_not_applicable
         if "father_not_applicable" not in data:
@@ -212,11 +238,15 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     "mother_other_languages",
                 )
             )
-        missing = self._find_missing_keys(data, required_fields)
-        if missing:
-            raise KeyError(
-                f"Failed to add LDB data to {self.__class__.__name__} response: "
-                f"missing key(s): {missing!s} for LDB response."
+        if missing := self._find_missing_keys(data, required_fields):
+            raise errors.MissingKeysError(
+                (
+                    f"Failed to add {self._task_name}.ldb data: "
+                    f"missing key(s) {missing!r}"
+                ),
+                task=self._task_name,
+                missing_keys=missing,
+                response_id=response_id,
             )
         # Prepare parental information
         parent_info: list[LsbqeParentInformation] = []
@@ -246,16 +276,22 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     i = key.split("-")[1]
                     int(i)
                 except IndexError:
-                    raise KeyError(
-                        f"Failed to add LDB data to {self.__class__.__name__} response: "
-                        f"invalid, non-indexed key '{key}' for languages_spoken field on "
-                        "LDB response."
+                    raise errors.InvalidKeyError(
+                        (
+                            f"Failed to add {self._task_name}.ldb data: invalid, non-indexed "
+                            f"key '{key}' for 'languages_spoken-' field"
+                        ),
+                        task=self._task_name,
+                        response_id=response_id,
                     )
                 except ValueError:
-                    raise KeyError(
-                        f"Failed to add LDB data to {self.__class__.__name__} response: "
-                        f"invalid, non-integer index '{i}' for languages_spoken field on "
-                        "LDB response."
+                    raise errors.InvalidKeyError(
+                        (
+                            f"Failed to add {self._task_name}.ldb data: invalid, non-integer "
+                            f"index '{i}' for 'languages_spoken-' field"
+                        ),
+                        task=self._task_name,
+                        response_id=response_id,
                     )
                 required_fields = [
                     f"languages_spoken-{i}-source",
@@ -267,80 +303,91 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     f"languages_spoken-{i}-usage_listening",
                     f"languages_spoken-{i}-usage_speaking",
                 ]
-                if (
-                    f"languages_spoken-{i}-source" in data
-                    and "o" in data[f"languages_spoken-{i}-source"]
-                ):
-                    required_fields.append(f"languages_spoken-{i}-source_other")
-                missing = self._find_missing_keys(data, required_fields)
-                if missing:
-                    raise KeyError(
-                        f"Failed to add LDB data to {self.__class__.__name__} response: "
-                        f"missing key(s): {missing!s} for LDB response."
+                if f"languages_spoken-{i}-source" in data:
+                    try:
+                        data[f"languages_spoken-{i}-source"] = [
+                            s.lower() for s in data[f"languages_spoken-{i}-source"]
+                        ]
+                    except Exception:
+                        pass
+                    if "o" in data[f"languages_spoken-{i}-source"]:
+                        required_fields.append(f"languages_spoken-{i}-source_other")
+                if missing := self._find_missing_keys(data, required_fields):
+                    raise errors.MissingKeysError(
+                        (
+                            f"Failed to add {self._task_name}.ldb.languages_spoken data: "
+                            f"missing key(s) {missing!r}"
+                        ),
+                        task=self._task_name,
+                        missing_keys=missing,
+                        response_id=response_id,
                     )
                 source_other = None
                 if "o" in data[f"languages_spoken-{i}-source"]:
                     source_other = data[f"languages_spoken-{i}-source_other"].strip()
                     if not source_other:
-                        exc = ValueError(
-                            f"Failed to add LDB data to {self.__class__.__name__} response: "
-                            f"required field `languages_spoken-{i}-source_other` is empty."
+                        raise errors.InvalidValueError(
+                            (
+                                f"Failed to add {self._task_name}.ldb.languages_spoken data: "
+                                f"required field `languages_spoken-{i}-source_other` is empty"
+                            ),
+                            task=self._task_name,
+                            response_id=response_id,
                         )
                 breaks = 0
-                try:
-                    breaks += int(data[f"languages_spoken-{i}-break_years"]) * 12
-                    breaks += int(data[f"languages_spoken-{i}-break_months"])
-                except ValueError:
-                    years = data[f"languages_spoken-{i}-break_years"]
-                    months = data[f"languages_spoken-{i}-break_months"]
-                    raise ValueError(
-                        f"Failed to add LDB data to {self.__class__.__name__} response: "
-                        f"fields `languages_spoken-{i}-break_years` and/or "
-                        "`languages_spoken-{i}-break_months` contain a value that cannot "
-                        f"be cast to type *int* (values: {years!r}, {months!r})."
+                fields_to_cast = (
+                    f"languages_spoken-{i}-break_years",
+                    f"languages_spoken-{i}-break_months",
+                )
+                data, invalid_ints = self._cast_ints(data, fields_to_cast)
+                if invalid_ints:
+                    raise errors.InvalidValueError(
+                        (
+                            f"One or more integer fields for {self._task_name}.ldb.languages_spoken"
+                            f" data contain values that cannot be cast to int: {invalid_ints!r}"
+                        ),
+                        task=self._task_name,
+                        response_id=response_id,
                     )
-                try:
-                    v_speak = data[f"languages_spoken-{i}-proficiency_speaking"]
-                    v_under = data[f"languages_spoken-{i}-proficiency_understanding"]
-                    prof_speak = float(v_speak)
-                    prof_under = float(v_under)
-                    prof_read = v_read = None
-                    prof_write = v_write = None
-                    if f"languages_spoken-{i}-proficiency_reading" in data:
-                        v_read = data[f"languages_spoken-{i}-proficiency_reading"]
-                        prof_read = float(v_read)
-                    if f"languages_spoken-{i}-proficiency_writing" in data:
-                        v_write = data[f"languages_spoken-{i}-proficiency_writing"]
-                        prof_write = float(v_write)
-                except ValueError:
-                    exc = ValueError(
-                        f"Failed to add LDB data to {self.__class__.__name__} response: "
-                        f"one or more of the `languages_spoken-{i}-proficiency_*` fields "
-                        "contain a value that cannot be cast to type *int* "
-                        f"(values: {v_speak!r}, {v_under!r}, {v_read}, {v_write})."
+                breaks += data[f"languages_spoken-{i}-break_years"] * 12
+                breaks += data[f"languages_spoken-{i}-break_months"]
+                fields_to_cast = (
+                    f"languages_spoken-{i}-proficiency_speaking",
+                    f"languages_spoken-{i}-proficiency_understanding",
+                    f"languages_spoken-{i}-proficiency_reading",
+                    f"languages_spoken-{i}-proficiency_writing",
+                    f"languages_spoken-{i}-usage_speaking",
+                    f"languages_spoken-{i}-usage_listening",
+                    f"languages_spoken-{i}-usage_reading",
+                    f"languages_spoken-{i}-usage_writing",
+                )
+                data, invalid_floats = self._cast_floats(data, fields_to_cast)
+                if invalid_floats:
+                    raise errors.InvalidValueError(
+                        (
+                            f"One or more float fields for {self._task_name}.ldb.languages_spoken"
+                            " data contain values that cannot be cast to float:"
+                            f" {invalid_floats!r}"
+                        ),
+                        task=self._task_name,
+                        response_id=response_id,
                     )
-                    self.logger.error(str(exc))
-                    raise exc
-                try:
-                    v_speak = data[f"languages_spoken-{i}-usage_speaking"]
-                    v_listn = data[f"languages_spoken-{i}-usage_listening"]
-                    usage_speak = float(v_speak)
-                    usage_listn = float(v_listn)
-                    usage_read = v_read = None
-                    usage_write = v_write = None
-                    if f"languages_spoken-{i}-usage_reading" in data:
-                        v_read = data[f"languages_spoken-{i}-usage_reading"]
-                        usage_read = float(v_read)
-                    if f"languages_spoken-{i}-usage_writing" in data:
-                        v_write = data[f"languages_spoken-{i}-usage_writing"]
-                        usage_write = float(v_write)
-                except ValueError:
-                    raise ValueError(
-                        f"Failed to add LDB data to {self.__class__.__name__} response: "
-                        f"one or more of the `languages_spoken-{i}-usage_*` fields "
-                        "contain a value that cannot be cast to type *int* "
-                        f"(values: {v_speak!r}, {v_listn!r}, {v_read}, {v_write})."
-                    )
+                prof_speak = data[f"languages_spoken-{i}-proficiency_speaking"]
+                prof_under = data[f"languages_spoken-{i}-proficiency_understanding"]
+                prof_read = None
+                prof_write = None
+                usage_speak = data[f"languages_spoken-{i}-usage_speaking"]
+                usage_listn = data[f"languages_spoken-{i}-usage_listening"]
+                usage_read = None
+                usage_write = None
+                if f"languages_spoken-{i}-proficiency_reading" in data:
+                    prof_read = data[f"languages_spoken-{i}-proficiency_reading"]
+                if f"languages_spoken-{i}-proficiency_writing" in data:
+                    prof_write = data[f"languages_spoken-{i}-proficiency_writing"]
+                if f"languages_spoken-{i}-usage_reading" in data:
+                    usage_read = data[f"languages_spoken-{i}-usage_reading"]
+                if f"languages_spoken-{i}-usage_writing" in data:
+                    usage_write = data[f"languages_spoken-{i}-usage_writing"]
                 language_spoken = LsbqeLanguageSpoken(
                     name=data[f"languages_spoken-{i}-name"],
                     source_home=("h" in data[f"languages_spoken-{i}-source"]),
@@ -364,9 +411,170 @@ class LsbqeTaskAPI(ResearchTaskAPI):
         self.set_location(f"club.html?instance={response_id}")
 
     @ResearchTaskAPI.exposed
-    def add_club(self, response_id: AnyUUID, data: dict[str, Any]) -> None:
+    def add_club(  # noqa: C901
+        self, response_id: AnyUUID, data: dict[str, Any]
+    ) -> None:
         """Add CLUB data to the response with id *response_id*."""
-        ...
+        response_id = self._cast_uuid(response_id)
+        self._response_exists_or_fail(response_id)
+        self.logger.info(
+            f"Adding {self._task_name}.club data to response with id {response_id}.."
+        )
+        self.logger.debug(f"... data={data}")
+        # Check for missing fields
+        always_required = (
+            "life_stage-infancy_age",
+            "life_stage-nursery_age",
+            "life_stage-primary_age",
+            "life_stage-secondary_age",
+        )
+        maybe_na = [
+            "people_current-parents",
+            "people_current-children",
+            "people_current-siblings",
+            "people_current-grandparents",
+            "people_current-other_relatives",
+            "people_current-partner",
+            "people_current-friends",
+            "people_current-flatmates",
+            "people_current-neighbours",
+            "people_childhood-parents",
+            "people_childhood-siblings",
+            "people_childhood-grandparents",
+            "people_childhood-other_relatives",
+            "people_childhood-friends",
+            "people_childhood-neighbours",
+            "situation-home",
+            "situation-school",
+            "situation-work",
+            "situation-socialising",
+            "situation-religion",
+            "situation-leisure",
+            "situation-commercial",
+            "situation-public",
+            "activity-reading",
+            "activity-emailing",
+            "activity-texting",
+            "activity-social_media",
+            "activity-notes",
+            "activity-internet",
+            "activity-praying",
+        ]
+        cs_fields = (
+            "code_switching-parents_and_family",
+            "code_switching-friends",
+            "code_switching-social_media",
+        )
+        for cs_field in cs_fields:
+            if cs_field in data or f"{cs_field}-not_applicable" in data:
+                # If any one is present, all are "maybe_na's"
+                maybe_na.extend(cs_fields)
+                break
+        # Cast booleans for -not_applicable options
+        fields_to_cast = (f"{field}-not_applicable" for field in maybe_na)
+        data, invalid_bools = self._cast_bools(data, fields_to_cast)
+        if invalid_bools:
+            raise errors.InvalidValueError(
+                (
+                    f"One or more boolean fields for {self._task_name}.club data contain "
+                    f"values other than ('yes', 'no', 'true', 'false', 0, 1): {invalid_bools!r}"
+                ),
+                task=self._task_name,
+                response_id=response_id,
+            )
+        # Set all maybe_na fields that are marked as N/A to None
+        for candidate in maybe_na:
+            na_option = f"{candidate}-not_applicable"
+            if na_option in data and data[na_option]:
+                data[candidate] = None
+        required_fields = maybe_na[:]
+        required_fields.extend(always_required)
+        if missing := self._find_missing_keys(data, required_fields):
+            raise errors.MissingKeysError(
+                (
+                    f"Failed to add {self._task_name}.club data: "
+                    f"missing key(s) {missing!r}"
+                ),
+                task=self._task_name,
+                missing_keys=missing,
+                response_id=response_id,
+            )
+        # Cast floats
+        fields_to_cast = [field for field in maybe_na if data[field] is not None]
+        fields_to_cast.append(always_required)
+        data, invalid_floats = self._cast_floats(data, fields_to_cast)
+        if invalid_floats:
+            raise errors.InvalidValueError(
+                (
+                    f"One or more float fields for {self._task_name}.club"
+                    f" data contain values that cannot be cast to float: {invalid_floats!r}"
+                ),
+                task=self._task_name,
+                response_id=response_id,
+            )
+        # Build CLUB components
+        life_stages = LsbqeTaskClubLifeStages(
+            infancy_age=data["life_stage-infancy_age"],
+            nursery_age=data["life_stage-nursery_age"],
+            primary_age=data["life_stage-primary_age"],
+            secondary_age=data["life_stage-secondary_age"],
+        )
+        people_current = LsbqeTaskClubPeopleCurrent(
+            parents=data["people_current-parents"],
+            children=data["people_current-children"],
+            siblings=data["people_current-siblings"],
+            grandparents=data["people_current-grandparents"],
+            other_relatives=data["people_current-other_relatives"],
+            partner=data["people_current-partner"],
+            friends=data["people_current-friends"],
+            flatmates=data["people_current-flatmates"],
+            neighbours=data["people_current-neighbours"],
+        )
+        people_childhood = LsbqeTaskClubPeopleChildhood(
+            parents=data["people_childhood-parents"],
+            siblings=data["people_childhood-siblings"],
+            grandparents=data["people_childhood-grandparents"],
+            other_relatives=data["people_childhood-other_relatives"],
+            friends=data["people_childhood-friends"],
+            neighbours=data["people_childhood-neighbours"],
+        )
+        situations = LsbqeTaskClubSituations(
+            home=data["situation-home"],
+            school=data["situation-school"],
+            work=data["situation-work"],
+            socialising=data["situation-socialising"],
+            religion=data["situation-religion"],
+            leisure=data["situation-leisure"],
+            commercial=data["situation-commercial"],
+            public=data["situation-public"],
+        )
+        activities = LsbqeTaskClubActivities(
+            reading=data["activity-reading"],
+            emailing=data["activity-emailing"],
+            texting=data["activity-texting"],
+            social_media=data["activity-social_media"],
+            notes=data["activity-notes"],
+            traditional_media=data["activity-traditional_media"],
+            internet=data["activity-internet"],
+            praying=data["activity-praying"],
+        )
+        code_switching = None
+        if cs_fields[0] in data:
+            code_switching = LsbqeTaskClubCodeSwitching(
+                parents_and_family=data["code_switching-parents_and_family"],
+                friends=data["code_switching-friends"],
+                social_media=data["code_switching-social_media"],
+            )
+        club = LsbqeTaskClub(
+            life_stages=life_stages,
+            people_current=people_current,
+            people_childhood=people_childhood,
+            situations=situations,
+            activities=activities,
+            code_switching=code_switching,
+        )
+        self._response_data[response_id]["club"] = club
+        self.set_location(f"end.html?instance={response_id}")
 
 
 # Required so importers know which class defines the API

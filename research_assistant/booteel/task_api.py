@@ -59,8 +59,10 @@ class ResearchTaskAPI(EelAPI):
     task_version: str
     # The relative path (directory name) under which the task's data should be stored.
     task_data_path: Path
+    # The non-qualified package name of the task (determined automatically).
+    _task_name: str
     # The qualified package name of the task (determined automatically).
-    _task_package: str
+    _task_qualname: str
     # Temporary, possibly incomplete, response data for collation before building
     # the final data model and storing it.
     _response_data: dict[UUID, dict[str, Any]]
@@ -78,7 +80,8 @@ class ResearchTaskAPI(EelAPI):
 
     def __init__(self):
         """Initialise the EelTaskAPI."""
-        self._task_package = self._find_parent_package()
+        self._task_name = self._find_parent_package_name()
+        self._task_qualname = self._find_parent_package_qualname()
         self._response_data = {}
         self._required_fields = self.response_class.get_required_fields()
         self._localisations_available = {}
@@ -105,10 +108,18 @@ class ResearchTaskAPI(EelAPI):
         cls.logger.exception(exc)
 
     @classmethod
-    def _find_parent_package(cls) -> str:
+    def _find_parent_package_qualname(cls) -> str:
         """Return the qualified name of the class's containing package."""
         hierarchy = cls.__module__.split(".")
         return ".".join(hierarchy[:-1])
+
+    @classmethod
+    def _find_parent_package_name(cls) -> str:
+        """Return the unqualified name of the class's containing package."""
+        hierarchy = cls.__module__.split(".")
+        if len(hierarchy) > 1:
+            return hierarchy[-2]
+        return ""
 
     @classmethod
     def _cast_uuid(cls, uuid: AnyUUID) -> UUID:  # noqa: C901
@@ -146,7 +157,8 @@ class ResearchTaskAPI(EelAPI):
         except (AttributeError, TypeError):
             pass
         raise errors.InvalidUUIDError(
-            f"Could not cast value {uuid!r} to UUID.", cls._find_parent_package()
+            f"Could not cast value {uuid!r} to UUID.",
+            task=cls._find_parent_package_name(),
         )
 
     @staticmethod
@@ -336,13 +348,13 @@ class ResearchTaskAPI(EelAPI):
         response_id = self._cast_uuid(response_id)
         return response_id in self._response_data
 
-    def _response_exists_or_raise(self, response_id: UUID):
+    def _response_exists_or_fail(self, response_id: UUID):
         """Raise ResponseNotFoundError if *response_id* does not exist."""
         if response_id not in self._response_data:
             raise errors.ResponseNotFoundError(
                 f"No response with id {response_id!s} found",
-                self._task_package,
-                response_id,
+                task=self._task_name,
+                response_id=response_id,
             )
 
     def set_location(self, location: str) -> None:
@@ -396,7 +408,7 @@ class ResearchTaskAPI(EelAPI):
             return self._localisations_available
 
         self._localisations_available = dict()
-        resource_target = ".".join((self._task_package, "localisations"))
+        resource_target = ".".join((self._task_qualname, "localisations"))
         for item in resources.contents(resource_target):
             if not (
                 resources.is_resource(resource_target, item)
@@ -490,13 +502,13 @@ class ResearchTaskAPI(EelAPI):
             pass
 
         if response_id:
-            self._response_exists_or_raise(response_id)
+            self._response_exists_or_fail(response_id)
             try:
                 label = self._response_data[response_id]["meta"].task_localisation
             except KeyError as e:
                 raise errors.ResponseCorruptedError(
                     f"Response with id {response_id!s} is missing the 'meta' key",
-                    task=self._task_package,
+                    task=self._task_name,
                     response_id=response_id,
                 ) from e
             except AttributeError as e:
@@ -505,7 +517,7 @@ class ResearchTaskAPI(EelAPI):
                         f"Response with id {response_id!s} is missing"
                         "the 'meta.task_localisaton' attribute"
                     ),
-                    task=self._task_package,
+                    task=self._task_name,
                     response_id=response_id,
                 ) from e
         else:
@@ -513,7 +525,7 @@ class ResearchTaskAPI(EelAPI):
 
         # Lazy-load localisation data if needed
         if force_reload or label not in self._localisation_data:
-            resource_target = ".".join((self._task_package, "localisations"))
+            resource_target = ".".join((self._task_qualname, "localisations"))
             try:
                 if force_reload or not self._localisations_available:
                     self.get_localisations(force_rediscovery=force_reload)
@@ -527,12 +539,12 @@ class ResearchTaskAPI(EelAPI):
                 self._localisation_data[label] = buffer
                 self.logger.debug(
                     f"Successfully hard-loaded localisation {label} data for "
-                    f"{self.__class__.__name__} from package {resource_target}."
+                    f"{self._task_name} from package {resource_target}."
                 )
             except ModuleNotFoundError as e:
                 raise errors.ResourceError(
                     f"The package {resource_target!r} was not found: {e.msg}",
-                    task=self._task_package,
+                    task=self._task_name,
                 ) from e
             except OSError as e:
                 raise errors.ResourceError(
@@ -540,7 +552,7 @@ class ResearchTaskAPI(EelAPI):
                         "An error occured while trying to access the resource "
                         f"'{resource_target!s}.{label!s}.json' for reading: {e!s}"
                     ),
-                    task=self._task_package,
+                    task=self._task_name,
                 ) from e
             except KeyError as e:
                 raise errors.ResourceError(
@@ -548,7 +560,7 @@ class ResearchTaskAPI(EelAPI):
                         "Could not hard-load localisation "
                         f"'{resource_target!s}.{label!s}': unknown localisation label"
                     ),
-                    task=self._task_package,
+                    task=self._task_name,
                 ) from e
             except (json.JSONDecodeError, AssertionError) as e:
                 msg = e.msg if isinstance(e, json.JSONDecodeError) else "invalid format"
@@ -557,7 +569,7 @@ class ResearchTaskAPI(EelAPI):
                         "Could not hard-load localisation "
                         f"'{resource_target!s}.{label!s}': {msg}"
                     ),
-                    task=self._task_package,
+                    task=self._task_name,
                 ) from e
 
         # Return appropriate sections of localisation data
@@ -586,7 +598,7 @@ class ResearchTaskAPI(EelAPI):
         Returns:
             On success, returns the UUID of the new response as a hex-string.
         """
-        self.logger.info(f"Creating new {self.__class__.__name__} response..")
+        self.logger.info(f"Creating new {self._task_name} response..")
         response_id = uuid1()
         self.logger.info(f"... response_id={response_id}")
         self.logger.debug(f"... data={data!r}")
@@ -599,10 +611,10 @@ class ResearchTaskAPI(EelAPI):
         if missing := self._find_missing_keys(data, required):
             raise errors.MissingKeysError(
                 (
-                    f"Failed to create new {self._task_package} response: "
-                    f"missing keys {missing!r}."
+                    f"Failed to create new {self._task_name} response: "
+                    f"missing key(s) {missing!r}."
                 ),
-                task=self._task_package,
+                task=self._task_name,
                 missing_keys=missing,
                 response_id=response_id,
             )
@@ -640,9 +652,9 @@ class ResearchTaskAPI(EelAPI):
                 not exist.
         """
         response_id = self._cast_uuid(response_id)
-        self._response_exists_or_raise(response_id)
+        self._response_exists_or_fail(response_id)
         self.logger.info(
-            f"Discarding {self.__class__.__name__} response with id {response_id}.."
+            f"Discarding {self._task_name} response with id {response_id}.."
         )
         del self._response_data[response_id]
         self.logger.debug("... success.")
@@ -664,9 +676,9 @@ class ResearchTaskAPI(EelAPI):
             ResponseStorageError: Raised if the response data cannot be written to file.
         """
         response_id = self._cast_uuid(response_id)
-        self._response_exists_or_raise(response_id)
+        self._response_exists_or_fail(response_id)
         self.logger.info(
-            f"Check completeness of {self.__class__.__name__} response with id {response_id}.."
+            f"Checking completeness of {self._task_name} response with id {response_id}.."
         )
         for field in self._required_fields:
             if field not in self._response_data[response_id]:
@@ -681,9 +693,9 @@ class ResearchTaskAPI(EelAPI):
     def store(self, response_id: AnyUUID) -> Literal[True] | None:
         """Submit a complete response to long-term storage."""
         response_id = self._cast_uuid(response_id)
-        self._response_exists_or_raise(response_id)
+        self._response_exists_or_fail(response_id)
         self.logger.info(
-            f"Storing data for {self.__class__.__name__} response with id {response_id}.."
+            f"Storing data for {self._task_name} response with id {response_id}.."
         )
         response = self.response_class(**self._response_data[response_id])
         json = response.json(indent=4)
@@ -700,7 +712,7 @@ class ResearchTaskAPI(EelAPI):
             self.logger.debug("... failed.")
             raise errors.ResponseStorageError(
                 f"Could not store response with id {response_id}: {e!s}",
-                task=self._task_package,
+                task=self._task_name,
                 response_id=response_id,
             ) from e
         self.logger.debug("... success.")
@@ -715,18 +727,17 @@ class ResearchTaskAPI(EelAPI):
             You **must** call :func:`store()` before calling :func:`end()` to store the data.
         """
         response_id = self._cast_uuid(response_id)
-        self._response_exists_or_raise(response_id)
+        self._response_exists_or_fail(response_id)
         self.logger.info(
-            f"Redirect participant after {self.__class__.__name__} response with id {response_id}.."
+            f"Redirect participant after {self._task_name} response with id {response_id}.."
         )
         if not self.is_complete(response_id):
             raise errors.ResponseIncompleteError(
                 f"Cannot redirect participant: response with id {response_id} is incomplete.",
-                task=self._task_package,
+                task=self._task_name,
                 response_id=response_id,
             )
-        task_name = self._task_package.split(".")[-1]
-        if hasattr(config.sequences, task_name):
+        if hasattr(config.sequences, self._task_name):
             self.logger.debug("... sequencing information found.")
             response_meta = self._response_data[response_id]["meta"]
             query = booteel_utils.buildquery(
@@ -739,12 +750,16 @@ class ResearchTaskAPI(EelAPI):
                     "surveyDataForm.submit": "true",
                 }
             )
-            href = f"/app/{getattr(config.sequences, task_name)}/index.html?{query}"
+            href = (
+                f"/app/{getattr(config.sequences, self._task_name)}/index.html?{query}"
+            )
             self.logger.debug(f"... redirecting to: {href}")
             self.set_location(href)
         else:
             href = "/app/index.html"
-            self.logger.debug(f"... no sequencing information for {task_name!r} found.")
+            self.logger.debug(
+                f"... no sequencing information for {self._task_name!r} found."
+            )
             self.logger.debug(f"... redirecting to: {href}")
             self.set_location(href)
         self.discard(response_id)
