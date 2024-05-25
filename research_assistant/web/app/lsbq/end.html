@@ -43,7 +43,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <textarea class="form-control" style="min-height:15ex" id="participantNote" name="participantNote"></textarea>
+                        <textarea class="form-control" style="min-height:15ex" id="participantNote" name="participant_note"></textarea>
                     </div>
                 </div>
             </section>
@@ -64,11 +64,11 @@
         lart.forms.requireValidation(true);
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'notes']]);
+        lart.tr.loadFromEel('lsbq', eel.lsbqe_load_localisation, [instanceId, ['meta', 'base', 'notes']]);
         lart.tr.registerObserver('lsbq', 'surveyNotesForm');
         lart.tr.registerObserver('lsbq', 'lsbqSectionTitle');
         lart.tr.registerObserver('lsbq', 'lsbqAppTitle');
         lart.tr.registerObserver('lsbq', 'lsbqThankYouMessage');
     </script>
-    {{ lart_form_pipeline('surveyNotesForm', '_lsbq_setnotes') }}
+    {{ lart_form_pipeline('surveyNotesForm', 'lsbqe_add_note_and_end') }}
 {% endblock %}

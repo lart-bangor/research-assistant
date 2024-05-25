@@ -8,19 +8,19 @@ from ...booteel import errors
 from ...config import config
 from ...datamodels.types import AnyUUID
 from .datamodel import (
-    LsbqeLanguageSpoken,
-    LsbqeParentInformation,
-    LsbqeTaskLdb,
-    LsbqeTaskLsb,
-    LsbqeTaskResidency,
-    LsbqeTaskResponse,
-    LsbqeTaskClub,
-    LsbqeTaskClubActivities,
-    LsbqeTaskClubCodeSwitching,
-    LsbqeTaskClubLifeStages,
-    LsbqeTaskClubPeopleChildhood,
-    LsbqeTaskClubPeopleCurrent,
-    LsbqeTaskClubSituations,
+    LdbLanguageInformation,
+    LdbParentInformation,
+    LdbResponse,
+    LsbResponse,
+    LsbResidency,
+    LsbqeResponse,
+    ClubResponse,
+    ClubActivities,
+    ClubCodeSwitching,
+    ClubLifeStages,
+    ClubPeopleChildhood,
+    ClubPeopleCurrent,
+    ClubSituations,
 )
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
     """Eel API for the LSBQe Task."""
 
     logger = logger
-    response_class = LsbqeTaskResponse
+    response_class = LsbqeResponse
     task_version = "0.5.0a0"
     task_data_path = config.paths.data / "LSBQe"
     eel_namespace = "lsbqe"
@@ -145,7 +145,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
         residencies = []
         for _, (_location, _start, _end) in sorted(residencies_d.items()):
             residencies.append(
-                LsbqeTaskResidency(location=_location, start=_start, end=_end)
+                LsbResidency(location=_location, start=_start, end=_end)
             )
         # Remove dependent fields that ought to be left blank based on given answers
         if data["sex_other"] and data["sex"].lower() in ("m", "f"):
@@ -165,7 +165,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             del data["vision_fully_corrected"]
         self.logger.debug(f"... cleaned data={data!r}")
         # Construct the LSB response object
-        lsb = LsbqeTaskLsb(
+        lsb = LsbResponse(
             sex=data["sex"],
             sex_other=(data["sex_other"] if data["sex_other"] else None),
             occupation=data["occupation"],
@@ -249,9 +249,9 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                 response_id=response_id,
             )
         # Prepare parental information
-        parent_info: list[LsbqeParentInformation] = []
+        parent_info: list[LdbParentInformation] = []
         if not data["father_not_applicable"]:
-            father = LsbqeParentInformation(
+            father = LdbParentInformation(
                 parent="father",
                 occupation=data["father_occupation"],
                 first_language=data["father_first_language"],
@@ -260,7 +260,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             )
             parent_info.append(father)
         if not data["mother_not_applicable"]:
-            mother = LsbqeParentInformation(
+            mother = LdbParentInformation(
                 parent="mother",
                 occupation=data["mother_occupation"],
                 first_language=data["mother_first_language"],
@@ -269,7 +269,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             )
             parent_info.append(mother)
         # Extract languages_spoken-X data
-        languages_spoken: list[LsbqeLanguageSpoken] = []
+        languages_spoken: list[LdbLanguageInformation] = []
         for key in data.keys():
             if key.startswith("languages_spoken-") and key.endswith("-name"):
                 try:
@@ -388,7 +388,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     usage_read = data[f"languages_spoken-{i}-usage_reading"]
                 if f"languages_spoken-{i}-usage_writing" in data:
                     usage_write = data[f"languages_spoken-{i}-usage_writing"]
-                language_spoken = LsbqeLanguageSpoken(
+                language_spoken = LdbLanguageInformation(
                     name=data[f"languages_spoken-{i}-name"],
                     source_home=("h" in data[f"languages_spoken-{i}-source"]),
                     source_school=("s" in data[f"languages_spoken-{i}-source"]),
@@ -406,7 +406,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     usage_writing=usage_write,
                 )
                 languages_spoken.append(language_spoken)
-        ldb = LsbqeTaskLdb(languages_spoken=languages_spoken, parents=parent_info)
+        ldb = LdbResponse(languages=languages_spoken, parents=parent_info)
         self._response_data[response_id]["ldb"] = ldb
         self.set_location(f"club.html?instance={response_id}")
 
@@ -457,6 +457,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             "activity-texting",
             "activity-social_media",
             "activity-notes",
+            "activity-traditional_media",
             "activity-internet",
             "activity-praying",
         ]
@@ -513,13 +514,13 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                 response_id=response_id,
             )
         # Build CLUB components
-        life_stages = LsbqeTaskClubLifeStages(
+        life_stages = ClubLifeStages(
             infancy_age=data["life_stage-infancy_age"],
             nursery_age=data["life_stage-nursery_age"],
             primary_age=data["life_stage-primary_age"],
             secondary_age=data["life_stage-secondary_age"],
         )
-        people_current = LsbqeTaskClubPeopleCurrent(
+        people_current = ClubPeopleCurrent(
             parents=data["people_current-parents"],
             children=data["people_current-children"],
             siblings=data["people_current-siblings"],
@@ -530,7 +531,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             flatmates=data["people_current-flatmates"],
             neighbours=data["people_current-neighbours"],
         )
-        people_childhood = LsbqeTaskClubPeopleChildhood(
+        people_childhood = ClubPeopleChildhood(
             parents=data["people_childhood-parents"],
             siblings=data["people_childhood-siblings"],
             grandparents=data["people_childhood-grandparents"],
@@ -538,7 +539,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             friends=data["people_childhood-friends"],
             neighbours=data["people_childhood-neighbours"],
         )
-        situations = LsbqeTaskClubSituations(
+        situations = ClubSituations(
             home=data["situation-home"],
             school=data["situation-school"],
             work=data["situation-work"],
@@ -548,7 +549,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
             commercial=data["situation-commercial"],
             public=data["situation-public"],
         )
-        activities = LsbqeTaskClubActivities(
+        activities = ClubActivities(
             reading=data["activity-reading"],
             emailing=data["activity-emailing"],
             texting=data["activity-texting"],
@@ -560,12 +561,12 @@ class LsbqeTaskAPI(ResearchTaskAPI):
         )
         code_switching = None
         if cs_fields[0] in data:
-            code_switching = LsbqeTaskClubCodeSwitching(
+            code_switching = ClubCodeSwitching(
                 parents_and_family=data["code_switching-parents_and_family"],
                 friends=data["code_switching-friends"],
                 social_media=data["code_switching-social_media"],
             )
-        club = LsbqeTaskClub(
+        club = ClubResponse(
             life_stages=life_stages,
             people_current=people_current,
             people_childhood=people_childhood,
@@ -575,6 +576,60 @@ class LsbqeTaskAPI(ResearchTaskAPI):
         )
         self._response_data[response_id]["club"] = club
         self.set_location(f"end.html?instance={response_id}")
+
+    @ResearchTaskAPI.exposed
+    def add_note(self, response_id: AnyUUID, data: dict[str, Any]):
+        """Add participant note to the response with id *response_id*.
+
+        Note that this method does not redirect or confirm the addition of the note.
+        If unsuccessful either a `errors.MissingKeysError` or `errors.InvalidValueError`
+        will be raised. To add a participant note and store the complete response
+        in one go use the `add_note_and_end()` method instead.
+        """
+        response_id = self._cast_uuid(response_id)
+        self._response_exists_or_fail(response_id)
+        self.logger.info(
+            f"Adding {self._task_name}.note data to response with id {response_id}.."
+        )
+        self.logger.debug(f"... data={data}")
+        if missing := self._find_missing_keys(
+            data,
+            [
+                "participant_note",
+            ],
+        ):
+            raise errors.MissingKeysError(
+                (
+                    f"Failed to add {self._task_name}.note data: "
+                    f"missing key(s) {missing!r}"
+                ),
+                task=self._task_name,
+                missing_keys=missing,
+                response_id=response_id,
+            )
+        if isinstance(data["participant_note"], (bytes, bytearray)):
+            data["participant_note"] = data["participant_note"].decode("utf-8")
+        if not isinstance(data["participant_note"], str):
+            raise errors.InvalidValueError(
+                (
+                    f"One or more string fields for {self._task_name}.note data contain "
+                    f"non-string data: type(participant_note)={type(data['participant_note'])!r}"
+                ),
+                task=self._task_name,
+                response_id=response_id,
+            )
+        data["participant_note"] = data["participant_note"].strip()
+        if data["participant_note"]:
+            self._response_data[response_id]["note"] = data["participant_note"]
+        else:
+            self._response_data[response_id]["note"] = None
+
+    @ResearchTaskAPI.exposed
+    def add_note_and_end(self, response_id: AnyUUID, data: dict[str, Any]) -> str:
+        """Optionally add a participant note, store response, and direct to next task."""
+        self.add_note(response_id, data)
+        self.store(response_id)
+        self.end(response_id)
 
 
 # Required so importers know which class defines the API

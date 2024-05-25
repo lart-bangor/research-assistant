@@ -2,9 +2,9 @@
     "meta": {
         "versionId": "GswGer_Ger_DE",
         "versionName": "Alemannisch – Deutsch (Deutschland)",
-        "versionNumber": "0.3.5",
+        "versionNumber": "0.4.0",
         "author": "Florian Breit <f.breit@bangor.ac.uk>",
-        "date": "2023-03-06",
+        "date": "2024-05-24",
         "options": {
             "lsb_show_other_sex": true,
             "ldb_minimum_required_languages": 2,
@@ -15,6 +15,7 @@
     },
     "base": {
         "appTitle": [
+            "Language and Social Background Questionnaire",
             "Fragebogen zum sprachlichen und sozialen Hintergrund"
         ],
         "yes": [
@@ -66,6 +67,7 @@
             "Bitte bewegen Sie den Schieber wenigstens ein Mal."
         ],
         "ok": [
+            "OK",
             "OK"
         ]
     },
@@ -462,6 +464,7 @@
     },
     "club": {
         "secTitle": [
+            "Community Language Use Behaviour",
             "Gemeinschaftssprachverhalten"
         ],
         "onlyRML": [
@@ -473,6 +476,7 @@
             "Nur Deutsch"
         ],
         "halfHalf": [
+            "Half/Half",
             "Halb/Halb"
         ],
         "itemNotApplicableInfo": [
@@ -541,6 +545,19 @@
             "traditional_media": ["Fernseh, Filme, Radio"],
             "internet":          ["Internet"],
             "praying":           ["Beten"]
+        },
+        "codeSwitchingHint": [
+            "If you only know one language, select <i>N/A</i> for all items.",
+            "Falls Sie nur eine Sprache sprechen, kreuzen Sie für alle Situationen <i>entf.</i> an."
+        ],
+        "codeSwitchingInstructions": [
+            "Some people switch between the languages they know within a single conversation. For example, while speaking in one language they may use sentences or words from the other language. This is known as “code-switching”. Please indicate how often you engage in code-switching.",
+            "Manche Menschen wechseln in ein und der selben Unterhaltung zwischen den von ihnen beherrschten Sprachen. Zum Beispiel könnten sie sich in einer der Sprachen unterhalten und dabei Sätze oder Wörter einer anderen Sprache benutzen. Das nennt man “Code-Switching”. Bitte geben Sie an, wie häufig Sie Code-Switching betreiben."
+        ],
+        "codeSwitchingFields": {
+            "friends":          ["Freunde"],
+            "parentsAndFamily": ["Eltern und Familie"],
+            "socialMedia":      ["Soziale Medien"]
         }
     },
     "notes": {
@@ -549,6 +566,7 @@
             "Vielen Dank für das Ausfüllen des Fragebogen zum sprachlichen und sozialen Hintergrund!"
         ],
         "participantNoteInstructions": [
+            "Is there anything else that you think is important for us to know about you?",
             "Gibt es sonst noch irgendetwas, von dem Sie glauben, dass wir es über Sie wissen sollten?"
         ],
         "thankYouMessage": [

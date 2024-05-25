@@ -66,6 +66,9 @@ class ResearchTaskAPI(EelAPI):
     # Temporary, possibly incomplete, response data for collation before building
     # the final data model and storing it.
     _response_data: dict[UUID, dict[str, Any]]
+    # Log of response ids of responses that have been successfully stored during
+    # the lifetime of this ResearchTaskAPI instance.
+    _stored_responses: set[UUID]
     # A set of fields marked as required by the top-level Pydantic data model
     # (as specified in the *response_class*). This is used to determine when
     # temporary response data in *_response_data* is considered 'complete' for
@@ -82,10 +85,11 @@ class ResearchTaskAPI(EelAPI):
         """Initialise the EelTaskAPI."""
         self._task_name = self._find_parent_package_name()
         self._task_qualname = self._find_parent_package_qualname()
-        self._response_data = {}
+        self._response_data = dict()
+        self._stored_responses = set()
         self._required_fields = self.response_class.get_required_fields()
-        self._localisations_available = {}
-        self._localisation_data = {}
+        self._localisations_available = dict()
+        self._localisation_data = dict()
 
     @classmethod
     def exception_handler(cls, exc: Exception) -> None:
@@ -690,6 +694,12 @@ class ResearchTaskAPI(EelAPI):
         return True
 
     @EelAPI.exposed
+    def is_stored(self, response_id: AnyUUID) -> bool:
+        """Check whether response with id *response_id* has been stored."""
+        response_id = self._cast_uuid(response_id)
+        return response_id in self._stored_responses
+
+    @EelAPI.exposed
     def store(self, response_id: AnyUUID) -> Literal[True] | None:
         """Submit a complete response to long-term storage."""
         response_id = self._cast_uuid(response_id)
@@ -715,6 +725,7 @@ class ResearchTaskAPI(EelAPI):
                 task=self._task_name,
                 response_id=response_id,
             ) from e
+        self._stored_responses.add(response_id)
         self.logger.debug("... success.")
         return True
 
@@ -734,6 +745,12 @@ class ResearchTaskAPI(EelAPI):
         if not self.is_complete(response_id):
             raise errors.ResponseIncompleteError(
                 f"Cannot redirect participant: response with id {response_id} is incomplete.",
+                task=self._task_name,
+                response_id=response_id,
+            )
+        if not self.is_stored(response_id):
+            raise errors.ResponseNotStoredError(
+                f"Cannot redirect participant: response with id {response_id} has not been stored.",
                 task=self._task_name,
                 response_id=response_id,
             )

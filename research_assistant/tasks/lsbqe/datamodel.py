@@ -9,7 +9,7 @@ from ...datamodels import patterns as p
 from ...datamodels.models import ResponseBase
 
 
-class LsbqeTaskResidency(BaseModel):
+class LsbResidency(BaseModel):
     """Temporally limited residency of an LSBQe respondent."""
 
     location: constr(strip_whitespace=True, regex=p.LOCATION_NAME) = Field(
@@ -21,7 +21,7 @@ class LsbqeTaskResidency(BaseModel):
     end: date = Field("End date of residency.")
 
 
-class LsbqeTaskLsb(BaseModel):
+class LsbResponse(BaseModel):
     """Language and Social Background portion of the LSBQe."""
 
     sex: constr(
@@ -74,7 +74,7 @@ class LsbqeTaskLsb(BaseModel):
         description="Respondent's place of birth."
     )
 
-    residencies: conlist(item_type=LsbqeTaskResidency, unique_items=True) = Field(
+    residencies: conlist(item_type=LsbResidency, unique_items=True) = Field(
         description="Respondent's past residencies over 6 month."
     )
 
@@ -83,8 +83,8 @@ class LsbqeTaskLsb(BaseModel):
     )
 
 
-class LsbqeLanguageSpoken(BaseModel):
-    """Language spoken by an LSBQe respondent."""
+class LdbLanguageInformation(BaseModel):
+    """Information about a language spoken by an LSBQe respondent."""
 
     name: constr(strip_whitespace=True, regex=p.LANGUAGE_NAME) = Field(
         description="Name of the language."
@@ -139,7 +139,7 @@ class LsbqeLanguageSpoken(BaseModel):
     )
 
 
-class LsbqeParentInformation(BaseModel):
+class LdbParentInformation(BaseModel):
     """Background information about a parent."""
 
     parent: constr(strip_whitespace=True, regex=r"^(?:mother|father)$") = Field(
@@ -166,19 +166,19 @@ class LsbqeParentInformation(BaseModel):
     ] = Field(description="List of parent's other languages (if applicable).")
 
 
-class LsbqeTaskLdb(BaseModel):
+class LdbResponse(BaseModel):
     """Language and Dialect Background portion of the LSBQe."""
 
-    languages_spoken: conlist(
-        item_type=LsbqeLanguageSpoken, min_items=1, unique_items=True
+    languages: conlist(
+        item_type=LdbLanguageInformation, min_items=1, unique_items=True
     ) = Field(description="Languages spoken by the respondent.")
 
     parents: conlist(
-        item_type=LsbqeParentInformation, min_items=0, max_items=2, unique_items=True
+        item_type=LdbParentInformation, min_items=0, max_items=2, unique_items=True
     ) = Field(description="Information about respondent's parents.")
 
 
-class LsbqeTaskClubLifeStages(BaseModel):
+class ClubLifeStages(BaseModel):
     """Language use during different (early) life stages."""
 
     infancy_age: confloat(ge=0.0, le=100.0) = Field(
@@ -198,7 +198,7 @@ class LsbqeTaskClubLifeStages(BaseModel):
     )
 
 
-class LsbqeTaskClubPeopleCurrent(BaseModel):
+class ClubPeopleCurrent(BaseModel):
     """Language use with different groups of people, currently."""
 
     parents: Optional[confloat(ge=0.0, le=100.0)] = Field(
@@ -238,7 +238,7 @@ class LsbqeTaskClubPeopleCurrent(BaseModel):
     )
 
 
-class LsbqeTaskClubPeopleChildhood(BaseModel):
+class ClubPeopleChildhood(BaseModel):
     """Language use with different groups of people during childhood."""
 
     parents: Optional[confloat(ge=0.0, le=100.0)] = Field(
@@ -266,7 +266,7 @@ class LsbqeTaskClubPeopleChildhood(BaseModel):
     )
 
 
-class LsbqeTaskClubSituations(BaseModel):
+class ClubSituations(BaseModel):
     """Language use in different situations/settings."""
 
     home: Optional[confloat(ge=0.0, le=100.0)] = Field(
@@ -302,7 +302,7 @@ class LsbqeTaskClubSituations(BaseModel):
     )
 
 
-class LsbqeTaskClubActivities(BaseModel):
+class ClubActivities(BaseModel):
     """Language use for different activities."""
 
     reading: Optional[confloat(ge=0.0, le=100.0)] = Field(
@@ -338,7 +338,7 @@ class LsbqeTaskClubActivities(BaseModel):
     )
 
 
-class LsbqeTaskClubCodeSwitching(BaseModel):
+class ClubCodeSwitching(BaseModel):
     """Code-switching in different situations/with different groups of people."""
 
     parents_and_family: Optional[confloat(ge=0.0, le=100.0)] = Field(
@@ -354,29 +354,29 @@ class LsbqeTaskClubCodeSwitching(BaseModel):
     )
 
 
-class LsbqeTaskClub(BaseModel):
+class ClubResponse(BaseModel):
     """Community Language Use Behaviour portion of the LSBQe."""
 
-    life_stages: LsbqeTaskClubLifeStages
+    life_stages: ClubLifeStages
 
-    people_current: LsbqeTaskClubPeopleCurrent
+    people_current: ClubPeopleCurrent
 
-    people_childhood: LsbqeTaskClubPeopleChildhood
+    people_childhood: ClubPeopleChildhood
 
-    situations: LsbqeTaskClubSituations
+    situations: ClubSituations
 
-    activities: LsbqeTaskClubActivities
+    activities: ClubActivities
 
-    code_switching: Optional[LsbqeTaskClubCodeSwitching]
+    code_switching: Optional[ClubCodeSwitching]
 
 
-class LsbqeTaskResponse(ResponseBase):
-    """LSBQe Task Response."""
+class LsbqeResponse(ResponseBase):
+    """LSBQe Response."""
 
-    lsb: LsbqeTaskLsb
+    lsb: LsbResponse
 
-    ldb: LsbqeTaskLdb
+    ldb: LdbResponse
 
-    club: LsbqeTaskClub
+    club: ClubResponse
 
-    notes: Optional[str]
+    note: Optional[str]

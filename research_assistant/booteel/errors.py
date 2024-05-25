@@ -43,6 +43,10 @@ class ResponseIncompleteError(ResponseException):
     """Error indicating that some action cannot be taken because a Task Response is incomplete."""
 
 
+class ResponseNotStoredError(ResponseException):
+    """Error indicating that an action cannot be taken because a Response has not been stored."""
+
+
 class ResponseCorruptedError(ResponseException):
     """Error indicating that the response's temporary data are in a corrupted state.
 
