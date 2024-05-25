@@ -553,8 +553,8 @@
         ],
         "codeSwitchingFields": {
             "friends":          ["Freunde"],
-            "parentsAndFamily": ["Eltern und Familie"],
-            "socialMedia":      ["Soziale Medien"]
+            "parents_and_family": ["Eltern und Familie"],
+            "social_media":      ["Soziale Medien"]
         }
     },
     "notes": {

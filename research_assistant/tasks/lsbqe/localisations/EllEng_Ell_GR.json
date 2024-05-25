@@ -571,8 +571,8 @@
         ],
         "codeSwitchingFields": {
             "friends":          ["Φίλους"],
-            "parentsAndFamily": ["Γονείς και Οικογένεια"],
-            "socialMedia":      ["Μέσα Κοινωνικής Δικτύωσης"]
+            "parents_and_family": ["Γονείς και Οικογένεια"],
+            "social_media":      ["Μέσα Κοινωνικής Δικτύωσης"]
         }
     },
     "notes": {

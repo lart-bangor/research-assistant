@@ -561,8 +561,8 @@
         ],
         "codeSwitchingFields": {
             "friends":          ["Amici"],
-            "parentsAndFamily": ["Genitori e Famiglia"],
-            "socialMedia":      ["Social media"]
+            "parents_and_family": ["Genitori e Famiglia"],
+            "social_media":      ["Social media"]
         }
     },
     "notes": {

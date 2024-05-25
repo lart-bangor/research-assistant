@@ -559,9 +559,9 @@
             "Mae rhai pobl yn newid rhwng yr ieithoedd maen nhw'n eu hadnabod o fewn yr un sgwrs. Er enghraifft, wrth siarad un o eu iaith, gallant ddefnyddio brawddegau neu eiriau o'r iaith arall. Gelwir hyn yn “newid cod”. Nodwch pa mor aml rydych chi'n ymwneud â chyfnewid cod."
         ],
         "codeSwitchingFields": {
-            "friends":          ["Ffrindiau"],
-            "parentsAndFamily": ["Rhieni a Theulu"],
-            "socialMedia":      ["Cyfryngau cymdeithasol"]
+            "friends":            ["Ffrindiau"],
+            "parents_and_family": ["Rhieni a Theulu"],
+            "social_media":       ["Cyfryngau cymdeithasol"]
         }
     },
     "notes": {

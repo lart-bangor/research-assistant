@@ -325,7 +325,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
         "AToL-C": "atolc",
         "Conclusion Screen": "conclusion",
         "Consent Form": "consent",
-        "LSBQe": "lsbq",
+        "LSBQe": "lsbqe",
         "Memory Task": "memorytask",
     }
     agt: str = field(
@@ -356,7 +356,7 @@ class Sequences(DataclassDictMixin, DataclassDocMixin):
             "doc_values": _sequence_options,
         },
     )
-    lsbq: str = field(
+    lsbqe: str = field(
         default="",
         metadata={
             "doc_label": "Task following the LSBQe",
