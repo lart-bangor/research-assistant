@@ -2,9 +2,9 @@
     "meta": {
         "versionId": "LmoIta_Ita_IT",
         "versionName": "Lombard – Italiano (Italia)",
-        "versionNumber": "0.3.5",
+        "versionNumber": "0.4.0",
         "author": "Alessandro Arioli <a.arioli@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
-        "date": "2023-03-14",
+        "date": "2024-05-25",
         "options": {
             "lsb_show_other_sex": true,
             "ldb_minimum_required_languages": 2,
@@ -65,6 +65,10 @@
         "sliderFeedback": [
             "Please move the slider at least once.",
             "Si prega di spostare il cursore almeno una volta."
+        ],
+        "ok": [
+            "OK",
+            "OK"
         ]
     },
     "lsb": {
@@ -487,35 +491,35 @@
             "Indichi che varietà ha ascoltato o usato più spesso nelle seguenti fasi della Sua vita, in casa e fuori casa. "
         ],
         "lifeStageFields": {
-            "infancy":      ["Prima infanzia"],
-            "nurseryAge":   ["Periodo dell'asilo"],
-            "primaryAge":   ["Periodo della scuola elementare"],
-            "secondaryAge": ["Dagli 11 ai 15 anni"]
+            "infancy_age":   ["Prima infanzia"],
+            "nursery_age":   ["Periodo dell'asilo"],
+            "primary_age":   ["Periodo della scuola elementare"],
+            "secondary_age": ["Dagli 11 ai 15 anni"]
         },
-        "withPeopleNowInstructions": [
+        "peopleCurrentInstructions": [
             "Please indicate which language or dialect you generally use when speaking to the following people.",
             "Indichi che varietà usa di solito quando parla con le seguenti persone."
         ],
-        "withPeopleNowFields": {
+        "peopleCurrentFields": {
             "parents":          ["Genitori"],
             "children":         ["Figli"],
             "siblings":         ["Fratelli e sorelle"],
             "grandparents":     ["Nonni"],
-            "otherRelatives":   ["Altri parenti"],
+            "other_relatives":  ["Altri parenti"],
             "partner":          ["Partner"],
             "friends":          ["Amici"],
             "flatmates":        ["Coinquilini"],
             "neighbours":       ["Vicini di casa"]
         },
-        "withPeopleEarlyLifeInstructions": [
+        "peopleChildhoodInstructions": [
             "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people.",
             "Indichi, per quanto possa ricordare, che varietà usava solitamente tra i 6 e i 12 anni quando parlava con le seguenti persone."
         ],
-        "withPeopleEarlyLifeFields": {
+        "peopleChildhoodFields": {
             "parents":          ["Genitori"],
             "siblings":         ["Fratelli e sorelle"],
             "grandparents":     ["Nonni"],
-            "otherRelatives":   ["Altri parenti"],
+            "other_relatives":  ["Altri parenti"],
             "friends":          ["Amici"],
             "neighbours":       ["Vicini di casa"]
         },
@@ -538,14 +542,27 @@
             "Indichi che varietà usa di solito per le seguenti attività."
         ],
         "activityFields": {
-            "reading":          ["Leggere"],
-            "emailing":         ["E-mail"],
-            "texting":          ["Messaggi istantanei", "(sms, whatsapp, telegram, …)"],
-            "socialMedia":      ["Social media"],
-            "notes":            ["Appunti",             "(lista della spesa, promemoria, note, …)"],
-            "traditionalMedia": ["TV, film, radio"],
-            "internet":         ["Internet"],
-            "praying":          ["Pregare"]
+            "reading":           ["Leggere"],
+            "emailing":          ["E-mail"],
+            "texting":           ["Messaggi istantanei", "(sms, whatsapp, telegram, …)"],
+            "social_media":      ["Social media"],
+            "notes":             ["Appunti",             "(lista della spesa, promemoria, note, …)"],
+            "traditional_media": ["TV, film, radio"],
+            "internet":          ["Internet"],
+            "praying":           ["Pregare"]
+        },
+        "codeSwitchingHint": [
+            "If you only know one language, select <i>N/A</i> for all items.",
+            "Se conosci solo una lingua, seleziona <i>n/a</i> per tutti gli elementi."
+        ],
+        "codeSwitchingInstructions": [
+            "Some people switch between the languages they know within a single conversation. For example, while speaking in one language they may use sentences or words from the other language. This is known as “code-switching”. Please indicate how often you engage in code-switching.",
+            "Alcune persone passano da una lingua all'altra durante una singola conversazione. Ad esempio, mentre parlano in una lingua possono usare frasi o parole dell'altra lingua. Questo è noto come “commutazione di codice”. Si prega di indicare la frequenza con cui si effettua il commutazione di codice."
+        ],
+        "codeSwitchingFields": {
+            "friends":          ["Amici"],
+            "parentsAndFamily": ["Genitori e Famiglia"],
+            "socialMedia":      ["Social media"]
         }
     },
     "notes": {
