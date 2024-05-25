@@ -2,9 +2,9 @@
     "meta": {
         "versionId": "EllEng_Ell_GR",
         "versionName": "Ελληνικά – Αγγλικά (Ελλάδα)",
-        "versionNumber": "0.3.5",
+        "versionNumber": "0.4.0",
         "author": "Athanasia Papastergiou <a.papastergiou@bangor.ac.uk>",
-        "date": "2023-03-14",
+        "date": "2025-05-25",
         "options": {
             "lsb_show_other_sex": true,
             "ldb_minimum_required_languages": 2,
@@ -15,310 +15,411 @@
     },
     "base": {
         "appTitle": [
+            "Language and Social Background Questionnaire",
             "Ερωτηματολόγιο Γλωσσικού και Κοινωνικού Ιστορικού"
         ],
         "yes": [
+            "Yes",
             "Ναι"
         ],
         "no": [
+            "No",
             "Όχι"
         ],
         "next": [
+            "Next",
             "Επόμενο"
         ],
         "addLine": [
+            "Add line",
             "Πρόσθεσε γραμμή"
         ],
         "levelOfEducation1": [
-            "ΕΠΕΠ Επίπεδο 1",
+            "EQF Level 1",
             "Απολυτήριο Δημοτικού"
         ],
         "levelOfEducation2": [
-            "ΕΠΕΠ Επίπεδο 2-3",
+            "EQF Level 2-3",
             "Απολυτήριο Γυμνασίου, Πτυχίο Επαγγελματικής Ειδικότητας Εκπαίδευσης και Κατάρτισης Επιπέδου 3."
         ],
         "levelOfEducation3": [
-            "ΕΠΕΠ Επίπεδο 4",
+            "EQF Level 4",
             "Απολυτήριο Λυκείου, Απολυτήριο ΕΠΑ.Λ., Πτυχίο ΕΠΑ.Σ., Πτυχίο Επαγγελματικής Ειδικότητας Εκπαίδευσης και Κατάρτισης, Επιπέδου 4."
         ],
         "levelOfEducation4": [
-            "ΕΠΕΠ Επίπεδο 5-6",
+            "EQF Level 5-6",
             "Πτυχίο Ανώτατης Εκπαίδευσης, Δίπλωμα/Πτυχίο Ανωτέρας Σχολής, Πτυχίο Επαγγελματικής Ειδικότητας Εκπαίδευσης και Κατάρτισης Επιπέδου 5, Δίπλωμα Επαγγελματικής Ειδικότητας Εκπαίδευσης και Κατάρτισης Επιπέδου 5."
         ],
         "levelOfEducation5": [
-            "ΕΠΕΠ Επίπεδο 7-8",
+            "EQF Level 7-8",
             "Μεταπτυχιακό Δίπλωμα Εκπάιδευσης, Διδακτορικό Δίπλωμα."
         ],
         "notApplicableFull": [
+            "not applicable",
             "Δεν γνωρίζω"
         ],
         "notApplicableAbbr": [
+            "N/A",
             "Δεν γνωρίζω"
         ],
         "sliderFeedback": [
+            "Please move the slider at least once.",
             "Παρακαλώ μετακινήστε την οριζόντια γραμμή κύλισης τουλάχιστον μία φορά."
         ],
         "ok": [
+            "OK",
             "εντάξει"
         ]
     },
     "lsb": {
         "secTitle": [
+            "Language and Social Background",
             "Γλωσσικό και Κοινωνικό Ιστορικό"
         ],
         "sex": [
+            "Sex:",
             "Φύλο:"
         ],
         "sexFeedback": [
+            "Please select an option for <i>Sex</i>.",
             "Παρακαλώ επιλέξτε μία επιλογή για <i>Φύλο</i>."
         ],
         "female": [
+            "Female",
             "Θηλυκό"
         ],
         "male": [
+            "Male",
             "Αρσενικό"
         ],
+        "other": [
+            "Other",
+            "Άλλο"
+        ],
+        "otherFeedback": [
+            "Please briefly specify what other sex you identify with.",
+            "Προσδιορίστε εν συντομία με ποιο άλλο φύλο ταυτίζεστε."
+        ],
         "occupation": [
+            "Occupation:",
             "Επάγγελμα:"
         ],
         "occupationFeedback": [
+            "Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, …",
             "Παρακαλώ ονομάστε ή σύντομα περιγράψτε το επάγγελμά σας, π.χ. <i>Φοιτητής</i>, <i>Κομμωτής</i>, <i>Πωλητής</i>, …"
         ],
         "handedness": [
+            "Handedness:",
             "Προτίμηση χεριού:"
         ],
         "left": [
+            "Left",
             "Αριστερόχειρας"
         ],
         "right": [
+            "Right",
             "Δεξιόχειρας"
         ],
         "handednessFeedback": [
+            "Please indicate whether you are <i>left-</i> or <i>righthanded</i>.",
             "Παρακαλώ δηλώστε αν είστε <i>Αριστερόχειρας-</i> ή <i>Δεξιόχειρας</i>."
         ],
         "dateOfBirth": [
+            "Date of birth:",
             "Ημερομηνία Γέννησης:"
         ],
         "dateOfBirthFeedback": [
+            "Please give your <i>date of birth</i> (must be in the past).",
             "Παρακαλώ δηλώστε την <i>Ημερομηνία Γέννησής</i> σας (πρέπει να είναι στο παρελθόν)."
         ],
         "impairedHearing": [
+            "Do you have impaired hearing?",
             "Έχετε προβλήματα ακοής?"
         ],
         "impairedHearingFeedback": [
+            "Please indicate whether you have any difficulties with your hearing.",
             "Παρακαλώ δηλώστε αν έχετε προβλήματα με την ακοή σας."
         ],
         "hearingAid": [
+            "If <strong>yes</strong>, do you wear a hearing aid?",
             "Αν <strong>ναι</strong>, φοράτε ακουστικό βαρηκοΐας;"
         ],
         "hearingAidFeedback": [
+            "Please indicate whether you use a hearing aid or not.",
             "Παρακαλώ δηλώστε αν φοράτε ακουστικό βαρηκοΐας ή όχι."
         ],
         "visionImpairment": [
+            "Do you have impaired vision?",
             "Έχετε προβλήματα όρασης;"
         ],
         "visionImpairmentFeedback": [
+            "Please indicate whether you have a vision impairment or not.",
             "Παρακαλώ δηλώστε αν έχετε προβλήματα όρασης ή όχι."
         ],
         "visionAid": [
+            "If <strong>yes</strong>, do you wear glasses/contacts?",
             "Αν <strong>ναι</strong>, φοράτε γυαλιά/φακούς επαφής;"
         ],
         "visionAidFeedback": [
+            "Please indicate whether you use a vision aid such as glasses or contact lenses.",
             "Παρακαλώ δηλώστε αν χρησιμοποιείτε βοηθήματα χαμηλής όρασης όπως γυαλιά ή φακούς επαφής."
         ],
         "visionCorrected": [
+            "Do they correct your vision to normal?",
             "Διορθώνουν την όρασή σας;"
         ],
         "visionCorrectedFeedback": [
+            "Please indicate whether, using your vision aid, your vision is fully corrected to normal.",
             "Παρακαλώ δηλώστε αν χρησιμοποιώντας βοηθήματα χαμηλής όρασης, η όρασή σας διορθώνεται πλήρως."
         ],
         "placeOfBirth": [
+            "Place of birth:",
             "Τόπος γέννησης:"
         ],
         "placeOfBirthFeedback": [
+            "Please give your (approximate) <i>place of birth</i>, e.g. <i>Madrid, Spain</i>.",
             "Παρακαλώ δηλώστε (κατά προσέγγιση) <i>τόπο γέννησης</i>, π.χ. <i>Μαδρίτη, Ισπανία</i>."
         ],
         "approximateAreaSufficient": [
+            "Approximate area is sufficient.",
             "Τόπος κατά προσέγγιση είναι επαρκής"
         ],
         "residencies": [
+            "Where else have you lived for any significant period of time (&gt; 6 months)?",
             "Πού αλλού έχετε ζήσει για οποιοδήποτε σημαντικό χρονικό διάστημα (&gt; 6 μήνες)?"
         ],
         "placeName": [
+            "Place name",
             "Όνομα τόπου"
         ],
         "from": [
+            "From",
             "Από"
         ],
         "until": [
+            "Until",
             "Μέχρι"
         ],
         "levelOfEducation": [
+            "Please indicate the highest level of education you have achieved:",
             "Παρακαλώ δηλώστε το υψηλότερο επίπεδο εκπαίδευσης που έχετε ολοκληρώσει:"
         ],
         "levelOfEducationFeedback": [
+            "Please indicate the highest level of education from the list that you have achieved (or the approximate equivalent).",
             "Παρακαλώ δηλώστε το υψηλότερο επίπεδο εκπαίδευσης από τη λίστα που έχετε ολοκληρώσει (ή το αντίστοιχο κατά προσέγγιση)."
         ]
     },
     "ldb": {
         "secTitle": [
+            "Language and Dialect Background",
             "Ιστορικό Γλώσσας και Διαλέκτου"
         ],
         "languagesInstructions": [
-            "Απαριθμήστε όλες τις γλώσσες και τις διαλέκτους που μιλάτε και καταλαβαίνετε, συµπεριλαµβανοµένων [RML] και [MajorityLanguage], ανάλογα με το πόσο άνετοι νιώθετε όταν τις χρησιμοποιείτε:",
+            "List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:",
             "Απαριθμήστε όλες τις γλώσσες και τις διαλέκτους που μιλάτε και καταλαβαίνετε, συµπεριλαµβανοµένων των Ουαλικών και των Αγγλικών, ανάλογα με το πόσο άνετοι νιώθετε όταν τις χρησιμοποιείτε:"
         ],
         "languageName": [
+            "Language or dialect",
             "Γλώσσα ή διάλεκτος"
         ],
         "learnedWhere": [
+            "Where did you learn it?",
             "Πού την μάθατε;"
         ],
         "learnedAge": [
+            "At what age did you learn it?",
             "Σε ποια ηλικία την μάθατε;"
         ],
         "learnedBreaks": [
+            "Were there any significant periods in your life when you did not use this language?",
             "Υπήρχαν σημαντικά διαστήματα της ζωής σας που δεν χρησιμοποιούσατε αυτήν την γλώσσα;"
         ],
         "learnedAgeInfo": [
+            "If learned from birth enter “0”.",
             "Αν την μάθατε από την γέννα εισάγετε “0”."
         ],
         "learnedBreaksInfo": [
+            "Indicate duration in months/years.",
             "Δηλώστε διάρκει σε μήνες/χρόνια."
         ],
         "languageNameLabel": [
+            "Language name",
             "Όνομα γλώσσας"
         ],
         "languageNameFeedback": [
+            "Please give the name of a language or dialect (between 3 and 50 characters).",
             "Παρακαλώ δηλώστε το όνομα της γλώσσας ή διαλέκτου (μεταξύ 3 και 50 χαρακτήρων)."
         ],
         "atHome": [
+            "At home",
             "Στο σπίτι"
         ],
         "atSchool": [
+            "At school",
             "Στο σχολείο"
         ],
         "inCommunity": [
+            "In the community",
             "Στην κοινότητα"
         ],
         "other": [
+            "Other",
             "Αλλού"
         ],
         "learnedWhereLabel": [
+            "Learned where",
             "Πού την έμαθα"
         ],
         "learnedWhereFeedback": [
+            "Please select an option.",
             "Παρακαλώ επιλέξτε μία επιλογή."
         ],
         "learnedWhereOtherLabel": [
+            "<i>Please specify…</i>",
             "<i>Παρακαλώ διευκρινίστε…</i>"
         ],
         "learnedWhereOtherFeedback": [
+            "Please give a brief indication of where you learned the language or dialect.",
             "Παρακαλώ δώστε μία σύντομη ένδειξη του τόπου που μάθατε τη γλώσσα ή διάλεκτο."
         ],
         "learnedAgeLabel": [
+            "Learned from age",
             "Την έμαθα από την ηλικία"
         ],
         "learnedAgeFeedback": [
+            "Please indicate how old you were (in years) when you started to learn this language.",
             "Παρακαλώ δηλώστε πόσο χρονών ήσασταν (σε χρόνια) όταν ξεκινήσατε να μαθαίνετε αυτήν την γλώσσα."
         ],
         "learnedBreaksYearsLabel": [
+            "years",
             "χρόνια"
         ],
         "learnedBreaksYearsFeedback": [
+            "Value must be between 0-100.",
             "Η τιμή πρέπει να είναι μεταξύ 0-100."
         ],
         "learnedBreaksMonthsLabel": [
+            "months",
             "μήνες"
         ],
         "learnedBreaksMonthsFeedback": [
+            "Value must be between 0-12.",
             "Η τιμή πρέπει να είναι μεταξύ 0-12."
         ],
         "parentsInstructions": [
-            "Please indicate the highest level of education, the occupation, and the languages or dialects spoken by each of your parents:"
+            "Please indicate the highest level of education, the occupation, and the languages or dialects spoken by each of your parents:",
+            "Παρακαλούμε αναφέρετε το υψηλότερο επίπεδο εκπαίδευσης, το επάγγελμα και τις γλώσσες ή τις διαλέκτους που ομιλεί ο καθένας από τους γονείς σας:"
         ],
         "mother": [
+            "Mother",
             "Μητέρα"
         ],
         "notApplicableFull": [
+            "not applicable",
             "δεν ισχύει"
         ],
         "levelOfEducation": [
+            "Level of education:",
             "Επίπεδο εκπαίδευσης:"
         ],
         "levelOfEducationFeedbackMother": [
+            "Please indicate the highest level of education from the list that your <i>mother</i> has achieved (or the approximate equivalent).",
             "Παρακαλώ δηλώστε το υψηλότερο επίπεδο εκπαίδευσης από την λίστα που η <i>μητέρα</i> σας έχει ολοκληρώσει (ή το αντίστοιχο κατά προσέγγιση)."
         ],
         "occupation": [
+            "Occupation:",
             "Επάγγελμα:"
         ],
         "occupationFeedbackMother": [
+            "Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
             "Παρακαλώ ονομάστε ή σύντομα περιγράψτε το επάγγελμα της μητέρας σας, π.χ. <i>Φοιτητής, Κομμωτής, Πωλητής, …</i>"
         ],
         "firstLanguage": [
+            "First language:",
             "Πρώτη γλώσσα:"
         ],
         "secondLanguage": [
+            "Second language:",
             "Δεύτερη γλώσσα:"
         ],
         "otherLanguages": [
+            "Other language(s):",
             "Άλλη(ες) γλώσσα(ες):"
         ],
         "otherLanguagesInfo": [
+            "List additional languages separated by commas.",
             "Απαριθμήστε επιπρόσθετες γλώσσες χωρισμένες με κόμμα."
         ],
         "father": [
+            "Father",
             "Πατέρας"
         ],
         "levelOfEducationFeedbackFather": [
+            "Please indicate the highest level of education from the list that your <i>father</i> has achieved (or the approximate equivalent).",
             "Παρακαλώ δηλώστε το υψηλότερο επίπεδο εκπαίδευσης από την λίστα που ο <i>πατέρας</i> σας έχει ολοκληρώσει (ή το αντίστοιχο κατά προσέγγιση)."
         ],
         "occupationFeedbackFather": [
+            "Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
             "Παρακαλώ ονομάστε ή σύντομα περιγράψτε το επάγγελμα του πατέρα σας, π.χ. <i>Φοιτητής, Κομμωτής, Πωλητής, …</i>"
         ],
         "aboutLanguageX": [
+            "About <!-- ...[LanguageX] -->",
             "Σχετικά με την <!-- ...[LanguageX] -->"
         ],
         "aboutLanguageXInstr1": [
+            "Relative to the performance of a highly proficient speaker of <!-- ... [LanguageX], -->",
             "Σχετικά με την επίδοση ενός ομιλητή με υψηλή γνώση στην <!-- ... [LanguageX], -->"
         ],
         "aboutLanguageXInstr2": [
+            "rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. -->",
             "Αξιολογείστε το επίπεδο γνώσης σας για τις ακόλουθες δραστηριότητες που διεξάγονται στην <!-- ... [LanguageX]. -->"
         ],
         "noProficiency": [
+            "No Proficiency",
             "Καμία Γνώση"
         ],
         "highProficiency": [
+            "High Proficiency",
             "Υψηλή Γνώση"
         ],
         "speaking": [
+            "Speaking",
             "Ομιλία"
         ],
         "understanding": [
+            "Understanding",
             "Κατανόηση"
         ],
         "reading": [
+            "Reading",
             "Διάβασμα"
         ],
         "writing": [
+            "Writing",
             "Γράψιμο"
         ],
         "timeOfActivity": [
+            "Of the time you spend engaged in each of the following activities, how much of that time is carried out in <!-- ...[LanguageX]? -->",
             "Από τον χρόνο που αφιερώσατε σε καθεμία από τις ακόλουθες δραστηριότητες, πόσος διεξάχθηκε στην <!-- ...[LanguageX]? -->"
         ],
         "noneOfTheTime": [
+            "None of the time",
             "Ποτέ"
         ],
         "allOfTheTime": [
+            "All of the time",
             "Συνέχεια"
         ],
         "listening": [
+            "Listening",
             "Ακρόαση"
         ],
         "motherNotApplicableInfo": [
+            "Please mark this box <i>only</i> if you cannot answer questions about your mother (e.g. because you don't know them).",
             "Παρακαλώ συμπληρώσε αυτό το κουτί <i>μόνο</i> αν δεν μπορείτε να απαντήσετε τις ερωτήσεις για την μητέρα σας (π.χ. γιατί δεν τις γνωρίζετε)."
         ],
         "fatherNotApplicableInfo": [
+            "Please mark this box <i>only</i> if you cannot answer questions about your father (e.g. because you don't know them).",
             "Παρακαλώ συμπληρώσε αυτό το κουτί <i>μόνο</i> αν δεν μπορείτε να απαντήσετε τις ερωτήσεις για τον πατέρα σας (π.χ. γιατί δεν τις γνωρίζετε)."
         ],
         "languageListOptions": [
@@ -376,57 +477,64 @@
     },
     "club": {
         "secTitle": [
+            "Community Language Use Behaviour",
             "Συμπεριφορά Γλωσσικής Χρήσης της Κοινότητας"
         ],
         "onlyRML": [
-            "Μόνο [RML]",
+            "Only [RML]",
             "Μόνο Ελληνικά"
         ],
         "onlyMajorityLanguage": [
-            "Μόνο [MajorityLanguage]",
+            "Only [MajorityLanguage]",
             "Μόνο Αγγλικά"
         ],
         "halfHalf": [
+            "Half/Half",
             "Μισό/Μισό"
         ],
         "itemNotApplicableInfo": [
-            "Please mark this box <i>only</i> if you do not use either of these languages in the described context."
+            "Please mark this box <i>only</i> if you do not use either of these languages in the described context.",
+            "Παρακαλώ σημειώστε αυτό το πλαίσιο <i>μόνο</i> εάν δεν χρησιμοποιείτε καμία από αυτές τις γλώσσες στο περιγραφόμενο πλαίσιο."
         ],
         "lifeStageInstructions": [
+            "Please indicate which language or dialect you most frequently heard or used in the following life stages, both inside and outside home.",
             "Παρακαλώ δηλώστε ποια γλώσσα ή διάλεκτο ακούγατε πιο συχνά ή χρησιμοποιούσατε στα παρακάτω στάδια ζωής, και μέσα και έξω από το σπίτι."
         ],
         "lifeStageFields": {
-            "infancy":      ["Βρεφική ηλικία"],
-            "nurseryAge":   ["Νηπιακή ηλικία"],
-            "primaryAge":   ["Ηλικία Δημοτικού"],
-            "secondaryAge": ["Ηλικία Γυμνασίου"]
+            "infancy_age":   ["Βρεφική ηλικία"],
+            "nursery_age":   ["Νηπιακή ηλικία"],
+            "primary_age":   ["Ηλικία Δημοτικού"],
+            "secondary_age": ["Ηλικία Γυμνασίου"]
         },
-        "withPeopleNowInstructions": [
+        "peopleCurrentInstructions": [
+            "Please indicate which language or dialect you generally use when speaking to the following people.",
             "Παρακαλώ δηλώστε ποια γλώσσα ή διάλεκτο χρησιμοποιείτε γενικά όταν μιλάτε στους παρακάτω ανθρώπους."
         ],
-        "withPeopleNowFields": {
+        "peopleCurrentFields": {
             "parents":          ["Γονείς"],
             "children":         ["Παιδιά"],
             "siblings":         ["Αδέρφια"],
             "grandparents":     ["Παππούδες"],
-            "otherRelatives":   ["Άλλους συγγενείς"],
+            "other_relatives":  ["Άλλους συγγενείς"],
             "partner":          ["Σύντροφο"],
             "friends":          ["Φίλους"],
             "flatmates":        ["Συγκάτοικους"],
             "neighbours":       ["Γείτονες"]
         },
-        "withPeopleEarlyLifeInstructions": [
+        "peopleChildhoodInstructions": [
+            "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people.",
             "Παρακαλώ δηλώστε, εξ όσων γνωρίζετε, ποια γλώσσα ή διάλεκτο χρησιμοποιούσατε γενικά μεταξύ 6-12 ετών, όταν μιλούσατε στους παρακάτω ανθρώπους."
         ],
-        "withPeopleEarlyLifeFields": {
+        "peopleChildhoodFields": {
             "parents":          ["Γονείς"],
             "siblings":         ["Αδέρφια"],
             "grandparents":     ["Παππούδες"],
-            "otherRelatives":   ["Άλλους συγγενείς"],
+            "other_relatives":  ["Άλλους συγγενείς"],
             "friends":          ["Φίλους"],
             "neighbours":       ["Γείτονες"]
         },
         "situationInstructions": [
+            "Please indicate which language or dialect you generally use in the following situations.",
             "Παρακαλώ δηλώστε ποια γλώσσα ή διάλεκτο χρησιμοποιείτε γενικά στις ακόλουθες περιπτώσεις."
         ],
         "situationFields": {
@@ -440,30 +548,48 @@
             "public":       ["Δημόσιες σχέσεις",      "(υπηρεσίες υγείας, τράπεζες, κυβέρνηση, δήμος, …)"]
         },
         "activityInstructions": [
+            "Please indicate which language or dialect you generally use for the following activities.",
             "Παρακαλώ δηλώστε ποια γλώσσα ή διάλεκτο χρησιμοποιείτε γενικά για τις ακόλουθες δραστηριότητες."
         ],
         "activityFields": {
-            "reading":          ["Ανάγνωση"],
-            "emailing":         ["Αποστολή ηλεκτρονικού μηνύματος (email)"],
-            "texting":          ["Αποστολή μηνύματος (sms)"],
-            "socialMedia":      ["Μέσα Κοινωνικής Δικτύωσης"],
-            "notes":            ["Σημειώσεις",           "(λίστα για ψώνια, σημείωμα, σημειώσεις, …)"],
-            "traditionalMedia": ["Τηλεόραση, ταινίες, ράδιο"],
-            "internet":         ["Διαδίκτυο (Internet)"],
-            "praying":          ["Προσευχή"]
+            "reading":           ["Ανάγνωση"],
+            "emailing":          ["Αποστολή ηλεκτρονικού μηνύματος (email)"],
+            "texting":           ["Αποστολή μηνύματος (sms)"],
+            "social_media":      ["Μέσα Κοινωνικής Δικτύωσης"],
+            "notes":             ["Σημειώσεις",           "(λίστα για ψώνια, σημείωμα, σημειώσεις, …)"],
+            "traditional_media": ["Τηλεόραση, ταινίες, ράδιο"],
+            "internet":          ["Διαδίκτυο (Internet)"],
+            "praying":           ["Προσευχή"]
+        },
+        "codeSwitchingHint": [
+            "If you only know one language, select <i>N/A</i> for all items.",
+            "Εάν γνωρίζετε μόνο μία γλώσσα, επιλέξτε <i>Δεν γνωρίζω</i> για όλα τα στοιχεία."
+        ],
+        "codeSwitchingInstructions": [
+            "Some people switch between the languages they know within a single conversation. For example, while speaking in one language they may use sentences or words from the other language. This is known as “code-switching”. Please indicate how often you engage in code-switching.",
+            "Μερικοί άνθρωποι εναλλάσσονται μεταξύ των γλωσσών που ξέρουν σε μία μόνο συνομιλία. Για παράδειγμα, ενώ μιλούν σε μια γλώσσα μπορεί να χρησιμοποιούν προτάσεις ή λέξεις από την άλλη γλώσσα. Αυτό είναι γνωστό ως “εναλλαγή κώδικα”. Υποδείξτε πόσο συχνά κάνετε εναλλαγή κωδικών."
+        ],
+        "codeSwitchingFields": {
+            "friends":          ["Φίλους"],
+            "parentsAndFamily": ["Γονείς και Οικογένεια"],
+            "socialMedia":      ["Μέσα Κοινωνικής Δικτύωσης"]
         }
     },
     "notes": {
         "secTitle": [
+            "Thank you for completing the Language and Social Background Questionnaire!",
             "Ευχαριστούμε που συμπληρώσατε το Ερωτηματολόγιο Γλωσσικού και Κοινωνικού Ιστορικού (Περιφερειακές και μειονοτικές γλώσσες)!"
         ],
         "participantNoteInstructions": [
+            "Is there anything else that you think is important for us to know about you?",
             "Υπάρχει κάτι άλλο που θεωρείτε ότι είναι σημαντικό να ξέρουμε για σας;"
         ],
         "thankYouMessage": [
+            "Thank you for completing the background questionnaire! If you think there's anything else we should know about you or your background then you can use the box below to tell us about this. Then just click on the &ldquo;submit and continue&rdquo; button to save your data and continue with the next task.",
             "Ευχαριστούμε που συμπληρώσατε το ερωτηματολόγιο! Αν θεωρείτε ότι υπάρχει κάτι άλλο που θα έπρεπε να μάθουμε για εσάς και το ιστορικό σας τότε μπορείτε να χρησιμοποιήσετε το παρακάτω κουτί για να μας το πείτε. Μετά απλώς πατήστε το &ldquo;Υποβολή και Συνέχεια&rdquo; κουμπί για να αποθηκεύσετε τα δεδομένα σας και για να συνεχίσετε με την επόμενη δοκιμασία "
         ],
         "submitAndContinue": [
+            "Submit and Continue",
             "Υποβολή και Συνέχεια"
         ]
     }

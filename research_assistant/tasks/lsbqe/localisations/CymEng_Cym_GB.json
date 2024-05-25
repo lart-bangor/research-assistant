@@ -2,9 +2,9 @@
     "meta": {
         "versionId": "CymEng_Cym_GB",
         "versionName": "Cymraeg - Saesneg (Y Deyrnas Unedig)", 
-        "versionNumber": "0.3.5",
+        "versionNumber": "0.4.0",
         "author": "Florian Breit <f.breit@bangor.ac.uk>, Ianto Gruffydd <ianto.gruffydd@bangor.ac.uk>",
-        "date": "2023-03-14",
+        "date": "2024-05-25",
         "options": {
             "lsb_show_other_sex": true,
             "ldb_minimum_required_languages": 2,
@@ -523,6 +523,7 @@
             "neighbours":       ["Cymdogion"]
         },
         "situationInstructions": [
+            "Please indicate which language or dialect you generally use in the following situations.",
             "Nodwch pa iaith rydych yn ei defnyddio'n gyffredinol yn y sefyllfaoedd canlynol."
         ],
         "situationFields": {
@@ -536,6 +537,7 @@
             "public":       ["Materion cyhoeddus",  "(gwasanaethau gofal iechyd, banciau, llywodraeth, cyngor …)"]
         },
         "activityInstructions": [
+            "Please indicate which language or dialect you generally use for the following activities.",
             "Nodwch pa iaith rydych yn ei defnyddio'n gyffredinol yn y sefyllfaoedd canlynol."
         ],
         "activityFields": {

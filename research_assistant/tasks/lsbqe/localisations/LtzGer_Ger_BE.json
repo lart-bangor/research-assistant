@@ -516,6 +516,7 @@
             "neighbours":       ["Nachbarn"]
         },
         "situationInstructions": [
+            "Please indicate which language or dialect you generally use in the following situations.",
             "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen in folgenden Situationen benutzen."
         ],
         "situationFields": {
@@ -529,6 +530,7 @@
             "public":       ["Öffentliche Dienstleistungen",    "(Gesundheitsleistungen, Banken, Regierung, Gemeindeverwaltung)"]
         },
         "activityInstructions": [
+            "Please indicate which language or dialect you generally use for the following activities.",
             "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen für folgende Aktivitäten verwenden."
         ],
         "activityFields": {
