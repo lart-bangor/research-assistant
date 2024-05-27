@@ -1,0 +1,85 @@
+{
+    "meta": {
+        "versionId": "CymEng_Eng_GB.gnat.erp",
+        "versionName": "ERP-GNAT: Welsh – English (United Kingdom)",
+        "versionNumber": "0.5.0a0",
+        "author": "Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2023-09-29"
+    },
+    "base": {
+        "appTitle": [
+            "Informed Consent",
+            "Informed Consent - ERP-GNAT"
+        ],
+        "confirm": [
+            "Confirm",
+            "Confirm"
+        ]
+    },
+    "infoSheet": {
+        "secTitle": [
+            "Participant Information Sheet",
+            "Participant Information Sheet"
+        ],
+        "confirmLabel": [
+            "Confirm consent:",
+            "Confirm consent:"
+        ],
+        "confirmStatement": [
+            "Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you.",
+            "Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you."
+        ],
+        "confirmFeedback": [
+            "Please confirm that you consent to the above before beginning your participation in the study.",
+            "Please confirm that you consent to the above before beginning your participation in the study."
+        ],
+        "paragraphs": [
+            ["Study Title", "Reaction times and EEG recording of bilingual speakers"],
+            ["What is the purpose of the research?", "This study is part of a larger research project investigating the reaction times and EEG recordings of bilinguals in communities across Europe. The project aims to find out more about how bilinguals react to audio and visual stimuli in several areas across Europe, including Wales, Belgium and Italy."],
+            ["Why am I being invited to participate?", "You have been chosen because as a speaker of Welsh and English you will be able to understand audio stimuli in more than one language."],
+            ["Do I have to take part?", "It is up to you to decide whether or not to take part. If you do decide to take part you should indicate your agreement on the online consent form.<br />You can still withdraw at any time, and you do not need to give a reason."],
+            ["What am I being invited to do?", "You will be asked to react to some visual stimuli as well as to audio stimuli in both of the languages you speak, by pressing keys on a computer keyboard. While you are engaged in this task, an electroencephalography system will record your brain activity via electrodes placed on the surface of your scalp. The full procedure will take between one and a half and two hours to complete, and there are no other commitments or restrictions associated with participating."],
+            ["What are the possible disadvantages and risks of taking part?", "Participating in the research is not anticipated to cause you any disadvantages or discomfort beyond what you might experience in everyday life. Please note that some of the visual stimuli contain potentially unpleasant images (e.g. spiders), which some participants might find uncomfortable. Please let the researcher know if you think this might be an issue."],
+            ["What if something goes wrong?", "If you have any complaints about the project in the first instance you can contact any member of the research team.<br />If you feel your complaint has not been handled to your satisfaction you can contact Bangor University’s Governance Services to take your complaint further (see below)."],
+            ["Will my taking part in this project be kept confidential?", "All the information that we collect about you during the course of the research will be kept strictly confidential. <br />You will not be identified or identifiable in any reports or publications. Any data collected about you in the electronic questionnaire will be stored in a Bangor University computer protected by passwords and by other relevant security processes and technologies. <br/> Data may be shared in an anonymised form to allow reuse by other researchers. These anonymised data will not allow you to be identified or identifiable. <br /> We also ask that you do not disclose anything about what you did during this study to anyone outside of the research team. It is important that information regarding the nature of the research remains confidential."],
+            ["Will I be recorded, and how will the recorded media be used?", "You may be audio-recorded while taking part in the research. <br />If you happen to be recorded, you will be informed in details at the end of your participation."],
+            ["What type of information will be sought from me and why is the collection of this information relevant for achieving the research project’s objectives?", "The task will require you to react to different audio and visual stimuli while your EEG (electroencephalogram) is being recorded. The project is interested in your reaction times to these types of stimuli and in your brain activity while reactions take place."],
+            ["What will happen to the results of the research project?", "Results of the research will be published as quantitative data, which means that no single individual will be identified in any report or publication."],
+            ["Who is organising and funding the research?", "The project is a partnership involving <i>Dr Marco Tamburelli</i> and <i>Prof Guillaume Thierry</i> of Bangor University, and is funded by the UK’s Economic and Social Research Council."],
+            ["Who has ethically reviewed the project?", "This project has been ethically approved by the Research Ethics Committee in the College of Arts, Humanities and Business at Bangor University. <br />This is the body that caries out the ethics review procedure and monitors the application and delivery of the College’s and University’s Research Ethics Guidelines and Ethics Approval Procedures."],
+            ["Contacts for further information", "<i>Dr Marco Tamburelli</i> (Principal Investigator), School of Arts, Culture and Language, 39 College Road, Bangor University, UK. Tel: +44 (0)1248 38 2078, email: m.tamburelli@bangor.ac.uk <br /> The contact person for Bangor University’s Governance Services is <i>Lauren Roberts</i> who can be reached at the following address: Lauren Roberts, Governance Services, Bangor University, Bangor, Gwynedd, LL57 2DG, UK or via email: l.roberts@bangor.ac.uk"]
+        ]
+    },
+    "eligibilityCriteria": {
+        "secTitle": [
+            "Eligibility Criteria",
+            "Eligibility Criteria"
+        ],
+        "secInfo": [
+            "Please read the eligibility criteria below and confirm that you qualify. Thank you.",
+            "Please read the eligibility criteria below and confirm that you qualify. Thank you."
+        ],
+        "confirmLabel": [
+            "Confirm eligibility:",
+            "Confirm eligibility:"
+        ],
+        "confirmStatement": [
+            "I confirm that I meet the criteria above.",
+            "I confirm that I meet the criteria above."
+        ],
+        "confirmFeedback": [
+            "Please confirm that you are eligible to take part in this study.",
+            "Please confirm that you are eligible to take part in this study."
+        ],
+        "paragraphs": [
+            ["I am a speaker of English and Welsh."],
+            ["I am between 25 and 35 years old."],
+            ["I do not suffer from hearing impairments."],
+            ["I do not have any visual impairments (defined as a loss of sight that is not corrected by glasses or contacts)."],
+            ["I have never suffered a serious head injury."],
+            ["I have never been diagnosed with any neurological impairments."],
+            ["I am not currently under heavy medical treatment for a neurological condition."]
+        ]
+    }
+} 
+ 
