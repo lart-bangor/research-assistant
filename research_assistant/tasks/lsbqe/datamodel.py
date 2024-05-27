@@ -1,52 +1,79 @@
 """Data model for the LSBQe Task."""
-from datetime import date
-from typing import Optional
 
-from pydantic import (BaseModel, Field, PastDate, confloat, conint, conlist,
-                      constr)
+from datetime import date
+from typing import Any, Hashable, Optional
+
+from pydantic import BaseModel, Field, PastDate, StringConstraints
+from typing_extensions import Annotated
 
 from ...datamodels import patterns as p
 from ...datamodels.models import ResponseBase
+from ...datamodels.types import UniqueList
 
 
 class LsbResidency(BaseModel):
     """Temporally limited residency of an LSBQe respondent."""
 
-    location: constr(strip_whitespace=True, regex=p.LOCATION_NAME) = Field(
-        "Location (approx.) of residency."
-    )
+    location: Annotated[
+        str, StringConstraints(strip_whitespace=True, pattern=p.LOCATION_NAME)
+    ] = Field("Location (approx.) of residency.")
 
     start: PastDate = Field("Start date of residency.")
 
     end: date = Field("End date of residency.")
 
+    def __hash__(self) -> int:
+        """Return a hash computed from *location*, *start* and *end*."""
+        return hash((self.location, self.start, self.end))
+
+    def __eq__(self, other: Any) -> bool:
+        """Compare two instances of `LsbResidency` for equality.
+
+        They are considerd equal if all of *location*, *start* and *end*
+        compare equal.
+        """
+        if isinstance(other, self.__class__):
+            return (self.location, self.start, self.end) == (
+                other.location,
+                other.start,
+                other.end,
+            )
+        return NotImplemented
+
 
 class LsbResponse(BaseModel):
     """Language and Social Background portion of the LSBQe."""
 
-    sex: constr(
-        strip_whitespace=True,
-        to_lower=True,
-        min_length=1,
-        max_length=1,
-        regex=r"^[mfo]$",
-    ) = Field(description="Respondent's sex/gender.")
+    sex: Annotated[
+        str,
+        StringConstraints(
+            strip_whitespace=True,
+            to_lower=True,
+            min_length=1,
+            max_length=1,
+            pattern=r"^[mfo]$",
+        ),
+    ] = Field(description="Respondent's sex/gender.")
 
-    sex_other: Optional[constr(strip_whitespace=True, regex=p.SHORT_TEXT)] = Field(
-        description="Description of sex/gender if sex is 'other'."
-    )
+    sex_other: Optional[
+        Annotated[str, StringConstraints(strip_whitespace=True, pattern=p.SHORT_TEXT)]
+    ] = Field(None, description="Description of sex/gender if sex is 'other'.")
 
-    occupation: constr(strip_whitespace=True, min_length=1, regex=p.SHORT_TEXT) = Field(
-        description="Respondent's occupation."
-    )
+    occupation: Annotated[
+        str,
+        StringConstraints(strip_whitespace=True, min_length=1, pattern=p.SHORT_TEXT),
+    ] = Field(description="Respondent's occupation.")
 
-    handedness: constr(
-        strip_whitespace=True,
-        to_lower=True,
-        min_length=1,
-        max_length=1,
-        regex=r"^[rl]$",
-    ) = Field(description="Respondent's handedness.")
+    handedness: Annotated[
+        str,
+        StringConstraints(
+            strip_whitespace=True,
+            to_lower=True,
+            min_length=1,
+            max_length=1,
+            pattern=r"^[rl]$",
+        ),
+    ] = Field(description="Respondent's handedness.")
 
     date_of_birth: PastDate = Field(description="Respondent's date of birth.")
 
@@ -55,7 +82,8 @@ class LsbResponse(BaseModel):
     )
 
     hearing_aid: Optional[bool] = Field(
-        description="Whether a hearing aid is used, if respondent has a hearing aid."
+        None,
+        description="Whether a hearing aid is used, if respondent has a hearing aid.",
     )
 
     vision_impairment: bool = Field(
@@ -63,22 +91,26 @@ class LsbResponse(BaseModel):
     )
 
     vision_aid: Optional[bool] = Field(
-        description="Whether vision aids (glasses, contact lenses) are used, if respondent has a vision impairment."
+        None,
+        description=(
+            "Whether vision aids (glasses, contact lenses) are used, "
+            "if respondent has a vision impairment."
+        ),
     )
 
     vision_fully_corrected: Optional[bool] = Field(
-        description="Whether vision aid fully corrects vision, if used."
+        None, description="Whether vision aid fully corrects vision, if used."
     )
 
-    place_of_birth: constr(strip_whitespace=True, regex=p.LOCATION_NAME) = Field(
-        description="Respondent's place of birth."
-    )
+    place_of_birth: Annotated[
+        str, StringConstraints(strip_whitespace=True, pattern=p.LOCATION_NAME)
+    ] = Field(description="Respondent's place of birth.")
 
-    residencies: conlist(item_type=LsbResidency, unique_items=True) = Field(
+    residencies: UniqueList[LsbResidency] = Field(
         description="Respondent's past residencies over 6 month."
     )
 
-    education_level: conint(ge=1, le=5) = Field(
+    education_level: Annotated[int, Field(ge=1, le=5)] = Field(
         description="Respondent's education level."
     )
 
@@ -86,9 +118,9 @@ class LsbResponse(BaseModel):
 class LdbLanguageInformation(BaseModel):
     """Information about a language spoken by an LSBQe respondent."""
 
-    name: constr(strip_whitespace=True, regex=p.LANGUAGE_NAME) = Field(
-        description="Name of the language."
-    )
+    name: Annotated[
+        str, StringConstraints(strip_whitespace=True, pattern=p.LANGUAGE_NAME)
+    ] = Field(description="Name of the language.")
 
     source_home: bool = Field(description="Whether the language was learned at home.")
 
@@ -101,99 +133,172 @@ class LdbLanguageInformation(BaseModel):
     )
 
     source_other: Optional[
-        constr(strip_whitespace=True, min_length=1, regex=p.SHORT_TEXT)
-    ] = Field(description="If applicable, other source(s) of language acquisition.")
+        Annotated[
+            str,
+            StringConstraints(
+                strip_whitespace=True, min_length=1, pattern=p.SHORT_TEXT
+            ),
+        ]
+    ] = Field(
+        None, description="If applicable, other source(s) of language acquisition."
+    )
 
-    age: conint(ge=0, le=100) = Field(
+    age: Annotated[int, Field(ge=0, le=100)] = Field(
         description="Age at which the language was acquired."
     )
 
-    breaks: conint(ge=0) = Field(
+    breaks: Annotated[int, Field(ge=0)] = Field(
         description="Total duration for which language was not used in months."
     )
 
-    proficiency_speaking: confloat(ge=0.0, le=100.0) = Field(
+    proficiency_speaking: Annotated[float, Field(ge=0.0, le=100.0)] = Field(
         description="Proficiency in speaking language."
     )
-    proficiency_understanding: confloat(ge=0.0, le=100.0) = Field(
+    proficiency_understanding: Annotated[float, Field(ge=0.0, le=100.0)] = Field(
         description="Proficiency in understanding language."
     )
-    proficiency_reading: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proficiency in reading language."
+    proficiency_reading: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proficiency in reading language."
     )
-    proficiency_writing: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proficiency in writing language."
+    proficiency_writing: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proficiency in writing language."
     )
 
-    usage_speaking: confloat(ge=0.0, le=100.0) = Field(
+    usage_speaking: Annotated[float, Field(ge=0.0, le=100.0)] = Field(
         description="Proporition of use when speaking."
     )
-    usage_listening: confloat(ge=0.0, le=100.0) = Field(
+    usage_listening: Annotated[float, Field(ge=0.0, le=100.0)] = Field(
         description="Proportion of use when listening."
     )
-    usage_reading: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of use when reading."
+    usage_reading: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of use when reading."
     )
-    usage_writing: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of use when writing."
+    usage_writing: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of use when writing."
     )
+
+    def __property_values(self) -> tuple[Hashable, ...]:
+        return (
+            self.name,
+            self.source_home,
+            self.source_community,
+            self.source_other,
+            self.source_school,
+            self.age,
+            self.breaks,
+            self.proficiency_reading,
+            self.proficiency_speaking,
+            self.proficiency_understanding,
+            self.proficiency_writing,
+            self.usage_listening,
+            self.usage_reading,
+            self.usage_speaking,
+            self.usage_writing,
+        )
+
+    def __hash__(self) -> int:
+        """Return a hash computed from properties."""
+        return hash(self.__property_values())
+
+    def __eq__(self, other: Any) -> bool:
+        """Compare two instances of `LdbLanguageInformation` for equality.
+
+        They are considerd equal if all of properties
+        compare equal.
+        """
+        if isinstance(other, self.__class__):
+            return self.__property_values() == other.__property_values()
+        return NotImplemented
 
 
 class LdbParentInformation(BaseModel):
     """Background information about a parent."""
 
-    parent: constr(strip_whitespace=True, regex=r"^(?:mother|father)$") = Field(
-        description="Is this for 'mother' or 'father'?"
-    )
+    parent: Annotated[
+        str, StringConstraints(strip_whitespace=True, pattern=r"^(?:mother|father)$")
+    ] = Field(description="Is this for 'mother' or 'father'?")
 
-    occupation: constr(strip_whitespace=True, min_length=1, regex=p.SHORT_TEXT) = Field(
-        description="Parent's occupation."
-    )
+    occupation: Annotated[
+        str,
+        StringConstraints(strip_whitespace=True, min_length=1, pattern=p.SHORT_TEXT),
+    ] = Field(description="Parent's occupation.")
 
-    first_language: constr(
-        strip_whitespace=True, min_length=1, regex=p.LANGUAGE_NAME
-    ) = Field(description="Parent's first language.")
+    first_language: Annotated[
+        str,
+        StringConstraints(strip_whitespace=True, min_length=1, pattern=p.LANGUAGE_NAME),
+    ] = Field(description="Parent's first language.")
 
     second_language: Optional[
-        constr(strip_whitespace=True, min_length=1, regex=p.LANGUAGE_NAME)
-    ] = Field(description="Parent's second language (if applicable).")
+        Annotated[
+            str,
+            StringConstraints(
+                strip_whitespace=True, min_length=1, pattern=p.LANGUAGE_NAME
+            ),
+        ]
+    ] = Field(None, description="Parent's second language (if applicable).")
 
     other_languages: Optional[
-        constr(
-            strip_whitespace=True,
-            min_length=1,
+        Annotated[
+            str,
+            StringConstraints(
+                strip_whitespace=True,
+                min_length=1,
+            ),
+        ]
+    ] = Field(None, description="List of parent's other languages (if applicable).")
+
+    def __property_values(self) -> tuple[Hashable, ...]:
+        return (
+            self.parent,
+            self.occupation,
+            self.first_language,
+            self.second_language,
+            self.other_languages,
         )
-    ] = Field(description="List of parent's other languages (if applicable).")
+
+    def __hash__(self) -> int:
+        """Return a hash computed from properties."""
+        return hash(self.__property_values())
+
+    def __eq__(self, other: Any) -> bool:
+        """Compare two instances of `LdbParentInformation` for equality.
+
+        They are considerd equal if all of properties
+        compare equal.
+        """
+        if isinstance(other, self.__class__):
+            return self.__property_values() == other.__property_values()
+        return NotImplemented
 
 
 class LdbResponse(BaseModel):
     """Language and Dialect Background portion of the LSBQe."""
 
-    languages: conlist(
-        item_type=LdbLanguageInformation, min_items=1, unique_items=True
-    ) = Field(description="Languages spoken by the respondent.")
+    languages: Annotated[
+        UniqueList[LdbLanguageInformation], Field(min_length=1)
+    ] = Field(description="Languages spoken by the respondent.")
 
-    parents: conlist(
-        item_type=LdbParentInformation, min_items=0, max_items=2, unique_items=True
-    ) = Field(description="Information about respondent's parents.")
+    parents: Annotated[
+        UniqueList[LdbParentInformation], Field(min_length=0, max_length=2)
+    ] = Field(description="Information about respondent's parents.")
 
 
 class ClubLifeStages(BaseModel):
     """Language use during different (early) life stages."""
 
-    infancy_age: confloat(ge=0.0, le=100.0) = Field(
+    infancy_age: Annotated[float, Field(ge=0.0, le=100.0)] = Field(
         description="Proportion of language use in infancy age."
     )
 
-    nursery_age: confloat(ge=0.0, le=100.0) = Field(
+    nursery_age: Annotated[float, Field(ge=0.0, le=100.0)] = Field(
         description="Proportion of language use in nursery age."
     )
 
-    primary_age: confloat(ge=0.0, le=100.0) = Field(
+    primary_age: Annotated[float, Field(ge=0.0, le=100.0)] = Field(
         description="Proportion of language use in primary school age."
     )
 
-    secondary_age: confloat(ge=0.0, le=100.0) = Field(
+    secondary_age: Annotated[float, Field(ge=0.0, le=100.0)] = Field(
         description="Proportion of language use in secondary school age."
     )
 
@@ -201,156 +306,158 @@ class ClubLifeStages(BaseModel):
 class ClubPeopleCurrent(BaseModel):
     """Language use with different groups of people, currently."""
 
-    parents: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with parents."
+    parents: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with parents."
     )
 
-    children: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with children."
+    children: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with children."
     )
 
-    siblings: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with siblings."
+    siblings: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with siblings."
     )
 
-    grandparents: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with grandparents."
+    grandparents: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with grandparents."
     )
 
-    other_relatives: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with other relatives."
+    other_relatives: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with other relatives."
     )
 
-    partner: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with partner."
+    partner: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with partner."
     )
 
-    friends: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with friends."
+    friends: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with friends."
     )
 
-    flatmates: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with flatmates/roommates."
+    flatmates: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with flatmates/roommates."
     )
 
-    neighbours: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with neighbours."
+    neighbours: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with neighbours."
     )
 
 
 class ClubPeopleChildhood(BaseModel):
     """Language use with different groups of people during childhood."""
 
-    parents: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with parents during childhood."
+    parents: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with parents during childhood."
     )
 
-    siblings: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with siblings during childhood."
+    siblings: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with siblings during childhood."
     )
 
-    grandparents: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with grandparents during childhood."
+    grandparents: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None,
+        description="Proportion of language use with grandparents during childhood.",
     )
 
-    other_relatives: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with other relatives during childhood."
+    other_relatives: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None,
+        description="Proportion of language use with other relatives during childhood.",
     )
 
-    friends: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with friends during childhood."
+    friends: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with friends during childhood."
     )
 
-    neighbours: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with neighbours during childhood."
+    neighbours: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with neighbours during childhood."
     )
 
 
 class ClubSituations(BaseModel):
     """Language use in different situations/settings."""
 
-    home: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use at home."
+    home: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use at home."
     )
 
-    school: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use in school."
+    school: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use in school."
     )
 
-    work: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use at work."
+    work: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use at work."
     )
 
-    socialising: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use when socialising."
+    socialising: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use when socialising."
     )
 
-    religion: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for religious activities."
+    religion: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for religious activities."
     )
 
-    leisure: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for leisure activities."
+    leisure: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for leisure activities."
     )
 
-    commercial: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for commercial activities."
+    commercial: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for commercial activities."
     )
 
-    public: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for public affairs."
+    public: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for public affairs."
     )
 
 
 class ClubActivities(BaseModel):
     """Language use for different activities."""
 
-    reading: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for reading."
+    reading: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for reading."
     )
 
-    emailing: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for emailing."
+    emailing: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for emailing."
     )
 
-    texting: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for texting (SMS, WhatsApp, ...)."
+    texting: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for texting (SMS, WhatsApp, ...)."
     )
 
-    social_media: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with social media."
+    social_media: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with social media."
     )
 
-    notes: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for notes/memos."
+    notes: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for notes/memos."
     )
 
-    traditional_media: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use with traditional media."
+    traditional_media: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use with traditional media."
     )
 
-    internet: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use on the internet."
+    internet: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use on the internet."
     )
 
-    praying: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Proportion of language use for praying."
+    praying: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Proportion of language use for praying."
     )
 
 
 class ClubCodeSwitching(BaseModel):
     """Code-switching in different situations/with different groups of people."""
 
-    parents_and_family: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Amount of code-switching with parents and family."
+    parents_and_family: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Amount of code-switching with parents and family."
     )
 
-    friends: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Amount of code-swithcing with friends."
+    friends: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Amount of code-swithcing with friends."
     )
 
-    social_media: Optional[confloat(ge=0.0, le=100.0)] = Field(
-        description="Amount of code-switching with social media."
+    social_media: Optional[Annotated[float, Field(ge=0.0, le=100.0)]] = Field(
+        None, description="Amount of code-switching with social media."
     )
 
 
@@ -367,7 +474,7 @@ class ClubResponse(BaseModel):
 
     activities: ClubActivities
 
-    code_switching: Optional[ClubCodeSwitching]
+    code_switching: Optional[ClubCodeSwitching] = None
 
 
 class LsbqeResponse(ResponseBase):
@@ -379,4 +486,4 @@ class LsbqeResponse(ResponseBase):
 
     club: ClubResponse
 
-    note: Optional[str]
+    note: Optional[str] = None

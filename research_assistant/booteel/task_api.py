@@ -708,7 +708,7 @@ class ResearchTaskAPI(EelAPI):
             f"Storing data for {self._task_name} response with id {response_id}.."
         )
         response = self.response_class(**self._response_data[response_id])
-        json = response.json(indent=4)
+        json = response.model_dump_json(indent=4)
         self.logger.debug(f"... JSON serialization: {json}")
         path = self.task_data_path / str(response.meta.task_localisation)
         if not path.exists():

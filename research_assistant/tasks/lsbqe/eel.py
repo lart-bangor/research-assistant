@@ -3,24 +3,24 @@
 import logging
 from typing import Any
 
-from ...booteel.task_api import ResearchTaskAPI
 from ...booteel import errors
+from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
 from ...datamodels.types import AnyUUID
 from .datamodel import (
-    LdbLanguageInformation,
-    LdbParentInformation,
-    LdbResponse,
-    LsbResponse,
-    LsbResidency,
-    LsbqeResponse,
-    ClubResponse,
     ClubActivities,
     ClubCodeSwitching,
     ClubLifeStages,
     ClubPeopleChildhood,
     ClubPeopleCurrent,
+    ClubResponse,
     ClubSituations,
+    LdbLanguageInformation,
+    LdbParentInformation,
+    LdbResponse,
+    LsbqeResponse,
+    LsbResidency,
+    LsbResponse,
 )
 
 logger = logging.getLogger(__name__)
@@ -144,9 +144,7 @@ class LsbqeTaskAPI(ResearchTaskAPI):
                     )
         residencies = []
         for _, (_location, _start, _end) in sorted(residencies_d.items()):
-            residencies.append(
-                LsbResidency(location=_location, start=_start, end=_end)
-            )
+            residencies.append(LsbResidency(location=_location, start=_start, end=_end))
         # Remove dependent fields that ought to be left blank based on given answers
         if data["sex_other"] and data["sex"].lower() in ("m", "f"):
             data["sex_other"] = None
