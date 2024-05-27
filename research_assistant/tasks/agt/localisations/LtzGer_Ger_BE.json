@@ -48,17 +48,19 @@
     },
     "audioMsg": {
         "load": [
+            "Loading audio...",
             "Ton laden..."
-            
         ],
         "loaded": [
+            "Audio loaded.",
             "Ton geladen."
-            
         ],
         "play": [
+            "Playing audio...",
             "Ton spielt..."
         ],
         "complete": [
+            "Audio playback complete.",
             "Wiedergabe abgeschlossen."
         ],
         "playbackError": [
