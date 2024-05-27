@@ -48,8 +48,8 @@ continuing on to the next task.
     :alt: Screenshot of first results of memory task displayed
 
 
-.. figure:: figures-mt/memory_task_conclusion
-    :name: mmemory_task_conclusion
+.. figure:: figures-mt/memory_task_conclusion.png
+    :name: memory_task_conclusion
     :width: 600
     :alt: Screenshot of memory task conclusion screen
 
