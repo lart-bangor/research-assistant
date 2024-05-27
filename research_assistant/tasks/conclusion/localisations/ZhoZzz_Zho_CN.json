@@ -23,11 +23,11 @@
         ],
         "thankYouMessage": [
             "You have now completed all the tasks. Your data has been saved automatically, but please do not close the app yet.",
-            "你现在已经完成了所有的任务。您的数据已被自动保存，但请不要关闭该应用程序。"
+            "您现在已经完成了所有的任务。您的数据已被自动保存，但请不要关闭该应用程序。"
         ],
         "followOnInstructions": [
             "Please let the researcher know that you've finished with the app tasks. They will check that we have everything we need and give you any further instructions if needed.",
-            "请让研究人员知道你已经完成了任务。他们会检查我们是否拥有所需的一切，并在需要时给你任何进一步的指示。"
+            "请让研究人员知道您已经完成了任务。他们会检查我们是否拥有所需的一切，并在需要时给您任何进一步的指示。"
         ],
         "close": [
             "Close",

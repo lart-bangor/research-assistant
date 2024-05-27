@@ -23,27 +23,27 @@
     "instructions": {
         "secTitle": [
             "AGT Instructions",
-            "@TRANSLATE:AGT Instructions"
+            "ＡＧＴ指令"
         ],
         "begin": [
             "Begin practice",
-            "@TRANSLATE:Begin practice"
+            "开始练习"
         ],
         "taskDescription": [
             "In this task, you will hear a person speak and see a series of sliders asking you to rate that person on the basis of their voice alone.",
-            "@TRANSLATE:In this task, you will hear a person speak and see a series of sliders asking you to rate that person on the basis of their voice alone."
+            "在这项任务中，您将听到一个人说话，并看到一系列滑块，要求您仅根据其声音对该人进行评分。"
         ],
         "taskInstruction": [
             "Please use the sliders to record the degree to which you agree or disagree with each statement. You will only hear each voice once. However, if any problem occurs during the task, for example the audio doesn't play properly, please speak to the researcher.",
-            "@TRANSLATE:Please use the sliders to record the degree to which you agree or disagree with each statement. You will only hear each voice once. However, if any problem occurs during the task, for example the audio doesn't play properly, please speak to the researcher."
+            "请使用滑块来记录您对每个陈述的同意或不同意的程度。您只会听到每个声音一次。但是，如果在任务过程中出现任何问题，例如音频不能正常播放，请与研究人员交谈。"
         ],
         "taskPracticeDescription": [
             "The first example will be a practice item so that you can familiarise yourself with the task. After you have completed the practice item, you will have the opportunity to speak to the researcher to ask any questions you might have about the task.",
-            "@TRANSLATE:The first example will be a practice item so that you can familiarise yourself with the task. After you have completed the practice item, you will have the opportunity to speak to the researcher to ask any questions you might have about the task."
+            "第一个例子将是一个练习项目，以便您可以熟悉这个任务。在您完成练习项目后，您将有机会与研究人员交谈，询问您对任务可能有的任何问题。"
         ],
         "taskNextStep": [
             "Click on <em>begin practice</em> when you're ready.",
-            "@TRANSLATE:Click on <em>begin practice</em> when you're ready."
+            "当您准备好时，点击 <em>开始练习</em>。"
         ]
     },
     "audioMsg": {
@@ -91,44 +91,44 @@
     "rating": {
         "secTitle": [
             "Voice Rating",
-            "@TRANSLATE:Voice Rating"
+            "语音评价"
         ],
         "statement": [
             "The person in this recording sounds...",
-            "@TRANSLATE:The person in this recording sounds..."
+            "这段录音中的人听起来......"
         ],
         "instructions": [
             "Please use the sliders to record your response.",
-            "@TRANSLATE:Please use the sliders to record your response."
+            "请使用滑块记录您的回复"
         ],
         "stronglyAgree": [
             "strongly agree",
-            "@TRANSLATE:strongly agree"
+            "非常同意"
         ],
         "stronglyDisagree": [
             "strongly disagree",
-            "@TRANSLATE:strongly disagree"
+            "强烈反对"
         ]
     },
     "trait": {
-        "amusing":       [ "@TRANSLATE:amusing" ],
-        "open-minded":   [ "@TRANSLATE:open-minded" ],
-        "attractive":    [ "@TRANSLATE:attractive" ],
-        "trustworthy":   [ "@TRANSLATE:trustworthy" ],
-        "ignorant":      [ "@TRANSLATE:ignorant"],
-        "polite":        [ "@TRANSLATE:polite"],
-        "ambitious":     [ "@TRANSLATE:ambitious"],
-        "international": [ "@TRANSLATE:international"],
-        "cool":          [ "@TRANSLATE:cool" ],
-        "intelligent":   [ "@TRANSLATE:intelligent" ],
-        "influential":   [ "@TRANSLATE:influential" ],
-        "likeable":      [ "@TRANSLATE:likeable" ],
-        "educated":      [ "@TRANSLATE:educated" ],
-        "friendly":      [ "@TRANSLATE:friendly" ],
-        "honest":        [ "@TRANSLATE:honest" ],
-        "competent":     [ "@TRANSLATE:competent" ],
-        "natural":       [ "@TRANSLATE:natural" ],
-        "pretentious":   [ "@TRANSLATE:pretentious" ]
+        "amusing":       [ "有趣" ],
+        "open-minded":   [ "开明的" ],
+        "attractive":    [ "吸引人的" ],
+        "trustworthy":   [ "值得信赖的" ],
+        "ignorant":      [ "愚昧"],
+        "polite":        [ "有礼貌的"],
+        "ambitious":     [ "雄心勃勃的"],
+        "international": [ "国际的"],
+        "cool":          [ "酷" ],
+        "intelligent":   [ "聪明的" ],
+        "influential":   [ "有影响" ],
+        "likeable":      [ "有人缘儿" ],
+        "educated":      [ "受过教育" ],
+        "friendly":      [ "有好的" ],
+        "honest":        [ "诚实的" ],
+        "competent":     [ "胜任的" ],
+        "natural":       [ "自然的" ],
+        "pretentious":   [ "自命不凡的" ]
     },
     "practice": {
         "completeTitle": [
@@ -155,7 +155,7 @@
     "end": {
         "secTitle": [
             "Thank you for completing the Voice Rating task!",
-            "感谢你完成了语音评级任务!"
+            "感谢您完成了语音评级任务!"
         ],
         "feedback": [
             "Well done!",
@@ -163,11 +163,11 @@
         ],
         "thankYouMessage": [
             "You have now completed the AGT Voice Rating task. Your data has been saved.",
-            "你现在已经完成了任务。你的数据已被保存。"
+            "您现在已经完成了任务。您的数据已被保存。"
         ],
         "followOnInstructions": [
             "Please click “Continue” when you’re ready to continue.",
-            "当你准备继续时，请点击 “继续”。"
+            "当您准备继续时，请点击 “继续”。"
         ],
         "continue": [
             "Continue",

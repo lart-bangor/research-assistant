@@ -184,7 +184,7 @@
             "您几岁学的？"
         ],
         "learnedBreaks": [
-            "在您的生命中，有没有一个重要的时期你没有使用这种语言？"
+            "在您的生命中，有没有一个重要的时期您没有使用这种语言？"
         ],
         "learnedAgeInfo": [
             "如果从出生时学习，请输入“0”。"
@@ -304,7 +304,7 @@
             "理解"
         ],
         "timeOfActivity": [
-            "在你花在以下每项活动上的时间中，有多少时间是用 <!-- ...[LanguageX]? --> 进行的？"
+            "在您花在以下每项活动上的时间中，有多少时间是用 <!-- ...[LanguageX]? --> 进行的？"
         ],
         "noneOfTheTime": [
             "从不使用"
@@ -338,14 +338,14 @@
             "德语 - German",
             "西班牙语 - Spanish",
             "意大利语 - Italian",
-            "威尔士语 - Welsh", 
+            "威尔士语 - Welsh"
 
         ],
         "repeatedLanguageErrorTitle": [
             "重复语言"
         ],
         "repeatedLanguageErrorMessage": [
-            "“<span class=\"languageNameSlot\">[languageName]</span>” 已添加到此列表中.",
+            "“<span class=\"languageNameSlot\">[languageName]</span>” 已添加到此列表中."
         ]
     },
     "club": {
@@ -391,7 +391,7 @@
             "neighbours":       ["邻居"]
         },
         "withPeopleEarlyLifeInstructions": [
-            "据你所知，请说明你在6-12岁之间与以下人交谈时通常使用哪种语言或方言:"
+            "据您所知，请说明您在6-12岁之间与以下人交谈时通常使用哪种语言或方言:"
         ],
         "withPeopleEarlyLifeFields": {
             "parents":          ["父母"],

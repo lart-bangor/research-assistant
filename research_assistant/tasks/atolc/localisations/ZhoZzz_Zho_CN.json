@@ -105,7 +105,7 @@
     "end": {
         "secTitle": [
             "Thank you for completing the questionnaire!",
-            "感谢你填写问卷！"
+            "感谢您填写问卷！"
         ],
         "thankYouMessage": [
             "You have now completed the AToL-C. Your data has been saved.",
@@ -113,7 +113,7 @@
         ],
         "followOnInstructions": [
             "Please click “Continue” when you’re ready to continue.",
-            "当你准备好时，请点击 「继续」。"
+            "当您准备好时，请点击 「继续」。"
         ],
         "continue": [
             "Continue",
