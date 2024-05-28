@@ -36,7 +36,8 @@ from copy import copy
 from dataclasses import MISSING, asdict, dataclass, field, fields, is_dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Callable, ClassVar, Final, Optional, Union, get_type_hints
+from typing import (Any, Callable, ClassVar, Final, Optional, Union,
+                    get_type_hints)
 
 from platformdirs import PlatformDirs
 
@@ -260,7 +261,7 @@ class Logging(DataclassDictMixin, DataclassDocMixin):
         },
     )
     stream_format: str = field(
-        default="{levelname}:{name}: {message}",
+        default="[{levelname}]\t{name}: {message}",
         metadata={
             "doc_label": "Console log message format",
             "doc_help": "Format for log and error messages displayed on the console.",

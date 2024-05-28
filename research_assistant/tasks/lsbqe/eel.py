@@ -7,21 +7,11 @@ from ...booteel import errors
 from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
 from ...datamodels.types import AnyUUID
-from .datamodel import (
-    ClubActivities,
-    ClubCodeSwitching,
-    ClubLifeStages,
-    ClubPeopleChildhood,
-    ClubPeopleCurrent,
-    ClubResponse,
-    ClubSituations,
-    LdbLanguageInformation,
-    LdbParentInformation,
-    LdbResponse,
-    LsbqeResponse,
-    LsbResidency,
-    LsbResponse,
-)
+from .datamodel import (ClubActivities, ClubCodeSwitching, ClubLifeStages,
+                        ClubPeopleChildhood, ClubPeopleCurrent, ClubResponse,
+                        ClubSituations, LdbLanguageInformation,
+                        LdbParentInformation, LdbResponse, LsbqeResponse,
+                        LsbResidency, LsbResponse)
 
 logger = logging.getLogger(__name__)
 

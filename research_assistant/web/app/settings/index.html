@@ -76,7 +76,7 @@
             lart.forms.requireValidation(true);
 
             function loadSettings() {
-                availableVersions = eel._settings_load()(buildSettingsInterface);
+                availableVersions = eel.settings_load()(buildSettingsInterface);
             }
             loadSettings();
 
@@ -238,7 +238,7 @@
             }
 
         </script>
-        {{ lart_form_pipeline('settingsForm', '_settings_store') }}
+        {{ lart_form_pipeline('settingsForm', 'settings_store') }}
     </footer>
 </body>
 </html>

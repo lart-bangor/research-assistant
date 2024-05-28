@@ -51,7 +51,7 @@ class LsbResponse(BaseModel):
             to_lower=True,
             min_length=1,
             max_length=1,
-            pattern=r"^[mfo]$",
+            pattern=r"^[mfoMFO]$",
         ),
     ] = Field(description="Respondent's sex/gender.")
 
@@ -71,7 +71,7 @@ class LsbResponse(BaseModel):
             to_lower=True,
             min_length=1,
             max_length=1,
-            pattern=r"^[rl]$",
+            pattern=r"^[rlRL]$",
         ),
     ] = Field(description="Respondent's handedness.")
 
@@ -215,7 +215,10 @@ class LdbParentInformation(BaseModel):
     """Background information about a parent."""
 
     parent: Annotated[
-        str, StringConstraints(strip_whitespace=True, pattern=r"^(?:mother|father)$")
+        str,
+        StringConstraints(
+            strip_whitespace=True, to_lower=True, pattern=r"^(?i:mother|father)$"
+        ),
     ] = Field(description="Is this for 'mother' or 'father'?")
 
     occupation: Annotated[
@@ -274,9 +277,9 @@ class LdbParentInformation(BaseModel):
 class LdbResponse(BaseModel):
     """Language and Dialect Background portion of the LSBQe."""
 
-    languages: Annotated[
-        UniqueList[LdbLanguageInformation], Field(min_length=1)
-    ] = Field(description="Languages spoken by the respondent.")
+    languages: Annotated[UniqueList[LdbLanguageInformation], Field(min_length=1)] = (
+        Field(description="Languages spoken by the respondent.")
+    )
 
     parents: Annotated[
         UniqueList[LdbParentInformation], Field(min_length=0, max_length=2)

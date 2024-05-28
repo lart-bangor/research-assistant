@@ -16,7 +16,7 @@ from gevent import signal
 
 from .booteel import utils
 from .config import config
-from .settings import expose_to_eel as expose_settings
+from .settings.eel import eel_api as SettingsAPI
 from .tasks.agt.eel import eel_api as AgtTaskAPI
 from .tasks.atolc.eel import eel_api as AtolcTaskAPI
 from .tasks.conclusion.eel import eel_api as ConclusionTaskAPI
@@ -33,16 +33,17 @@ logging.getLogger("geventwebsocket.handler").setLevel(logging.WARNING)
 root_logger_name = __name__.split(".", maxsplit=2)[0]
 root_logger = logging.getLogger(root_logger_name)
 root_logger.setLevel(config.logging.default_level)
+root_logger.removeHandler(root_logger.handlers[0])  # Remove default NullHandler
 root_logger.addHandler(config.logging.get_stream_handler())  # > sys.stderr
 root_logger.addHandler(
     config.logging.get_file_handler(root_logger_name)
 )  # > app log dir
+root_logger.propagate = False
 logger = logging.getLogger(__name__)
 
-# Expose Eel APIs for subpackages (LEGACY)
-expose_settings()
-
 # Expose Eel APIs for subpackages (new API)
+settings_api = SettingsAPI()
+settings_api.expose()
 lsbqe_task_api = LsbqeTaskAPI()
 lsbqe_task_api.expose()
 atolc_task_api = AtolcTaskAPI()
