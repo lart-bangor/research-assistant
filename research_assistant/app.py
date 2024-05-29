@@ -8,7 +8,7 @@ import logging
 import multiprocessing
 import sys
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any, Sequence, TYPE_CHECKING
 
 import eel
 import gevent  # type: ignore
@@ -24,6 +24,10 @@ from .tasks.consent.eel import eel_api as ConsentTaskAPI
 from .tasks.lsbqe.eel import eel_api as LsbqeTaskAPI
 from .tasks.memorytask.eel import eel_api as MemoryTaskAPI
 from .utils import export_backup, manage_settings, show_error_dialog
+
+if TYPE_CHECKING:
+    from jinja2 import Environment as Jinja2Environment
+
 
 # Enable multiprocessing in frozen apps (e.g. pyinstaller)
 multiprocessing.freeze_support()
@@ -214,6 +218,8 @@ def main():  # noqa: C901
         f"Now running on "
         f"http://{eel._start_args['host']}:{eel._start_args['port']}"  # type: ignore
     )
+    if "jinja_env" in eel._start_args:
+        inject_jinja_globals(eel._start_args["jinja_env"])
     if sys.platform not in ("win32", "win64"):
         gevent.signal.signal(signal.SIGTERM, shutdown)
         gevent.signal.signal(signal.SIGQUIT, shutdown)
@@ -280,6 +286,12 @@ def shutdown(sig=None, frame=None):
         # This should not have survived and already returned 0...
         logger.debug("Execution survived event loop destruction, hard exiting...")
         sys.exit(1)
+
+
+def inject_jinja_globals(jinja_env: "Jinja2Environment"):
+    """Inject some global variables into the Jinja Environment."""
+    from .datamodels import patterns
+    jinja_env.globals["patterns"] = patterns
 
 
 # Expose export_backup to spawn self --backup

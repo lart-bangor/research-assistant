@@ -716,7 +716,7 @@ class ResearchTaskAPI(EelAPI):
         filename = path / f"{response.meta.participant_id!s}_{response_id!s}.json"
         self.logger.debug(f"... writing to file: {filename}")
         try:
-            with filename.open("w") as fp:
+            with filename.open("w", encoding="utf-8") as fp:
                 fp.write(json)
         except OSError as e:
             self.logger.debug("... failed.")

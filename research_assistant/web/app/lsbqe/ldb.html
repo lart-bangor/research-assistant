@@ -98,7 +98,7 @@
                             <a class="btn btn-outline-secondary opacity-75 mt-2" id="languagesSpokenDelete-[LanguageNumber]"><i class="bi bi-trash"></i></a>
                         </div>
                         <div class="col-3 form-floating">
-                            <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-name" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                            <input list="languageListOptions" class="form-control" id="languagesSpokenLanguage-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-name" pattern="{{ patterns.LANGUAGE_NAME }}" />
                             <label for="languagesSpokenLanguage-[LanguageNumber]" class="col-form-label col-auto pt-2 ms-2" data-lsbqe-tr="ldb.languageNameLabel">Language name</label>
                             <div class="invalid-feedback" data-lsbqe-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters). You <i>must</i> list at least <i>two</i> languages/dialects.</div>
                         </div>
@@ -115,7 +115,7 @@
                                 <div class="invalid-feedback" data-lsbqe-tr="ldb.learnedWhereFeedback">Please select an option.</div>
                             </div>
                             <div class="form-floating mt-1" id="languagesSpokenSourceSpecifyBlock-[LanguageNumber]">
-                                <input type="text" class="form-control" id="languagesSpokenSourceSpecify-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-source_other" />
+                                <input type="text" class="form-control" id="languagesSpokenSourceSpecify-[LanguageNumber]" name="languages_spoken-[LanguageNumber]-source_other" pattern="{{ patterns.SHORT_TEXT }}" />
                                 <label for="languagesSpokenSourceSpecify-[LanguageNumber]" data-lsbqe-tr="ldb.learnedWhereOtherLabel"><i>Please specify...</i></label>
                                 <div class="invalid-feedback" data-lsbqe-tr="ldb.learnedWhereOtherFeedback">Please give a brief indication of where you learned the language or dialect.</div>
                             </div>
@@ -207,7 +207,7 @@
                             <div class="row mb-1">
                                 <label for="motherOccupation" class="col-3 col-form-label" data-lsbqe-tr="ldb.occupation">Occupation:</label>
                                 <div class="col-auto">
-                                    <input type="text" class="form-control" name="mother_occupation" id="motherOccupation" required />
+                                    <input type="text" class="form-control" name="mother_occupation" id="motherOccupation" required pattern="{{ patterns.SHORT_TEXT }}"/>
                                     <div class="invalid-feedback" data-lsbqe-tr="ldb.occupationFeedbackMother">Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i></div>
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                             <div class="row mb-1">
                                 <label for="motherLanguage1" class="col-3 col-form-label" data-lsbqe-tr="ldb.firstLanguage">First language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                                    <input list="languageListOptions" class="form-control" name="mother_first_language" id="motherLanguage1" required pattern="{{ patterns.LANGUAGE_NAME }}" />
                                     <div class="invalid-feedback" data-lsbqe-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters).</div>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                             <div class="row mb-1">
                                 <label for="motherLanguage2" class="col-3 col-form-label" data-lsbqe-tr="ldb.secondLanguage">Second language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                                    <input list="languageListOptions" class="form-control" name="mother_second_language" id="motherLanguage2" pattern="{{ patterns.LANGUAGE_NAME }}" />
                                     <div class="invalid-feedback" data-lsbqe-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters).</div>
                                 </div>
                             </div>
@@ -284,7 +284,7 @@
                             <div class="row mb-1">
                                 <label for="fatherOccupation" class="col-3 col-form-label" data-lsbqe-tr="ldb.occupation">Occupation:</label>
                                 <div class="col-auto">
-                                    <input type="text" class="form-control" name="father_occupation" id="fatherOccupation" required />
+                                    <input type="text" class="form-control" name="father_occupation" id="fatherOccupation" required pattern="{{ patterns.SHORT_TEXT }}" />
                                     <div class="invalid-feedback" data-lsbqe-tr="ldb.occupationFeedbackFather">Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i></div>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@
                             <div class="row mb-1">
                                 <label for="fatherLanguage1" class="col-3 col-form-label" data-lsbqe-tr="ldb.firstLanguage">First language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                                    <input list="languageListOptions" class="form-control" name="father_first_language" id="fatherLanguage1" required pattern="{{ patterns.LANGUAGE_NAME }}" />
                                     <div class="invalid-feedback" data-lsbqe-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters).</div>
                                 </div>
                             </div>
@@ -300,7 +300,7 @@
                             <div class="row mb-1">
                                 <label for="fatherLanguage2" class="col-3 col-form-label" data-lsbqe-tr="ldb.secondLanguage">Second language:</label>
                                 <div class="col-auto">
-                                    <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="[\p{Letter}\p{Mark}][\p{Letter}\p{Mark}0-9\-_ \(\)]{1,50}" />
+                                    <input list="languageListOptions" class="form-control" name="father_second_language" id="fatherLanguage2" pattern="{{ patterns.LANGUAGE_NAME }}" />
                                     <div class="invalid-feedback" data-lsbqe-tr="ldb.languageNameFeedback">Please give the name of a language or dialect (between 2 and 50 characters).</div>
                                 </div>
                             </div>

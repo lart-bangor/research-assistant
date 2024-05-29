@@ -47,7 +47,7 @@
                             <input class="form-check-input sexOtherOption" type="radio" name="sex" id="sexOther" value="O" required />
                             <label class="form-check-label align-text-top sexOtherOption" for="sexOther" data-lsbqe-tr="lsb.other">Other</label>
                             <div id="sexOtherSpecifyCollapse sexOtherOption" class="d-inline-block align-text-top collapse">
-                                <input name="sex_other" id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" aria-label="Specify sex, if other." />
+                                <input name="sex_other" id="sexOtherSpecify" class="form-control form-control-sm d-inline w-25" style="min-width:10rem" type="text" aria-label="Specify sex, if other." pattern="{{ patterns.SHORT_TEXT }}" />
                                 <div class="invalid-feedback" data-lsbqe-tr="lsb.otherFeedback">Please briefly specify what other sex you identify with.</div>
                             </div>
                             <div class="invalid-feedback invalid-radio" data-lsbqe-tr="lsb.sexFeedback">Please select an option for <i>Sex</i>.</div>
@@ -65,7 +65,7 @@
                 <div class="row mb-3">
                     <label for="occupation" class="col-form-label col-auto" data-lsbqe-tr="lsb.occupation">Occupation:</label>
                     <div class="col-sm">
-                    <input type="text" class="form-control" id="occupation" required />
+                    <input type="text" class="form-control" id="occupation" required pattern="{{ patterns.SHORT_TEXT }}" />
                     <div class="invalid-feedback" data-lsbqe-tr="lsb.occupationFeedback">Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, &mldr;</div>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                 <div class="row mb-3">
                     <label for="placeOfBirth" class="col-form-label col-auto" data-lsbqe-tr="lsb.placeOfBirth">Place of birth:</label>
                     <div class="col-sm">
-                    <input type="text" class="form-control" name="place_of_birth" id="placeOfBirth" required />
+                    <input type="text" class="form-control" name="place_of_birth" id="placeOfBirth" pattern="{{ patterns.LOCATION_NAME }}" required />
                     <div class="invalid-feedback" data-lsbqe-tr="lsb.placeOfBirthFeedback">Please give your (approximate) <i>place of birth</i>, e.g. <i>Madrid, Spain</i>.</div>
                     <p class="help-block p-2 text-muted"><i class="bi-info-circle text-info"></i> <span data-lsbqe-tr="lsb.approximateAreaSufficient">Approximate area is sufficient.</span></p>
                     </div>
@@ -216,15 +216,15 @@
                             <a class="btn btn-outline-secondary opacity-75" id="residenciesDelete-[PlaceNumber]"><i class="bi bi-trash"></i></a>
                         </div>
                         <div class="col form-floating">
-                            <input type="text" class="form-control" id="residenciesName-[PlaceNumber]" name="residencies-[PlaceNumber]-name" />
+                            <input type="text" class="form-control" id="residenciesName-[PlaceNumber]" name="residencies-[PlaceNumber]-name" pattern="{{ patterns.LOCATION_NAME }}" />
                             <label for="residenciesName-[PlaceNumber]" data-lsbqe-tr="lsb.placeName">Place name</label>
                         </div>
                         <div class="col form-floating">
-                            <input type="month" class="form-control" id="residenciesFrom-[PlaceNumber]" name="residencies-[PlaceNumber]-from" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" min="1922-01-01"  />
+                            <input type="month" class="form-control" id="residenciesFrom-[PlaceNumber]" name="residencies-[PlaceNumber]-from" pattern="{{ patterns.ISO_YEAR_MONTH }}" min="1922-01-01"  />
                             <label for="residenciesFrom-0" data-lsbqe-tr="lsb.from">From</label>
                         </div>
                         <div class="col form-floating">
-                            <input type="month" class="form-control" id="residenciesTo-[PlaceNumber]" name="residencies-[PlaceNumber]-to" pattern="[0-9]{1,4}-(0?[1-9]|1[0-2])" min="1922-01-01"  />
+                            <input type="month" class="form-control" id="residenciesTo-[PlaceNumber]" name="residencies-[PlaceNumber]-to" pattern="{{ patterns.ISO_YEAR_MONTH }}" min="1922-01-01"  />
                             <label for="residenciesTo-0" data-lsbqe-tr="lsb.until">Until</label>
                         </div>
                     </div>

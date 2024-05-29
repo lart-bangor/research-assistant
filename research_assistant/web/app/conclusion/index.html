@@ -57,7 +57,7 @@
             <section class="m-4">
                 <div class="mb-3">
                     <label for="researcherId" class="form-label">Researcher ID:</label>
-                    <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="[A-Za-z0-9]{3,10}" required />
+                    <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="{{ patterns.SHORT_ID }}" required />
                     <div id="researcherIdHelp" class="form-text">Enter the researcher’s name or ID.</div>
                     <div class="invalid-feedback">
                         <p>Please provide a valid Researcher ID or name. The ID can only contain letters and numbers (no spaces, hyphens, etc.) and must be between 3 and 10 characters in length.</p>
@@ -69,7 +69,7 @@
             <section class="m-4">
                 <div class="mb-3">
                     <label for="researchLocation" class="form-label">Location:</label>
-                    <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="[\p{L}0-9,' \(\)\.\-]{1,50}" required />
+                    <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="{{ patterns.LOCATION_NAME }}" required />
                     <div id="researchLocationHelp" class="form-text">Enter the location (e.g. town name) where the research is undertaken.</div>
                     <div class="invalid-feedback">
                         <p>Please enter a location name, for example <i>Bangor, Gwynedd</i>. Location names can contain letters, numbers, spaces, commas and parentheses and they can be up to 50 characters in length.</p>
@@ -81,7 +81,7 @@
             <section class="m-4">
                 <div class="mb-3">
                     <label for="participantId" class="form-label">Participant ID:</label>
-                    <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="[A-Za-z0-9]{3,10}" required autocomplete="off" />
+                    <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="{{ patterns.SHORT_ID }}" required autocomplete="off" />
                     <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
                     <div class="invalid-feedback">
                         <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
