@@ -4,7 +4,7 @@
     border: 1px solid gray;
 }
 
-.dv-data, .dv-type {
+.dv-fieldname, .dv-data, .dv-type {
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -12,9 +12,13 @@
     font-style: italic;
 }
 
-.dv-failed {
+.dv-error, .dv-failed {
     color: darkred;
     font-weight: bold;
+}
+
+.dv-hint {
+    color: gray;
 }
 
 .dv-type {

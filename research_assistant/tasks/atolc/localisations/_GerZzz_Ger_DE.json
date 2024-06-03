@@ -1,0 +1,123 @@
+{
+    "meta": {
+        "versionId": "GerZzz_Ger_DE",
+        "versionName": "Deutsch – generisch (Deutschland)",
+        "versionNumber": "0.5.0a0",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>, Marco Tamburelli <m.tamburelli@bangor.ac.uk>",
+        "date": "2023-08-24"
+    },
+    "base": {
+        "appTitle": [
+            "AToL Questionnaire",
+            "Sprachlicher Fragebogen"
+        ],
+        "instructions": [
+            "Please move the slider to record your choice.",
+            "Bitte verwenden Sie den Schieberegler, um Ihre Auswahl aufzuzeichnen."
+        ],
+        "next": [
+            "Next",
+            "Weiter"
+        ]
+    },
+    "language1": {
+        "name": [
+            "Language 1",
+            "Deutsch"
+        ],
+        "header": [
+            "Language 1 is...",
+            "Die deutsche Sprache ist..."
+        ]
+    },
+    "language2": {
+        "name": [
+            "Language 2",
+            "[ENTER LANGUAGE NAME HERE]"
+        ],
+        "header": [
+            "Language 2 is...",
+            "Das [ENTER LANGUAGE NAME HERE] ist..."
+        ]
+    },
+    "traits": {
+        "logic": [
+            ["logical", "illogical"],
+            ["logisch", "unlogisch"]
+        ],
+        "elegance": [
+            ["inelegant", "elegant"],
+            ["stillos",   "stilvoll"]
+        ],
+        "fluency": [
+            ["choppy",   "fluent"],
+            ["stockend", "fließend"]
+        ],
+        "ambiguity": [
+            ["unambiguous", "ambiguous"],
+            ["eindeutig",   "missverständlich"]
+        ],
+        "appeal": [
+            ["appealing", "abhorrent"],
+            ["anziehend", "abstoßend"]
+        ],
+        "structure": [
+            ["unstructured", "structured"],
+            ["stukturlos",   "sturkturiert"]
+        ],
+        "precision": [
+            ["precise", "vague"],
+            ["genau",   "ungenau"]
+        ],
+        "harshness": [
+            ["harsh", "soft"],
+            ["hart",  "weich"]
+        ],
+        "flow": [
+            ["flowing", "abrupt"],
+            ["flüssig", "abgehackt"]
+        ],
+        "beauty": [
+            ["beautiful", "ugly"],
+            ["schön",     "hässlich"]
+        ],
+        "sistem": [
+            ["systematic",   "unsystematic"],
+            ["systematisch", "unsystematisch"]
+        ],
+        "pleasure": [
+            ["pleasant", "unpleasant"],
+            ["angenehm", "unangenehm"]
+        ],
+        "smoothness": [
+            ["smooth",      "raspy"],
+            ["geschmeidig", "rau"]
+        ],
+        "grace": [
+            ["clumsy", "graceful"],
+            ["plump",  "anmutig"]
+        ],
+        "angularity": [
+            ["angular", "round"],
+            ["eckig",   "rund"]
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the questionnaire!",
+            "Danke für das Ausfüllen des Fragebogens!"
+        ],
+        "thankYouMessage": [
+            "You have now completed the AToL-C. Your data has been saved.",
+            "Sie haben den AToL-C jetzt erledigt. Ihre Daten wurden gespreichert."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "Bitte klicken Sie auf „Weiter“, wenn Sie bereit sind weiter zu machen."
+        ],
+        "continue": [
+            "Continue",
+            "Weiter"
+        ]
+    }
+}

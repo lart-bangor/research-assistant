@@ -5,7 +5,7 @@
 {% block head_scripts %}
     <script type="text/javascript">
         function loadSurveyVersions() {
-            availableVersions = eel._conclusion_getversions()(populateSurveyVersions);
+            availableVersions = eel.conclusion_get_localisations()(populateSurveyVersions);
         }
 
         function populateSurveyVersions(versions) {
@@ -53,6 +53,56 @@
                 </div>
             </section>
 
+            <!-- Researcher details -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="researcherId" class="form-label">Researcher ID:</label>
+                    <input type="text" class="form-control" id="researcherId" aria-describedby="researcherIdHelp" pattern="{{ patterns.SHORT_ID }}" required />
+                    <div id="researcherIdHelp" class="form-text">Enter the researcher’s name or ID.</div>
+                    <div class="invalid-feedback">
+                        <p>Please provide a valid Researcher ID or name. The ID can only contain letters and numbers (no spaces, hyphens, etc.) and must be between 3 and 10 characters in length.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research location -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="researchLocation" class="form-label">Location:</label>
+                    <input type="text" class="form-control" id="researchLocation" aria-describedby="researchLocationHelp" pattern="{{ patterns.LOCATION_NAME }}" required />
+                    <div id="researchLocationHelp" class="form-text">Enter the location (e.g. town name) where the research is undertaken.</div>
+                    <div class="invalid-feedback">
+                        <p>Please enter a location name, for example <i>Bangor, Gwynedd</i>. Location names can contain letters, numbers, spaces, commas and parentheses and they can be up to 50 characters in length.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Participant details -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <label for="participantId" class="form-label">Participant ID:</label>
+                    <input type="text" class="form-control" id="participantId" aria-describedby="participantIdHelp" pattern="{{ patterns.SHORT_ID }}" required autocomplete="off" />
+                    <div id="participantIdHelp" class="form-text">Enter the participant’s pre-assigned ID.</div>
+                    <div class="invalid-feedback">
+                        <p>Please provide a valid Participant ID The ID can only contain letters and numbers (no spaces, hyphens, etc.), and should not contain personally identifiable information (such as a name) in order to protect the confidentiality of the collected data.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Informed consent -->
+            <section class="m-4">
+                <div class="mb-3">
+                    <p class="form-label" style="margin-left:0">Confirm consent:</p>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="confirmConsent" required autocomplete="off" />
+                        <label class="form-check-label" for="confirmConsent">I confirm that the participant has given informed consent.</label>
+                        <div class="invalid-feedback">
+                            <p>Please confirm that you have obtained informed consent from the participant before starting this questionnaire.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Form submission -->
             <div class="row text-center p-3 m-4">
                 <div class="col">
@@ -69,5 +119,5 @@
         lart.forms.requireValidation(true);
         lart.forms.util.autofillForm('surveyDataForm');
     </script>
-    {{ lart_form_pipeline('surveyDataForm', '_conclusion_init') }}
+    {{ lart_form_pipeline('surveyDataForm', 'conclusion_new') }}
 {% endblock %}

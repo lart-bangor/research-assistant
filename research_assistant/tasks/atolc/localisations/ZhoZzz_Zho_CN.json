@@ -1,0 +1,123 @@
+{
+    "meta": {
+        "versionId": "ZhoZzz_Zho_CN",
+        "versionName": "Chinese – generic (China)",
+        "versionNumber": "0.3.5",
+        "author": "Chloe Cheung <chloewycheung8@gmail.com>",
+        "date": "2023-06-16"
+    },
+    "base": {
+        "appTitle": [
+            "AToL Questionnaire",
+            "ＡＴｏＬ问卷"
+        ],
+        "instructions": [
+            "Please move the slider to record your choice.",
+            "请移动滑块以记录您的选择。"
+        ],
+        "next": [
+            "Next",
+            "下一节"
+        ]
+    },
+    "language1": {
+        "name": [
+            "Language 1",
+            "中文"
+        ],
+        "header": [
+            "Language 1 is...",
+            "中文是......"
+        ]
+    },
+    "language2": {
+        "name": [
+            "Language 2",
+            "[其他语言]"
+        ],
+        "header": [
+            "Language 2 is...",
+            "[其他语言] 是......"
+        ]
+    },
+    "traits": {
+        "logic": [
+            ["logical", "illogical"],
+            ["逻辑的", "不合逻辑的"]
+        ],
+        "elegance": [
+            ["inelegant", "elegant"],
+            ["不优雅",   "优雅"]
+        ],
+        "fluency": [
+            ["choppy",   "fluent"],
+            ["不善言辞的", "流利"]
+        ],
+        "ambiguity": [
+            ["unambiguous", "ambiguous"],
+            ["明确",   "不​明确"]
+        ],
+        "appeal": [
+            ["appealing", "abhorrent"],
+            ["有吸引力", "没有吸引力"]
+        ],
+        "structure": [
+            ["unstructured", "structured"],
+            ["非结构化",   "结构化的"]
+        ],
+        "precision": [
+            ["precise", "vague"],
+            ["准确",   "模糊"]
+        ],
+        "harshness": [
+            ["harsh", "soft"],
+            ["刺耳",  "柔和"]
+        ],
+        "flow": [
+            ["flowing", "abrupt"],
+            ["流动", "突然的"]
+        ],
+        "beauty": [
+            ["beautiful", "ugly"],
+            ["美丽的",     "丑陋的"]
+        ],
+        "sistem": [
+            ["systematic",   "unsystematic"],
+            ["系统的", "不系统的"]
+        ],
+        "pleasure": [
+            ["pleasant", "unpleasant"],
+            ["愉快", "不愉快"]
+        ],
+        "smoothness": [
+            ["smooth",      "raspy"],
+            ["流畅", "粗糙的"]
+        ],
+        "grace": [
+            ["clumsy", "graceful"],
+            ["笨拙",  "优美"]
+        ],
+        "angularity": [
+            ["angular", "round"],
+            ["棱角分明",   "圆润"]
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the questionnaire!",
+            "感谢您填写问卷！"
+        ],
+        "thankYouMessage": [
+            "You have now completed the AToL-C. Your data has been saved.",
+            "@TRANSLATE:You have now completed the AToL-C. Your data has been saved."
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "当您准备好时，请点击 「继续」。"
+        ],
+        "continue": [
+            "Continue",
+            "继续"
+        ]
+    }
+}

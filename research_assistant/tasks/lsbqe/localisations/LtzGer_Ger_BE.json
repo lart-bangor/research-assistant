@@ -1,0 +1,578 @@
+{
+    "meta": {
+        "versionId": "LtzGer_Ger_BE",
+        "versionName": "Moselfränkisch – Deutsch (Belgien)",
+        "versionNumber": "0.4.0",
+        "author": "Florian Breit <f.breit@bangor.ac.uk>",
+        "date": "2024-05-24",
+        "options": {
+            "lsb_show_other_sex": true,
+            "ldb_minimum_required_languages": 2,
+            "ldb_show_reading": false,
+            "ldb_show_writing": false,
+            "club_show_codeswitching": false
+        }
+    },
+    "base": {
+        "appTitle": [
+            "Language and Social Background Questionnaire",
+            "Fragebogen zum sprachlichen und sozialen Hintergrund"
+        ],
+        "yes": [
+            "Yes",
+            "Ja"
+        ],
+        "no": [
+            "No",
+            "Nein"
+        ],
+        "next": [
+            "Next",
+            "Weiter"
+        ],
+        "addLine": [
+            "Add line",
+            "Mehr hinzufügen"
+        ],
+        "levelOfEducation1": [
+            "EQF Level 1",
+            "Abschluss der Grund&ndash; oder Primarschule, <abbr title=\"Certificat d’études de base\">CEB</abbr>, getuigschrift basisonderwijs, oder weniger."
+        ],
+        "levelOfEducation2": [
+            "EQF Level 2-3",
+            "Befähigungsnachweis/Abschluss der Unterstufe, zertifizierte Teilqualifikation der mittelständischen Lehre, <abbr title=\"Certificat d’enseignement secondaire inférieure\">CESI</abbr>, <abbr title=\"Certificat d’études du 1er degré\">CE1D</abbr>, <abbr title=\"Certificat d’enseignement secondaire du deuxième degré\">CESDD</abbr>, getuigschrift van de eerste/tweede graad."
+        ],
+        "levelOfEducation3": [
+            "EQF Level 4",
+            "Abschluss der Oberstufe, Abitur, Abschluss einer mittelständischen Lehre mit Gesellenzeugnis, <abbr title=\"Certificat de qualification\">CQ</abbr>, <abbr title=\"Certificat d’études de sixième année de l’enseignement secondaire professionnel\">CE6P</abbr>, <abbr title=\"Certificat d’enseignement secondaire supérieur\">CESS</abbr>, Diploma van secondair onderwijs, studiegetuigschrift."
+        ],
+        "levelOfEducation4": [
+            "EQF Level 5-6",
+            "Bachelor, Abschluss einer Meisterausbildung mit Meisterbrief, Abschluss einer Ausbildung im ergänzenden beruflichen Sekundarunterricht."
+        ],
+        "levelOfEducation5": [
+            "EQF Level 7-8",
+            "Master, Promotion/Doktorgrad, Habilitation."
+        ],
+        "notApplicableFull": [
+            "not applicable",
+            "entfällt"
+        ],
+        "notApplicableAbbr": [
+            "N/A",
+            "entf."
+        ],
+        "sliderFeedback": [
+            "Please move the slider at least once.",
+            "Bitte bewegen Sie den Schieber wenigstens ein Mal."
+        ],
+        "ok": [
+            "OK",
+            "OK"
+        ]
+    },
+    "lsb": {
+        "secTitle": [
+            "Language and Social Background",
+            "Sprachlicher und sozialer Hintergrund"
+        ],
+        "sex": [
+            "Sex:",
+            "Geschlecht:"
+        ],
+        "sexFeedback": [
+            "Please select an option for <i>Sex</i>.",
+            "Bitte wählen Sie ein <i>Geschlecht</i>."
+        ],
+        "female": [
+            "Female",
+            "weiblich"
+        ],
+        "male": [
+            "Male",
+            "männlich"
+        ],
+        "other": [
+            "Other",
+            "anders"
+        ],
+        "otherFeedback": [
+            "Please briefly specify what other sex you identify with.",
+            "Bitte erläutern Sie kurz mit welchem anderen geschlecht Sie sich identifizieren."
+        ],
+        "occupation": [
+            "Occupation:",
+            "Beruf:"
+        ],
+        "occupationFeedback": [
+            "Please name or briefly describe your occupation, e.g. <i>Student</i>, <i>Hairdresser</i>, <i>Retail worker</i>, …",
+            "Bitte bennen oder beschreiben Sie Ihren Beruf, z.B. <i>Student</i>, <i>Friseur</i>, <i>Einzelhandelskaufmann/frau</i>, …"
+        ],
+        "handedness": [
+            "Handedness:",
+            "Händigkeit"
+        ],
+        "left": [
+            "Left",
+            "links"
+        ],
+        "right": [
+            "Right",
+            "rechts"
+        ],
+        "handednessFeedback": [
+            "Please indicate whether you are <i>left-</i> or <i>righthanded</i>.",
+            "Bitte geben Sie an ob Sie <i>Links-</i> oder <i>Rechtshänder</i> sind."
+        ],
+        "dateOfBirth": [
+            "Date of birth:",
+            "Geburtsdatum:"
+        ],
+        "dateOfBirthFeedback": [
+            "Please give your <i>date of birth</i> (must be in the past).",
+            "Bitte geben Sie Ihr <i>Geburtsdatum</i> an (muss in der Vergangenheit liegen)."
+        ],
+        "impairedHearing": [
+            "Do you have impaired hearing?",
+            "Haben Sie eine Gehörschädigung jeglicher Art?"
+        ],
+        "impairedHearingFeedback": [
+            "Please indicate whether you have any difficulties with your hearing.",
+            "Bitte geben Sie an, ob Ihre Hörfähigkeit beeinträchtigt ist oder nicht."
+        ],
+        "hearingAid": [
+            "If <strong>yes</strong>, do you wear a hearing aid?",
+            "Falls <strong>ja</strong>, nutzen Sie ein Hörgerät?"
+        ],
+        "hearingAidFeedback": [
+            "Please indicate whether you use a hearing aid or not.",
+            "Bitte geben Sie an, ob Sie ein Hörgerät nutzen oder nicht."
+        ],
+        "visionImpairment": [
+            "Do you have impaired vision?",
+            "Haben Sie ein beeinträchtigtes Sehvermögen?"
+        ],
+        "visionImpairmentFeedback": [
+            "Please indicate whether you have a vision impairment or not.",
+            "Bitte geben Sie an, ob Ihr Sehvermögen beeinträchtigt ist oder nicht."
+        ],
+        "visionAid": [
+            "If <strong>yes</strong>, do you wear glasses/contacts?",
+            "Falls ja, nutzen Sie eine Brille/Kontaktlinsen?"
+        ],
+        "visionAidFeedback": [
+            "Please indicate whether you use a vision aid such as glasses or contact lenses.",
+            "Bitte geben Sie an, ob Sie eine Sehhilfe wie Brille oder Kontaktlinsen nutzen."
+        ],
+        "visionCorrected": [
+            "Do they correct your vision to normal?",
+            "Ist ihr Sehvermögen damit vollständig korrigiert?"
+        ],
+        "visionCorrectedFeedback": [
+            "Please indicate whether, using your vision aid, your vision is fully corrected to normal.",
+            "Bitte geben Sie an, ob Ihre Sehhilfe (Brille/Kontaktlinsen) Ihr Sehvermögen vollständig korrigiert."
+        ],
+        "placeOfBirth": [
+            "Place of birth:",
+            "Wo wurden Sie geboren?"
+        ],
+        "placeOfBirthFeedback": [
+            "Please give your (approximate) <i>place of birth</i>, e.g. <i>Madrid, Spain</i>.",
+            "Bitte geben Sie Ihren (ungefähren) <i>Geburtsort</i> an, z.B. <i>Madrid, Spanien</i>."
+        ],
+        "approximateAreaSufficient": [
+            "Approximate area is sufficient.",
+            "Ungefähre Angabe genügt."
+        ],
+        "residencies": [
+            "Where else have you lived for any significant period of time (&gt; 6 months)?",
+            "Wo sonst haben Sie über einen längeren Zeitraum gelebt (mehr als 6 Monate)?"
+        ],
+        "placeName": [
+            "Place name",
+            "Wo haben Sie gelebt?"
+        ],
+        "from": [
+            "From",
+            "Von"
+        ],
+        "until": [
+            "Until",
+            "Bis"
+        ],
+        "levelOfEducation": [
+            "Please indicate the highest level of education you have achieved:",
+            "Bitte geben Sie die höchste Bildungsstufe an, die Sie erreicht haben."
+        ],
+        "levelOfEducationFeedback": [
+            "Please indicate the highest level of education from the list that you have achieved (or the approximate equivalent).",
+            "Bitte wählen Sie die höchste Bildungsstufe die Sie erreicht haben, bzw. das am besten zutreffende Äquivalent."
+        ]
+    },
+    "ldb": {
+        "secTitle": [
+            "Language and Dialect Background",
+            "Sprachlicher and dialektaler Hintergrund"
+        ],
+        "languagesInstructions": [
+            "List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:",
+            "Geben Sie alle Sprachen und Dialekte an, die Sie sprechen und verstehen können, inklusive Eifeler Platt und Deutsch. Bitte geben Sie diese der Reihenfolge nach an, wie sicher Sie sich in der jeweiligen Sprach oder dem Dialekt fühlen:"
+        ],
+        "languageName": [
+            "Language or dialect",
+            "Sprache/Dialekt"
+        ],
+        "learnedWhere": [
+            "Where did you learn it?",
+            "Wo haben Sie die Sprache/den Dialekt gelernt?"
+        ],
+        "learnedAge": [
+            "At what age did you learn it?",
+            "Wie alt waren Sie, als Sie die Sprache/den Dialekt gelernt haben?"
+        ],
+        "learnedBreaks": [
+            "Were there any significant periods in your life when you did not use this language?",
+            "Gab es irgendwelche länger anhaltenden Zeiten in denen Sie diese Sprache/diesen Dialekt nicht benutzt haben?"
+        ],
+        "learnedAgeInfo": [
+            "If learned from birth enter “0”.",
+            "Falls von Geburt an gelernt, bitte „0“ eintragen."
+        ],
+        "learnedBreaksInfo": [
+            "Indicate duration in months/years.",
+            "Geben Sie die Gesamtdauer in Monaten/Jahren an."
+        ],
+        "languageNameLabel": [
+            "Language name",
+            "Sprache/Dialekt"
+        ],
+        "languageNameFeedback": [
+            "Please give the name of a language or dialect (between 3 and 50 characters).",
+            "Bitte geben Sie den Namen der Sprache oder des Dialekts an (zwischen 3 und 50 Buchstaben)."
+        ],
+        "atHome": [
+            "At home",
+            "Zuhause"
+        ],
+        "atSchool": [
+            "At school",
+            "In der Schule"
+        ],
+        "inCommunity": [
+            "In the community",
+            "In meinem Umfeld"
+        ],
+        "other": [
+            "Other",
+            "Anderswo"
+        ],
+        "learnedWhereLabel": [
+            "Learned where",
+            "Wo gelernt"
+        ],
+        "learnedWhereFeedback": [
+            "Please select an option.",
+            "Bitte wählen Sie eine Option"
+        ],
+        "learnedWhereOtherLabel": [
+            "<i>Please specify…</i>",
+            "<i>Bitte ausführen…</i>"
+        ],
+        "learnedWhereOtherFeedback": [
+            "Please give a brief indication of where you learned the language or dialect.",
+            "Bitte erklären Sie kurz, wie Sie die Sprache/den Dialekt gelernt haben."
+        ],
+        "learnedAgeLabel": [
+            "Learned from age",
+            "Gelernt im Alter von"
+        ],
+        "learnedAgeFeedback": [
+            "Please indicate how old you were (in years) when you started to learn this language.",
+            "Bitte geben Sie an, wie alt Sie waren (in Jahren), als Sie anfingen diese Sprache/diesen Dialekt zu lernen."
+        ],
+        "learnedBreaksYearsLabel": [
+            "years",
+            "Jahre"
+        ],
+        "learnedBreaksYearsFeedback": [
+            "Value must be between 0-100.",
+            "Wert muss zwischen 0 und 100 liegen."
+        ],
+        "learnedBreaksMonthsLabel": [
+            "months",
+            "Monate"
+        ],
+        "learnedBreaksMonthsFeedback": [
+            "Value must be between 0-12.",
+            "Wert muss zwischen 0 und 12 liegen."
+        ],
+        "parentsInstructions": [
+            "Please indicate the highest level of education, the occupation, and the languages or dialects spoken by each of your parents:",
+            "Bitte geben Sie die höchste erreichte Bildungsstufe, den Beruf, und die Sprachen oder Dialekte von Ihrem jeweiligen Elternteil an:"
+        ],
+        "mother": [
+            "Mother",
+            "Mutter"
+        ],
+        "notApplicableFull": [
+            "not applicable",
+            "trifft nicht zu"
+        ],
+        "levelOfEducation": [
+            "Level of education:",
+            "Erreichte Bildungsstufe:"
+        ],
+        "levelOfEducationFeedbackMother": [
+            "Please indicate the highest level of education from the list that your <i>mother</i> has achieved (or the approximate equivalent).",
+            "Bitte wählen Sie die höchste Bildungsstufe die Ihre <i>Mutter</i> erreicht hat, bzw. das am besten zutreffende Äquivalent."
+        ],
+        "occupation": [
+            "Occupation:",
+            "Beruf:"
+        ],
+        "occupationFeedbackMother": [
+            "Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
+            "Bitte bennen oder beschreiben Sie den Beruf Ihrer Mutter, z.B. <i>Studentin, Friseurin, Einzelhandelskauffrau, …</i>"
+        ],
+        "firstLanguage": [
+            "First language:",
+            "1. Sprache oder Dialekt:"
+        ],
+        "secondLanguage": [
+            "Second language:",
+            "2. Sprache oder Dialekt:"
+        ],
+        "otherLanguages": [
+            "Other language(s):",
+            "Weitere Sprachen/Dialekte:"
+        ],
+        "otherLanguagesInfo": [
+            "List additional languages separated by commas.",
+            "Bitte geben Sie weiter Sprachen/Dialekte mit Kommas getrennt ein."
+        ],
+        "father": [
+            "Father",
+            "Vater"
+        ],
+        "levelOfEducationFeedbackFather": [
+            "Please indicate the highest level of education from the list that your <i>father</i> has achieved (or the approximate equivalent).",
+            "Bitte wählen Sie die höchste Bildungsstufe die Ihr <i>Vater</i> erreicht hat, bzw. das am besten zutreffende Äquivalent."
+        ],
+        "occupationFeedbackFather": [
+            "Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
+            "Bitte bennen oder beschreiben Sie den Beruf Ihres Vaters, z.B. <i>Student, Friseur, Einzelhandelskaufmann, …</i>"
+        ],
+        "aboutLanguageX": [
+            "About <!-- ...[LanguageX] -->",
+            "Über <!-- ...[LanguageX] -->"
+        ],
+        "aboutLanguageXInstr1": [
+            "Relative to the performance of a highly proficient speaker of <!-- ... [LanguageX], -->",
+            "Bitte bewerten Sie Ihre sprachliche Kompetenz bei folgenden Aktivitäten auf <!-- ... [LanguageX], -->"
+        ],
+        "aboutLanguageXInstr2": [
+            "rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. -->",
+            "verglichen mit der Leistung eines hochkompetenten Sprechers von <!-- ... [LanguageX]. -->"
+        ],
+        "noProficiency": [
+            "No Proficiency",
+            "Keine Kompetenz"
+        ],
+        "highProficiency": [
+            "High Proficiency",
+            "Höchste Kompetenz"
+        ],
+        "speaking": [
+            "Speaking",
+            "Sprechen"
+        ],
+        "understanding": [
+            "Understanding",
+            "Verstehen"
+        ],
+        "reading": [
+            "Reading",
+            "Lektüre"
+        ],
+        "writing": [
+            "Writing",
+            "Schreiben"
+        ],
+        "timeOfActivity": [
+            "Of the time you spend engaged in each of the following activities, how much of that time is carried out in <!-- ...[LanguageX]? -->",
+            "Welcher Anteil der Zeit, die Sie mit folgenden Aktivitäten verbringen, findet statt auf <!-- ...[LanguageX]? -->"
+        ],
+        "noneOfTheTime": [
+            "None of the time",
+            "Kein Teil"
+        ],
+        "allOfTheTime": [
+            "All of the time",
+            "Die gesamte Zeit"
+        ],
+        "listening": [
+            "Listening",
+            "Zuhören"
+        ],
+        "motherNotApplicableInfo": [
+            "Please mark this box <i>only</i> if you cannot answer questions about your mother (e.g. because you don't know them).",
+            "Bitte dieses Kästchen <i>nur</i> ankreuzen, wenn Sie keine Fragen zu Ihrer Mutter beantworten können (z.B. weil Sie sie nicht kennen)."
+        ],
+        "fatherNotApplicableInfo": [
+            "Please mark this box <i>only</i> if you cannot answer questions about your father (e.g. because you don't know them).",
+            "Bitte dieses Kästchen <i>nur</i> ankreuzen, wenn Sie keine Fragen zu Ihrem Vater beantworten können (z.B. weil Sie ihn nicht kennen)."
+        ],
+        "languageListOptions": [
+            "Eifeler Platt (Moselfränkisch)",
+            "Deutsch",
+            "Französisch",
+            "Niederländisch",
+            "Luxemburgisch",
+            "Wallonisch",
+            "Picardisch",
+            "Champenois",
+            "Romanisches Lothringisch",
+            "Limburgisch",
+            "Jiddisch",
+            "Deutsche Gebärdensprache (DGS)",
+            "Belgisch-französische Gebärdensprache (LSFB)",
+            "Flämische Gebärdensprache (VGT)",
+            "Englisch",
+            "Berber",
+            "Maghrebinisches Arabisch (Darija)",
+            "Spanisch",
+            "Türkisch",
+            "Portugiesisch",
+            "Italienisch",
+            "Griechisch",
+            "Polnisch",
+            "Modernes Standard-Arabisch"
+        ],
+        "repeatedLanguageErrorTitle": [
+            "Repeated language",
+            "Wiederholte Sprache"
+        ],
+        "repeatedLanguageErrorMessage": [
+            "“<span class=\"languageNameSlot\">[languageName]</span>” has already been added to this list.",
+            "„<span class=\"languageNameSlot\">[languageName]</span>“ wurde dieser Liste schon hinzugefügt."
+        ]
+    },
+    "club": {
+        "secTitle": [
+            "Community Language Use Behaviour",
+            "Gemeinschaftssprachverhalten"
+        ],
+        "onlyRML": [
+            "Only [RML]",
+            "Nur Eifeler Platt"
+        ],
+        "onlyMajorityLanguage": [
+            "Only [MajorityLanguage]",
+            "Nur Deutsch"
+        ],
+        "halfHalf": [
+            "Half/Half",
+            "Halb/Halb"
+        ],
+        "itemNotApplicableInfo": [
+            "Please mark this box <i>only</i> if you do not use either of these languages in the described context.",
+            "Bitte kreuzen Sie dieses Kästchen <i>nur</i> an, falls Sie keine der beiden Sprachen in dem beschriebenen Zusammenhang verwenden."
+        ],
+        "lifeStageInstructions": [
+            "Please indicate which language or dialect you most frequently heard or used in the following life stages, both inside and outside home.",
+            "Bitte geben Sie an, welche Sprache bzw. Dialekt Sie am häufigsten im folgenden Lebensstadium gehört oder benutzt haben, sowohl zuhause als auch außerhalb."
+        ],
+        "lifeStageFields": {
+            "infancy_age":   ["Frühe Kindheit"],
+            "nursery_age":   ["Vorschulalter"],
+            "primary_age":   ["Grundschulalter"],
+            "secondary_age": ["Alter Klasse 5-10"]
+        },
+        "peopleCurrentInstructions": [
+            "Please indicate which language or dialect you generally use when speaking to the following people.",
+            "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen benutzen wenn Sie mit folgenden Personengruppen sprechen."
+        ],
+        "peopleCurrentFields": {
+            "parents":          ["Eltern"],
+            "children":         ["Kinder"],
+            "siblings":         ["Geschwister"],
+            "grandparents":     ["Großeltern"],
+            "other_relatives":  ["Sonstige Verwandte"],
+            "partner":          ["Partner/Lebensgefährte"],
+            "friends":          ["Freunde"],
+            "flatmates":        ["Mitbewohner"],
+            "neighbours":       ["Nachbarn"]
+        },
+        "peopleChildhoodInstructions": [
+            "Please indicate, to the best of your knowledge, which language or dialect you generally used between the ages of 6-12, when speaking to the following people.",
+            "Bitte geben Sie Ihrem besten Wissen nach an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen im Alter von 6-12 Jahren benutzt haben, wenn Sie mit folgenden Personengruppen sprachen."
+        ],
+        "peopleChildhoodFields": {
+            "parents":          ["Eltern"],
+            "siblings":         ["Geschwister"],
+            "grandparents":     ["Großeltern"],
+            "other_relatives":  ["Sonstige Verwandte"],
+            "friends":          ["Freunde"],
+            "neighbours":       ["Nachbarn"]
+        },
+        "situationInstructions": [
+            "Please indicate which language or dialect you generally use in the following situations.",
+            "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen in folgenden Situationen benutzen."
+        ],
+        "situationFields": {
+            "home":         ["Zuhause"],
+            "school":       ["Schule"],
+            "work":         ["Arbeit"],
+            "socialising":  ["Unter Leuten sein",               "(etwas trinken gehen, abhängen, Kaffekranz)"],
+            "religion":     ["Religion"],
+            "leisure":      ["Freizeitaktivitäten",             "(Hobbys, Vereinssport, Ehrenamt, Spielen)"],
+            "commercial":   ["Geschäft/Handel ",                "(Einkaufen, Restaurants)"],
+            "public":       ["Öffentliche Dienstleistungen",    "(Gesundheitsleistungen, Banken, Regierung, Gemeindeverwaltung)"]
+        },
+        "activityInstructions": [
+            "Please indicate which language or dialect you generally use for the following activities.",
+            "Bitte geben Sie an, welche Sprache bzw. welchen Dialekt Sie im Allgemeinen für folgende Aktivitäten verwenden."
+        ],
+        "activityFields": {
+            "reading":           ["Lesen"],
+            "emailing":          ["Emails"],
+            "texting":           ["SMS/WhatsApp/usw."],
+            "social_media":      ["Soziale Medien"],
+            "notes":             ["Notizen",                    "(Einkaufslisten, Vermerke, Notizen)"],
+            "traditional_media": ["Fernseh, Filme, Radio"],
+            "internet":          ["Internet"],
+            "praying":           ["Beten"]
+        },
+        "codeSwitchingHint": [
+            "If you only know one language, select <i>N/A</i> for all items.",
+            "Falls Sie nur eine Sprache sprechen, kreuzen Sie für alle Situationen <i>entf.</i> an."
+        ],
+        "codeSwitchingInstructions": [
+            "Some people switch between the languages they know within a single conversation. For example, while speaking in one language they may use sentences or words from the other language. This is known as “code-switching”. Please indicate how often you engage in code-switching.",
+            "Manche Menschen wechseln in ein und der selben Unterhaltung zwischen den von ihnen beherrschten Sprachen. Zum Beispiel könnten sie sich in einer der Sprachen unterhalten und dabei Sätze oder Wörter einer anderen Sprache benutzen. Das nennt man “Code-Switching”. Bitte geben Sie an, wie häufig Sie Code-Switching betreiben."
+        ],
+        "codeSwitchingFields": {
+            "friends":          ["Freunde"],
+            "parents_and_family": ["Eltern und Familie"],
+            "social_media":      ["Soziale Medien"]
+        }
+    },
+    "notes": {
+        "secTitle": [
+            "Thank you for completing the Language and Social Background Questionnaire!",
+            "Vielen Dank für das Ausfüllen des Fragebogen zum sprachlichen und sozialen Hintergrund!"
+        ],
+        "participantNoteInstructions": [
+            "Is there anything else that you think is important for us to know about you?",
+            "Gibt es sonst noch irgendetwas, von dem Sie glauben, dass wir es über Sie wissen sollten?"
+        ],
+        "thankYouMessage": [
+            "Thank you for completing the background questionnaire! If you think there's anything else we should know about you or your background then you can use the box below to tell us about this. Then just click on the &ldquo;submit and continue&rdquo; button to save your data and continue with the next task.",
+            "Danke, dass Sie den Hintergrundfragebogen ausgefüllt haben! Falls Sie glauben, es gäbe sonst noch irgendetwas, dass wir über Sie oder Ihren Hintergrund wissen sollten, dann können Sie uns dies in dem unten anstehenden Feld mitteilen. Dannach klicken Sie bitte einfach auf „Absenden und Weiter“ um mit der nächsten Aufgabe weiter zu machen."
+        ],
+        "submitAndContinue": [
+            "Submit and Continue",
+            "Absenden und Weiter"
+        ]
+    }
+}

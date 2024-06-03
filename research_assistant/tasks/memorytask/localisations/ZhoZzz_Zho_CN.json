@@ -1,0 +1,91 @@
+{
+    "meta": {
+        "versionId": "ZhoZzz_Zho_CN",
+        "versionName": "Chinese – Generic (China)",
+        "versionNumber": "0.3.5",
+        "author": "Chloe Cheung <chloewycheung8@gmail.com>",
+        "date": "2023-03-15"
+    },
+    "base": {
+        "appTitle": [
+            "Memory Task",
+            "记忆游戏"
+        ]
+    },
+    "game": {
+        "secTitle": [
+            "Memory Task",
+            "记忆游戏"
+        ],
+        "round": [
+            "Round",
+            "轮"
+        ],
+        "xofy": [
+            "<!-- x --> of <!-- y -->",
+            "<!-- x -->此刻，总轮数：<!-- y -->"
+        ],
+        "cardsTurned": [
+            "Cards turned:",
+            "已经翻转的卡片:"
+        ],
+        "timeElapsed": [
+            "Time:",
+            "时间:"
+        ],
+        "resultsModalTitle": [
+            "Memory Task Results",
+            "记忆游戏结果"
+        ],
+        "completeCongratulations": [
+            "Well done, you've matched all the cards!",
+            "做的好！你成功完成了游戏。"
+        ],
+        "yourScore": [
+            "Your score:",
+            "你的结果"
+        ],
+        "numberOfTries": [
+            "Number of tries:",
+            "尝试的次数："
+        ],
+        "timeNeeded": [
+            "Time needed:",
+            "需要的时间："
+        ],
+        "continueNextGame": [
+            "Click &ldquo;Continue&rdquo; to have another go and see whether you can beat your own score!",
+            "点击「继续」再来一次，看看你是否能打败你自己的分数!"
+        ],
+        "continueFinished": [
+            "You've now successfully completed this task!<br /> Please click &ldquo;Continue&rdquo; to finish up.",
+            "你成功地完成了这项任务!<br /> 请点击「继续」完成。"
+        ],
+        "continue": [
+            "Continue",
+            "继续"
+        ]
+    },
+    "end": {
+        "secTitle": [
+            "Thank you for completing the Memory Task!",
+            "谢谢你完成了记忆游戏!"
+        ],
+        "feedback": [
+            "Well done!",
+            "做的好！"
+        ],
+        "thankYouMessage": [
+            "You have now completed the memory task. Your data has been saved.",
+            "你现在已经完成了记忆游戏。你的结果已被保存。"
+        ],
+        "followOnInstructions": [
+            "Please click “Continue” when you’re ready to continue.",
+            "当你准备继续时，请点击「继续」。"
+        ],
+        "continue": [
+            "Continue",
+            "继续"
+        ]
+    }
+}

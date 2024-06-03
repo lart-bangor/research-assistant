@@ -1,17 +1,20 @@
 """Utility functions for the LART Research Assistant app."""
+import json
+import logging
 import os
 import shutil
-import logging
-import json
 from pathlib import Path
-from tkinter import Tk, Label, filedialog, messagebox
+from tkinter import Label, Tk, filedialog, messagebox
 from typing import Any, Literal
-from .config import config, Config, _default_paths                               # type: ignore
+
+from .config import Config, _default_paths, config  # type: ignore
 
 logger = logging.getLogger(__name__)
 
 
-def manage_settings(command: Literal["update", "reset", "clear"] | str) -> bool:  # noqa: C901
+def manage_settings(
+    command: Literal["update", "reset", "clear"] | str
+) -> bool:  # noqa: C901
     """Manage app settings file.
 
     Args:
@@ -56,7 +59,9 @@ def manage_settings(command: Literal["update", "reset", "clear"] | str) -> bool:
                 return False
         else:
             loaded = Config()
-            logger.debug(f"No settings file found at {config_file!s}, using app defaults")
+            logger.debug(
+                f"No settings file found at {config_file!s}, using app defaults"
+            )
         loaded.save("settings.json")
         if config_file.exists():
             logger.info(f"Successfully updated config file at '{config_file!s}'")
@@ -69,7 +74,9 @@ def manage_settings(command: Literal["update", "reset", "clear"] | str) -> bool:
             return False
         if not manage_settings("update"):
             return False
-        logger.info(f"Successfully restored defaults to settings file at {config_file!s}")
+        logger.info(
+            f"Successfully restored defaults to settings file at {config_file!s}"
+        )
         return True
     if command.startswith("{") and command.endswith("}"):
         logger.debug(f"Updating settings with supplied JSON string: {command}")
@@ -78,8 +85,10 @@ def manage_settings(command: Literal["update", "reset", "clear"] | str) -> bool:
         stored_attrs: list[str] = []
         unknown_attrs: list[Any] = []
         if isinstance(data, dict):
-            for key, value in data.items():                                     # type: ignore
-                if isinstance(key, str) and _recursively_overwrite_attr(loaded, key, value):
+            for key, value in data.items():  # type: ignore
+                if isinstance(key, str) and _recursively_overwrite_attr(
+                    loaded, key, value
+                ):
                     stored_attrs.append(key)
                 else:
                     unknown_attrs.append(key)
@@ -125,13 +134,14 @@ def export_backup(filename: Path | str | None = None) -> bool:
         label = Label(
             master=tkroot,
             text="Please select the path to save the data backup to...",
-            font=("Helvetica 13")
+            font=("Helvetica 13"),
         )
         label.pack()
         tkroot.geometry("500x50")
         tkroot.lift()
         tkroot.withdraw()
         from datetime import datetime
+
         dialog = filedialog.SaveAs(
             master=tkroot,
             title="Save Data Backup as...",
@@ -163,6 +173,5 @@ def show_error_dialog(title: str | None = None, message: str | None = None):
     tkroot = Tk()
     tkroot.withdraw()
     messagebox.showerror(
-        title if title else "Error",
-        message if message else "An unknown error occured."
+        title if title else "Error", message if message else "An unknown error occured."
     )

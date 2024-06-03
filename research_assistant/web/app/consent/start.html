@@ -1,0 +1,190 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Assistant - Consent{% endblock %}
+{% block headline %}<span id="consentAppTitle" data-consent-tr="base.appTitle">Informed Consent</span>{% endblock %}
+{% block head_scripts %}
+{% endblock %}
+{% block head_styles %}
+<style type="text/css">
+    #infoSheetParagraphs li:hover, #eligibilityCriteriaParagraphs li:hover {
+        background: #fbfbfb;
+    }
+    #infoSheetParagraphs .list-group-item, #eligibilityCriteriaParagraphs .list-group-item {
+        border-color:#fbfbfb;
+    }
+</style>
+{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+{% endblock %}
+{% block content %}
+
+    <form id="surveyDataForm" class="needs-validation" autocomplete="off">
+
+        <input type="hidden" name="instanceId" />
+
+        <!-- Participant Information Sheet -->
+        <article class="container-fluid p-2" id="infoSheet">
+
+            <section class="row m-4 mb-0 text-center" id="infoSheetHeader">
+                <h2 id="infoSheetSecTitle" data-consent-tr="infoSheet.secTitle">
+                    Participant Information Sheet
+                </h2>
+            </section>
+
+            <section class="row m-4 mb-0" id="infoSheetParagraphs">
+                <template id="infoSheetParagraphTemplate">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="text-primary fw-semi">[ParagraphHeading]</div>
+                            <span id="infoSheetParagraphText">[ParagraphText]</span>
+                        </div>
+                    </li>
+                </template>
+                <ol class="list-group list-group-numbered small" id="infoSheetParagraphSlot">
+                </ol>
+            </section>
+
+            <section class="row m-4" id="infoSheetConfirmation">
+                <h3 class="fs-6" data-consent-tr="infoSheet.confirmLabel">Confirm consent:</h3>
+                <div class="form-check ms-3">
+                    <input class="form-check-input" type="checkbox" id="confirmInformedConsent" required />
+                    <label class="form-check-label" for="confirmInformedConsent" data-consent-tr="infoSheet.confirmStatement">
+                        Please confirm that you have read and understood the above, and that you are willing to participate in the study. Thank you.
+                    </label>
+                    <div class="invalid-feedback" data-consent-tr="infoSheet.confirmFeedback">
+                        Please confirm that you consent to the above before beginning your participation in the study.
+                    </div>
+                </div>
+            </section>
+
+        </article>
+
+        <!-- Eligibility Criteria Sheet -->
+        <article class="container-fluid p-2" id="eligibilityCriteria">
+
+            <section class="row m-4 mb-0 text-center" id="eligibilityCriteriaHeader">
+                <h2 id="eligibilityCriteriaSecTitle" data-consent-tr="eligibilityCriteria.secTitle">
+                    Eligibility Criteria
+                </h2>
+            </section>
+
+            <section class="row m-4 mb-0" id="eligibilityCriteriaParagraphs">
+                <p class="text-primary fw-semi fs-6" data-consent-tr="eligibilityCriteria.secInfo">
+                    Please read the eligibility criteria below and confirm that you qualify. Thank you.
+                </p>
+                <template id="eligibilityCriteriaParagraphTemplate">
+                    <li class="list-group-item">
+                        <span id="infoSheetParagraphText">[ParagraphText]</span>
+                    </li>
+                </template>
+                <ol class="list-group list-group-numbered small" id="eligibilityCriteriaParagraphSlot">
+                </ol>
+            </section>
+
+            <section class="row m-4" id="eligibilityCriteriaConfirmation">
+                <h3 class="fs-6" data-consent-tr="eligibilityCriteria.confirmLabel">Confirm eligibility:</h3>
+                <div class="form-check ms-3">
+                    <input class="form-check-input" type="checkbox" id="confirmEligibility" required />
+                    <label class="form-check-label" for="confirmEligibility" data-consent-tr="eligibilityCriteria.confirmStatement">
+                        I confirm that I meet the criteria above.
+                    </label>
+                    <div class="invalid-feedback" data-consent-tr="eligibilityCriteria.confirmFeedback">
+                        Please confirm that you are eligible to take part in this study.
+                    </div>
+                </div>
+            </section>
+
+        </article>
+
+        <!-- Form submission -->
+        <div class="row text-end p-3 m-4">
+            <div clas="col">
+                <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-consent-tr="base.confirm">Confirm</button>
+            </div>
+        </div>
+
+    </form>
+{% endblock %}
+{% block tail_scripts %}
+    <script  type="text/javascript">
+        // Require form validation
+        lart.forms.requireValidation(true);
+
+        // Initialise UI translation
+        let instanceId = lart.forms.searchParams.get('instance');
+        lart.tr.loadFromEel('consent', eel.consent_load_localisation, [instanceId, ['meta', 'base', 'infoSheet', 'eligibilityCriteria']]);
+        lart.tr.registerObserver('consent', 'consentAppTitle');
+        lart.tr.registerObserver('consent', 'surveyDataForm');
+
+        // Set instanceId value on surveyDataForm
+        const instanceIdFields = document.getElementsByName('instanceId');
+        for (const instanceIdField of instanceIdFields) {
+            instanceIdField.value = instanceId;
+        }
+
+        // Add Participant Information Sheet Paragraphs when localisation has loaded
+        function addInforSheetParagraphs() {
+            const paragraphs = lart.tr.get('consent', 'infoSheet.paragraphs');
+            for (const paragraph of paragraphs) {
+                addInfoSheetParagraph(paragraph[0], paragraph[1]);
+            }
+        }
+
+        function addInfoSheetParagraph(heading, text) {
+            const template = document.getElementById('infoSheetParagraphTemplate');
+            const slot = document.getElementById('infoSheetParagraphSlot');
+            const clone = template.content.cloneNode(true);
+
+            const paraTextElement = clone.getElementById('infoSheetParagraphText');
+            if (paraTextElement) {
+                paraTextElement.removeAttribute('id');
+                paraTextElement.innerHTML = text;
+            }
+
+            booteel.util.replaceInDOM(
+                clone,
+                {
+                    '[ParagraphHeading]': heading,
+                    '[ParagraphText]': text,
+                }
+            );
+
+            slot.appendChild(clone);
+        }
+
+        lart.tr.registerCallback('consent', addInforSheetParagraphs);
+
+        // Add eligibility criteria paragraphs when localisation has loaded
+        function addEligibilityCriteriaParagraphs() {
+            const paragraphs = lart.tr.get('consent', 'eligibilityCriteria.paragraphs');
+            for (const paragraph of paragraphs) {
+                addEligibilityCriteriaParagraph(paragraph[0]);
+            }
+        }
+
+        function addEligibilityCriteriaParagraph(text) {
+            const template = document.getElementById('eligibilityCriteriaParagraphTemplate');
+            const slot = document.getElementById('eligibilityCriteriaParagraphSlot');
+            const clone = template.content.cloneNode(true);
+
+            const paraTextElement = clone.getElementById('eligibilityCriteriaParagraphText');
+            if (paraTextElement) {
+                paraTextElement.removeAttribute('id');
+                paraTextElement.innerHTML = text;
+            }
+
+            booteel.util.replaceInDOM(
+                clone,
+                {
+                    '[ParagraphText]': text,
+                }
+            );
+
+            slot.appendChild(clone);
+        }
+
+        lart.tr.registerCallback('consent', addEligibilityCriteriaParagraphs);
+    </script>
+    {{ lart_form_pipeline('surveyDataForm', 'consent_record_consent') }}
+{% endblock %}

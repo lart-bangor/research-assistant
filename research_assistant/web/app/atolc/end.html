@@ -1,0 +1,65 @@
+{%- from 'lart_macros.html' import lart_form_pipeline %}
+{%- extends 'base.html' %}
+{% block title %}LART Research Assistant - AToL-C{% endblock %}
+{% block headline %}<span id="atolcAppTitle" data-atolc-tr="base.appTitle">AToL-C</span>{% endblock %}
+{% block head_scripts %}
+{% endblock %}
+{% block head_styles %}{% endblock %}
+{% block drawer_info %}{% endblock %}
+{% block drawer_nav_options %}
+{% endblock %}
+{% block content %}
+    <article class="container-fluid p-2" id="atolcEndScreen">
+
+        <!--
+        <div class="row m-4">
+            <div class="col">
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+                </div>
+            </div>
+        </div>
+        -->
+
+        <div class="row m-4 text-center">
+            <h2 data-atolc-tr="end.secTitle">Thank you for completing the questionnaire!</h2>
+        </div>
+
+        <div class="row m-4">
+            <div class="col fw-semi p-0">
+                <p data-atolc-tr="end.thankYouMessage">
+                    Thank you for completing the questionnaire!
+                </p>
+                <p data-atolc-tr="end.followOnInstructions">
+                    Please click “Continue” when you’re ready to continue.
+                </p>
+            </div>
+        </div>
+
+        <form id="surveyDataForm">
+            <input type="hidden" name="instanceId" />
+            <!-- Form submission -->
+            <div class="row text-end p-3 m-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg btn-action shadow" data-atolc-tr="end.continue">Continue</button>
+                </div>
+            </div>
+        </form>
+
+    </article>
+{% endblock %}
+{% block tail_scripts %}
+    <script  type="text/javascript">
+        // Initialise UI translation
+        let instanceId = lart.forms.searchParams.get('instance');
+        lart.tr.loadFromEel('atolc', eel.atolc_load_localisation, [instanceId, ['meta', 'base', 'end']]);
+        lart.tr.registerObserver('atolc', 'atolcAppTitle');
+        lart.tr.registerObserver('atolc', 'atolcEndScreen');
+        // Set instanceId value on surveyDataForm
+        const instanceIdFields = document.getElementsByName('instanceId');
+        for (const instanceIdField of instanceIdFields) {
+            instanceIdField.value = instanceId;
+        }
+    </script>
+    {{ lart_form_pipeline('surveyDataForm', 'atolc_end') }}
+{% endblock %}

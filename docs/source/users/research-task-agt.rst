@@ -43,7 +43,7 @@ Do note that this is done consistently for all recordings.
       
       All sound files must be in mp3 format for the AGT to function. 
 
-To load your own recordings for the AGT, open the folder :file:`[mgt]` by following the path below: 
+To load your own recordings for the AGT, open the folder :file:`mgt` by following the path below: 
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\ResearchAssistant\\research_assistant\\web\\audio\\agt`
 
@@ -96,9 +96,9 @@ You may wish to customize a generic version of the AGT if you would like the AGT
 There are several generic versions available (e.g., English, German, Italian), all of which can be customized.
 
 Generic versions can be identified by the fact that the file name contains the sequence [Zzz], a placeholder code for "unknown language"
-(for example, the file for the generic version for British English is called :file:`[EngZzz_Eng_GB]`).
+(for example, the file for the generic version for British English is called :file:`EngZzz_Eng_GB`).
 
-If you wish to customise a generic version of the AGT, open the relevant file (e.g. :file:`[EngZzz_Eng_GB]` for British English, or :file:`[GerZzz_Ger_DE]` for German, and so on)
+If you wish to customise a generic version of the AGT, open the relevant file (e.g. :file:`EngZzz_Eng_GB` for British English, or :file:`GerZzz_Ger_DE` for German, and so on)
 by following the path below:
 
 :file:`C:\\Users\\username\\AppData\\Local\\Programs\\LART\\Research Assistant\\research_assistant\\agt\\versions`
@@ -126,7 +126,7 @@ Secondly, you must change the “version_id” and “version_name” to reflect
       New AGT file ZhoEng_Eng_SG 
 
 It is not mandatory to include English as one of the languages on the “English – generic” AGT version. For example, if you are a dialectologist
-who requires a VGT to study Ulster Scots and Irish in Northern Ireland, you would call your file :file:`[ScoGle_Eng_GB]` and apply the changes
+who requires a VGT to study Ulster Scots and Irish in Northern Ireland, you would call your file :file:`ScoGle_Eng_GB` and apply the changes
 to version_name and version_id as above.
 
 

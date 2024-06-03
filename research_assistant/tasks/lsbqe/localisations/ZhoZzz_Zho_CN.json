@@ -1,0 +1,481 @@
+{
+    "meta": {
+        "versionId": "CmnZho_Zho_CN",
+        "versionName": "Chinese - Generic (China)",
+        "versionNumber": "0.3.6",
+        "author": "Chloe Cheung <chloewycheung8@gmail.com>, Xinyan Wan <xinyuan.wan@helsinki.fi>",
+        "date": "2024-05-01",
+        "options": {
+            "lsb_show_other_sex": true,
+            "ldb_minimum_required_languages": 2,
+            "ldb_show_reading": true,
+            "ldb_show_writing": true,
+            "club_show_codeswitching": true
+        }
+    },
+    "base": {
+        "appTitle": [
+            "语言和社会背景调查问卷"
+        ],
+        "yes": [
+            "有"
+        ],
+        "no": [
+            "没有"
+        ],
+        "next": [
+            "下一节"
+        ],
+        "addLine": [
+            "增行"
+        ],
+        "levelOfEducation1": [
+            "EQF 1",
+            "小学未毕业。"
+        ],
+        "levelOfEducation2": [
+            "EQF 2-3",
+            "初中毕业证书"
+        ],
+        "levelOfEducation3": [
+            "EQF 4",
+            "高中或职业高中毕业证书，高级技工院校资质"
+        ],
+        "levelOfEducation4": [
+            "EQF 5-6",
+            "大专学历，大学本科毕业无学位"
+        ],
+        "levelOfEducation5": [
+            "EQF 7-8",
+            "学士学位，硕士学位，博士学位"
+        ],
+        "notApplicableFull": [
+            "不适用"
+        ],
+        "notApplicableAbbr": [
+            "不适用"
+        ],
+        "sliderFeedback": [
+            "请至少移动滑块一次。"
+        ],
+        "ok": [
+            "行"
+        ]
+    },
+    "lsb": {
+        "secTitle": [
+            "语言和社会背景"
+        ],
+        "sex": [
+            "性别:"
+        ],
+        "sexFeedback": [
+            "请选择您的 <i>性别</i>。"
+        ],
+        "female": [
+            "女"
+        ],
+        "male": [
+            "男"
+        ],
+        "other": [
+            "其他性别"
+        ],
+        "otherFeedback": [
+            "请简要说明您认同的其他性别。"
+        ],
+        "occupation": [
+            "职业:"
+        ],
+        "occupationFeedback": [
+            "请说出或简要描述您的职业， 例： <i>学生</i>， <i>理发师</i>， <i>服务员</i>， ......"
+        ],
+        "handedness": [
+            " 惯用手:"
+        ],
+        "left": [
+            "左"
+        ],
+        "right": [
+            "右"
+        ],
+        "handednessFeedback": [
+            "Please indicate whether you are <i>left-</i> or <i>righthanded</i>.",
+            "请说明您是 <b>左利手-</b> 还是 <b>右利手</b>。"
+        ],
+        "dateOfBirth": [
+            "出生日期:"
+        ],
+        "dateOfBirthFeedback": [
+            "请提供您的 <i>出生日期</i> (一定是过去的)。"
+        ],
+        "impairedHearing": [
+            "您有听力障碍吗？"
+        ],
+        "impairedHearingFeedback": [
+            "请注明您是否有听力障碍。"
+        ],
+        "hearingAid": [
+            "如果 <strong>有</strong>, 您佩戴助听器吗？"
+        ],
+        "hearingAidFeedback": [
+            "请说明您是否使用助听器"
+        ],
+        "visionImpairment": [
+            "你视力有障碍吗?"
+        ],
+        "visionImpairmentFeedback": [
+            "请注明您是否有视力障碍。"
+        ],
+        "visionAid": [
+            "如果 <strong>有</strong>, 您使用眼镜/隐形眼镜吗？"
+        ],
+        "visionAidFeedback": [
+            "请注明您是否使用眼镜或隐形眼镜。"
+        ],
+        "visionCorrected": [
+            "它们会使您的视力正常吗？"
+        ],
+        "visionCorrectedFeedback": [
+            "请注明使用眼镜或隐形眼镜您的视力是否正常"
+        ],
+        "placeOfBirth": [
+            "出生地:"
+        ],
+        "placeOfBirthFeedback": [
+            "请提供您的（大致） <i>出生地</i>, 例： <i>马德里， 西班牙</i>."
+        ],
+        "approximateAreaSufficient": [
+            "大致面积就足够了。"
+        ],
+        "otherPlaces": [
+            "您还在哪里生活过很长一段时间 (&gt; 6个月)?"
+        ],
+        "placeName": [
+            "地方名称"
+        ],
+        "from": [
+            "从"
+        ],
+        "until": [
+            "到"
+        ],
+        "levelOfEducation": [
+            "请说明您达到的最高教育水平:"
+        ],
+        "levelOfEducationFeedback": [
+            "请从列表中注明您达到的最高教育水平（或近似同等学历）."
+        ]
+    },
+    "ldb": {
+        "secTitle": [
+            "语言和方言背景"
+        ],
+        "languagesInstructions": [
+            "List all the languages and dialects you can speak and understand, including [RML] and [MajorityLanguage], in order of how comfortable you feel using them:",
+            "列出您可以说和理解的所有语言和方言，包括中文, 按您使用它们的舒适度排序："
+        ],
+        "languageName": [
+            "语言或方言"
+        ],
+        "learnedWhere": [
+            "您从哪里学来的？"
+        ],
+        "learnedAge": [
+            "您几岁学的？"
+        ],
+        "learnedBreaks": [
+            "在您的生命中，有没有一个重要的时期您没有使用这种语言？"
+        ],
+        "learnedAgeInfo": [
+            "如果从出生时学习，请输入“0”。"
+        ],
+        "learnedBreaksInfo": [
+            "请注明持续时间（以月/年为单位）。"
+        ],
+        "languageNameLabel": [
+            "语言名称"
+        ],
+        "languageNameFeedback": [
+            "请提供语言或方言的名称（3至50个字符之间）。"
+        ],
+        "atHome": [
+            "在家"
+        ],
+        "atSchool": [
+            "在学校"
+        ],
+        "inCommunity": [
+            "在社区"
+        ],
+        "other": [
+            "其他原因"
+        ],
+        "learnedWhereLabel": [
+            "在哪里学习"
+        ],
+        "learnedWhereFeedback": [
+            "请选择一个选项。"
+        ],
+        "learnedWhereOtherLabel": [
+            "<i>请注明......</i>"
+        ],
+        "learnedWhereOtherFeedback": [
+            "Please give a brief indication of where you learned the language or dialect.",
+            "请简要说明您在哪里学习的该语言或方言。"
+        ],
+        "learnedAgeLabel": [
+            "从什么年龄学习"
+        ],
+        "learnedAgeFeedback": [
+            "请说明您开始学习这门语言时的年龄（以年为单位）。"
+        ],
+        "learnedBreaksYearsLabel": [
+            "年"
+        ],
+        "learnedBreaksYearsFeedback": [
+            "数值必须介于 0-100 之间。"
+        ],
+        "learnedBreaksMonthsLabel": [
+            "月"
+        ],
+        "learnedBreaksMonthsFeedback": [
+            "数值必须介于 0-12 之间。"
+        ],
+        "parentsInstructions": [
+            "请注明您父母的最高教育水平、职业以及使用的语言或方言："
+        ],
+        "mother": [
+            "母亲"
+        ],
+        "notApplicableFull": [
+            "不适用"
+        ],
+        "levelOfEducation": [
+            "教育程度："
+        ],
+        "levelOfEducationFeedbackMother": [
+            "Please indicate the highest level of education from the list that your <i>mother</i> has achieved (or the approximate equivalent).",
+            "请从选项里选择您 <b>母亲</b> 的最高教育水平（或大致相当水平）。"
+        ],
+        "occupation": [
+            "职业:"
+        ],
+        "occupationFeedbackMother": [
+            "Please name or briefly describe your mother's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
+            "请填写或简要描述您母亲的职业， 如：<b>学生，理发师，服务员......</b>"
+        ],
+        "firstLanguage": [
+            "第一语言："
+        ],
+        "secondLanguage": [
+            "第二语言："
+        ],
+        "otherLanguages": [
+            "其他语言:"
+        ],
+        "otherLanguagesInfo": [
+            "列出以逗号分隔的其他语言."
+        ],
+        "father": [
+            "父亲"
+        ],
+        "levelOfEducationFeedbackFather": [
+            "Please indicate the highest level of education from the list that your <i>father</i> has achieved (or the approximate equivalent).",
+            "请从选项里选择您 <b>父亲</b> 的最高教育水平（或大致相当水平）。"
+        ],
+        "occupationFeedbackFather": [
+            "Please name or briefly describe your father's occupation, e.g. <i>Student, Hairdresser, Retail worker, …</i>",
+            "请填写或简要描述您父亲的职业， 如： <b>学生，理发师，服务员......</b>"
+        ],
+        "aboutLanguageX": [
+            "关于 <!-- ...[LanguageX] -->"
+        ],
+        "aboutLanguageXInstr1": [
+            "Relative to the performance of a highly proficient speaker of <!-- ... [LanguageX], -->",
+            "相对于该语言高度熟练的使用者，该语言为 <!-- ... [LanguageX], -->"
+        ],
+        "aboutLanguageXInstr2": [
+            "rate your proficiency level for the following activities conducted in <!-- ... [LanguageX]. -->",
+            "评价您进行以下活动时，使用该语言的熟练程度，该语言为 <!-- ... [LanguageX]. --> "
+        ],
+        "noProficiency": [
+            "不熟练"
+        ],
+        "highProficiency": [
+            "高熟练度"
+        ],
+        "speaking": [
+            "口语"
+        ],
+        "understanding": [
+            "理解"
+        ],
+        "reading": [
+            "Reading",
+            "阅读"
+        ],
+        "writing": [
+            "Writing",
+            "写作"
+        ],
+        "timeOfActivity": [
+            "Of the time you spend engaged in each of the following activities, how much of that time is carried out in <!-- ...[LanguageX]? -->",
+            "在以下每项活动上，您有多少时间用的是 <!-- ...[LanguageX]? -->"
+        ],
+        "noneOfTheTime": [
+            "从不使用"
+        ],
+        "allOfTheTime": [
+            "始终使用"
+        ],
+        "listening": [
+            "听力"
+        ],
+        "motherNotApplicableInfo": [
+            "<i>仅当</i> 您无法回答有关您母亲的问题（例如，因为您不认识他们, 或者从未见过他们）时，才请选中此框。"
+        ],
+        "fatherNotApplicableInfo": [
+            "<i>仅当</i> 您无法回答有关您父亲的问题（例如，因为您不认识他们, 或者从未见过他们）时，才请选中此框。"
+        ],
+        "languageListOptions": [
+        
+            "汉语 - Chinese",
+            "英语 - English",
+            "官话 - Mandarin Chinese",
+            "普通话 - Standard Chinese",
+            "北京官话 - Beijing Mandarin",
+            "新加坡华语 - Singapore Mandarin",
+            "广东话 - Cantonese",
+            "中国手语 - Chinese Sign Language",
+            "日语 - Japanese",
+            "韩语 - Korean",
+            "葡萄牙语 - Portuguese",
+            "法语 - French",
+            "德语 - German",
+            "西班牙语 - Spanish",
+            "意大利语 - Italian",
+            "威尔士语 - Welsh"
+
+        ],
+        "repeatedLanguageErrorTitle": [
+            "重复语言"
+        ],
+        "repeatedLanguageErrorMessage": [
+            "“<span class=\"languageNameSlot\">[languageName]</span>” 已添加到此列表中."
+        ]
+    },
+    "club": {
+        "secTitle": [
+            "社区语言使用行为"
+
+        ],
+        "onlyRML": [
+            "Only [RML]",
+            "只有 方言/少数民族语言"
+    
+        ],
+        "onlyMajorityLanguage": [
+            "Only [MajorityLanguage]",
+            "只有 普通话"
+    
+        ],
+        "halfHalf": [
+            "平等使用"
+        ],
+        "itemNotApplicableInfo": [
+            "<i>仅当</i> 您在所述上下文中未使用这些语言中的任何一种时，才请选中此框。"
+        ],
+        "lifeStageInstructions": [
+            "Please indicate which language or dialect you most frequently heard or used in the following life stages, both inside and outside home.",
+            "请说明以下人生阶段中，您在家庭内外的最常听到或使用的语言或方言。"
+        ],
+        "lifeStageFields": {
+            "infancy":      ["婴儿期"],
+            "nurseryAge":   ["幼儿园"],
+            "primaryAge":   ["小学"],
+            "secondaryAge": ["中学"]
+        },
+        "withPeopleNowInstructions": [
+            "请说明您在与以下人员交谈时通常使用哪种语言或方言："
+        ],
+        "withPeopleNowFields": {
+            "parents":          ["父母"],
+            "children":         ["子女"],
+            "siblings":         ["兄弟姐妹"],
+            "grandparents":     ["外/祖父母"],
+            "otherRelatives":   ["其他亲戚"],
+            "partner":          ["男/女朋友"],
+            "friends":          ["朋友"],
+            "flatmates":        ["室友"],
+            "neighbours":       ["邻居"]
+        },
+        "withPeopleEarlyLifeInstructions": [
+            "据您所知，请说明您在6-12岁之间与以下人交谈时通常使用哪种语言或方言:"
+        ],
+        "withPeopleEarlyLifeFields": {
+            "parents":          ["父母"],
+            "siblings":         ["兄弟姐妹"],
+            "grandparents":     ["祖父母"],
+            "otherRelatives":   ["其他亲戚"],
+            "friends":          ["朋友"],
+            "neighbours":       ["邻居"]
+        },
+        "situationInstructions": [
+            "Please indicate which language or dialect you generally use in the following situations.",
+            "请说明在以下场合中您通常使用的语言或方言："
+        ],
+        "situationFields": {
+            "home":         ["家里"],
+            "school":       ["学校"],
+            "work":         ["工作"],
+            "socialising":  ["社交"],
+            "religion":     ["宗教"],
+            "leisure":      ["休闲活动",  "(爱好, 体育, 志愿, 赌博, ......)"],
+            "commercial":   ["贸易",          "(购物, 参观, ......)"],
+            "public":       ["公共事务",      "(医疗保健服务, 银行, 政府, 理事会, ......)"]
+        },
+        "activityInstructions": [
+            "请说明您通常在以下活动中使用哪种语言或方言："
+        ],
+        "activityFields": {
+            "reading":          ["读书"],
+            "emailing":         ["电子邮件发送"],
+            "texting":          ["发短信"],
+            "socialMedia":      ["社交媒体"],
+            "notes":            ["笔记",           "(购物清单, 备忘录, ......)"],
+            "traditionalMedia": ["电视, 电影, 收音机"],
+            "internet":         ["互联网"],
+            "praying":          ["祈祷"]
+        },
+        "codeSwitchingHint": [
+            "If you only know one language, select <i>N/A</i> for all items.",
+            "如果您只会一种语言，请一直选择<b>不适用</b>为答案。"
+        ],
+        "codeSwitchingInstructions": [
+            "Some people switch between the languages they know within a single conversation. For example, while speaking in one language they may use sentences or words from the other language. This is known as “code-switching”. Please indicate how often you engage in code-switching.",
+            "一些人在同一次对话或交谈中会切换他们所掌握的不同语言。使用两种或多种不同的语言或方言的现象。例如，在用单一语言交流时，他们会使用来自其他语言的句子或词汇。这种现象被称为“语码转换”。请说明您进行语码转换的频率。"
+        ],
+        "codeSwitchingFields": {
+            "friends":          ["和朋友"],
+            "parentsAndFamily": ["和父母及家人"],
+            "socialMedia":      ["在社交平台"]
+        }
+    },
+    "notes": {
+        "secTitle": [
+            "感谢您填写语言和社会背景问卷！"
+        ],
+        "participantNoteInstructions": [
+            "Is there anything else that you think is important for us to know about you?",
+            "还有其他方面您认为我们需要了解您的吗？"
+        ],
+        "thankYouMessage": [
+            "Thank you for completing the background questionnaire! If you think there's anything else we should know about you or your background then you can use the box below to tell us about this. Then just click on the &ldquo;submit and continue&rdquo; button to save your data and continue with the next task.",
+            "感谢您填写问卷！如果您认为我们还应该更多地了解您或您的背景，您可以在下面的框中留言告诉我们。然后只需单「击提交并继续」点击按钮即可保存您的数据并继续下一个任务。"
+        ],
+        "submitAndContinue": [
+            "提交并继续"
+        ]
+    }
+}

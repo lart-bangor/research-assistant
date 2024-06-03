@@ -245,7 +245,7 @@ lart.utils.UUID = {};
  * @constant
  * @type {RegExp}
  */
-lart.utils.UUID.pattern = /^[0-9a-f]{8}-?(?:[0-9a-f]{4}-?){3}[0-9a-f]{12}$/i;
+lart.utils.UUID.pattern = /^[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}$/;
 
 /**
  * Nil UUID as hex-string with separators.
@@ -1411,9 +1411,9 @@ lart.tr.get = function(ns, trId) {
 /**
  * Load translation/adaptation strings into a translation namespace.
  * 
- * @example <caption>Loads the LSBQe sections 'meta', 'base' and 'lsb' into the 'lsbq' namespace:</caption>
+ * @example <caption>Loads the LSBQe sections 'meta', 'base' and 'lsb' into the 'lsbqe' namespace:</caption>
  * const instanceId = lart.utils.searchParams.get('instance');
- * lart.tr.loadFromEel('lsbq', eel._lsbq_load_version, [instanceId, ['meta', 'base', 'lsb']]);
+ * lart.tr.loadFromEel('lsbqe', eel.lsbqe_load_localisation, [instanceId, ['meta', 'base', 'lsb']]);
  * 
  * @param {string} ns - The translation namespace to be used.
  * @param {function(...any)} eelLoader - The Python eel function (from eel.js) implementing the
@@ -1719,6 +1719,223 @@ lart.tr._triggerCallbacks = function () {
         delete lart.tr._callbackQueue[ns];
     }
 }
+
+//
+// LART REGULAR EXPRESSION PATTERNS
+//
+
+/**
+ * On-the-fly client-side translation management for the L'ART Research Assistant.
+ * 
+ * This namespace implements functionality to facilitate the on-the-fly translation
+ * of user interface elements with strings loaded on-demand from the backend.
+ * 
+ * @summary On-the-fly UI translation management
+ * @namespace lart.tr
+ * @memberof lart
+ */
+lart.patterns = {};
+
+
+/**
+ * RegEx pattern for identifying valid UUIDs.
+ * 
+ * Matches UUIDs in hexadecimal, URN and Windows GUID formats.
+ * 
+ * Examples: `123e4567-e89b-12d3-a456-426614174000`,
+ *  `urn:uuid:123e4567-e89b-12d3-a456-426614174000`,
+ *  `{123e4567-e89b-12d3-a456-426652340000}`,
+ *  `00112233445566778899aabbccddeeff`,
+ *  `000088962710306127702866241727433142015`
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.UUID = /^(?:[0-9]{39})|(?:(?:(?:urn:)?uuid:|\{)?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}\}?)$/;
+
+
+/**
+ * RegEx pattern for identifying valid hex-format UUIDs.
+ * 
+ * (Alias of `lart.utils.UUID.pattern`).
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.UUID_HEX = lart.utils.UUID.pattern;
+
+
+/**
+ * RegEx pattern for identifying valid integer (base 10) UUIDs.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.UUID_INT = /^[0-9]{39}$/;
+
+
+/**
+ * RegEx pattern for identifying URN-formatted UUIDs.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.UUID_URN = /^(?:urn:)?uuid:[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}$/;
+
+
+/**
+ * RegEx pattern for identifying a Windows GUID.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.GUID = /^\{?[0-9a-fA-F]{8}-?(?:[0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}\}?$/;
+
+
+/**
+ * RegEx pattern for identifying ISO numeric day strings.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.ISO_DAY = /^(0[1-9]|[12][0-9]|3[01])$/;
+
+
+/**
+ * RegEx pattern for identifying ISO numeric month strings.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.ISO_MONTH = /^(0[1-9]|1[0-2])$/;
+
+
+/**
+ * RegEx pattern for identifying ISO numeric year strings.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.ISO_YEAR = /^[0-9]{4}$/;
+
+
+/**
+ * RegEx pattern for identifying ISO year-month strings.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.ISO_YEAR_MONTH = /^[0-9]{4}\-(0[1-9]|1[0-2])$/;
+
+
+/**
+ * RegEx pattern for identifying ISO year-month-day strings.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.ISO_YEAR_MONTH_DAY = /^[0-9]{4}\-(0[1-9]|1[0-2])\-(0[1-9]|[12][0-9]|3[01])$/;
+
+
+/**
+ * RegEx pattern for identifying task localisation labels.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.TASK_LOCALISATION_LABEL = /^(?:[A-Z][a-z]{2}){2,}_[A-Z][a-z]{2}_[A-Z]{2}(?:\.[\w\-]*)?/;
+
+
+/**
+ * RegEx pattern for identifying software version numbers.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.SOFTWARE_VERSION_NUMBER = /^(?:\d+.)*\d+(?:[a-z]{0,4}\d*)$/;
+
+
+/**
+ * RegEx pattern for identifying software locale strings.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.SOFTWARE_LOCALE = /^[a-z]{2}_[A-Z]{2}$/;
+
+
+/**
+ * RegEx pattern for identifying short alphanumeric ID strings.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.SHORT_ID = /^[A-Za-z0-9]{3,10}$/;
+
+
+/**
+ * RegEx pattern for identifying short text strings between 0 and 255 characters.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.SHORT_TEXT = /^.{0,255}$/;
+
+
+/**
+ * RegEx pattern for identifying long text strings without newlines.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.LONG_TEXT = /^.*$/;
+
+
+/**
+ * RegEx pattern for identifying long text strings including newlines.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.ANY_STR = /^(?:.|[\r\n])*$/;
+
+
+/**
+ * RegEx pattern for identifying location/place names.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.LOCATION_NAME = /^[\p{L}\p{Nd}'＇’ʼʻ][\p{L}\p{Nd}'＇’ʼʻ\p{Ps}\p{Pe}\p{Pc},，\.．\-－－ 　]{0,59}$/u;
+
+
+/**
+ * RegEx pattern for identifying language names.
+ * 
+ * @readonly
+ * @constant
+ * @type {RegExp}
+ */
+lart.patterns.LANGUAGE_NAME = /^[\p{L}\p{Nd}'＇’ʼʻ][\p{L}\p{Nd}'＇’ʼʻ\p{Ps}\p{Pe}\p{Pc},，\.．\-－－ 　]{0,49}$/u;
+
 
 //
 // LEGACY ALIASES FROM BEFORE REFACTOR OF LIBRARY

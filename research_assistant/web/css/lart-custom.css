@@ -130,3 +130,13 @@ fieldset[disabled], *[data-lart-disabled] {
 input[type="range"][disabled] {
     opacity: 0.6;
 }
+
+.error-type {
+    font-style: italic;
+    color: var(--bs-red);
+}
+
+.error-details summary {
+    color: var(--bs-gray);
+    margin-bottom: 1ex;
+}

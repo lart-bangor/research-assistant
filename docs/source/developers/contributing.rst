@@ -56,8 +56,8 @@ rundown!
 #. Create a new branch for your fix using :code:`git checkout -b branch-name-here`.
 
    The branch name should ideally follow the schema :code:`active/category/description-of-issue`.
-   For example to make improvements to the backend logic for the LSBQ, this could
-   be :code:`active/lsbq/improve-backend-logic`. For a new tutorial in the documentation it could
+   For example to make improvements to the backend logic for the LSBQe, this could
+   be :code:`active/lsbqe/improve-backend-logic`. For a new tutorial in the documentation it could
    be :code:`active/docs/basketweaving-tutorial`.
 
    We generally follow the principle of using the :code:`active` prefix for branches that have
@@ -93,7 +93,7 @@ rundown!
 #. Title the pull request with a short description of the changes made, and if applicable the issue or bug number
    associated with your change.
 
-   For example, you could title a pull request "Added additional check to LSBQ data model to
+   For example, you could title a pull request "Added additional check to LSBQe data model to
    resolve issue #1234" or "Add a basketweaving tutorial to the documentation".
 
 #. In the description of the pull request, explain the changes you have made, any issues you think exist with the

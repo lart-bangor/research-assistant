@@ -63,10 +63,20 @@ booteel.today = {}
 booteel.today.date = new Date();
 booteel.today.iso = {}
 booteel.today.iso.YEAR = booteel.util.lpad(booteel.today.date.getFullYear().toString(), "0", 4);
-booteel.today.iso.MONTH = booteel.util.lpad(booteel.today.date.getMonth().toString(), "0", 2);
-booteel.today.iso.DAY = booteel.util.lpad(booteel.today.date.getDay().toString(), "0", 2);
+booteel.today.iso.MONTH = booteel.util.lpad((booteel.today.date.getMonth()+1).toString(), "0", 2);
+booteel.today.iso.DAY = booteel.util.lpad(booteel.today.date.getDate().toString(), "0", 2);
 booteel.today.iso.YEAR_MONTH = `${booteel.today.iso.YEAR}-${booteel.today.iso.MONTH}`;
 booteel.today.iso.YEAR_MONTH_DAY = `${booteel.today.iso.YEAR_MONTH}-${booteel.today.iso.DAY}`;
+
+booteel.yesterday = {}
+booteel.yesterday.date = new Date();
+booteel.yesterday.date.setDate(booteel.yesterday.date.getDate() - 1);
+booteel.yesterday.iso = {}
+booteel.yesterday.iso.YEAR = booteel.util.lpad(booteel.yesterday.date.getFullYear().toString(), "0", 4);
+booteel.yesterday.iso.MONTH = booteel.util.lpad((booteel.yesterday.date.getMonth()+1).toString(), "0", 2);
+booteel.yesterday.iso.DAY = booteel.util.lpad(booteel.yesterday.date.getDate().toString(), "0", 2);
+booteel.yesterday.iso.YEAR_MONTH = `${booteel.yesterday.iso.YEAR}-${booteel.yesterday.iso.MONTH}`;
+booteel.yesterday.iso.YEAR_MONTH_DAY = `${booteel.yesterday.iso.YEAR_MONTH}-${booteel.yesterday.iso.DAY}`;
 
 booteel.logger = {
     level: {

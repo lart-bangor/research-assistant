@@ -23,7 +23,7 @@ input via the `Ideas section on GitHub Discussions <https://github.com/lart-bang
 **1.2.0**                                                                          * More export options        * FastAPI
                                                                                    * In-app data synching
 **Future**     * HeLeX and/or LSBQ-H            * Option to run online
-               * LSBQ for children
+               * LSBQe for children
                * A simple BG Questionnaire
 =============  ===============================  =================================  ===========================  ================
  

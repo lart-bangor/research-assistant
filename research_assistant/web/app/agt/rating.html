@@ -126,10 +126,19 @@
         lart.forms.requireValidation(true);
         lart.forms.monitorRangeInputs('traitRatingSlot');
 
+        // Retrieve trials and traits from session storage
+        agt_trials = JSON.parse(sessionStorage.getItem('lart.agt.trials'));
+        agt_traits = JSON.parse(sessionStorage.getItem('lart.agt.traits'));
+        if (agt_trials === null || agt_traits === null) {
+            booteel.logger.critical("Failed to retrieve AGT trials and traits from session storage.");
+            // @TODO: Perhaps add a modal here to inform user of what's happened?
+        }
+
         // Translate form for specific version
         let instanceId = lart.forms.searchParams.get('instance');
-        let trialId = lart.forms.searchParams.get('trial');
-        lart.tr.loadFromEel('agt', eel._agt_load_version, [instanceId, ['meta', 'base', 'rating', 'audioMsg', 'trait', 'practice']]);
+        let trialNo = parseInt(lart.forms.searchParams.get('trial'));
+        let trialId = agt_trials[trialNo];
+        lart.tr.loadFromEel('agt', eel.agt_load_localisation, [instanceId, ['meta', 'base', 'rating', 'audioMsg', 'trait', 'practice']]);
         lart.tr.registerObserver('agt', 'surveyRatingForm');
         lart.tr.registerObserver('agt', 'practiceFeedbackModal');
         lart.tr.registerObserver('agt', 'agtSectionTitle');
@@ -256,7 +265,7 @@
         lart.forms.getElementByGreed('trial').value = trialId;
 
         // Load and fill the traits to be rated
-        eel._agt_get_traits()(fillTraitRatingSection);
+        fillTraitRatingSection(agt_traits);
 
         function fillTraitRatingSection(traits) {
             for ( trait of traits ) {
@@ -310,5 +319,5 @@
             redirectFormSubmission();
         }
     </script>
-    {{ lart_form_pipeline('surveyRatingForm', '_agt_setratings') }}
+    {{ lart_form_pipeline('surveyRatingForm', 'agt_add_ratings') }}
 {% endblock %}
