@@ -3,14 +3,15 @@
 ## Supported Versions
 
 We generally aim to actively support the latest minor version until we release
-the next one (e.g. we will release patches for 0.5.x until we release 0.6.0).
+the next one (e.g. we will release patches for 0.6.x until we release 0.7.0).
 However, note that this project is currently still in an early stage (marked by
 the 0.x.z version number) meaning that the time between such updates may be
 relatively short.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.5.x   | :white_check_mark: |
+| 0.6.x   | :white_check_mark: |
+| 0.5.x   | :x:                |
 | 0.4.x   | :x:                |
 | 0.3.x   | :x:                |
 | < 0.3   | :x:                |

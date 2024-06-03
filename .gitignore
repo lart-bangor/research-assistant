@@ -35,6 +35,7 @@ docs/source/api/generated/
 # Virtual environments
 .env
 .venv
+.python-version
 
 # Type checking
 .typings/
@@ -48,4 +49,6 @@ bak
 
 # Additional local files
 *.local.*
-research_assistant/atolc/data/dataLog.txt
+
+# MacOS files
+.DS_Store

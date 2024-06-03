@@ -27,6 +27,7 @@ sphinx-toolbox = "*"
 sphinx-js = "*"
 build = "*"
 twine = "*"
+macholib = "*"
 
 [requires]
 python_version = "3.10"

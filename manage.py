@@ -28,6 +28,21 @@ def safe_str(string: str) -> str:
     allowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-'
     return ''.join(c for c in string.replace(' ', '_') if c in allowed)
 
+def cfbundle_version(string: str) -> str:
+    """Try to turn a semantic versioned string into a CFBundleVersion compatible string."""
+    allowed = '0123456789.'
+    string = ''.join(c if c in allowed else '.' for c in string.strip())
+    while '..' in string:
+        string = string.replace('..', '.')
+    return string.strip('.')
+
+def cfbundle_short_version(string: str, levels: int = 3) -> str:
+    """Try to turn a semantic versioned string into a CFBundleShortVersion compatible string."""
+    string = cfbundle_version(string)
+    parts = '.'.split(string)
+    return '.'.join(parts[:levels])
+
+
 
 # Define constant values for project
 WORKSPACE_PATH: Final[Path] = Path(__file__).parent
@@ -40,6 +55,8 @@ APP_URL: Final[str] = config.get("metadata", "url")
 APP_NAME: Final[str] = config.get("app.options", "name")
 APP_AUTHOR: Final[str] = config.get("app.options", "author")
 APP_LONG_AUTHOR: Final[str] = config.get("app.options", "long_author")
+APP_ICON_ICNS: Final[str] = str(WORKSPACE_PATH / QUALIFIED_PKG_NAME / "web" / "img" / "appicon.icns")
+APP_ICON_ICO: Final[str] = str(WORKSPACE_PATH / QUALIFIED_PKG_NAME / "web" / "img" / "appicon.png")
 SPLASH_IMAGE: Final[str] = str(WORKSPACE_PATH / QUALIFIED_PKG_NAME / "web" / "img" / "appicon.png")
 INDENT: Final[str] = "    "
 
@@ -413,11 +430,16 @@ def _build_pyinstaller(src_dir: Path, build_dir: Path, dist_dir: Path, pkg_name:
     #     # CURRENTLY BROKEN IN PyInstaller (tcl/tk lib dependency with vcruntime)
     #     pyi_args.append("--splash")
     #     pyi_args.append(SPLASH_IMAGE)
-    if platform.system() == "Windows" or platform.system() == "Darwin":
-        if SPLASH_IMAGE:
-            pyi_args.append("-i")
-            pyi_args.append(SPLASH_IMAGE)
+    if M_PLATFORM_SYSTEM == "Windows":
+        pyi_args.append(f"-i")
+        pyi_args.append(APP_ICON_ICO)
         # pyi_args.append("--windowed")
+    if M_PLATFORM_SYSTEM == "Darwin":
+        pyi_args.append("--noconsole")
+        pyi_args.append(f"-i")
+        pyi_args.append(APP_ICON_ICNS)
+        pyi_args.append("--osx-bundle-identifier")
+        pyi_args.append("uk.ac.bangor.lart.research-assistant")
     print(f"{INDENT}Running PyInstaller...")
     print(f"{INDENT*2}Arguments:")
     for i in range(0, len(pyi_args), 2):
@@ -431,6 +453,36 @@ def _build_pyinstaller(src_dir: Path, build_dir: Path, dist_dir: Path, pkg_name:
         print(f"{INDENT*2} !! Failed !!")
         return False
     print(f"{INDENT*2}Success: PyInstaller distribution at 'dist/{pkg_name}'.")
+
+    # Prettify MacOS X bundle
+    if M_PLATFORM_SYSTEM == "Darwin":
+        bundle_path = Path("dist") / pkg_name / f"{safe_str(APP_NAME)}.app"
+        if bundle_path.exists():
+            import plistlib
+            plist_path = bundle_path / "Contents" / "Info.plist"
+            with plist_path.open("rb") as fp:
+                plist = plistlib.load(fp)
+                # By default something like this:
+                # {'CFBundleDisplayName': 'Research_Assistant',
+                # 'CFBundleExecutable': 'Research_Assistant',
+                # 'CFBundleIconFile': 'appicon.icns',
+                # 'CFBundleIdentifier': 'uk.ac.bangor.lart.research-assistant',
+                # 'CFBundleInfoDictionaryVersion': '6.0',
+                # 'CFBundleName': 'Research_Assistant',
+                # 'CFBundlePackageType': 'APPL',
+                # 'CFBundleShortVersionString': '0.0.0',
+                # 'NSHighResolutionCapable': True}
+            plist["CFBundleDisplayName"] = APP_NAME
+            plist["CFBundleName"] = APP_NAME
+            plist["CFBundleVersion"] = cfbundle_version(APP_VERSION)
+            plist["CFBundleShortVersionString"] = cfbundle_short_version(APP_VERSION)
+            plist["LSApplicationCategoryType"] = "public.app-category.education"
+            plist["UIApplicationExitsOnSuspend"] = True
+            with plist_path.open("wb") as fp:
+                plistlib.dump(plist, fp, fmt=plistlib.FMT_XML)
+            bundle_path.rename(bundle_path.with_stem(APP_NAME))
+        else:
+            print(f"Expected but didn't find MacOS bundle at {bundle_path}")
 
     # Make distributable archive
     print(f"{INDENT}Making archive from PyInstaller build...")

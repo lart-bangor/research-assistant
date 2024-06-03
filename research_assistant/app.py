@@ -195,6 +195,8 @@ def main():  # noqa: C901
     except OSError:
         logger.warning("Chrome not found... attempting fallback to Edge.")
         try:
+            if sys.platform == "darwin":
+                raise  # Eel doesn't correctly detect Edge on MacOS
             eel.start(
                 "app/index.html",
                 mode="edge",
