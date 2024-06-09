@@ -72,8 +72,6 @@ if M_PLATFORM_SYSTEM not in M_SUPPORTED_SYSTEMS:
     )
 if M_PLATFORM_SYSTEM == "Windows":
     short_system = "win"
-elif M_PLATFORM_SYSTEM == "Linux":
-    short_system = "linux"
 else:
     short_system = M_PLATFORM_SYSTEM.lower()
 M_PLATFORM_SHORT_SYSTEM: Final[str] = short_system
@@ -86,13 +84,13 @@ if M_PLATFORM_MACHINE not in M_SUPPORTED_MACHINES:
         "You can still use manage.py, but you may run into unexpected errors.\n"
     )
 if M_PLATFORM_MACHINE in ("AMD64", "x86_64"):
-    short_machine = "64"
+    short_machine = "x64"
 else:
     short_machine = M_PLATFORM_MACHINE.lower()
 M_PLATFORM_SHORT_MACHINE: Final[str] = short_machine
 del short_machine
 M_PLATFORM_RELEASE: Final[str] = platform.release()
-M_PLATFORM_STRING: Final[str] = f"{M_PLATFORM_SHORT_SYSTEM}{M_PLATFORM_SHORT_MACHINE}"
+M_PLATFORM_STRING: Final[str] = f"{M_PLATFORM_SHORT_SYSTEM}-{M_PLATFORM_SHORT_MACHINE}"
 M_COMMAND_PYTHON: Final[str] = "py" if M_PLATFORM_SYSTEM == "Windows" else "python3"
 
 
@@ -454,24 +452,15 @@ def _build_pyinstaller(src_dir: Path, build_dir: Path, dist_dir: Path, pkg_name:
         return False
     print(f"{INDENT*2}Success: PyInstaller distribution at 'dist/{pkg_name}'.")
 
-    # Prettify MacOS X bundle
+    # Prettify macOS bundle
+    bundle_path = None
     if M_PLATFORM_SYSTEM == "Darwin":
-        bundle_path = Path("dist") / pkg_name / f"{safe_str(APP_NAME)}.app"
+        bundle_path = Path.cwd() / "dist" / pkg_name / f"{safe_str(APP_NAME)}.app"
         if bundle_path.exists():
             import plistlib
             plist_path = bundle_path / "Contents" / "Info.plist"
             with plist_path.open("rb") as fp:
                 plist = plistlib.load(fp)
-                # By default something like this:
-                # {'CFBundleDisplayName': 'Research_Assistant',
-                # 'CFBundleExecutable': 'Research_Assistant',
-                # 'CFBundleIconFile': 'appicon.icns',
-                # 'CFBundleIdentifier': 'uk.ac.bangor.lart.research-assistant',
-                # 'CFBundleInfoDictionaryVersion': '6.0',
-                # 'CFBundleName': 'Research_Assistant',
-                # 'CFBundlePackageType': 'APPL',
-                # 'CFBundleShortVersionString': '0.0.0',
-                # 'NSHighResolutionCapable': True}
             plist["CFBundleDisplayName"] = APP_NAME
             plist["CFBundleName"] = APP_NAME
             plist["CFBundleVersion"] = cfbundle_version(APP_VERSION)
@@ -480,30 +469,54 @@ def _build_pyinstaller(src_dir: Path, build_dir: Path, dist_dir: Path, pkg_name:
             plist["UIApplicationExitsOnSuspend"] = True
             with plist_path.open("wb") as fp:
                 plistlib.dump(plist, fp, fmt=plistlib.FMT_XML)
-            bundle_path.rename(bundle_path.with_stem(APP_NAME))
+            bundle_path = bundle_path.rename(bundle_path.with_stem(APP_NAME))
+            # We've modified it, so now we have to re-sign it
+            subprocess.run(["codesign", "--force", "--verbose=4", "--sign", "-", bundle_path])
+            # @TODO: Ideally integrate a real signature with Apple Developer ID in the above step if we ever have one!
+            # Make a DMG for distribution of the app bundle
+            os.chdir(bundle_path.parent)
+            old_cwd = Path.cwd()
+            print(f"{INDENT*2}Changed current working directory to '{Path.cwd()}'.")
+            installer_file = build_dir / "dist" / f"{pkg_name}.dmg"
+            subprocess.run(["mkdir", "installer"])
+            subprocess.run(["ln", "-s", "/Applications", "./installer/Applications"])
+            subprocess.run(["cp", "-R", bundle_path, Path("./installer") / bundle_path.name])
+            subprocess.run(["hdiutil", "create", "-fs", "HFS+", "-srcfolder", "./installer", "-volname", "installer", "-ov", installer_file])
+            subprocess.run(["rm", "-r", "./installer"])
+            subprocess.run(["cp", WORKSPACE_PATH / "research_assistant" / "web" / "img" / "setupicon.png", "./setupicon.png"])
+            subprocess.run(["sips", "-i", "./setupicon.png"])
+            with Path("./icns.rsrc").open("wb") as fp:
+                subprocess.run(["derez", "-only", "icns", "./setupicon.png"], stdout=fp)
+            subprocess.run(["rez", "-append", "./icns.rsrc", "-o", installer_file])
+            subprocess.run(["setfile", "-a", "C", installer_file])
+            installer_file = installer_file.replace(dist_dir / installer_file.name)
+            print(f"{INDENT}DMG installer with distributable moved to '{installer_file}'.")
+            os.chdir(old_cwd)
         else:
-            print(f"Expected but didn't find MacOS bundle at {bundle_path}")
+            print(f"Expected but didn't find macOS bundle at {bundle_path}")
+            return False
 
-    # Make distributable archive
-    print(f"{INDENT}Making archive from PyInstaller build...")
+    if M_PLATFORM_SYSTEM != "Darwin":
+        # Make distributable archive
+        print(f"{INDENT}Making archive from PyInstaller build...")
 
-    # Set working directory for archiving...
-    os.chdir(f"dist")
-    print(f"{INDENT*2}Changed current working directory to '{Path.cwd()}'.")
+        # Set working directory for archiving...
+        os.chdir(f"dist")
+        print(f"{INDENT*2}Changed current working directory to '{Path.cwd()}'.")
 
-    # Make the archive
-    archive_format: str = "zip"
-    if platform.system() == "Linux":
-        archive_format = "gztar"
-    print(f"{INDENT*2}Packaging distributable {archive_format.upper()} from PyInstaller distribution...")
-    archive_file = Path(shutil.make_archive(
-        base_name=pkg_name,
-        format=archive_format,
-        root_dir=pkg_name,
-        base_dir=safe_str(APP_NAME)
-    ))
-    archive_file = archive_file.replace(dist_dir / archive_file.name)
-    print(f"{INDENT}Archive with distributable moved to '{archive_file}'.")
+        # Make the archive
+        archive_format: str = "zip"
+        if platform.system() == "Linux":
+            archive_format = "gztar"
+        print(f"{INDENT*2}Packaging distributable {archive_format.upper()} from PyInstaller distribution...")
+        archive_file = Path(shutil.make_archive(
+            base_name=pkg_name,
+            format=archive_format,
+            root_dir=pkg_name,
+            base_dir=safe_str(APP_NAME)
+        ))
+        archive_file = archive_file.replace(dist_dir / archive_file.name)
+        print(f"{INDENT}Archive with distributable moved to '{archive_file}'.")
 
     return True
 
