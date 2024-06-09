@@ -557,10 +557,18 @@
             "Manche Menschen wechseln in ein und der selben Unterhaltung zwischen den von ihnen beherrschten Sprachen. Zum Beispiel könnten sie sich in einer der Sprachen unterhalten und dabei Sätze oder Wörter einer anderen Sprache benutzen. Das nennt man “Code-Switching”. Bitte geben Sie an, wie häufig Sie Code-Switching betreiben."
         ],
         "codeSwitchingFields": {
-            "friends":          ["Freunde"],
+            "friends":            ["Freunde"],
             "parents_and_family": ["Eltern und Familie"],
-            "social_media":      ["Soziale Medien"]
-        }
+            "social_media":       ["Soziale Medien"]
+        },
+        "never": [
+            "Never",
+            "Nie"
+        ],
+        "always": [
+            "Always",
+            "Immer"
+        ]
     },
     "notes": {
         "secTitle": [

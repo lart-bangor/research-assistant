@@ -247,8 +247,8 @@
             "Sprache/Dialekt"
         ],
         "languageNameFeedback": [
-            "Please give the name of a language or dialect (between 3 and 50 characters).",
-            "Bitte geben Sie den Namen der Sprache oder des Dialekts an (zwischen 3 und 50 Buchstaben)."
+            "Please give the name of a language or dialect (between 1 and 50 characters).",
+            "Bitte geben Sie den Namen der Sprache oder des Dialekts an (zwischen 1 und 50 Buchstaben)."
         ],
         "atHome": [
             "At home",
@@ -552,10 +552,18 @@
             "Manche Menschen wechseln in ein und der selben Unterhaltung zwischen den von ihnen beherrschten Sprachen. Zum Beispiel könnten sie sich in einer der Sprachen unterhalten und dabei Sätze oder Wörter einer anderen Sprache benutzen. Das nennt man “Code-Switching”. Bitte geben Sie an, wie häufig Sie Code-Switching betreiben."
         ],
         "codeSwitchingFields": {
-            "friends":          ["Freunde"],
+            "friends":            ["Freunde"],
             "parents_and_family": ["Eltern und Familie"],
-            "social_media":      ["Soziale Medien"]
-        }
+            "social_media":       ["Soziale Medien"]
+        },
+        "never": [
+            "Never",
+            "Nie"
+        ],
+        "always": [
+            "Always",
+            "Immer"
+        ]
     },
     "notes": {
         "secTitle": [

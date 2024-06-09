@@ -47,6 +47,7 @@ logger = logging.getLogger(__name__)
 
 _appname: str = "Research Assistant"
 _appauthor: str = "L’ART"
+_appversion: str = "0.6.0b1"
 _safeappname: str = "Research_Assistant"
 _safeappauthor: str = "LART"
 _default_paths = PlatformDirs(_safeappname, _safeappauthor, roaming=True)
@@ -378,7 +379,7 @@ class Config(DataclassDictMixin, DataclassDocMixin):
 
     appname: str = field(default=_appname, init=False)
     appauthor: str = field(default=_appauthor, init=False)
-    appversion: str = field(default="0.3.4", init=False)
+    appversion: str = field(default=_appversion, init=False)
     logging: Logging = field(
         default_factory=lambda: Logging(),
         metadata={

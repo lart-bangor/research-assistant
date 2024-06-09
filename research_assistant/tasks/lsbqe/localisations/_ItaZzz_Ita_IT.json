@@ -560,10 +560,18 @@
             "Alcune persone passano da una lingua all'altra durante una singola conversazione. Ad esempio, mentre parlano in una lingua possono usare frasi o parole dell'altra lingua. Questo è noto come “commutazione di codice”. Si prega di indicare la frequenza con cui si effettua la commutazione di codice."
         ],
         "codeSwitchingFields": {
-            "friends":          ["Amici"],
+            "friends":            ["Amici"],
             "parents_and_family": ["Genitori e Famiglia"],
-            "social_media":      ["Social media"]
-        }
+            "social_media":       ["Social media"]
+        },
+        "never": [
+            "Never",
+            "Mai"
+        ],
+        "always": [
+            "Always",
+            "Sempre"
+        ]
     },
     "notes": {
         "secTitle": [

@@ -562,7 +562,15 @@
             "friends":            ["Ffrindiau"],
             "parents_and_family": ["Rhieni a Theulu"],
             "social_media":       ["Cyfryngau cymdeithasol"]
-        }
+        },
+        "never": [
+            "Never",
+            "Byth"
+        ],
+        "always": [
+            "Always",
+            "Bob tro"
+        ]
     },
     "notes": {
         "secTitle": [

@@ -573,7 +573,15 @@
             "friends":          ["Φίλους"],
             "parents_and_family": ["Γονείς και Οικογένεια"],
             "social_media":      ["Μέσα Κοινωνικής Δικτύωσης"]
-        }
+        },
+        "never": [
+            "Never",
+            "Ποτέ"
+        ],
+        "always": [
+            "Always",
+            "Πάντα"
+        ]
     },
     "notes": {
         "secTitle": [

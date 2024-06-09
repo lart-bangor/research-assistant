@@ -559,7 +559,15 @@
             "friends":            ["Freunde"],
             "parents_and_family": ["Eltern und Familie"],
             "social_media":       ["Soziale Medien"]
-        }
+        },
+        "never": [
+            "Never",
+            "Nie"
+        ],
+        "always": [
+            "Always",
+            "Immer"
+        ]
     },
     "notes": {
         "secTitle": [

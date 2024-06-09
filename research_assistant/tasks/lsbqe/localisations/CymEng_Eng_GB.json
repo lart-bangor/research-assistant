@@ -455,7 +455,13 @@
             "friends":          ["Friends"],
             "parents_and_family": ["Parents and Family"],
             "social_media":      ["Social media"]
-        }
+        },
+        "never": [
+            "Never"
+        ],
+        "always": [
+            "Always"
+        ]
     },
     "notes": {
         "secTitle": [

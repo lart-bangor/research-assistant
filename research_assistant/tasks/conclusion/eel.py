@@ -5,6 +5,7 @@ from uuid import UUID
 
 from ...booteel.task_api import ResearchTaskAPI
 from ...config import config
+from ...datamodels.types import AnyUUID
 from .datamodel import ConclusionTaskResponse
 
 logger = logging.getLogger(__name__)
@@ -21,6 +22,11 @@ class ConclusionTaskAPI(ResearchTaskAPI):
 
     # No data collected, so it's sufficient to provide the bare basic
     # ResearchTaskAPI. We overwrite store() to ensure data is never stored.
+
+    @ResearchTaskAPI.exposed
+    def is_stored(self, response_id: AnyUUID) -> Literal[True]:
+        """Dummy overwrite to pretend that any ConclusionTaskResponse has been stored."""
+        return True
 
     @ResearchTaskAPI.exposed
     def store(self, response_id: str | UUID) -> Literal[True] | None:

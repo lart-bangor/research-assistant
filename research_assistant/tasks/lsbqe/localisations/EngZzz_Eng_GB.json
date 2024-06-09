@@ -452,10 +452,16 @@
             "Some people switch between the languages they know within a single conversation. For example, while speaking in one language they may use sentences or words from the other language. This is known as “code-switching”. Please indicate how often you engage in code-switching."
         ],
         "codeSwitchingFields": {
-            "friends":          ["Friends"],
+            "friends":            ["Friends"],
             "parents_and_family": ["Parents and Family"],
-            "social_media":      ["Social media"]
-        }
+            "social_media":       ["Social media"]
+        },
+        "never": [
+            "Never"
+        ],
+        "always": [
+            "Always"
+        ]
     },
     "notes": {
         "secTitle": [
