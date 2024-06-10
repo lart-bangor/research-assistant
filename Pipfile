@@ -28,6 +28,7 @@ sphinx-js = "*"
 build = "*"
 twine = "*"
 macholib = "*"
+pyinstaller-hooks-contrib = "*"
 
 [requires]
 python_version = "3.10"
